@@ -311,9 +311,10 @@ defmodule Admin.Accounts do
   Deletes a user by id
   """
   def delete_user_by_id(id) do
-    with {1, user} <- Repo.delete_all(from(User, where: [id: ^id])) do
+    with {1, [user | _]} <- Repo.delete_all(from(u in User, where: [id: ^id], select: u)) do
       broadcast_users({:deleted, user})
-      {:ok}
+      Logger.info("broadcased the change for #{inspect(user)}")
+      {:ok, user}
     end
   end
 
