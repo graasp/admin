@@ -1,0 +1,12 @@
+<Layouts.app flash={@flash} current_scope={@current_scope}>
+  <.header>
+    Edit Published item {@published_item.id}
+    <:subtitle>Use this form to manage published_item records in your database.</:subtitle>
+  </.header>
+
+  <.published_item_form
+    changeset={@changeset}
+    action={~p"/published_items/#{@published_item}"}
+    return_to={~p"/published_items"}
+  />
+</Layouts.app>

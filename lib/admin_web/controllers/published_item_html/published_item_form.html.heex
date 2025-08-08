@@ -1,0 +1,10 @@
+<.form :let={f} for={@changeset} action={@action}>
+  <.input field={f[:creator_id]} type="number" label="Creator" />
+  <.input field={f[:item_path]} type="text" label="Item path" />
+  <.input field={f[:name]} type="text" label="Name" />
+  <.input field={f[:description]} type="text" label="Description" />
+  <footer>
+    <.button variant="primary">Save Published item</.button>
+    <.button :if={@return_to} href={@return_to}>Cancel</.button>
+  </footer>
+</.form>

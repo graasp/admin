@@ -1,0 +1,147 @@
+defmodule Admin.Publications do
+  @moduledoc """
+  The Publications context.
+  """
+
+  import Ecto.Query, warn: false
+  alias Admin.Repo
+
+  alias Admin.Publications.PublishedItem
+  alias Admin.Accounts.Scope
+
+  @doc """
+  Subscribes to scoped notifications about any published_item changes.
+
+  The broadcasted messages match the pattern:
+
+    * {:created, %PublishedItem{}}
+    * {:updated, %PublishedItem{}}
+    * {:deleted, %PublishedItem{}}
+
+  """
+  def subscribe_published_items(%Scope{} = scope) do
+    key = scope.user.id
+
+    Phoenix.PubSub.subscribe(Admin.PubSub, "user:#{key}:published_items")
+  end
+
+  defp broadcast(%Scope{} = scope, message) do
+    key = scope.user.id
+
+    Phoenix.PubSub.broadcast(Admin.PubSub, "user:#{key}:published_items", message)
+  end
+
+  @doc """
+  Returns the list of published_items.
+
+  ## Examples
+
+      iex> list_published_items(scope)
+      [%PublishedItem{}, ...]
+
+  """
+  def list_published_items(%Scope{} = scope) do
+    Repo.all_by(PublishedItem, user_id: scope.user.id)
+  end
+
+  @doc """
+  Gets a single published_item.
+
+  Raises `Ecto.NoResultsError` if the Published item does not exist.
+
+  ## Examples
+
+      iex> get_published_item!(scope, 123)
+      %PublishedItem{}
+
+      iex> get_published_item!(scope, 456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_published_item!(%Scope{} = scope, id) do
+    Repo.get_by!(PublishedItem, id: id, user_id: scope.user.id)
+  end
+
+  @doc """
+  Creates a published_item.
+
+  ## Examples
+
+      iex> create_published_item(scope, %{field: value})
+      {:ok, %PublishedItem{}}
+
+      iex> create_published_item(scope, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_published_item(%Scope{} = scope, attrs) do
+    with {:ok, published_item = %PublishedItem{}} <-
+           %PublishedItem{}
+           |> PublishedItem.changeset(attrs, scope)
+           |> Repo.insert() do
+      broadcast(scope, {:created, published_item})
+      {:ok, published_item}
+    end
+  end
+
+  @doc """
+  Updates a published_item.
+
+  ## Examples
+
+      iex> update_published_item(scope, published_item, %{field: new_value})
+      {:ok, %PublishedItem{}}
+
+      iex> update_published_item(scope, published_item, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_published_item(%Scope{} = scope, %PublishedItem{} = published_item, attrs) do
+    true = published_item.user_id == scope.user.id
+
+    with {:ok, published_item = %PublishedItem{}} <-
+           published_item
+           |> PublishedItem.changeset(attrs, scope)
+           |> Repo.update() do
+      broadcast(scope, {:updated, published_item})
+      {:ok, published_item}
+    end
+  end
+
+  @doc """
+  Deletes a published_item.
+
+  ## Examples
+
+      iex> delete_published_item(scope, published_item)
+      {:ok, %PublishedItem{}}
+
+      iex> delete_published_item(scope, published_item)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_published_item(%Scope{} = scope, %PublishedItem{} = published_item) do
+    true = published_item.user_id == scope.user.id
+
+    with {:ok, published_item = %PublishedItem{}} <-
+           Repo.delete(published_item) do
+      broadcast(scope, {:deleted, published_item})
+      {:ok, published_item}
+    end
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking published_item changes.
+
+  ## Examples
+
+      iex> change_published_item(scope, published_item)
+      %Ecto.Changeset{data: %PublishedItem{}}
+
+  """
+  def change_published_item(%Scope{} = scope, %PublishedItem{} = published_item, attrs \\ %{}) do
+    true = published_item.user_id == scope.user.id
+
+    PublishedItem.changeset(published_item, attrs, scope)
+  end
+end

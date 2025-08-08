@@ -6,6 +6,13 @@ defmodule AdminWeb.PageController do
   end
 
   def dashboard(conn, _params) do
+    conn =
+      conn
+      |> assign(
+        :publications,
+        Admin.Publications.list_published_items(conn.assigns.current_scope)
+      )
+
     render(conn, :dashboard, page_title: "Dashboard")
   end
 end

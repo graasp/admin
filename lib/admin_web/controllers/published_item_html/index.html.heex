@@ -1,0 +1,36 @@
+<Layouts.app flash={@flash} current_scope={@current_scope}>
+  <.header>
+    Published items
+    <:actions>
+      <.button href={~p"/published_items/new"}>
+        <.icon name="hero-plus" /> New Published item
+      </.button>
+    </:actions>
+  </.header>
+
+  <.table
+    id="published_items"
+    rows={@published_items}
+    row_click={&JS.navigate(~p"/published_items/#{&1}")}
+  >
+    <:col :let={published_item} label="Creator">{published_item.creator_id}</:col>
+    <:col :let={published_item} label="Item path">{published_item.item_path}</:col>
+    <:col :let={published_item} label="Name">{published_item.name}</:col>
+    <:col :let={published_item} label="Description">{published_item.description}</:col>
+    <:action :let={published_item}>
+      <div class="sr-only">
+        <.link navigate={~p"/published_items/#{published_item}"}>Show</.link>
+      </div>
+      <.link navigate={~p"/published_items/#{published_item}/edit"}>Edit</.link>
+    </:action>
+    <:action :let={published_item}>
+      <.link
+        href={~p"/published_items/#{published_item}"}
+        method="delete"
+        data-confirm="Are you sure?"
+      >
+        Delete
+      </.link>
+    </:action>
+  </.table>
+</Layouts.app>

@@ -1,0 +1,45 @@
+<Layouts.app flash={@flash} current_scope={@current_scope}>
+  <.header>
+    Published item {@published_item.id}
+    <:subtitle>
+      This is a published_item record from your database.
+    </:subtitle>
+
+    <:actions>
+      <.button navigate={~p"/published_items"}>
+        <.icon name="hero-arrow-left" />
+      </.button>
+      <.button
+        variant="primary"
+        navigate={~p"/published_items/#{@published_item}/edit?return_to=show"}
+      >
+        <.icon name="hero-pencil-square" /> Edit published_item
+      </.button>
+    </:actions>
+  </.header>
+
+  <div class="flex flex-row gap-2">
+    <.link href="https://dev.graasp.org" class="btn btn-outline">
+      View in the Player
+    </.link>
+    <.link href="https://library.dev.graasp.org" class="btn btn-outline">
+      View in the Library
+    </.link>
+  </div>
+
+  <.list>
+    <:item title="Creator">{@published_item.creator_id}</:item>
+    <:item title="Item path">{@published_item.item_path}</:item>
+    <:item title="Name">{@published_item.name}</:item>
+    <:item title="Description">{@published_item.description}</:item>
+  </.list>
+
+  <.link
+    href={~p"/published_items/#{@published_item}"}
+    method="delete"
+    data-confirm="Are you sure?"
+    class="btn btn-error"
+  >
+    <.icon name="hero-trash" class="size-4" /> Delete
+  </.link>
+</Layouts.app>
