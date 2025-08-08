@@ -22,6 +22,12 @@ Erlang/OTP 28 [erts-16.0.2] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threa
 Elixir 1.18.4 (compiled with Erlang/OTP 27)
 ```
 
+Also install `elixir-ls` (one of) the Elixir Language server. With brew:
+
+```sh
+brew install elixir-ls
+```
+
 ### PostgreSQL
 
 You will need a running PostgreSQL server.
