@@ -9,3 +9,6 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias Admin.Accounts.User
+Admin.Repo.insert!(%User{email: "admin#{System.unique_integer([:positive])}@graasp.org"})

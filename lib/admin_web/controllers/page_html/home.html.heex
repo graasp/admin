@@ -12,12 +12,17 @@
     </p>
     <div class="flex">
       <div class="w-full sm:w-auto space-x-2">
-        <p>
-          The interface requires users to log in. You need to have an admin account to log in.
-        </p>
-        <.link navigate={~p"/users/log-in"} class="btn btn-primary">
-          Log in
-        </.link>
+        <%= if @current_scope do %>
+          <p>You are logged in!</p>
+          <.link navigate={~p"/dashboard"} class="btn btn-primary">Dashboard</.link>
+        <% else %>
+          <p>
+            The interface requires users to log in. You need to have an admin account to log in.
+          </p>
+          <.link navigate={~p"/users/log-in"} class="btn btn-primary">
+            Log in
+          </.link>
+        <% end %>
       </div>
     </div>
   </div>

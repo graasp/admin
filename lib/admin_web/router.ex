@@ -54,6 +54,7 @@ defmodule AdminWeb.Router do
       on_mount: [{AdminWeb.UserAuth, :require_authenticated}] do
       live "/users/settings", UserLive.Settings, :edit
       live "/users/settings/confirm-email/:token", UserLive.Settings, :confirm_email
+      live "/users/all", UserLive.Listing, :list
     end
 
     post "/users/update-password", UserSessionController, :update_password
@@ -71,5 +72,11 @@ defmodule AdminWeb.Router do
 
     post "/users/log-in", UserSessionController, :create
     delete "/users/log-out", UserSessionController, :delete
+  end
+
+  scope "/", AdminWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/dashboard", PageController, :dashboard
   end
 end

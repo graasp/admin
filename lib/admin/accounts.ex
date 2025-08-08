@@ -2,7 +2,7 @@ defmodule Admin.Accounts do
   @moduledoc """
   The Accounts context.
   """
-
+  require Logger
   import Ecto.Query, warn: false
   alias Admin.Repo
 
@@ -75,9 +75,14 @@ defmodule Admin.Accounts do
 
   """
   def register_user(attrs) do
-    %User{}
-    |> User.email_changeset(attrs)
-    |> Repo.insert()
+    with {:ok, user = %User{}} <-
+           %User{}
+           |> User.email_changeset(attrs)
+           |> Repo.insert() do
+      broadcast_users({:created, user})
+      Logger.info("sent a broadcast message for #{inspect(user)}")
+      {:ok, user}
+    end
   end
 
   ## Settings
@@ -293,5 +298,38 @@ defmodule Admin.Accounts do
         {:ok, {user, tokens_to_expire}}
       end
     end)
+  end
+
+  @doc """
+  Returns all users
+  """
+  def list_users() do
+    Repo.all(User)
+  end
+
+  @doc """
+  Deletes a user by id
+  """
+  def delete_user_by_id(id) do
+    with {1, user} <- Repo.delete_all(from(User, where: [id: ^id])) do
+      broadcast_users({:deleted, user})
+      {:ok}
+    end
+  end
+
+  @doc """
+  Allows to subscribe to Messages sent via PubSub on the `users` topic
+
+  The broadcasted messages match the patterns:
+    * {:created, %User{}}
+    * {:deleted, %User{}}
+    * {:updated, %User{}}
+  """
+  def subscribe_users() do
+    Phoenix.PubSub.subscribe(Admin.PubSub, "users")
+  end
+
+  defp broadcast_users(message) do
+    Phoenix.PubSub.broadcast(Admin.PubSub, "users", message)
   end
 end

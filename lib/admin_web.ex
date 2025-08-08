@@ -91,6 +91,9 @@ defmodule AdminWeb do
       alias Phoenix.LiveView.JS
       alias AdminWeb.Layouts
 
+      # Placeholder components for mocks
+      alias AdminWeb.Placeholders
+
       # Routes generation with the ~p sigil
       unquote(verified_routes())
     end

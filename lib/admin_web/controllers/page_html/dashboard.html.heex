@@ -1,0 +1,60 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Welcome, {@current_scope.user.email}
+    <:subtitle>What the user should be able to do</:subtitle>
+    <%!-- <:actions> --%>
+    <%!--   <.button navigate={~p"/"}>View</.button> --%>
+    <%!-- </:actions> --%>
+  </.header>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div>
+      <div class="flex items-center justify-between">
+        <h2>Recent Publications</h2>
+        <.button navigate={~p"/published_items"}>View all</.button>
+      </div>
+      <div class="flex flex-col mt-2 gap-1">
+        <%= for publication <- @publications do %>
+          <AdminWeb.PublishedItemHTML.publication_row publication={publication}>
+            <:action>
+              <.button navigate={~p"/published_items/#{publication}"} class="btn btn-soft">
+                Manage
+              </.button>
+            </:action>
+          </AdminWeb.PublishedItemHTML.publication_row>
+        <% end %>
+      </div>
+    </div>
+
+    <Placeholders.mock_section title="My Section">
+      <:action>
+        <.button navigate={~p"/"}>View</.button>
+      </:action>
+      <:placeholder />
+      <:placeholder />
+      <:placeholder />
+    </Placeholders.mock_section>
+
+    <Placeholders.mock_section title="Notifications">
+      <:action>
+        <.button navigate={~p"/"}>View</.button>
+      </:action>
+      <:placeholder />
+      <:placeholder />
+      <:placeholder />
+    </Placeholders.mock_section>
+
+    <Placeholders.mock_section title="Planned maintenance">
+      <:action>
+        <.button navigate={~p"/"}>View</.button>
+      </:action>
+      <:placeholder />
+      <:placeholder />
+      <:placeholder />
+      <:placeholder />
+      <:placeholder />
+      <:placeholder />
+    </Placeholders.mock_section>
+  </div>
+</Layouts.app>
+
