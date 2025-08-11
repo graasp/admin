@@ -304,6 +304,7 @@ defmodule Admin.Accounts do
   Returns all users
   """
   def list_users() do
+    Logger.info("Re-fetching users for #{inspect(self())}")
     Repo.all(User)
   end
 

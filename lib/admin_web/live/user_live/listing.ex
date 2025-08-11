@@ -18,20 +18,21 @@ defmodule AdminWeb.UserLive.Listing do
         </.header>
       </div>
       <div id="user-list" phx-update="stream" class="flex flex-col gap-2">
-        <div
-          :for={{id, user} <- @streams.users}
-          id={"row #{id}"}
-          class="flex flex-row justify-between"
-        >
-          <div class="">
-            <span>{user.email}</span>
-            <div class="flex flex-row gap-2 text-xs">
-              <span class="text-secondary">{user.id}</span>
-              <AdminWeb.DateTimeComponents.relative_date date={user.inserted_at} />
+        <%= for {id, user} <- @streams.users do %>
+          <div
+            id={id}
+            class="flex flex-row justify-between"
+          >
+            <div class="">
+              <span>{user.email}</span>
+              <div class="flex flex-row gap-2 text-xs">
+                <span class="text-secondary">{user.id}</span>
+                <AdminWeb.DateTimeComponents.relative_date date={user.inserted_at} />
+              </div>
             </div>
+            <.button class="btn " phx-click="delete" phx-value-id={user.id}>Delete</.button>
           </div>
-          <.button class="btn " phx-click="delete" phx-value-id={user.id}>Delete</.button>
-        </div>
+        <% end %>
       </div>
     </Layouts.app>
     """
@@ -53,7 +54,7 @@ defmodule AdminWeb.UserLive.Listing do
   @impl true
   def handle_event("delete", %{"id" => id, "value" => _}, socket) do
     {:ok, user} = Accounts.delete_user_by_id(id)
-    {:noreply, stream_delete(socket, :users, user)}
+    {:noreply, socket}
   end
 
   def handle_event("new_user", _, socket) do
