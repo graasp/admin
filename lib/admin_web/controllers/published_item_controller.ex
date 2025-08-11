@@ -1,12 +1,18 @@
 defmodule AdminWeb.PublishedItemController do
   use AdminWeb, :controller
+  require Logger
 
+  alias AdminWeb.Forms.PublicationItemForm
   alias Admin.Publications
   alias Admin.Publications.PublishedItem
 
   def index(conn, _params) do
     published_items = Publications.list_published_items(conn.assigns.current_scope)
-    render(conn, :index, published_items: published_items)
+
+    render(conn, :index,
+      published_items: published_items,
+      changeset: PublicationItemForm.changeset(%PublicationItemForm{}, %{})
+    )
   end
 
   def new(conn, _params) do
@@ -68,5 +74,33 @@ defmodule AdminWeb.PublishedItemController do
     conn
     |> put_flash(:info, "Published item deleted successfully.")
     |> redirect(to: ~p"/published_items")
+  end
+
+  def search(conn, %{"publication_item_form" => params}) do
+    changeset = PublicationItemForm.changeset(%PublicationItemForm{}, params)
+
+    if changeset.valid? do
+      item_id = changeset.changes.item_id
+
+      case Publications.exists?(item_id) do
+        false ->
+          changeset =
+            Ecto.Changeset.add_error(
+              changeset,
+              :item_id,
+              "Publication with id '#{item_id}' could not be found"
+            )
+
+          Logger.info("updated changeset: #{inspect(changeset)}")
+
+          publication_items =
+            Publications.list_published_items(conn.assigns.current_scope)
+
+          render(conn, :index, published_items: publication_items, changeset: changeset)
+
+        true ->
+          redirect(conn, to: ~p"/published_items/#{item_id}")
+      end
+    end
   end
 end

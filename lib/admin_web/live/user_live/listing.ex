@@ -54,7 +54,8 @@ defmodule AdminWeb.UserLive.Listing do
   @impl true
   def handle_event("delete", %{"id" => id, "value" => _}, socket) do
     {:ok, user} = Accounts.delete_user_by_id(id)
-    {:noreply, socket}
+    # Update the stream locally by removing the user.
+    {:noreply, stream_delete(socket, :users, user)}
   end
 
   def handle_event("new_user", _, socket) do

@@ -80,5 +80,6 @@ defmodule AdminWeb.Router do
     get "/dashboard", PageController, :dashboard
 
     resources "/published_items", PublishedItemController
+    post "/published_items/search", PublishedItemController, :search
   end
 end

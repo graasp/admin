@@ -45,6 +45,13 @@ defmodule Admin.Publications do
   end
 
   @doc """
+  Checks if a publicaiton exists for the supplied id
+  """
+  def exists?(id) do
+    Repo.exists?(from(p in PublishedItem, where: p.id == ^id))
+  end
+
+  @doc """
   Gets a single published_item.
 
   Raises `Ecto.NoResultsError` if the Published item does not exist.
