@@ -52,3 +52,9 @@ To start your Phoenix server:
 - Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+
+## Cleaning artifacts after making a release
+
+If you made a release localy it is possible that you end-up with a lot of files in the `priv/static/` folder.
+
+Before committing, run: `mix phx.digest.clean --all` to clean them.

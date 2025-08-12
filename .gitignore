@@ -35,3 +35,8 @@ admin-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# prod environement file
+.env.prod
+
+# elixir_ls dir
+.elixir_ls
