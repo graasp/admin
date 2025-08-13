@@ -77,7 +77,7 @@ ssh:
 # Use accessory services (secrets come from .kamal/secrets).
 env:
   clear:
-    - PHX_HOST: admin.dev.graasp.org
+    PHX_HOST: admin.dev.graasp.org
   secret:
     - DATABASE_URL # Comes from the .kamal/secrets file
     - SECRET_KEY_BASE # you'll have here other keys like RAILS_MASTER_KEY etc.
@@ -94,3 +94,9 @@ accessories:
         - POSTGRES_PASSWORD # Comes from the .kamal/secrets file
     directories:
       - data:/var/lib/postgresql/data
+
+aliases:
+  console: app exec --interactive --reuse "/app/bin/admin remote"
+  migrate: app exec --interactive --reuse "/app/bin/migrate"
+  shell: app exec --interactive --reuse "/bin/sh"
+  logs: app logs -f
