@@ -76,6 +76,8 @@ ssh:
 
 # Use accessory services (secrets come from .kamal/secrets).
 env:
+  clear:
+    - PHX_HOST: admin.dev.graasp.org
   secret:
     - DATABASE_URL # Comes from the .kamal/secrets file
     - SECRET_KEY_BASE # you'll have here other keys like RAILS_MASTER_KEY etc.
