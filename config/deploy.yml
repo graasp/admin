@@ -79,8 +79,11 @@ env:
   clear:
     PHX_HOST: admin.dev.graasp.org
   secret:
-    - DATABASE_URL # Comes from the .kamal/secrets file
-    - SECRET_KEY_BASE # you'll have here other keys like RAILS_MASTER_KEY etc.
+    # Comes from the .kamal/secrets file
+    - DATABASE_URL
+    - SECRET_KEY_BASE
+    - MAILER_SES_ACCESS_KEY
+    - MAILER_SES_SECRET
 
 accessories:
   postgres:
