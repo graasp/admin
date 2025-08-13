@@ -105,10 +105,12 @@ if config_env() == :prod do
   # In production you need to configure the mailer to use a different adapter.
   # Here is an example configuration for Mailgun:
   #
-  #     config :admin, Admin.Mailer,
-  #       adapter: Swoosh.Adapters.Mailgun,
-  #       api_key: System.get_env("MAILGUN_API_KEY"),
-  #       domain: System.get_env("MAILGUN_DOMAIN")
+  config :admin, Admin.Mailer,
+    adapter: Swoosh.Adapters.AmazonSES,
+    region: "eu-central-1",
+    access_key: System.get_env("MAILER_SES_ACCESS_KEY"),
+    secret: System.get_env("MAILER_SES_SECRET")
+
   #
   # Most non-SMTP adapters require an API client. Swoosh supports Req, Hackney,
   # and Finch out-of-the-box. This configuration is typically done at

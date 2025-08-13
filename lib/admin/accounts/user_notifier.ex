@@ -9,7 +9,7 @@ defmodule Admin.Accounts.UserNotifier do
     email =
       new()
       |> to(recipient)
-      |> from({"Admin", "contact@example.com"})
+      |> from({"Admin", "noreply@graasp.org"})
       |> subject(subject)
       |> text_body(body)
 
