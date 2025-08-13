@@ -18,6 +18,12 @@ defmodule AdminWeb.Router do
   end
 
   scope "/", AdminWeb do
+    pipe_through :api
+
+    get "/up", HealthController, :up
+  end
+
+  scope "/", AdminWeb do
     pipe_through :browser
 
     get "/", PageController, :home
