@@ -55,7 +55,7 @@ builder:
 # Use a different ssh user than root
 #
 ssh:
-  user: ubuntu
+  user: docker
   keys: ["~/.ssh/phoenix.pem"]
 # Use a persistent storage volume.
 #
@@ -75,25 +75,20 @@ ssh:
 #   wait: 2
 
 # Use accessory services (secrets come from .kamal/secrets).
-#
-# accessories:
-#   db:
-#     image: mysql:8.0
-#     host: 192.168.0.2
-#     port: 3306
-#     env:
-#       clear:
-#         MYSQL_ROOT_HOST: '%'
-#       secret:
-#         - MYSQL_ROOT_PASSWORD
-#     files:
-#       - config/mysql/production.cnf:/etc/mysql/my.cnf
-#       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-#     directories:
-#       - data:/var/lib/mysql
-#   redis:
-#     image: valkey/valkey:8
-#     host: 192.168.0.2
-#     port: 6379
-#     directories:
-#       - data:/data
+env:
+  secret:
+    - DATABASE_URL # Comes from the .kamal/secrets file
+    - SECRET_KEY_BASE # you'll have here other keys like RAILS_MASTER_KEY etc.
+
+accessories:
+  postgres:
+    image: postgres:15
+    host: admin.dev.graasp.org # The IP you want the database deployed to
+    env:
+      clear:
+        POSTGRES_USER: postgres
+        POSTGRES_DB: admin_prod
+      secret:
+        - POSTGRES_PASSWORD # Comes from the .kamal/secrets file
+    directories:
+      - data:/var/lib/postgresql/data
