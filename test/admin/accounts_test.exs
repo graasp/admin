@@ -394,4 +394,12 @@ defmodule Admin.AccountsTest do
       refute inspect(%User{password: "123456"}) =~ "password: \"123456\""
     end
   end
+
+  describe "list_users/0" do
+    test "returns users" do
+      user_fixture()
+      user_fixture()
+      refute Enum.empty?(Accounts.list_users())
+    end
+  end
 end

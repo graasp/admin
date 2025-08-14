@@ -92,6 +92,22 @@ defmodule AdminWeb.PublishedItemControllerTest do
     end
   end
 
+  describe "published item exists" do
+    setup [:create_published_item]
+
+    test "publication can be searched and displayed", %{
+      conn: conn,
+      published_item: published_item
+    } do
+      item_id = published_item.id
+
+      conn =
+        post(conn, ~p"/published_items/search", publication_item_form: %{item_id: item_id})
+
+      assert redirected_to(conn) == ~p"/published_items/#{item_id}"
+    end
+  end
+
   defp create_published_item(%{scope: scope}) do
     published_item = published_item_fixture(scope)
 

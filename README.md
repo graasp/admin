@@ -53,7 +53,17 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-## Cleaning artifacts after making a release
+## Deployment
+
+Please checkout [the setup docs](./docs/setup.md) for more information on how to bootstrap a server to deploy your app in production.
+
+## Common commands
+
+Checkout [the memento](./docs/memento.md) for an overview of helpful commands for managing the project (deployment and development).
+
+## Troubleshooting and general help
+
+### Cleaning artifacts after making a release
 
 If you made a release localy it is possible that you end-up with a lot of files in the `priv/static/` folder.
 
