@@ -8,6 +8,17 @@ This project was generated with phoenix version 1.8.0
 
 ## Required tools
 
+This project uses [mise](https://mise.jdx.dev/).
+
+Install all dependencies with:
+
+```sh
+mise i
+```
+
+<details>
+    <summary>Installing Elixir with brew (not recommended)</summary>
+
 ### Elixir
 
 You will need Elixir and OTP installed.
@@ -27,6 +38,8 @@ Also install `elixir-ls` (one of) the Elixir Language server. With brew:
 ```sh
 brew install elixir-ls
 ```
+
+</details>
 
 ### PostgreSQL
 
