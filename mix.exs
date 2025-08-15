@@ -12,7 +12,7 @@ defmodule Admin.MixProject do
       deps: deps(),
       compilers: [:phoenix_live_view] ++ Mix.compilers(),
       listeners: [Phoenix.CodeReloader],
-      test_coverage: [ignore_modules: [Admin.Release]]
+      test_coverage: [tool: ExCoveralls, ignore_modules: [Admin.Release]]
     ]
   end
 
@@ -28,7 +28,14 @@ defmodule Admin.MixProject do
 
   def cli do
     [
-      preferred_envs: [precommit: :test]
+      preferred_envs: [
+        precommit: :test,
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test,
+        "coveralls.cobertura": :test
+      ]
     ]
   end
 
@@ -69,7 +76,7 @@ defmodule Admin.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
-      {:timex, "~> 3.7"}
+      {:excoveralls, "~> 0.18", only: :test}
     ]
   end
 
