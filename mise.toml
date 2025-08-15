@@ -1,4 +1,5 @@
 [tools]
-elixir = "latest"
-erlang = "latest"
+elixir = "1.18.4-otp-27"
+erlang = "27"
+
 ruby = "latest"

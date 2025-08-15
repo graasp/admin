@@ -2,6 +2,7 @@ defmodule AdminWeb.PublishedItemController do
   use AdminWeb, :controller
   require Logger
 
+  require IEx
   alias AdminWeb.Forms.PublicationItemForm
   alias Admin.Publications
   alias Admin.Publications.PublishedItem
