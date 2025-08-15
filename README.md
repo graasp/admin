@@ -59,10 +59,11 @@ With a graphical client like [Postgres.app](https://postgresapp.com/) on MacOS.
 
 ## Getting Started
 
-To start your Phoenix server:
-
-- Run `mix setup` to install and setup dependencies
-- Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+0. Ensure you have Elixir installed (`elixir -v` should show you the version)
+1. Install project dependencies with: `mix setup`
+2. Start you Phoenix server:
+   - Run `mix setup` to install and setup dependencies
+   - Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
