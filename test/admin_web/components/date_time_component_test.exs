@@ -45,7 +45,10 @@ defmodule AdminWeb.DateTimeComponentTest do
 
     test "in the future" do
       assert render_to_string(AdminWeb.DateTimeComponents, "relative_date", "html", %{
-               date: NaiveDateTime.local_now() |> NaiveDateTime.add(1, :day)
+               date:
+                 NaiveDateTime.local_now()
+                 |> NaiveDateTime.add(1, :day)
+                 |> NaiveDateTime.add(1, :second)
              }) =~ "in 1d"
     end
   end
