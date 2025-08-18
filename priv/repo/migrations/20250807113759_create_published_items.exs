@@ -2,12 +2,13 @@ defmodule Admin.Repo.Migrations.CreatePublishedItems do
   use Ecto.Migration
 
   def change do
-    create table(:published_items) do
+    create table(:published_items, primary_key: false) do
+      add :id, :binary_id, primary_key: true
       add :creator_id, :integer
       add :item_path, :string
       add :name, :string
       add :description, :string
-      add :user_id, references(:users, type: :id, on_delete: :delete_all)
+      add :user_id, references(:users, type: :binary_id, on_delete: :delete_all)
 
       timestamps(type: :utc_datetime)
     end

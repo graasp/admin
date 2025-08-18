@@ -45,6 +45,13 @@ defmodule Admin.Publications do
   end
 
   @doc """
+  Returns the list of published items for all users
+  """
+  def list_published_items() do
+    PublishedItem |> limit(10) |> Repo.all()
+  end
+
+  @doc """
   Checks if a publicaiton exists for the supplied id
   """
   def exists?(id) do

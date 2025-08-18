@@ -22,7 +22,8 @@ config :admin, :scopes,
 
 config :admin,
   ecto_repos: [Admin.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  migration_primary_key: [type: :binary_id]
 
 # Configures the endpoint
 config :admin, AdminWeb.Endpoint,

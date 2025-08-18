@@ -12,3 +12,15 @@
 
 alias Admin.Accounts.User
 Admin.Repo.insert!(%User{email: "admin#{System.unique_integer([:positive])}@graasp.org"})
+
+publications =
+  Enum.map(1..30, fn i ->
+    %Admin.Publications.PublishedItem{
+      name: "test #{i}",
+      description: "Description for publication #{i}",
+      item_path: "a",
+      creator_id: 123
+    }
+  end)
+
+Enum.map(publications, fn p -> Admin.Repo.insert!(p) end)

@@ -1,5 +1,5 @@
 defmodule Admin.Publications.PublishedItem do
-  use Ecto.Schema
+  use Admin.Schema
   import Ecto.Changeset
 
   schema "published_items" do
@@ -7,7 +7,7 @@ defmodule Admin.Publications.PublishedItem do
     field :item_path, :string
     field :name, :string
     field :description, :string
-    field :user_id, :id
+    field :user_id, :binary_id
 
     timestamps(type: :utc_datetime)
   end
