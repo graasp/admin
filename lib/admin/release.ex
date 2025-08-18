@@ -4,6 +4,7 @@ defmodule Admin.Release do
   installed.
   """
   @app :admin
+  require Logger
 
   def migrate do
     load_app()
