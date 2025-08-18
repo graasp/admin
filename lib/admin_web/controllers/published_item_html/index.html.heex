@@ -5,21 +5,24 @@
       <.button href={~p"/published_items/new"}>
         <.icon name="hero-plus" /> New Publication
       </.button>
-      <.button href={~p"/published_items/featured"} class="btn btn-soft">
+      <.button
+        href={~p"/published_items/featured"}
+        class="btn btn-soft btn-disabled"
+      >
         <.icon name="hero-bolt" /> Featured collections
       </.button>
     </:actions>
   </.header>
 
   <.form :let={f} for={@changeset} action={~p"/published_items/search"} method="post">
-    <div class="join">
+    <div class="flex flex-row items-center gap-1">
       <.input
         field={f[:item_id]}
         type="text"
         placeholder="Search collection by id"
         required
       />
-      <.button type="submit" class="btn btn-primary join-item">Go</.button>
+      <.button type="submit" class="btn btn-primary mb-2">Go</.button>
     </div>
   </.form>
 

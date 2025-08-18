@@ -3,11 +3,11 @@ defmodule Admin.Publications.PublishedItem do
   import Ecto.Changeset
 
   schema "published_items" do
-    field :creator_id, :integer
-    field :item_path, :string
     field :name, :string
     field :description, :string
-    field :user_id, :binary_id
+    field :item_path, :string
+
+    belongs_to :creator, Admin.Accounts.User
 
     timestamps(type: :utc_datetime)
   end
@@ -15,8 +15,8 @@ defmodule Admin.Publications.PublishedItem do
   @doc false
   def changeset(published_item, attrs, user_scope) do
     published_item
-    |> cast(attrs, [:creator_id, :item_path, :name, :description])
-    |> validate_required([:creator_id, :item_path, :name, :description])
-    |> put_change(:user_id, user_scope.user.id)
+    |> cast(attrs, [:item_path, :name, :description])
+    |> validate_required([:item_path, :name, :description])
+    |> put_change(:creator_id, user_scope.user.id)
   end
 end

@@ -9,12 +9,14 @@
       <.button navigate={~p"/published_items"}>
         <.icon name="hero-arrow-left" />
       </.button>
-      <.button
-        variant="primary"
-        navigate={~p"/published_items/#{@published_item}/edit?return_to=show"}
-      >
-        <.icon name="hero-pencil-square" /> Edit published_item
-      </.button>
+      <%= if @current_scope.user.id == @published_item.creator.id do %>
+        <.button
+          variant="primary"
+          navigate={~p"/published_items/#{@published_item}/edit?return_to=show"}
+        >
+          <.icon name="hero-pencil-square" /> Edit published_item
+        </.button>
+      <% end %>
     </:actions>
   </.header>
 
@@ -28,18 +30,16 @@
   </div>
 
   <.list>
-    <:item title="Creator">{@published_item.creator_id}</:item>
-    <:item title="Item path">{@published_item.item_path}</:item>
     <:item title="Name">{@published_item.name}</:item>
     <:item title="Description">{@published_item.description}</:item>
+    <:item title="Item path">{@published_item.item_path}</:item>
+    <:item title="Creator">{@published_item.creator.email}</:item>
   </.list>
 
   <.link
-    href={~p"/published_items/#{@published_item}"}
-    method="delete"
-    data-confirm="Are you sure?"
+    href={~p"/published_items/#{@published_item}/unpublish"}
     class="btn btn-error"
   >
-    <.icon name="hero-trash" class="size-4" /> Delete
+    <.icon name="hero-trash" class="size-4" /> Unpublish
   </.link>
 </Layouts.app>

@@ -48,7 +48,7 @@ defmodule Admin.PublicationsTest do
       assert published_item.description == "some description"
       assert published_item.creator_id == 42
       assert published_item.item_path == "some item_path"
-      assert published_item.user_id == scope.user.id
+      assert published_item.creator_id == scope.user.id
     end
 
     test "create_published_item/2 with invalid data returns error changeset" do

@@ -10,7 +10,7 @@ defmodule AdminWeb.PageController do
       conn
       |> assign(
         :publications,
-        Admin.Publications.list_published_items()
+        Admin.Publications.list_published_items(10)
       )
 
     render(conn, :dashboard, page_title: "Dashboard")

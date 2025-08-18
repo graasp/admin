@@ -8,7 +8,7 @@ defmodule AdminWeb.PublishedItemController do
   alias Admin.Publications.PublishedItem
 
   def index(conn, _params) do
-    published_items = Publications.list_published_items(conn.assigns.current_scope)
+    published_items = Publications.list_published_items()
 
     render(conn, :index,
       published_items: published_items,
@@ -19,7 +19,7 @@ defmodule AdminWeb.PublishedItemController do
   def new(conn, _params) do
     changeset =
       Publications.change_published_item(conn.assigns.current_scope, %PublishedItem{
-        user_id: conn.assigns.current_scope.user.id
+        creator_id: conn.assigns.current_scope.user.id
       })
 
     render(conn, :new, changeset: changeset)
@@ -38,7 +38,7 @@ defmodule AdminWeb.PublishedItemController do
   end
 
   def show(conn, %{"id" => id}) do
-    published_item = Publications.get_published_item!(conn.assigns.current_scope, id)
+    published_item = Publications.get_published_item!(id)
     render(conn, :show, published_item: published_item)
   end
 

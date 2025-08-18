@@ -36,19 +36,19 @@ defmodule Admin.Publications do
 
   ## Examples
 
-      iex> list_published_items(scope)
+      iex> list_published_items()
       [%PublishedItem{}, ...]
 
   """
-  def list_published_items(%Scope{} = scope) do
-    Repo.all_by(PublishedItem, user_id: scope.user.id)
+  def list_published_items() do
+    Repo.all(PublishedItem)
   end
 
   @doc """
   Returns the list of published items for all users
   """
-  def list_published_items() do
-    PublishedItem |> limit(10) |> Repo.all()
+  def list_published_items(limit) do
+    Repo.all(from p in PublishedItem, order_by: [desc: :inserted_at], limit: ^limit)
   end
 
   @doc """
@@ -72,8 +72,12 @@ defmodule Admin.Publications do
       ** (Ecto.NoResultsError)
 
   """
+  def get_published_item!(id) do
+    Repo.get!(PublishedItem, id) |> Repo.preload([:creator])
+  end
+
   def get_published_item!(%Scope{} = scope, id) do
-    Repo.get_by!(PublishedItem, id: id, user_id: scope.user.id)
+    Repo.get_by!(PublishedItem, id: id, creator_id: scope.user.id) |> Repo.preload([:creator])
   end
 
   @doc """
@@ -111,7 +115,7 @@ defmodule Admin.Publications do
 
   """
   def update_published_item(%Scope{} = scope, %PublishedItem{} = published_item, attrs) do
-    true = published_item.user_id == scope.user.id
+    true = published_item.creator_id == scope.user.id
 
     with {:ok, published_item = %PublishedItem{}} <-
            published_item
@@ -135,7 +139,7 @@ defmodule Admin.Publications do
 
   """
   def delete_published_item(%Scope{} = scope, %PublishedItem{} = published_item) do
-    true = published_item.user_id == scope.user.id
+    true = published_item.creator_id == scope.user.id
 
     with {:ok, published_item = %PublishedItem{}} <-
            Repo.delete(published_item) do
@@ -154,7 +158,7 @@ defmodule Admin.Publications do
 
   """
   def change_published_item(%Scope{} = scope, %PublishedItem{} = published_item, attrs \\ %{}) do
-    true = published_item.user_id == scope.user.id
+    true = published_item.creator_id == scope.user.id
 
     PublishedItem.changeset(published_item, attrs, scope)
   end

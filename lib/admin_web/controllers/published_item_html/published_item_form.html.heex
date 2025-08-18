@@ -2,7 +2,6 @@
   <.input field={f[:name]} type="text" label="Name" />
   <.input field={f[:description]} type="textarea" label="Description" />
   <.input field={f[:item_path]} type="text" label="Item path" />
-  <.input field={f[:creator_id]} type="number" label="Creator" />
   <footer>
     <.button variant="primary">Save Published item</.button>
     <.button :if={@return_to} href={@return_to}>Cancel</.button>

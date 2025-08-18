@@ -4,15 +4,14 @@ defmodule Admin.Repo.Migrations.CreatePublishedItems do
   def change do
     create table(:published_items, primary_key: false) do
       add :id, :binary_id, primary_key: true
-      add :creator_id, :integer
-      add :item_path, :string
       add :name, :string
       add :description, :string
-      add :user_id, references(:users, type: :binary_id, on_delete: :delete_all)
+      add :item_path, :string
+      add :creator_id, references(:users, type: :binary_id, on_delete: :delete_all), null: false
 
       timestamps(type: :utc_datetime)
     end
 
-    create index(:published_items, [:user_id])
+    create index(:published_items, [:creator_id])
   end
 end

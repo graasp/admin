@@ -6,6 +6,7 @@ defmodule Admin.Schema do
       # this allows to use UUID primary keys by default
       @primary_key {:id, :binary_id, autogenerate: true}
       @foreign_key_type :binary_id
+      @derive Phoenix.Param
     end
   end
 end
