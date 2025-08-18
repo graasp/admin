@@ -6,13 +6,13 @@ defmodule AdminWeb.UserLive.ListingTest do
 
   describe "List Users" do
     test "render user list", %{conn: conn} do
-      {:ok, _lv, html} = conn |> log_in_user(user_fixture()) |> live(~p"/users/all")
+      {:ok, _lv, html} = conn |> log_in_user(user_fixture()) |> live(~p"/users")
 
       assert html =~ "List users"
     end
 
     test "redirects if user is not logged in", %{conn: conn} do
-      assert {:error, redirect} = live(conn, ~p"/users/all")
+      assert {:error, redirect} = live(conn, ~p"/users")
 
       assert {:redirect, %{to: path, flash: flash}} = redirect
       assert path == ~p"/users/log-in"

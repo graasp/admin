@@ -24,7 +24,10 @@ defmodule AdminWeb.UserLive.Listing do
             class="flex flex-row justify-between"
           >
             <div class="">
-              <span>{user.email}</span>
+              <.link navigate={~p"/users/#{user}"}><span>{user.email}</span></.link>
+              <div :if={user.id == @current_scope.user.id} class="badge badge-soft badge-info text-xs">
+                You
+              </div>
               <div class="flex flex-row gap-2 text-xs">
                 <span class="text-secondary">{user.id}</span>
                 <AdminWeb.DateTimeComponents.relative_date date={user.inserted_at} />

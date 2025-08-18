@@ -6,7 +6,7 @@ defmodule AdminWeb.UserLive.ListingTest do
     setup :register_and_log_in_user
 
     test "Shows users", %{conn: conn} do
-      {:ok, _lv, html} = live(conn, ~p"/users/all")
+      {:ok, _lv, html} = live(conn, ~p"/users")
       assert html =~ "List users"
     end
   end

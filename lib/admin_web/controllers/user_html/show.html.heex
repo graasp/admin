@@ -1,0 +1,9 @@
+<Layouts.app flash={@flash} current_scope={@current_scope}>
+  <.button navigate={~p"/users"}><.icon name="hero-arrow-left" /></.button>
+  <.list>
+    <:item title="ID">{@user.id}</:item>
+    <:item title="Name">{@user.email}</:item>
+    <:item title="Inserted at">{@user.inserted_at}</:item>
+    <:item title="Confirmed at">{@user.confirmed_at}</:item>
+  </.list>
+</Layouts.app>

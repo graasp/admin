@@ -60,7 +60,7 @@ defmodule AdminWeb.Router do
       on_mount: [{AdminWeb.UserAuth, :require_authenticated}] do
       live "/users/settings", UserLive.Settings, :edit
       live "/users/settings/confirm-email/:token", UserLive.Settings, :confirm_email
-      live "/users/all", UserLive.Listing, :list
+      live "/users", UserLive.Listing, :list
       live "/published_items/:id/unpublish", PublishedItemLive.Unpublish, :unpublish
     end
 
@@ -85,6 +85,7 @@ defmodule AdminWeb.Router do
     pipe_through [:browser, :require_authenticated_user]
 
     get "/dashboard", PageController, :dashboard
+    get "/users/:id", UserController, :show
 
     resources "/published_items", PublishedItemController
     post "/published_items/search", PublishedItemController, :search

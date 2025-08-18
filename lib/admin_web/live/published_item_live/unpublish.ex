@@ -18,6 +18,10 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
         <.input field={@removal_form[:reason]} type="textarea" label="Reason" required />
         <.button variant="primary" phx-disable-with="Unpublishing ...">Unpublish</.button>
       </.form>
+
+      <.button navigate={~p"/published_items/#{@published_item}"}>
+        <.icon name="hero-arrow-left" />
+      </.button>
     </Layouts.app>
     """
   end
