@@ -22,8 +22,10 @@ config :admin, :scopes,
 
 config :admin,
   ecto_repos: [Admin.Repo],
-  generators: [timestamp_type: :utc_datetime],
-  migration_primary_key: [type: :binary_id]
+  generators: [timestamp_type: :utc_datetime]
+
+# Use UUID for primary keys in migrations
+config :admin, Admin.Repo, migration_primary_key: [type: :binary_id]
 
 # Configures the endpoint
 config :admin, AdminWeb.Endpoint,

@@ -1,4 +1,4 @@
-defmodule AdminWeb.Forms.PublicationItemForm do
+defmodule AdminWeb.Forms.PublishedItemSearchForm do
   alias Admin.Publications
   use Ecto.Schema
   import Ecto.Changeset

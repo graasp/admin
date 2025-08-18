@@ -4,7 +4,10 @@ defmodule Admin.Publications do
   """
 
   import Ecto.Query, warn: false
+  alias Admin.Accounts.UserNotifier
+  alias Admin.Publications.RemovalNotice
   alias Admin.Repo
+  alias Ecto.Multi
 
   alias Admin.Publications.PublishedItem
   alias Admin.Accounts.Scope
@@ -161,5 +164,36 @@ defmodule Admin.Publications do
     true = published_item.creator_id == scope.user.id
 
     PublishedItem.changeset(published_item, attrs, scope)
+  end
+
+  @doc """
+  Returns an `Ecto.Changeset{}` for tracking removal_notice changes.
+  """
+  def create_removal_notice(%PublishedItem{} = published_item, attrs \\ %{}) do
+    RemovalNotice.changeset(%RemovalNotice{user_id: published_item.creator.id}, attrs)
+  end
+
+  @doc """
+  Removes a publication. Deletes the publication and send a notification email to the user to inform them.
+  """
+  def remove_publication_with_notice(%PublishedItem{} = published_item, attrs \\ %{}) do
+    removal_notice = create_removal_notice(published_item, attrs)
+
+    multi =
+      Multi.new()
+      |> Multi.insert(:notice, removal_notice)
+      |> Multi.delete(:publication, published_item)
+      |> Multi.run(:send_notice, fn _repo, %{notice: notice, publication: published_item} ->
+        case UserNotifier.deliver_publication_removal(
+               Repo.get(Admin.Accounts.User, published_item.creator_id),
+               published_item,
+               notice
+             ) do
+          {:ok, _response} -> {:ok, :sent}
+          {:error, reason} -> {:error, reason}
+        end
+      end)
+
+    Repo.transaction(multi)
   end
 end

@@ -3,7 +3,7 @@ defmodule AdminWeb.PublishedItemController do
   require Logger
 
   require IEx
-  alias AdminWeb.Forms.PublicationItemForm
+  alias AdminWeb.Forms.PublishedItemSearchForm
   alias Admin.Publications
   alias Admin.Publications.PublishedItem
 
@@ -12,7 +12,7 @@ defmodule AdminWeb.PublishedItemController do
 
     render(conn, :index,
       published_items: published_items,
-      changeset: PublicationItemForm.changeset(%PublicationItemForm{}, %{})
+      changeset: PublishedItemSearchForm.changeset(%PublishedItemSearchForm{}, %{})
     )
   end
 
@@ -78,7 +78,7 @@ defmodule AdminWeb.PublishedItemController do
   end
 
   def search(conn, %{"publication_item_form" => params}) do
-    changeset = PublicationItemForm.changeset(%PublicationItemForm{}, params)
+    changeset = PublishedItemSearchForm.changeset(%PublishedItemSearchForm{}, params)
 
     if changeset.valid? do
       item_id = Ecto.Changeset.get_field(changeset, :item_id)

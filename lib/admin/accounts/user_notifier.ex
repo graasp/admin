@@ -19,6 +19,36 @@ defmodule Admin.Accounts.UserNotifier do
   end
 
   @doc """
+  Deliver publication removal information.
+  """
+  def deliver_publication_removal(user, publication, notice) do
+    deliver(user.email, "Your publication has been removed", """
+
+    ==============================
+
+    Hi #{user.email},
+
+    We have decided to removed your publication
+    Name: #{publication.name}
+    Created on: #{publication.inserted_at}
+
+    Your publication was removed for the following reason:
+
+    ---
+
+    #{notice.reason}
+
+    ---
+
+    You can contact us if you have any questions.
+
+    If you didn't publish this content, please ignore this.
+
+    ==============================
+    """)
+  end
+
+  @doc """
   Deliver instructions to update a user email.
   """
   def deliver_update_email_instructions(user, url) do
