@@ -60,6 +60,13 @@ defmodule Admin.Accounts do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
+  @doc """
+  Get a user with their notices associations
+  """
+  def get_user_with_notices(id) do
+    Repo.get(User, id) |> Repo.preload([:removal_notices])
+  end
+
   ## User registration
 
   @doc """

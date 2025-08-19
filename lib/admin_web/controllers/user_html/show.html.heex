@@ -4,6 +4,23 @@
     <:item title="ID">{@user.id}</:item>
     <:item title="Name">{@user.email}</:item>
     <:item title="Inserted at">{@user.inserted_at}</:item>
-    <:item title="Confirmed at">{@user.confirmed_at}</:item>
+    <:item title="Confirmed at">{@user.confirmed_at || "Not confirmed yet"}</:item>
   </.list>
+
+  <.header>
+    Removal Notices
+    <:subtitle>Records of publications that have been removed for this user.</:subtitle>
+  </.header>
+  <.table id="removal-notices" rows={@user.removal_notices}>
+    <:col :let={notice} label="ID">{notice.id}</:col>
+    <:col :let={notice} label="Creation">
+      <div class="flex flex-col">
+        <.relative_date date={notice.inserted_at} />
+        <span class="text-xs text-secondary">
+          {notice.inserted_at}
+        </span>
+      </div>
+    </:col>
+    <:col :let={notice} label="Reason">{notice.reason}</:col>
+  </.table>
 </Layouts.app>

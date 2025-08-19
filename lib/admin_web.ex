@@ -94,6 +94,9 @@ defmodule AdminWeb do
       # Placeholder components for mocks
       alias AdminWeb.Placeholders
 
+      # Date time utils
+      import AdminWeb.DateTimeComponents
+
       # Routes generation with the ~p sigil
       unquote(verified_routes())
     end

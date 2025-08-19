@@ -9,6 +9,9 @@ defmodule Admin.Accounts.User do
     field :confirmed_at, :utc_datetime
     field :authenticated_at, :utc_datetime, virtual: true
 
+    has_many :removal_notices, Admin.Publications.RemovalNotice,
+      preload_order: [desc: :inserted_at]
+
     timestamps(type: :utc_datetime)
   end
 
