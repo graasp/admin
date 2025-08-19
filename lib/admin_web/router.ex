@@ -60,8 +60,24 @@ defmodule AdminWeb.Router do
       on_mount: [{AdminWeb.UserAuth, :require_authenticated}] do
       live "/users/settings", UserLive.Settings, :edit
       live "/users/settings/confirm-email/:token", UserLive.Settings, :confirm_email
+
+      # users
       live "/users", UserLive.Listing, :list
+
+      # published_items
       live "/published_items/:id/unpublish", PublishedItemLive.Unpublish, :unpublish
+
+      # apps
+      scope "/apps" do
+        live "/publishers", PublisherLive.Index, :index
+        live "/publishers/new", PublisherLive.Form, :new
+        live "/publishers/:id", PublisherLive.Show, :show
+        live "/publishers/:id/edit", PublisherLive.Form, :edit
+        live "/", AppInstanceLive.Index, :index
+        live "/new", AppInstanceLive.Form, :new
+        live "/:id", AppInstanceLive.Show, :show
+        live "/:id/edit", AppInstanceLive.Form, :edit
+      end
     end
 
     post "/users/update-password", UserSessionController, :update_password
