@@ -5,7 +5,7 @@ defmodule Admin.Repo.Migrations.CreatePublishedItems do
     create table(:published_items, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :name, :string
-      add :description, :string
+      add :description, :text
       add :item_path, :string
       add :creator_id, references(:users, type: :binary_id, on_delete: :delete_all), null: false
 

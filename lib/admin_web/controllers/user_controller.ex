@@ -4,6 +4,6 @@ defmodule AdminWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Accounts.get_user_with_notices(id)
-    render(conn, :show, user: user)
+    render(conn, :show, page_title: "View user", user: user)
   end
 end

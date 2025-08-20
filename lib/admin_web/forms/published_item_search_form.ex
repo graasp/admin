@@ -12,10 +12,18 @@ defmodule AdminWeb.Forms.PublishedItemSearchForm do
     form
     |> cast(params, [:item_id])
     |> validate_required([:item_id])
-    # Only digits
-    |> validate_format(:item_id, ~r/^\d+$/)
+    |> validate_uuid(:item_id)
     |> maybe_validate_id_exists()
     |> Map.put(:action, :validate)
+  end
+
+  defp validate_uuid(changeset, field) do
+    validate_change(changeset, field, fn _, value ->
+      case Ecto.UUID.cast(value) do
+        {:ok, _} -> []
+        :error -> [{field, "is not a valid UUID"}]
+      end
+    end)
   end
 
   @spec maybe_validate_id_exists(Ecto.Changeset.t()) :: Ecto.Changeset.t()

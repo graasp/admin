@@ -1,5 +1,5 @@
 defmodule Admin.PublicationsTest do
-  use Admin.DataCase
+  use Admin.DataCase, async: false
 
   alias Admin.Publications
 
@@ -11,20 +11,20 @@ defmodule Admin.PublicationsTest do
 
     @invalid_attrs %{name: nil, description: nil, creator_id: nil, item_path: nil}
 
-    test "list_published_items/1 returns all scoped published_items" do
+    test "list_published_items/1 returns all published_items" do
       scope = user_scope_fixture()
-      other_scope = user_scope_fixture()
       published_item = published_item_fixture(scope)
-      other_published_item = published_item_fixture(other_scope)
-      assert Publications.list_published_items(scope) == [published_item]
-      assert Publications.list_published_items(other_scope) == [other_published_item]
+      assert Publications.list_published_items() == [published_item]
     end
 
     test "get_published_item!/2 returns the published_item with given id" do
       scope = user_scope_fixture()
       published_item = published_item_fixture(scope)
+      published_item_with_creator = Admin.Repo.preload(published_item, [:creator])
       other_scope = user_scope_fixture()
-      assert Publications.get_published_item!(scope, published_item.id) == published_item
+
+      assert Publications.get_published_item!(scope, published_item.id) ==
+               published_item_with_creator
 
       assert_raise Ecto.NoResultsError, fn ->
         Publications.get_published_item!(other_scope, published_item.id)
@@ -35,7 +35,6 @@ defmodule Admin.PublicationsTest do
       valid_attrs = %{
         name: "some name",
         description: "some description",
-        creator_id: 42,
         item_path: "some item_path"
       }
 
@@ -46,7 +45,6 @@ defmodule Admin.PublicationsTest do
 
       assert published_item.name == "some name"
       assert published_item.description == "some description"
-      assert published_item.creator_id == 42
       assert published_item.item_path == "some item_path"
       assert published_item.creator_id == scope.user.id
     end
@@ -65,7 +63,6 @@ defmodule Admin.PublicationsTest do
       update_attrs = %{
         name: "some updated name",
         description: "some updated description",
-        creator_id: 43,
         item_path: "some updated item_path"
       }
 
@@ -74,7 +71,7 @@ defmodule Admin.PublicationsTest do
 
       assert published_item.name == "some updated name"
       assert published_item.description == "some updated description"
-      assert published_item.creator_id == 43
+      assert published_item.creator_id == scope.user.id
       assert published_item.item_path == "some updated item_path"
     end
 
@@ -91,11 +88,13 @@ defmodule Admin.PublicationsTest do
     test "update_published_item/3 with invalid data returns error changeset" do
       scope = user_scope_fixture()
       published_item = published_item_fixture(scope)
+      published_item_with_creator = Admin.Repo.preload(published_item, [:creator])
 
       assert {:error, %Ecto.Changeset{}} =
                Publications.update_published_item(scope, published_item, @invalid_attrs)
 
-      assert published_item == Publications.get_published_item!(scope, published_item.id)
+      assert published_item_with_creator ==
+               Publications.get_published_item!(scope, published_item.id)
     end
 
     test "delete_published_item/2 deletes the published_item" do

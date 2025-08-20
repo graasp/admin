@@ -1,5 +1,10 @@
 <Layouts.app flash={@flash} current_scope={@current_scope}>
-  <.button navigate={~p"/users"}><.icon name="hero-arrow-left" /></.button>
+  <.header>
+    View {@user.email}
+    <:actions>
+      <.button navigate={~p"/users"}><.icon name="hero-arrow-left" /></.button>
+    </:actions>
+  </.header>
   <.list>
     <:item title="ID">{@user.id}</:item>
     <:item title="Name">{@user.email}</:item>
@@ -12,8 +17,8 @@
     <:subtitle>Records of publications that have been removed for this user.</:subtitle>
   </.header>
   <.table id="removal-notices" rows={@user.removal_notices}>
-    <:col :let={notice} label="ID">{notice.id}</:col>
-    <:col :let={notice} label="Creation">
+    <:col :let={notice} label="Publication Name">{notice.publication_name}</:col>
+    <:col :let={notice} label="Removal date">
       <div class="flex flex-col">
         <.relative_date date={notice.inserted_at} />
         <span class="text-xs text-secondary">
@@ -21,6 +26,7 @@
         </span>
       </div>
     </:col>
+    <:col :let={notice} label="Removed by">{notice.creator.email}</:col>
     <:col :let={notice} label="Reason">{notice.reason}</:col>
   </.table>
 </Layouts.app>

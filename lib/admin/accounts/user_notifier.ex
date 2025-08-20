@@ -30,7 +30,7 @@ defmodule Admin.Accounts.UserNotifier do
 
     We have decided to removed your publication
     Name: #{publication.name}
-    Created on: #{publication.inserted_at}
+    Published on: #{publication.inserted_at}
 
     Your publication was removed for the following reason:
 

@@ -17,6 +17,7 @@ defmodule Admin.Publications.PublishedItem do
     published_item
     |> cast(attrs, [:item_path, :name, :description])
     |> validate_required([:item_path, :name, :description])
+    |> validate_length(:name, min: 1, max: 255)
     |> put_change(:creator_id, user_scope.user.id)
   end
 end

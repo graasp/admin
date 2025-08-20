@@ -169,15 +169,19 @@ defmodule Admin.Publications do
   @doc """
   Returns an `Ecto.Changeset{}` for tracking removal_notice changes.
   """
-  def create_removal_notice(%PublishedItem{} = published_item, attrs \\ %{}) do
-    RemovalNotice.changeset(%RemovalNotice{user_id: published_item.creator.id}, attrs)
+  def create_removal_notice(%Scope{} = scope, %PublishedItem{} = published_item, attrs \\ %{}) do
+    RemovalNotice.changeset(%RemovalNotice{}, attrs, published_item, scope)
   end
 
   @doc """
   Removes a publication. Deletes the publication and send a notification email to the user to inform them.
   """
-  def remove_publication_with_notice(%PublishedItem{} = published_item, attrs \\ %{}) do
-    removal_notice = create_removal_notice(published_item, attrs)
+  def remove_publication_with_notice(
+        %Scope{} = scope,
+        %PublishedItem{} = published_item,
+        attrs \\ %{}
+      ) do
+    removal_notice = create_removal_notice(scope, published_item, attrs)
 
     multi =
       Multi.new()

@@ -102,7 +102,9 @@ defmodule AdminWeb.PublishedItemControllerTest do
       item_id = published_item.id
 
       conn =
-        post(conn, ~p"/published_items/search", %{publication_item_form: %{item_id: "#{item_id}"}})
+        post(conn, ~p"/published_items/search", %{
+          published_item_search_form: %{item_id: "#{item_id}"}
+        })
 
       assert redirected_to(conn) == ~p"/published_items/#{item_id}"
     end

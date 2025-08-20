@@ -3,8 +3,10 @@ defmodule Admin.Repo.Migrations.CreateRemovalNotices do
 
   def change do
     create table(:removal_notices) do
-      add :reason, :string
+      add :publication_name, :string
+      add :reason, :text
       add :user_id, references(:users, type: :binary_id, on_delete: :delete_all)
+      add :creator_id, references(:users, type: :binary_id, on_delete: :nilify_all)
 
       timestamps(type: :utc_datetime, updated_at: false)
     end
