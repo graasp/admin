@@ -92,6 +92,25 @@ defmodule AdminWeb.PublishedItemControllerTest do
     end
   end
 
+  describe "published item does not exist" do
+    test "Invalid UUID for publication", %{conn: conn} do
+      conn =
+        post(conn, ~p"/published_items/search", %{published_item_search_form: %{item_id: "toto"}})
+
+      assert html_response(conn, 200) =~ "is not a valid UUID"
+    end
+
+    test "Publication does not exist", %{conn: conn} do
+      item_id = "00000000-0000-4000-a000-000000000000"
+
+      conn =
+        post(conn, ~p"/published_items/search", %{published_item_search_form: %{item_id: item_id}})
+
+      assert html_response(conn, 200) =~
+               "Publication with id &#39;#{item_id}&#39; could not be found"
+    end
+  end
+
   describe "published item exists" do
     setup [:create_published_item]
 

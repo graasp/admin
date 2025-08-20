@@ -1,5 +1,9 @@
 {
-  "skip_files": ["lib/admin/release.ex"],
+  "skip_files": [
+    "lib/admin/release.ex",
+    "lib/admin_web/telemetry.ex",
+    "lib/admin/application.ex"
+  ],
 
   "coverage_options": {
     "treat_no_relevant_lines_as_covered": true,

@@ -22,16 +22,12 @@ defmodule Admin.Publications do
     * {:deleted, %PublishedItem{}}
 
   """
-  def subscribe_published_items(%Scope{} = scope) do
-    key = scope.user.id
-
-    Phoenix.PubSub.subscribe(Admin.PubSub, "user:#{key}:published_items")
+  def subscribe_published_items() do
+    Phoenix.PubSub.subscribe(Admin.PubSub, "published_items")
   end
 
-  defp broadcast(%Scope{} = scope, message) do
-    key = scope.user.id
-
-    Phoenix.PubSub.broadcast(Admin.PubSub, "user:#{key}:published_items", message)
+  defp broadcast(message) do
+    Phoenix.PubSub.broadcast(Admin.PubSub, "published_items", message)
   end
 
   @doc """
@@ -76,11 +72,15 @@ defmodule Admin.Publications do
 
   """
   def get_published_item!(id) do
-    Repo.get!(PublishedItem, id) |> Repo.preload([:creator])
+    Repo.get!(PublishedItem, id) |> with_creator()
   end
 
   def get_published_item!(%Scope{} = scope, id) do
-    Repo.get_by!(PublishedItem, id: id, creator_id: scope.user.id) |> Repo.preload([:creator])
+    Repo.get_by!(PublishedItem, id: id, creator_id: scope.user.id) |> with_creator()
+  end
+
+  def with_creator(%PublishedItem{} = published_item) do
+    published_item |> Repo.preload([:creator])
   end
 
   @doc """
@@ -100,7 +100,7 @@ defmodule Admin.Publications do
            %PublishedItem{}
            |> PublishedItem.changeset(attrs, scope)
            |> Repo.insert() do
-      broadcast(scope, {:created, published_item})
+      broadcast({:created, published_item})
       {:ok, published_item}
     end
   end
@@ -124,7 +124,7 @@ defmodule Admin.Publications do
            published_item
            |> PublishedItem.changeset(attrs, scope)
            |> Repo.update() do
-      broadcast(scope, {:updated, published_item})
+      broadcast({:updated, published_item})
       {:ok, published_item}
     end
   end
@@ -146,7 +146,7 @@ defmodule Admin.Publications do
 
     with {:ok, published_item = %PublishedItem{}} <-
            Repo.delete(published_item) do
-      broadcast(scope, {:deleted, published_item})
+      broadcast({:deleted, published_item})
       {:ok, published_item}
     end
   end
@@ -176,28 +176,66 @@ defmodule Admin.Publications do
   @doc """
   Removes a publication. Deletes the publication and send a notification email to the user to inform them.
   """
+
   def remove_publication_with_notice(
         %Scope{} = scope,
         %PublishedItem{} = published_item,
         attrs \\ %{}
       ) do
     removal_notice = create_removal_notice(scope, published_item, attrs)
+    multi = build_removal_multi(removal_notice, published_item)
 
-    multi =
-      Multi.new()
-      |> Multi.insert(:notice, removal_notice)
-      |> Multi.delete(:publication, published_item)
-      |> Multi.run(:send_notice, fn _repo, %{notice: notice, publication: published_item} ->
-        case UserNotifier.deliver_publication_removal(
-               Repo.get(Admin.Accounts.User, published_item.creator_id),
-               published_item,
-               notice
-             ) do
-          {:ok, _response} -> {:ok, :sent}
-          {:error, reason} -> {:error, reason}
-        end
-      end)
+    try do
+      case Repo.transaction(multi) do
+        {:ok, %{notice: notice} = _result} ->
+          {:ok, :removed, notice}
 
-    Repo.transaction(multi)
+        {:error, :notice, changeset, _changes_so_far} when is_map(changeset) ->
+          {:error, changeset}
+
+        {:error, :publication, changeset, _changes_so_far} when is_map(changeset) ->
+          {:error, changeset}
+
+        {:error, :send_notice, reason, %{notice: notice_changeset}} ->
+          changeset =
+            Ecto.Changeset.add_error(
+              notice_changeset,
+              :base,
+              "Failed to send notification: #{inspect(reason)}"
+            )
+
+          {:error, changeset}
+
+        {:error, _step, _value, %{notice: notice_changeset}} ->
+          changeset =
+            Ecto.Changeset.add_error(
+              notice_changeset,
+              :base,
+              "An unknown error occurred"
+            )
+
+          {:error, changeset}
+      end
+    rescue
+      e in Ecto.StaleEntryError ->
+        changeset =
+          removal_notice
+          |> Ecto.Changeset.change()
+          |> Ecto.Changeset.add_error(:base, "Stale entry error: #{Exception.message(e)}")
+
+        {:error, changeset}
+    end
+  end
+
+  defp build_removal_multi(removal_notice, published_item) do
+    Multi.new()
+    |> Ecto.Multi.insert(:notice, removal_notice)
+    |> Ecto.Multi.delete(:publication, published_item)
+    |> Ecto.Multi.run(:send_notice, fn _repo, %{notice: notice, publication: publication} ->
+      case UserNotifier.deliver_publication_removal(publication.creator, publication, notice) do
+        {:ok, _response} -> {:ok, :sent}
+        {:error, reason} -> {:error, reason}
+      end
+    end)
   end
 end

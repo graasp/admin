@@ -13,7 +13,7 @@ defmodule AdminWeb.UserLive.Listing do
           List users
           <:subtitle>Show users that are currently registered in the app</:subtitle>
           <:actions>
-            <.button phx-click="new_user">New User</.button>
+            <.button phx-click="new_user" id="new_user">New User</.button>
           </:actions>
         </.header>
       </div>
@@ -33,7 +33,7 @@ defmodule AdminWeb.UserLive.Listing do
                 <AdminWeb.DateTimeComponents.relative_date date={user.inserted_at} />
               </div>
             </div>
-            <.button class="btn " phx-click="delete" phx-value-id={user.id}>Delete</.button>
+            <.button class="btn " phx-click="delete" value={user.id}>Delete</.button>
           </div>
         <% end %>
       </div>
@@ -55,7 +55,7 @@ defmodule AdminWeb.UserLive.Listing do
   end
 
   @impl true
-  def handle_event("delete", %{"id" => id, "value" => _}, socket) do
+  def handle_event("delete", %{"value" => id}, socket) do
     {:ok, user} = Accounts.delete_user_by_id(id)
     # Update the stream locally by removing the user.
     {:noreply, stream_delete(socket, :users, user)}
@@ -65,18 +65,16 @@ defmodule AdminWeb.UserLive.Listing do
     {:ok, user} =
       Accounts.register_user(%{email: "#{System.unique_integer([:positive])}@graasp.org"})
 
-    {:noreply, stream_insert(socket, :users, user)}
+    {:noreply, stream_insert(socket, :users, user) |> put_flash(:info, "New user created")}
   end
 
   @impl true
   def handle_info({type, %Admin.Accounts.User{}}, socket)
       when type in [:created, :updated, :deleted] do
-    Logger.info("receiving an update for users as #{type}")
     {:noreply, stream(socket, :users, Accounts.list_users(), reset: true)}
   end
 
-  def handle_info(msg, socket) do
-    Logger.info("[Settings live view]: Handling info got #{inspect(msg)}")
+  def handle_info(_msg, socket) do
     {:noreply, socket}
   end
 end

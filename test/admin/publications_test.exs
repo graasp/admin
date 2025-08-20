@@ -19,12 +19,11 @@ defmodule Admin.PublicationsTest do
 
     test "get_published_item!/2 returns the published_item with given id" do
       scope = user_scope_fixture()
-      published_item = published_item_fixture(scope)
-      published_item_with_creator = Admin.Repo.preload(published_item, [:creator])
+      published_item = published_item_fixture(scope) |> with_creator()
       other_scope = user_scope_fixture()
 
       assert Publications.get_published_item!(scope, published_item.id) ==
-               published_item_with_creator
+               published_item
 
       assert_raise Ecto.NoResultsError, fn ->
         Publications.get_published_item!(other_scope, published_item.id)
@@ -87,13 +86,12 @@ defmodule Admin.PublicationsTest do
 
     test "update_published_item/3 with invalid data returns error changeset" do
       scope = user_scope_fixture()
-      published_item = published_item_fixture(scope)
-      published_item_with_creator = Admin.Repo.preload(published_item, [:creator])
+      published_item = published_item_fixture(scope) |> with_creator()
 
       assert {:error, %Ecto.Changeset{}} =
                Publications.update_published_item(scope, published_item, @invalid_attrs)
 
-      assert published_item_with_creator ==
+      assert published_item ==
                Publications.get_published_item!(scope, published_item.id)
     end
 

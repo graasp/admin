@@ -28,6 +28,10 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
 
   @impl true
   def mount(%{"id" => id}, _session, socket) do
+    if connected?(socket) do
+      Admin.Publications.subscribe_published_items()
+    end
+
     published_item = Publications.get_published_item!(id)
 
     removal_form =
@@ -60,14 +64,27 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
            socket.assigns.published_item,
            params
          ) do
-      {:ok, _removal_notice} ->
+      {:ok, :removed, _notice} ->
         {:noreply,
          socket
          |> put_flash(:success, "Publication was removed and user notified")
          |> redirect(to: ~p"/published_items")}
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        {:noreply, assign(socket, :removal_form, to_form(changeset))}
+      {:error, changeset} ->
+        {:noreply, assign(socket, removal_form: to_form(changeset))}
     end
+  end
+
+  @impl true
+  def handle_info({:updated, %Admin.Publications.PublishedItem{} = published_item}, socket) do
+    {:noreply,
+     socket
+     |> assign(:published_item, published_item |> Publications.with_creator())
+     |> put_flash(:info, "Publication was updated")}
+  end
+
+  def handle_info({:deleted, %Admin.Publications.PublishedItem{}}, socket) do
+    {:noreply,
+     socket |> put_flash(:error, "Publication was deleted") |> redirect(to: ~p"/published_items")}
   end
 end
