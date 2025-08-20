@@ -4,6 +4,8 @@ defmodule Admin.Accounts.UserNotifier do
   alias Admin.Mailer
   alias Admin.Accounts.User
 
+  @footer "Graasp.org is a learning experience platform."
+
   # Delivers the email using the application mailer.
   defp deliver(recipient, subject, body) do
     email =
@@ -45,6 +47,7 @@ defmodule Admin.Accounts.UserNotifier do
     If you didn't publish this content, please ignore this.
 
     ==============================
+    #{@footer}
     """)
   end
 
@@ -65,6 +68,7 @@ defmodule Admin.Accounts.UserNotifier do
     If you didn't request this change, please ignore this.
 
     ==============================
+    #{@footer}
     """)
   end
 
@@ -92,6 +96,7 @@ defmodule Admin.Accounts.UserNotifier do
     If you didn't request this email, please ignore this.
 
     ==============================
+    #{@footer}
     """)
   end
 
@@ -109,6 +114,7 @@ defmodule Admin.Accounts.UserNotifier do
     If you didn't create an account with us, please ignore this.
 
     ==============================
+    #{@footer}
     """)
   end
 end

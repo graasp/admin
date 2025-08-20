@@ -100,6 +100,7 @@ accessories:
 
 aliases:
   console: app exec --interactive --reuse "/app/bin/admin remote"
+  # rollback: app exec --interactive --reuse "/app/bin/admin eval Admin.Release.rollback"
   migrate: app exec --interactive --reuse "/app/bin/migrate"
   shell: app exec --interactive --reuse "/bin/sh"
   logs: app logs -f
