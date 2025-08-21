@@ -12,6 +12,10 @@ defmodule AdminWeb.PageController do
         :publications,
         Admin.Publications.list_published_items(10)
       )
+      |> assign(
+        :user_stats,
+        Admin.Accounts.user_stats()
+      )
 
     render(conn, :dashboard, page_title: "Dashboard")
   end

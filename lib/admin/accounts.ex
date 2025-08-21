@@ -340,4 +340,16 @@ defmodule Admin.Accounts do
   defp broadcast_users(message) do
     Phoenix.PubSub.broadcast(Admin.PubSub, "users", message)
   end
+
+  ## Statistics
+
+  @doc """
+  Return the total number of users registered on the platform
+  """
+  def user_stats() do
+    %{
+      total: Admin.Repo.aggregate(User, :count),
+      confirmed: Admin.Repo.aggregate(from(u in User, where: not is_nil(u.confirmed_at)), :count)
+    }
+  end
 end

@@ -28,15 +28,35 @@ defmodule AdminWeb.UserLive.Listing do
               <div :if={user.id == @current_scope.user.id} class="badge badge-soft badge-info text-xs">
                 You
               </div>
+              <div :if={user.confirmed_at} class="badge badge-soft badge-success text-xs">
+                <.icon name="hero-check-circle" class="size-4 shrink-0" /> Email
+              </div>
               <div class="flex flex-row gap-2 text-xs">
                 <span class="text-secondary">{user.id}</span>
                 <AdminWeb.DateTimeComponents.relative_date date={user.inserted_at} />
               </div>
             </div>
-            <.button class="btn " phx-click="delete" value={user.id}>Delete</.button>
+            <.button class="btn" phx-click="confirm_delete" value={user.id}>Delete</.button>
           </div>
         <% end %>
       </div>
+
+      <dialog
+        id="delete_modal"
+        class="modal"
+        open={@show_modal}
+      >
+        <div class="modal-box">
+          <h3 class="font-bold text-lg">Confirm Deletion</h3>
+          <p class="py-4">Are you sure you want to delete this user?</p>
+          <div class="modal-action">
+            <button class="btn btn-error" phx-click="delete_user">
+              Delete
+            </button>
+            <button class="btn" phx-click="cancel_delete">Cancel</button>
+          </div>
+        </div>
+      </dialog>
     </Layouts.app>
     """
   end
@@ -50,15 +70,32 @@ defmodule AdminWeb.UserLive.Listing do
     socket =
       socket
       |> stream(:users, Accounts.list_users())
+      |> assign(:show_modal, false)
+      |> assign(:user_to_delete, nil)
 
     {:ok, socket}
   end
 
   @impl true
-  def handle_event("delete", %{"value" => id}, socket) do
+  def handle_event("confirm_delete", %{"value" => user_id}, socket) do
+    {:noreply,
+     socket
+     |> assign(:show_modal, true)
+     |> assign(:user_to_delete, user_id)}
+  end
+
+  def handle_event("cancel_delete", _params, socket) do
+    {:noreply, socket |> assign(:show_modal, false) |> assign(:user_to_delete, nil)}
+  end
+
+  def handle_event("delete_user", _params, socket) do
+    id = socket.assigns.user_to_delete
     {:ok, user} = Accounts.delete_user_by_id(id)
     # Update the stream locally by removing the user.
-    {:noreply, stream_delete(socket, :users, user)}
+    {:noreply,
+     stream_delete(socket, :users, user)
+     |> assign(:show_modal, false)
+     |> assign(:user_to_delete, nil)}
   end
 
   def handle_event("new_user", _, socket) do

@@ -7,6 +7,22 @@
     <%!-- </:actions> --%>
   </.header>
 
+  <div class="stats shadow">
+    <div class="stat">
+      <div class="stat-title">Users</div>
+      <div class="stat-value">{@user_stats.total}</div>
+      <div class="stat-desc">Total number of users</div>
+    </div>
+  </div>
+
+  <div class="stats shadow">
+    <div class="stat">
+      <div class="stat-title">Confirmed Users</div>
+      <div class="stat-value">{@user_stats.confirmed}</div>
+      <div class="stat-desc">with a verified email</div>
+    </div>
+  </div>
+
   <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
     <div>
       <div class="flex items-center justify-between">
