@@ -415,6 +415,8 @@ TCPKeepAlive no
 
 AllowUsers ubuntu docker
 
+Subsystem sftp /usr/lib/openssh/sftp-server # required for SFTP access
+
 KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256
 Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com
