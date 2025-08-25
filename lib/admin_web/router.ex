@@ -69,14 +69,27 @@ defmodule AdminWeb.Router do
 
       # apps
       scope "/apps" do
-        live "/publishers", PublisherLive.Index, :index
-        live "/publishers/new", PublisherLive.Form, :new
-        live "/publishers/:id", PublisherLive.Show, :show
-        live "/publishers/:id/edit", PublisherLive.Form, :edit
         live "/", AppInstanceLive.Index, :index
-        live "/new", AppInstanceLive.Form, :new
         live "/:id", AppInstanceLive.Show, :show
-        live "/:id/edit", AppInstanceLive.Form, :edit
+      end
+
+      scope "/publishers" do
+        live "/", PublisherLive.Index, :index
+        live "/new", PublisherLive.Form, :new
+
+        scope "/:publisher_id" do
+          live "/", PublisherLive.Show, :show
+          live "/edit", PublisherLive.Form, :edit
+
+          scope "/apps" do
+            live "/new", AppInstanceLive.Form, :new
+
+            scope "/:app_id" do
+              live "/", AppInstanceLive.Show, :show
+              live "/edit", AppInstanceLive.Form, :edit
+            end
+          end
+        end
       end
     end
 

@@ -11,20 +11,27 @@ defmodule AdminWeb.AppInstanceLive.Show do
         App instance {@app_instance.id}
         <:subtitle>This is a app_instance record from your database.</:subtitle>
         <:actions>
-          <.button navigate={~p"/apps"}>
+          <.button navigate={~p"/publishers"}>
             <.icon name="hero-arrow-left" />
           </.button>
-          <.button variant="primary" navigate={~p"/apps/#{@app_instance}/edit?return_to=show"}>
+          <.button
+            variant="primary"
+            navigate={
+              ~p"/publishers/#{@app_instance.publisher}/apps/#{@app_instance}/edit?return_to=show"
+            }
+          >
             <.icon name="hero-pencil-square" /> Edit app_instance
           </.button>
         </:actions>
       </.header>
 
       <.list>
+        <:item title="Thumbnail">
+          <img class="w-16 h-16 rounded" src={@app_instance.thumbnail} />
+        </:item>
         <:item title="Name">{@app_instance.name}</:item>
         <:item title="Description">{@app_instance.description}</:item>
         <:item title="Url">{@app_instance.url}</:item>
-        <:item title="Thumbnail">{@app_instance.thumbnail}</:item>
       </.list>
     </Layouts.app>
     """
@@ -33,13 +40,13 @@ defmodule AdminWeb.AppInstanceLive.Show do
   @impl true
   def mount(%{"id" => id}, _session, socket) do
     if connected?(socket) do
-      Apps.subscribe_apps(socket.assigns.current_scope)
+      Apps.subscribe_apps()
     end
 
     {:ok,
      socket
      |> assign(:page_title, "Show App instance")
-     |> assign(:app_instance, Apps.get_app_instance!(socket.assigns.current_scope, id))}
+     |> assign(:app_instance, Apps.get_app_instance!(id))}
   end
 
   @impl true

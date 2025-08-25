@@ -15,13 +15,19 @@ defmodule AdminWeb.PublisherLive.Form do
 
       <.form for={@form} id="publisher-form" phx-change="validate" phx-submit="save">
         <.input field={@form[:name]} type="text" label="Name" />
-        <.input
-          field={@form[:origins]}
-          type="select"
-          multiple
-          label="Origins"
-          options={[{"Option 1", "option1"}, {"Option 2", "option2"}]}
-        />
+        <div class="fieldset mb-2">
+          <label>
+            <span class="label">Origins</span>
+            <%= for origin <- @form[:origins].value do %>
+              <span>{origin}</span>
+            <% end %>
+            <.input
+              field={@form[:origins]}
+              type="text"
+              label=""
+            />
+          </label>
+        </div>
         <footer>
           <.button phx-disable-with="Saving..." variant="primary">Save Publisher</.button>
           <.button navigate={return_path(@current_scope, @return_to, @publisher)}>Cancel</.button>
@@ -48,7 +54,7 @@ defmodule AdminWeb.PublisherLive.Form do
     socket
     |> assign(:page_title, "Edit Publisher")
     |> assign(:publisher, publisher)
-    |> assign(:form, to_form(Apps.change_publisher(socket.assigns.current_scope, publisher)))
+    |> assign(:form, to_form(Apps.change_publisher(publisher)))
   end
 
   defp apply_action(socket, :new, _params) do
@@ -57,14 +63,13 @@ defmodule AdminWeb.PublisherLive.Form do
     socket
     |> assign(:page_title, "New Publisher")
     |> assign(:publisher, publisher)
-    |> assign(:form, to_form(Apps.change_publisher(socket.assigns.current_scope, publisher)))
+    |> assign(:form, to_form(Apps.change_publisher(publisher)))
   end
 
   @impl true
   def handle_event("validate", %{"publisher" => publisher_params}, socket) do
     changeset =
       Apps.change_publisher(
-        socket.assigns.current_scope,
         socket.assigns.publisher,
         publisher_params
       )
@@ -78,7 +83,6 @@ defmodule AdminWeb.PublisherLive.Form do
 
   defp save_publisher(socket, :edit, publisher_params) do
     case Apps.update_publisher(
-           socket.assigns.current_scope,
            socket.assigns.publisher,
            publisher_params
          ) do
@@ -96,7 +100,7 @@ defmodule AdminWeb.PublisherLive.Form do
   end
 
   defp save_publisher(socket, :new, publisher_params) do
-    case Apps.create_publisher(socket.assigns.current_scope, publisher_params) do
+    case Apps.create_publisher(publisher_params) do
       {:ok, publisher} ->
         {:noreply,
          socket

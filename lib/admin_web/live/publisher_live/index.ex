@@ -8,36 +8,52 @@ defmodule AdminWeb.PublisherLive.Index do
     ~H"""
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <.header>
-        Listing Publishers
+        Listing Apps by Publishers
         <:actions>
           <.button variant="primary" navigate={~p"/publishers/new"}>
             <.icon name="hero-plus" /> New Publisher
           </.button>
         </:actions>
       </.header>
-
-      <.table
-        id="publishers"
-        rows={@streams.publishers}
-        row_click={fn {_id, publisher} -> JS.navigate(~p"/publishers/#{publisher}") end}
-      >
-        <:col :let={{_id, publisher}} label="Name">{publisher.name}</:col>
-        <:col :let={{_id, publisher}} label="Origins">{publisher.origins}</:col>
-        <:action :let={{_id, publisher}}>
-          <div class="sr-only">
-            <.link navigate={~p"/publishers/#{publisher}"}>Show</.link>
-          </div>
-          <.link navigate={~p"/publishers/#{publisher}/edit"}>Edit</.link>
-        </:action>
-        <:action :let={{id, publisher}}>
-          <.link
-            phx-click={JS.push("delete", value: %{id: publisher.id}) |> hide("##{id}")}
-            data-confirm="Are you sure?"
-          >
-            Delete
-          </.link>
-        </:action>
-      </.table>
+      <%= for {id, publisher} <- @streams.publishers do %>
+        <.header>
+          {publisher.name}
+          <:subtitle>Created <.relative_date date={publisher.inserted_at} /></:subtitle>
+          <:actions>
+            <.button variant="primary" navigate={~p"/publishers/#{publisher.id}/apps/new"}>
+              <.icon name="hero-plus" /> New App
+            </.button>
+          </:actions>
+        </.header>
+        <.table
+          id={id}
+          rows={publisher.apps}
+          row_click={fn app -> JS.navigate(~p"/apps/#{app}") end}
+        >
+          <:col :let={app} label="Thumbnail">
+            <img class="w-16 h-16 rounded" src={app.thumbnail} />
+          </:col>
+          <:col :let={app} label="Name">
+            {app.name}<span class="text-xs text-secondary">{app.description}</span>
+          </:col>
+          <:col :let={app} label="ID">{app.id}</:col>
+          <:col :let={app} label="URL">{app.url}</:col>
+          <:action :let={app}>
+            <div class="sr-only">
+              <.link navigate={~p"/apps/#{app}"}>Show</.link>
+            </div>
+            <.link navigate={~p"/publishers/#{publisher}/apps/#{app}/edit"}>Edit</.link>
+          </:action>
+          <:action :let={app}>
+            <.link
+              phx-click={JS.push("delete", value: %{id: app.id}) |> hide("##{id}")}
+              data-confirm="Are you sure?"
+            >
+              Delete
+            </.link>
+          </:action>
+        </.table>
+      <% end %>
     </Layouts.app>
     """
   end
@@ -45,19 +61,19 @@ defmodule AdminWeb.PublisherLive.Index do
   @impl true
   def mount(_params, _session, socket) do
     if connected?(socket) do
-      Apps.subscribe_publishers(socket.assigns.current_scope)
+      Apps.subscribe_publishers()
     end
 
     {:ok,
      socket
      |> assign(:page_title, "Listing Publishers")
-     |> stream(:publishers, Apps.list_publishers(socket.assigns.current_scope))}
+     |> stream(:publishers, Apps.list_apps_by_publisher())}
   end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    publisher = Apps.get_publisher!(socket.assigns.current_scope, id)
-    {:ok, _} = Apps.delete_publisher(socket.assigns.current_scope, publisher)
+    publisher = Apps.get_publisher!(id)
+    {:ok, _} = Apps.delete_publisher(publisher)
 
     {:noreply, stream_delete(socket, :publishers, publisher)}
   end
@@ -65,6 +81,6 @@ defmodule AdminWeb.PublisherLive.Index do
   @impl true
   def handle_info({type, %Admin.Apps.Publisher{}}, socket)
       when type in [:created, :updated, :deleted] do
-    {:noreply, stream(socket, :publishers, Apps.list_publishers(socket.assigns.current_scope), reset: true)}
+    {:noreply, stream(socket, :publishers, Apps.list_apps_by_publisher(), reset: true)}
   end
 end

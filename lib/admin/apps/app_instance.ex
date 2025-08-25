@@ -1,5 +1,5 @@
 defmodule Admin.Apps.AppInstance do
-  use Ecto.Schema
+  use Admin.Schema
   import Ecto.Changeset
   alias Admin.Apps
 
@@ -16,9 +16,18 @@ defmodule Admin.Apps.AppInstance do
   end
 
   @doc false
-  def changeset(app_instance, attrs) do
+  def update_changeset(app_instance, attrs) do
     app_instance
-    |> cast(attrs, [:name, :description, :url])
-    |> validate_required([:name, :description, :url])
+    |> cast(attrs, [:name, :description, :url, :thumbnail])
+
+    # |> validate_required([:name, :description, :url, :thumbnail])
+  end
+
+  @doc false
+  def changeset(app_instance, publisher, attrs) do
+    app_instance
+    |> cast(attrs, [:name, :description, :url, :thumbnail])
+    |> validate_required([:name, :description, :url, :thumbnail])
+    |> put_change(:publisher_id, publisher.id)
   end
 end

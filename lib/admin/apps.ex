@@ -7,7 +7,7 @@ defmodule Admin.Apps do
   alias Admin.Repo
 
   alias Admin.Apps.AppInstance
-  alias Admin.Accounts.Scope
+  alias Admin.Apps.Publisher
 
   @doc """
   Subscribes to scoped notifications about any app_instance changes.
@@ -32,12 +32,12 @@ defmodule Admin.Apps do
 
   ## Examples
 
-      iex> list_apps(scope)
+      iex> list_apps()
       [%AppInstance{}, ...]
 
   """
-  def list_apps(%Scope{} = scope) do
-    Repo.all_by(AppInstance, user_id: scope.user.id)
+  def list_apps_by_publisher() do
+    Repo.all(Publisher) |> Repo.preload([:apps])
   end
 
   @doc """
@@ -54,8 +54,12 @@ defmodule Admin.Apps do
       ** (Ecto.NoResultsError)
 
   """
-  def get_app_instance!(%Scope{} = scope, id) do
-    Repo.get_by!(AppInstance, id: id, user_id: scope.user.id)
+  def get_app_instance!(%Publisher{} = publisher, id) do
+    Repo.get_by!(AppInstance, id: id, publisher_id: publisher.id)
+  end
+
+  def get_app_instance!(id) do
+    Repo.get!(AppInstance, id) |> Repo.preload([:publisher])
   end
 
   @doc """
@@ -63,17 +67,17 @@ defmodule Admin.Apps do
 
   ## Examples
 
-      iex> create_app_instance(scope, %{field: value})
+      iex> create_app_instance(%{field: value})
       {:ok, %AppInstance{}}
 
-      iex> create_app_instance(scope, %{field: bad_value})
+      iex> create_app_instance(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_app_instance(%Scope{} = scope, attrs) do
+  def create_app_instance(%Publisher{} = publisher, attrs) do
     with {:ok, app_instance = %AppInstance{}} <-
            %AppInstance{}
-           |> AppInstance.changeset(attrs, scope)
+           |> AppInstance.changeset(publisher, attrs)
            |> Repo.insert() do
       broadcast({:created, app_instance})
       {:ok, app_instance}
@@ -85,19 +89,17 @@ defmodule Admin.Apps do
 
   ## Examples
 
-      iex> update_app_instance(scope, app_instance, %{field: new_value})
+      iex> update_app_instance(app_instance, %{field: new_value})
       {:ok, %AppInstance{}}
 
-      iex> update_app_instance(scope, app_instance, %{field: bad_value})
+      iex> update_app_instance(app_instance, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_app_instance(%Scope{} = scope, %AppInstance{} = app_instance, attrs) do
-    true = app_instance.user_id == scope.user.id
-
+  def update_app_instance(%AppInstance{} = app_instance, attrs) do
     with {:ok, app_instance = %AppInstance{}} <-
            app_instance
-           |> AppInstance.changeset(attrs, scope)
+           |> AppInstance.update_changeset(attrs)
            |> Repo.update() do
       broadcast({:updated, app_instance})
       {:ok, app_instance}
@@ -109,10 +111,10 @@ defmodule Admin.Apps do
 
   ## Examples
 
-      iex> delete_app_instance(scope, app_instance)
+      iex> delete_app_instance(app_instance)
       {:ok, %AppInstance{}}
 
-      iex> delete_app_instance(scope, app_instance)
+      iex> delete_app_instance(app_instance)
       {:error, %Ecto.Changeset{}}
 
   """
@@ -129,16 +131,15 @@ defmodule Admin.Apps do
 
   ## Examples
 
-      iex> change_app_instance(scope, app_instance)
+      iex> change_app_instance(app_instance)
       %Ecto.Changeset{data: %AppInstance{}}
 
   """
   def change_app_instance(%AppInstance{} = app_instance, attrs \\ %{}) do
-    AppInstance.changeset(app_instance, attrs)
+    AppInstance.update_changeset(app_instance, attrs)
   end
 
   alias Admin.Apps.Publisher
-  alias Admin.Accounts.Scope
 
   @doc """
   Subscribes to scoped notifications about any publisher changes.
@@ -150,10 +151,8 @@ defmodule Admin.Apps do
     * {:deleted, %Publisher{}}
 
   """
-  def subscribe_publishers(%Scope{} = scope) do
-    key = scope.user.id
-
-    Phoenix.PubSub.subscribe(Admin.PubSub, "user:#{key}:publishers")
+  def subscribe_publishers() do
+    Phoenix.PubSub.subscribe(Admin.PubSub, "publishers")
   end
 
   @doc """
@@ -192,17 +191,17 @@ defmodule Admin.Apps do
 
   ## Examples
 
-      iex> create_publisher(scope, %{field: value})
+      iex> create_publisher(%{field: value})
       {:ok, %Publisher{}}
 
-      iex> create_publisher(scope, %{field: bad_value})
+      iex> create_publisher(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_publisher(%Scope{} = scope, attrs) do
+  def create_publisher(attrs) do
     with {:ok, publisher = %Publisher{}} <-
            %Publisher{}
-           |> Publisher.changeset(attrs, scope)
+           |> Publisher.changeset(attrs)
            |> Repo.insert() do
       broadcast({:created, publisher})
       {:ok, publisher}
@@ -214,19 +213,17 @@ defmodule Admin.Apps do
 
   ## Examples
 
-      iex> update_publisher(scope, publisher, %{field: new_value})
+      iex> update_publisher(publisher, %{field: new_value})
       {:ok, %Publisher{}}
 
-      iex> update_publisher(scope, publisher, %{field: bad_value})
+      iex> update_publisher(publisher, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_publisher(%Scope{} = scope, %Publisher{} = publisher, attrs) do
-    true = publisher.user_id == scope.user.id
-
+  def update_publisher(%Publisher{} = publisher, attrs) do
     with {:ok, publisher = %Publisher{}} <-
            publisher
-           |> Publisher.changeset(attrs, scope)
+           |> Publisher.changeset(attrs)
            |> Repo.update() do
       broadcast({:updated, publisher})
       {:ok, publisher}
@@ -238,14 +235,14 @@ defmodule Admin.Apps do
 
   ## Examples
 
-      iex> delete_publisher(scope, publisher)
+      iex> delete_publisher(publisher)
       {:ok, %Publisher{}}
 
-      iex> delete_publisher(scope, publisher)
+      iex> delete_publisher(publisher)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_publisher(%Scope{} = scope, %Publisher{} = publisher) do
+  def delete_publisher(%Publisher{} = publisher) do
     with {:ok, publisher = %Publisher{}} <-
            Repo.delete(publisher) do
       broadcast({:deleted, publisher})
@@ -258,11 +255,11 @@ defmodule Admin.Apps do
 
   ## Examples
 
-      iex> change_publisher(scope, publisher)
+      iex> change_publisher(publisher)
       %Ecto.Changeset{data: %Publisher{}}
 
   """
-  def change_publisher(%Scope{} = scope, %Publisher{} = publisher, attrs \\ %{}) do
-    Publisher.changeset(publisher, attrs, scope)
+  def change_publisher(%Publisher{} = publisher, attrs \\ %{}) do
+    Publisher.changeset(publisher, attrs)
   end
 end

@@ -11,10 +11,10 @@ defmodule AdminWeb.PublisherLive.Show do
         Publisher {@publisher.id}
         <:subtitle>This is a publisher record from your database.</:subtitle>
         <:actions>
-          <.button navigate={~p"/publishers"}>
+          <.button navigate={~p"/apps/publishers"}>
             <.icon name="hero-arrow-left" />
           </.button>
-          <.button variant="primary" navigate={~p"/publishers/#{@publisher}/edit?return_to=show"}>
+          <.button variant="primary" navigate={~p"/apps/publishers/#{@publisher}/edit?return_to=show"}>
             <.icon name="hero-pencil-square" /> Edit publisher
           </.button>
         </:actions>
@@ -31,13 +31,13 @@ defmodule AdminWeb.PublisherLive.Show do
   @impl true
   def mount(%{"id" => id}, _session, socket) do
     if connected?(socket) do
-      Apps.subscribe_publishers(socket.assigns.current_scope)
+      Apps.subscribe_publishers()
     end
 
     {:ok,
      socket
      |> assign(:page_title, "Show Publisher")
-     |> assign(:publisher, Apps.get_publisher!(socket.assigns.current_scope, id))}
+     |> assign(:publisher, Apps.get_publisher!(id))}
   end
 
   @impl true
@@ -55,7 +55,7 @@ defmodule AdminWeb.PublisherLive.Show do
     {:noreply,
      socket
      |> put_flash(:error, "The current publisher was deleted.")
-     |> push_navigate(to: ~p"/publishers")}
+     |> push_navigate(to: ~p"/apps/publishers")}
   end
 
   def handle_info({type, %Admin.Apps.Publisher{}}, socket)

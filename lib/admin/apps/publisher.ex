@@ -1,11 +1,11 @@
 defmodule Admin.Apps.Publisher do
-  use Ecto.Schema
+  use Admin.Schema
   import Ecto.Changeset
   alias Admin.Apps
 
   schema "publishers" do
     field :name, :string
-    field :origins, {:array, :string}
+    field :origins, {:array, :string}, default: []
 
     has_many :apps, Apps.AppInstance
 
