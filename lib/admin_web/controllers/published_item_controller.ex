@@ -90,4 +90,11 @@ defmodule AdminWeb.PublishedItemController do
       render(conn, :index, published_items: published_items, changeset: changeset)
     end
   end
+
+  def featured(conn, _params) do
+    featured_published_items =
+      Publications.list_featured_published_items()
+
+    render(conn, :featured, published_items: featured_published_items)
+  end
 end

@@ -17,7 +17,9 @@ defmodule AdminWeb.PublisherLive.Index do
       </.header>
       <%= for {id, publisher} <- @streams.publishers do %>
         <.header>
-          {publisher.name}
+          <.link navigate={~p"/publishers/#{publisher.id}"}>
+            {publisher.name}
+          </.link>
           <:subtitle>Created <.relative_date date={publisher.inserted_at} /></:subtitle>
           <:actions>
             <.button variant="primary" navigate={~p"/publishers/#{publisher.id}/apps/new"}>
@@ -25,34 +27,39 @@ defmodule AdminWeb.PublisherLive.Index do
             </.button>
           </:actions>
         </.header>
-        <.table
-          id={id}
-          rows={publisher.apps}
-          row_click={fn app -> JS.navigate(~p"/apps/#{app}") end}
-        >
-          <:col :let={app} label="Thumbnail">
-            <img class="w-16 h-16 rounded" src={app.thumbnail} />
-          </:col>
-          <:col :let={app} label="Name">
-            <div class="flex flex-col">
-              <span>{app.name}</span>
-              <span class="text-xs text-secondary">{app.description}</span>
-            </div>
-          </:col>
-          <:col :let={app} label="Credentials">
-            <div class="flex flex-col">
-              <span>ID: {app.id}</span>
-              <span>Key: not available yet</span>
-            </div>
-          </:col>
-          <:col :let={app} label="URL">{app.url}</:col>
-          <:action :let={app}>
-            <div class="sr-only">
-              <.link navigate={~p"/apps/#{app}"}>Show</.link>
-            </div>
-            <.link navigate={~p"/publishers/#{publisher}/apps/#{app}/edit"}>Edit</.link>
-          </:action>
-        </.table>
+        <%= if Enum.empty?(publisher.apps) do %>
+          <p class="text-center text-sm text-secondary">No apps yet.</p>
+        <% else %>
+          <.table
+            id={id}
+            rows={publisher.apps}
+            row_click={fn app -> JS.navigate(~p"/apps/#{app}") end}
+          >
+            <:col :let={app} label="Thumbnail">
+              <img class="w-16 h-16 rounded" src={app.thumbnail} />
+            </:col>
+            <:col :let={app} label="Name">
+              <div class="flex flex-col">
+                <span>{app.name}</span>
+                <span class="text-xs text-secondary">{app.description}</span>
+              </div>
+            </:col>
+            <:col :let={app} label="Credentials">
+              <div class="flex flex-col">
+                <span>ID: {app.id}</span>
+                <span>Key: <span class="italic">not available yet</span></span>
+              </div>
+            </:col>
+            <:col :let={app} label="URL">{app.url}</:col>
+            <:action :let={app}>
+              <div class="sr-only">
+                <.link navigate={~p"/apps/#{app}"}>Show</.link>
+              </div>
+              <.link navigate={~p"/publishers/#{publisher}/apps/#{app}/edit"}>Edit</.link>
+            </:action>
+          </.table>
+        <% end %>
+        <div class="not-last:divider" />
       <% end %>
     </Layouts.app>
     """

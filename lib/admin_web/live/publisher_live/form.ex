@@ -10,22 +10,36 @@ defmodule AdminWeb.PublisherLive.Form do
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <.header>
         {@page_title}
-        <:subtitle>Use this form to manage publisher records in your database.</:subtitle>
+        <:subtitle>
+          Publishers are umbrellas for applications and provide origin verification
+        </:subtitle>
       </.header>
 
       <.form for={@form} id="publisher-form" phx-change="validate" phx-submit="save">
         <.input field={@form[:name]} type="text" label="Name" />
         <div class="fieldset mb-2">
-          <label>
+          <label class="flex flex-col justify-start gap-2">
             <span class="label">Origins</span>
-            <%= for origin <- @form[:origins].value do %>
-              <span>{origin}</span>
+            <.error :for={error <- Enum.map(@form[:origins].errors, &translate_error(&1))}>
+              {error}
+            </.error>
+            <%= for {origin, index} <- Enum.with_index(Ecto.Changeset.get_field(@form.source, :origins, [""])) do %>
+              <input
+                id={"origin-#{index}"}
+                class="input"
+                value={origin}
+                name="publisher[origins][]"
+                type="text"
+              />
             <% end %>
-            <.input
-              field={@form[:origins]}
-              type="text"
-              label=""
-            />
+            <button
+              disabled={List.last(@form[:origins].value) == ""}
+              phx-click="add_origin"
+              type="button"
+              class="btn btn-soft w-fit"
+            >
+              Add Origin
+            </button>
           </label>
         </div>
         <footer>
@@ -48,7 +62,7 @@ defmodule AdminWeb.PublisherLive.Form do
   defp return_to("show"), do: "show"
   defp return_to(_), do: "index"
 
-  defp apply_action(socket, :edit, %{"id" => id}) do
+  defp apply_action(socket, :edit, %{"publisher_id" => id}) do
     publisher = Apps.get_publisher!(id)
 
     socket
@@ -67,18 +81,35 @@ defmodule AdminWeb.PublisherLive.Form do
   end
 
   @impl true
-  def handle_event("validate", %{"publisher" => publisher_params}, socket) do
+  def handle_event("validate", %{"publisher" => publisher_params} = params, socket) do
+    publisher_params |> IO.inspect()
+    params |> IO.inspect()
+
     changeset =
       Apps.change_publisher(
         socket.assigns.publisher,
         publisher_params
       )
+      |> IO.inspect()
 
     {:noreply, assign(socket, form: to_form(changeset, action: :validate))}
   end
 
   def handle_event("save", %{"publisher" => publisher_params}, socket) do
     save_publisher(socket, socket.assigns.live_action, publisher_params)
+  end
+
+  def handle_event("add_origin", _params, socket) do
+    existing_origins = Ecto.Changeset.get_field(socket.assigns.form.source, :origins, [])
+
+    changeset =
+      Ecto.Changeset.put_change(
+        socket.assigns.form.source,
+        :origins,
+        existing_origins ++ [""]
+      )
+
+    {:noreply, assign(socket, form: to_form(changeset))}
   end
 
   defp save_publisher(socket, :edit, publisher_params) do

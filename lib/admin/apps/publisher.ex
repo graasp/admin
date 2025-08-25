@@ -5,7 +5,7 @@ defmodule Admin.Apps.Publisher do
 
   schema "publishers" do
     field :name, :string
-    field :origins, {:array, :string}, default: []
+    field :origins, {:array, :string}, default: [""]
 
     has_many :apps, Apps.AppInstance
 
@@ -15,7 +15,8 @@ defmodule Admin.Apps.Publisher do
   @doc false
   def changeset(publisher, attrs) do
     publisher
-    |> cast(attrs, [:name, :origins])
+    |> cast(attrs, [:name, :origins], empty_values: [[], nil] ++ Ecto.Changeset.empty_values())
     |> validate_required([:name, :origins])
+    |> validate_length(:origins, min: 1)
   end
 end

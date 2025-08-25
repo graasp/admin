@@ -11,7 +11,7 @@ defmodule AdminWeb.PublisherLive.Show do
         Publisher {@publisher.id}
         <:subtitle>This is a publisher record from your database.</:subtitle>
         <:actions>
-          <.button navigate={~p"/apps/publishers"}>
+          <.button navigate={~p"/publishers"}>
             <.icon name="hero-arrow-left" />
           </.button>
           <.button variant="primary" navigate={~p"/publishers/#{@publisher}/edit?return_to=show"}>
@@ -22,8 +22,17 @@ defmodule AdminWeb.PublisherLive.Show do
 
       <.list>
         <:item title="Name">{@publisher.name}</:item>
-        <:item title="Origins">{@publisher.origins}</:item>
+        <:item title="Origins">
+          <div class="flex flex-col gap-1">
+            <%= for origin <- @publisher.origins do %>
+              <span>{origin}</span>
+            <% end %>
+          </div>
+        </:item>
       </.list>
+      <.button phx-click="delete">
+        <.icon name="hero-trash" /> Delete publisher
+      </.button>
     </Layouts.app>
     """
   end
@@ -41,6 +50,20 @@ defmodule AdminWeb.PublisherLive.Show do
   end
 
   @impl true
+  def handle_event("delete", _, socket) do
+    case Apps.delete_publisher(socket.assigns.publisher) do
+      {:ok, _publisher} ->
+        {:noreply,
+         socket
+         |> put_flash(:success, "Publisher deleted.")
+         |> push_navigate(to: ~p"/publishers")}
+
+      {:error, _reason} ->
+        {:noreply, socket}
+    end
+  end
+
+  @impl true
   def handle_info(
         {:updated, %Admin.Apps.Publisher{id: id} = publisher},
         %{assigns: %{publisher: %{id: id}}} = socket
@@ -55,7 +78,7 @@ defmodule AdminWeb.PublisherLive.Show do
     {:noreply,
      socket
      |> put_flash(:error, "The current publisher was deleted.")
-     |> push_navigate(to: ~p"/apps/publishers")}
+     |> push_navigate(to: ~p"/publishers")}
   end
 
   def handle_info({type, %Admin.Apps.Publisher{}}, socket)

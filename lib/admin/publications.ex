@@ -50,6 +50,11 @@ defmodule Admin.Publications do
     Repo.all(from p in PublishedItem, order_by: [desc: :inserted_at], limit: ^limit)
   end
 
+  def list_featured_published_items() do
+    # Repo.all(from p in PublishedItem, where: p.featured == true, order_by: [desc: :inserted_at])
+    []
+  end
+
   @doc """
   Checks if a publicaiton exists for the supplied id
   """
