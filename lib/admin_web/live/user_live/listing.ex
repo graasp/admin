@@ -13,7 +13,7 @@ defmodule AdminWeb.UserLive.Listing do
           List users
           <:subtitle>Show users that are currently registered in the app</:subtitle>
           <:actions>
-            <.button phx-click="new_user" id="new_user">New User</.button>
+            <.button phx-click="new_random_user" id="new_user">New Random User</.button>
           </:actions>
         </.header>
       </div>
@@ -98,7 +98,7 @@ defmodule AdminWeb.UserLive.Listing do
      |> assign(:user_to_delete, nil)}
   end
 
-  def handle_event("new_user", _, socket) do
+  def handle_event("new_random_user", _, socket) do
     {:ok, user} =
       Accounts.register_user(%{email: "#{System.unique_integer([:positive])}@graasp.org"})
 
