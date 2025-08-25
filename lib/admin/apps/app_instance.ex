@@ -19,8 +19,7 @@ defmodule Admin.Apps.AppInstance do
   def update_changeset(app_instance, attrs) do
     app_instance
     |> cast(attrs, [:name, :description, :url, :thumbnail])
-
-    # |> validate_required([:name, :description, :url, :thumbnail])
+    |> validate_required([:name, :description, :url, :thumbnail])
   end
 
   @doc false

@@ -31,7 +31,7 @@ defmodule Admin.AppsTest do
 
     test "get_app_instance!/2 returns the app_instance with given id" do
       scope = user_scope_fixture()
-      app_instance = app_instance_fixture(scope)
+      app_instance = app_instance_fixture()
       assert Apps.get_app_instance!(app_instance.id) == app_instance
     end
 
@@ -44,8 +44,11 @@ defmodule Admin.AppsTest do
       }
 
       scope = user_scope_fixture()
+      publisher = publisher_fixture()
 
-      assert {:ok, %AppInstance{} = app_instance} = Apps.create_app_instance(valid_attrs)
+      assert {:ok, %AppInstance{} = app_instance} =
+               Apps.create_app_instance(publisher, valid_attrs)
+
       assert app_instance.name == "some name"
       assert app_instance.description == "some description"
       assert app_instance.url == "some url"
@@ -81,7 +84,7 @@ defmodule Admin.AppsTest do
     test "update_app_instance/3 with invalid scope raises" do
       scope = user_scope_fixture()
       other_scope = user_scope_fixture()
-      app_instance = app_instance_fixture(scope)
+      app_instance = app_instance_fixture()
 
       assert_raise MatchError, fn ->
         Apps.update_app_instance(other_scope, app_instance, %{})
@@ -90,12 +93,12 @@ defmodule Admin.AppsTest do
 
     test "update_app_instance/3 with invalid data returns error changeset" do
       scope = user_scope_fixture()
-      app_instance = app_instance_fixture(scope)
+      app_instance = app_instance_fixture()
 
       assert {:error, %Ecto.Changeset{}} =
-               Apps.update_app_instance(scope, app_instance, @invalid_attrs)
+               Apps.update_app_instance(app_instance, @invalid_attrs)
 
-      assert app_instance == Apps.get_app_instance!(scope, app_instance.id)
+      assert app_instance == Apps.get_app_instance!(app_instance.id)
     end
 
     test "delete_app_instance/2 deletes the app_instance" do
@@ -161,7 +164,7 @@ defmodule Admin.AppsTest do
 
     test "update_publisher/3 with valid data updates the publisher" do
       scope = user_scope_fixture()
-      publisher = publisher_fixture(scope)
+      publisher = publisher_fixture()
       update_attrs = %{name: "some updated name", origins: ["option1"]}
 
       assert {:ok, %Publisher{} = publisher} =
@@ -198,7 +201,7 @@ defmodule Admin.AppsTest do
     test "delete_publisher/2 with invalid scope raises" do
       scope = user_scope_fixture()
       other_scope = user_scope_fixture()
-      publisher = publisher_fixture(scope)
+      publisher = publisher_fixture()
       assert_raise MatchError, fn -> Apps.delete_publisher(other_scope, publisher) end
     end
 

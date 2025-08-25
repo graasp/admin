@@ -163,7 +163,7 @@ defmodule AdminWeb.Layouts do
     ~H"""
     <div class="navbar bg-base-100 shadow-sm">
       <div class="navbar-start">
-        <%= if @current_scope.user do %>
+        <%= if @current_scope do %>
           <div class="dropdown">
             <.burger_menu />
             <ul
@@ -190,7 +190,7 @@ defmodule AdminWeb.Layouts do
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
-          <%= if @current_scope.user do %>
+          <%= if @current_scope do %>
             <li><.link navigate={~p"/users"}>Users</.link></li>
             <li>
               <details>
@@ -207,7 +207,7 @@ defmodule AdminWeb.Layouts do
         </ul>
       </div>
       <div class="navbar-end gap-1">
-        <%= if @current_scope.user do %>
+        <%= if @current_scope do %>
           <.link class="btn btn-ghost" href={~p"/users/log-out"} method="delete">Log out</.link>
         <% else %>
           <li>

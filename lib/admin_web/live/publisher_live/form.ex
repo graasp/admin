@@ -82,15 +82,11 @@ defmodule AdminWeb.PublisherLive.Form do
 
   @impl true
   def handle_event("validate", %{"publisher" => publisher_params} = params, socket) do
-    publisher_params |> IO.inspect()
-    params |> IO.inspect()
-
     changeset =
       Apps.change_publisher(
         socket.assigns.publisher,
         publisher_params
       )
-      |> IO.inspect()
 
     {:noreply, assign(socket, form: to_form(changeset, action: :validate))}
   end

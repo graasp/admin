@@ -48,7 +48,7 @@ defmodule AdminWeb.AppInstanceLiveTest do
                form_live
                |> form("#app_instance-form", app_instance: @create_attrs)
                |> render_submit()
-               |> follow_redirect(conn, ~p"/apps")
+               |> follow_redirect(conn, ~p"/publishers")
 
       html = render(index_live)
       assert html =~ "App instance created successfully"
@@ -130,7 +130,7 @@ defmodule AdminWeb.AppInstanceLiveTest do
                form_live
                |> form("#app_instance-form", app_instance: @update_attrs)
                |> render_submit()
-               |> follow_redirect(conn, ~p"/publishers/#{publisher}/apps/#{app_instance}")
+               |> follow_redirect(conn, ~p"/apps/#{app_instance}")
 
       html = render(show_live)
       assert html =~ "App instance updated successfully"

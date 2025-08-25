@@ -34,6 +34,7 @@ defmodule AdminWeb.PublisherLive.Index do
             id={id}
             rows={publisher.apps}
             row_click={fn app -> JS.navigate(~p"/apps/#{app}") end}
+            row_id={fn app -> "apps-#{app.id}" end}
           >
             <:col :let={app} label="Thumbnail">
               <img class="w-16 h-16 rounded" src={app.thumbnail} />
