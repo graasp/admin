@@ -31,36 +31,46 @@
     </script>
   </head>
   <body>
-    <ul class="menu menu-horizontal w-full relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
-      <%= if @current_scope do %>
-        <li>
-          {@current_scope.user.email}
-        </li>
-        <%!-- TODO: add other menus here --%>
-        <li>
-          <.link href={~p"/users"}>Users</.link>
-        </li>
-        <li>
-          <.link href={~p"/publishers"}>Apps</.link>
-        </li>
-        <li>
-          <.link href={~p"/published_items"}>Publications</.link>
-        </li>
-        <li>
-          <.link href={~p"/users/settings"}>Settings</.link>
-        </li>
-        <li>
-          <.link href={~p"/users/log-out"} method="delete">Log out</.link>
-        </li>
-      <% else %>
-        <li>
-          <.link href={~p"/users/register"}>Register</.link>
-        </li>
-        <li>
-          <.link href={~p"/users/log-in"}>Log in</.link>
-        </li>
-      <% end %>
-      <Layouts.theme_toggle />
+    <ul class="menu menu-horizontal w-full relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-between">
+      <a
+        href={~p"/dashboard"}
+        class="flex-1 flex w-fit items-center gap-2"
+      >
+        <img src="/images/logo.svg" width="32" />
+        <span class="text-sm font-semibold">Admin</span>
+      </a>
+
+      <div class=" flex items-center gap-4">
+        <%= if @current_scope do %>
+          <%!-- TODO: add other menus here --%>
+          <li>
+            <.link href={~p"/users"}>Users</.link>
+          </li>
+          <li>
+            <.link href={~p"/publishers"}>Apps</.link>
+          </li>
+          <li>
+            <.link href={~p"/published_items"}>Publications</.link>
+          </li>
+          <li>
+            <.link href={~p"/users/settings"}>Settings</.link>
+          </li>
+          <li>
+            <.link href={~p"/users/log-out"} method="delete">Log out</.link>
+          </li>
+          <li>
+            {@current_scope.user.email}
+          </li>
+        <% else %>
+          <li>
+            <.link href={~p"/users/register"}>Register</.link>
+          </li>
+          <li>
+            <.link href={~p"/users/log-in"}>Log in</.link>
+          </li>
+        <% end %>
+        <Layouts.theme_toggle />
+      </div>
     </ul>
     {@inner_content}
   </body>

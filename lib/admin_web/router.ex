@@ -69,8 +69,7 @@ defmodule AdminWeb.Router do
 
       # apps
       scope "/apps" do
-        live "/", AppInstanceLive.Index, :index
-        live "/:id", AppInstanceLive.Show, :show
+        live "/:app_id", AppInstanceLive.Show, :show
       end
 
       scope "/publishers" do
@@ -101,11 +100,12 @@ defmodule AdminWeb.Router do
 
     live_session :current_user,
       on_mount: [{AdminWeb.UserAuth, :mount_current_scope}] do
-      live "/users/register", UserLive.Registration, :new
+      # live "/users/register", UserLive.Registration, :new
       live "/users/log-in", UserLive.Login, :new
       live "/users/log-in/:token", UserLive.Confirmation, :new
     end
 
+    get "/users/register", UserSessionController, :register
     post "/users/log-in", UserSessionController, :create
     delete "/users/log-out", UserSessionController, :delete
   end

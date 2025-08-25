@@ -64,4 +64,8 @@ defmodule AdminWeb.UserSessionController do
     |> put_flash(:info, "Logged out successfully.")
     |> UserAuth.log_out_user()
   end
+
+  def register(conn, _params) do
+    render(conn, :register, page_title: "Register")
+  end
 end

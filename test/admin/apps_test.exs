@@ -14,25 +14,38 @@ defmodule Admin.AppsTest do
     test "list_apps/1 returns all scoped apps" do
       scope = user_scope_fixture()
       other_scope = user_scope_fixture()
-      app_instance = app_instance_fixture(scope)
-      other_app_instance = app_instance_fixture(other_scope)
-      assert Apps.list_apps(scope) == [app_instance]
-      assert Apps.list_apps(other_scope) == [other_app_instance]
+      %{app: app_instance, publisher: publisher} = app_instance_fixture()
+      %{app: other_app_instance} = app_instance_fixture(%{publisher_id: publisher.id})
+
+      apps =
+        Apps.list_apps_by_publisher()
+        |> Enum.find(fn pub -> pub.id == publisher.id end)
+        |> Map.get(:apps)
+
+      assert apps ==
+               [
+                 app_instance,
+                 other_app_instance
+               ]
     end
 
     test "get_app_instance!/2 returns the app_instance with given id" do
       scope = user_scope_fixture()
       app_instance = app_instance_fixture(scope)
-      other_scope = user_scope_fixture()
-      assert Apps.get_app_instance!(scope, app_instance.id) == app_instance
-      assert_raise Ecto.NoResultsError, fn -> Apps.get_app_instance!(other_scope, app_instance.id) end
+      assert Apps.get_app_instance!(app_instance.id) == app_instance
     end
 
     test "create_app_instance/2 with valid data creates a app_instance" do
-      valid_attrs = %{name: "some name", description: "some description", url: "some url", thumbnail: "some thumbnail"}
+      valid_attrs = %{
+        name: "some name",
+        description: "some description",
+        url: "some url",
+        thumbnail: "some thumbnail"
+      }
+
       scope = user_scope_fixture()
 
-      assert {:ok, %AppInstance{} = app_instance} = Apps.create_app_instance(scope, valid_attrs)
+      assert {:ok, %AppInstance{} = app_instance} = Apps.create_app_instance(valid_attrs)
       assert app_instance.name == "some name"
       assert app_instance.description == "some description"
       assert app_instance.url == "some url"
@@ -48,9 +61,17 @@ defmodule Admin.AppsTest do
     test "update_app_instance/3 with valid data updates the app_instance" do
       scope = user_scope_fixture()
       app_instance = app_instance_fixture(scope)
-      update_attrs = %{name: "some updated name", description: "some updated description", url: "some updated url", thumbnail: "some updated thumbnail"}
 
-      assert {:ok, %AppInstance{} = app_instance} = Apps.update_app_instance(scope, app_instance, update_attrs)
+      update_attrs = %{
+        name: "some updated name",
+        description: "some updated description",
+        url: "some updated url",
+        thumbnail: "some updated thumbnail"
+      }
+
+      assert {:ok, %AppInstance{} = app_instance} =
+               Apps.update_app_instance(scope, app_instance, update_attrs)
+
       assert app_instance.name == "some updated name"
       assert app_instance.description == "some updated description"
       assert app_instance.url == "some updated url"
@@ -70,7 +91,10 @@ defmodule Admin.AppsTest do
     test "update_app_instance/3 with invalid data returns error changeset" do
       scope = user_scope_fixture()
       app_instance = app_instance_fixture(scope)
-      assert {:error, %Ecto.Changeset{}} = Apps.update_app_instance(scope, app_instance, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Apps.update_app_instance(scope, app_instance, @invalid_attrs)
+
       assert app_instance == Apps.get_app_instance!(scope, app_instance.id)
     end
 
@@ -124,7 +148,7 @@ defmodule Admin.AppsTest do
       valid_attrs = %{name: "some name", origins: ["option1", "option2"]}
       scope = user_scope_fixture()
 
-      assert {:ok, %Publisher{} = publisher} = Apps.create_publisher(scope, valid_attrs)
+      assert {:ok, %Publisher{} = publisher} = Apps.create_publisher(valid_attrs)
       assert publisher.name == "some name"
       assert publisher.origins == ["option1", "option2"]
       assert publisher.user_id == scope.user.id
@@ -132,7 +156,7 @@ defmodule Admin.AppsTest do
 
     test "create_publisher/2 with invalid data returns error changeset" do
       scope = user_scope_fixture()
-      assert {:error, %Ecto.Changeset{}} = Apps.create_publisher(scope, @invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Apps.create_publisher(@invalid_attrs)
     end
 
     test "update_publisher/3 with valid data updates the publisher" do
@@ -140,7 +164,9 @@ defmodule Admin.AppsTest do
       publisher = publisher_fixture(scope)
       update_attrs = %{name: "some updated name", origins: ["option1"]}
 
-      assert {:ok, %Publisher{} = publisher} = Apps.update_publisher(scope, publisher, update_attrs)
+      assert {:ok, %Publisher{} = publisher} =
+               Apps.update_publisher(scope, publisher, update_attrs)
+
       assert publisher.name == "some updated name"
       assert publisher.origins == ["option1"]
     end
@@ -165,8 +191,8 @@ defmodule Admin.AppsTest do
     test "delete_publisher/2 deletes the publisher" do
       scope = user_scope_fixture()
       publisher = publisher_fixture(scope)
-      assert {:ok, %Publisher{}} = Apps.delete_publisher(scope, publisher)
-      assert_raise Ecto.NoResultsError, fn -> Apps.get_publisher!(scope, publisher.id) end
+      assert {:ok, %Publisher{}} = Apps.delete_publisher(publisher)
+      assert_raise Ecto.NoResultsError, fn -> Apps.get_publisher!(publisher.id) end
     end
 
     test "delete_publisher/2 with invalid scope raises" do

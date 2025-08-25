@@ -7,7 +7,13 @@ defmodule Admin.AppsFixtures do
   @doc """
   Generate a app_instance.
   """
-  def app_instance_fixture(scope, attrs \\ %{}) do
+  def app_instance_fixture(attrs \\ %{}) do
+    publisher =
+      case Map.has_key?(attrs, :publisher_id) do
+        true -> Admin.Apps.get_publisher!(attrs.publisher_id)
+        false -> publisher_fixture()
+      end
+
     attrs =
       Enum.into(attrs, %{
         description: "some description",
@@ -16,21 +22,21 @@ defmodule Admin.AppsFixtures do
         url: "some url"
       })
 
-    {:ok, app_instance} = Admin.Apps.create_app_instance(scope, attrs)
-    app_instance
+    {:ok, app_instance} = Admin.Apps.create_app_instance(publisher, attrs)
+    %{app: app_instance, publisher: publisher}
   end
 
   @doc """
   Generate a publisher.
   """
-  def publisher_fixture(scope, attrs \\ %{}) do
+  def publisher_fixture(attrs \\ %{}) do
     attrs =
       Enum.into(attrs, %{
         name: "some name",
         origins: ["option1", "option2"]
       })
 
-    {:ok, publisher} = Admin.Apps.create_publisher(scope, attrs)
+    {:ok, publisher} = Admin.Apps.create_publisher(attrs)
     publisher
   end
 end

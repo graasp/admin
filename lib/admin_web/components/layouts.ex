@@ -35,7 +35,7 @@ defmodule AdminWeb.Layouts do
 
   def app(assigns) do
     ~H"""
-    <header class="navbar px-4 sm:px-6 lg:px-8">
+    <%!-- <header class="navbar px-4 sm:px-6 lg:px-8">
       <div class="flex-1">
         <a
           href={~p"/dashboard"}
@@ -45,7 +45,7 @@ defmodule AdminWeb.Layouts do
           <span class="text-sm font-semibold">Admin</span>
         </a>
       </div>
-    </header>
+    </header> --%>
 
     <main class="px-4 py-8 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-4xl space-y-4">

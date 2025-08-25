@@ -14,7 +14,7 @@ defmodule AdminWeb.PublisherLive.Show do
           <.button navigate={~p"/apps/publishers"}>
             <.icon name="hero-arrow-left" />
           </.button>
-          <.button variant="primary" navigate={~p"/apps/publishers/#{@publisher}/edit?return_to=show"}>
+          <.button variant="primary" navigate={~p"/publishers/#{@publisher}/edit?return_to=show"}>
             <.icon name="hero-pencil-square" /> Edit publisher
           </.button>
         </:actions>
@@ -29,7 +29,7 @@ defmodule AdminWeb.PublisherLive.Show do
   end
 
   @impl true
-  def mount(%{"id" => id}, _session, socket) do
+  def mount(%{"publisher_id" => id}, _session, socket) do
     if connected?(socket) do
       Apps.subscribe_publishers()
     end

@@ -34,23 +34,23 @@ defmodule AdminWeb.PublisherLive.Index do
             <img class="w-16 h-16 rounded" src={app.thumbnail} />
           </:col>
           <:col :let={app} label="Name">
-            {app.name}<span class="text-xs text-secondary">{app.description}</span>
+            <div class="flex flex-col">
+              <span>{app.name}</span>
+              <span class="text-xs text-secondary">{app.description}</span>
+            </div>
           </:col>
-          <:col :let={app} label="ID">{app.id}</:col>
+          <:col :let={app} label="Credentials">
+            <div class="flex flex-col">
+              <span>ID: {app.id}</span>
+              <span>Key: not available yet</span>
+            </div>
+          </:col>
           <:col :let={app} label="URL">{app.url}</:col>
           <:action :let={app}>
             <div class="sr-only">
               <.link navigate={~p"/apps/#{app}"}>Show</.link>
             </div>
             <.link navigate={~p"/publishers/#{publisher}/apps/#{app}/edit"}>Edit</.link>
-          </:action>
-          <:action :let={app}>
-            <.link
-              phx-click={JS.push("delete", value: %{id: app.id}) |> hide("##{id}")}
-              data-confirm="Are you sure?"
-            >
-              Delete
-            </.link>
           </:action>
         </.table>
       <% end %>

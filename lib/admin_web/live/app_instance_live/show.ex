@@ -38,7 +38,7 @@ defmodule AdminWeb.AppInstanceLive.Show do
   end
 
   @impl true
-  def mount(%{"id" => id}, _session, socket) do
+  def mount(%{"app_id" => id}, _session, socket) do
     if connected?(socket) do
       Apps.subscribe_apps()
     end
@@ -64,7 +64,7 @@ defmodule AdminWeb.AppInstanceLive.Show do
     {:noreply,
      socket
      |> put_flash(:error, "The current app_instance was deleted.")
-     |> push_navigate(to: ~p"/apps")}
+     |> push_navigate(to: ~p"/publishers")}
   end
 
   def handle_info({type, %Admin.Apps.AppInstance{}}, socket)
