@@ -116,7 +116,7 @@ defmodule AdminWeb.Router do
     get "/dashboard", PageController, :dashboard
     get "/users/:id", UserController, :show
 
-    get "published_items/featured", PublishedItemController, :featured
+    get "/published_items/featured", PublishedItemController, :featured
     resources "/published_items", PublishedItemController
     post "/published_items/search", PublishedItemController, :search
   end
