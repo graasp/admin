@@ -35,7 +35,7 @@ defmodule AdminWeb.Layouts do
 
   def app(assigns) do
     ~H"""
-    <header class="navbar px-4 sm:px-6 lg:px-8">
+    <%!-- <header class="navbar px-4 sm:px-6 lg:px-8">
       <div class="flex-1">
         <a
           href={~p"/dashboard"}
@@ -45,7 +45,7 @@ defmodule AdminWeb.Layouts do
           <span class="text-sm font-semibold">Admin</span>
         </a>
       </div>
-    </header>
+    </header> --%>
 
     <main class="px-4 py-8 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-4xl space-y-4">
@@ -134,6 +134,87 @@ defmodule AdminWeb.Layouts do
       >
         <.icon name="hero-moon-micro" class="size-4 opacity-75 hover:opacity-100" />
       </button>
+    </div>
+    """
+  end
+
+  defp burger_menu(assigns) do
+    ~H"""
+    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h8m-8 6h16"
+        />
+      </svg>
+    </div>
+    """
+  end
+
+  def menu_bar(assigns) do
+    ~H"""
+    <div class="navbar bg-base-100 shadow-sm">
+      <div class="navbar-start">
+        <%= if @current_scope do %>
+          <div class="dropdown">
+            <.burger_menu />
+            <ul
+              tabindex="0"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li><.link navigate={~p"/users"}>Users</.link></li>
+              <li>
+                <.link navigate={~p"/published_items"}>Publications</.link>
+                <ul class="p-2">
+                  <li><.link navigate={~p"/published_items"}>Recent</.link></li>
+                  <li><.link navigate={~p"/published_items/featured"}>Featured</.link></li>
+                </ul>
+              </li>
+              <li><.link navigate={~p"/publishers"}>Apps</.link></li>
+              <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
+            </ul>
+          </div>
+        <% end %>
+        <.link navigate={~p"/dashboard"} class="btn btn-ghost text-xl">
+          <img src="/images/logo.svg" width="32" />
+          <span class="text-sm font-semibold">Admin</span>
+        </.link>
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <%= if @current_scope do %>
+            <li><.link navigate={~p"/users"}>Users</.link></li>
+            <li>
+              <details>
+                <summary>Publications</summary>
+                <ul class="p-2">
+                  <li><.link navigate={~p"/published_items"}>Recent</.link></li>
+                  <li><.link navigate={~p"/published_items/featured"}>Featured</.link></li>
+                </ul>
+              </details>
+            </li>
+            <li><.link navigate={~p"/publishers"}>Apps</.link></li>
+            <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="navbar-end gap-1">
+        <%= if @current_scope do %>
+          <span>{@current_scope.user.email}</span>
+          <.link class="btn btn-ghost" href={~p"/users/log-out"} method="delete">Log out</.link>
+        <% else %>
+          <.link class="btn btn-ghost" href={~p"/users/log-in"}>Log in</.link>
+        <% end %>
+        <.theme_toggle />
+      </div>
     </div>
     """
   end

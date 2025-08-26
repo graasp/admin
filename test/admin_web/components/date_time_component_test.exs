@@ -4,7 +4,7 @@ defmodule AdminWeb.DateTimeComponentTest do
 
   describe "relative_date/1" do
     test "less than 5 seconds ago is now" do
-      Enum.each(-5..0, fn offset ->
+      Enum.each(-4..0, fn offset ->
         assert render_to_string(AdminWeb.DateTimeComponents, "relative_date", "html", %{
                  date: NaiveDateTime.local_now() |> NaiveDateTime.add(offset, :second)
                }) =~ "now"

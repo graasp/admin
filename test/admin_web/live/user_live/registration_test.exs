@@ -5,6 +5,7 @@ defmodule AdminWeb.UserLive.RegistrationTest do
   import Admin.AccountsFixtures
 
   describe "Registration page" do
+    @tag :skip
     test "renders registration page", %{conn: conn} do
       {:ok, _lv, html} = live(conn, ~p"/users/register")
 
@@ -12,6 +13,7 @@ defmodule AdminWeb.UserLive.RegistrationTest do
       assert html =~ "Log in"
     end
 
+    @tag :skip
     test "redirects if already logged in", %{conn: conn} do
       result =
         conn
@@ -22,6 +24,7 @@ defmodule AdminWeb.UserLive.RegistrationTest do
       assert {:ok, _conn} = result
     end
 
+    @tag :skip
     test "renders errors for invalid data", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/users/register")
 
@@ -36,6 +39,7 @@ defmodule AdminWeb.UserLive.RegistrationTest do
   end
 
   describe "register user" do
+    @tag :skip
     test "creates account but does not log in", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/users/register")
 
@@ -50,6 +54,7 @@ defmodule AdminWeb.UserLive.RegistrationTest do
                ~r/An email was sent to .*, please access it to confirm your account/
     end
 
+    @tag :skip
     test "renders errors for duplicated email", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/users/register")
 
@@ -67,6 +72,7 @@ defmodule AdminWeb.UserLive.RegistrationTest do
   end
 
   describe "registration navigation" do
+    @tag :skip
     test "redirects to login page when the Log in button is clicked", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/users/register")
 

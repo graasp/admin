@@ -60,8 +60,36 @@ defmodule AdminWeb.Router do
       on_mount: [{AdminWeb.UserAuth, :require_authenticated}] do
       live "/users/settings", UserLive.Settings, :edit
       live "/users/settings/confirm-email/:token", UserLive.Settings, :confirm_email
+
+      # users
       live "/users", UserLive.Listing, :list
+
+      # published_items
       live "/published_items/:id/unpublish", PublishedItemLive.Unpublish, :unpublish
+
+      # apps
+      scope "/apps" do
+        live "/:app_id", AppInstanceLive.Show, :show
+      end
+
+      scope "/publishers" do
+        live "/", PublisherLive.Index, :index
+        live "/new", PublisherLive.Form, :new
+
+        scope "/:publisher_id" do
+          live "/", PublisherLive.Show, :show
+          live "/edit", PublisherLive.Form, :edit
+
+          scope "/apps" do
+            live "/new", AppInstanceLive.Form, :new
+
+            scope "/:app_id" do
+              live "/", AppInstanceLive.Show, :show
+              live "/edit", AppInstanceLive.Form, :edit
+            end
+          end
+        end
+      end
     end
 
     post "/users/update-password", UserSessionController, :update_password
@@ -72,11 +100,12 @@ defmodule AdminWeb.Router do
 
     live_session :current_user,
       on_mount: [{AdminWeb.UserAuth, :mount_current_scope}] do
-      live "/users/register", UserLive.Registration, :new
+      # live "/users/register", UserLive.Registration, :new
       live "/users/log-in", UserLive.Login, :new
       live "/users/log-in/:token", UserLive.Confirmation, :new
     end
 
+    get "/users/register", UserSessionController, :register
     post "/users/log-in", UserSessionController, :create
     delete "/users/log-out", UserSessionController, :delete
   end
@@ -87,6 +116,7 @@ defmodule AdminWeb.Router do
     get "/dashboard", PageController, :dashboard
     get "/users/:id", UserController, :show
 
+    get "/published_items/featured", PublishedItemController, :featured
     resources "/published_items", PublishedItemController
     post "/published_items/search", PublishedItemController, :search
   end

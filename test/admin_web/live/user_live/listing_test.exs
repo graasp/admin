@@ -12,10 +12,17 @@ defmodule AdminWeb.UserLive.ListingTest do
       assert html =~ "List users"
     end
 
-    test "Delete user", %{conn: conn} do
+    test "Delete user with confirmation dialog", %{conn: conn} do
       user = user_fixture()
       {:ok, lv, _html} = live(conn, ~p"/users")
       lv |> element("#users-#{user.id} > button") |> render_click(%{value: user.id})
+      # cancel in the dialog
+      lv |> element("#cancel_button") |> render_click()
+      assert has_element?(lv, "#users-#{user.id}")
+
+      lv |> element("#users-#{user.id} > button") |> render_click(%{value: user.id})
+      # confirm in the dialog
+      lv |> element("#delete_button") |> render_click()
 
       refute has_element?(lv, "#users-#{user.id}")
     end
