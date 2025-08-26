@@ -81,7 +81,7 @@ defmodule AdminWeb.PublisherLive.Form do
   end
 
   @impl true
-  def handle_event("validate", %{"publisher" => publisher_params} = params, socket) do
+  def handle_event("validate", %{"publisher" => publisher_params}, socket) do
     changeset =
       Apps.change_publisher(
         socket.assigns.publisher,

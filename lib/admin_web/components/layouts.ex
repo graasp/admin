@@ -208,11 +208,10 @@ defmodule AdminWeb.Layouts do
       </div>
       <div class="navbar-end gap-1">
         <%= if @current_scope do %>
+          <span>{@current_scope.user.email}</span>
           <.link class="btn btn-ghost" href={~p"/users/log-out"} method="delete">Log out</.link>
         <% else %>
-          <li>
-            <.link href={~p"/users/log-in"}>Log in</.link>
-          </li>
+          <.link class="btn btn-ghost" href={~p"/users/log-in"}>Log in</.link>
         <% end %>
         <.theme_toggle />
       </div>

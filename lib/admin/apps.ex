@@ -262,4 +262,8 @@ defmodule Admin.Apps do
   def change_publisher(%Publisher{} = publisher, attrs \\ %{}) do
     Publisher.changeset(publisher, attrs)
   end
+
+  def with_publisher(%AppInstance{} = app_instance) do
+    Repo.preload(app_instance, :publisher)
+  end
 end

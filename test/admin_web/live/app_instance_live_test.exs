@@ -20,7 +20,7 @@ defmodule AdminWeb.AppInstanceLiveTest do
 
   setup :register_and_log_in_user
 
-  defp create_app_instance(%{scope: scope}) do
+  defp create_app_instance(%{scope: _scope}) do
     app_and_publisher = app_instance_fixture()
 
     %{app_instance: app_and_publisher.app, publisher: app_and_publisher.publisher}
@@ -87,7 +87,7 @@ defmodule AdminWeb.AppInstanceLiveTest do
 
     @tag :skip
     test "deletes app_instance in listing", %{conn: conn, app_instance: app_instance} do
-      {:ok, index_live, _html} = live(conn, ~p"/apps")
+      {:ok, index_live, _html} = live(conn, ~p"/publishers")
 
       assert index_live |> element("#apps-#{app_instance.id} a", "Delete") |> render_click()
       refute has_element?(index_live, "#apps-#{app_instance.id}")

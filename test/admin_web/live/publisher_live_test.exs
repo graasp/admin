@@ -10,7 +10,7 @@ defmodule AdminWeb.PublisherLiveTest do
 
   setup :register_and_log_in_user
 
-  defp create_publisher(%{scope: scope}) do
+  defp create_publisher(%{scope: _scope}) do
     publisher = publisher_fixture()
 
     %{publisher: publisher}

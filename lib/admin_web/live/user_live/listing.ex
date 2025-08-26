@@ -50,10 +50,10 @@ defmodule AdminWeb.UserLive.Listing do
           <h3 class="font-bold text-lg">Confirm Deletion</h3>
           <p class="py-4">Are you sure you want to delete this user?</p>
           <div class="modal-action">
-            <button class="btn btn-error" phx-click="delete_user">
+            <button id="delete_button" class="btn btn-error" phx-click="delete_user">
               Delete
             </button>
-            <button class="btn" phx-click="cancel_delete">Cancel</button>
+            <button id="cancel_button" class="btn" phx-click="cancel_delete">Cancel</button>
           </div>
         </div>
       </dialog>
