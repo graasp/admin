@@ -193,7 +193,7 @@ defmodule Admin.Accounts do
   @doc """
   Gets the user with the given signed token.
 
-  If the token is valid `{user, token_inserted_at}` is returned, otherwise `nil` is returned.
+  If the token is valid `{user, token_created_at}` is returned, otherwise `nil` is returned.
   """
   def get_user_by_session_token(token) do
     {:ok, query} = UserToken.verify_session_token_query(token)

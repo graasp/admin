@@ -12,6 +12,7 @@
 
 if Mix.env() == :dev do
   alias Admin.Accounts.User
+  admin = Admin.Repo.insert!(%User{email: "admin@graasp.org"})
   user = Admin.Repo.insert!(%User{email: "admin#{System.unique_integer([:positive])}@graasp.org"})
 
   Enum.map(1..30, fn i ->

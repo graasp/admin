@@ -8,7 +8,7 @@
   <.list>
     <:item title="ID">{@user.id}</:item>
     <:item title="Name">{@user.email}</:item>
-    <:item title="Inserted at">{@user.inserted_at}</:item>
+    <:item title="Inserted at">{@user.created_at}</:item>
     <:item title="Confirmed at">{@user.confirmed_at || "Not confirmed yet"}</:item>
   </.list>
 
@@ -23,9 +23,9 @@
       <:col :let={notice} label="Name">{notice.publication_name}</:col>
       <:col :let={notice} label="Removed on">
         <div class="flex flex-col">
-          <.relative_date date={notice.inserted_at} />
+          <.relative_date date={notice.created_at} />
           <span class="text-xs text-secondary">
-            {notice.inserted_at}
+            {notice.created_at}
           </span>
         </div>
       </:col>

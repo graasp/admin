@@ -83,7 +83,7 @@ defmodule Admin.AccountsFixtures do
 
     Admin.Repo.update_all(
       from(ut in Accounts.UserToken, where: ut.token == ^token),
-      set: [inserted_at: dt, authenticated_at: dt]
+      set: [created_at: dt, authenticated_at: dt]
     )
   end
 end

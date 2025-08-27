@@ -66,10 +66,10 @@ defmodule AdminWeb.UserAuth do
   """
   def fetch_current_scope_for_user(conn, _opts) do
     with {token, conn} <- ensure_user_token(conn),
-         {user, token_inserted_at} <- Accounts.get_user_by_session_token(token) do
+         {user, token_created_at} <- Accounts.get_user_by_session_token(token) do
       conn
       |> assign(:current_scope, Scope.for_user(user))
-      |> maybe_reissue_user_session_token(user, token_inserted_at)
+      |> maybe_reissue_user_session_token(user, token_created_at)
     else
       nil -> assign(conn, :current_scope, Scope.for_user(nil))
     end
@@ -90,8 +90,8 @@ defmodule AdminWeb.UserAuth do
   end
 
   # Reissue the session token if it is older than the configured reissue age.
-  defp maybe_reissue_user_session_token(conn, user, token_inserted_at) do
-    token_age = DateTime.diff(DateTime.utc_now(:second), token_inserted_at, :day)
+  defp maybe_reissue_user_session_token(conn, user, token_created_at) do
+    token_age = DateTime.diff(DateTime.utc_now(:second), token_created_at, :day)
 
     if token_age >= @session_reissue_age_in_days do
       create_or_extend_session(conn, user, %{})

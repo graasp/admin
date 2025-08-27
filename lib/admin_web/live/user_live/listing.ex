@@ -33,7 +33,7 @@ defmodule AdminWeb.UserLive.Listing do
               </div>
               <div class="flex flex-row gap-2 text-xs">
                 <span class="text-secondary">{user.id}</span>
-                <AdminWeb.DateTimeComponents.relative_date date={user.inserted_at} />
+                <AdminWeb.DateTimeComponents.relative_date date={user.created_at} />
               </div>
             </div>
             <.button class="btn" phx-click="confirm_delete" value={user.id}>Delete</.button>

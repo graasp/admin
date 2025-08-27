@@ -47,11 +47,11 @@ defmodule Admin.Publications do
   Returns the list of published items for all users
   """
   def list_published_items(limit) do
-    Repo.all(from p in PublishedItem, order_by: [desc: :inserted_at], limit: ^limit)
+    Repo.all(from p in PublishedItem, order_by: [desc: :created_at], limit: ^limit)
   end
 
   def list_featured_published_items() do
-    # Repo.all(from p in PublishedItem, where: p.featured == true, order_by: [desc: :inserted_at])
+    # Repo.all(from p in PublishedItem, where: p.featured == true, order_by: [desc: :created_at])
     []
   end
 

@@ -170,7 +170,7 @@ defmodule Admin.AccountsTest do
     end
 
     test "does not update email if token expired", %{user: user, token: token} do
-      {1, nil} = Repo.update_all(UserToken, set: [inserted_at: ~N[2020-01-01 00:00:00]])
+      {1, nil} = Repo.update_all(UserToken, set: [created_at: ~N[2020-01-01 00:00:00]])
 
       assert Accounts.update_user_email(user, token) ==
                {:error, :transaction_aborted}
@@ -278,7 +278,7 @@ defmodule Admin.AccountsTest do
       token = Accounts.generate_user_session_token(user)
       assert user_token = Repo.get_by(UserToken, token: token)
       assert user_token.authenticated_at == user.authenticated_at
-      assert DateTime.compare(user_token.inserted_at, user.authenticated_at) == :gt
+      assert DateTime.compare(user_token.created_at, user.authenticated_at) == :gt
     end
   end
 
@@ -290,10 +290,10 @@ defmodule Admin.AccountsTest do
     end
 
     test "returns user by token", %{user: user, token: token} do
-      assert {session_user, token_inserted_at} = Accounts.get_user_by_session_token(token)
+      assert {session_user, token_created_at} = Accounts.get_user_by_session_token(token)
       assert session_user.id == user.id
       assert session_user.authenticated_at != nil
-      assert token_inserted_at != nil
+      assert token_created_at != nil
     end
 
     test "does not return user for invalid token" do
@@ -302,7 +302,7 @@ defmodule Admin.AccountsTest do
 
     test "does not return user for expired token", %{token: token} do
       dt = ~N[2020-01-01 00:00:00]
-      {1, nil} = Repo.update_all(UserToken, set: [inserted_at: dt, authenticated_at: dt])
+      {1, nil} = Repo.update_all(UserToken, set: [created_at: dt, authenticated_at: dt])
       refute Accounts.get_user_by_session_token(token)
     end
   end
@@ -324,7 +324,7 @@ defmodule Admin.AccountsTest do
     end
 
     test "does not return user for expired token", %{token: token} do
-      {1, nil} = Repo.update_all(UserToken, set: [inserted_at: ~N[2020-01-01 00:00:00]])
+      {1, nil} = Repo.update_all(UserToken, set: [created_at: ~N[2020-01-01 00:00:00]])
       refute Accounts.get_user_by_magic_link_token(token)
     end
   end
