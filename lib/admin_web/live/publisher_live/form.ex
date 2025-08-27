@@ -30,6 +30,7 @@ defmodule AdminWeb.PublisherLive.Form do
                 value={origin}
                 name="publisher[origins][]"
                 type="text"
+                placeholder="https://example.com"
               />
             <% end %>
             <button

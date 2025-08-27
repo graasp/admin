@@ -19,7 +19,7 @@ defmodule Admin.AppsFixtures do
         description: "some description",
         name: "some name",
         thumbnail: "some thumbnail",
-        url: "some url"
+        url: "http://example.com"
       })
 
     {:ok, app_instance} = Admin.Apps.create_app_instance(publisher, attrs)
@@ -33,7 +33,7 @@ defmodule Admin.AppsFixtures do
     attrs =
       Enum.into(attrs, %{
         name: "some name",
-        origins: ["option1", "option2"]
+        origins: ["http://example1.com", "http://example2.com"]
       })
 
     {:ok, publisher} = Admin.Apps.create_publisher(attrs)

@@ -8,19 +8,20 @@ defmodule AdminWeb.PublisherLive.Show do
     ~H"""
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <.header>
-        Publisher {@publisher.id}
+        Publisher: {@publisher.name}
         <:subtitle>This is a publisher record from your database.</:subtitle>
         <:actions>
           <.button navigate={~p"/publishers"}>
             <.icon name="hero-arrow-left" />
           </.button>
           <.button variant="primary" navigate={~p"/publishers/#{@publisher}/edit?return_to=show"}>
-            <.icon name="hero-pencil-square" /> Edit publisher
+            <.icon name="hero-pencil-square" /> Edit
           </.button>
         </:actions>
       </.header>
 
       <.list>
+        <:item title="ID">{@publisher.id}</:item>
         <:item title="Name">{@publisher.name}</:item>
         <:item title="Origins">
           <div class="flex flex-col gap-1">
@@ -30,9 +31,27 @@ defmodule AdminWeb.PublisherLive.Show do
           </div>
         </:item>
       </.list>
-      <.button phx-click="delete">
+      <.button phx-click="confirm_delete">
         <.icon name="hero-trash" /> Delete publisher
       </.button>
+
+      <dialog
+        id="delete_modal"
+        class="modal"
+        open={@show_modal}
+      >
+        <div class="modal-box">
+          <h3 class="font-bold text-lg">Confirm Deletion</h3>
+          <p class="py-4">Are you sure you want to delete this publisher?</p>
+          <p class="py-4">All apps associated with this publisher will be deleted.</p>
+          <div class="modal-action">
+            <button id="delete_button" class="btn btn-error" phx-click="delete_publisher">
+              Delete
+            </button>
+            <button id="cancel_button" class="btn" phx-click="cancel_delete">Cancel</button>
+          </div>
+        </div>
+      </dialog>
     </Layouts.app>
     """
   end
@@ -46,11 +65,20 @@ defmodule AdminWeb.PublisherLive.Show do
     {:ok,
      socket
      |> assign(:page_title, "Show Publisher")
+     |> assign(:show_modal, false)
      |> assign(:publisher, Apps.get_publisher!(id))}
   end
 
   @impl true
-  def handle_event("delete", _, socket) do
+  def handle_event("confirm_delete", _, socket) do
+    {:noreply, assign(socket, :show_modal, true)}
+  end
+
+  def handle_event("cancel_delete", _, socket) do
+    {:noreply, assign(socket, :show_modal, false)}
+  end
+
+  def handle_event("delete_publisher", _, socket) do
     case Apps.delete_publisher(socket.assigns.publisher) do
       {:ok, _publisher} ->
         {:noreply,
@@ -58,8 +86,8 @@ defmodule AdminWeb.PublisherLive.Show do
          |> put_flash(:success, "Publisher deleted.")
          |> push_navigate(to: ~p"/publishers")}
 
-      {:error, _reason} ->
-        {:noreply, socket}
+      {:error, reason} ->
+        {:noreply, socket |> assign(:show_modal, false) |> put_flash(:error, reason)}
     end
   end
 

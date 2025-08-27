@@ -7,13 +7,13 @@ defmodule AdminWeb.AppInstanceLiveTest do
   @create_attrs %{
     name: "some name",
     description: "some description",
-    url: "some url",
+    url: "http://example.com",
     thumbnail: "some thumbnail"
   }
   @update_attrs %{
     name: "some updated name",
     description: "some updated description",
-    url: "some updated url",
+    url: "http://example-updated.com",
     thumbnail: "some updated thumbnail"
   }
   @invalid_attrs %{name: nil, description: nil, url: nil, thumbnail: nil}

@@ -1,6 +1,7 @@
 defmodule Admin.Apps.Publisher do
   use Admin.Schema
   import Ecto.Changeset
+  alias Admin.Validators
   alias Admin.Apps
 
   schema "publishers" do
@@ -18,5 +19,6 @@ defmodule Admin.Apps.Publisher do
     |> cast(attrs, [:name, :origins], empty_values: [[], nil] ++ Ecto.Changeset.empty_values())
     |> validate_required([:name, :origins])
     |> validate_length(:origins, min: 1)
+    |> Validators.validate_urls_array(:origins)
   end
 end

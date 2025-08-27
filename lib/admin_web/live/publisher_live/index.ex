@@ -15,18 +15,31 @@ defmodule AdminWeb.PublisherLive.Index do
           </.button>
         </:actions>
       </.header>
+
       <%= for {id, publisher} <- @streams.publishers do %>
         <.header>
           <.link navigate={~p"/publishers/#{publisher.id}"}>
             {publisher.name}
           </.link>
-          <:subtitle>Created <.relative_date date={publisher.inserted_at} /></:subtitle>
+          <:subtitle>
+            <div class="flex flex-col">
+              <%= for origin <- publisher.origins do %>
+                <span>{origin}</span>
+              <% end %>
+            </div>
+          </:subtitle>
+          <:actions>
+            <.button navigate={~p"/publishers/#{publisher.id}/edit"}>
+              <.icon name="hero-pencil" /> Edit
+            </.button>
+          </:actions>
           <:actions>
             <.button variant="primary" navigate={~p"/publishers/#{publisher.id}/apps/new"}>
               <.icon name="hero-plus" /> New App
             </.button>
           </:actions>
         </.header>
+
         <%= if Enum.empty?(publisher.apps) do %>
           <p class="text-center text-sm text-secondary">No apps yet.</p>
         <% else %>

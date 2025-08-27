@@ -4,8 +4,8 @@ defmodule AdminWeb.PublisherLiveTest do
   import Phoenix.LiveViewTest
   import Admin.AppsFixtures
 
-  @create_attrs %{name: "some name", origins: ["option1", "option2"]}
-  @update_attrs %{name: "some updated name", origins: ["option1"]}
+  @create_attrs %{name: "some name", origins: ["http://example.com", "http://example1.com"]}
+  @update_attrs %{name: "some updated name", origins: ["http://example123.com"]}
   @invalid_attrs %{name: nil, origins: []}
 
   setup :register_and_log_in_user

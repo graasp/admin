@@ -20,10 +20,10 @@ defmodule AdminWeb.AppInstanceLive.Form do
               :if={@form[:thumbnail].value}
               src={@form[:thumbnail].value}
               class="w-16 h-16 rounded"
-              alt="Thumbnail"
+              alt="Thumbnail url"
             />
           </div>
-          <.input field={@form[:thumbnail]} type="text" label="Thumbnail" />
+          <.input field={@form[:thumbnail]} type="text" label="Thumbnail URL" />
           <.button
             class="btn btn-soft btn-primary mb-3"
             type="button"
@@ -34,7 +34,7 @@ defmodule AdminWeb.AppInstanceLive.Form do
         </div>
         <.input field={@form[:name]} type="text" label="Name" />
         <.input field={@form[:description]} type="text" label="Description" />
-        <.input field={@form[:url]} type="text" label="Url" />
+        <.input field={@form[:url]} type="text" label="Url" placeholder="https://example.com" />
         <footer>
           <.button phx-disable-with="Saving..." variant="primary">Save App instance</.button>
           <.button navigate={return_path(@current_scope, @return_to, @app_instance)}>Cancel</.button>

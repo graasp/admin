@@ -40,7 +40,7 @@ defmodule Admin.AppsTest do
       valid_attrs = %{
         name: "some name",
         description: "some description",
-        url: "some url",
+        url: "http://example-site.com",
         thumbnail: "some thumbnail"
       }
 
@@ -52,7 +52,7 @@ defmodule Admin.AppsTest do
 
       assert app_instance.name == "some name"
       assert app_instance.description == "some description"
-      assert app_instance.url == "some url"
+      assert app_instance.url == "http://example-site.com"
       assert app_instance.thumbnail == "some thumbnail"
     end
 
@@ -69,7 +69,7 @@ defmodule Admin.AppsTest do
       update_attrs = %{
         name: "some updated name",
         description: "some updated description",
-        url: "some updated url",
+        url: "http://example123.com",
         thumbnail: "some updated thumbnail"
       }
 
@@ -78,7 +78,7 @@ defmodule Admin.AppsTest do
 
       assert app_instance.name == "some updated name"
       assert app_instance.description == "some updated description"
-      assert app_instance.url == "some updated url"
+      assert app_instance.url == "http://example123.com"
       assert app_instance.thumbnail == "some updated thumbnail"
     end
 
@@ -129,12 +129,16 @@ defmodule Admin.AppsTest do
     end
 
     test "create_publisher/2 with valid data creates a publisher" do
-      valid_attrs = %{name: "some name", origins: ["option1", "option2"]}
+      valid_attrs = %{
+        name: "some name",
+        origins: ["http://example-site.com", "http://example-site.com"]
+      }
+
       user_scope_fixture()
 
       assert {:ok, %Publisher{} = publisher} = Apps.create_publisher(valid_attrs)
       assert publisher.name == "some name"
-      assert publisher.origins == ["option1", "option2"]
+      assert publisher.origins == ["http://example-site.com", "http://example-site.com"]
     end
 
     test "create_publisher/2 with invalid data returns error changeset" do
@@ -145,13 +149,13 @@ defmodule Admin.AppsTest do
     test "update_publisher/3 with valid data updates the publisher" do
       user_scope_fixture()
       publisher = publisher_fixture()
-      update_attrs = %{name: "some updated name", origins: ["option1"]}
+      update_attrs = %{name: "some updated name", origins: ["http://example1.com"]}
 
       assert {:ok, %Publisher{} = publisher} =
                Apps.update_publisher(publisher, update_attrs)
 
       assert publisher.name == "some updated name"
-      assert publisher.origins == ["option1"]
+      assert publisher.origins == ["http://example1.com"]
     end
 
     test "update_publisher/3 with invalid data returns error changeset" do
