@@ -31,7 +31,7 @@
 
   <.list>
     <:item title="Name">{@published_item.item.name}</:item>
-    <:item title="Description">{@published_item.item.description}</:item>
+    <:item title="Description"><.raw_html html={@published_item.item.description} /></:item>
     <:item title="Item path">{@published_item.item_path}</:item>
     <:item title="Creator ID">{@published_item.creator_id}</:item>
   </.list>

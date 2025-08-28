@@ -7,7 +7,8 @@ image: graasp/admin
 # Deploy to these servers.
 servers:
   web:
-    - admin.dev.graasp.org
+    - <%= %x(aws ec2 describe-instances --instance-ids i-09155fb74e5c8254b --query "Reservations[*].Instances[*].PublicIpAddress" --output text) %>
+    # - admin.dev.graasp.org
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -17,15 +18,16 @@ servers:
 # Remove this section when using multiple web servers and ensure you terminate SSL at your load balancer.
 #
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
-proxy:
-  ssl: true
-  host: admin.dev.graasp.org
-  # Proxy connects to your container on port 80 by default.
-  app_port: 4000
+# proxy:
+#   ssl: true
+#   host: admin.dev.graasp.org
+#   # Proxy connects to your container on port 80 by default.
+#   app_port: 4000
 
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
+  # TODO: update for the other envs
   server: 299720865162.dkr.ecr.eu-central-1.amazonaws.com
   username: AWS
 
@@ -49,13 +51,17 @@ builder:
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal app logs -r job" will tail logs from the first server in the job section.
 #
-# aliases:
-#   shell: app exec --interactive --reuse "bash"
+aliases:
+  console: app exec --interactive --reuse "/app/bin/admin remote"
+  # rollback: app exec --interactive --reuse "/app/bin/admin eval Admin.Release.rollback"
+  migrate: app exec --interactive --reuse "/app/bin/migrate"
+  shell: app exec --interactive --reuse "/bin/sh"
+  logs: app logs -f
 
 # Use a different ssh user than root
 #
 ssh:
-  user: docker
+  user: ec2-user
   keys: ["~/.ssh/phoenix.pem"]
 # Use a persistent storage volume.
 #
@@ -77,6 +83,7 @@ ssh:
 # Use accessory services (secrets come from .kamal/secrets).
 env:
   clear:
+    # TODO: update for other envs
     PHX_HOST: admin.dev.graasp.org
   secret:
     # Comes from the .kamal/secrets file
@@ -84,23 +91,16 @@ env:
     - SECRET_KEY_BASE
     - MAILER_SES_ACCESS_KEY
     - MAILER_SES_SECRET
-
-accessories:
-  postgres:
-    image: postgres:15
-    host: admin.dev.graasp.org # The IP you want the database deployed to
-    env:
-      clear:
-        POSTGRES_USER: postgres
-        POSTGRES_DB: admin_prod
-      secret:
-        - POSTGRES_PASSWORD # Comes from the .kamal/secrets file
-    directories:
-      - data:/var/lib/postgresql/data
-
-aliases:
-  console: app exec --interactive --reuse "/app/bin/admin remote"
-  # rollback: app exec --interactive --reuse "/app/bin/admin eval Admin.Release.rollback"
-  migrate: app exec --interactive --reuse "/app/bin/migrate"
-  shell: app exec --interactive --reuse "/bin/sh"
-  logs: app logs -f
+#
+# accessories:
+#   postgres:
+#     image: postgres:15
+#     host: admin.dev.graasp.org # The IP you want the database deployed to
+#     env:
+#       clear:
+#         POSTGRES_USER: postgres
+#         POSTGRES_DB: admin_prod
+#       secret:
+#         - POSTGRES_PASSWORD # Comes from the .kamal/secrets file
+#     directories:
+#       - data:/var/lib/postgresql/data

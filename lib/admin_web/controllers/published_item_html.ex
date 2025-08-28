@@ -2,7 +2,6 @@ defmodule AdminWeb.PublishedItemHTML do
   use AdminWeb, :html
   alias Admin.Publications.PublishedItem
 
-
   embed_templates "published_item_html/*"
 
   @doc """
@@ -32,7 +31,9 @@ defmodule AdminWeb.PublishedItemHTML do
           <span class="font-bold text-nowrap text-ellipsis overflow-hidden">
             {@publication.item.name}
           </span>
-          <span class="text-sm text-secondary">{@publication.item.description}</span>
+          <span class="text-sm text-secondary">
+            <.raw_html html={@publication.item.description} />
+          </span>
         </div>
       </div>
       {render_slot(@action)}

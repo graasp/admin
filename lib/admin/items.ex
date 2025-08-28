@@ -37,7 +37,7 @@ defmodule Admin.Items do
 
   """
   def list_item(%Scope{} = scope) do
-    Repo.all_by(Item, user_id: scope.user.id)
+    Repo.all(Item)
   end
 
   @doc """
@@ -55,7 +55,7 @@ defmodule Admin.Items do
 
   """
   def get_item!(%Scope{} = scope, id) do
-    Repo.get_by!(Item, id: id, user_id: scope.user.id)
+    Repo.get!(Item, id)
   end
 
   @doc """
@@ -73,7 +73,7 @@ defmodule Admin.Items do
   def create_item(%Scope{} = scope, attrs) do
     with {:ok, item = %Item{}} <-
            %Item{}
-           |> Item.changeset(attrs, scope)
+           |> Item.changeset(attrs)
            |> Repo.insert() do
       broadcast({:created, item})
       {:ok, item}
@@ -93,11 +93,9 @@ defmodule Admin.Items do
 
   """
   def update_item(%Scope{} = scope, %Item{} = item, attrs) do
-    true = item.user_id == scope.user.id
-
     with {:ok, item = %Item{}} <-
            item
-           |> Item.changeset(attrs, scope)
+           |> Item.changeset(attrs)
            |> Repo.update() do
       broadcast({:updated, item})
       {:ok, item}
@@ -117,8 +115,6 @@ defmodule Admin.Items do
 
   """
   def delete_item(%Scope{} = scope, %Item{} = item) do
-    true = item.user_id == scope.user.id
-
     with {:ok, item = %Item{}} <-
            Repo.delete(item) do
       broadcast({:deleted, item})
@@ -136,8 +132,6 @@ defmodule Admin.Items do
 
   """
   def change_item(%Scope{} = scope, %Item{} = item, attrs \\ %{}) do
-    true = item.user_id == scope.user.id
-
     Item.changeset(item, attrs, scope)
   end
 end

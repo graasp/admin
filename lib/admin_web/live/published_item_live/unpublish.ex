@@ -10,8 +10,16 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
       <div class="">
         <.header>
           Unpublish {@published_item.item.name}
-          <:subtitle>{@published_item.description}</:subtitle>
         </.header>
+
+        <.list>
+          <:item title="Name">
+            {@published_item.item.name}
+          </:item>
+          <:item title="Description">
+            <.raw_html html={@published_item.item.description} />
+          </:item>
+        </.list>
       </div>
 
       <.form for={@removal_form} id="removal_form" phx-submit="submit" phx-change="validate">

@@ -10,18 +10,23 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-if Mix.env() == :dev do
-  alias Admin.Accounts.User
-  admin = Admin.Repo.insert!(%User{email: "admin@graasp.org"})
-  user = Admin.Repo.insert!(%User{email: "admin#{System.unique_integer([:positive])}@graasp.org"})
+if Mix.env() != :dev do
+  raise "This script should only be run in development environment"
+end
 
-  Enum.map(1..30, fn i ->
-    %Admin.Publications.PublishedItem{
+alias Admin.Accounts.User
+_admin = Admin.Repo.insert!(%User{email: "admin@graasp.org"})
+user = Admin.Repo.insert!(%User{email: "admin#{System.unique_integer([:positive])}@graasp.org"})
+
+Enum.map(1..30, fn i ->
+  %Admin.Publications.PublishedItem{
+    item: %Admin.Items.Item{
       name: "test #{i}",
       description: "Description for publication #{i}",
-      item_path: "a",
       creator_id: user.id
-    }
-    |> Admin.Repo.insert!()
-  end)
-end
+    },
+    item_path: "a",
+    creator_id: user.id
+  }
+  |> Admin.Repo.insert!()
+end)

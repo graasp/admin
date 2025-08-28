@@ -29,7 +29,15 @@ defmodule Admin.ItemsTest do
     end
 
     test "create_item/2 with valid data creates a item" do
-      valid_attrs = %{extra: %{}, name: "some name", type: "some type", path: "some path", description: "some description", settings: %{}}
+      valid_attrs = %{
+        extra: %{},
+        name: "some name",
+        type: "some type",
+        path: "some path",
+        description: "some description",
+        settings: %{}
+      }
+
       scope = user_scope_fixture()
 
       assert {:ok, %Item{} = item} = Items.create_item(scope, valid_attrs)
@@ -39,7 +47,6 @@ defmodule Admin.ItemsTest do
       assert item.path == "some path"
       assert item.description == "some description"
       assert item.settings == %{}
-      assert item.user_id == scope.user.id
     end
 
     test "create_item/2 with invalid data returns error changeset" do
@@ -50,7 +57,15 @@ defmodule Admin.ItemsTest do
     test "update_item/3 with valid data updates the item" do
       scope = user_scope_fixture()
       item = item_fixture(scope)
-      update_attrs = %{extra: %{}, name: "some updated name", type: "some updated type", path: "some updated path", description: "some updated description", settings: %{}}
+
+      update_attrs = %{
+        extra: %{},
+        name: "some updated name",
+        type: "some updated type",
+        path: "some updated path",
+        description: "some updated description",
+        settings: %{}
+      }
 
       assert {:ok, %Item{} = item} = Items.update_item(scope, item, update_attrs)
       assert item.extra == %{}
