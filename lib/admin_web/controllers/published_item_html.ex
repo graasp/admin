@@ -1,6 +1,7 @@
 defmodule AdminWeb.PublishedItemHTML do
-  alias Admin.Publications.PublishedItem
   use AdminWeb, :html
+  alias Admin.Publications.PublishedItem
+
 
   embed_templates "published_item_html/*"
 
@@ -29,9 +30,9 @@ defmodule AdminWeb.PublishedItemHTML do
         <div class="shrink-0 size-12 bg-gray-500 rounded" />
         <div class="flex flex-col align-start min-w-0">
           <span class="font-bold text-nowrap text-ellipsis overflow-hidden">
-            {@publication.name}
+            {@publication.item.name}
           </span>
-          <span class="text-sm text-secondary">{@publication.description}</span>
+          <span class="text-sm text-secondary">{@publication.item.description}</span>
         </div>
       </div>
       {render_slot(@action)}

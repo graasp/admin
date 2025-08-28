@@ -16,7 +16,7 @@ defmodule Admin.Publications.RemovalNotice do
     removal_notice
     |> cast(attrs, [:reason])
     |> validate_required([:reason])
-    |> put_change(:publication_name, published_item.name)
+    |> put_change(:publication_name, published_item.item.name)
     |> put_change(:user_id, published_item.creator.id)
     |> put_change(:creator_id, current_scope.user.id)
   end

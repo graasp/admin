@@ -9,14 +9,14 @@
       <.button navigate={~p"/published_items"}>
         <.icon name="hero-arrow-left" />
       </.button>
-      <%= if @current_scope.user.id == @published_item.creator.id do %>
+      <%!-- <%= if @current_scope.user.id == @published_item.creator.id do %>
         <.button
           variant="primary"
           navigate={~p"/published_items/#{@published_item}/edit?return_to=show"}
         >
           <.icon name="hero-pencil-square" /> Edit published_item
         </.button>
-      <% end %>
+      <% end %> --%>
     </:actions>
   </.header>
 
@@ -30,10 +30,10 @@
   </div>
 
   <.list>
-    <:item title="Name">{@published_item.name}</:item>
-    <:item title="Description">{@published_item.description}</:item>
+    <:item title="Name">{@published_item.item.name}</:item>
+    <:item title="Description">{@published_item.item.description}</:item>
     <:item title="Item path">{@published_item.item_path}</:item>
-    <:item title="Creator">{@published_item.creator.email}</:item>
+    <:item title="Creator ID">{@published_item.creator_id}</:item>
   </.list>
 
   <.link

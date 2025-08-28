@@ -31,7 +31,7 @@ defmodule Admin.Accounts.UserNotifier do
     Hi #{user.email},
 
     We have decided to removed your publication
-    Name: #{publication.name}
+    Name: #{publication.item.name}
     Published on: #{publication.created_at}
 
     Your publication was removed for the following reason:

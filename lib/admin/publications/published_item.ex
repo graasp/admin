@@ -3,8 +3,7 @@ defmodule Admin.Publications.PublishedItem do
   import Ecto.Changeset
 
   schema "published_items" do
-    field :item_path, :string
-
+    belongs_to :item, Admin.Items.Item, type: :string, foreign_key: :item_path, references: :path
     belongs_to :creator, Admin.Accounts.User
 
     timestamps(type: :utc_datetime)

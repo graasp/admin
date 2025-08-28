@@ -9,7 +9,7 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <div class="">
         <.header>
-          Unpublish {@published_item.name}
+          Unpublish {@published_item.item.name}
           <:subtitle>{@published_item.description}</:subtitle>
         </.header>
       </div>

@@ -1,0 +1,143 @@
+defmodule Admin.Items do
+  @moduledoc """
+  The Items context.
+  """
+
+  import Ecto.Query, warn: false
+  alias Admin.Repo
+
+  alias Admin.Items.Item
+  alias Admin.Accounts.Scope
+
+  @doc """
+  Subscribes to scoped notifications about any item changes.
+
+  The broadcasted messages match the pattern:
+
+    * {:created, %Item{}}
+    * {:updated, %Item{}}
+    * {:deleted, %Item{}}
+
+  """
+  def subscribe_item() do
+    Phoenix.PubSub.subscribe(Admin.PubSub, "user:item")
+  end
+
+  defp broadcast(message) do
+    Phoenix.PubSub.broadcast(Admin.PubSub, "user:item", message)
+  end
+
+  @doc """
+  Returns the list of item.
+
+  ## Examples
+
+      iex> list_item(scope)
+      [%Item{}, ...]
+
+  """
+  def list_item(%Scope{} = scope) do
+    Repo.all_by(Item, user_id: scope.user.id)
+  end
+
+  @doc """
+  Gets a single item.
+
+  Raises `Ecto.NoResultsError` if the Item does not exist.
+
+  ## Examples
+
+      iex> get_item!(scope, 123)
+      %Item{}
+
+      iex> get_item!(scope, 456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_item!(%Scope{} = scope, id) do
+    Repo.get_by!(Item, id: id, user_id: scope.user.id)
+  end
+
+  @doc """
+  Creates a item.
+
+  ## Examples
+
+      iex> create_item(scope, %{field: value})
+      {:ok, %Item{}}
+
+      iex> create_item(scope, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_item(%Scope{} = scope, attrs) do
+    with {:ok, item = %Item{}} <-
+           %Item{}
+           |> Item.changeset(attrs, scope)
+           |> Repo.insert() do
+      broadcast({:created, item})
+      {:ok, item}
+    end
+  end
+
+  @doc """
+  Updates a item.
+
+  ## Examples
+
+      iex> update_item(scope, item, %{field: new_value})
+      {:ok, %Item{}}
+
+      iex> update_item(scope, item, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_item(%Scope{} = scope, %Item{} = item, attrs) do
+    true = item.user_id == scope.user.id
+
+    with {:ok, item = %Item{}} <-
+           item
+           |> Item.changeset(attrs, scope)
+           |> Repo.update() do
+      broadcast({:updated, item})
+      {:ok, item}
+    end
+  end
+
+  @doc """
+  Deletes a item.
+
+  ## Examples
+
+      iex> delete_item(scope, item)
+      {:ok, %Item{}}
+
+      iex> delete_item(scope, item)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_item(%Scope{} = scope, %Item{} = item) do
+    true = item.user_id == scope.user.id
+
+    with {:ok, item = %Item{}} <-
+           Repo.delete(item) do
+      broadcast({:deleted, item})
+      {:ok, item}
+    end
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking item changes.
+
+  ## Examples
+
+      iex> change_item(scope, item)
+      %Ecto.Changeset{data: %Item{}}
+
+  """
+  def change_item(%Scope{} = scope, %Item{} = item, attrs \\ %{}) do
+    true = item.user_id == scope.user.id
+
+    Item.changeset(item, attrs, scope)
+  end
+end
