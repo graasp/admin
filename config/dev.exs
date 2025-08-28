@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :admin, Admin.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "graasper",
+  password: "graasper",
   hostname: "localhost",
-  database: "admin_dev",
+  database: "graasp",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

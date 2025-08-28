@@ -87,7 +87,7 @@ defmodule AdminWeb.AppInstanceLive.Show do
         {:noreply,
          socket
          |> put_flash(:info, "App instance deleted.")
-         |> redirect(to: ~p"/publishers")}
+         |> push_navigate(to: ~p"/publishers")}
 
       {:error, reason} ->
         {:noreply, socket |> put_flash(:error, reason) |> assign(:show_modal, false)}

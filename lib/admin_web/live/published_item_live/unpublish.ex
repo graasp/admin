@@ -68,7 +68,7 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
         {:noreply,
          socket
          |> put_flash(:success, "Publication was removed and user notified")
-         |> redirect(to: ~p"/published_items")}
+         |> push_navigate(to: ~p"/published_items")}
 
       {:error, changeset} ->
         {:noreply, assign(socket, removal_form: to_form(changeset))}
@@ -85,6 +85,8 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
 
   def handle_info({:deleted, %Admin.Publications.PublishedItem{}}, socket) do
     {:noreply,
-     socket |> put_flash(:error, "Publication was deleted") |> redirect(to: ~p"/published_items")}
+     socket
+     |> put_flash(:error, "Publication was deleted")
+     |> push_navigate(to: ~p"/published_items")}
   end
 end

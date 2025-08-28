@@ -13,7 +13,10 @@ defmodule AdminWeb.UserLive.Listing do
           List users
           <:subtitle>Show users that are currently registered in the app</:subtitle>
           <:actions>
-            <.button phx-click="new_random_user" id="new_user">New Random User</.button>
+            <.button phx-click="new_random_user" id="new_random_user">New Random User</.button>
+          </:actions>
+          <:actions>
+            <.button navigate={~p"/users/new"} id="new_user">New User</.button>
           </:actions>
         </.header>
       </div>

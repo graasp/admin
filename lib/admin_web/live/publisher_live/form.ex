@@ -16,7 +16,7 @@ defmodule AdminWeb.PublisherLive.Form do
       </.header>
 
       <.form for={@form} id="publisher-form" phx-change="validate" phx-submit="save">
-        <.input field={@form[:name]} type="text" label="Name" />
+        <.input field={@form[:name]} type="text" label="Name" phx-mounted={JS.focus()} />
         <div class="fieldset mb-2">
           <label class="flex flex-col justify-start gap-2">
             <span class="label">Origins</span>

@@ -63,6 +63,7 @@ defmodule AdminWeb.Router do
 
       # users
       live "/users", UserLive.Listing, :list
+      live "/users/new", UserLive.Form, :new
 
       # published_items
       live "/published_items/:id/unpublish", PublishedItemLive.Unpublish, :unpublish
