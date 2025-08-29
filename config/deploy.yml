@@ -7,7 +7,9 @@ image: graasp/admin
 # Deploy to these servers.
 servers:
   web:
-    - <%= %x(aws ec2 describe-instances --instance-ids i-09155fb74e5c8254b --query "Reservations[*].Instances[*].PublicIpAddress" --output text) %>
+    hosts:
+      - <%= %x(aws ec2 describe-instances --instance-ids i-0bf21fd1ca5d29cb0 --query "Reservations[*].Instances[*].PublicIpAddress" --output text --profile dev) %>
+    proxy: false
     # - admin.dev.graasp.org
   # job:
   #   hosts:
