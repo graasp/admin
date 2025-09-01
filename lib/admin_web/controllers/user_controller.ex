@@ -3,7 +3,7 @@ defmodule AdminWeb.UserController do
   alias Admin.Accounts
 
   def show(conn, %{"id" => id}) do
-    user = Accounts.get_user_with_notices(id)
+    user = Accounts.get_user(id)
     render(conn, :show, page_title: "View user", user: user)
   end
 end

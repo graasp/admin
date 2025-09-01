@@ -5,7 +5,7 @@ defmodule Admin.Publications.RemovalNotice do
   schema "removal_notices" do
     field :publication_name, :string
     field :reason, :string
-    belongs_to :user, Admin.Accounts.User
+    belongs_to :item, Admin.Items.Item
     belongs_to :creator, Admin.Accounts.User
 
     timestamps(type: :utc_datetime, updated_at: false)
@@ -16,8 +16,8 @@ defmodule Admin.Publications.RemovalNotice do
     removal_notice
     |> cast(attrs, [:reason])
     |> validate_required([:reason])
-    |> put_change(:publication_name, published_item.name)
-    |> put_change(:user_id, published_item.creator.id)
+    |> put_change(:publication_name, published_item.item.name)
+    |> put_change(:item_id, published_item.item.id)
     |> put_change(:creator_id, current_scope.user.id)
   end
 end

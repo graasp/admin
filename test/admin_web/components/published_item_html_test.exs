@@ -9,16 +9,19 @@ defmodule AdminWeb.PublishedItemHTMLTest do
   test "Publication row", %{scope: scope} do
     publication =
       published_item_fixture(scope, %{
-        name: "Mathematics course",
-        description: "A mathematics course for beginners"
+        item: %{
+          name: "Mathematics course",
+          description: "A mathematics course for beginners"
+        }
       })
+      |> Admin.Publications.with_item()
 
     html =
       render_to_string(AdminWeb.PublishedItemHTML, "publication_row", "html", %{
         publication: publication
       })
 
-    assert html =~ publication.name
-    assert html =~ publication.description
+    assert html =~ publication.item.name
+    assert html =~ publication.item.description
   end
 end

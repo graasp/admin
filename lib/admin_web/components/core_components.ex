@@ -471,4 +471,12 @@ defmodule AdminWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  attr :html, :string, required: true
+
+  def raw_html(assigns) do
+    ~H"""
+    <div class="prose prose-sm">{HtmlSanitizeEx.basic_html(@html) |> Phoenix.HTML.raw()}</div>
+    """
+  end
 end

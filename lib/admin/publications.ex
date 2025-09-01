@@ -40,14 +40,16 @@ defmodule Admin.Publications do
 
   """
   def list_published_items() do
-    Repo.all(PublishedItem)
+    Repo.all(PublishedItem) |> Enum.map(&with_item(&1))
   end
 
   @doc """
   Returns the list of published items for all users
   """
   def list_published_items(limit) do
-    Repo.all(from p in PublishedItem, order_by: [desc: :created_at], limit: ^limit)
+    Repo.all(
+      from p in PublishedItem, order_by: [desc: :created_at], limit: ^limit, preload: [:item]
+    )
   end
 
   def list_featured_published_items() do
@@ -77,11 +79,17 @@ defmodule Admin.Publications do
 
   """
   def get_published_item!(id) do
-    Repo.get!(PublishedItem, id) |> with_creator()
+    Repo.get!(PublishedItem, id) |> with_creator() |> with_item()
   end
 
   def get_published_item!(%Scope{} = scope, id) do
-    Repo.get_by!(PublishedItem, id: id, creator_id: scope.user.id) |> with_creator()
+    Repo.get_by!(PublishedItem, id: id, creator_id: scope.user.id)
+    |> with_creator()
+    |> with_item()
+  end
+
+  def with_item(%PublishedItem{} = published_item) do
+    published_item |> Repo.preload([:item])
   end
 
   def with_creator(%PublishedItem{} = published_item) do
@@ -106,30 +114,6 @@ defmodule Admin.Publications do
            |> PublishedItem.changeset(attrs, scope)
            |> Repo.insert() do
       broadcast({:created, published_item})
-      {:ok, published_item}
-    end
-  end
-
-  @doc """
-  Updates a published_item.
-
-  ## Examples
-
-      iex> update_published_item(scope, published_item, %{field: new_value})
-      {:ok, %PublishedItem{}}
-
-      iex> update_published_item(scope, published_item, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_published_item(%Scope{} = scope, %PublishedItem{} = published_item, attrs) do
-    true = published_item.creator_id == scope.user.id
-
-    with {:ok, published_item = %PublishedItem{}} <-
-           published_item
-           |> PublishedItem.changeset(attrs, scope)
-           |> Repo.update() do
-      broadcast({:updated, published_item})
       {:ok, published_item}
     end
   end

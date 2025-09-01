@@ -12,7 +12,7 @@
     <:item title="Confirmed at">{@user.confirmed_at || "Not confirmed yet"}</:item>
   </.list>
 
-  <.header>
+  <%!-- <.header>
     Removal Notices
     <:subtitle>Records of publications that have been removed for this user.</:subtitle>
   </.header>
@@ -32,5 +32,5 @@
       <:col :let={notice} label="By">{notice.creator.email}</:col>
       <:col :let={notice} label="Reason">{notice.reason}</:col>
     </.table>
-  <% end %>
+  <% end %> --%>
 </Layouts.app>
