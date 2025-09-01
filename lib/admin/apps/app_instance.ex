@@ -21,6 +21,7 @@ defmodule Admin.Apps.AppInstance do
   def update_changeset(app_instance, attrs) do
     app_instance
     |> cast(attrs, [:name, :description, :url, :thumbnail, :key])
+    |> add_uuid_if_missing(:key)
     |> validate_required([:name, :description, :url, :thumbnail, :key])
     |> Validators.validate_url(:url)
   end
@@ -29,8 +30,16 @@ defmodule Admin.Apps.AppInstance do
   def changeset(app_instance, publisher, attrs) do
     app_instance
     |> cast(attrs, [:name, :description, :url, :thumbnail, :key])
+    |> add_uuid_if_missing(:key)
     |> validate_required([:name, :description, :url, :thumbnail, :key])
     |> Validators.validate_url(:url)
     |> put_change(:publisher_id, publisher.id)
+  end
+
+  defp add_uuid_if_missing(changeset, field) do
+    case get_field(changeset, field) do
+      nil -> put_change(changeset, field, Ecto.UUID.generate())
+      _ -> changeset
+    end
   end
 end

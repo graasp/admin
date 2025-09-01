@@ -12,6 +12,7 @@ defmodule AdminWeb.AppInstanceLiveTest do
   }
   @update_attrs %{
     name: "some updated name",
+    key: Ecto.UUID.generate(),
     description: "some updated description",
     url: "http://example-updated.com",
     thumbnail: "some updated thumbnail"
