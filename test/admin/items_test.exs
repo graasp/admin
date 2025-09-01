@@ -11,21 +11,18 @@ defmodule Admin.ItemsTest do
 
     @invalid_attrs %{extra: nil, name: nil, type: nil, path: nil, description: nil, settings: nil}
 
-    test "list_item/1 returns all scoped item" do
+    test "list_item/1 returns all item" do
       scope = user_scope_fixture()
       other_scope = user_scope_fixture()
       item = item_fixture(scope)
       other_item = item_fixture(other_scope)
-      assert Items.list_item(scope) == [item]
-      assert Items.list_item(other_scope) == [other_item]
+      assert Items.list_item(scope) == [item, other_item]
     end
 
     test "get_item!/2 returns the item with given id" do
       scope = user_scope_fixture()
       item = item_fixture(scope)
-      other_scope = user_scope_fixture()
       assert Items.get_item!(scope, item.id) == item
-      assert_raise Ecto.NoResultsError, fn -> Items.get_item!(other_scope, item.id) end
     end
 
     test "create_item/2 with valid data creates a item" do
@@ -76,16 +73,6 @@ defmodule Admin.ItemsTest do
       assert item.settings == %{}
     end
 
-    test "update_item/3 with invalid scope raises" do
-      scope = user_scope_fixture()
-      other_scope = user_scope_fixture()
-      item = item_fixture(scope)
-
-      assert_raise MatchError, fn ->
-        Items.update_item(other_scope, item, %{})
-      end
-    end
-
     test "update_item/3 with invalid data returns error changeset" do
       scope = user_scope_fixture()
       item = item_fixture(scope)
@@ -98,13 +85,6 @@ defmodule Admin.ItemsTest do
       item = item_fixture(scope)
       assert {:ok, %Item{}} = Items.delete_item(scope, item)
       assert_raise Ecto.NoResultsError, fn -> Items.get_item!(scope, item.id) end
-    end
-
-    test "delete_item/2 with invalid scope raises" do
-      scope = user_scope_fixture()
-      other_scope = user_scope_fixture()
-      item = item_fixture(scope)
-      assert_raise MatchError, fn -> Items.delete_item(other_scope, item) end
     end
 
     test "change_item/2 returns a item changeset" do

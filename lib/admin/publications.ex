@@ -119,30 +119,6 @@ defmodule Admin.Publications do
   end
 
   @doc """
-  Updates a published_item.
-
-  ## Examples
-
-      iex> update_published_item(scope, published_item, %{field: new_value})
-      {:ok, %PublishedItem{}}
-
-      iex> update_published_item(scope, published_item, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_published_item(%Scope{} = scope, %PublishedItem{} = published_item, attrs) do
-    true = published_item.creator_id == scope.user.id
-
-    with {:ok, published_item = %PublishedItem{}} <-
-           published_item
-           |> PublishedItem.changeset(attrs, scope)
-           |> Repo.update() do
-      broadcast({:updated, published_item})
-      {:ok, published_item}
-    end
-  end
-
-  @doc """
   Deletes a published_item.
 
   ## Examples

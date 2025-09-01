@@ -29,7 +29,7 @@ defmodule AdminWeb.UserLive.ListingTest do
 
     test "Add user", %{conn: conn} do
       {:ok, lv, _html} = live(conn, ~p"/users")
-      lv |> element("#new_user") |> render_click()
+      lv |> element("#new_random_user") |> render_click()
 
       assert render(lv) =~ "New user created"
     end

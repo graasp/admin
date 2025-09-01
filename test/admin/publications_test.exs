@@ -8,43 +8,45 @@ defmodule Admin.PublicationsTest do
 
     import Admin.AccountsFixtures, only: [user_scope_fixture: 0]
     import Admin.PublicationsFixtures
+    import Admin.ItemsFixtures, only: [item_fixture: 1]
 
     @invalid_attrs %{name: nil, description: nil, creator_id: nil, item_path: nil}
 
     test "list_published_items/1 returns all published_items" do
       scope = user_scope_fixture()
-      published_item = published_item_fixture(scope)
+      published_item = published_item_fixture(scope) |> Admin.Publications.with_item()
       assert Publications.list_published_items() == [published_item]
     end
 
     test "get_published_item!/2 returns the published_item with given id" do
       scope = user_scope_fixture()
-      published_item = published_item_fixture(scope) |> with_creator()
-      other_scope = user_scope_fixture()
+
+      published_item =
+        published_item_fixture(scope)
+        |> Admin.Publications.with_item()
+        |> Admin.Publications.with_creator()
 
       assert Publications.get_published_item!(scope, published_item.id) ==
                published_item
-
-      assert_raise Ecto.NoResultsError, fn ->
-        Publications.get_published_item!(other_scope, published_item.id)
-      end
     end
 
     test "create_published_item/2 with valid data creates a published_item" do
-      valid_attrs = %{
-        name: "some name",
-        description: "some description",
-        item_path: "some item_path"
-      }
-
       scope = user_scope_fixture()
+      item = item_fixture(scope)
+
+      valid_attrs = %{
+        item_path: item.path
+      }
 
       assert {:ok, %PublishedItem{} = published_item} =
                Publications.create_published_item(scope, valid_attrs)
 
-      assert published_item.name == "some name"
-      assert published_item.description == "some description"
-      assert published_item.item_path == "some item_path"
+      # add the item properties
+      published_item = published_item |> Admin.Publications.with_item()
+
+      assert published_item.item.name == "some name"
+      assert published_item.item.description == "some description"
+      assert published_item.item_path == item.path
       assert published_item.creator_id == scope.user.id
     end
 
@@ -53,46 +55,6 @@ defmodule Admin.PublicationsTest do
 
       assert {:error, %Ecto.Changeset{}} =
                Publications.create_published_item(scope, @invalid_attrs)
-    end
-
-    test "update_published_item/3 with valid data updates the published_item" do
-      scope = user_scope_fixture()
-      published_item = published_item_fixture(scope)
-
-      update_attrs = %{
-        name: "some updated name",
-        description: "some updated description",
-        item_path: "some updated item_path"
-      }
-
-      assert {:ok, %PublishedItem{} = published_item} =
-               Publications.update_published_item(scope, published_item, update_attrs)
-
-      assert published_item.name == "some updated name"
-      assert published_item.description == "some updated description"
-      assert published_item.creator_id == scope.user.id
-      assert published_item.item_path == "some updated item_path"
-    end
-
-    test "update_published_item/3 with invalid scope raises" do
-      scope = user_scope_fixture()
-      other_scope = user_scope_fixture()
-      published_item = published_item_fixture(scope)
-
-      assert_raise MatchError, fn ->
-        Publications.update_published_item(other_scope, published_item, %{})
-      end
-    end
-
-    test "update_published_item/3 with invalid data returns error changeset" do
-      scope = user_scope_fixture()
-      published_item = published_item_fixture(scope) |> with_creator()
-
-      assert {:error, %Ecto.Changeset{}} =
-               Publications.update_published_item(scope, published_item, @invalid_attrs)
-
-      assert published_item ==
-               Publications.get_published_item!(scope, published_item.id)
     end
 
     test "delete_published_item/2 deletes the published_item" do

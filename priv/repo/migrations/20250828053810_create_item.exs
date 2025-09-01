@@ -39,5 +39,18 @@ defmodule Admin.Repo.Migrations.CreateItem do
             on_update: :update_all
           )
     end
+
+    # Add the item_id column in removal_notice
+    alter table(:removal_notices) do
+      add :item_id,
+          references(:item,
+            column: :id,
+            type: :binary_id,
+            on_delete: :delete_all,
+            on_update: :nothing
+          )
+    end
+
+    create index(:removal_notices, [:item_id])
   end
 end

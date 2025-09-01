@@ -13,7 +13,7 @@ defmodule Admin.ItemsFixtures do
         description: "some description",
         extra: %{},
         name: "some name",
-        path: "some path",
+        path: "some path#{System.unique_integer([:positive])}",
         settings: %{},
         type: "some type"
       })

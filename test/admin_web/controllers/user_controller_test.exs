@@ -1,8 +1,6 @@
 defmodule AdminWeb.UserControllerTest do
   use AdminWeb.ConnCase
 
-  import Admin.PublicationsFixtures
-
   setup :register_and_log_in_user
 
   describe "show user" do

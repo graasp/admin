@@ -36,7 +36,7 @@ defmodule Admin.Items do
       [%Item{}, ...]
 
   """
-  def list_item(%Scope{} = scope) do
+  def list_item(%Scope{} = _scope) do
     Repo.all(Item)
   end
 
@@ -54,7 +54,7 @@ defmodule Admin.Items do
       ** (Ecto.NoResultsError)
 
   """
-  def get_item!(%Scope{} = scope, id) do
+  def get_item!(%Scope{} = _scope, id) do
     Repo.get!(Item, id)
   end
 
@@ -70,7 +70,7 @@ defmodule Admin.Items do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_item(%Scope{} = scope, attrs) do
+  def create_item(%Scope{} = _scope, attrs) do
     with {:ok, item = %Item{}} <-
            %Item{}
            |> Item.changeset(attrs)
@@ -92,7 +92,7 @@ defmodule Admin.Items do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_item(%Scope{} = scope, %Item{} = item, attrs) do
+  def update_item(%Scope{} = _scope, %Item{} = item, attrs) do
     with {:ok, item = %Item{}} <-
            item
            |> Item.changeset(attrs)
@@ -114,7 +114,7 @@ defmodule Admin.Items do
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_item(%Scope{} = scope, %Item{} = item) do
+  def delete_item(%Scope{} = _scope, %Item{} = item) do
     with {:ok, item = %Item{}} <-
            Repo.delete(item) do
       broadcast({:deleted, item})
@@ -131,7 +131,7 @@ defmodule Admin.Items do
       %Ecto.Changeset{data: %Item{}}
 
   """
-  def change_item(%Scope{} = scope, %Item{} = item, attrs \\ %{}) do
-    Item.changeset(item, attrs, scope)
+  def change_item(%Scope{} = _scope, %Item{} = item, attrs \\ %{}) do
+    Item.changeset(item, attrs)
   end
 end
