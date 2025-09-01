@@ -6,6 +6,7 @@ defmodule Admin.Apps.AppInstance do
 
   schema "apps" do
     field :name, :string
+    field :key, :binary_id
     field :description, :string
     field :url, :string
     field :thumbnail, :string
@@ -19,16 +20,16 @@ defmodule Admin.Apps.AppInstance do
   @doc false
   def update_changeset(app_instance, attrs) do
     app_instance
-    |> cast(attrs, [:name, :description, :url, :thumbnail])
-    |> validate_required([:name, :description, :url, :thumbnail])
+    |> cast(attrs, [:name, :description, :url, :thumbnail, :key])
+    |> validate_required([:name, :description, :url, :thumbnail, :key])
     |> Validators.validate_url(:url)
   end
 
   @doc false
   def changeset(app_instance, publisher, attrs) do
     app_instance
-    |> cast(attrs, [:name, :description, :url, :thumbnail])
-    |> validate_required([:name, :description, :url, :thumbnail])
+    |> cast(attrs, [:name, :description, :url, :thumbnail, :key])
+    |> validate_required([:name, :description, :url, :thumbnail, :key])
     |> Validators.validate_url(:url)
     |> put_change(:publisher_id, publisher.id)
   end
