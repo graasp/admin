@@ -10,7 +10,7 @@ This project was generated with phoenix version 1.8.0
 
 This project uses [mise](https://mise.jdx.dev/).
 
-Install all dependencies with:
+Install all dependencies with (installs `elixir` and `erlang`):
 
 ```sh
 mise i
@@ -45,7 +45,9 @@ brew install elixir-ls
 
 You will need a running PostgreSQL server.
 
-Using Docker:
+This project is made to work with the postgresql server running in the devcontainer for the graasp/core project.
+
+In case you do not want to use the devcontainer, you can use the following command to start a postgresql server:
 
 ```sh
 docker run -d -p 5432:5432 \
@@ -68,6 +70,10 @@ With a graphical client like [Postgres.app](https://postgresapp.com/) on MacOS.
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## Deployment
+
+The application is deployed using ECS. The deployment process is handled by the graasp/infrastrucutre repository.
+It is in charge of registering the service and starting the tasks with the proper environment variables.
+This repo simply builds the docker images and pushes them to the private ECR registry.
 
 Please checkout [the setup docs](./docs/setup.md) for more information on how to bootstrap a server to deploy your app in production.
 

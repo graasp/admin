@@ -1,6 +1,10 @@
-## Settign the server up
+## Setting up the server
 
-The followign isntructions are based on [Kamal's missing tutorial for Ruby on Rail](https://rameerez.com/kamal-tutorial-how-to-deploy-a-postgresql-rails-app/)
+> [WARNING]
+> Deprecated documentation. We do not use kamal to deploy the app.
+> This app is deployed using ECS with the docker image built from the Dockerfile in the root of the repository.
+
+The following instructions are based on [Kamal's missing tutorial for Ruby on Rails](https://rameerez.com/kamal-tutorial-how-to-deploy-a-postgresql-rails-app/)
 Where the author gives interesting insights into how to setup your server with tools like `uf2` (firewall), `fail2ban` (spam and attack protection via jails) and apparmor.
 Copy the hardening script to the server:
 
