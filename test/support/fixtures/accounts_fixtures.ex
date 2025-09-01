@@ -86,4 +86,19 @@ defmodule Admin.AccountsFixtures do
       set: [created_at: dt, authenticated_at: dt]
     )
   end
+
+  @doc """
+  Generate a member.
+  """
+  def member_fixture(scope, attrs \\ %{}) do
+    attrs =
+      Enum.into(attrs, %{
+        email: "some email",
+        name: "some name",
+        type: "some type"
+      })
+
+    {:ok, member} = Admin.Accounts.create_member(scope, attrs)
+    member
+  end
 end

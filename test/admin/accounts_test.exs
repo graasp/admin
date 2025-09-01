@@ -402,4 +402,11 @@ defmodule Admin.AccountsTest do
       refute Enum.empty?(Accounts.list_users())
     end
   end
+
+  describe "account" do
+    alias Admin.Accounts.Member
+
+    import Admin.AccountsFixtures, only: [user_scope_fixture: 0]
+    import Admin.AccountsFixtures
+  end
 end

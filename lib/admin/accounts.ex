@@ -352,4 +352,131 @@ defmodule Admin.Accounts do
       confirmed: Admin.Repo.aggregate(from(u in User, where: not is_nil(u.confirmed_at)), :count)
     }
   end
+
+  alias Admin.Accounts.Member
+  alias Admin.Accounts.Scope
+
+  @doc """
+  Subscribes to scoped notifications about any member changes.
+
+  The broadcasted messages match the pattern:
+
+    * {:created, %Member{}}
+    * {:updated, %Member{}}
+    * {:deleted, %Member{}}
+
+  """
+  def subscribe_account(%Scope{} = scope) do
+    key = scope.user.id
+
+    Phoenix.PubSub.subscribe(Admin.PubSub, "user:#{key}:account")
+  end
+
+  @doc """
+  Returns the list of account.
+
+  ## Examples
+
+      iex> list_account(scope)
+      [%Member{}, ...]
+
+  """
+  def list_account(%Scope{} = scope) do
+    Repo.all_by(Member, user_id: scope.user.id)
+  end
+
+  @doc """
+  Gets a single member.
+
+  Raises `Ecto.NoResultsError` if the Member does not exist.
+
+  ## Examples
+
+      iex> get_member!(scope, 123)
+      %Member{}
+
+      iex> get_member!(scope, 456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_member!(%Scope{} = scope, id) do
+    Repo.get_by!(Member, id: id, user_id: scope.user.id)
+  end
+
+  @doc """
+  Creates a member.
+
+  ## Examples
+
+      iex> create_member(scope, %{field: value})
+      {:ok, %Member{}}
+
+      iex> create_member(scope, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_member(%Scope{} = scope, attrs) do
+    with {:ok, member = %Member{}} <-
+           %Member{}
+           |> Member.changeset(attrs, scope)
+           |> Repo.insert() do
+      broadcast_users({:created, member})
+      {:ok, member}
+    end
+  end
+
+  @doc """
+  Updates a member.
+
+  ## Examples
+
+      iex> update_member(scope, member, %{field: new_value})
+      {:ok, %Member{}}
+
+      iex> update_member(scope, member, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_member(%Scope{} = scope, %Member{} = member, attrs) do
+    with {:ok, member = %Member{}} <-
+           member
+           |> Member.changeset(attrs, scope)
+           |> Repo.update() do
+      broadcast_users({:updated, member})
+      {:ok, member}
+    end
+  end
+
+  @doc """
+  Deletes a member.
+
+  ## Examples
+
+      iex> delete_member(scope, member)
+      {:ok, %Member{}}
+
+      iex> delete_member(scope, member)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_member(%Scope{} = scope, %Member{} = member) do
+    with {:ok, member = %Member{}} <-
+           Repo.delete(member) do
+      broadcast_users({:deleted, member})
+      {:ok, member}
+    end
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking member changes.
+
+  ## Examples
+
+      iex> change_member(scope, member)
+      %Ecto.Changeset{data: %Member{}}
+
+  """
+  def change_member(%Scope{} = scope, %Member{} = member, attrs \\ %{}) do
+    Member.changeset(member, attrs, scope)
+  end
 end
