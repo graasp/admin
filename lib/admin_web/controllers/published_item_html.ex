@@ -40,4 +40,20 @@ defmodule AdminWeb.PublishedItemHTML do
     </div>
     """
   end
+
+  attr :publication, PublishedItem, required: true
+
+  def publication_creator(assigns) do
+    case assigns.publication.creator do
+      nil ->
+        ~H"""
+        <span class="italic">Deleted User</span>
+        """
+
+      creator ->
+        ~H"""
+        <span>{@publication.creator.email}</span>
+        """
+    end
+  end
 end

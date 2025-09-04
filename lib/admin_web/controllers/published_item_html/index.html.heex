@@ -28,12 +28,18 @@
     rows={@published_items}
     row_click={&JS.navigate(~p"/published_items/#{&1}")}
   >
-    <:col :let={published_item} label="Name">{published_item.item.name}</:col>
-    <:col :let={published_item} label="Description">
-      <.raw_html html={published_item.item.description} />
+    <:col :let={published_item} label="Publication">
+      <div class="flex flex-col align-center gap-1">
+        <span class="font-bold">{published_item.item.name}</span>
+        <span class="text-sm line-clamp-10">
+          <.raw_html html={published_item.item.description} />
+        </span>
+      </div>
     </:col>
-    <:col :let={published_item} label="Item path">{published_item.item_path}</:col>
-    <:col :let={published_item} label="Creator">{published_item.creator_id}</:col>
+
+    <:col :let={published_item} label="Creator">
+      <.publication_creator publication={published_item} />
+    </:col>
     <:action :let={published_item}>
       <div class="sr-only">
         <.link navigate={~p"/published_items/#{published_item}"}>Show</.link>

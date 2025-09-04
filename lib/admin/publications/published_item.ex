@@ -4,7 +4,7 @@ defmodule Admin.Publications.PublishedItem do
 
   schema "published_items" do
     belongs_to :item, Admin.Items.Item, type: :string, foreign_key: :item_path, references: :path
-    belongs_to :creator, Admin.Accounts.User
+    belongs_to :creator, Admin.Accounts.Account
 
     timestamps(type: :utc_datetime)
   end

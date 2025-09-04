@@ -40,7 +40,7 @@ defmodule Admin.Publications do
 
   """
   def list_published_items() do
-    Repo.all(PublishedItem) |> Enum.map(&with_item(&1))
+    Repo.all(from p in PublishedItem, order_by: [desc: :created_at], preload: [:item, :creator])
   end
 
   @doc """
@@ -48,7 +48,10 @@ defmodule Admin.Publications do
   """
   def list_published_items(limit) do
     Repo.all(
-      from p in PublishedItem, order_by: [desc: :created_at], limit: ^limit, preload: [:item]
+      from p in PublishedItem,
+        order_by: [desc: :created_at],
+        limit: ^limit,
+        preload: [:item, :creator]
     )
   end
 
@@ -221,6 +224,8 @@ defmodule Admin.Publications do
     |> Ecto.Multi.insert(:notice, removal_notice)
     |> Ecto.Multi.delete(:publication, published_item)
     |> Ecto.Multi.run(:send_notice, fn _repo, %{notice: notice, publication: publication} ->
+      IO.inspect(publication.creator)
+
       case UserNotifier.deliver_publication_removal(publication.creator, publication, notice) do
         {:ok, _response} -> {:ok, :sent}
         {:error, reason} -> {:error, reason}
