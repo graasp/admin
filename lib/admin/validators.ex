@@ -30,4 +30,13 @@ defmodule Admin.Validators do
       end)
     end)
   end
+
+  def validate_uuid(changeset, field) do
+    value = Ecto.Changeset.get_field(changeset, field)
+
+    case Ecto.UUID.cast(value) do
+      {:ok, _} -> changeset
+      :error -> Ecto.Changeset.add_error(changeset, field, "is not a valid UUID")
+    end
+  end
 end

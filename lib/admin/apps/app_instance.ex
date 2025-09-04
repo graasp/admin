@@ -24,6 +24,7 @@ defmodule Admin.Apps.AppInstance do
     |> add_uuid_if_missing(:key)
     |> validate_required([:name, :description, :url, :thumbnail, :key])
     |> Validators.validate_url(:url)
+    |> Validators.validate_uuid(:key)
   end
 
   @doc false
@@ -33,6 +34,7 @@ defmodule Admin.Apps.AppInstance do
     |> add_uuid_if_missing(:key)
     |> validate_required([:name, :description, :url, :thumbnail, :key])
     |> Validators.validate_url(:url)
+    |> Validators.validate_uuid(:key)
     |> put_change(:publisher_id, publisher.id)
   end
 
