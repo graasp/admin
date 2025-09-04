@@ -54,7 +54,7 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
   end
 
   @impl true
-  def handle_event("validate", %{"removal_notice" => params}, socket) do
+  def handle_event("validate", %{"publication_removal_notice" => params}, socket) do
     removal_form =
       Publications.create_removal_notice(
         socket.assigns.current_scope,
@@ -66,7 +66,7 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
     {:noreply, assign(socket, :removal_form, removal_form)}
   end
 
-  def handle_event("submit", %{"removal_notice" => params}, socket) do
+  def handle_event("submit", %{"publication_removal_notice" => params}, socket) do
     case Publications.remove_publication_with_notice(
            socket.assigns.current_scope,
            socket.assigns.published_item,

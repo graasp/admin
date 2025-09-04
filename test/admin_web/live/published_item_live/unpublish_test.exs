@@ -10,14 +10,16 @@ defmodule AdminWeb.PublishedItemLive.UnpublishTest do
     test ":validate reason should not be empty", %{conn: conn, published_item: published_item} do
       {:ok, lv, _html} = live(conn, ~p"/published_items/#{published_item}/unpublish")
 
-      assert lv |> render_change(:validate, %{removal_notice: %{reason: ""}}) =~
+      assert lv |> render_change(:validate, %{publication_removal_notice: %{reason: ""}}) =~
                "can&#39;t be blank"
     end
 
     test ":submit reason should not be empty", %{conn: conn, published_item: published_item} do
       {:ok, lv, _html} = live(conn, ~p"/published_items/#{published_item}/unpublish")
 
-      assert lv |> form("#removal_form", removal_notice: %{reason: ""}) |> render_submit() =~
+      assert lv
+             |> form("#removal_form", publication_removal_notice: %{reason: ""})
+             |> render_submit() =~
                "can&#39;t be blank"
     end
 
@@ -44,11 +46,11 @@ defmodule AdminWeb.PublishedItemLive.UnpublishTest do
 
       assert {:error, {:live_redirect, _}} =
                lv
-               |> form("#removal_form", removal_notice: %{reason: reason})
+               |> form("#removal_form", publication_removal_notice: %{reason: reason})
                |> render_submit()
 
       # notice should exist
-      assert Admin.Repo.get_by(Admin.Publications.RemovalNotice, reason: reason)
+      assert Admin.Repo.get_by(Admin.Publications.PublicationRemovalNotice, reason: reason)
       # published item should not exist anymore
       refute Admin.Repo.get(Admin.Publications.PublishedItem, published_item.id)
       # emails as not tested in end to end because it relies on runnign inside the same process.
