@@ -50,7 +50,7 @@ defmodule AdminWeb.PublishedItemHTML do
         <span class="italic">Deleted User</span>
         """
 
-      creator ->
+      _ ->
         ~H"""
         <span>{@publication.creator.email}</span>
         """
