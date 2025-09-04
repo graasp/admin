@@ -35,6 +35,14 @@ defmodule AdminWeb.AppInstanceLive.Form do
         <.input field={@form[:name]} type="text" label="Name" />
         <.input field={@form[:description]} type="text" label="Description" />
         <.input field={@form[:url]} type="text" label="Url" placeholder="https://example.com" />
+        <.input field={@form[:key]} type="text" label="Key" />
+        <.button
+          class="btn btn-soft btn-primary mb-3"
+          type="button"
+          phx-click="generate_key"
+        >
+          Generate key
+        </.button>
         <footer>
           <.button phx-disable-with="Saving..." variant="primary">Save App instance</.button>
           <.button navigate={return_path(@current_scope, @return_to, @app_instance)}>Cancel</.button>
@@ -97,6 +105,20 @@ defmodule AdminWeb.AppInstanceLive.Form do
       |> Ecto.Changeset.put_change(
         :thumbnail,
         "https://picsum.photos/seed/#{System.unique_integer([:positive])}/200/200"
+      )
+
+    {:noreply,
+     assign(socket,
+       form: to_form(changeset)
+     )}
+  end
+
+  def handle_event("generate_key", _params, socket) do
+    changeset =
+      socket.assigns.form.source
+      |> Ecto.Changeset.put_change(
+        :key,
+        Ecto.UUID.generate()
       )
 
     {:noreply,

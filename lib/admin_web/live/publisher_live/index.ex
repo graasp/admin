@@ -60,8 +60,15 @@ defmodule AdminWeb.PublisherLive.Index do
             </:col>
             <:col :let={app} label="Credentials">
               <div class="flex flex-col">
-                <span>ID: {app.id}</span>
-                <span>Key: <span class="italic">not available yet</span></span>
+                <div class="flex flex-row items-center gap-1">
+                  <span id={"app-#{app.id}-key"}>{app.key}</span>
+                  <button
+                    class="btn btn-sm btn-soft"
+                    phx-click={JS.dispatch("phx:copy", to: "#app-#{app.id}-key")}
+                  >
+                    <.icon name="hero-clipboard" />
+                  </button>
+                </div>
               </div>
             </:col>
             <:col :let={app} label="URL">{app.url}</:col>

@@ -33,6 +33,7 @@ defmodule AdminWeb.AppInstanceLive.Show do
         <:item title="Name">{@app_instance.name}</:item>
         <:item title="Description">{@app_instance.description}</:item>
         <:item title="URL">{@app_instance.url}</:item>
+        <:item title="Key">{@app_instance.key}</:item>
       </.list>
 
       <.button phx-click="confirm_delete">

@@ -9,7 +9,7 @@ defmodule AdminWeb.UserLive.Form do
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <.header>Create a new User</.header>
 
-      <.form for={@form} phx-submit="save" phx-change="validate">
+      <.form id="user_form" for={@form} phx-submit="save" phx-change="validate">
         <.input
           field={@form[:email]}
           type="email"
