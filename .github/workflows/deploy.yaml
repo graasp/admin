@@ -27,10 +27,12 @@ jobs:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      - name: Build images
-        uses: ./.github/actions/build-images
-        with:
-          tag: latest
-          aws-ecr-uri: ${{ vars.PRIVATE_ECR }}
-          aws-role-arn: ${{ vars.AWS_ROLE_ARN }}
-          aws-region: ${{ vars.AWS_REGION }}
+      - name: Auth to the ECR
+        run: bash ./scripts/auth.sh ${{ vars.PRIVATE_ECR }} ${{ vars.AWS_REGION }}
+        shell: bash
+
+      - name: Build image
+        run: |
+          docker build -t ${{ vars.PRIVATE_ECR }}/graasp/admin:latest .
+          docker push ${{ vars.PRIVATE_ECR }}/graasp/admin:latest
+        shell: bash
