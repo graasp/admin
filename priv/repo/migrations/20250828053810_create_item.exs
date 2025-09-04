@@ -49,6 +49,9 @@ defmodule Admin.Repo.Migrations.CreateItem do
             on_delete: :delete_all,
             on_update: :nothing
           )
+
+      remove :user_id,
+             references(:users, type: :binary_id, on_delete: :delete_all)
     end
 
     create index(:removal_notices, [:item_id])

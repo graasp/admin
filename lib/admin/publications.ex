@@ -5,7 +5,7 @@ defmodule Admin.Publications do
 
   import Ecto.Query, warn: false
   alias Admin.Accounts.UserNotifier
-  alias Admin.Publications.RemovalNotice
+  alias Admin.Publications.PublicationRemovalNotice
   alias Admin.Repo
   alias Ecto.Multi
 
@@ -159,7 +159,7 @@ defmodule Admin.Publications do
   Returns an `Ecto.Changeset{}` for tracking removal_notice changes.
   """
   def create_removal_notice(%Scope{} = scope, %PublishedItem{} = published_item, attrs \\ %{}) do
-    RemovalNotice.changeset(%RemovalNotice{}, attrs, published_item, scope)
+    PublicationRemovalNotice.changeset(%PublicationRemovalNotice{}, attrs, published_item, scope)
   end
 
   @doc """

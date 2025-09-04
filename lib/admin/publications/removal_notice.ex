@@ -1,8 +1,8 @@
-defmodule Admin.Publications.RemovalNotice do
+defmodule Admin.Publications.PublicationRemovalNotice do
   use Admin.Schema
   import Ecto.Changeset
 
-  schema "removal_notices" do
+  schema "publication_removal_notices" do
     field :publication_name, :string
     field :reason, :string
     belongs_to :item, Admin.Items.Item
