@@ -23,6 +23,10 @@ jobs:
     name: Build & Push Image
     runs-on: ubuntu-24.04-arm
     environment: ${{ inputs.environment || 'development' }}
+    # Do not run simultaneous builds
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: false
 
     steps:
       - name: Checkout code
@@ -42,4 +46,10 @@ jobs:
         run: |
           docker build -t ${{ vars.PRIVATE_ECR }}/graasp/admin:latest .
           docker push ${{ vars.PRIVATE_ECR }}/graasp/admin:latest
+        shell: bash
+
+      - name: Restart Service
+        if: ${{ inputs.environment != 'production' }}
+        run: |
+          aws ecs update-service --cluster graasp-dev --service admin --force-new-deployment
         shell: bash
