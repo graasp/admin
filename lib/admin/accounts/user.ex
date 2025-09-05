@@ -2,7 +2,9 @@ defmodule Admin.Accounts.User do
   use Admin.Schema
   import Ecto.Changeset
 
-  schema "users" do
+  # NOTE: this table is currently named "admins" to not confuse with the "accounts" table used for public members of graasp.
+  # It should at some point be renamed to "users" when we unify the access control for all users and use user roles to define who is an admin or not.
+  schema "admins" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true

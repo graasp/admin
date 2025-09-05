@@ -32,7 +32,8 @@ defmodule Admin.ItemsTest do
         type: "some type",
         path: "some path",
         description: "some description",
-        settings: %{}
+        settings: %{},
+        creator_id: Ecto.UUID.generate()
       }
 
       scope = user_scope_fixture()

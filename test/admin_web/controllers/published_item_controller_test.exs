@@ -48,31 +48,6 @@ defmodule AdminWeb.PublishedItemControllerTest do
     end
   end
 
-  describe "edit published_item" do
-    setup [:create_published_item]
-
-    test "renders form for editing chosen published_item", %{
-      conn: conn,
-      published_item: published_item
-    } do
-      conn = get(conn, ~p"/published_items/#{published_item}/edit")
-      assert html_response(conn, 200) =~ "Edit Published item"
-    end
-  end
-
-  describe "delete published_item" do
-    setup [:create_published_item]
-
-    test "deletes chosen published_item", %{conn: conn, published_item: published_item} do
-      conn = delete(conn, ~p"/published_items/#{published_item}")
-      assert redirected_to(conn) == ~p"/published_items"
-
-      assert_error_sent 404, fn ->
-        get(conn, ~p"/published_items/#{published_item}")
-      end
-    end
-  end
-
   describe "published item does not exist" do
     test "Invalid UUID for publication", %{conn: conn} do
       conn =

@@ -13,10 +13,8 @@ defmodule Admin.PublicationsFixtures do
 
     attrs =
       Enum.into(attrs, %{
-        creator_id: 42,
-        description: "some description",
-        item_path: item.path,
-        name: "some name"
+        creator_id: item.creator_id,
+        item_path: item.path
       })
 
     {:ok, published_item} = Admin.Publications.create_published_item(scope, attrs)

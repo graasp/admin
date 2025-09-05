@@ -12,7 +12,7 @@ defmodule Admin.Accounts.UserToken do
   @change_email_validity_in_days 7
   @session_validity_in_days 14
 
-  schema "users_tokens" do
+  schema "admins_tokens" do
     field :token, :binary
     field :context, :string
     field :sent_to, :string

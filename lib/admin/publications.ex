@@ -5,7 +5,7 @@ defmodule Admin.Publications do
 
   import Ecto.Query, warn: false
   alias Admin.Accounts.UserNotifier
-  alias Admin.Publications.RemovalNotice
+  alias Admin.Publications.PublicationRemovalNotice
   alias Admin.Repo
   alias Ecto.Multi
 
@@ -40,7 +40,7 @@ defmodule Admin.Publications do
 
   """
   def list_published_items() do
-    Repo.all(PublishedItem) |> Enum.map(&with_item(&1))
+    Repo.all(from p in PublishedItem, order_by: [desc: :created_at], preload: [:item, :creator])
   end
 
   @doc """
@@ -48,7 +48,10 @@ defmodule Admin.Publications do
   """
   def list_published_items(limit) do
     Repo.all(
-      from p in PublishedItem, order_by: [desc: :created_at], limit: ^limit, preload: [:item]
+      from p in PublishedItem,
+        order_by: [desc: :created_at],
+        limit: ^limit,
+        preload: [:item, :creator]
     )
   end
 
@@ -82,8 +85,8 @@ defmodule Admin.Publications do
     Repo.get!(PublishedItem, id) |> with_creator() |> with_item()
   end
 
-  def get_published_item!(%Scope{} = scope, id) do
-    Repo.get_by!(PublishedItem, id: id, creator_id: scope.user.id)
+  def get_published_item!(%Scope{} = _scope, id) do
+    Repo.get_by!(PublishedItem, id: id)
     |> with_creator()
     |> with_item()
   end
@@ -108,10 +111,10 @@ defmodule Admin.Publications do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_published_item(%Scope{} = scope, attrs) do
+  def create_published_item(%Scope{} = _scope, attrs) do
     with {:ok, published_item = %PublishedItem{}} <-
            %PublishedItem{}
-           |> PublishedItem.changeset(attrs, scope)
+           |> PublishedItem.changeset(attrs)
            |> Repo.insert() do
       broadcast({:created, published_item})
       {:ok, published_item}
@@ -130,9 +133,7 @@ defmodule Admin.Publications do
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_published_item(%Scope{} = scope, %PublishedItem{} = published_item) do
-    true = published_item.creator_id == scope.user.id
-
+  def delete_published_item(%Scope{} = _scope, %PublishedItem{} = published_item) do
     with {:ok, published_item = %PublishedItem{}} <-
            Repo.delete(published_item) do
       broadcast({:deleted, published_item})
@@ -149,17 +150,17 @@ defmodule Admin.Publications do
       %Ecto.Changeset{data: %PublishedItem{}}
 
   """
-  def change_published_item(%Scope{} = scope, %PublishedItem{} = published_item, attrs \\ %{}) do
-    true = published_item.creator_id == scope.user.id
+  def change_published_item(%Scope{} = _scope, %PublishedItem{} = published_item, attrs \\ %{}) do
+    # true = published_item.creator_id == scope.user.id
 
-    PublishedItem.changeset(published_item, attrs, scope)
+    PublishedItem.changeset(published_item, attrs)
   end
 
   @doc """
   Returns an `Ecto.Changeset{}` for tracking removal_notice changes.
   """
   def create_removal_notice(%Scope{} = scope, %PublishedItem{} = published_item, attrs \\ %{}) do
-    RemovalNotice.changeset(%RemovalNotice{}, attrs, published_item, scope)
+    PublicationRemovalNotice.changeset(%PublicationRemovalNotice{}, attrs, published_item, scope)
   end
 
   @doc """
@@ -220,8 +221,23 @@ defmodule Admin.Publications do
     Multi.new()
     |> Ecto.Multi.insert(:notice, removal_notice)
     |> Ecto.Multi.delete(:publication, published_item)
-    |> Ecto.Multi.run(:send_notice, fn _repo, %{notice: notice, publication: publication} ->
-      case UserNotifier.deliver_publication_removal(publication.creator, publication, notice) do
+    |> Ecto.Multi.run(:send_notice, fn _repo,
+                                       %{
+                                         notice: notice,
+                                         publication: publication
+                                       } ->
+      # Get the creator or nil
+      creator =
+        case publication.creator_id do
+          nil ->
+            nil
+
+          creator_id ->
+            Admin.Repo.one(from a in Admin.Accounts.Account, where: a.id == ^creator_id)
+        end
+
+      case UserNotifier.deliver_publication_removal(creator, publication, notice) do
+        {:ok, :not_sent} -> {:ok, :not_sent}
         {:ok, _response} -> {:ok, :sent}
         {:error, reason} -> {:error, reason}
       end
