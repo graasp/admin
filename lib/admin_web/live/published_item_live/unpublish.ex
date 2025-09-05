@@ -41,7 +41,6 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
     end
 
     published_item = Publications.get_published_item!(id)
-    IO.inspect(published_item)
 
     removal_form =
       Publications.create_removal_notice(socket.assigns.current_scope, published_item, %{})

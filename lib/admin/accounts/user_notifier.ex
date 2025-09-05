@@ -23,6 +23,8 @@ defmodule Admin.Accounts.UserNotifier do
   @doc """
   Deliver publication removal information.
   """
+  def deliver_publication_removal(nil, _publication, _notice), do: {:ok, :not_sent}
+
   def deliver_publication_removal(user, publication, notice) do
     deliver(user.email, "Your publication has been removed", """
 

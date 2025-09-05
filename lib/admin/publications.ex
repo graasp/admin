@@ -85,8 +85,8 @@ defmodule Admin.Publications do
     Repo.get!(PublishedItem, id) |> with_creator() |> with_item()
   end
 
-  def get_published_item!(%Scope{} = scope, id) do
-    Repo.get_by!(PublishedItem, id: id, creator_id: scope.user.id)
+  def get_published_item!(%Scope{} = _scope, id) do
+    Repo.get_by!(PublishedItem, id: id)
     |> with_creator()
     |> with_item()
   end
@@ -111,10 +111,10 @@ defmodule Admin.Publications do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_published_item(%Scope{} = scope, attrs) do
+  def create_published_item(%Scope{} = _scope, attrs) do
     with {:ok, published_item = %PublishedItem{}} <-
            %PublishedItem{}
-           |> PublishedItem.changeset(attrs, scope)
+           |> PublishedItem.changeset(attrs)
            |> Repo.insert() do
       broadcast({:created, published_item})
       {:ok, published_item}
@@ -133,9 +133,7 @@ defmodule Admin.Publications do
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_published_item(%Scope{} = scope, %PublishedItem{} = published_item) do
-    true = published_item.creator_id == scope.user.id
-
+  def delete_published_item(%Scope{} = _scope, %PublishedItem{} = published_item) do
     with {:ok, published_item = %PublishedItem{}} <-
            Repo.delete(published_item) do
       broadcast({:deleted, published_item})
@@ -152,10 +150,10 @@ defmodule Admin.Publications do
       %Ecto.Changeset{data: %PublishedItem{}}
 
   """
-  def change_published_item(%Scope{} = scope, %PublishedItem{} = published_item, attrs \\ %{}) do
-    true = published_item.creator_id == scope.user.id
+  def change_published_item(%Scope{} = _scope, %PublishedItem{} = published_item, attrs \\ %{}) do
+    # true = published_item.creator_id == scope.user.id
 
-    PublishedItem.changeset(published_item, attrs, scope)
+    PublishedItem.changeset(published_item, attrs)
   end
 
   @doc """
@@ -223,10 +221,17 @@ defmodule Admin.Publications do
     Multi.new()
     |> Ecto.Multi.insert(:notice, removal_notice)
     |> Ecto.Multi.delete(:publication, published_item)
-    |> Ecto.Multi.run(:send_notice, fn _repo, %{notice: notice, publication: publication} ->
-      IO.inspect(publication.creator)
-
-      case UserNotifier.deliver_publication_removal(publication.creator, publication, notice) do
+    |> Ecto.Multi.one(:creator, fn %{publication: publication} ->
+      from(a in Admin.Accounts.Account, where: a.id == ^publication.creator_id)
+    end)
+    |> Ecto.Multi.run(:send_notice, fn _repo,
+                                       %{
+                                         notice: notice,
+                                         publication: publication,
+                                         creator: creator
+                                       } ->
+      case UserNotifier.deliver_publication_removal(creator, publication, notice) do
+        {:ok, :not_sent} -> {:ok, :not_sent}
         {:ok, _response} -> {:ok, :sent}
         {:error, reason} -> {:error, reason}
       end

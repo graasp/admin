@@ -2,6 +2,7 @@ defmodule Admin.Accounts.Account do
   use Admin.Schema
 
   schema "account" do
+    field :name, :string
     field :email, :string
     field :type, :string
 

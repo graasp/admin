@@ -10,7 +10,7 @@ defmodule Admin.Items.Item do
     field :type, :string
     field :settings, :map
     # TODO: udpate to use the relation to member later
-    field :creator_id, :binary_id
+    belongs_to :creator, Admin.Accounts.Account, type: :binary_id
 
     timestamps(type: :utc_datetime)
   end
@@ -18,7 +18,7 @@ defmodule Admin.Items.Item do
   @doc false
   def changeset(item, attrs) do
     item
-    |> cast(attrs, [:name, :description, :path, :extra, :type, :settings])
-    |> validate_required([:name, :description, :path, :type])
+    |> cast(attrs, [:name, :description, :path, :extra, :type, :settings, :creator_id])
+    |> validate_required([:name, :description, :path, :type, :creator_id])
   end
 end

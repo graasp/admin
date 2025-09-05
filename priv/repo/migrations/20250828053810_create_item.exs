@@ -11,7 +11,7 @@ defmodule Admin.Repo.Migrations.CreateItem do
       add :type, :string
       add :settings, :jsonb
       # Add the references(:users, type: :id, on_delete: :delete_all)
-      add :creator_id, :string
+      add :creator_id, :binary_id
 
       timestamps(type: :utc_datetime)
     end

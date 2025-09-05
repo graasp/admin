@@ -42,22 +42,22 @@ defmodule AdminWeb.PublishedItemController do
     render(conn, :show, published_item: published_item)
   end
 
-  def edit(conn, %{"id" => id}) do
-    published_item = Publications.get_published_item!(conn.assigns.current_scope, id)
-    changeset = Publications.change_published_item(conn.assigns.current_scope, published_item)
-    render(conn, :edit, published_item: published_item, changeset: changeset)
-  end
+  # def edit(conn, %{"id" => id}) do
+  #   published_item = Publications.get_published_item!(conn.assigns.current_scope, id)
+  #   changeset = Publications.change_published_item(conn.assigns.current_scope, published_item)
+  #   render(conn, :edit, published_item: published_item, changeset: changeset)
+  # end
 
-  def delete(conn, %{"id" => id}) do
-    published_item = Publications.get_published_item!(conn.assigns.current_scope, id)
+  # def delete(conn, %{"id" => id}) do
+  #   published_item = Publications.get_published_item!(conn.assigns.current_scope, id)
 
-    {:ok, _published_item} =
-      Publications.delete_published_item(conn.assigns.current_scope, published_item)
+  #   {:ok, _published_item} =
+  #     Publications.delete_published_item(conn.assigns.current_scope, published_item)
 
-    conn
-    |> put_flash(:info, "Published item deleted successfully.")
-    |> redirect(to: ~p"/published_items")
-  end
+  #   conn
+  #   |> put_flash(:info, "Published item deleted successfully.")
+  #   |> redirect(to: ~p"/published_items")
+  # end
 
   def search(conn, %{"published_item_search_form" => params}) do
     changeset = PublishedItemSearchForm.changeset(%PublishedItemSearchForm{}, params)

@@ -4,16 +4,15 @@ defmodule Admin.Publications.PublishedItem do
 
   schema "published_items" do
     belongs_to :item, Admin.Items.Item, type: :string, foreign_key: :item_path, references: :path
-    belongs_to :creator, Admin.Accounts.Account
+    belongs_to :creator, Admin.Accounts.Account, type: :binary_id
 
     timestamps(type: :utc_datetime)
   end
 
   @doc false
-  def changeset(published_item, attrs, user_scope) do
+  def changeset(published_item, attrs) do
     published_item
-    |> cast(attrs, [:item_path])
-    |> validate_required([:item_path])
-    |> put_change(:creator_id, user_scope.user.id)
+    |> cast(attrs, [:item_path, :creator_id])
+    |> validate_required([:item_path, :creator_id])
   end
 end

@@ -14,7 +14,12 @@ defmodule Admin.PublicationsTest do
 
     test "list_published_items/1 returns all published_items" do
       scope = user_scope_fixture()
-      published_item = published_item_fixture(scope) |> Admin.Publications.with_item()
+
+      published_item =
+        published_item_fixture(scope)
+        |> Admin.Publications.with_item()
+        |> Admin.Publications.with_creator()
+
       assert Publications.list_published_items() == [published_item]
     end
 
@@ -35,6 +40,7 @@ defmodule Admin.PublicationsTest do
       item = item_fixture(scope)
 
       valid_attrs = %{
+        creator_id: item.creator_id,
         item_path: item.path
       }
 
@@ -47,7 +53,7 @@ defmodule Admin.PublicationsTest do
       assert published_item.item.name == "some name"
       assert published_item.item.description == "some description"
       assert published_item.item_path == item.path
-      assert published_item.creator_id == scope.user.id
+      assert published_item.creator_id == item.creator_id
     end
 
     test "create_published_item/2 with invalid data returns error changeset" do
@@ -64,16 +70,6 @@ defmodule Admin.PublicationsTest do
 
       assert_raise Ecto.NoResultsError, fn ->
         Publications.get_published_item!(scope, published_item.id)
-      end
-    end
-
-    test "delete_published_item/2 with invalid scope raises" do
-      scope = user_scope_fixture()
-      other_scope = user_scope_fixture()
-      published_item = published_item_fixture(scope)
-
-      assert_raise MatchError, fn ->
-        Publications.delete_published_item(other_scope, published_item)
       end
     end
 

@@ -118,7 +118,7 @@ defmodule AdminWeb.Router do
     get "/users/:id", UserController, :show
 
     get "/published_items/featured", PublishedItemController, :featured
-    resources "/published_items", PublishedItemController, except: [:update]
+    resources "/published_items", PublishedItemController, except: [:update, :delete, :edit]
     post "/published_items/search", PublishedItemController, :search
   end
 end
