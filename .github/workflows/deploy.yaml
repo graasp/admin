@@ -1,0 +1,38 @@
+name: Build and deploy image
+
+on:
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  id-token: write # This is required for requesting the JWT for OIDC
+
+jobs:
+  build:
+    name: Build & Push Image
+    runs-on: ubuntu-24.04-arm
+    environment: development
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Auth to the ECR
+        run: bash ./scripts/auth.sh ${{ vars.PRIVATE_ECR }} ${{ vars.AWS_REGION }}
+        shell: bash
+
+      - name: Build image
+        run: |
+          docker build -t ${{ vars.PRIVATE_ECR }}/graasp/admin:latest .
+          docker push ${{ vars.PRIVATE_ECR }}/graasp/admin:latest
+        shell: bash
