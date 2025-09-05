@@ -107,7 +107,7 @@ if config_env() == :prod do
   #
   config :admin, Admin.Mailer,
     adapter: Swoosh.Adapters.AmazonSES,
-    region: "eu-central-1",
+    region: System.get_env("MAILER_SES_REGION", "eu-central-1"),
     access_key: System.get_env("MAILER_SES_ACCESS_KEY"),
     secret: System.get_env("MAILER_SES_SECRET")
 
