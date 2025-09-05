@@ -3,6 +3,7 @@ defmodule Admin.Accounts.UserNotifier do
 
   alias Admin.Mailer
   alias Admin.Accounts.User
+  alias Admin.Accounts.Account
 
   @footer "Graasp.org is a learning experience platform."
 
@@ -25,12 +26,12 @@ defmodule Admin.Accounts.UserNotifier do
   """
   def deliver_publication_removal(nil, _publication, _notice), do: {:ok, :not_sent}
 
-  def deliver_publication_removal(user, publication, notice) do
+  def deliver_publication_removal(%Account{} = user, publication, notice) do
     deliver(user.email, "Your publication has been removed", """
 
     ==============================
 
-    Hi #{user.email},
+    Hi #{user.name},
 
     We have decided to removed your publication
     Name: #{publication.item.name}

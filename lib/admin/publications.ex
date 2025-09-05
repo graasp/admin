@@ -221,15 +221,21 @@ defmodule Admin.Publications do
     Multi.new()
     |> Ecto.Multi.insert(:notice, removal_notice)
     |> Ecto.Multi.delete(:publication, published_item)
-    |> Ecto.Multi.one(:creator, fn %{publication: publication} ->
-      from(a in Admin.Accounts.Account, where: a.id == ^publication.creator_id)
-    end)
     |> Ecto.Multi.run(:send_notice, fn _repo,
                                        %{
                                          notice: notice,
-                                         publication: publication,
-                                         creator: creator
+                                         publication: publication
                                        } ->
+      # Get the creator or nil
+      creator =
+        case publication.creator_id do
+          nil ->
+            nil
+
+          creator_id ->
+            Admin.Repo.one(from a in Admin.Accounts.Account, where: a.id == ^creator_id)
+        end
+
       case UserNotifier.deliver_publication_removal(creator, publication, notice) do
         {:ok, :not_sent} -> {:ok, :not_sent}
         {:ok, _response} -> {:ok, :sent}
