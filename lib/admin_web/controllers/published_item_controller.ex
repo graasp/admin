@@ -8,7 +8,7 @@ defmodule AdminWeb.PublishedItemController do
   alias Admin.Publications.PublishedItem
 
   def index(conn, _params) do
-    published_items = Publications.list_published_items()
+    published_items = Publications.list_published_items(100)
 
     render(conn, :index,
       published_items: published_items,
