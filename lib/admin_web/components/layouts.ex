@@ -180,6 +180,17 @@ defmodule AdminWeb.Layouts do
               </li>
               <li><.link navigate={~p"/publishers"}>Apps</.link></li>
               <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
+              <div class="divider"></div>
+              <div class="flex flex-col items-center">
+                <%= if @current_scope do %>
+                  <span>{@current_scope.user.email}</span>
+                  <.link class="btn btn-ghost" href={~p"/users/log-out"} method="delete">
+                    Log out
+                  </.link>
+                <% else %>
+                  <.link class="btn btn-ghost" href={~p"/users/log-in"}>Log in</.link>
+                <% end %>
+              </div>
             </ul>
           </div>
         <% end %>
@@ -207,12 +218,14 @@ defmodule AdminWeb.Layouts do
         </ul>
       </div>
       <div class="navbar-end gap-1">
-        <%= if @current_scope do %>
-          <span>{@current_scope.user.email}</span>
-          <.link class="btn btn-ghost" href={~p"/users/log-out"} method="delete">Log out</.link>
-        <% else %>
-          <.link class="btn btn-ghost" href={~p"/users/log-in"}>Log in</.link>
-        <% end %>
+        <div class="hidden lg:flex">
+          <%= if @current_scope do %>
+            <span>{@current_scope.user.email}</span>
+            <.link class="btn btn-ghost" href={~p"/users/log-out"} method="delete">Log out</.link>
+          <% else %>
+            <.link class="btn btn-ghost" href={~p"/users/log-in"}>Log in</.link>
+          <% end %>
+        </div>
         <.theme_toggle />
       </div>
     </div>
