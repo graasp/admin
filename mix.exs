@@ -80,7 +80,8 @@ defmodule Admin.MixProject do
       # sanitize HTML in descriptions
       {:html_sanitize_ex, "~> 1.4"},
       # credo is a static analysis tool similar to eslint in TS
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
 
