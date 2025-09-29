@@ -75,7 +75,9 @@ jobs:
         env:
           cache-name: cache-compiled-build
         with:
-          path: _build
+          path: |
+            _build
+            !_build/plts
           key: ${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
           restore-keys: |
             ${{ runner.os }}-mix-${{ env.cache-name }}-
@@ -101,6 +103,19 @@ jobs:
       - name: Run tests
         run: mix test
 
+      - name: Run Credo
+        run: mix credo --strict
+
+      - name: Retrieve PLT Cache
+        uses: actions/cache@v4
+        id: dialyzer-plts
+        with:
+          path: _build/plts
+          key: ${{ env.cache_vsn }}-dialyzer-plts-${{ runner.os }}--${{ matrix.otp }}--${{ matrix.elixir }}--${{ hashFiles('mix.exs', 'mix.lock') }}
+
+      - name: Run dialyzer
+        run: mix dialyzer --halt-exit-status
+
       - name: Compute coverage
         run: mix coveralls.html
 
@@ -110,3 +125,6 @@ jobs:
         with:
           name: coverage-results
           path: cover
+
+      - name: Clean
+        run: mix clean
