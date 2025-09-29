@@ -6,7 +6,7 @@ defmodule Admin.Accounts do
   import Ecto.Query, warn: false
   alias Admin.Repo
 
-  alias Admin.Accounts.{User, UserToken, UserNotifier}
+  alias Admin.Accounts.{User, UserNotifier, UserToken}
 
   ## Database getters
 
@@ -310,7 +310,7 @@ defmodule Admin.Accounts do
   @doc """
   Returns all users
   """
-  def list_users() do
+  def list_users do
     Repo.all(User)
   end
 
@@ -333,7 +333,7 @@ defmodule Admin.Accounts do
     * {:deleted, %User{}}
     * {:updated, %User{}}
   """
-  def subscribe_users() do
+  def subscribe_users do
     Phoenix.PubSub.subscribe(Admin.PubSub, "users")
   end
 
@@ -346,7 +346,7 @@ defmodule Admin.Accounts do
   @doc """
   Return the total number of users registered on the platform
   """
-  def user_stats() do
+  def user_stats do
     %{
       total: Admin.Repo.aggregate(User, :count),
       confirmed: Admin.Repo.aggregate(from(u in User, where: not is_nil(u.confirmed_at)), :count)

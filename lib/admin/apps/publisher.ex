@@ -1,8 +1,12 @@
 defmodule Admin.Apps.Publisher do
+  @moduledoc """
+  This module defines the Publisher struct which is used to represent an application publisher.
+  This is an entity that that groups together apps. It is used for domain authorization of the apps.
+  """
   use Admin.Schema
   import Ecto.Changeset
-  alias Admin.Validators
   alias Admin.Apps
+  alias Admin.Validators
 
   schema "publishers" do
     field :name, :string

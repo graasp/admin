@@ -1,4 +1,7 @@
 defmodule AdminWeb.DateTimeComponents do
+  @moduledoc """
+  This module provides components related to Date and Time.
+  """
   use Phoenix.Component
 
   def relative_date(assigns) do
@@ -10,6 +13,7 @@ defmodule AdminWeb.DateTimeComponents do
   end
 
   @spec to_relative_string(NaiveDateTime.t()) :: String.t()
+  # credo:disable-for-next-line Credo.Check.Refactor.CyclomaticComplexity
   defp to_relative_string(date) do
     now = NaiveDateTime.local_now()
     diff = NaiveDateTime.diff(now, date)

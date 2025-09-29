@@ -1,4 +1,7 @@
 defmodule Admin.Apps.AppInstance do
+  @moduledoc """
+  This represents an interactiv app in Graasp.
+  """
   use Admin.Schema
   import Ecto.Changeset
   alias Admin.Apps

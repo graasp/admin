@@ -6,8 +6,8 @@ defmodule Admin.Items do
   import Ecto.Query, warn: false
   alias Admin.Repo
 
-  alias Admin.Items.Item
   alias Admin.Accounts.Scope
+  alias Admin.Items.Item
 
   @doc """
   Subscribes to scoped notifications about any item changes.
@@ -19,7 +19,7 @@ defmodule Admin.Items do
     * {:deleted, %Item{}}
 
   """
-  def subscribe_item() do
+  def subscribe_item do
     Phoenix.PubSub.subscribe(Admin.PubSub, "user:item")
   end
 

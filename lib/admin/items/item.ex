@@ -1,4 +1,7 @@
 defmodule Admin.Items.Item do
+  @moduledoc """
+  This represents an item in Graasp
+  """
   use Admin.Schema
   import Ecto.Changeset
 

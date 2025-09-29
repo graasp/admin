@@ -1,10 +1,13 @@
 defmodule AdminWeb.UserAuthTest do
+  @moduledoc """
+  Test module for the user auth
+  """
   use AdminWeb.ConnCase, async: true
 
-  alias Phoenix.LiveView
   alias Admin.Accounts
   alias Admin.Accounts.Scope
   alias AdminWeb.UserAuth
+  alias Phoenix.LiveView
 
   import Admin.AccountsFixtures
 

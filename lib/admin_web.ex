@@ -88,8 +88,8 @@ defmodule AdminWeb do
       import AdminWeb.CoreComponents
 
       # Common modules used in templates
-      alias Phoenix.LiveView.JS
       alias AdminWeb.Layouts
+      alias Phoenix.LiveView.JS
 
       # Placeholder components for mocks
       alias AdminWeb.Placeholders

@@ -19,7 +19,7 @@ defmodule Admin.Apps do
     * {:deleted, %AppInstance{}}
 
   """
-  def subscribe_apps() do
+  def subscribe_apps do
     Phoenix.PubSub.subscribe(Admin.PubSub, "apps")
   end
 
@@ -36,7 +36,7 @@ defmodule Admin.Apps do
       [%AppInstance{}, ...]
 
   """
-  def list_apps_by_publisher() do
+  def list_apps_by_publisher do
     Repo.all(Publisher) |> Repo.preload([:apps])
   end
 
@@ -151,7 +151,7 @@ defmodule Admin.Apps do
     * {:deleted, %Publisher{}}
 
   """
-  def subscribe_publishers() do
+  def subscribe_publishers do
     Phoenix.PubSub.subscribe(Admin.PubSub, "publishers")
   end
 
@@ -164,7 +164,7 @@ defmodule Admin.Apps do
       [%Publisher{}, ...]
 
   """
-  def list_publishers() do
+  def list_publishers do
     Repo.all(Publisher)
   end
 

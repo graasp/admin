@@ -1,4 +1,7 @@
 defmodule AdminWeb.UserAuth do
+  @moduledoc """
+  Provides user authentication
+  """
   use AdminWeb, :verified_routes
 
   import Plug.Conn
