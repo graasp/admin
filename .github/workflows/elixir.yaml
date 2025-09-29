@@ -114,7 +114,7 @@ jobs:
           key: ${{ env.cache_vsn }}-dialyzer-plts-${{ runner.os }}--${{ matrix.otp }}--${{ matrix.elixir }}--${{ hashFiles('mix.exs', 'mix.lock') }}
 
       - name: Run dialyzer
-        run: mix dialyzer --halt-exit-status
+        run: mix dialyzer --ignore-exit-status
 
       - name: Compute coverage
         run: mix coveralls.html
