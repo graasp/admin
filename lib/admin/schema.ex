@@ -1,4 +1,18 @@
 defmodule Admin.Schema do
+  @moduledoc """
+  This is an augmentation for defining the schema in our app. 
+  It sets the default values for the timestamps and other primary keys settings.
+
+
+  It should be used instead of the default Ecto.Schema
+
+  Usage:
+
+  ```elixir
+  use Admin.Schema
+  ```
+
+  """
   defmacro __using__(_) do
     quote do
       use Ecto.Schema

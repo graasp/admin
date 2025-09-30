@@ -1,4 +1,7 @@
 defmodule Admin.Items.Item do
+  @moduledoc """
+  This represents an item in Graasp
+  """
   use Admin.Schema
   import Ecto.Changeset
 
@@ -9,7 +12,6 @@ defmodule Admin.Items.Item do
     field :extra, :map
     field :type, :string
     field :settings, :map
-    # TODO: udpate to use the relation to member later
     belongs_to :creator, Admin.Accounts.Account, type: :binary_id
 
     timestamps(type: :utc_datetime)

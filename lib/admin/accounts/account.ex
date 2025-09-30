@@ -1,4 +1,7 @@
 defmodule Admin.Accounts.Account do
+  @moduledoc """
+  This represents a graasp user. 
+  """
   use Admin.Schema
 
   schema "account" do

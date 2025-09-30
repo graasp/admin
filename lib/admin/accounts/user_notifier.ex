@@ -1,9 +1,12 @@
 defmodule Admin.Accounts.UserNotifier do
+  @moduledoc """
+  This module provides functions to compose and send user targetted notifications by email.
+  """
   import Swoosh.Email
 
-  alias Admin.Mailer
-  alias Admin.Accounts.User
   alias Admin.Accounts.Account
+  alias Admin.Accounts.User
+  alias Admin.Mailer
 
   @footer "Graasp.org is a learning experience platform."
 

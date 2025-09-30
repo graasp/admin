@@ -1,4 +1,7 @@
 defmodule Admin.Publications.PublicationRemovalNotice do
+  @moduledoc """
+  This represents a publication that was removed by an admin. It contains the reason.
+  """
   use Admin.Schema
   import Ecto.Changeset
 

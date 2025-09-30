@@ -9,8 +9,8 @@ defmodule Admin.Publications do
   alias Admin.Repo
   alias Ecto.Multi
 
-  alias Admin.Publications.PublishedItem
   alias Admin.Accounts.Scope
+  alias Admin.Publications.PublishedItem
 
   @doc """
   Subscribes to scoped notifications about any published_item changes.
@@ -22,7 +22,7 @@ defmodule Admin.Publications do
     * {:deleted, %PublishedItem{}}
 
   """
-  def subscribe_published_items() do
+  def subscribe_published_items do
     Phoenix.PubSub.subscribe(Admin.PubSub, "published_items")
   end
 
@@ -39,7 +39,7 @@ defmodule Admin.Publications do
       [%PublishedItem{}, ...]
 
   """
-  def list_published_items() do
+  def list_published_items do
     Repo.all(from p in PublishedItem, order_by: [desc: :created_at], preload: [:item, :creator])
   end
 
@@ -55,7 +55,7 @@ defmodule Admin.Publications do
     )
   end
 
-  def list_featured_published_items() do
+  def list_featured_published_items do
     # Repo.all(from p in PublishedItem, where: p.featured == true, order_by: [desc: :created_at])
     []
   end

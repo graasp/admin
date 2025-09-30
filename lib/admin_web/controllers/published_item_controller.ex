@@ -3,9 +3,9 @@ defmodule AdminWeb.PublishedItemController do
   require Logger
 
   require IEx
-  alias AdminWeb.Forms.PublishedItemSearchForm
   alias Admin.Publications
   alias Admin.Publications.PublishedItem
+  alias AdminWeb.Forms.PublishedItemSearchForm
 
   def index(conn, _params) do
     published_items = Publications.list_published_items(100)

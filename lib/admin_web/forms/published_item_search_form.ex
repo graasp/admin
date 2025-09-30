@@ -1,4 +1,7 @@
 defmodule AdminWeb.Forms.PublishedItemSearchForm do
+  @moduledoc """
+  This represents the search form for published items.
+  """
   alias Admin.Publications
   use Ecto.Schema
   import Ecto.Changeset

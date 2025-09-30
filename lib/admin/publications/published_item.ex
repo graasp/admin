@@ -1,4 +1,7 @@
 defmodule Admin.Publications.PublishedItem do
+  @moduledoc """
+  This represents a published resource
+  """
   use Admin.Schema
   import Ecto.Changeset
 
