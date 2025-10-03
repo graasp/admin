@@ -1,3 +1,18 @@
 [tools]
 elixir = "1.18.4-otp-27"
 erlang = "27"
+
+
+[tasks.log]
+run = '''
+aws logs tail '/ecs/admin' --follow --profile $1
+'''
+
+[tasks.remote]
+usage = '''
+arg "profile" "AWS profile name" default="dev"
+'''
+run = [
+    'aws sts get-caller-identity --profile $usage_profile',
+    'aws ecs execute-command --cluster graasp-$usage_profile --task $(aws ecs list-tasks --cluster graasp-$usage_profile --service admin --query "taskArns[0]" --output text --profile $usage_profile) --container admin --command "/app/bin/admin remote" --interactive --profile $usage_profile'
+]
