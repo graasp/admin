@@ -50,7 +50,7 @@ defmodule AdminWeb.AppInstanceLive.Form do
           <.button navigate={return_path(@current_scope, @return_to, @app_instance)}>Cancel</.button>
         </footer>
       </.form>
-      <div role="alert" class="alert alert-info alert-soft">
+      <div :if={@app_instance.id} role="alert" class="alert alert-info alert-soft">
         <.icon name="hero-information-circle" class="w-6 h-6" />
         <span>
           To delete the app go to
