@@ -35,19 +35,30 @@ defmodule AdminWeb.AppInstanceLive.Form do
         <.input field={@form[:name]} type="text" label="Name" />
         <.input field={@form[:description]} type="text" label="Description" />
         <.input field={@form[:url]} type="text" label="Url" placeholder="https://example.com" />
-        <.input field={@form[:key]} type="text" label="Key" />
-        <.button
-          class="btn btn-soft btn-primary mb-3"
-          type="button"
-          phx-click="generate_key"
-        >
-          Generate key
-        </.button>
+        <div class="flex flex-row gap-2 items-end w-full">
+          <.input field={@form[:key]} type="text" label="Key" />
+          <.button
+            class="btn btn-soft btn-primary mb-3"
+            type="button"
+            phx-click="generate_key"
+          >
+            Generate key
+          </.button>
+        </div>
         <footer>
           <.button phx-disable-with="Saving..." variant="primary">Save App instance</.button>
           <.button navigate={return_path(@current_scope, @return_to, @app_instance)}>Cancel</.button>
         </footer>
       </.form>
+      <div role="alert" class="alert alert-info alert-soft">
+        <.icon name="hero-information-circle" class="w-6 h-6" />
+        <span>
+          To delete the app go to
+          <.link navigate={return_path(@current_scope, "show", @app_instance)} class="link">
+            the display page
+          </.link>
+        </span>
+      </div>
     </Layouts.app>
     """
   end
