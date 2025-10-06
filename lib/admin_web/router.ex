@@ -91,6 +91,15 @@ defmodule AdminWeb.Router do
           end
         end
       end
+
+      scope "/assistants" do
+        live "/", AssistantsLive.Index, :index
+        live "/new", AssistantsLive.Form, :new
+
+        scope "/:assistant_id" do
+          live "/edit", AssistantsLive.Form, :edit
+        end
+      end
     end
 
     post "/users/update-password", UserSessionController, :update_password
