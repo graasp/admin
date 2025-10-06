@@ -1,3 +1,4 @@
+# credo:disable-for-next-line Credo.Check.Readability.ModuleDoc
 defmodule Admin.MixProject do
   use Mix.Project
 
@@ -12,7 +13,10 @@ defmodule Admin.MixProject do
       deps: deps(),
       compilers: [:phoenix_live_view] ++ Mix.compilers(),
       listeners: [Phoenix.CodeReloader],
-      test_coverage: [tool: ExCoveralls, ignore_modules: [Admin.Release]]
+      test_coverage: [tool: ExCoveralls, ignore_modules: [Admin.Release]],
+      dialyzer: [
+        plt_file: {:no_warn, "priv/plts/project.plt"}
+      ]
     ]
   end
 
