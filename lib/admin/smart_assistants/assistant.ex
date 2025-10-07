@@ -13,7 +13,7 @@ defmodule Admin.SmartAssistants.Assistant do
     field :prompt, :string
     field :shared_at, :utc_datetime
     field :picture, :string
-    field :user_id, :id
+    field :user_id, :binary_id
 
     timestamps(type: :utc_datetime)
   end

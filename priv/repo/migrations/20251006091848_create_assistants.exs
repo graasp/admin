@@ -10,7 +10,7 @@ defmodule Admin.Repo.Migrations.CreateAssistants do
       add :prompt, :string, null: false
       add :shared_at, :utc_datetime
       add :picture, :string
-      add :user_id, references(:users, type: :binary_id, on_delete: :delete_all)
+      add :user_id, references(:admins, type: :binary_id, on_delete: :delete_all)
 
       timestamps(type: :utc_datetime)
     end

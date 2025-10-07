@@ -26,6 +26,7 @@ defmodule AdminWeb.Layouts do
 
   """
   attr :flash, :map, required: true, doc: "the map of flash messages"
+  attr :class, :list, default: [], doc: "Additional classes for the layout"
 
   attr :current_scope, :map,
     default: nil,
@@ -47,8 +48,8 @@ defmodule AdminWeb.Layouts do
       </div>
     </header> --%>
 
-    <main class="px-4 py-8 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-4xl space-y-4">
+    <main class={["px-4 py-8 sm:px-6 lg:px-8", @class]}>
+      <div class="mx-auto max-w-4xl space-y-4 h-full">
         {render_slot(@inner_block)}
       </div>
     </main>
@@ -179,6 +180,7 @@ defmodule AdminWeb.Layouts do
                 </ul>
               </li>
               <li><.link navigate={~p"/publishers"}>Apps</.link></li>
+              <li><.link navigate={~p"/assistants"}>Assistants</.link></li>
               <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
               <div class="divider"></div>
               <div class="flex flex-col items-center">
@@ -213,6 +215,7 @@ defmodule AdminWeb.Layouts do
               </details>
             </li>
             <li><.link navigate={~p"/publishers"}>Apps</.link></li>
+            <li><.link navigate={~p"/assistants"}>Asssitants</.link></li>
             <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
           <% end %>
         </ul>

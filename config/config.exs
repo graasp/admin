@@ -14,8 +14,8 @@ config :admin, :scopes,
     assign_key: :current_scope,
     access_path: [:user, :id],
     schema_key: :user_id,
-    schema_type: :id,
-    schema_table: :users,
+    schema_type: :binary_id,
+    schema_table: :admins,
     test_data_fixture: Admin.AccountsFixtures,
     test_setup_helper: :register_and_log_in_user
   ]

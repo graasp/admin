@@ -93,11 +93,16 @@ defmodule AdminWeb.Router do
       end
 
       scope "/assistants" do
-        live "/", AssistantsLive.Index, :index
-        live "/new", AssistantsLive.Form, :new
+        live "/", AssistantLive.Index, :index
+        live "/new", AssistantLive.Form, :new
 
         scope "/:assistant_id" do
-          live "/edit", AssistantsLive.Form, :edit
+          live "/", AssistantLive.Show, :show
+          live "/edit", AssistantLive.Form, :edit
+        end
+
+        scope "/conversations/:conversation_id" do
+          live "/", AssistantLive.Conversation, :show
         end
       end
     end

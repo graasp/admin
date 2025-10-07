@@ -1,4 +1,3 @@
-# credo:disable-for-next-line Credo.Check.Readability.ModuleDoc
 defmodule Admin.MixProject do
   use Mix.Project
 
