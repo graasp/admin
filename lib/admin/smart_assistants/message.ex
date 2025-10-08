@@ -19,7 +19,7 @@ defmodule Admin.SmartAssistants.Message do
   def changeset(message, attrs, user_scope, conversation_id) do
     message
     |> cast(attrs, [:content, :type])
-    |> validate_required([:content, :type])
+    |> validate_required([:content])
     |> put_change(:user_id, user_scope.user.id)
     |> put_change(:conversation_id, conversation_id)
   end

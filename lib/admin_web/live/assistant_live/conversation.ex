@@ -24,8 +24,8 @@ defmodule AdminWeb.AssistantLive.Conversation do
             <div
               id={id}
               class={[
-                "w-[80%] rounded-lg p-2",
-                message.type == "user" && "bg-blue-100 self-end",
+                "w-[80%] rounded-2xl px-4 py-2",
+                message.type == "user" && "bg-blue-100 self-end rounded-br-none",
                 message.type == "assistant" && "bg-gray-100"
               ]}
             >
@@ -35,8 +35,13 @@ defmodule AdminWeb.AssistantLive.Conversation do
             </div>
           <% end %>
         </div>
-        <.form for={@form} phx-submit="submit">
-          <.input id="message-input" as={:message} field={@form[:content]} />
+        <.form id="message-form" for={@form} phx-submit="submit" phx-change="validate">
+          <div class="flex flex-row gap-2">
+            <.input field={@form[:content]} />
+            <.button type="submit" class="btn btn-primary self-top mt-1">
+              Send <.icon class="size-5" name="hero-paper-airplane" />
+            </.button>
+          </div>
         </.form>
       </div>
     </Layouts.app>
@@ -64,7 +69,7 @@ defmodule AdminWeb.AssistantLive.Conversation do
            socket.assigns.current_scope,
            conversation.id,
            %Message{user_id: socket.assigns.current_scope.user.id},
-           %{content: ""}
+           %{content: "toto"}
          )
        )
      )
@@ -100,8 +105,31 @@ defmodule AdminWeb.AssistantLive.Conversation do
            )
          )}
 
-      {:error, reason} ->
-        {:noreply, socket |> put_flash(:error, reason)}
+      {:error, changeset} ->
+        # Put errors back into the form while preserving entered value
+        form =
+          changeset
+          |> Map.put(:action, :validate)
+          |> to_form()
+
+        {:noreply, socket |> assign(:form, form)}
     end
+  end
+
+  def handle_event("validate", %{"message" => %{"content" => content}}, socket) do
+    {:noreply,
+     socket
+     |> assign(
+       :form,
+       to_form(
+         SmartAssistants.change_message(
+           socket.assigns.current_scope,
+           socket.assigns.conversation.id,
+           %Message{user_id: socket.assigns.current_scope.user.id},
+           %{content: content}
+         )
+         |> Map.put(:action, :validate)
+       )
+     )}
   end
 end
