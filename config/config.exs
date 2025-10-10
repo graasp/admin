@@ -82,6 +82,13 @@ config :logger, :default_formatter,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :ex_aws, :s3,
+  scheme: "https://",
+  host: "s3.eu-central-1.amazonaws.com",
+  region: System.get_env("AWS_REGION", "eu-central-1"),
+  # If using custom endpoints like LocalStack or MinIO, path_style: true is often necessary.
+  path_style: true
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

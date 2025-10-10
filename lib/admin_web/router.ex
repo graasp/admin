@@ -48,6 +48,7 @@ defmodule AdminWeb.Router do
 
       live_dashboard "/dashboard", metrics: AdminWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
+      resources "/s3", AdminWeb.S3Controller, only: [:index, :show]
     end
   end
 

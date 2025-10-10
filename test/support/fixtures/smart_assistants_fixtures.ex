@@ -12,22 +12,6 @@ defmodule Admin.SmartAssistantsFixtures do
       Enum.into(attrs, %{
         name: "some name",
         picture: "some picture",
-        prompt: "some prompt",
-        shared_at: ~N[2025-10-05 09:18:00]
-      })
-
-    {:ok, assistant} = Admin.SmartAssistants.create_assistant(scope, attrs)
-    assistant
-  end
-
-  @doc """
-  Generate a assistant.
-  """
-  def assistant_fixture(scope, attrs \\ %{}) do
-    attrs =
-      Enum.into(attrs, %{
-        name: "some name",
-        picture: "some picture",
         prompt: "some prompt"
       })
 
@@ -40,9 +24,7 @@ defmodule Admin.SmartAssistantsFixtures do
   """
   def conversation_fixture(scope, attrs \\ %{}) do
     attrs =
-      Enum.into(attrs, %{
-
-      })
+      Enum.into(attrs, %{})
 
     {:ok, conversation} = Admin.SmartAssistants.create_conversation(scope, attrs)
     conversation
