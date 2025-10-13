@@ -1,4 +1,8 @@
 defmodule Admin.Utils.FileSize do
+  @moduledoc """
+  Provides functions to format file sizes to human-readable strings.
+  """
+
   @decimal_units [
     {"B", 1},
     {"KB", 1_000},
@@ -22,9 +26,10 @@ defmodule Admin.Utils.FileSize do
     {unit, base} =
       units
       |> Enum.reduce(fn {label, factor}, {curr_label, curr_factor} ->
-        cond do
-          bytes < factor -> {curr_label, curr_factor}
-          true -> {label, factor}
+        if bytes < factor do
+          {curr_label, curr_factor}
+        else
+          {label, factor}
         end
       end)
 
