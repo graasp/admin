@@ -14,9 +14,9 @@ defmodule Admin.Utils.FileSize do
     {"TiB", 1_099_511_627_776}
   ]
 
+  def humanize_size(bytes, type \\ :binary)
   def humanize_size(bytes, :binary), do: format_size(bytes, @binary_units)
   def humanize_size(bytes, :decimal), do: format_size(bytes, @decimal_units)
-  def humanize_size(bytes, type \\ :binary), do: humanize_size(bytes, type)
 
   defp format_size(bytes, units) do
     {unit, base} =

@@ -26,6 +26,10 @@ defmodule Admin.S3 do
 
     url
   end
+
+  def delete_object(bucket, key) do
+    {:ok, _} = S3.delete_object(bucket, key) |> ExAws.request()
+  end
 end
 
 defmodule Admin.S3.Bucket do

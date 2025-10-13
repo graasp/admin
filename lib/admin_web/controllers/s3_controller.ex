@@ -11,4 +11,10 @@ defmodule AdminWeb.S3Controller do
 
     render(conn, :show, bucket: bucket)
   end
+
+  def delete(conn, %{"id" => bucket, "key" => key}) do
+    Admin.S3.delete_object(bucket, key)
+
+    redirect(conn, to: ~p"/dev/s3/#{bucket}")
+  end
 end

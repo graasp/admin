@@ -20,11 +20,13 @@ defmodule AdminWeb.AssistantLive.Show do
         </:actions>
       </.header>
 
-      <.list>
-        <:item title="Name">{@assistant.name}</:item>
-        <:item title="Prompt">{@assistant.prompt}</:item>
-        <:item title="Picture">{@assistant.picture}</:item>
-      </.list>
+      <div class="flex flex-row items-center w-full gap-2">
+        <img src={@assistant.picture} class="size-20 rounded" alt="Assistant Picture" />
+        <div class="flex flex-col items-start justify-center gap-1">
+          <h2 class="text-lg font-bold">{@assistant.name}</h2>
+          <p>{@assistant.prompt}</p>
+        </div>
+      </div>
 
       <.header>
         Conversations

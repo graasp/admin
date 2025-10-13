@@ -9,5 +9,8 @@ Listing Bucket {@bucket.name}
 </:col>
   <:col :let={item} label="Name" >{item.key}</:col>
   <:col :let={item} label="Size" >{item.size}</:col>
+  <:action :let={item}>
+  <.link href={~p"/dev/s3/#{@bucket.name}/#{item.key}"} method="delete">Delete</.link>
+  </:action>
 </.table>
 </Layouts.app>

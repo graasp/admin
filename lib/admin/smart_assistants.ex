@@ -42,6 +42,15 @@ defmodule Admin.SmartAssistants do
   """
   def list_assistants(%Scope{} = scope) do
     Repo.all_by(Assistant, user_id: scope.user.id)
+    |> Enum.map(&ensure_picture/1)
+  end
+
+  defp ensure_picture(%Assistant{} = assistant) do
+    Map.put(
+      assistant,
+      :picture,
+      Admin.S3.get_object_url("file-items", "assistants/#{assistant.id}")
+    )
   end
 
   @doc """
@@ -59,7 +68,7 @@ defmodule Admin.SmartAssistants do
 
   """
   def get_assistant!(%Scope{} = scope, id) do
-    Repo.get_by!(Assistant, id: id, user_id: scope.user.id)
+    Repo.get_by!(Assistant, id: id, user_id: scope.user.id) |> ensure_picture()
   end
 
   @doc """

@@ -12,8 +12,9 @@ defmodule Admin.SmartAssistants.Assistant do
     field :name, :string
     field :prompt, :string
     field :shared_at, :utc_datetime
-    field :picture, :string
     field :user_id, :binary_id
+
+    field :picture, :string, virtual: true
 
     timestamps(type: :utc_datetime)
   end
@@ -21,8 +22,8 @@ defmodule Admin.SmartAssistants.Assistant do
   @doc false
   def changeset(assistant, attrs, user_scope) do
     assistant
-    |> cast(attrs, [:name, :prompt, :shared_at, :picture])
-    |> validate_required([:name, :prompt, :picture])
+    |> cast(attrs, [:name, :prompt])
+    |> validate_required([:name, :prompt])
     |> put_change(:user_id, user_scope.user.id)
   end
 end
