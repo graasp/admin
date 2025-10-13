@@ -85,7 +85,14 @@ defmodule Admin.MixProject do
       {:html_sanitize_ex, "~> 1.4"},
       # credo is a static analysis tool similar to eslint in TS
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      # AWS services
+      {:ex_aws, "~> 2.0"},
+      {:ex_aws_s3, "~> 2.0"},
+      {:poison, "~> 3.0"},
+      {:hackney, "~> 1.9"},
+      # optional dependency
+      {:sweet_xml, "~> 0.6.6"}
     ]
   end
 
