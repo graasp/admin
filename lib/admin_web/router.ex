@@ -48,6 +48,9 @@ defmodule AdminWeb.Router do
 
       live_dashboard "/dashboard", metrics: AdminWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
+
+      delete "/s3/:id/:key", AdminWeb.S3Controller, :delete
+      resources "/s3", AdminWeb.S3Controller, only: [:index, :show]
     end
   end
 
@@ -89,6 +92,20 @@ defmodule AdminWeb.Router do
               live "/edit", AppInstanceLive.Form, :edit
             end
           end
+        end
+      end
+
+      scope "/assistants" do
+        live "/", AssistantLive.Index, :index
+        live "/new", AssistantLive.Form, :new
+
+        scope "/:assistant_id" do
+          live "/", AssistantLive.Show, :show
+          live "/edit", AssistantLive.Form, :edit
+        end
+
+        scope "/conversations/:conversation_id" do
+          live "/", AssistantLive.Conversation, :show
         end
       end
     end

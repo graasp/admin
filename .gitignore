@@ -37,6 +37,7 @@ npm-debug.log
 
 # prod environement file
 .env.prod
+.env.sh
 
 # elixir_ls dir
 .elixir_ls

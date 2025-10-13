@@ -86,3 +86,11 @@ config :phoenix_live_view,
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+config :ex_aws, :s3,
+  scheme: "http://",
+  host: "s3.garage.localhost",
+  port: 3900,
+  region: System.get_env("AWS_REGION", "garage"),
+  # If using custom endpoints like LocalStack or MinIO, path_style: true is often necessary.
+  path_style: true
