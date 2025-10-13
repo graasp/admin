@@ -4,6 +4,7 @@ defmodule AdminWeb.S3Controller do
 
   It includes actions for listing buckets, showing bucket details, and deleting objects.
   """
+  @dev_enabled Application.compile_env(:admin, :dev_routes)
 
   use AdminWeb, :controller
 
@@ -21,6 +22,16 @@ defmodule AdminWeb.S3Controller do
   def delete(conn, %{"id" => bucket, "key" => key}) do
     Admin.S3.delete_object(bucket, key)
 
-    redirect(conn, to: ~p"/dev/s3/#{bucket}")
+    redirect(conn, to: redirect_after_delete(bucket))
+  end
+
+  # Compute redirect path at compile time to avoid ~p compilation in prod
+  if @dev_enabled do
+    # Dev/test: redirect back to the bucket page under /dev
+    defp redirect_after_delete(bucket), do: ~p"/dev/s3/#{bucket}"
+  else
+    # Prod: choose a safe fallback that exists in prod (e.g., home or buckets index)
+    # Avoid using ~p to dev-only routes here.
+    defp redirect_after_delete(_bucket), do: ~p"/"
   end
 end

@@ -1,9 +1,0 @@
-<Layouts.app flash={@flash} current_scope={@current_scope}>
-  <.header>
-    Listing Buckets
-  </.header>
-  <.table id="buckets-table" rows={@buckets} row_click={&JS.navigate(~p"/dev/s3/#{&1}")}>
-    <:col :let={item} label="Name">{item.name}</:col>
-    <:col :let={item} label="Creation Date">{item.creation_date}</:col>
-  </.table>
-</Layouts.app>
