@@ -89,12 +89,12 @@ defmodule Admin.MixProject do
       # dialixir is a static analysis tool that can detect common bugs and code smells
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       # AWS services
-      {:ex_aws, "~> 2.0"},
-      {:ex_aws_s3, "~> 2.0"},
+      {:ex_aws, "~> 2.6"},
+      {:ex_aws_s3, "~> 2.5"},
       {:poison, "~> 3.0"},
       {:hackney, "~> 1.9"},
       # optional dependency to parse XML
-      {:sweet_xml, "~> 0.6.6"}
+      {:sweet_xml, "~> 0.7"}
     ]
   end
 
