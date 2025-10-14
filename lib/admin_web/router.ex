@@ -50,8 +50,8 @@ defmodule AdminWeb.Router do
       forward "/mailbox", Plug.Swoosh.MailboxPreview
 
       # S3 debug interface
-      delete "/s3/:id/:key", AdminWeb.S3Controller, :delete
-      resources "/s3", AdminWeb.S3Controller, only: [:index, :show]
+      delete "/s3/:id/:key", AdminWeb.Dev.S3Controller, :delete
+      resources "/s3", AdminWeb.Dev.S3Controller, only: [:index, :show]
     end
   end
 

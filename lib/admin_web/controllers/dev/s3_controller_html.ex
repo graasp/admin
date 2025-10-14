@@ -1,9 +1,7 @@
-defmodule AdminWeb.S3HTML do
-  use AdminWeb, :html
+if Application.compile_env(:admin, :dev_routes) do
+  defmodule AdminWeb.S3HTML do
+    use AdminWeb, :html
 
-  @dev_enabled Application.compile_env(:admin, :dev_routes)
-
-  if @dev_enabled do
     def index(assigns) do
       ~H"""
       <Layouts.app flash={@flash} current_scope={@current_scope}>
@@ -37,8 +35,5 @@ defmodule AdminWeb.S3HTML do
       </Layouts.app>
       """
     end
-  else
-    def index(assigns), do: ~H""
-    def show(assigns), do: ~H""
   end
 end

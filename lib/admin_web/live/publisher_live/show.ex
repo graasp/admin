@@ -31,7 +31,7 @@ defmodule AdminWeb.PublisherLive.Show do
           </div>
         </:item>
       </.list>
-      <.button phx-click="confirm_delete">
+      <.button id="delete_button" phx-click="confirm_delete">
         <.icon name="hero-trash" /> Delete publisher
       </.button>
 
@@ -45,7 +45,7 @@ defmodule AdminWeb.PublisherLive.Show do
           <p class="py-4">Are you sure you want to delete this publisher?</p>
           <p class="py-4">All apps associated with this publisher will be deleted.</p>
           <div class="modal-action">
-            <button id="delete_button" class="btn btn-error" phx-click="delete_publisher">
+            <button id="confirm_button" class="btn btn-error" phx-click="delete_publisher">
               Delete
             </button>
             <button id="cancel_button" class="btn" phx-click="cancel_delete">Cancel</button>

@@ -41,15 +41,19 @@ defmodule Admin.S3 do
   alias Admin.S3.Bucket
   alias Admin.S3.Object
 
+  # Get the compile-time module providing Ex aws functionality
+  @ex_aws_mod Application.compile_env(:admin, [:test_doubles, :ex_aws], ExAws)
+
   def list_buckets do
-    {:ok, buckets} = S3.list_buckets() |> ExAws.request()
-    buckets.body.buckets |> Enum.map(&Bucket.new/1)
+    with {:ok, buckets} <- S3.list_buckets() |> @ex_aws_mod.request() do
+      buckets.body.buckets |> Enum.map(&Bucket.new/1)
+    end
   end
 
   def list_objects(bucket) do
     {:ok, bucket_objects} =
       S3.list_objects(bucket)
-      |> ExAws.request()
+      |> @ex_aws_mod.request()
 
     %{
       name: bucket_objects.body.name,
@@ -65,6 +69,6 @@ defmodule Admin.S3 do
   end
 
   def delete_object(bucket, key) do
-    {:ok, _} = S3.delete_object(bucket, key) |> ExAws.request()
+    {:ok, _} = S3.delete_object(bucket, key) |> @ex_aws_mod.request()
   end
 end

@@ -24,4 +24,22 @@ defmodule AdminWeb.PublishedItemHTMLTest do
     assert html =~ publication.item.name
     assert html =~ publication.item.description
   end
+
+  test "Publication Creator", %{scope: scope} do
+    publication =
+      published_item_fixture(scope, %{
+        item: %{
+          name: "Mathematics course",
+          description: "A mathematics course for beginners"
+        }
+      })
+      |> Admin.Publications.with_creator()
+
+    html =
+      render_to_string(AdminWeb.PublishedItemHTML, "publication_creator", "html", %{
+        publication: publication
+      })
+
+    assert html =~ publication.creator_id
+  end
 end

@@ -39,3 +39,15 @@ config :phoenix, :plug_init_mode, :runtime
 # Enable helpful, but potentially expensive runtime checks
 config :phoenix_live_view,
   enable_expensive_runtime_checks: true
+
+config :ex_aws,
+  access_key_id: "test",
+  secret_access_key: "test"
+
+config :ex_aws, :s3,
+  scheme: "https://",
+  host: "s3.eu-central-1.amazonaws.com",
+  region: "eu-central-1"
+
+# Needed in order for the compiled module to use the Mocked module
+config :admin, :test_doubles, ex_aws: ExAwsMock
