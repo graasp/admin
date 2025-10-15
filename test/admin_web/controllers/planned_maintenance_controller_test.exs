@@ -3,9 +3,19 @@ defmodule AdminWeb.PlannedMaintenanceControllerTest do
 
   import Admin.MaintenanceFixtures
 
-  @create_attrs %{slug: "some slug"}
-  @update_attrs %{slug: "some updated slug"}
-  @invalid_attrs %{slug: nil}
+  @create_attrs %{
+    slug: "some-slug",
+    start_at: ~U[2023-01-01 00:00:00Z],
+    end_at: ~U[2023-01-02 00:00:00Z]
+  }
+  @update_attrs %{
+    slug: "some-updated-slug",
+    start_at: ~U[2023-01-02 00:00:00Z],
+    end_at: ~U[2023-01-03 00:00:00Z]
+  }
+  @invalid_attrs %{slug: nil, start_at: nil, end_at: nil}
+
+  setup :register_and_log_in_user
 
   describe "index" do
     test "lists all maintenance", %{conn: conn} do
@@ -41,7 +51,10 @@ defmodule AdminWeb.PlannedMaintenanceControllerTest do
   describe "edit planned_maintenance" do
     setup [:create_planned_maintenance]
 
-    test "renders form for editing chosen planned_maintenance", %{conn: conn, planned_maintenance: planned_maintenance} do
+    test "renders form for editing chosen planned_maintenance", %{
+      conn: conn,
+      planned_maintenance: planned_maintenance
+    } do
       conn = get(conn, ~p"/maintenance/#{planned_maintenance}/edit")
       assert html_response(conn, 200) =~ "Edit Planned maintenance"
     end
@@ -51,15 +64,23 @@ defmodule AdminWeb.PlannedMaintenanceControllerTest do
     setup [:create_planned_maintenance]
 
     test "redirects when data is valid", %{conn: conn, planned_maintenance: planned_maintenance} do
-      conn = put(conn, ~p"/maintenance/#{planned_maintenance}", planned_maintenance: @update_attrs)
-      assert redirected_to(conn) == ~p"/maintenance/#{planned_maintenance}"
+      conn =
+        put(conn, ~p"/maintenance/#{planned_maintenance}", planned_maintenance: @update_attrs)
 
-      conn = get(conn, ~p"/maintenance/#{planned_maintenance}")
-      assert html_response(conn, 200) =~ "some updated slug"
+      new_slug = @update_attrs.slug
+      assert redirected_to(conn) == ~p"/maintenance/#{new_slug}"
+
+      conn = get(conn, ~p"/maintenance/#{new_slug}")
+      assert html_response(conn, 200) =~ "some-updated-slug"
     end
 
-    test "renders errors when data is invalid", %{conn: conn, planned_maintenance: planned_maintenance} do
-      conn = put(conn, ~p"/maintenance/#{planned_maintenance}", planned_maintenance: @invalid_attrs)
+    test "renders errors when data is invalid", %{
+      conn: conn,
+      planned_maintenance: planned_maintenance
+    } do
+      conn =
+        put(conn, ~p"/maintenance/#{planned_maintenance}", planned_maintenance: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Planned maintenance"
     end
   end
@@ -67,7 +88,10 @@ defmodule AdminWeb.PlannedMaintenanceControllerTest do
   describe "delete planned_maintenance" do
     setup [:create_planned_maintenance]
 
-    test "deletes chosen planned_maintenance", %{conn: conn, planned_maintenance: planned_maintenance} do
+    test "deletes chosen planned_maintenance", %{
+      conn: conn,
+      planned_maintenance: planned_maintenance
+    } do
       conn = delete(conn, ~p"/maintenance/#{planned_maintenance}")
       assert redirected_to(conn) == ~p"/maintenance"
 
