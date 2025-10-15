@@ -16,6 +16,23 @@ defmodule Admin.Maintenance.PlannedMaintenance do
     |> cast(attrs, [:slug, :start_at, :end_at])
     |> validate_required([:slug, :start_at, :end_at])
     |> validate_length(:slug, max: 100)
+    # validate that end_At is after start_at
+    |> validate_ordered_dates(:start_at, :end_at)
     |> unique_constraint(:slug, name: "UQ_maintenance_slug")
+  end
+
+  defp validate_ordered_dates(changeset, reference_field, validated_field) do
+    reference_value = get_field(changeset, reference_field)
+
+    changeset =
+      validate_change(changeset, validated_field, fn _, validated_value ->
+        if validated_value < reference_value do
+          [{validated_field, "must be after #{reference_field}"}]
+        else
+          []
+        end
+      end)
+
+    changeset
   end
 end

@@ -39,6 +39,20 @@ defmodule Admin.MaintenanceTest do
       assert {:error, %Ecto.Changeset{}} = Maintenance.create_planned_maintenance(@invalid_attrs)
     end
 
+    test "create_planned_maintenance/1 with incorrectly ordered dates returns error changeset" do
+      assert {:error, %Ecto.Changeset{errors: errors}} =
+               Maintenance.create_planned_maintenance(%{
+                 slug: "reverse-dates",
+                 start_at: ~U[2023-01-02 00:00:00Z],
+                 # is a day in advance of start_at
+                 end_at: ~U[2023-01-01 00:00:00Z]
+               })
+
+      assert errors == [
+               end_at: {"must be after start_at", []}
+             ]
+    end
+
     test "update_planned_maintenance/2 with valid data updates the planned_maintenance" do
       planned_maintenance = planned_maintenance_fixture()
       update_attrs = %{slug: "some updated slug"}
@@ -59,7 +73,7 @@ defmodule Admin.MaintenanceTest do
       assert {:error, %Ecto.Changeset{}} =
                Maintenance.update_planned_maintenance(planned_maintenance, @invalid_attrs)
 
-      assert planned_maintenance == Maintenance.get_planned_maintenance!(planned_maintenance.id)
+      assert planned_maintenance == Maintenance.get_planned_maintenance!(planned_maintenance.slug)
     end
 
     test "delete_planned_maintenance/1 deletes the planned_maintenance" do
@@ -69,7 +83,7 @@ defmodule Admin.MaintenanceTest do
                Maintenance.delete_planned_maintenance(planned_maintenance)
 
       assert_raise Ecto.NoResultsError, fn ->
-        Maintenance.get_planned_maintenance!(planned_maintenance.id)
+        Maintenance.get_planned_maintenance!(planned_maintenance.slug)
       end
     end
 
