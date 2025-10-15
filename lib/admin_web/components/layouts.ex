@@ -218,7 +218,7 @@ defmodule AdminWeb.Layouts do
         </ul>
       </div>
       <div class="navbar-end gap-1">
-        <div class="hidden lg:flex">
+        <div class="hidden items-center lg:flex">
           <%= if @current_scope do %>
             <span>{@current_scope.user.email}</span>
             <.link class="btn btn-ghost" href={~p"/users/log-out"} method="delete">Log out</.link>

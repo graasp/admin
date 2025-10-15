@@ -1,0 +1,27 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Planned maintenance {@planned_maintenance.slug}
+    <:subtitle>This is a planned_maintenance record from your database.</:subtitle>
+    <:actions>
+      <.button navigate={~p"/dashboard"}>
+        <.icon name="hero-arrow-left" />
+      </.button>
+      <.button
+        variant="primary"
+        navigate={~p"/maintenance/#{@planned_maintenance}/edit?return_to=show"}
+      >
+        <.icon name="hero-pencil-square" /> Edit planned_maintenance
+      </.button>
+    </:actions>
+  </.header>
+
+  <.list>
+    <:item title="Slug">{@planned_maintenance.slug}</:item>
+    <:item title="Starts at">
+      {@planned_maintenance.start_at} - <.relative_date date={@planned_maintenance.start_at} />
+    </:item>
+    <:item title="Ends at">
+      {@planned_maintenance.end_at} - <.relative_date date={@planned_maintenance.end_at} />
+    </:item>
+  </.list>
+</Layouts.app>

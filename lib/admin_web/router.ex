@@ -119,6 +119,7 @@ defmodule AdminWeb.Router do
     pipe_through [:browser, :require_authenticated_user]
 
     get "/dashboard", PageController, :dashboard
+    resources "/maintenance", PlannedMaintenanceController
     get "/users/:id", UserController, :show
 
     get "/published_items/featured", PublishedItemController, :featured

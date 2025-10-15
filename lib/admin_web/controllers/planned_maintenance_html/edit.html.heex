@@ -1,0 +1,12 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Edit Planned maintenance {@planned_maintenance.slug}
+    <:subtitle>Use this form to manage planned_maintenance records in your database.</:subtitle>
+  </.header>
+
+  <.planned_maintenance_form
+    changeset={@changeset}
+    action={~p"/maintenance/#{@planned_maintenance}"}
+    return_to={~p"/maintenance"}
+  />
+</Layouts.app>

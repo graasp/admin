@@ -24,14 +24,14 @@ defmodule AdminWeb.PublishedItemHTML do
 
   def publication_row(assigns) do
     ~H"""
-    <div class="flex flex-row justify-between items-center min-w-0 border border-gray-300 p-2 gap-1 rounded">
+    <div class="flex flex-row justify-between items-start min-w-0 border border-gray-300 bg-base-200 p-2 gap-1 rounded">
       <div class="flex flex-row shrink-1 gap-2 align-center min-w-0">
         <div class="shrink-0 size-12 bg-gray-500 rounded" />
         <div class="flex flex-col align-start min-w-0">
           <span class="font-bold text-nowrap text-ellipsis overflow-hidden">
             {@publication.item.name}
           </span>
-          <span class="text-sm text-secondary">
+          <span class="text-sm text-secondary line-clamp-4">
             <.raw_html html={@publication.item.description} />
           </span>
         </div>

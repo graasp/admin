@@ -1,0 +1,25 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Listing Maintenance
+    <:actions>
+      <.button href={~p"/maintenance/new"}>
+        <.icon name="hero-plus" /> New Planned maintenance
+      </.button>
+    </:actions>
+  </.header>
+
+  <.table id="maintenance" rows={@maintenance} row_click={&JS.navigate(~p"/maintenance/#{&1}")}>
+    <:col :let={planned_maintenance} label="Slug">{planned_maintenance.slug}</:col>
+    <:action :let={planned_maintenance}>
+      <div class="sr-only">
+        <.link navigate={~p"/maintenance/#{planned_maintenance}"}>Show</.link>
+      </div>
+      <.link navigate={~p"/maintenance/#{planned_maintenance}/edit"}>Edit</.link>
+    </:action>
+    <:action :let={planned_maintenance}>
+      <.link href={~p"/maintenance/#{planned_maintenance}"} method="delete" data-confirm="Are you sure?">
+        Delete
+      </.link>
+    </:action>
+  </.table>
+</Layouts.app>

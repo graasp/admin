@@ -16,6 +16,10 @@ defmodule AdminWeb.PageController do
         :user_stats,
         Admin.Accounts.user_stats()
       )
+      |> assign(
+        :maintenances,
+        Admin.Maintenance.list_upcoming_maintenance()
+      )
 
     render(conn, :dashboard, page_title: "Dashboard")
   end
