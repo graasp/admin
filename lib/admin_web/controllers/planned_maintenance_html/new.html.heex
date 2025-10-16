@@ -4,5 +4,9 @@
     <:subtitle>Use this form to manage planned_maintenance records in your database.</:subtitle>
   </.header>
 
-  <.planned_maintenance_form changeset={@changeset} action={~p"/maintenance"} return_to={~p"/maintenance"} />
+  <.planned_maintenance_form
+    changeset={@changeset}
+    action={~p"/maintenance"}
+    return_to={~p"/maintenance"}
+  />
 </Layouts.app>

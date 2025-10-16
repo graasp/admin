@@ -17,7 +17,11 @@
       <.link navigate={~p"/maintenance/#{planned_maintenance}/edit"}>Edit</.link>
     </:action>
     <:action :let={planned_maintenance}>
-      <.link href={~p"/maintenance/#{planned_maintenance}"} method="delete" data-confirm="Are you sure?">
+      <.link
+        href={~p"/maintenance/#{planned_maintenance}"}
+        method="delete"
+        data-confirm="Are you sure?"
+      >
         Delete
       </.link>
     </:action>
