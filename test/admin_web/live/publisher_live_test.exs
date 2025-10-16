@@ -1,8 +1,8 @@
 defmodule AdminWeb.PublisherLiveTest do
   use AdminWeb.ConnCase
 
-  import Phoenix.LiveViewTest
   import Admin.AppsFixtures
+  import Phoenix.LiveViewTest
 
   @create_attrs %{name: "some name", origins: ["http://example.com", "http://example1.com"]}
   @update_attrs %{name: "some updated name", origins: ["http://example123.com"]}
@@ -114,6 +114,34 @@ defmodule AdminWeb.PublisherLiveTest do
       html = render(show_live)
       assert html =~ "Publisher updated successfully"
       assert html =~ "some updated name"
+    end
+
+    test "deletes publisher and returns to index", %{conn: conn, publisher: publisher} do
+      {:ok, lv, _html} = live(conn, ~p"/publishers/#{publisher}")
+
+      # open dialog to delete
+      lv
+      |> element("#delete_button")
+      |> render_click()
+
+      # cancel the delete operation
+      lv
+      |> element("#cancel_button")
+      |> render_click()
+
+      # reopen dialog to delete
+      lv
+      |> element("#delete_button")
+      |> render_click()
+
+      # confirm delete
+      assert {:ok, index_lv, _html} =
+               lv
+               |> element("#confirm_button")
+               |> render_click()
+               |> follow_redirect(conn, ~p"/publishers")
+
+      assert render(index_lv) =~ "Publisher deleted"
     end
   end
 end

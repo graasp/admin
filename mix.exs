@@ -1,4 +1,3 @@
-# credo:disable-for-next-line Credo.Check.Readability.ModuleDoc
 defmodule Admin.MixProject do
   use Mix.Project
 
@@ -6,14 +5,14 @@ defmodule Admin.MixProject do
     [
       app: :admin,
       version: "0.1.0",
-      elixir: "~> 1.15",
+      elixir: "~> 1.18",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
       compilers: [:phoenix_live_view] ++ Mix.compilers(),
       listeners: [Phoenix.CodeReloader],
-      test_coverage: [tool: ExCoveralls, ignore_modules: [Admin.Release]],
+      test_coverage: [tool: ExCoveralls, ignore_modules: [Admin.Release, AdminWeb.Dev]],
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/project.plt"}
       ]
@@ -61,6 +60,8 @@ defmodule Admin.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 1.1.0"},
       {:lazy_html, ">= 0.1.0", only: :test},
+      # Mox is a mocking library for Elixir
+      {:mox, "~> 1.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
@@ -85,7 +86,15 @@ defmodule Admin.MixProject do
       {:html_sanitize_ex, "~> 1.4"},
       # credo is a static analysis tool similar to eslint in TS
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
+      # dialixir is a static analysis tool that can detect common bugs and code smells
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      # AWS services
+      {:ex_aws, "~> 2.6"},
+      {:ex_aws_s3, "~> 2.5"},
+      {:poison, "~> 3.0"},
+      {:hackney, "~> 1.9"},
+      # optional dependency to parse XML
+      {:sweet_xml, "~> 0.7"}
     ]
   end
 
