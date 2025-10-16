@@ -1,6 +1,6 @@
-# Admin
+# Graasp Phoenix
 
-This is the codebase for the admin interface of Graasp written in
+This is the codebase for the Graasp platform written in
 [Elixir](https://elixir-lang.org/) using
 [the Phoenix web framework](https://phoenixframework.org)
 
@@ -66,8 +66,18 @@ With a graphical client like [Postgres.app](https://postgresapp.com/) on MacOS.
 2. Start you Phoenix server:
    - Run `mix setup` to install and setup dependencies
    - Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+3. Create a `.env.sh` file with the following content. Use the values you get from configuring garage in the core project:
+   ```sh
+   # .env.sh
+   export AWS_ACCESS_KEY_ID=GK3b...
+   export AWS_SECRET_ACCESS_KEY=a03cf77e181...
+   export AWS_DEFAULT_REGION=garage
+   ```
+   You will need to source this file in your shell before starting the server:
+   ```sh
+   source .env.sh
+   ```
+   Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## Deployment
 
