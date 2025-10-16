@@ -30,13 +30,15 @@ defmodule Admin.Maintenance.PlannedMaintenance do
     |> unique_constraint(:slug, name: "UQ_maintenance_slug")
   end
 
-  defp validate_ordered_dates(changeset, reference_field, validated_field) do
-    reference_value = get_field(changeset, reference_field)
+  # Validates that the `base_field`s value is before the `field`s value.
+  # Used to ensure that dates are ordered correctly.
+  defp validate_ordered_dates(changeset, base_field, field) do
+    base_value = get_field(changeset, base_field)
 
     changeset =
-      validate_change(changeset, validated_field, fn _, validated_value ->
-        if validated_value < reference_value do
-          [{validated_field, "must be after #{reference_field}"}]
+      validate_change(changeset, field, fn _, value ->
+        if value < base_value do
+          [{field, "must be after #{base_field}"}]
         else
           []
         end
