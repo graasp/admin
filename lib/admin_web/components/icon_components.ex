@@ -1,4 +1,15 @@
 defmodule AdminWeb.IconComponents do
+  @moduledoc """
+  This module defines common icons to be used in the templates.
+
+  Hero icons are available like so:
+
+  ```heex
+  <.icon name="hero-arrow-left" />
+  ```
+
+  Custom icons are also available when added as SVG templates.
+  """
   use Phoenix.Component
 
   @doc """

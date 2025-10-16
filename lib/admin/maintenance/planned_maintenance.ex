@@ -1,4 +1,13 @@
 defmodule Admin.Maintenance.PlannedMaintenance do
+  @moduledoc """
+  This module represents a maintenance event.
+
+  Maintenance events are identified by their `slug` property.
+  They have a `start_at` and an `end_at` date represented in ISO8601 format.
+  The `start_at` date should be before the `end_at` date.
+  The slugs are unique and can be a maxium of 100 chars long.
+  """
+
   # use the Ecto schema so it does not conflict with the default id parameter set by the Admin schema
   use Ecto.Schema
   import Ecto.Changeset
