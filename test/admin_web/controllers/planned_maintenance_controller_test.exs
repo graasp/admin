@@ -27,7 +27,7 @@ defmodule AdminWeb.PlannedMaintenanceControllerTest do
   describe "new planned_maintenance" do
     test "renders form", %{conn: conn} do
       conn = get(conn, ~p"/maintenance/new")
-      assert html_response(conn, 200) =~ "New Planned maintenance"
+      assert html_response(conn, 200) =~ "New planned maintenance"
     end
   end
 
@@ -39,12 +39,12 @@ defmodule AdminWeb.PlannedMaintenanceControllerTest do
       assert redirected_to(conn) == ~p"/maintenance/#{id}"
 
       conn = get(conn, ~p"/maintenance/#{id}")
-      assert html_response(conn, 200) =~ "Planned maintenance #{id}"
+      assert html_response(conn, 200) =~ "Planned maintenance \"#{id}\""
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post(conn, ~p"/maintenance", planned_maintenance: @invalid_attrs)
-      assert html_response(conn, 200) =~ "New Planned maintenance"
+      assert html_response(conn, 200) =~ "New planned maintenance"
     end
   end
 
@@ -56,7 +56,7 @@ defmodule AdminWeb.PlannedMaintenanceControllerTest do
       planned_maintenance: planned_maintenance
     } do
       conn = get(conn, ~p"/maintenance/#{planned_maintenance}/edit")
-      assert html_response(conn, 200) =~ "Edit Planned maintenance"
+      assert html_response(conn, 200) =~ "Edit planned maintenance"
     end
   end
 
@@ -81,7 +81,7 @@ defmodule AdminWeb.PlannedMaintenanceControllerTest do
       conn =
         put(conn, ~p"/maintenance/#{planned_maintenance}", planned_maintenance: @invalid_attrs)
 
-      assert html_response(conn, 200) =~ "Edit Planned maintenance"
+      assert html_response(conn, 200) =~ "Edit planned maintenance"
     end
   end
 
