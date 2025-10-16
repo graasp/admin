@@ -1,0 +1,11 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    New planned maintenance
+  </.header>
+
+  <.planned_maintenance_form
+    changeset={@changeset}
+    action={~p"/maintenance"}
+    return_to={~p"/maintenance"}
+  />
+</Layouts.app>

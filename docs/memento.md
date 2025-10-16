@@ -78,6 +78,19 @@ mix coveralls.html
 open cover/excoveralls.html
 ```
 
+To run only the tests that failed in the previous run:
+
+```sh
+mix test --failed
+```
+
+When you want to debug tests that have failed, you can use the following command. This command opens the tests in IEX and stops at the first line of each test.
+You can set breakpoints on modules by entering `break! AdminWeb.PageController.index/2` (to break at the beginning of the index function of the PageController for example). Use `n` to step through the code. Use `c` to continue execution to the next breakpoint. Type `h` for help or read [the debugging docs](https://hexdocs.pm/elixir/debugging.html) if you need more information.
+
+```sh
+iex -S mix test --trace --failed --breakpoints
+```
+
 ## Interacting with a deployed application
 
 ## Follow the logs of the app

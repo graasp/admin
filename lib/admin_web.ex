@@ -85,6 +85,8 @@ defmodule AdminWeb do
 
       # HTML escaping functionality
       import Phoenix.HTML
+      # Icon components
+      import AdminWeb.IconComponents
       # Core UI components
       import AdminWeb.CoreComponents
 

@@ -23,8 +23,42 @@
     <div>
       <div class="flex items-center justify-between">
         <div class="flex flex-col align-start">
+          <h2><.link href="/maintenance">Planned Maintenance</.link></h2>
+          <span class="text-xs text-secondary">
+            Showing {length(@maintenances)} upcoming events.
+            <.link class="link" navigate={~p"/maintenance"}>View all</.link>
+          </span>
+        </div>
+        <.button
+          variant="primary"
+          navigate={~p"/maintenance/new"}
+        >
+          <.icon name="hero-plus" /> New
+        </.button>
+      </div>
+      <div class="flex flex-col mt-2 divide-y divide-gray-200 last:border-b-0">
+        <%= for maintenance <- @maintenances do %>
+          <AdminWeb.PlannedMaintenanceHTML.planned_maintenance_row
+            maintenance={maintenance}
+            row_click={&JS.navigate(~p"/maintenance/#{&1}")}
+          />
+        <% end %>
+        <%= if length(@maintenances) == 0 do %>
+          <div class="flex flex-row items-center justify-center gap-3 italic text-secondary p-4 border border-dashed rounded-xl border-base-300">
+            <.icon name="ghost" class="animate-wiggle" /> No upcoming maintenance events
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div>
+      <div class="flex items-center justify-between">
+        <div class="flex flex-col align-start">
           <h2>Recent Publications</h2>
-          <span class="text-xs text-secondary">Showing {length(@publications)} most recent</span>
+          <span class="text-xs text-secondary">
+            Showing {length(@publications)} most recent.
+            <.link class="link" navigate={~p"/published_items"}>View all</.link>
+          </span>
         </div>
         <.button navigate={~p"/published_items"}>View all</.button>
       </div>
@@ -54,18 +88,6 @@
       <:action>
         <.button navigate={~p"/"}>View</.button>
       </:action>
-      <:placeholder />
-      <:placeholder />
-      <:placeholder />
-    </Placeholders.mock_section>
-
-    <Placeholders.mock_section title="Planned maintenance">
-      <:action>
-        <.button navigate={~p"/"}>View</.button>
-      </:action>
-      <:placeholder />
-      <:placeholder />
-      <:placeholder />
       <:placeholder />
       <:placeholder />
       <:placeholder />
