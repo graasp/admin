@@ -21,6 +21,8 @@ defmodule AdminWeb.Router do
     pipe_through :api
 
     get "/up", HealthController, :up
+    # alias route does the same as "/up"
+    get "/health", HealthController, :up
   end
 
   scope "/", AdminWeb do

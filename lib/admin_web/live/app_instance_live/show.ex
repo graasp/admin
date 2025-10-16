@@ -6,7 +6,7 @@ defmodule AdminWeb.AppInstanceLive.Show do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <.header>
         App: {@app_instance.name}
         <:subtitle>This is a app_instance record from your database.</:subtitle>
@@ -56,7 +56,7 @@ defmodule AdminWeb.AppInstanceLive.Show do
           </div>
         </div>
       </dialog>
-    </Layouts.app>
+    </Layouts.admin>
     """
   end
 

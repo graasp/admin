@@ -1,4 +1,4 @@
-<Layouts.app flash={@flash}>
+<Layouts.admin flash={@flash} current_scope={@current_scope}>
   <.header>
     Welcome, {@current_scope.user.email}
   </.header>
@@ -93,4 +93,4 @@
       <:placeholder />
     </Placeholders.mock_section>
   </div>
-</Layouts.app>
+</Layouts.admin>
