@@ -79,7 +79,6 @@ defmodule Admin.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.26"},
       {:sentry, "~> 11.0.4"},
-      {:hackney, "~> 1.8"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
@@ -93,7 +92,8 @@ defmodule Admin.MixProject do
       # AWS services
       {:ex_aws, "~> 2.6"},
       {:ex_aws_s3, "~> 2.5"},
-      {:poison, "~> 3.0"},
+      {:poison, "~> 6.0"},
+      {:hackney, "~> 1.9"},
       # optional dependency to parse XML
       {:sweet_xml, "~> 0.7"}
     ]
