@@ -31,6 +31,9 @@ admin-*.tar
 # Ignore digested assets cache.
 /priv/static/cache_manifest.json
 
+# Ignore react app production build
+/priv/static/webapp
+
 # In case you use Node.js/npm, you want to ignore these.
 npm-debug.log
 /assets/node_modules/

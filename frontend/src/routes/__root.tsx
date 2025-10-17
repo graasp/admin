@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { Link, Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import * as React from "react";
+import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -8,54 +8,54 @@ export const Route = createRootRoute({
     return (
       <div>
         <p>This is the notFoundComponent configured on root route</p>
-        <Link to="/">Start Over</Link>
+        <Link to="/client">Start Over</Link>
       </div>
-    )
+    );
   },
-})
+});
 
 function RootComponent() {
   return (
     <>
       <div className="p-2 flex gap-2 text-lg border-b">
         <Link
-          to="/"
+          to="/client"
           activeProps={{
-            className: 'font-bold',
+            className: "font-bold",
           }}
           activeOptions={{ exact: true }}
         >
           Home
-        </Link>{' '}
+        </Link>{" "}
         <Link
-          to="/posts"
+          to="/client/posts"
           activeProps={{
-            className: 'font-bold',
+            className: "font-bold",
           }}
         >
           Posts
-        </Link>{' '}
+        </Link>{" "}
         <Link
-          to="/route-a"
+          to="/client/route-a"
           activeProps={{
-            className: 'font-bold',
+            className: "font-bold",
           }}
         >
           Pathless Layout
-        </Link>{' '}
+        </Link>{" "}
         <Link
-          to="/anchor"
+          to="/client/anchor"
           activeProps={{
-            className: 'font-bold',
+            className: "font-bold",
           }}
         >
           Anchor
-        </Link>{' '}
+        </Link>{" "}
         <Link
           // @ts-expect-error
           to="/this-route-does-not-exist"
           activeProps={{
-            className: 'font-bold',
+            className: "font-bold",
           }}
         >
           This Route Does Not Exist
@@ -66,5 +66,5 @@ function RootComponent() {
       {/* Start rendering router matches */}
       <TanStackRouterDevtools position="bottom-right" />
     </>
-  )
+  );
 }
