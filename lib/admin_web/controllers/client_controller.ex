@@ -12,7 +12,7 @@ defmodule AdminWeb.ClientController do
   #
   # Potential improvement: Cache the file contents here
   # in an ETS table so we don't read from the disk for every request.
-  defp render_react_app() do
+  defp render_react_app do
     Application.app_dir(:admin, "priv/static/webapp/index.html")
     |> File.read!()
   end
