@@ -50,19 +50,6 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  def environment_from_host(host) when is_binary(host) do
-    segments =
-      host
-      |> String.downcase()
-      |> String.split(".")
-
-    cond do
-      Enum.member?(segments, "dev") -> "development"
-      Enum.member?(segments, "stage") -> "staging"
-      true -> "production"
-    end
-  end
-
   host = System.get_env("PHX_HOST") || "graasp.org"
   port = String.to_integer(System.get_env("PORT") || "4000")
 
@@ -135,6 +122,20 @@ if config_env() == :prod do
 
   # Configure sentry environment name based on the environment where we deploy
   # Should be "development" when host contains "dev" and production otherwise
+  #
+  segments =
+    host
+    |> String.downcase()
+    |> String.split(".")
+
+  environment_name =
+    cond do
+      System.get_env("PHX_HOST") == nil -> "local"
+      Enum.member?(segments, "dev") -> "development"
+      Enum.member?(segments, "stage") -> "staging"
+      true -> "production"
+    end
+
   config :sentry,
-    environment_name: environment_from_host(host)
+    environment_name: environment_name
 end

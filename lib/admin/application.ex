@@ -7,6 +7,14 @@ defmodule Admin.Application do
 
   @impl true
   def start(_type, _args) do
+    # Set up OpenTelemetry instrumentation
+    # for Bandit (Phoenix 1.7+)
+    OpentelemetryBandit.setup()
+    OpentelemetryPhoenix.setup(adapter: :bandit)
+    OpentelemetryEcto.setup([:admin, :repo], db_statement: :enabled)
+    # Optional: Set up Oban instrumentation
+    # OpentelemetryOban.setup()
+
     children = [
       AdminWeb.Telemetry,
       Admin.Repo,
@@ -18,12 +26,12 @@ defmodule Admin.Application do
       AdminWeb.Endpoint
     ]
 
+    Logger.add_handlers(:admin)
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Admin.Supervisor]
     Supervisor.start_link(children, opts)
-
-    Logger.add_handlers(:admin)
   end
 
   # Tell Phoenix to update the endpoint configuration

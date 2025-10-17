@@ -78,7 +78,23 @@ defmodule Admin.MixProject do
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.26"},
+
+      # sentry ependencies
       {:sentry, "~> 11.0.4"},
+
+      # OpenTelemetry core packages
+      {:opentelemetry, "~> 1.5"},
+      {:opentelemetry_api, "~> 1.4"},
+      {:opentelemetry_exporter, "~> 1.0"},
+      {:opentelemetry_semantic_conventions, "~> 1.27"},
+      # for Phoenix
+      {:opentelemetry_phoenix, "~> 2.0"},
+      # for Bandit (Phoenix 1.7+)
+      {:opentelemetry_bandit, "~> 0.1"},
+      # for Ecto
+      {:opentelemetry_ecto, "~> 1.2"},
+
+      # other dependencies
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
