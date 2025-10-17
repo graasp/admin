@@ -25,6 +25,9 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends build-essential git \
     && rm -rf /var/lib/apt/lists/*
 
+# install pnpm to build the frontend components
+RUN wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
+
 # prepare build dir
 WORKDIR /app
 
