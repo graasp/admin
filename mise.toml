@@ -27,6 +27,7 @@ run = [
 ]
 
 [tasks.backend-dev]
+alias = "server"
 run = "mix phx.server"
 
 [tasks.frontend-install]
@@ -35,9 +36,10 @@ run = "pnpm install"
 description = "install frontend dependencies"
 
 [tasks.frontend-dev]
+alias = "client"
 depends = ["frontend-install"]
 dir = "frontend"
-run = "pnpm run dev"
+run = "node --run dev"
 description = "start the frontend server in development mode"
 
 [tasks.dev]
