@@ -50,7 +50,7 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  host = System.get_env("PHX_HOST") || "example.com"
+  host = System.get_env("PHX_HOST") || "graasp.org"
   port = String.to_integer(System.get_env("PORT") || "4000")
 
   config :admin, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
@@ -119,4 +119,23 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Req
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+
+  # Configure sentry environment name based on the environment where we deploy
+  # Should be "development" when host contains "dev" and production otherwise
+  #
+  segments =
+    host
+    |> String.downcase()
+    |> String.split(".")
+
+  environment_name =
+    cond do
+      System.get_env("PHX_HOST") == nil -> "local"
+      Enum.member?(segments, "dev") -> "development"
+      Enum.member?(segments, "stage") -> "staging"
+      true -> "production"
+    end
+
+  config :sentry,
+    environment_name: environment_name
 end

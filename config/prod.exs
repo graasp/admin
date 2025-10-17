@@ -19,9 +19,28 @@ config :logger, level: :info
 # Sentry configuration
 config :sentry,
   dsn: "https://b4c2635dfa3bb58ad2cded33d1201e57@o244065.ingest.us.sentry.io/4509863475740672",
-  environment_name: Mix.env(),
+  release: Mix.Project.config()[:version],
   enable_source_code_context: true,
-  root_source_code_paths: [File.cwd!()]
+  root_source_code_paths: [File.cwd!()],
+  # sample 20% of transactions
+  traces_sample_rate: 0.2,
+  integrations: [
+    telemetry: [
+      report_handler_failures: true
+    ]
+  ]
+
+config :admin, :logger, [
+  {:handler, :sentry_handler, Sentry.LoggerHandler,
+   %{
+     config: %{
+       metadata: [:file, :line],
+       rate_limiting: [max_events: 10, interval: _1_second = 1_000],
+       capture_log_messages: true,
+       level: :error
+     }
+   }}
+]
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
