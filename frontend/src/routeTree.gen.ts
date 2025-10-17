@@ -8,278 +8,227 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ClientIndexRouteImport } from './routes/client/index'
-import { Route as ClientAnchorRouteImport } from './routes/client/anchor'
-import { Route as ClientPathlessLayoutRouteImport } from './routes/client/_pathlessLayout'
-import { Route as ClientPostsRouteRouteImport } from './routes/client/posts.route'
-import { Route as ClientPostsIndexRouteImport } from './routes/client/posts.index'
-import { Route as ClientPostsPostIdRouteImport } from './routes/client/posts.$postId'
-import { Route as ClientPathlessLayoutNestedLayoutRouteImport } from './routes/client/_pathlessLayout/_nested-layout'
-import { Route as ClientPathlessLayoutNestedLayoutRouteBRouteImport } from './routes/client/_pathlessLayout/_nested-layout/route-b'
-import { Route as ClientPathlessLayoutNestedLayoutRouteARouteImport } from './routes/client/_pathlessLayout/_nested-layout/route-a'
+import { Route as AnchorRouteImport } from './routes/anchor'
+import { Route as PathlessLayoutRouteImport } from './routes/_pathlessLayout'
+import { Route as NestedLayoutRouteImport } from './routes/_nested-layout'
+import { Route as PostsRouteRouteImport } from './routes/posts.route'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as PostsIndexRouteImport } from './routes/posts.index'
+import { Route as PostsPostIdRouteImport } from './routes/posts.$postId'
+import { Route as PathlessLayoutNestedLayoutRouteBRouteImport } from './routes/_pathlessLayout/_nested-layout/route-b'
+import { Route as PathlessLayoutNestedLayoutRouteARouteImport } from './routes/_pathlessLayout/_nested-layout/route-a'
 
-const ClientRouteImport = createFileRoute('/client')()
-
-const ClientRoute = ClientRouteImport.update({
-  id: '/client',
-  path: '/client',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ClientIndexRoute = ClientIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => ClientRoute,
-} as any)
-const ClientAnchorRoute = ClientAnchorRouteImport.update({
+const AnchorRoute = AnchorRouteImport.update({
   id: '/anchor',
   path: '/anchor',
-  getParentRoute: () => ClientRoute,
-} as any)
-const ClientPathlessLayoutRoute = ClientPathlessLayoutRouteImport.update({
-  id: '/_pathlessLayout',
-  getParentRoute: () => ClientRoute,
-} as any)
-const ClientPostsRouteRoute = ClientPostsRouteRouteImport.update({
-  id: '/client/posts',
-  path: '/client/posts',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ClientPostsIndexRoute = ClientPostsIndexRouteImport.update({
+const PathlessLayoutRoute = PathlessLayoutRouteImport.update({
+  id: '/_pathlessLayout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NestedLayoutRoute = NestedLayoutRouteImport.update({
+  id: '/_nested-layout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PostsRouteRoute = PostsRouteRouteImport.update({
+  id: '/posts',
+  path: '/posts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => ClientPostsRouteRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-const ClientPostsPostIdRoute = ClientPostsPostIdRouteImport.update({
+const PostsIndexRoute = PostsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PostsRouteRoute,
+} as any)
+const PostsPostIdRoute = PostsPostIdRouteImport.update({
   id: '/$postId',
   path: '/$postId',
-  getParentRoute: () => ClientPostsRouteRoute,
+  getParentRoute: () => PostsRouteRoute,
 } as any)
-const ClientPathlessLayoutNestedLayoutRoute =
-  ClientPathlessLayoutNestedLayoutRouteImport.update({
-    id: '/_nested-layout',
-    getParentRoute: () => ClientPathlessLayoutRoute,
-  } as any)
-const ClientPathlessLayoutNestedLayoutRouteBRoute =
-  ClientPathlessLayoutNestedLayoutRouteBRouteImport.update({
-    id: '/route-b',
+const PathlessLayoutNestedLayoutRouteBRoute =
+  PathlessLayoutNestedLayoutRouteBRouteImport.update({
+    id: '/_nested-layout/route-b',
     path: '/route-b',
-    getParentRoute: () => ClientPathlessLayoutNestedLayoutRoute,
+    getParentRoute: () => PathlessLayoutRoute,
   } as any)
-const ClientPathlessLayoutNestedLayoutRouteARoute =
-  ClientPathlessLayoutNestedLayoutRouteARouteImport.update({
-    id: '/route-a',
+const PathlessLayoutNestedLayoutRouteARoute =
+  PathlessLayoutNestedLayoutRouteARouteImport.update({
+    id: '/_nested-layout/route-a',
     path: '/route-a',
-    getParentRoute: () => ClientPathlessLayoutNestedLayoutRoute,
+    getParentRoute: () => PathlessLayoutRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/client/posts': typeof ClientPostsRouteRouteWithChildren
-  '/client': typeof ClientPathlessLayoutNestedLayoutRouteWithChildren
-  '/client/anchor': typeof ClientAnchorRoute
-  '/client/': typeof ClientIndexRoute
-  '/client/posts/$postId': typeof ClientPostsPostIdRoute
-  '/client/posts/': typeof ClientPostsIndexRoute
-  '/client/route-a': typeof ClientPathlessLayoutNestedLayoutRouteARoute
-  '/client/route-b': typeof ClientPathlessLayoutNestedLayoutRouteBRoute
+  '/': typeof IndexRoute
+  '/posts': typeof PostsRouteRouteWithChildren
+  '/anchor': typeof AnchorRoute
+  '/posts/$postId': typeof PostsPostIdRoute
+  '/posts/': typeof PostsIndexRoute
+  '/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
+  '/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
 }
 export interface FileRoutesByTo {
-  '/client': typeof ClientPathlessLayoutNestedLayoutRouteWithChildren
-  '/client/anchor': typeof ClientAnchorRoute
-  '/client/posts/$postId': typeof ClientPostsPostIdRoute
-  '/client/posts': typeof ClientPostsIndexRoute
-  '/client/route-a': typeof ClientPathlessLayoutNestedLayoutRouteARoute
-  '/client/route-b': typeof ClientPathlessLayoutNestedLayoutRouteBRoute
+  '/': typeof IndexRoute
+  '/anchor': typeof AnchorRoute
+  '/posts/$postId': typeof PostsPostIdRoute
+  '/posts': typeof PostsIndexRoute
+  '/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
+  '/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/client/posts': typeof ClientPostsRouteRouteWithChildren
-  '/client': typeof ClientRouteWithChildren
-  '/client/_pathlessLayout': typeof ClientPathlessLayoutRouteWithChildren
-  '/client/anchor': typeof ClientAnchorRoute
-  '/client/': typeof ClientIndexRoute
-  '/client/_pathlessLayout/_nested-layout': typeof ClientPathlessLayoutNestedLayoutRouteWithChildren
-  '/client/posts/$postId': typeof ClientPostsPostIdRoute
-  '/client/posts/': typeof ClientPostsIndexRoute
-  '/client/_pathlessLayout/_nested-layout/route-a': typeof ClientPathlessLayoutNestedLayoutRouteARoute
-  '/client/_pathlessLayout/_nested-layout/route-b': typeof ClientPathlessLayoutNestedLayoutRouteBRoute
+  '/': typeof IndexRoute
+  '/posts': typeof PostsRouteRouteWithChildren
+  '/_nested-layout': typeof NestedLayoutRoute
+  '/_pathlessLayout': typeof PathlessLayoutRouteWithChildren
+  '/anchor': typeof AnchorRoute
+  '/posts/$postId': typeof PostsPostIdRoute
+  '/posts/': typeof PostsIndexRoute
+  '/_pathlessLayout/_nested-layout/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
+  '/_pathlessLayout/_nested-layout/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/client/posts'
-    | '/client'
-    | '/client/anchor'
-    | '/client/'
-    | '/client/posts/$postId'
-    | '/client/posts/'
-    | '/client/route-a'
-    | '/client/route-b'
+    | '/'
+    | '/posts'
+    | '/anchor'
+    | '/posts/$postId'
+    | '/posts/'
+    | '/route-a'
+    | '/route-b'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/client'
-    | '/client/anchor'
-    | '/client/posts/$postId'
-    | '/client/posts'
-    | '/client/route-a'
-    | '/client/route-b'
+  to: '/' | '/anchor' | '/posts/$postId' | '/posts' | '/route-a' | '/route-b'
   id:
     | '__root__'
-    | '/client/posts'
-    | '/client'
-    | '/client/_pathlessLayout'
-    | '/client/anchor'
-    | '/client/'
-    | '/client/_pathlessLayout/_nested-layout'
-    | '/client/posts/$postId'
-    | '/client/posts/'
-    | '/client/_pathlessLayout/_nested-layout/route-a'
-    | '/client/_pathlessLayout/_nested-layout/route-b'
+    | '/'
+    | '/posts'
+    | '/_nested-layout'
+    | '/_pathlessLayout'
+    | '/anchor'
+    | '/posts/$postId'
+    | '/posts/'
+    | '/_pathlessLayout/_nested-layout/route-a'
+    | '/_pathlessLayout/_nested-layout/route-b'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  ClientPostsRouteRoute: typeof ClientPostsRouteRouteWithChildren
-  ClientRoute: typeof ClientRouteWithChildren
+  IndexRoute: typeof IndexRoute
+  PostsRouteRoute: typeof PostsRouteRouteWithChildren
+  NestedLayoutRoute: typeof NestedLayoutRoute
+  PathlessLayoutRoute: typeof PathlessLayoutRouteWithChildren
+  AnchorRoute: typeof AnchorRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/client': {
-      id: '/client'
-      path: '/client'
-      fullPath: '/client'
-      preLoaderRoute: typeof ClientRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/client/': {
-      id: '/client/'
-      path: '/'
-      fullPath: '/client/'
-      preLoaderRoute: typeof ClientIndexRouteImport
-      parentRoute: typeof ClientRoute
-    }
-    '/client/anchor': {
-      id: '/client/anchor'
+    '/anchor': {
+      id: '/anchor'
       path: '/anchor'
-      fullPath: '/client/anchor'
-      preLoaderRoute: typeof ClientAnchorRouteImport
-      parentRoute: typeof ClientRoute
-    }
-    '/client/_pathlessLayout': {
-      id: '/client/_pathlessLayout'
-      path: '/client'
-      fullPath: '/client'
-      preLoaderRoute: typeof ClientPathlessLayoutRouteImport
-      parentRoute: typeof ClientRoute
-    }
-    '/client/posts': {
-      id: '/client/posts'
-      path: '/client/posts'
-      fullPath: '/client/posts'
-      preLoaderRoute: typeof ClientPostsRouteRouteImport
+      fullPath: '/anchor'
+      preLoaderRoute: typeof AnchorRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/client/posts/': {
-      id: '/client/posts/'
-      path: '/'
-      fullPath: '/client/posts/'
-      preLoaderRoute: typeof ClientPostsIndexRouteImport
-      parentRoute: typeof ClientPostsRouteRoute
-    }
-    '/client/posts/$postId': {
-      id: '/client/posts/$postId'
-      path: '/$postId'
-      fullPath: '/client/posts/$postId'
-      preLoaderRoute: typeof ClientPostsPostIdRouteImport
-      parentRoute: typeof ClientPostsRouteRoute
-    }
-    '/client/_pathlessLayout/_nested-layout': {
-      id: '/client/_pathlessLayout/_nested-layout'
+    '/_pathlessLayout': {
+      id: '/_pathlessLayout'
       path: ''
-      fullPath: '/client'
-      preLoaderRoute: typeof ClientPathlessLayoutNestedLayoutRouteImport
-      parentRoute: typeof ClientPathlessLayoutRoute
+      fullPath: ''
+      preLoaderRoute: typeof PathlessLayoutRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/client/_pathlessLayout/_nested-layout/route-b': {
-      id: '/client/_pathlessLayout/_nested-layout/route-b'
+    '/_nested-layout': {
+      id: '/_nested-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof NestedLayoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/posts': {
+      id: '/posts'
+      path: '/posts'
+      fullPath: '/posts'
+      preLoaderRoute: typeof PostsRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/posts/': {
+      id: '/posts/'
+      path: '/'
+      fullPath: '/posts/'
+      preLoaderRoute: typeof PostsIndexRouteImport
+      parentRoute: typeof PostsRouteRoute
+    }
+    '/posts/$postId': {
+      id: '/posts/$postId'
+      path: '/$postId'
+      fullPath: '/posts/$postId'
+      preLoaderRoute: typeof PostsPostIdRouteImport
+      parentRoute: typeof PostsRouteRoute
+    }
+    '/_pathlessLayout/_nested-layout/route-b': {
+      id: '/_pathlessLayout/_nested-layout/route-b'
       path: '/route-b'
-      fullPath: '/client/route-b'
-      preLoaderRoute: typeof ClientPathlessLayoutNestedLayoutRouteBRouteImport
-      parentRoute: typeof ClientPathlessLayoutNestedLayoutRoute
+      fullPath: '/route-b'
+      preLoaderRoute: typeof PathlessLayoutNestedLayoutRouteBRouteImport
+      parentRoute: typeof PathlessLayoutRoute
     }
-    '/client/_pathlessLayout/_nested-layout/route-a': {
-      id: '/client/_pathlessLayout/_nested-layout/route-a'
+    '/_pathlessLayout/_nested-layout/route-a': {
+      id: '/_pathlessLayout/_nested-layout/route-a'
       path: '/route-a'
-      fullPath: '/client/route-a'
-      preLoaderRoute: typeof ClientPathlessLayoutNestedLayoutRouteARouteImport
-      parentRoute: typeof ClientPathlessLayoutNestedLayoutRoute
+      fullPath: '/route-a'
+      preLoaderRoute: typeof PathlessLayoutNestedLayoutRouteARouteImport
+      parentRoute: typeof PathlessLayoutRoute
     }
   }
 }
 
-interface ClientPostsRouteRouteChildren {
-  ClientPostsPostIdRoute: typeof ClientPostsPostIdRoute
-  ClientPostsIndexRoute: typeof ClientPostsIndexRoute
+interface PostsRouteRouteChildren {
+  PostsPostIdRoute: typeof PostsPostIdRoute
+  PostsIndexRoute: typeof PostsIndexRoute
 }
 
-const ClientPostsRouteRouteChildren: ClientPostsRouteRouteChildren = {
-  ClientPostsPostIdRoute: ClientPostsPostIdRoute,
-  ClientPostsIndexRoute: ClientPostsIndexRoute,
+const PostsRouteRouteChildren: PostsRouteRouteChildren = {
+  PostsPostIdRoute: PostsPostIdRoute,
+  PostsIndexRoute: PostsIndexRoute,
 }
 
-const ClientPostsRouteRouteWithChildren =
-  ClientPostsRouteRoute._addFileChildren(ClientPostsRouteRouteChildren)
+const PostsRouteRouteWithChildren = PostsRouteRoute._addFileChildren(
+  PostsRouteRouteChildren,
+)
 
-interface ClientPathlessLayoutNestedLayoutRouteChildren {
-  ClientPathlessLayoutNestedLayoutRouteARoute: typeof ClientPathlessLayoutNestedLayoutRouteARoute
-  ClientPathlessLayoutNestedLayoutRouteBRoute: typeof ClientPathlessLayoutNestedLayoutRouteBRoute
+interface PathlessLayoutRouteChildren {
+  PathlessLayoutNestedLayoutRouteARoute: typeof PathlessLayoutNestedLayoutRouteARoute
+  PathlessLayoutNestedLayoutRouteBRoute: typeof PathlessLayoutNestedLayoutRouteBRoute
 }
 
-const ClientPathlessLayoutNestedLayoutRouteChildren: ClientPathlessLayoutNestedLayoutRouteChildren =
-  {
-    ClientPathlessLayoutNestedLayoutRouteARoute:
-      ClientPathlessLayoutNestedLayoutRouteARoute,
-    ClientPathlessLayoutNestedLayoutRouteBRoute:
-      ClientPathlessLayoutNestedLayoutRouteBRoute,
-  }
-
-const ClientPathlessLayoutNestedLayoutRouteWithChildren =
-  ClientPathlessLayoutNestedLayoutRoute._addFileChildren(
-    ClientPathlessLayoutNestedLayoutRouteChildren,
-  )
-
-interface ClientPathlessLayoutRouteChildren {
-  ClientPathlessLayoutNestedLayoutRoute: typeof ClientPathlessLayoutNestedLayoutRouteWithChildren
+const PathlessLayoutRouteChildren: PathlessLayoutRouteChildren = {
+  PathlessLayoutNestedLayoutRouteARoute: PathlessLayoutNestedLayoutRouteARoute,
+  PathlessLayoutNestedLayoutRouteBRoute: PathlessLayoutNestedLayoutRouteBRoute,
 }
 
-const ClientPathlessLayoutRouteChildren: ClientPathlessLayoutRouteChildren = {
-  ClientPathlessLayoutNestedLayoutRoute:
-    ClientPathlessLayoutNestedLayoutRouteWithChildren,
-}
-
-const ClientPathlessLayoutRouteWithChildren =
-  ClientPathlessLayoutRoute._addFileChildren(ClientPathlessLayoutRouteChildren)
-
-interface ClientRouteChildren {
-  ClientPathlessLayoutRoute: typeof ClientPathlessLayoutRouteWithChildren
-  ClientAnchorRoute: typeof ClientAnchorRoute
-  ClientIndexRoute: typeof ClientIndexRoute
-}
-
-const ClientRouteChildren: ClientRouteChildren = {
-  ClientPathlessLayoutRoute: ClientPathlessLayoutRouteWithChildren,
-  ClientAnchorRoute: ClientAnchorRoute,
-  ClientIndexRoute: ClientIndexRoute,
-}
-
-const ClientRouteWithChildren =
-  ClientRoute._addFileChildren(ClientRouteChildren)
+const PathlessLayoutRouteWithChildren = PathlessLayoutRoute._addFileChildren(
+  PathlessLayoutRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
-  ClientPostsRouteRoute: ClientPostsRouteRouteWithChildren,
-  ClientRoute: ClientRouteWithChildren,
+  IndexRoute: IndexRoute,
+  PostsRouteRoute: PostsRouteRouteWithChildren,
+  NestedLayoutRoute: NestedLayoutRoute,
+  PathlessLayoutRoute: PathlessLayoutRouteWithChildren,
+  AnchorRoute: AnchorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

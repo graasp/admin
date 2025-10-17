@@ -8,7 +8,7 @@ export const Route = createRootRoute({
     return (
       <div>
         <p>This is the notFoundComponent configured on root route</p>
-        <Link to="/client">Start Over</Link>
+        <Link to="/">Start Over</Link>
       </div>
     );
   },
@@ -19,7 +19,7 @@ function RootComponent() {
     <>
       <div className="p-2 flex gap-2 text-lg border-b">
         <Link
-          to="/client"
+          to="/"
           activeProps={{
             className: "font-bold",
           }}
@@ -28,7 +28,7 @@ function RootComponent() {
           Home
         </Link>{" "}
         <Link
-          to="/client/posts"
+          to="/posts"
           activeProps={{
             className: "font-bold",
           }}
@@ -36,7 +36,7 @@ function RootComponent() {
           Posts
         </Link>{" "}
         <Link
-          to="/client/route-a"
+          to="/route-a"
           activeProps={{
             className: "font-bold",
           }}
@@ -44,7 +44,7 @@ function RootComponent() {
           Pathless Layout
         </Link>{" "}
         <Link
-          to="/client/anchor"
+          to="/anchor"
           activeProps={{
             className: "font-bold",
           }}
