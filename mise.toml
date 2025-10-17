@@ -16,3 +16,21 @@ run = [
     'aws sts get-caller-identity --profile $usage_profile',
     'aws ecs execute-command --cluster graasp-$usage_profile --task $(aws ecs list-tasks --cluster graasp-$usage_profile --service admin --query "taskArns[0]" --output text --profile $usage_profile) --container admin --command "/app/bin/admin remote" --interactive --profile $usage_profile'
 ]
+
+[tasks.backend-dev]
+run = "mix phx.server"
+
+[tasks.frontend-install]
+dir = "frontend"
+run = "pnpm install"
+description = "install frontend dependencies"
+
+[tasks.frontend-dev]
+depends = ["frontend-install"]
+dir = "frontend"
+run = "pnpm run dev"
+description = "start the frontend server in development mode"
+
+[tasks.dev]
+depends = ["backend-dev", "frontend-dev"]
+description = "start the backend and frontend servers in development mode"
