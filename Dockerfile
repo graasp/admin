@@ -13,20 +13,40 @@
 #
 ARG ELIXIR_VERSION=1.18.4
 ARG OTP_VERSION=28.0.2
+ARG NODE_VERSION=24.10.0
 ARG DEBIAN_VERSION=bookworm-20250721-slim
 
-ARG BUILDER_IMAGE="docker.io/hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
+ARG NODE_BUILDER_IMAGE="docker.io/node:${NODE_VERSION}-trixie-slim"
+ARG ELIXIR_BUILDER_IMAGE="docker.io/hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
 ARG RUNNER_IMAGE="docker.io/debian:${DEBIAN_VERSION}"
 
-FROM ${BUILDER_IMAGE} AS builder
+
+# Node builder: build SPA with pnpm and produce static files for Phoenix
+FROM ${NODE_BUILDER_IMAGE} AS node_builder
+
+# Install pnpm
+RUN npm install -g pnpm@latest
+
+WORKDIR /webapp
+
+# Copy only files needed to install and build for better caching
+# Adjust the paths if your SPA lives elsewhere (e.g., webapp/)
+COPY frontend/package.json frontend/pnpm-lock.yaml frontend/pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile
+
+# Copy the rest of the SPA sources and build
+COPY frontend ./
+# Change this build command to your SPA build script name if different
+# It must output production-ready static files
+RUN pnpm run build
+
+
+FROM ${ELIXIR_BUILDER_IMAGE} AS builder
 
 # install build dependencies
 RUN apt-get update \
     && apt-get install -y --no-install-recommends build-essential git \
     && rm -rf /var/lib/apt/lists/*
-
-# install pnpm to build the frontend components
-RUN wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
 
 # prepare build dir
 WORKDIR /app
@@ -65,8 +85,8 @@ COPY assets assets
 # compile assets
 RUN mix assets.deploy
 
-# Build client React app
-RUN mix webapp
+# Copy client React app build assets to priv/static/webapp
+COPY --from=node_builder /webapp/dist ./priv/static/webapp
 
 # Changes to config/runtime.exs don't require recompiling the code
 COPY config/runtime.exs config/
