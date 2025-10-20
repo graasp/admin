@@ -8,6 +8,7 @@
     "serve": "vite preview",
     "start": "vite"
   },
+  "packageManager": "pnpm@10.18.3",
   "dependencies": {
     "@tanstack/react-router": "^1.133.3",
     "@tanstack/react-router-devtools": "^1.133.3",
