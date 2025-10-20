@@ -31,7 +31,7 @@ WORKDIR /webapp
 
 # Copy only files needed to install and build for better caching
 # Adjust the paths if your SPA lives elsewhere (e.g., webapp/)
-COPY frontend/package.json frontend/pnpm-lock.yaml ./
+COPY frontend/package.json frontend/pnpm-lock.yaml frontend/pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 
 # Copy the rest of the SPA sources and build
