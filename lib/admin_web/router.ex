@@ -29,14 +29,6 @@ defmodule AdminWeb.Router do
     get "/", PageController, :home
   end
 
-  # Serve the static react app assets for the client SPA
-  scope "/client", AdminWeb do
-    pipe_through :browser
-
-    get "/", ClientController, :index
-    get "/*path", ClientController, :index
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", AdminWeb do
   #   pipe_through :api
