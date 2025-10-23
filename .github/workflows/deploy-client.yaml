@@ -1,0 +1,85 @@
+name: Deploy to environment
+run-name: Deploy ${{ inputs.version || 'latest' }} to ${{ inputs.environment || 'development' }}
+
+# Control when the action will run
+on:
+  # Triggers the workflow on push events only for the main branch
+  push:
+    branches:
+      - main
+    paths:
+      - "frontend/**"
+
+  # Allows to run the workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        type: environment
+        required: true
+      version:
+        description: "Version to deploy"
+        type: "string"
+        required: true
+
+permissions:
+  id-token: write # This is required for requesting the JWT to auth via OIDC
+  contents: read # This is required for actions/checkout
+
+concurrency:
+  group: deploy-${{ inputs.environment || 'development' }}
+  cancel-in-progress: false
+
+jobs:
+  deploy-app:
+    name: Deploy to ${{ inputs.environment || 'development' }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'development' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.version || 'main' }}
+
+      - name: Install Mise
+        uses: jdx/mise-action@v3
+
+      - name: pnpm build
+        # Set environment variables required to perform the build. These are only available to this step
+        env:
+          VITE_VERSION: ${{ inputs.version || github.sha }}
+          VITE_GRAASP_API_HOST: ${{ vars.VITE_GRAASP_API_HOST }}
+          VITE_GRAASP_WS_HOST: ${{ vars.VITE_GRAASP_WS_HOST }}
+          VITE_GRAASP_LIBRARY_HOST: ${{ vars.VITE_GRAASP_LIBRARY_HOST }}
+          VITE_SENTRY_ENV: ${{ vars.VITE_SENTRY_ENV }}
+          VITE_SENTRY_DSN: ${{ secrets.VITE_SENTRY_DSN }}
+          VITE_SHOW_NOTIFICATIONS: ${{ vars.VITE_SHOW_NOTIFICATIONS }}
+          VITE_UMAMI_WEBSITE_ID: ${{ secrets.VITE_UMAMI_WEBSITE_ID }}
+          VITE_UMAMI_HOST: ${{ vars.VITE_UMAMI_HOST }}
+          VITE_RECAPTCHA: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
+          VITE_GRAASP_H5P_INTEGRATION_URL: ${{ vars.VITE_GRAASP_H5P_INTEGRATION_URL }}
+          VITE_GRAASP_REDIRECTION_HOST: ${{ vars.VITE_GRAASP_REDIRECTION_HOST }}
+        run: mise run build
+        shell: bash
+
+      - name: Deploy
+        uses: graasp/graasp-deploy/.github/actions/deploy-s3@v1
+        # Replace input build-folder or version if needed
+        with:
+          build-folder: "dist"
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          aws-region: ${{ vars.AWS_REGION }}
+          aws-s3-bucket-name: ${{ vars.AWS_S3_BUCKET_NAME }}
+          cloudfront-distribution-id: ${{ vars.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ vars.SENTRY_ORG }}
+          SENTRY_PROJECT: client
+        with:
+          environment: ${{ inputs.environment || 'development' }}
+          sourcemaps: "./dist"
+          inject: true
+          version: ${{ inputs.version || github.sha }}

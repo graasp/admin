@@ -1,0 +1,18 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+
+import * as RightHeaderStories from './RightHeader.stories';
+
+<Meta of={RightHeaderStories} />
+
+# Right Header
+
+Content of the right section of the header. Mainly used in the Landing pages.
+
+This component relies on the `AuthContext` to render its content based on whether there is a currently authenticated user.
+
+The look of the component for **Unauthenticated** users:
+<Canvas of={RightHeaderStories.Unauthenticated} />
+
+And for **Authenticated** users:
+<Canvas of={RightHeaderStories.Authenticated} />

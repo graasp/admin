@@ -1,0 +1,76 @@
+{
+  "LOGOUT": {
+    "BUTTON_TEXT": "Se déconnecter"
+  },
+  "LOG_IN": {
+    "BUTTON_TEXT": "Se connecter"
+  },
+  "REGISTER": {
+    "BUTTON_TEXT": "Créer un compte"
+  },
+  "BACK": {
+    "BUTTON_TEXT": "Retour"
+  },
+  "HOME": {
+    "BUTTON_TEXT": "Retour à l'accueil"
+  },
+  "SAVE": {
+    "BUTTON_TEXT": "Sauvegarder"
+  },
+  "CANCEL": {
+    "BUTTON_TEXT": "Annuler"
+  },
+  "EDIT": {
+    "BUTTON_TEXT": "Modifier"
+  },
+  "CLOSE": {
+    "BUTTON_TEXT": "Fermer"
+  },
+  "CONFIRM": {
+    "BUTTON_TEXT": "Confirmer"
+  },
+  "CONJONCTION": {
+    "OR": "ou"
+  },
+  "CONSTRUCTION": {
+    "TITLE": "Cette page est en construction",
+    "DESCRIPTION": "Nous travaillons à l'amélioration de cette partie de l'application. Nous vous remercions de votre compréhension pendant que nous effectuons les changements nécessaires."
+  },
+  "USER_MENU": {
+    "SETTINGS": "Paramètres"
+  },
+  "ERRORS": {
+    "UNEXPECTED": "Une erreur inattendue s'est produite",
+    "NETWORK": {
+      "TITLE": "Erreur réseau",
+      "TEXT": "Il semble y avoir un problème de communication avec le serveur. Veuillez réessayer plus tard"
+    }
+  },
+  "FIELD_ERROR": {
+    "REQUIRED": "Ce champ est obligatoire",
+    "USERNAME_MIN_LENGTH": "Le nom d'utilisateur doit comporter plus de {{min}} caractères",
+    "USERNAME_MAX_LENGTH": "Le nom d'utilisateur doit contenir moins de {{max}} caractères",
+    "USERNAME_SPECIAL_CHARACTERS": "Le nom d'utilisateur ne doit pas contenir de guillemets, d'anti-slash, <, >, ^, %",
+    "INVALID_EMAIL": "Cela ne ressemble pas à une adresse e-mail valide"
+  },
+  "UNKNOWN_DATE": "Inconnu",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "Accueil",
+    "BOOKMARKED_ITEMS": "Signets",
+    "LIBRARY": "Bibliothèque",
+    "TRASH": "Poubelle"
+  },
+  "USER_SWITCH": {
+    "HOME": "Accueil",
+    "SETTINGS": "Paramètres",
+    "STORAGE": "Stockage",
+    "LOG_IN": "Se connecter",
+    "LOG_OUT": "Se déconnecter",
+    "NEED_HELP": "Besoin d'aide ?"
+  },
+  "ENROLL": {
+    "TITLE": "Inscrivez-vous à cette capsule",
+    "BUTTON": "S'inscrire",
+    "DESCRIPTION": "Cliquez sur le bouton ci-dessous pour vous inscrire et accéder à cette capsule."
+  }
+}

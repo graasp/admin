@@ -1,0 +1,35 @@
+{
+  "TOOLBAR": {
+    "TEXT_FORMAT": {
+      "LEFT": "Left",
+      "RIGHT": "Right",
+      "CENTER": "Center",
+      "JUSTIFY": "Justify"
+    },
+    "FONT_SIZE": {
+      "INCREASE": "Increase font size",
+      "DECREASE": "Decrease font size"
+    },
+    "LINK_ITEM": {
+      "BUTTON": "Insert a link",
+      "INSERT": { "TITLE": "Insert a link", "SUBMIT_BUTTON": "Insert" }
+    }
+  },
+  "DISCONNECTED_TEXT": "You have been disconnected.",
+  "RELOAD_BUTTON": "Reload",
+  "WARNINGS": {
+    "BETA": "The functionality \"pages\" are in <bold>beta</bold>. You can find the documentation and current status of the feature <1>on the docs website</1>.",
+    "FEEDBACK": "Give us your feedback <1>via this form</1>."
+  },
+  "EDITOR": {
+    "PLACEHOLDER": "Enter some text..."
+  },
+  "LINK": {
+    "TYPE": {
+      "BUTTON": "Button",
+      "EMBED": "Embed",
+      "TEXT": "Link"
+    },
+    "URL": { "BUTTON": "Link", "VISIT_LINK_BUTTON": "Visit external link" }
+  }
+}

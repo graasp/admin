@@ -1,0 +1,13 @@
+.dockerignore
+.DS_Store
+.env*
+.github
+.nyc_output
+.storybook
+.vscode
+build
+coverage
+Dockerfile
+docs
+node_modules
+storybook_static

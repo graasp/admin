@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.app.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext", "dom", "ES2021.String"],
+    "types": ["cypress", "vite/client"],
+    // todo: enable back
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
+    "strict": true,
+    "sourceMap": false
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["coverage", ".nyc_output", "src/**/*.{ts,tsx}"]
+}

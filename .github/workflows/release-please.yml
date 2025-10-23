@@ -21,3 +21,11 @@ jobs:
           token: ${{ secrets.RELEASE_PLEASE_PAT }}
           config-file: .github/release-please-config.json
           manifest-file: .github/.release-please-manifest.json
+
+      - uses: actions/checkout@v4
+
+      - name: Auto Tag
+        uses: graasp/graasp-deploy/.github/actions/auto-tag-after-release@v1
+        with:
+          releases_created: ${{ steps.release.outputs.releases_created }}
+          tag_name: ${{ steps.release.outputs.tag_name }}

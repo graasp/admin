@@ -1,0 +1,67 @@
+{
+  "LOGOUT": {
+    "BUTTON_TEXT": "تسجيل الخروج"
+  },
+  "LOG_IN": {
+    "BUTTON_TEXT": "تسجيل الدخول"
+  },
+  "REGISTER": {
+    "BUTTON_TEXT": "يسجل"
+  },
+  "BACK": {
+    "BUTTON_TEXT": "خلف"
+  },
+  "HOME": {
+    "BUTTON_TEXT": "العودة إلى المنزل"
+  },
+  "SAVE": {
+    "BUTTON_TEXT": "يحفظ"
+  },
+  "CANCEL": {
+    "BUTTON_TEXT": "يلغي"
+  },
+  "EDIT": {
+    "BUTTON_TEXT": "يحرر"
+  },
+  "CLOSE": {
+    "BUTTON_TEXT": "يغلق"
+  },
+  "CONFIRM": {
+    "BUTTON_TEXT": "يتأكد"
+  },
+  "CONJONCTION": {
+    "OR": "أو"
+  },
+  "CONSTRUCTION": {
+    "TITLE": "هذه الصفحة قيد الإنشاء",
+    "DESCRIPTION": "نحن نعمل على تحسين هذا الجزء من التطبيق. نطلب منك تفهم ذلك بينما نقوم بإجراء التغييرات اللازمة."
+  },
+  "USER_MENU": {
+    "SETTINGS": "إعدادات"
+  },
+  "ERRORS": {
+    "UNEXPECTED": "حدث خطأ غير متوقع",
+    "NETWORK": {
+      "TITLE": "خطأ في الشبكة",
+      "TEXT": "يبدو أن هناك مشكلة في الانضمام إلى الخادم. يرجى المحاولة مرة أخرى لاحقًا"
+    }
+  },
+  "FIELD_ERROR": {
+    "REQUIRED": "هذه الخانة مطلوبه",
+    "USERNAME_MIN_LENGTH": "يجب أن يكون اسم المستخدم أطول من {{min}} حرفًا",
+    "USERNAME_MAX_LENGTH": "يجب أن يكون اسم المستخدم أقل من {{max}} حرفًا",
+    "USERNAME_SPECIAL_CHARACTERS": "يجب ألا يحتوي اسم المستخدم على علامات اقتباس، شرطة مائلة، <، >، ^، %",
+    "INVALID_EMAIL": "لا يبدو أن هذا عنوان بريد إلكتروني صالح"
+  },
+  "UNKNOWN_DATE": "مجهول",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "العناصر الخاصّة بي",
+    "BOOKMARKED_ITEMS": "العناصر المفضلة",
+    "TRASH": "القمامة"
+  },
+  "ENROLL": {
+    "TITLE": "التسجيل لهذا العنصر",
+    "BUTTON": "تسجل",
+    "DESCRIPTION": "انقر على الزر أدناه للتسجيل والوصول إلى هذا العنصر."
+  }
+}

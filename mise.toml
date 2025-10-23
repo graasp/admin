@@ -12,6 +12,46 @@ postinstall = 'npx corepack enable'
 # This must be enabled to make the hooks work
 experimental = true
 
+[env]
+_.path = ['./node_modules/.bin']
+
+[tasks.pnpm-install]
+description = 'Installs dependencies with pnpm'
+dir = "frontend"
+run = 'pnpm install'
+sources = ['package.json', 'pnpm-lock.yaml', 'mise.toml']
+outputs = ['node_modules/.pnpm/lock.yaml']
+
+[tasks.check]
+description = 'Calls your check script in `package.json`'
+dir = "frontend"
+run = 'node --run check'
+depends = ['pnpm-install']
+
+[tasks.build]
+description = 'Calls your build script in `package.json`'
+dir = "frontend"
+run = 'node --run build'
+depends = ['pnpm-install']
+
+[tasks.build-storybook]
+description = "Build Storybook"
+dir = "frontend"
+run = 'pnpm storybook build'
+depends = ['pnpm-install']
+
+[tasks.playwright-install]
+description = 'Install playwright dependencies'
+dir = "frontend"
+run = 'pnpm exec playwright install --with-deps'
+depends = ['pnpm-install']
+
+[tasks.test-unit]
+description = "Run unit tests"
+dir = "frontend"
+run = 'pnpm test:unit'
+depends = ['playwright-install']
+
 [tasks.log]
 run = '''
 aws logs tail '/ecs/admin' --follow --profile $1
@@ -30,14 +70,9 @@ run = [
 alias = "server"
 run = "mix phx.server"
 
-[tasks.frontend-install]
-dir = "frontend"
-run = "pnpm install"
-description = "install frontend dependencies"
-
 [tasks.frontend-dev]
 alias = "client"
-depends = ["frontend-install"]
+depends = ["pnpm-install"]
 dir = "frontend"
 run = "node --run dev"
 description = "start the frontend server in development mode"

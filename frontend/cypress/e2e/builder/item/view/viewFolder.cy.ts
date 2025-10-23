@@ -1,0 +1,224 @@
+import {
+  GuestFactory,
+  ItemLoginSchemaFactory,
+  PackedFolderItemFactory,
+  PermissionLevel,
+} from '@graasp/sdk';
+
+import {
+  CREATE_ITEM_BUTTON_ID,
+  ITEM_HEADER_ID,
+  ITEM_MENU_BOOKMARK_BUTTON_CLASS,
+  ITEM_MENU_FLAG_BUTTON_CLASS,
+  ITEM_MENU_SHORTCUT_BUTTON_CLASS,
+  ITEM_SEARCH_INPUT_ID,
+  SORTING_ORDERING_SELECTOR_ASC,
+  SORTING_ORDERING_SELECTOR_DESC,
+  SORTING_SELECT_SELECTOR,
+  buildItemCard,
+  buildItemsTableId,
+  buildMapViewId,
+} from '../../../../../src/config/selectors';
+import { SortingOptionsForFolder } from '../../../../../src/modules/builder/components/table/types';
+import { ItemLayoutMode } from '../../../../../src/modules/builder/enums';
+import { expectFolderViewScreenLayout } from '../../../../support/viewUtils';
+import { buildItemPath } from '../../utils';
+
+const parentItem = PackedFolderItemFactory();
+const item1 = PackedFolderItemFactory();
+
+const child1 = PackedFolderItemFactory({ parentItem });
+const child2 = PackedFolderItemFactory({ parentItem });
+const child3 = PackedFolderItemFactory({ parentItem });
+const child4 = PackedFolderItemFactory({ parentItem });
+const children = [child1, child2, child3, child4];
+
+const items = [parentItem, item1, ...children];
+describe('View folder as guest', () => {
+  it('Show limited features', () => {
+    const item = PackedFolderItemFactory(
+      {},
+      { permission: PermissionLevel.Read },
+    );
+    const guest = GuestFactory({
+      itemLoginSchema: ItemLoginSchemaFactory({
+        item,
+      }),
+    });
+    cy.setUpApi({
+      items: [item],
+      currentMember: null,
+      currentGuest: guest,
+    });
+    cy.visit(buildItemPath(item.id));
+
+    // no add button
+    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('not.exist');
+
+    // menu item only contains flag
+    cy.get(`#${ITEM_HEADER_ID} [aria-label="More"]`).click();
+    cy.get(`.${ITEM_MENU_FLAG_BUTTON_CLASS}`).should('be.visible');
+    cy.get(`.${ITEM_MENU_SHORTCUT_BUTTON_CLASS}`).should('not.exist');
+  });
+});
+
+describe('View folder as reader', () => {
+  it('Show limited features', () => {
+    const item = PackedFolderItemFactory(
+      {},
+      { permission: PermissionLevel.Read },
+    );
+    cy.setUpApi({
+      items: [item],
+    });
+    cy.visit(buildItemPath(item.id));
+
+    // no add button
+    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('not.exist');
+
+    // menu item contains flag, duplicate, shortcut, bookmark
+    cy.get(`#${ITEM_HEADER_ID} [aria-label="More"]`).click();
+    cy.get(`.${ITEM_MENU_FLAG_BUTTON_CLASS}`).should('be.visible');
+    cy.get(`.${ITEM_MENU_SHORTCUT_BUTTON_CLASS}`).should('be.visible');
+    cy.get(`.${ITEM_MENU_BOOKMARK_BUTTON_CLASS}`).should('be.visible');
+  });
+});
+
+describe('view Folder as admin', () => {
+  beforeEach(() => {
+    cy.setUpApi({
+      items,
+    });
+  });
+
+  it('View folder on map by default', () => {
+    cy.setUpApi({
+      items,
+    });
+
+    const { id } = parentItem;
+    cy.visit(buildItemPath(id, { mode: ItemLayoutMode.Map }));
+
+    cy.get(`#${buildMapViewId(id)}`, { timeout: 10000 }).should('be.visible');
+  });
+  it('View empty folder', () => {
+    cy.setUpApi({
+      items: [parentItem],
+    });
+
+    const { id } = parentItem;
+    cy.visit(buildItemPath(id));
+
+    cy.get(`[role="dropzone"]`).should('be.visible');
+    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('be.visible');
+  });
+
+  it('visit item by id', () => {
+    const { id } = parentItem;
+    cy.visit(buildItemPath(id, { mode: ItemLayoutMode.Grid }));
+
+    // should get current item
+    cy.wait('@getItem');
+
+    // should get children
+    cy.wait('@getChildren').then(() => {
+      // check all children are created and displayed
+      for (const item of children) {
+        cy.get(`#${buildItemCard(item.id)}`).should('exist');
+      }
+    });
+    expectFolderViewScreenLayout({ item: parentItem });
+  });
+
+  it('search', () => {
+    const { id } = parentItem;
+    const searchText = child1.name;
+    cy.visit(buildItemPath(id, { mode: ItemLayoutMode.Grid }));
+    // initial call in the page
+    cy.wait(['@getChildren']);
+
+    cy.get(`#${buildItemCard(child1.id)}`).should('be.visible');
+
+    cy.get(`#${ITEM_SEARCH_INPUT_ID}`).type(searchText);
+
+    cy.wait('@getChildren').then(({ request: { query } }) => {
+      expect(
+        (query.keywords as unknown as string[]).every((k) =>
+          searchText.includes(k),
+        ),
+      ).equal(true);
+    });
+
+    cy.get(`#${buildItemCard(child1.id)}`).should('be.visible');
+  });
+
+  it('Sorting & Ordering', () => {
+    const { id } = parentItem;
+    cy.visit(buildItemPath(id));
+
+    cy.get(`${SORTING_SELECT_SELECTOR} input`).should(
+      'have.value',
+      SortingOptionsForFolder.Order,
+    );
+    cy.get(SORTING_ORDERING_SELECTOR_ASC).should('be.visible');
+
+    cy.get(SORTING_SELECT_SELECTOR).click();
+    cy.get('li[data-value="item.name"]').click();
+
+    // check items are ordered by name
+    cy.get(`#${buildItemsTableId(parentItem.id)} h5`).then(($e) => {
+      children.sort((a, b) => (a.name > b.name ? 1 : -1));
+      for (let idx = 0; idx < children.length; idx += 1) {
+        expect($e[idx].innerText).to.eq(children[idx].name);
+      }
+    });
+
+    // change ordering
+    cy.get(SORTING_ORDERING_SELECTOR_ASC).click();
+    cy.get(SORTING_ORDERING_SELECTOR_DESC).should('be.visible');
+    cy.get(`#${buildItemsTableId(parentItem.id)} h5`).then(($e) => {
+      children.reverse();
+      for (let idx = 0; idx < children.length; idx += 1) {
+        expect($e[idx].innerText).to.eq(children[idx].name);
+      }
+    });
+  });
+});
+
+describe('Folder Layout mode', () => {
+  beforeEach(() => {
+    cy.setUpApi({
+      items: [parentItem, child1],
+    });
+    cy.visit(buildItemPath(parentItem.id));
+  });
+
+  it('list', () => {
+    cy.wait('@getItem');
+    // default mode is list
+    cy.get(`#${buildItemCard(child1.id)}`);
+
+    // go to map
+    cy.switchMode(ItemLayoutMode.Map);
+
+    // go to list
+    cy.switchMode(ItemLayoutMode.List);
+    cy.get(`#${buildItemCard(child1.id)}`);
+  });
+
+  it('grid', () => {
+    cy.wait('@getItem');
+
+    cy.switchMode(ItemLayoutMode.Grid);
+    cy.get(`#${buildItemCard(child1.id)}`);
+  });
+
+  it('map', () => {
+    cy.wait('@getItem');
+
+    cy.switchMode(ItemLayoutMode.Map);
+    cy.get(`#${buildMapViewId(parentItem.id)}`, { timeout: 10000 }).should(
+      'be.visible',
+    );
+  });
+});

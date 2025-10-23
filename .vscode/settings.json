@@ -1,0 +1,9 @@
+{
+  "files.trimTrailingWhitespace": true,
+  "eslint.useFlatConfig": true,
+  "sonarlint.connectedMode.project": {
+    "connectionId": "graasp",
+    "projectKey": "graasp_graasp-account"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

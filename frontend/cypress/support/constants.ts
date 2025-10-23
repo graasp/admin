@@ -1,0 +1,12 @@
+export const CREATE_ITEM_PAUSE = 1000;
+export const EDIT_ITEM_PAUSE = 1000;
+export const ITEM_LOGIN_PAUSE = 1000;
+export const NAVIGATION_LOAD_PAUSE = 1500;
+export const REQUEST_FAILURE_LOADING_TIME = 1500;
+export const FILE_LOADING_PAUSE = 2000;
+
+export const EDIT_TAG_REQUEST_TIMEOUT = 10000;
+
+export const CAPTION_EDIT_PAUSE = 2000;
+
+export const CHATBOX_TIMEOUT = 5000;
