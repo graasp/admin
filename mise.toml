@@ -34,6 +34,18 @@ dir = "frontend"
 run = 'node --run build'
 depends = ['pnpm-install']
 
+[tasks.build-test]
+description = 'Calls your build:test script in `package.json`'
+dir = "frontend"
+run = 'node --run build:test'
+depends = ['pnpm-install']
+
+[tasks.preview-test]
+description = 'Calls your preview:test script in `package.json`'
+dir = "frontend"
+run = 'node --run preview:test'
+depends = ['pnpm-install']
+
 [tasks.build-storybook]
 description = "Build Storybook"
 dir = "frontend"
@@ -44,6 +56,12 @@ depends = ['pnpm-install']
 description = 'Install playwright dependencies'
 dir = "frontend"
 run = 'pnpm exec playwright install --with-deps'
+depends = ['pnpm-install']
+
+[tasks.cypress-install]
+description = 'Install cypress dependencies'
+dir = "frontend"
+run = 'pnpm cypress install'
 depends = ['pnpm-install']
 
 [tasks.test-unit]

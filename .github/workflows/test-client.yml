@@ -63,11 +63,8 @@ jobs:
           restore-keys: |
             cypress-cache-${{ runner.os }}-
 
-      - name: Install dependencies
-        run: pnpm install
-
       - name: Install Cypress binary
-        run: pnpm cypress install
+        run: mise run cypress-install
 
       #  use the Cypress GitHub Action to run Cypress Component tests within the chrome browser
       - name: Cypress run components
@@ -90,9 +87,9 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           install: false
-          build: pnpm build:test
+          build: mise run build-test
           # we launch the app in preview mode to avoid issues with hmr websockets from vite polluting the mocks
-          start: pnpm preview:test
+          start: mise run preview-test
           browser: chrome
           quiet: true
           config-file: frontend/cypress.config.ts
