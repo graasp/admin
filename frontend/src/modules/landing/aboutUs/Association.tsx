@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Grid, Stack, Typography } from '@mui/material';
 
+import climateProject from '@/assets/projects/climate.svg';
+import helvetasProject from '@/assets/projects/helvetas.svg';
 import { NS } from '@/config/constants';
 
 import { ProjectCard } from './ProjectCard';
@@ -31,14 +33,14 @@ function Association() {
       <Grid container width="100%" spacing={2}>
         <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
           <ProjectCard
-            src="/projects/helvetas.svg"
+            src={helvetasProject}
             title={'Helvetas'}
             description={t('PROJECTS.HELVETAS.DESCRIPTION')}
           />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
           <ProjectCard
-            src="/projects/climate.svg"
+            src={climateProject}
             width={100}
             title={t('PROJECTS.CLIMATE.TITLE')}
             description={t('PROJECTS.CLIMATE.DESCRIPTION')}

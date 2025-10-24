@@ -6,7 +6,7 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <div class="">
         <.header>
           Unpublish {@published_item.item.name}
@@ -30,7 +30,7 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
       <.button navigate={~p"/published_items/#{@published_item}"}>
         <.icon name="hero-arrow-left" />
       </.button>
-    </Layouts.app>
+    </Layouts.admin>
     """
   end
 

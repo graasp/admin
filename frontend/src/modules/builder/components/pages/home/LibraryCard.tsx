@@ -4,6 +4,7 @@ import { Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import { ArrowRightIcon } from 'lucide-react';
 
+import booksBackground from '@/assets/library/books.jpeg';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
@@ -23,7 +24,7 @@ function LibraryCard() {
         p={isXs ? 2 : 3}
         direction="row"
         sx={{
-          background: `linear-gradient(${AccentColors.library}ef, ${AccentColors.library}cc), 50% 50% url(/library/books.jpeg)`,
+          background: `linear-gradient(${AccentColors.library}ef, ${AccentColors.library}cc), 50% 50% url(${booksBackground})`,
         }}
       >
         <Stack gap={2}>

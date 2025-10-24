@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Button, Stack, Typography } from '@mui/material';
 
+import landingIllustration from '@/assets/illustrations/landing.webp';
 import { Image } from '@/components/ui/StyledImages';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
@@ -39,7 +40,7 @@ export function TitleSection(): JSX.Element {
           <Image
             alt="cover"
             sx={{ objectPosition: '0 70%' }}
-            src="/illustration/landing.webp"
+            src={landingIllustration}
           />
         </Stack>
         <Stack direction="column" gap={10} flex={{ lg: 2 }}>

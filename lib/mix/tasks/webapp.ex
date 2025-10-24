@@ -17,7 +17,7 @@ defmodule Mix.Tasks.Webapp do
     Logger.info("⚙️  - Compiling React frontend")
 
     case System.cmd("pnpm", ["run", "build"], cd: "./frontend") do
-      {:ok, 0} ->
+      {_, 0} ->
         Logger.info("🚛 - Moving dist folder to Phoenix at #{@public_path}")
 
         # Non-fatal cleanup/copy; if these fail we still consider the build successful.

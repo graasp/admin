@@ -2,6 +2,16 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Grid, Stack, Typography } from '@mui/material';
 
+import basile from '@/assets/team/basile.webp';
+import denis from '@/assets/team/denis.webp';
+import hagop from '@/assets/team/hagop.webp';
+import jeremy from '@/assets/team/jeremy.webp';
+import juancarlos from '@/assets/team/juancarlos.webp';
+import kim from '@/assets/team/kim.webp';
+import maria from '@/assets/team/maria.webp';
+import michele from '@/assets/team/michele.webp';
+import philippe from '@/assets/team/philippe.webp';
+import sandy from '@/assets/team/sandy.webp';
 import { NS } from '@/config/constants';
 
 function TeamMembers() {
@@ -12,52 +22,52 @@ function TeamMembers() {
   const TEAM = [
     {
       name: 'Denis Gillet',
-      image: 'denis.webp',
+      image: denis,
       role: 'STATUSES.TITLE_PRESIDENT',
     },
     {
       name: 'María Jesús Rodríguez-Triana',
-      image: 'maria.webp',
+      image: maria,
       role: 'STATUSES.TITLE_VP_RESEARCH',
     },
     {
       name: 'Juan Carlos Farah',
-      image: 'juancarlos.webp',
+      image: juancarlos,
       role: 'STATUSES.TITLE_VP_PRODUCT',
     },
     {
       name: 'Kim Lan Phan Hoang',
-      image: 'kim.webp',
+      image: kim,
       role: 'STATUSES.TITLE_VP_ENGINEERING',
     },
     {
       name: 'Jérémy La Scala',
-      image: 'jeremy.webp',
+      image: jeremy,
       role: 'STATUSES.TITLE_VP_OUTREACH',
     },
     {
       name: 'Sandy Ingram',
-      image: 'sandy.webp',
+      image: sandy,
       role: 'STATUSES.TITLE_VP_INNOVATION',
     },
     {
       name: 'Basile Spaenlehauer',
-      image: 'basile.webp',
+      image: basile,
       role: 'STATUSES.TITLE_VP_TECHNOLOGY',
     },
     {
       name: 'Michele Notari',
-      image: 'michele.webp',
+      image: michele,
       role: 'STATUSES.TITLE_VP_EDUCATION_AND_CONTENT',
     },
     {
       name: 'Hagop Taminian',
-      image: 'hagop.webp',
+      image: hagop,
       role: 'STATUSES.TITLE_SOFTWARE_ENGINEER',
     },
     {
       name: 'Philippe Kobel',
-      image: 'philippe.webp',
+      image: philippe,
       role: 'STATUSES.TITLE_AMBASSADOR',
     },
   ] as const;
@@ -94,7 +104,7 @@ function TeamMembers() {
                   height: '100%',
                   objectFit: 'cover',
                 }}
-                src={`/team/${image}`}
+                src={image}
                 alt={name}
               />
             </Box>

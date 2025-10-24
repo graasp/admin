@@ -21,12 +21,14 @@ defmodule AdminWeb.Router do
     pipe_through :api
 
     get "/up", HealthController, :up
+    # alias route does the same as "/up"
+    get "/health", HealthController, :up
   end
 
   scope "/", AdminWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    get "/", LandingController, :home
   end
 
   # Serve the static react app assets for the client SPA
@@ -36,11 +38,6 @@ defmodule AdminWeb.Router do
     get "/", ClientController, :index
     get "/*path", ClientController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", AdminWeb do
-  #   pipe_through :api
-  # end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:admin, :dev_routes) do
@@ -63,8 +60,7 @@ defmodule AdminWeb.Router do
     end
   end
 
-  ## Authentication routes
-
+  ## Authentication LV routes
   scope "/", AdminWeb do
     pipe_through [:browser, :require_authenticated_user]
 
@@ -108,6 +104,7 @@ defmodule AdminWeb.Router do
     post "/users/update-password", UserSessionController, :update_password
   end
 
+  ## Authentication related routes
   scope "/", AdminWeb do
     pipe_through [:browser]
 
@@ -123,10 +120,11 @@ defmodule AdminWeb.Router do
     delete "/users/log-out", UserSessionController, :delete
   end
 
+  ## Authenticated controller routes
   scope "/", AdminWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    get "/dashboard", PageController, :dashboard
+    get "/dashboard", AdminController, :dashboard
     resources "/maintenance", PlannedMaintenanceController
     get "/users/:id", UserController, :show
 
