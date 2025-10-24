@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import type { JSX, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Stack } from '@mui/material';
@@ -21,7 +21,7 @@ import { PlatformContent } from './leftContent/PlatformContent';
 import { styledBox } from './styles';
 
 type Props = {
-  children: JSX.Element | JSX.Element[];
+  children: ReactNode;
 };
 
 export function LeftContentContainer({

@@ -36,8 +36,8 @@ RUN pnpm install --frozen-lockfile
 
 # Copy the rest of the SPA sources and build
 COPY frontend ./
-# Change this build command to your SPA build script name if different
-# It must output production-ready static files
+# TODO: remove this when not using the url inside envs
+ENV VITE_GRAASP_H5P_INTEGRATION_URL=https://example.com
 RUN pnpm run build
 
 

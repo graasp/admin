@@ -8,11 +8,7 @@ import {
   useMemo,
 } from 'react';
 
-import {
-  AccountType,
-  DiscriminatedItem,
-  getCurrentAccountLang,
-} from '@graasp/sdk';
+import { AccountType } from '@graasp/sdk';
 
 import * as Sentry from '@sentry/react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -35,14 +31,14 @@ export type AuthenticatedMember = {
   name: string;
   id: string;
   lang: string;
-  type: AccountType.Individual;
+  type: 'individual';
 };
 export type AuthenticatedGuest = {
   name: string;
   id: string;
   lang: string;
-  type: AccountType.Guest;
-  item: DiscriminatedItem;
+  type: 'guest';
+  item: { id: string; name: string; path: string };
 };
 export type AuthenticatedUser = AuthenticatedMember | AuthenticatedGuest;
 type AuthContextLoggedMember = {
@@ -104,10 +100,7 @@ export function AuthProvider({
 
   useEffect(() => {
     if (currentMember) {
-      LocalStorage.setItem(
-        'i18nextLng',
-        getCurrentAccountLang(currentMember, DEFAULT_LANG),
-      );
+      LocalStorage.setItem('i18nextLng', currentMember.lang || DEFAULT_LANG);
     } else {
       LocalStorage.removeItem('i18nextLng');
     }
@@ -123,8 +116,8 @@ export function AuthProvider({
           user: {
             name: currentMember.name,
             id: currentMember.id,
-            lang: getCurrentAccountLang(currentMember, DEFAULT_LANG),
-            type: AccountType.Individual as const,
+            lang: currentMember.lang || DEFAULT_LANG,
+            type: 'individual' as const,
           },
           logout,
           login: null,
@@ -135,8 +128,8 @@ export function AuthProvider({
           user: {
             name: currentMember.name,
             id: currentMember.id,
-            lang: getCurrentAccountLang(currentMember, DEFAULT_LANG),
-            type: AccountType.Guest as const,
+            lang: currentMember.lang || DEFAULT_LANG,
+            type: 'guest' as const,
             item: currentMember.itemLoginSchema.item,
           },
           logout,

@@ -16,16 +16,17 @@ defmodule Mix.Tasks.Webapp do
 
     Logger.info("⚙️  - Compiling React frontend")
 
-    with {_, 0} <- System.cmd("pnpm", ["run", "build"], cd: "./frontend") do
-      Logger.info("🚛 - Moving dist folder to Phoenix at #{@public_path}")
+    case System.cmd("pnpm", ["run", "build"], cd: "./frontend") do
+      {:ok, 0} ->
+        Logger.info("🚛 - Moving dist folder to Phoenix at #{@public_path}")
 
-      # Non-fatal cleanup/copy; if these fail we still consider the build successful.
-      File.rm_rf(@public_path)
-      File.cp_r(Path.join("./frontend", "dist"), @public_path)
+        # Non-fatal cleanup/copy; if these fail we still consider the build successful.
+        File.rm_rf(@public_path)
+        File.cp_r(Path.join("./frontend", "dist"), @public_path)
 
-      Logger.info("⚛️  - React frontend ready.")
-    else
-      {_output, exit_code} ->
+        Logger.info("⚛️  - React frontend ready.")
+
+      {_, exit_code} ->
         Logger.error("Build failed with exit code #{exit_code}")
 
         # Halt the mix task to indicate failure of the build step.

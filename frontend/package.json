@@ -201,9 +201,6 @@
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "3.2.4"
   },
-  "volta": {
-    "node": "22.16.0"
-  },
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"

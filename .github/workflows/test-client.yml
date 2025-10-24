@@ -77,7 +77,7 @@ jobs:
           component: true
           browser: chrome
           quiet: true
-          config-file: cypress.config.ts
+          config-file: frontend/cypress.config.ts
         env:
           VITE_PORT: ${{ vars.VITE_PORT }}
           VITE_VERSION: ${{ vars.VITE_VERSION }}
@@ -95,7 +95,7 @@ jobs:
           start: pnpm preview:test
           browser: chrome
           quiet: true
-          config-file: cypress.config.ts
+          config-file: frontend/cypress.config.ts
         env:
           VITE_PORT: ${{ vars.VITE_PORT }}
           VITE_VERSION: ${{ vars.VITE_VERSION }}
@@ -111,7 +111,7 @@ jobs:
         if: failure()
         with:
           name: cypress-screenshots
-          path: cypress/screenshots
+          path: frontend/cypress/screenshots
 
       - name: coverage report
-        run: npx nyc report --reporter=text-summary
+        run: mise run fe-coverage-report

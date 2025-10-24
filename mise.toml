@@ -52,6 +52,12 @@ dir = "frontend"
 run = 'pnpm test:unit'
 depends = ['playwright-install']
 
+[tasks.fe-coverage-report]
+description = "Generate frontend coverage report"
+dir = "frontend"
+run = 'npx nyc report --reporter=text-summary'
+depends = ['pnpm-install']
+
 [tasks.log]
 run = '''
 aws logs tail '/ecs/admin' --follow --profile $1

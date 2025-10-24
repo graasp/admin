@@ -1010,7 +1010,7 @@ export type GetApiWsResponses = {
     200: unknown;
 };
 
-export type GetApiMembersActionsData = {
+export type GetMembersActionsData = {
     body?: never;
     path?: never;
     query?: {
@@ -1020,16 +1020,16 @@ export type GetApiMembersActionsData = {
     url: '/api/members/actions';
 };
 
-export type GetApiMembersActionsErrors = {
+export type GetMembersActionsErrors = {
     /**
      * Error object with useful information about the unexpected behavior that occured
      */
     '4XX': _Error;
 };
 
-export type GetApiMembersActionsError = GetApiMembersActionsErrors[keyof GetApiMembersActionsErrors];
+export type GetMembersActionsError = GetMembersActionsErrors[keyof GetMembersActionsErrors];
 
-export type GetApiMembersActionsResponses = {
+export type GetMembersActionsResponses = {
     /**
      * Default Response
      */
@@ -1038,7 +1038,7 @@ export type GetApiMembersActionsResponses = {
     }>;
 };
 
-export type GetApiMembersActionsResponse = GetApiMembersActionsResponses[keyof GetApiMembersActionsResponses];
+export type GetMembersActionsResponse = GetMembersActionsResponses[keyof GetMembersActionsResponses];
 
 export type DeleteApiMembersMembersByIdDeleteData = {
     body?: never;
