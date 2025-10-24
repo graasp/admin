@@ -10,7 +10,6 @@ import itemPublishMutations from './itemPublish.js';
 import itemValidationMutations from './itemValidation.js';
 import visibilitiesMutations from './itemVisibility.js';
 import mentionMutations from './mention.js';
-import shortLinksMutations from './shortLink.js';
 
 const configureMutations = (queryConfig: QueryClientConfig) => ({
   ...csvUserImportMutations(queryConfig),
@@ -23,7 +22,6 @@ const configureMutations = (queryConfig: QueryClientConfig) => ({
   ...itemValidationMutations(queryConfig),
   ...memberMutations(queryConfig),
   ...mentionMutations(queryConfig),
-  ...shortLinksMutations(queryConfig),
   ...visibilitiesMutations(queryConfig),
 });
 

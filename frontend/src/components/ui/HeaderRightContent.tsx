@@ -10,8 +10,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { HEADER_MEMBER_MENU_BUTTON_ID } from '@/config/selectors';
-import { updateCurrentAccountMutation } from '@/openapi/client/@tanstack/react-query.gen';
-import { memberKeys } from '@/query/keys';
+import {
+  getCurrentAccountQueryKey,
+  updateCurrentAccountMutation,
+} from '@/openapi/client/@tanstack/react-query.gen';
 import { UserPopupMenu } from '@/ui/UserPopupMenu';
 
 import { MentionButton } from '../chatbox/Mentions/MentionButton';
@@ -33,7 +35,7 @@ export function HeaderRightContent() {
     },
     onSettled: async () => {
       await queryClient.invalidateQueries({
-        queryKey: memberKeys.current().content,
+        queryKey: getCurrentAccountQueryKey(),
       });
     },
   });

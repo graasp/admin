@@ -36,7 +36,6 @@ jobs:
         run: mise run build-storybook
         env:
           VITE_GRAASP_H5P_INTEGRATION_URL: http://mock.value.com
-          VITE_GRAASP_REDIRECTION_HOST: http://go.mock.com
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

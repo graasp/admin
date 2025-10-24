@@ -2,12 +2,13 @@ import { type JSX, useState } from 'react';
 
 import { Box, Dialog, Stack } from '@mui/material';
 
-import { Context, ShortLink, appendPathToUrl } from '@graasp/sdk';
+import { Context, ShortLink } from '@graasp/sdk';
 
-import { GRAASP_REDIRECTION_HOST } from '@/config/env';
+import { useQuery } from '@tanstack/react-query';
+
 import { hooks } from '@/config/queryClient';
 import { ClientManager } from '@/lib/ClientManager';
-import { useShortLinksItem } from '@/query/hooks/shortLink';
+import { getShortLinksForItemOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 import { useLayoutContext } from '~builder/components/context/LayoutContext';
 import { randomAlias } from '~builder/utils/shortLink';
@@ -37,7 +38,9 @@ const ShortLinksRenderer = ({
   canAdminShortLink,
 }: Props): JSX.Element => {
   const { mode } = useLayoutContext();
-  const { data: apiLinks, isLoading } = useShortLinksItem(itemId);
+  const { data: apiLinks, isLoading } = useQuery(
+    getShortLinksForItemOptions({ path: { itemId } }),
+  );
   const { data: publishedEntry } = useItemPublishedInformation({ itemId });
   const [modalOpen, setModalOpen] = useState(false);
   const [isNew, setIsNew] = useState(false);
@@ -59,28 +62,29 @@ const ShortLinksRenderer = ({
         return undefined;
       }
       const clientManager = ClientManager.getInstance();
-      const url = clientManager.getItemAsURL(platform, itemId);
+      const itemUrl = clientManager.getItemAsURL(platform, itemId);
 
       // not ideal, provide a select to choose the mode?
       if (platform === Context.Builder) {
-        url.searchParams.set('mode', mode);
+        itemUrl.searchParams.set('mode', mode);
       }
 
       const shortLink = {
         alias: randomAlias(),
         platform,
-        url,
+        url: itemUrl,
         isShorten: false,
       };
 
       const apiShortLinkAlias = apiLinks?.[platform];
       if (apiShortLinkAlias) {
-        shortLink.alias = apiShortLinkAlias;
+        const { alias, url } = apiShortLinkAlias;
+        shortLink.alias = alias;
         shortLink.isShorten = true;
-        shortLink.url = appendPathToUrl({
-          baseURL: GRAASP_REDIRECTION_HOST,
-          pathname: apiShortLinkAlias,
-        });
+        const parsedURL = URL.parse(url);
+        if (parsedURL) {
+          shortLink.url = parsedURL;
+        }
       }
 
       return shortLink;

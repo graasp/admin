@@ -10,8 +10,10 @@ import { Outlet, createFileRoute } from '@tanstack/react-router';
 
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
-import { updateCurrentAccountMutation } from '@/openapi/client/@tanstack/react-query.gen';
-import { memberKeys } from '@/query/keys';
+import {
+  getCurrentAccountQueryKey,
+  updateCurrentAccountMutation,
+} from '@/openapi/client/@tanstack/react-query.gen';
 import { OnChangeLangProp } from '@/types';
 import { DEFAULT_BACKGROUND_COLOR } from '@/ui/theme';
 
@@ -38,7 +40,7 @@ function RouteComponent() {
     onSettled: async () => {
       // invalidate all queries
       await queryClient.invalidateQueries({
-        queryKey: memberKeys.current().content,
+        queryKey: getCurrentAccountQueryKey(),
       });
     },
   });

@@ -47,7 +47,6 @@ VITE_RECAPTCHA= # some value
 
 VITE_GRAASP_H5P_INTEGRATION_URL= # the origin for the h5p integration
 
-VITE_GRAASP_REDIRECTION_HOST=http://localhost:3114/redirect
 ```
 
 ## Running the project in preview mode
@@ -57,10 +56,9 @@ This mode runs the app from the static build and uses a lot less RAM compared to
 
 1. You need to have a `.env.production` file with the following content:
 
-    ```dotenv
-    VITE_GRAASP_H5P_INTEGRATION_URL=http://localhost:3000/items/h5p-assets/
-    VITE_GRAASP_REDIRECTION_HOST=http://localhost:3114/redirect
-    ```
+   ```dotenv
+   VITE_GRAASP_H5P_INTEGRATION_URL=http://localhost:3000/items/h5p-assets/
+   ```
 
 1. Build the project `pnpm build`
 1. Preview the project `pnpm preview`
@@ -76,7 +74,6 @@ Using the following command, you should be able to build an image that contains 
 docker build -t client-local \
  --build-arg VITE_GRAASP_H5P_INTEGRATION_URL=http://localhost:3000/items/h5p-integration \
  --build-arg VITE_RECAPTCHA=<recaptcha_site_key> \
- --build-arg VITE_GRAASP_REDIRECTION_HOST=http://localhost:3000/short-links \
  .
 ```
 

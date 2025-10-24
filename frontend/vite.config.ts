@@ -1,5 +1,5 @@
 /// <reference types="./src/vite-env.d.ts"/>
-import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
 import { type UserConfig, defineConfig, loadEnv } from 'vite';
 import checker from 'vite-plugin-checker';
@@ -28,7 +28,6 @@ const config = ({ mode }: { mode: string }): UserConfig => {
   // ensure required variables are present
   if (mode === 'production') {
     requireEnvVariable('VITE_GRAASP_H5P_INTEGRATION_URL');
-    requireEnvVariable('VITE_GRAASP_REDIRECTION_HOST');
   }
 
   // compute the port to use
@@ -38,7 +37,7 @@ const config = ({ mode }: { mode: string }): UserConfig => {
   const shouldOpen = BROWSER && BROWSER !== 'none';
 
   return defineConfig({
-    base: '/',
+    base: process.env.NODE_ENV === 'production' ? '/webapp/' : '/',
     server: {
       port: PORT,
       // whether we should open the url on start
@@ -65,7 +64,7 @@ const config = ({ mode }: { mode: string }): UserConfig => {
     },
 
     plugins: [
-      TanStackRouterVite(),
+      tanstackRouter({ target: 'react', autoCodeSplitting: true }),
       tsConfigPaths({
         projects: ['./tsconfig.json'],
       }),

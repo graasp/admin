@@ -2,7 +2,6 @@ import setupCoverage from '@cypress/code-coverage/task.js';
 import { defineConfig } from 'cypress';
 
 const ENV = {
-  VITE_GRAASP_REDIRECTION_HOST: process.env.VITE_GRAASP_REDIRECTION_HOST,
   VITE_GRAASP_API_HOST: process.env.VITE_GRAASP_API_HOST,
   VITE_SHOW_NOTIFICATIONS: false,
   VITE_GRAASP_LIBRARY_HOST: process.env.VITE_GRAASP_LIBRARY_HOST,

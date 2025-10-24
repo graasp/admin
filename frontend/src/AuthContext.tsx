@@ -15,16 +15,15 @@ import {
 } from '@graasp/sdk';
 
 import * as Sentry from '@sentry/react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { DEFAULT_LANG } from './config/constants';
 import { LocalStorage } from './config/localStorage';
-import { hooks } from './config/queryClient';
 import {
+  getCurrentAccountOptions,
   loginMutation,
   signOutMutation,
 } from './openapi/client/@tanstack/react-query.gen';
-import { memberKeys } from './query/keys';
 import CustomInitialLoader from './ui/CustomInitialLoader/CustomInitialLoader';
 
 type LoginInput = {
@@ -70,26 +69,31 @@ export function AuthProvider({
 }: Readonly<{
   children: ReactNode;
 }>): JSX.Element {
-  const { data: currentMember, isPending } = hooks.useCurrentMember();
+  const currentMemberOptions = getCurrentAccountOptions();
+  const { data: currentMember, isPending } = useQuery(currentMemberOptions);
   const useLogin = useMutation(loginMutation());
   const useLogout = useMutation(signOutMutation());
   const queryClient = useQueryClient();
 
-  const logout = useCallback(async () => {
-    const url = window.location.href;
-    // call the logout mutation
-    await useLogout.mutateAsync({});
-    queryClient.resetQueries();
-    queryClient.setQueryData(memberKeys.current().content, undefined);
+  const logout = useCallback(
+    async () => {
+      const url = window.location.href;
+      // call the logout mutation
+      await useLogout.mutateAsync({});
+      queryClient.resetQueries();
+      queryClient.setQueryData(currentMemberOptions.queryKey, undefined);
 
-    // unset the user in Sentry session
-    Sentry.setUser(null);
-    // redirect to auth page with url from the page that we just left.
-    const redirectionURL = new URL('/auth/login', window.location.origin);
-    redirectionURL.searchParams.set('url', url);
-    // navigate to the auth page with the right params
-    window.location.assign(redirectionURL);
-  }, [queryClient, useLogout]);
+      // unset the user in Sentry session
+      Sentry.setUser(null);
+      // redirect to auth page with url from the page that we just left.
+      const redirectionURL = new URL('/auth/login', window.location.origin);
+      redirectionURL.searchParams.set('url', url);
+      // navigate to the auth page with the right params
+      window.location.assign(redirectionURL);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [queryClient, useLogout],
+  );
 
   const login = useCallback(
     async (args: LoginInput) => {

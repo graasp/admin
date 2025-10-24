@@ -21,8 +21,10 @@ import {
   DELETE_MEMBER_DIALOG_DESCRIPTION_ID,
   DELETE_MEMBER_DIALOG_TITLE_ID,
 } from '@/config/selectors';
-import { deleteCurrentAccountMutation } from '@/openapi/client/@tanstack/react-query.gen';
-import { memberKeys } from '@/query/keys';
+import {
+  deleteCurrentAccountMutation,
+  getCurrentAccountQueryKey,
+} from '@/openapi/client/@tanstack/react-query.gen';
 
 type Props = {
   readonly closeModal: () => void;
@@ -40,7 +42,7 @@ export function DeleteMemberDialogContent({ closeModal }: Props): JSX.Element {
 
       // Update when the server confirmed the logout, instead optimistically updating the member
       // This prevents logout loop (redirect to logout -> still cookie -> logs back in)
-      queryClient.setQueryData(memberKeys.current().content, undefined);
+      queryClient.setQueryData(getCurrentAccountQueryKey(), undefined);
     },
     onError: (err) => {
       console.error(err);

@@ -9,18 +9,27 @@ defmodule Mix.Tasks.Webapp do
   @public_path "./priv/static/webapp"
 
   @shortdoc "Compile and bundle React frontend for production"
-  def run(_) do
+  def run(_args) do
     Logger.info("📦 - Installing NPM packages")
+    # Best-effort; ignore failures here
     System.cmd("pnpm", ["install", "--quiet"], cd: "./frontend")
 
     Logger.info("⚙️  - Compiling React frontend")
-    System.cmd("pnpm", ["run", "build"], cd: "./frontend")
 
-    Logger.info("🚛 - Moving dist folder to Phoenix at #{@public_path}")
-    # First clean up any stale files from previous builds if any
-    System.cmd("rm", ["-rf", @public_path])
-    System.cmd("cp", ["-R", "./frontend/dist", @public_path])
+    with {_, 0} <- System.cmd("pnpm", ["run", "build"], cd: "./frontend") do
+      Logger.info("🚛 - Moving dist folder to Phoenix at #{@public_path}")
 
-    Logger.info("⚛️  - React frontend ready.")
+      # Non-fatal cleanup/copy; if these fail we still consider the build successful.
+      File.rm_rf(@public_path)
+      File.cp_r(Path.join("./frontend", "dist"), @public_path)
+
+      Logger.info("⚛️  - React frontend ready.")
+    else
+      {_output, exit_code} ->
+        Logger.error("Build failed with exit code #{exit_code}")
+
+        # Halt the mix task to indicate failure of the build step.
+        Mix.raise("Frontend build failed (exit #{exit_code})")
+    end
   end
 end

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Alert, Box, Button, Stack, Typography } from '@mui/material';
 
 import { RecaptchaAction } from '@graasp/sdk';
 
@@ -62,6 +62,7 @@ function RouteComponent() {
 
   return (
     <LeftContentContainer>
+      {import.meta.env.DEV && <DevMailerBanner />}
       <Box maxWidth="sm" id={SUCCESS_CONTENT_ID}>
         <Stack direction="column" spacing={2}>
           <Typography
@@ -109,5 +110,16 @@ function RouteComponent() {
         </Stack>
       </Box>
     </LeftContentContainer>
+  );
+}
+
+function DevMailerBanner() {
+  return (
+    <Alert severity="info" sx={{ mb: 2 }}>
+      <Typography variant="body1">
+        In development access the mailcatcher mailbox at{' '}
+        <a href="http://localhost:1080">http://localhost:1080</a>
+      </Typography>
+    </Alert>
   );
 }

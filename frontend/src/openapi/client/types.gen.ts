@@ -586,6 +586,10 @@ export type SearchHit = {
     publicationUpdatedAt: string;
     lang: string;
     likes: number;
+    thumbnails?: {
+        small: string;
+        medium: string;
+    };
     _formatted: {
         name: string;
         description: string;
@@ -655,7 +659,7 @@ export type HealthData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/health';
+    url: '/api/health';
 };
 
 export type HealthResponses = {
@@ -667,28 +671,28 @@ export type HealthResponses = {
 
 export type HealthResponse = HealthResponses[keyof HealthResponses];
 
-export type GetStatusData = {
+export type GetApiStatusData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/status';
+    url: '/api/status';
 };
 
-export type GetStatusResponses = {
+export type GetApiStatusResponses = {
     /**
      * Default Response
      */
     200: unknown;
 };
 
-export type GetVersionData = {
+export type GetApiVersionData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/version';
+    url: '/api/version';
 };
 
-export type GetVersionResponses = {
+export type GetApiVersionResponses = {
     /**
      * Default Response
      */
@@ -699,7 +703,7 @@ export type GetNextMaintenanceData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/maintenance/next';
+    url: '/api/maintenance/next';
 };
 
 export type GetNextMaintenanceErrors = {
@@ -736,7 +740,7 @@ export type RegisterData = {
     query?: {
         lang?: string;
     };
-    url: '/register';
+    url: '/api/register';
 };
 
 export type RegisterErrors = {
@@ -765,7 +769,7 @@ export type LoginData = {
     };
     path?: never;
     query?: never;
-    url: '/login';
+    url: '/api/login';
 };
 
 export type LoginErrors = {
@@ -793,7 +797,7 @@ export type AuthenticateData = {
         t: string;
         url?: string;
     };
-    url: '/auth';
+    url: '/api/auth';
 };
 
 export type AuthenticateErrors = {
@@ -809,7 +813,7 @@ export type SignOutData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/logout';
+    url: '/api/logout';
 };
 
 export type SignOutErrors = {
@@ -840,7 +844,7 @@ export type SignInWithPasswordData = {
     query?: {
         lang?: string;
     };
-    url: '/login-password';
+    url: '/api/login-password';
 };
 
 export type SignInWithPasswordErrors = {
@@ -872,7 +876,7 @@ export type UpdatePasswordData = {
     };
     path?: never;
     query?: never;
-    url: '/password';
+    url: '/api/password';
 };
 
 export type UpdatePasswordErrors = {
@@ -903,7 +907,7 @@ export type CreatePasswordData = {
     };
     path?: never;
     query?: never;
-    url: '/password';
+    url: '/api/password';
 };
 
 export type CreatePasswordErrors = {
@@ -933,7 +937,7 @@ export type ResetPasswordData = {
     };
     path?: never;
     query?: never;
-    url: '/password/reset';
+    url: '/api/password/reset';
 };
 
 export type ResetPasswordErrors = {
@@ -957,7 +961,7 @@ export type RequestPasswordResetLinkData = {
     };
     path?: never;
     query?: never;
-    url: '/password/reset';
+    url: '/api/password/reset';
 };
 
 export type RequestPasswordResetLinkErrors = {
@@ -978,7 +982,7 @@ export type GetOwnPasswordStatusData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/members/current/password/status';
+    url: '/api/members/current/password/status';
 };
 
 export type GetOwnPasswordStatusResponses = {
@@ -992,40 +996,40 @@ export type GetOwnPasswordStatusResponses = {
 
 export type GetOwnPasswordStatusResponse = GetOwnPasswordStatusResponses[keyof GetOwnPasswordStatusResponses];
 
-export type GetWsData = {
+export type GetApiWsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/ws';
+    url: '/api/ws';
 };
 
-export type GetWsResponses = {
+export type GetApiWsResponses = {
     /**
      * Default Response
      */
     200: unknown;
 };
 
-export type GetMembersActionsData = {
+export type GetApiMembersActionsData = {
     body?: never;
     path?: never;
     query?: {
         startDate?: string;
         endDate?: string;
     };
-    url: '/members/actions';
+    url: '/api/members/actions';
 };
 
-export type GetMembersActionsErrors = {
+export type GetApiMembersActionsErrors = {
     /**
      * Error object with useful information about the unexpected behavior that occured
      */
     '4XX': _Error;
 };
 
-export type GetMembersActionsError = GetMembersActionsErrors[keyof GetMembersActionsErrors];
+export type GetApiMembersActionsError = GetApiMembersActionsErrors[keyof GetApiMembersActionsErrors];
 
-export type GetMembersActionsResponses = {
+export type GetApiMembersActionsResponses = {
     /**
      * Default Response
      */
@@ -1034,18 +1038,18 @@ export type GetMembersActionsResponses = {
     }>;
 };
 
-export type GetMembersActionsResponse = GetMembersActionsResponses[keyof GetMembersActionsResponses];
+export type GetApiMembersActionsResponse = GetApiMembersActionsResponses[keyof GetApiMembersActionsResponses];
 
-export type DeleteMembersMembersByIdDeleteData = {
+export type DeleteApiMembersMembersByIdDeleteData = {
     body?: never;
     path: {
         id: string;
     };
     query?: never;
-    url: '/members/members/{id}/delete';
+    url: '/api/members/members/{id}/delete';
 };
 
-export type DeleteMembersMembersByIdDeleteResponses = {
+export type DeleteApiMembersMembersByIdDeleteResponses = {
     /**
      * Default Response
      */
@@ -1056,7 +1060,7 @@ export type DeleteCurrentAccountData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/members/current';
+    url: '/api/members/current';
 };
 
 export type DeleteCurrentAccountErrors = {
@@ -1081,7 +1085,7 @@ export type GetCurrentAccountData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/members/current';
+    url: '/api/members/current';
 };
 
 export type GetCurrentAccountErrors = {
@@ -1112,7 +1116,7 @@ export type UpdateCurrentAccountData = {
     };
     path?: never;
     query?: never;
-    url: '/members/current';
+    url: '/api/members/current';
 };
 
 export type UpdateCurrentAccountErrors = {
@@ -1141,7 +1145,7 @@ export type GetStorageData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/members/current/storage';
+    url: '/api/members/current/storage';
 };
 
 export type GetStorageErrors = {
@@ -1178,7 +1182,7 @@ export type GetStorageFilesData = {
         page: number;
         pageSize: number;
     };
-    url: '/members/current/storage/files';
+    url: '/api/members/current/storage/files';
 };
 
 export type GetStorageFilesErrors = {
@@ -1221,7 +1225,7 @@ export type GetOneMemberData = {
         id: string;
     };
     query?: never;
-    url: '/members/{id}';
+    url: '/api/members/{id}';
 };
 
 export type GetOneMemberErrors = {
@@ -1246,7 +1250,7 @@ export type PatchChangeEmailData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/members/current/email/change';
+    url: '/api/members/current/email/change';
 };
 
 export type PatchChangeEmailErrors = {
@@ -1281,7 +1285,7 @@ export type PostChangeEmailData = {
     };
     path?: never;
     query?: never;
-    url: '/members/current/email/change';
+    url: '/api/members/current/email/change';
 };
 
 export type PostChangeEmailErrors = {
@@ -1310,21 +1314,21 @@ export type PostChangeEmailResponses = {
 
 export type PostChangeEmailResponse = PostChangeEmailResponses[keyof PostChangeEmailResponses];
 
-export type PostMembersAvatarData = {
+export type PostApiMembersAvatarData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/members/avatar';
+    url: '/api/members/avatar';
 };
 
-export type PostMembersAvatarResponses = {
+export type PostApiMembersAvatarResponses = {
     /**
      * Default Response
      */
     204: void;
 };
 
-export type PostMembersAvatarResponse = PostMembersAvatarResponses[keyof PostMembersAvatarResponses];
+export type PostApiMembersAvatarResponse = PostApiMembersAvatarResponses[keyof PostApiMembersAvatarResponses];
 
 export type DownloadAvatarData = {
     body?: never;
@@ -1333,7 +1337,7 @@ export type DownloadAvatarData = {
         size: 'small' | 'medium' | 'large' | 'original';
     };
     query?: never;
-    url: '/members/{id}/avatar/{size}';
+    url: '/api/members/{id}/avatar/{size}';
 };
 
 export type DownloadAvatarErrors = {
@@ -1366,7 +1370,7 @@ export type GetOwnProfileData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/members/profile/own';
+    url: '/api/members/profile/own';
 };
 
 export type GetOwnProfileErrors = {
@@ -1397,7 +1401,7 @@ export type GetMemberProfileData = {
         memberId: string;
     };
     query?: never;
-    url: '/members/profile/{memberId}';
+    url: '/api/members/profile/{memberId}';
 };
 
 export type GetMemberProfileErrors = {
@@ -1432,7 +1436,7 @@ export type UpdateOwnProfileData = {
     };
     path?: never;
     query?: never;
-    url: '/members/profile/';
+    url: '/api/members/profile/';
 };
 
 export type UpdateOwnProfileErrors = {
@@ -1467,7 +1471,7 @@ export type CreateOwnProfileData = {
     };
     path?: never;
     query?: never;
-    url: '/members/profile/';
+    url: '/api/members/profile/';
 };
 
 export type CreateOwnProfileErrors = {
@@ -1500,7 +1504,7 @@ export type ExportMemberDataData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/members/export-data/';
+    url: '/api/members/export-data/';
 };
 
 export type ExportMemberDataErrors = {
@@ -1525,7 +1529,7 @@ export type GetAppListData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/app-items/list';
+    url: '/api/app-items/list';
 };
 
 export type GetAppListErrors = {
@@ -1555,7 +1559,7 @@ export type GetOwnMostUsedAppsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/app-items/most-used';
+    url: '/api/app-items/most-used';
 };
 
 export type GetOwnMostUsedAppsErrors = {
@@ -1589,7 +1593,7 @@ export type GenerateAppTokenData = {
         itemId: string;
     };
     query?: never;
-    url: '/app-items/{itemId}/api-access-token';
+    url: '/api/app-items/{itemId}/api-access-token';
 };
 
 export type GenerateAppTokenErrors = {
@@ -1618,7 +1622,7 @@ export type GetAppContextData = {
         itemId: string;
     };
     query?: never;
-    url: '/app-items/{itemId}/context';
+    url: '/api/app-items/{itemId}/context';
 };
 
 export type GetAppContextResponses = {
@@ -1644,7 +1648,7 @@ export type GetAppDataForAppData = {
          */
         type?: string;
     };
-    url: '/app-items/{itemId}/app-data';
+    url: '/api/app-items/{itemId}/app-data';
 };
 
 export type GetAppDataForAppErrors = {
@@ -1682,7 +1686,7 @@ export type CreateAppDataData = {
         itemId: string;
     };
     query?: never;
-    url: '/app-items/{itemId}/app-data';
+    url: '/api/app-items/{itemId}/app-data';
 };
 
 export type CreateAppDataErrors = {
@@ -1710,7 +1714,7 @@ export type DeleteAppDataData = {
         id: string;
     };
     query?: never;
-    url: '/app-items/{itemId}/app-data/{id}';
+    url: '/api/app-items/{itemId}/app-data/{id}';
 };
 
 export type DeleteAppDataErrors = {
@@ -1742,7 +1746,7 @@ export type UpdateAppDataData = {
         id: string;
     };
     query?: never;
-    url: '/app-items/{itemId}/app-data/{id}';
+    url: '/api/app-items/{itemId}/app-data/{id}';
 };
 
 export type UpdateAppDataErrors = {
@@ -1767,7 +1771,7 @@ export type CreateAppDataFileData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/app-items/app-data/upload';
+    url: '/api/app-items/app-data/upload';
 };
 
 export type CreateAppDataFileErrors = {
@@ -1799,7 +1803,7 @@ export type DownloadAppDataFileData = {
     query: {
         replyUrl: boolean;
     };
-    url: '/app-items/app-data/{id}/download';
+    url: '/api/app-items/app-data/{id}/download';
 };
 
 export type DownloadAppDataFileErrors = {
@@ -1829,7 +1833,7 @@ export type GetAppActionsForAppData = {
         memberId: string;
         accountId: string;
     };
-    url: '/app-items/{itemId}/app-action';
+    url: '/api/app-items/{itemId}/app-action';
 };
 
 export type GetAppActionsForAppErrors = {
@@ -1861,7 +1865,7 @@ export type CreateAppActionData = {
         itemId: string;
     };
     query?: never;
-    url: '/app-items/{itemId}/app-action';
+    url: '/api/app-items/{itemId}/app-action';
 };
 
 export type CreateAppActionErrors = {
@@ -1893,7 +1897,7 @@ export type GetAppSettingsForAppData = {
          */
         name?: string;
     };
-    url: '/app-items/{itemId}/app-settings';
+    url: '/api/app-items/{itemId}/app-settings';
 };
 
 export type GetAppSettingsForAppErrors = {
@@ -1925,7 +1929,7 @@ export type CreateAppSettingData = {
         itemId: string;
     };
     query?: never;
-    url: '/app-items/{itemId}/app-settings';
+    url: '/api/app-items/{itemId}/app-settings';
 };
 
 export type CreateAppSettingErrors = {
@@ -1953,7 +1957,7 @@ export type DeleteAppSettingData = {
         id: string;
     };
     query?: never;
-    url: '/app-items/{itemId}/app-settings/{id}';
+    url: '/api/app-items/{itemId}/app-settings/{id}';
 };
 
 export type DeleteAppSettingErrors = {
@@ -1985,7 +1989,7 @@ export type UpdateAppSettingData = {
         id: string;
     };
     query?: never;
-    url: '/app-items/{itemId}/app-settings/{id}';
+    url: '/api/app-items/{itemId}/app-settings/{id}';
 };
 
 export type UpdateAppSettingErrors = {
@@ -2010,7 +2014,7 @@ export type CreateAppSettingFileData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/app-items/app-settings/upload';
+    url: '/api/app-items/app-settings/upload';
 };
 
 export type CreateAppSettingFileErrors = {
@@ -2042,7 +2046,7 @@ export type DownloadAppSettingFileData = {
     query: {
         replyUrl: boolean;
     };
-    url: '/app-items/app-settings/{id}/download';
+    url: '/api/app-items/app-settings/{id}/download';
 };
 
 export type DownloadAppSettingFileErrors = {
@@ -2072,10 +2076,10 @@ export type CreateChatbotCompletionPromptData = {
         itemId: string;
     };
     query?: {
-        gptVersion?: 'gpt-4' | 'gpt-3.5-turbo-0125' | 'gpt-4-turbo' | 'gpt-4o' | 'gpt-4o-mini' | 'gpt-4.1-nano';
+        gptVersion?: 'gpt-4' | 'gpt-3.5-turbo-0125' | 'gpt-4-turbo' | 'gpt-4o' | 'gpt-4o-mini' | 'gpt-4.1-nano' | 'gpt-5' | 'gpt-5-nano' | 'gpt-5-mini';
         temperature?: number;
     };
-    url: '/app-items/{itemId}/chat-bot';
+    url: '/api/app-items/{itemId}/chat-bot';
 };
 
 export type CreateChatbotCompletionPromptErrors = {
@@ -2105,7 +2109,7 @@ export type GetItemLoginSchemaTypeData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/login-schema-type';
+    url: '/api/items/{id}/login-schema-type';
 };
 
 export type GetItemLoginSchemaTypeErrors = {
@@ -2136,7 +2140,7 @@ export type DeleteItemLoginSchemaData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/login-schema';
+    url: '/api/items/{id}/login-schema';
 };
 
 export type DeleteItemLoginSchemaErrors = {
@@ -2165,7 +2169,7 @@ export type GetItemLoginSchemaData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/login-schema';
+    url: '/api/items/{id}/login-schema';
 };
 
 export type GetItemLoginSchemaErrors = {
@@ -2213,7 +2217,7 @@ export type UpdateItemLoginSchemaData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/login-schema';
+    url: '/api/items/{id}/login-schema';
 };
 
 export type UpdateItemLoginSchemaErrors = {
@@ -2245,7 +2249,7 @@ export type LoginOrRegisterAsGuestData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/login';
+    url: '/api/items/{id}/login';
 };
 
 export type LoginOrRegisterAsGuestErrors = {
@@ -2274,7 +2278,7 @@ export type GetOwnBookmarkData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/items/bookmarks';
+    url: '/api/items/bookmarks';
 };
 
 export type GetOwnBookmarkErrors = {
@@ -2301,7 +2305,7 @@ export type DeleteBookmarkData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/bookmarks/{itemId}';
+    url: '/api/items/bookmarks/{itemId}';
 };
 
 export type DeleteBookmarkErrors = {
@@ -2328,7 +2332,7 @@ export type CreateBookmarkData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/bookmarks/{itemId}';
+    url: '/api/items/bookmarks/{itemId}';
 };
 
 export type CreateBookmarkErrors = {
@@ -2355,7 +2359,7 @@ export type GetCollectionsForMemberData = {
         memberId: string;
     };
     query?: never;
-    url: '/items/collections/members/{memberId}';
+    url: '/api/items/collections/members/{memberId}';
 };
 
 export type GetCollectionsForMemberErrors = {
@@ -2382,7 +2386,7 @@ export type GetCollectionInformationsData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/collections/{itemId}/informations';
+    url: '/api/items/collections/{itemId}/informations';
 };
 
 export type GetCollectionInformationsErrors = {
@@ -2415,7 +2419,7 @@ export type PublishItemData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/collections/{itemId}/publish';
+    url: '/api/items/collections/{itemId}/publish';
 };
 
 export type PublishItemErrors = {
@@ -2442,7 +2446,7 @@ export type UnpublishItemData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/collections/{itemId}/unpublish';
+    url: '/api/items/collections/{itemId}/unpublish';
 };
 
 export type UnpublishItemErrors = {
@@ -2485,7 +2489,7 @@ export type CollectionSearchData = {
     };
     path?: never;
     query?: never;
-    url: '/items/collections/search';
+    url: '/api/items/collections/search';
 };
 
 export type CollectionSearchErrors = {
@@ -2528,7 +2532,7 @@ export type GetFacetsForNameData = {
     query: {
         facetName: 'isPublishedRoot' | 'isHidden' | 'lang' | 'likes' | 'creator' | 'level' | 'discipline' | 'resource-type';
     };
-    url: '/items/collections/facets';
+    url: '/api/items/collections/facets';
 };
 
 export type GetFacetsForNameErrors = {
@@ -2557,7 +2561,7 @@ export type GetFeaturedCollectionsData = {
     query?: {
         limit?: number;
     };
-    url: '/items/collections/featured';
+    url: '/api/items/collections/featured';
 };
 
 export type GetFeaturedCollectionsErrors = {
@@ -2590,7 +2594,7 @@ export type GetMostLikedCollectionsData = {
     query?: {
         limit?: number;
     };
-    url: '/items/collections/liked';
+    url: '/api/items/collections/liked';
 };
 
 export type GetMostLikedCollectionsErrors = {
@@ -2623,7 +2627,7 @@ export type GetMostRecentCollectionsData = {
     query?: {
         limit?: number;
     };
-    url: '/items/collections/recent';
+    url: '/api/items/collections/recent';
 };
 
 export type GetMostRecentCollectionsErrors = {
@@ -2650,14 +2654,14 @@ export type GetMostRecentCollectionsResponses = {
 
 export type GetMostRecentCollectionsResponse = GetMostRecentCollectionsResponses[keyof GetMostRecentCollectionsResponses];
 
-export type GetItemsCollectionsSearchRebuildData = {
+export type GetApiItemsCollectionsSearchRebuildData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/items/collections/search/rebuild';
+    url: '/api/items/collections/search/rebuild';
 };
 
-export type GetItemsCollectionsSearchRebuildResponses = {
+export type GetApiItemsCollectionsSearchRebuildResponses = {
     /**
      * Default Response
      */
@@ -2670,7 +2674,7 @@ export type GetItemMembershipsForItemData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/memberships';
+    url: '/api/items/{itemId}/memberships';
 };
 
 export type GetItemMembershipsForItemErrors = {
@@ -2700,7 +2704,7 @@ export type CreateItemMembershipData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/memberships';
+    url: '/api/items/{itemId}/memberships';
 };
 
 export type CreateItemMembershipErrors = {
@@ -2730,7 +2734,7 @@ export type DeleteItemMembershipData = {
     query?: {
         purgeBelow?: boolean;
     };
-    url: '/items/{itemId}/memberships/{id}';
+    url: '/api/items/{itemId}/memberships/{id}';
 };
 
 export type DeleteItemMembershipErrors = {
@@ -2760,7 +2764,7 @@ export type UpdateItemMembershipData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/memberships/{id}';
+    url: '/api/items/{itemId}/memberships/{id}';
 };
 
 export type UpdateItemMembershipErrors = {
@@ -2787,7 +2791,7 @@ export type GetMembershipRequestsByItemIdData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/memberships/requests';
+    url: '/api/items/{itemId}/memberships/requests';
 };
 
 export type GetMembershipRequestsByItemIdResponses = {
@@ -2805,7 +2809,7 @@ export type CreateMembershipRequestData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/memberships/requests';
+    url: '/api/items/{itemId}/memberships/requests';
 };
 
 export type CreateMembershipRequestResponses = {
@@ -2823,7 +2827,7 @@ export type GetOwnMembershipRequestByItemIdData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/memberships/requests/own';
+    url: '/api/items/{itemId}/memberships/requests/own';
 };
 
 export type GetOwnMembershipRequestByItemIdResponses = {
@@ -2844,7 +2848,7 @@ export type DeleteMembershipRequestData = {
         memberId: string;
     };
     query?: never;
-    url: '/items/{itemId}/memberships/requests/{memberId}';
+    url: '/api/items/{itemId}/memberships/requests/{memberId}';
 };
 
 export type DeleteMembershipRequestResponses = {
@@ -2867,7 +2871,7 @@ export type CreateShortcutData = {
         parentId?: string;
         previousItemId?: string;
     };
-    url: '/items/shortcuts';
+    url: '/api/items/shortcuts';
 };
 
 export type CreateShortcutErrors = {
@@ -2941,7 +2945,7 @@ export type UpdateShortcutData = {
         id: string;
     };
     query?: never;
-    url: '/items/shortcuts/{id}';
+    url: '/api/items/shortcuts/{id}';
 };
 
 export type UpdateShortcutErrors = {
@@ -3006,32 +3010,32 @@ export type UpdateShortcutResponses = {
 
 export type UpdateShortcutResponse = UpdateShortcutResponses[keyof UpdateShortcutResponses];
 
-export type DeleteItemsByIdThumbnailsData = {
+export type DeleteApiItemsByIdThumbnailsData = {
     body?: never;
     path: {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/thumbnails';
+    url: '/api/items/{id}/thumbnails';
 };
 
-export type DeleteItemsByIdThumbnailsResponses = {
+export type DeleteApiItemsByIdThumbnailsResponses = {
     /**
      * Default Response
      */
     200: unknown;
 };
 
-export type PostItemsByIdThumbnailsData = {
+export type PostApiItemsByIdThumbnailsData = {
     body?: never;
     path: {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/thumbnails';
+    url: '/api/items/{id}/thumbnails';
 };
 
-export type PostItemsByIdThumbnailsErrors = {
+export type PostApiItemsByIdThumbnailsErrors = {
     /**
      * Error object with useful information about the unexpected behavior that occured
      */
@@ -3042,16 +3046,16 @@ export type PostItemsByIdThumbnailsErrors = {
     '4XX': _Error;
 };
 
-export type PostItemsByIdThumbnailsError = PostItemsByIdThumbnailsErrors[keyof PostItemsByIdThumbnailsErrors];
+export type PostApiItemsByIdThumbnailsError = PostApiItemsByIdThumbnailsErrors[keyof PostApiItemsByIdThumbnailsErrors];
 
-export type PostItemsByIdThumbnailsResponses = {
+export type PostApiItemsByIdThumbnailsResponses = {
     /**
      * Successful Response
      */
     204: void;
 };
 
-export type PostItemsByIdThumbnailsResponse = PostItemsByIdThumbnailsResponses[keyof PostItemsByIdThumbnailsResponses];
+export type PostApiItemsByIdThumbnailsResponse = PostApiItemsByIdThumbnailsResponses[keyof PostApiItemsByIdThumbnailsResponses];
 
 export type DownloadItemThumbnailData = {
     body?: never;
@@ -3060,7 +3064,7 @@ export type DownloadItemThumbnailData = {
         size: 'small' | 'medium' | 'large' | 'original';
     };
     query?: never;
-    url: '/items/{id}/thumbnails/{size}';
+    url: '/api/items/{id}/thumbnails/{size}';
 };
 
 export type DownloadItemThumbnailErrors = {
@@ -3098,7 +3102,7 @@ export type UploadFileData = {
          */
         previousItemId?: string;
     };
-    url: '/items/upload';
+    url: '/api/items/upload';
 };
 
 export type UploadFileErrors = {
@@ -3125,7 +3129,7 @@ export type GetUrlData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/download';
+    url: '/api/items/{id}/download';
 };
 
 export type GetUrlErrors = {
@@ -3187,7 +3191,7 @@ export type UpdateFileData = {
         id: string;
     };
     query?: never;
-    url: '/items/files/{id}';
+    url: '/api/items/files/{id}';
 };
 
 export type UpdateFileErrors = {
@@ -3213,7 +3217,7 @@ export type DeleteVisibilityData = {
         type: 'public' | 'hidden';
     };
     query?: never;
-    url: '/items/{itemId}/visibilities/{type}';
+    url: '/api/items/{itemId}/visibilities/{type}';
 };
 
 export type DeleteVisibilityErrors = {
@@ -3241,7 +3245,7 @@ export type CreateVisibilityData = {
         type: 'public' | 'hidden';
     };
     query?: never;
-    url: '/items/{itemId}/visibilities/{type}';
+    url: '/api/items/{itemId}/visibilities/{type}';
 };
 
 export type CreateVisibilityErrors = {
@@ -3301,7 +3305,7 @@ export type CreateFolderData = {
         parentId?: string;
         previousItemId?: string;
     };
-    url: '/items/folders';
+    url: '/api/items/folders';
 };
 
 export type CreateFolderErrors = {
@@ -3403,7 +3407,7 @@ export type UpdateFolderData = {
         id: string;
     };
     query?: never;
-    url: '/items/folders/{id}';
+    url: '/api/items/folders/{id}';
 };
 
 export type UpdateFolderErrors = {
@@ -3474,7 +3478,7 @@ export type CreateFolderWithThumbnailData = {
     query?: {
         parentId?: string;
     };
-    url: '/items/folders-with-thumbnail';
+    url: '/api/items/folders-with-thumbnail';
 };
 
 export type CreateFolderWithThumbnailErrors = {
@@ -3579,7 +3583,7 @@ export type CreateAppData = {
         parentId?: string;
         previousItemId?: string;
     };
-    url: '/items/apps';
+    url: '/api/items/apps';
 };
 
 export type CreateAppErrors = {
@@ -3682,7 +3686,7 @@ export type UpdateAppData = {
         id: string;
     };
     query?: never;
-    url: '/items/apps/{id}';
+    url: '/api/items/apps/{id}';
 };
 
 export type UpdateAppErrors = {
@@ -3754,7 +3758,7 @@ export type DeleteAliasData = {
         alias: string;
     };
     query?: never;
-    url: '/items/short-links/{alias}';
+    url: '/api/items/short-links/{alias}';
 };
 
 export type DeleteAliasErrors = {
@@ -3785,7 +3789,7 @@ export type GetShortLinkRedirectionData = {
         alias: string;
     };
     query?: never;
-    url: '/items/short-links/{alias}';
+    url: '/api/items/short-links/{alias}';
 };
 
 export type GetShortLinkRedirectionErrors = {
@@ -3805,7 +3809,7 @@ export type UpdateShortLinkData = {
         alias: string;
     };
     query?: never;
-    url: '/items/short-links/{alias}';
+    url: '/api/items/short-links/{alias}';
 };
 
 export type UpdateShortLinkErrors = {
@@ -3836,7 +3840,7 @@ export type GetShortLinkAvailabilityData = {
         alias: string;
     };
     query?: never;
-    url: '/items/short-links/available/{alias}';
+    url: '/api/items/short-links/available/{alias}';
 };
 
 export type GetShortLinkAvailabilityErrors = {
@@ -3865,7 +3869,7 @@ export type GetShortLinksForItemData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/short-links/list/{itemId}';
+    url: '/api/items/short-links/list/{itemId}';
 };
 
 export type GetShortLinksForItemErrors = {
@@ -3882,9 +3886,18 @@ export type GetShortLinksForItemResponses = {
      * Default Response
      */
     200: {
-        builder?: string;
-        player?: string;
-        library?: string;
+        builder?: {
+            alias: string;
+            url: string;
+        };
+        player?: {
+            alias: string;
+            url: string;
+        };
+        library?: {
+            alias: string;
+            url: string;
+        };
     } | {
         [key: string]: never;
     };
@@ -3900,7 +3913,7 @@ export type CreateShortLinkData = {
     };
     path?: never;
     query?: never;
-    url: '/items/short-links/';
+    url: '/api/items/short-links/';
 };
 
 export type CreateShortLinkErrors = {
@@ -3925,30 +3938,30 @@ export type CreateShortLinkResponses = {
 
 export type CreateShortLinkResponse = CreateShortLinkResponses[keyof CreateShortLinkResponses];
 
-export type GetItemsPublicationByItemIdStatusData = {
+export type GetApiItemsPublicationByItemIdStatusData = {
     body?: never;
     path: {
         itemId: string;
     };
     query?: never;
-    url: '/items/publication/{itemId}/status';
+    url: '/api/items/publication/{itemId}/status';
 };
 
-export type GetItemsPublicationByItemIdStatusResponses = {
+export type GetApiItemsPublicationByItemIdStatusResponses = {
     /**
      * Default Response
      */
     200: unknown;
 };
 
-export type GetItemsH5pAssetsIntegrationHtmlData = {
+export type GetApiItemsH5pAssetsIntegrationHtmlData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/items/h5p-assets/integration.html';
+    url: '/api/items/h5p-assets/integration.html';
 };
 
-export type GetItemsH5pAssetsIntegrationHtmlResponses = {
+export type GetApiItemsH5pAssetsIntegrationHtmlResponses = {
     /**
      * Default Response
      */
@@ -3968,7 +3981,7 @@ export type ImportH5pData = {
          */
         previousItemId?: string;
     };
-    url: '/items/h5p-import';
+    url: '/api/items/h5p-import';
 };
 
 export type ImportH5pErrors = {
@@ -3998,7 +4011,7 @@ export type CreateEtherpadData = {
     query?: {
         parentId?: string;
     };
-    url: '/items/etherpad/create';
+    url: '/api/items/etherpad/create';
 };
 
 export type CreateEtherpadErrors = {
@@ -4057,7 +4070,7 @@ export type UpdateEtherpadData = {
         id: string;
     };
     query?: never;
-    url: '/items/etherpad/{id}';
+    url: '/api/items/etherpad/{id}';
 };
 
 export type UpdateEtherpadErrors = {
@@ -4086,7 +4099,7 @@ export type GetEtherpadFromItemData = {
     query?: {
         mode?: 'read' | 'write';
     };
-    url: '/items/etherpad/view/{itemId}';
+    url: '/api/items/etherpad/view/{itemId}';
 };
 
 export type GetEtherpadFromItemErrors = {
@@ -4118,7 +4131,7 @@ export type ImportZipData = {
          */
         parentId?: string;
     };
-    url: '/items/zip-import';
+    url: '/api/items/zip-import';
 };
 
 export type ImportZipErrors = {
@@ -4143,7 +4156,7 @@ export type DownloadFileData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/download-file';
+    url: '/api/items/{itemId}/download-file';
 };
 
 export type DownloadFileErrors = {
@@ -4168,7 +4181,7 @@ export type ExportZipData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/export';
+    url: '/api/items/{itemId}/export';
 };
 
 export type ExportZipErrors = {
@@ -4193,7 +4206,7 @@ export type GraaspZipExportData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/graasp-export';
+    url: '/api/items/{itemId}/graasp-export';
 };
 
 export type GraaspZipExportErrors = {
@@ -4218,7 +4231,7 @@ export type GetLinkMetadataData = {
     query: {
         link: string;
     };
-    url: '/items/embedded-links/metadata';
+    url: '/api/items/embedded-links/metadata';
 };
 
 export type GetLinkMetadataErrors = {
@@ -4288,7 +4301,7 @@ export type CreateLinkData = {
         parentId?: string;
         previousItemId?: string;
     };
-    url: '/items/embedded-links/';
+    url: '/api/items/embedded-links/';
 };
 
 export type CreateLinkErrors = {
@@ -4398,7 +4411,7 @@ export type UpdateLinkData = {
         id: string;
     };
     query?: never;
-    url: '/items/embedded-links/{id}';
+    url: '/api/items/embedded-links/{id}';
 };
 
 export type UpdateLinkErrors = {
@@ -4510,7 +4523,7 @@ export type CreateDocumentData = {
         parentId?: string;
         previousItemId?: string;
     };
-    url: '/items/documents/';
+    url: '/api/items/documents/';
 };
 
 export type CreateDocumentErrors = {
@@ -4618,7 +4631,7 @@ export type UpdateDocumentData = {
         id: string;
     };
     query?: never;
-    url: '/items/documents/{id}';
+    url: '/api/items/documents/{id}';
 };
 
 export type UpdateDocumentErrors = {
@@ -4692,7 +4705,7 @@ export type GetInvitationByIdData = {
         id: string;
     };
     query?: never;
-    url: '/items/invitations/{id}';
+    url: '/api/items/invitations/{id}';
 };
 
 export type GetInvitationByIdErrors = {
@@ -4724,7 +4737,7 @@ export type CreateInvitationData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/invite';
+    url: '/api/items/{id}/invite';
 };
 
 export type CreateInvitationErrors = {
@@ -4755,7 +4768,7 @@ export type GetInvitationForItemData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/invitations';
+    url: '/api/items/{id}/invitations';
 };
 
 export type GetInvitationForItemErrors = {
@@ -4783,7 +4796,7 @@ export type DeleteInvitationData = {
         invitationId: string;
     };
     query?: never;
-    url: '/items/{id}/invitations/{invitationId}';
+    url: '/api/items/{id}/invitations/{invitationId}';
 };
 
 export type DeleteInvitationErrors = {
@@ -4814,7 +4827,7 @@ export type UpdateInvitationData = {
         invitationId: string;
     };
     query?: never;
-    url: '/items/{id}/invitations/{invitationId}';
+    url: '/api/items/{id}/invitations/{invitationId}';
 };
 
 export type UpdateInvitationErrors = {
@@ -4842,7 +4855,7 @@ export type SendInvitationData = {
         invitationId: string;
     };
     query?: never;
-    url: '/items/{id}/invitations/{invitationId}/send';
+    url: '/api/items/{id}/invitations/{invitationId}/send';
 };
 
 export type SendInvitationErrors = {
@@ -4871,7 +4884,7 @@ export type InviteFromCsvWithTemplateData = {
     query: {
         templateId: string;
     };
-    url: '/items/{id}/invitations/upload-csv-template';
+    url: '/api/items/{id}/invitations/upload-csv-template';
 };
 
 export type InviteFromCsvWithTemplateErrors = {
@@ -4902,7 +4915,7 @@ export type InviteFromCsvData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/invitations/upload-csv';
+    url: '/api/items/{id}/invitations/upload-csv';
 };
 
 export type InviteFromCsvErrors = {
@@ -4929,7 +4942,7 @@ export type EnrollData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/enroll';
+    url: '/api/items/{itemId}/enroll';
 };
 
 export type EnrollResponses = {
@@ -4945,7 +4958,7 @@ export type GetFlagTypesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/items/flags';
+    url: '/api/items/flags';
 };
 
 export type GetFlagTypesErrors = {
@@ -4974,7 +4987,7 @@ export type CreateItemFlagData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/flags';
+    url: '/api/items/{itemId}/flags';
 };
 
 export type CreateItemFlagErrors = {
@@ -5002,7 +5015,7 @@ export type GetOwnRecycledItemsData = {
         page: number;
         pageSize: number;
     };
-    url: '/items/recycled';
+    url: '/api/items/recycled';
 };
 
 export type GetOwnRecycledItemsErrors = {
@@ -5035,7 +5048,7 @@ export type RecycleManyItemsData = {
     query: {
         id: Array<string>;
     };
-    url: '/items/recycle';
+    url: '/api/items/recycle';
 };
 
 export type RecycleManyItemsErrors = {
@@ -5062,7 +5075,7 @@ export type RestoreManyItemsData = {
     query: {
         id: Array<string>;
     };
-    url: '/items/restore';
+    url: '/api/items/restore';
 };
 
 export type RestoreManyItemsErrors = {
@@ -5089,7 +5102,7 @@ export type GetLatestItemValidationGroupData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/validations/latest';
+    url: '/api/items/{itemId}/validations/latest';
 };
 
 export type GetLatestItemValidationGroupErrors = {
@@ -5128,7 +5141,7 @@ export type ValidateItemData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/validate';
+    url: '/api/items/{itemId}/validate';
 };
 
 export type ValidateItemErrors = {
@@ -5153,7 +5166,7 @@ export type GetLikesForCurrentMemberData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/items/liked';
+    url: '/api/items/liked';
 };
 
 export type GetLikesForCurrentMemberErrors = {
@@ -5180,7 +5193,7 @@ export type GetLikesForItemData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/likes';
+    url: '/api/items/{itemId}/likes';
 };
 
 export type GetLikesForItemErrors = {
@@ -5207,7 +5220,7 @@ export type DeleteItemLikeData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/like';
+    url: '/api/items/{itemId}/like';
 };
 
 export type DeleteItemLikeErrors = {
@@ -5234,7 +5247,7 @@ export type CreateItemLikeData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/like';
+    url: '/api/items/{itemId}/like';
 };
 
 export type CreateItemLikeErrors = {
@@ -5259,7 +5272,7 @@ export type ClearAllMentionsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/items/mentions';
+    url: '/api/items/mentions';
 };
 
 export type ClearAllMentionsErrors = {
@@ -5284,7 +5297,7 @@ export type GetOwnMentionsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/items/mentions';
+    url: '/api/items/mentions';
 };
 
 export type GetOwnMentionsErrors = {
@@ -5311,7 +5324,7 @@ export type DeleteMentionData = {
         mentionId: string;
     };
     query?: never;
-    url: '/items/mentions/{mentionId}';
+    url: '/api/items/mentions/{mentionId}';
 };
 
 export type DeleteMentionErrors = {
@@ -5340,7 +5353,7 @@ export type PatchMentionData = {
         mentionId: string;
     };
     query?: never;
-    url: '/items/mentions/{mentionId}';
+    url: '/api/items/mentions/{mentionId}';
 };
 
 export type PatchMentionErrors = {
@@ -5367,7 +5380,7 @@ export type ClearChatMessageData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/chat';
+    url: '/api/items/{itemId}/chat';
 };
 
 export type ClearChatMessageErrors = {
@@ -5394,7 +5407,7 @@ export type GetChatData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/chat';
+    url: '/api/items/{itemId}/chat';
 };
 
 export type GetChatErrors = {
@@ -5424,7 +5437,7 @@ export type CreateChatMessageData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/chat';
+    url: '/api/items/{itemId}/chat';
 };
 
 export type CreateChatMessageErrors = {
@@ -5452,7 +5465,7 @@ export type DeleteChatMessageData = {
         messageId: string;
     };
     query?: never;
-    url: '/items/{itemId}/chat/{messageId}';
+    url: '/api/items/{itemId}/chat/{messageId}';
 };
 
 export type DeleteChatMessageErrors = {
@@ -5482,7 +5495,7 @@ export type PatchChatMessageData = {
         messageId: string;
     };
     query?: never;
-    url: '/items/{itemId}/chat/{messageId}';
+    url: '/api/items/{itemId}/chat/{messageId}';
 };
 
 export type PatchChatMessageErrors = {
@@ -5517,7 +5530,7 @@ export type PostActionData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/actions';
+    url: '/api/items/{id}/actions';
 };
 
 export type PostActionErrors = {
@@ -5549,7 +5562,7 @@ export type ExportActionsData = {
     query?: {
         format?: 'json' | 'csv';
     };
-    url: '/items/{id}/actions/export';
+    url: '/api/items/{id}/actions/export';
 };
 
 export type ExportActionsErrors = {
@@ -5579,7 +5592,7 @@ export type GetItemActionsByDayData = {
         startDate?: string;
         endDate?: string;
     };
-    url: '/items/{id}/actions/actions-by-day';
+    url: '/api/items/{id}/actions/actions-by-day';
 };
 
 export type GetItemActionsByDayErrors = {
@@ -5611,7 +5624,7 @@ export type GetItemActionsByHourData = {
         startDate?: string;
         endDate?: string;
     };
-    url: '/items/{id}/actions/actions-by-hour';
+    url: '/api/items/{id}/actions/actions-by-hour';
 };
 
 export type GetItemActionsByHourErrors = {
@@ -5643,7 +5656,7 @@ export type GetItemActionsByWeekdayData = {
         startDate?: string;
         endDate?: string;
     };
-    url: '/items/{id}/actions/actions-by-weekday';
+    url: '/api/items/{id}/actions/actions-by-weekday';
 };
 
 export type GetItemActionsByWeekdayErrors = {
@@ -5672,7 +5685,7 @@ export type DeleteGeolocationData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/geolocation';
+    url: '/api/items/{id}/geolocation';
 };
 
 export type DeleteGeolocationErrors = {
@@ -5699,7 +5712,7 @@ export type GetGeolocationByItemData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/geolocation';
+    url: '/api/items/{id}/geolocation';
 };
 
 export type GetGeolocationByItemErrors = {
@@ -5743,7 +5756,7 @@ export type PutGeolocationData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/geolocation';
+    url: '/api/items/{id}/geolocation';
 };
 
 export type PutGeolocationErrors = {
@@ -5775,7 +5788,7 @@ export type GetItemsInBoxData = {
         lng2: number;
         keywords?: Array<string>;
     };
-    url: '/items/geolocation';
+    url: '/api/items/geolocation';
 };
 
 export type GetItemsInBoxErrors = {
@@ -5814,7 +5827,7 @@ export type GeolocationReverseData = {
         lng: number;
         lang?: string;
     };
-    url: '/items/geolocation/reverse';
+    url: '/api/items/geolocation/reverse';
 };
 
 export type GeolocationReverseErrors = {
@@ -5845,7 +5858,7 @@ export type GeolocationSearchData = {
         query: string;
         lang?: string;
     };
-    url: '/items/geolocation/search';
+    url: '/api/items/geolocation/search';
 };
 
 export type GeolocationSearchErrors = {
@@ -5878,7 +5891,7 @@ export type GetTagsForItemData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/tags';
+    url: '/api/items/{itemId}/tags';
 };
 
 export type GetTagsForItemErrors = {
@@ -5912,7 +5925,7 @@ export type CreateTagForItemData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/tags';
+    url: '/api/items/{itemId}/tags';
 };
 
 export type CreateTagForItemErrors = {
@@ -5944,7 +5957,7 @@ export type DeleteTagForItemData = {
         tagId: string;
     };
     query?: never;
-    url: '/items/{itemId}/tags/{tagId}';
+    url: '/api/items/{itemId}/tags/{tagId}';
 };
 
 export type DeleteTagForItemErrors = {
@@ -6007,7 +6020,7 @@ export type CreatePageData = {
         parentId?: string;
         previousItemId?: string;
     };
-    url: '/items/pages';
+    url: '/api/items/pages';
 };
 
 export type CreatePageErrors = {
@@ -6074,7 +6087,7 @@ export type PagesWebsocketsData = {
         id: string;
     };
     query?: never;
-    url: '/items/pages/{id}/ws/read';
+    url: '/api/items/pages/{id}/ws/read';
 };
 
 export type PagesWebsocketsResponses = {
@@ -6090,7 +6103,7 @@ export type PagesWebsockets2Data = {
         id: string;
     };
     query?: never;
-    url: '/items/pages/{id}/ws';
+    url: '/api/items/pages/{id}/ws';
 };
 
 export type PagesWebsockets2Responses = {
@@ -6106,7 +6119,7 @@ export type DeleteManyItemsData = {
     query: {
         id: Array<string>;
     };
-    url: '/items/';
+    url: '/api/items/';
 };
 
 export type DeleteManyItemsErrors = {
@@ -6443,7 +6456,7 @@ export type CreateItemData = {
         parentId?: string;
         previousItemId?: string;
     };
-    url: '/items/';
+    url: '/api/items/';
 };
 
 export type CreateItemErrors = {
@@ -6470,7 +6483,7 @@ export type GetItemData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}';
+    url: '/api/items/{id}';
 };
 
 export type GetItemErrors = {
@@ -6555,7 +6568,7 @@ export type UpdateItemData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}';
+    url: '/api/items/{id}';
 };
 
 export type UpdateItemErrors = {
@@ -6589,7 +6602,7 @@ export type GetAccessibleItemsData = {
         sortBy?: 'item.type' | 'item.updated_at' | 'item.created_at' | 'item.creator.name' | 'item.name';
         ordering?: 'asc' | 'desc' | 'ASC' | 'DESC';
     };
-    url: '/items/accessible';
+    url: '/api/items/accessible';
 };
 
 export type GetAccessibleItemsErrors = {
@@ -6625,7 +6638,7 @@ export type GetChildrenData = {
         keywords?: Array<string>;
         types?: Array<'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad' | 'page'>;
     };
-    url: '/items/{id}/children';
+    url: '/api/items/{id}/children';
 };
 
 export type GetChildrenErrors = {
@@ -6655,7 +6668,7 @@ export type GetDescendantItemsData = {
         showHidden?: boolean;
         types?: Array<'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad' | 'page'>;
     };
-    url: '/items/{id}/descendants';
+    url: '/api/items/{id}/descendants';
 };
 
 export type GetDescendantItemsErrors = {
@@ -6682,7 +6695,7 @@ export type GetParentItemsData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/parents';
+    url: '/api/items/{id}/parents';
 };
 
 export type GetParentItemsErrors = {
@@ -6721,7 +6734,7 @@ export type ReorderItemData = {
         id: string;
     };
     query?: never;
-    url: '/items/{id}/reorder';
+    url: '/api/items/{id}/reorder';
 };
 
 export type ReorderItemErrors = {
@@ -6756,7 +6769,7 @@ export type MoveManyItemsData = {
          */
         id: Array<string>;
     };
-    url: '/items/move';
+    url: '/api/items/move';
 };
 
 export type MoveManyItemsErrors = {
@@ -6791,7 +6804,7 @@ export type CopyManyItemsData = {
          */
         id: Array<string>;
     };
-    url: '/items/copy';
+    url: '/api/items/copy';
 };
 
 export type CopyManyItemsErrors = {
@@ -6818,7 +6831,7 @@ export type CreateItemWithThumbnailData = {
     query?: {
         parentId?: string;
     };
-    url: '/items/with-thumbnail';
+    url: '/api/items/with-thumbnail';
 };
 
 export type CreateItemWithThumbnailErrors = {
@@ -6846,7 +6859,7 @@ export type GetCountForTagsData = {
         search: string;
         category: 'level' | 'discipline' | 'resource-type';
     };
-    url: '/tags/';
+    url: '/api/tags/';
 };
 
 export type GetCountForTagsErrors = {

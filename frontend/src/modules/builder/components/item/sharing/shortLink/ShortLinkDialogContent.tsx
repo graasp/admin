@@ -23,6 +23,7 @@ import {
 } from '@/config/selectors';
 import {
   createShortLinkMutation,
+  getShortLinksForItemOptions,
   updateShortLinkMutation,
 } from '@/openapi/client/@tanstack/react-query.gen';
 import { buildShortLinkKey, itemKeys } from '@/query/keys';
@@ -65,6 +66,9 @@ const usePutShortLink = ({
     queryClient.invalidateQueries({
       queryKey: buildShortLinkKey(initialAlias),
     });
+    queryClient.invalidateQueries(
+      getShortLinksForItemOptions({ path: { itemId } }),
+    );
   };
 
   const {

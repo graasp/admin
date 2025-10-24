@@ -2119,7 +2119,13 @@ export const mockGetShortLinksItem = (
 
       return reply(
         shortLinks.reduce<ShortLinksOfItem>((acc, s) => {
-          return { ...acc, [s.platform]: s.alias };
+          return {
+            ...acc,
+            [s.platform]: {
+              alias: s.alias,
+              url: `https://go.example.com/${s.alias}`,
+            },
+          };
         }, {}),
       );
     },

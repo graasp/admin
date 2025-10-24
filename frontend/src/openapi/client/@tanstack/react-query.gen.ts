@@ -3,8 +3,8 @@
 import { type DefaultError, type InfiniteData, infiniteQueryOptions, queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
-import { authenticate, clearAllMentions, clearChatMessage, collectionSearch, copyManyItems, createApp, createAppAction, createAppData, createAppDataFile, createAppSetting, createAppSettingFile, createBookmark, createChatbotCompletionPrompt, createChatMessage, createDocument, createEtherpad, createFolder, createFolderWithThumbnail, createInvitation, createItem, createItemFlag, createItemLike, createItemMembership, createItemWithThumbnail, createLink, createMembershipRequest, createOwnProfile, createPage, createPassword, createShortcut, createShortLink, createTagForItem, createVisibility, deleteAlias, deleteAppData, deleteAppSetting, deleteBookmark, deleteChatMessage, deleteCurrentAccount, deleteGeolocation, deleteInvitation, deleteItemLike, deleteItemLoginSchema, deleteItemMembership, deleteItemsByIdThumbnails, deleteManyItems, deleteMembershipRequest, deleteMembersMembersByIdDelete, deleteMention, deleteTagForItem, deleteVisibility, downloadAppDataFile, downloadAppSettingFile, downloadAvatar, downloadFile, downloadItemThumbnail, enroll, exportActions, exportMemberData, exportZip, generateAppToken, geolocationReverse, geolocationSearch, getAccessibleItems, getAppActionsForApp, getAppContext, getAppDataForApp, getAppList, getAppSettingsForApp, getChat, getChildren, getCollectionInformations, getCollectionsForMember, getCountForTags, getCurrentAccount, getDescendantItems, getEtherpadFromItem, getFacetsForName, getFeaturedCollections, getFlagTypes, getGeolocationByItem, getInvitationById, getInvitationForItem, getItem, getItemActionsByDay, getItemActionsByHour, getItemActionsByWeekday, getItemLoginSchema, getItemLoginSchemaType, getItemMembershipsForItem, getItemsCollectionsSearchRebuild, getItemsH5pAssetsIntegrationHtml, getItemsInBox, getItemsPublicationByItemIdStatus, getLatestItemValidationGroup, getLikesForCurrentMember, getLikesForItem, getLinkMetadata, getMemberProfile, getMembersActions, getMembershipRequestsByItemId, getMostLikedCollections, getMostRecentCollections, getNextMaintenance, getOneMember, getOwnBookmark, getOwnMembershipRequestByItemId, getOwnMentions, getOwnMostUsedApps, getOwnPasswordStatus, getOwnProfile, getOwnRecycledItems, getParentItems, getShortLinkAvailability, getShortLinkRedirection, getShortLinksForItem, getStatus, getStorage, getStorageFiles, getTagsForItem, getUrl, getVersion, getWs, graaspZipExport, health, importH5P, importZip, inviteFromCsv, inviteFromCsvWithTemplate, login, loginOrRegisterAsGuest, moveManyItems, type Options, pagesWebsockets, pagesWebsockets2, patchChangeEmail, patchChatMessage, patchMention, postAction, postChangeEmail, postItemsByIdThumbnails, postMembersAvatar, publishItem, putGeolocation, recycleManyItems, register, reorderItem, requestPasswordResetLink, resetPassword, restoreManyItems, sendInvitation, signInWithPassword, signOut, unpublishItem, updateApp, updateAppData, updateAppSetting, updateCurrentAccount, updateDocument, updateEtherpad, updateFile, updateFolder, updateInvitation, updateItem, updateItemLoginSchema, updateItemMembership, updateLink, updateOwnProfile, updatePassword, updateShortcut, updateShortLink, uploadFile, validateItem } from '../sdk.gen';
-import type { AuthenticateData, ClearAllMentionsData, ClearAllMentionsError, ClearAllMentionsResponse, ClearChatMessageData, ClearChatMessageError, ClearChatMessageResponse, CollectionSearchData, CollectionSearchError, CollectionSearchResponse, CopyManyItemsData, CopyManyItemsError, CopyManyItemsResponse, CreateAppActionData, CreateAppActionError, CreateAppActionResponse, CreateAppData, CreateAppDataData, CreateAppDataError, CreateAppDataFileData, CreateAppDataFileError, CreateAppDataFileResponse, CreateAppDataResponse, CreateAppError, CreateAppResponse, CreateAppSettingData, CreateAppSettingError, CreateAppSettingFileData, CreateAppSettingFileError, CreateAppSettingFileResponse, CreateAppSettingResponse, CreateBookmarkData, CreateBookmarkError, CreateBookmarkResponse, CreateChatbotCompletionPromptData, CreateChatbotCompletionPromptError, CreateChatbotCompletionPromptResponse, CreateChatMessageData, CreateChatMessageError, CreateChatMessageResponse, CreateDocumentData, CreateDocumentError, CreateDocumentResponse, CreateEtherpadData, CreateEtherpadError, CreateEtherpadResponse, CreateFolderData, CreateFolderError, CreateFolderResponse, CreateFolderWithThumbnailData, CreateFolderWithThumbnailError, CreateFolderWithThumbnailResponse, CreateInvitationData, CreateInvitationError, CreateInvitationResponse, CreateItemData, CreateItemError, CreateItemFlagData, CreateItemFlagError, CreateItemFlagResponse, CreateItemLikeData, CreateItemLikeError, CreateItemLikeResponse, CreateItemMembershipData, CreateItemMembershipError, CreateItemMembershipResponse, CreateItemResponse, CreateItemWithThumbnailData, CreateItemWithThumbnailError, CreateItemWithThumbnailResponse, CreateLinkData, CreateLinkError, CreateLinkResponse, CreateMembershipRequestData, CreateMembershipRequestResponse, CreateOwnProfileData, CreateOwnProfileError, CreateOwnProfileResponse, CreatePageData, CreatePageError, CreatePageResponse, CreatePasswordData, CreatePasswordError, CreatePasswordResponse, CreateShortcutData, CreateShortcutError, CreateShortcutResponse, CreateShortLinkData, CreateShortLinkError, CreateShortLinkResponse, CreateTagForItemData, CreateTagForItemError, CreateTagForItemResponse, CreateVisibilityData, CreateVisibilityError, CreateVisibilityResponse, DeleteAliasData, DeleteAliasError, DeleteAliasResponse, DeleteAppDataData, DeleteAppDataError, DeleteAppDataResponse, DeleteAppSettingData, DeleteAppSettingError, DeleteAppSettingResponse, DeleteBookmarkData, DeleteBookmarkError, DeleteBookmarkResponse, DeleteChatMessageData, DeleteChatMessageError, DeleteChatMessageResponse, DeleteCurrentAccountData, DeleteCurrentAccountError, DeleteCurrentAccountResponse, DeleteGeolocationData, DeleteGeolocationError, DeleteGeolocationResponse, DeleteInvitationData, DeleteInvitationError, DeleteInvitationResponse, DeleteItemLikeData, DeleteItemLikeError, DeleteItemLikeResponse, DeleteItemLoginSchemaData, DeleteItemLoginSchemaError, DeleteItemMembershipData, DeleteItemMembershipError, DeleteItemMembershipResponse, DeleteItemsByIdThumbnailsData, DeleteManyItemsData, DeleteManyItemsError, DeleteManyItemsResponse, DeleteMembershipRequestData, DeleteMembershipRequestResponse, DeleteMembersMembersByIdDeleteData, DeleteMentionData, DeleteMentionError, DeleteMentionResponse, DeleteTagForItemData, DeleteTagForItemError, DeleteTagForItemResponse, DeleteVisibilityData, DeleteVisibilityError, DeleteVisibilityResponse, DownloadAppDataFileData, DownloadAppSettingFileData, DownloadAvatarData, DownloadFileData, DownloadFileError, DownloadItemThumbnailData, EnrollData, EnrollResponse, ExportActionsData, ExportActionsError, ExportActionsResponse, ExportMemberDataData, ExportMemberDataError, ExportMemberDataResponse, ExportZipData, ExportZipError, GenerateAppTokenData, GenerateAppTokenError, GenerateAppTokenResponse, GeolocationReverseData, GeolocationSearchData, GetAccessibleItemsData, GetAccessibleItemsError, GetAccessibleItemsResponse, GetAppActionsForAppData, GetAppContextData, GetAppDataForAppData, GetAppListData, GetAppSettingsForAppData, GetChatData, GetChildrenData, GetCollectionInformationsData, GetCollectionsForMemberData, GetCountForTagsData, GetCurrentAccountData, GetDescendantItemsData, GetEtherpadFromItemData, GetFacetsForNameData, GetFacetsForNameError, GetFacetsForNameResponse, GetFeaturedCollectionsData, GetFlagTypesData, GetGeolocationByItemData, GetInvitationByIdData, GetInvitationForItemData, GetItemActionsByDayData, GetItemActionsByHourData, GetItemActionsByWeekdayData, GetItemData, GetItemLoginSchemaData, GetItemLoginSchemaTypeData, GetItemMembershipsForItemData, GetItemsCollectionsSearchRebuildData, GetItemsH5pAssetsIntegrationHtmlData, GetItemsInBoxData, GetItemsPublicationByItemIdStatusData, GetLatestItemValidationGroupData, GetLikesForCurrentMemberData, GetLikesForItemData, GetLinkMetadataData, GetMemberProfileData, GetMembersActionsData, GetMembershipRequestsByItemIdData, GetMostLikedCollectionsData, GetMostRecentCollectionsData, GetNextMaintenanceData, GetOneMemberData, GetOwnBookmarkData, GetOwnMembershipRequestByItemIdData, GetOwnMentionsData, GetOwnMostUsedAppsData, GetOwnPasswordStatusData, GetOwnProfileData, GetOwnRecycledItemsData, GetOwnRecycledItemsError, GetOwnRecycledItemsResponse, GetParentItemsData, GetShortLinkAvailabilityData, GetShortLinkRedirectionData, GetShortLinksForItemData, GetStatusData, GetStorageData, GetStorageFilesData, GetStorageFilesError, GetStorageFilesResponse, GetTagsForItemData, GetUrlData, GetVersionData, GetWsData, GraaspZipExportData, GraaspZipExportError, HealthData, ImportH5pData, ImportH5pError, ImportH5pResponse, ImportZipData, ImportZipError, InviteFromCsvData, InviteFromCsvError, InviteFromCsvResponse, InviteFromCsvWithTemplateData, InviteFromCsvWithTemplateError, InviteFromCsvWithTemplateResponse, LoginData, LoginError, LoginOrRegisterAsGuestData, LoginOrRegisterAsGuestError, LoginOrRegisterAsGuestResponse, LoginResponse, MoveManyItemsData, MoveManyItemsError, MoveManyItemsResponse, PagesWebsockets2Data, PagesWebsocketsData, PatchChangeEmailData, PatchChangeEmailError, PatchChangeEmailResponse, PatchChatMessageData, PatchChatMessageError, PatchChatMessageResponse, PatchMentionData, PatchMentionError, PatchMentionResponse, PostActionData, PostActionError, PostActionResponse, PostChangeEmailData, PostChangeEmailError, PostChangeEmailResponse, PostItemsByIdThumbnailsData, PostItemsByIdThumbnailsError, PostItemsByIdThumbnailsResponse, PostMembersAvatarData, PostMembersAvatarResponse, PublishItemData, PublishItemError, PublishItemResponse, PutGeolocationData, PutGeolocationError, PutGeolocationResponse, RecycleManyItemsData, RecycleManyItemsError, RecycleManyItemsResponse, RegisterData, RegisterError, RegisterResponse, ReorderItemData, ReorderItemError, ReorderItemResponse, RequestPasswordResetLinkData, ResetPasswordData, RestoreManyItemsData, RestoreManyItemsError, RestoreManyItemsResponse, SendInvitationData, SendInvitationError, SendInvitationResponse, SignInWithPasswordData, SignInWithPasswordError, SignInWithPasswordResponse, SignOutData, SignOutError, SignOutResponse, UnpublishItemData, UnpublishItemError, UnpublishItemResponse, UpdateAppData, UpdateAppDataData, UpdateAppDataError, UpdateAppDataResponse, UpdateAppError, UpdateAppResponse, UpdateAppSettingData, UpdateAppSettingError, UpdateAppSettingResponse, UpdateCurrentAccountData, UpdateCurrentAccountError, UpdateCurrentAccountResponse, UpdateDocumentData, UpdateDocumentError, UpdateDocumentResponse, UpdateEtherpadData, UpdateEtherpadError, UpdateEtherpadResponse, UpdateFileData, UpdateFileError, UpdateFolderData, UpdateFolderError, UpdateFolderResponse, UpdateInvitationData, UpdateInvitationError, UpdateInvitationResponse, UpdateItemData, UpdateItemError, UpdateItemLoginSchemaData, UpdateItemLoginSchemaError, UpdateItemMembershipData, UpdateItemMembershipError, UpdateItemMembershipResponse, UpdateItemResponse, UpdateLinkData, UpdateLinkError, UpdateLinkResponse, UpdateOwnProfileData, UpdateOwnProfileError, UpdateOwnProfileResponse, UpdatePasswordData, UpdatePasswordError, UpdatePasswordResponse, UpdateShortcutData, UpdateShortcutError, UpdateShortcutResponse, UpdateShortLinkData, UpdateShortLinkError, UpdateShortLinkResponse, UploadFileData, UploadFileError, UploadFileResponse, ValidateItemData, ValidateItemError, ValidateItemResponse } from '../types.gen';
+import { authenticate, clearAllMentions, clearChatMessage, collectionSearch, copyManyItems, createApp, createAppAction, createAppData, createAppDataFile, createAppSetting, createAppSettingFile, createBookmark, createChatbotCompletionPrompt, createChatMessage, createDocument, createEtherpad, createFolder, createFolderWithThumbnail, createInvitation, createItem, createItemFlag, createItemLike, createItemMembership, createItemWithThumbnail, createLink, createMembershipRequest, createOwnProfile, createPage, createPassword, createShortcut, createShortLink, createTagForItem, createVisibility, deleteAlias, deleteApiItemsByIdThumbnails, deleteApiMembersMembersByIdDelete, deleteAppData, deleteAppSetting, deleteBookmark, deleteChatMessage, deleteCurrentAccount, deleteGeolocation, deleteInvitation, deleteItemLike, deleteItemLoginSchema, deleteItemMembership, deleteManyItems, deleteMembershipRequest, deleteMention, deleteTagForItem, deleteVisibility, downloadAppDataFile, downloadAppSettingFile, downloadAvatar, downloadFile, downloadItemThumbnail, enroll, exportActions, exportMemberData, exportZip, generateAppToken, geolocationReverse, geolocationSearch, getAccessibleItems, getApiItemsCollectionsSearchRebuild, getApiItemsH5pAssetsIntegrationHtml, getApiItemsPublicationByItemIdStatus, getApiMembersActions, getApiStatus, getApiVersion, getApiWs, getAppActionsForApp, getAppContext, getAppDataForApp, getAppList, getAppSettingsForApp, getChat, getChildren, getCollectionInformations, getCollectionsForMember, getCountForTags, getCurrentAccount, getDescendantItems, getEtherpadFromItem, getFacetsForName, getFeaturedCollections, getFlagTypes, getGeolocationByItem, getInvitationById, getInvitationForItem, getItem, getItemActionsByDay, getItemActionsByHour, getItemActionsByWeekday, getItemLoginSchema, getItemLoginSchemaType, getItemMembershipsForItem, getItemsInBox, getLatestItemValidationGroup, getLikesForCurrentMember, getLikesForItem, getLinkMetadata, getMemberProfile, getMembershipRequestsByItemId, getMostLikedCollections, getMostRecentCollections, getNextMaintenance, getOneMember, getOwnBookmark, getOwnMembershipRequestByItemId, getOwnMentions, getOwnMostUsedApps, getOwnPasswordStatus, getOwnProfile, getOwnRecycledItems, getParentItems, getShortLinkAvailability, getShortLinkRedirection, getShortLinksForItem, getStorage, getStorageFiles, getTagsForItem, getUrl, graaspZipExport, health, importH5P, importZip, inviteFromCsv, inviteFromCsvWithTemplate, login, loginOrRegisterAsGuest, moveManyItems, type Options, pagesWebsockets, pagesWebsockets2, patchChangeEmail, patchChatMessage, patchMention, postAction, postApiItemsByIdThumbnails, postApiMembersAvatar, postChangeEmail, publishItem, putGeolocation, recycleManyItems, register, reorderItem, requestPasswordResetLink, resetPassword, restoreManyItems, sendInvitation, signInWithPassword, signOut, unpublishItem, updateApp, updateAppData, updateAppSetting, updateCurrentAccount, updateDocument, updateEtherpad, updateFile, updateFolder, updateInvitation, updateItem, updateItemLoginSchema, updateItemMembership, updateLink, updateOwnProfile, updatePassword, updateShortcut, updateShortLink, uploadFile, validateItem } from '../sdk.gen';
+import type { AuthenticateData, ClearAllMentionsData, ClearAllMentionsError, ClearAllMentionsResponse, ClearChatMessageData, ClearChatMessageError, ClearChatMessageResponse, CollectionSearchData, CollectionSearchError, CollectionSearchResponse, CopyManyItemsData, CopyManyItemsError, CopyManyItemsResponse, CreateAppActionData, CreateAppActionError, CreateAppActionResponse, CreateAppData, CreateAppDataData, CreateAppDataError, CreateAppDataFileData, CreateAppDataFileError, CreateAppDataFileResponse, CreateAppDataResponse, CreateAppError, CreateAppResponse, CreateAppSettingData, CreateAppSettingError, CreateAppSettingFileData, CreateAppSettingFileError, CreateAppSettingFileResponse, CreateAppSettingResponse, CreateBookmarkData, CreateBookmarkError, CreateBookmarkResponse, CreateChatbotCompletionPromptData, CreateChatbotCompletionPromptError, CreateChatbotCompletionPromptResponse, CreateChatMessageData, CreateChatMessageError, CreateChatMessageResponse, CreateDocumentData, CreateDocumentError, CreateDocumentResponse, CreateEtherpadData, CreateEtherpadError, CreateEtherpadResponse, CreateFolderData, CreateFolderError, CreateFolderResponse, CreateFolderWithThumbnailData, CreateFolderWithThumbnailError, CreateFolderWithThumbnailResponse, CreateInvitationData, CreateInvitationError, CreateInvitationResponse, CreateItemData, CreateItemError, CreateItemFlagData, CreateItemFlagError, CreateItemFlagResponse, CreateItemLikeData, CreateItemLikeError, CreateItemLikeResponse, CreateItemMembershipData, CreateItemMembershipError, CreateItemMembershipResponse, CreateItemResponse, CreateItemWithThumbnailData, CreateItemWithThumbnailError, CreateItemWithThumbnailResponse, CreateLinkData, CreateLinkError, CreateLinkResponse, CreateMembershipRequestData, CreateMembershipRequestResponse, CreateOwnProfileData, CreateOwnProfileError, CreateOwnProfileResponse, CreatePageData, CreatePageError, CreatePageResponse, CreatePasswordData, CreatePasswordError, CreatePasswordResponse, CreateShortcutData, CreateShortcutError, CreateShortcutResponse, CreateShortLinkData, CreateShortLinkError, CreateShortLinkResponse, CreateTagForItemData, CreateTagForItemError, CreateTagForItemResponse, CreateVisibilityData, CreateVisibilityError, CreateVisibilityResponse, DeleteAliasData, DeleteAliasError, DeleteAliasResponse, DeleteApiItemsByIdThumbnailsData, DeleteApiMembersMembersByIdDeleteData, DeleteAppDataData, DeleteAppDataError, DeleteAppDataResponse, DeleteAppSettingData, DeleteAppSettingError, DeleteAppSettingResponse, DeleteBookmarkData, DeleteBookmarkError, DeleteBookmarkResponse, DeleteChatMessageData, DeleteChatMessageError, DeleteChatMessageResponse, DeleteCurrentAccountData, DeleteCurrentAccountError, DeleteCurrentAccountResponse, DeleteGeolocationData, DeleteGeolocationError, DeleteGeolocationResponse, DeleteInvitationData, DeleteInvitationError, DeleteInvitationResponse, DeleteItemLikeData, DeleteItemLikeError, DeleteItemLikeResponse, DeleteItemLoginSchemaData, DeleteItemLoginSchemaError, DeleteItemMembershipData, DeleteItemMembershipError, DeleteItemMembershipResponse, DeleteManyItemsData, DeleteManyItemsError, DeleteManyItemsResponse, DeleteMembershipRequestData, DeleteMembershipRequestResponse, DeleteMentionData, DeleteMentionError, DeleteMentionResponse, DeleteTagForItemData, DeleteTagForItemError, DeleteTagForItemResponse, DeleteVisibilityData, DeleteVisibilityError, DeleteVisibilityResponse, DownloadAppDataFileData, DownloadAppSettingFileData, DownloadAvatarData, DownloadFileData, DownloadFileError, DownloadItemThumbnailData, EnrollData, EnrollResponse, ExportActionsData, ExportActionsError, ExportActionsResponse, ExportMemberDataData, ExportMemberDataError, ExportMemberDataResponse, ExportZipData, ExportZipError, GenerateAppTokenData, GenerateAppTokenError, GenerateAppTokenResponse, GeolocationReverseData, GeolocationSearchData, GetAccessibleItemsData, GetAccessibleItemsError, GetAccessibleItemsResponse, GetApiItemsCollectionsSearchRebuildData, GetApiItemsH5pAssetsIntegrationHtmlData, GetApiItemsPublicationByItemIdStatusData, GetApiMembersActionsData, GetApiStatusData, GetApiVersionData, GetApiWsData, GetAppActionsForAppData, GetAppContextData, GetAppDataForAppData, GetAppListData, GetAppSettingsForAppData, GetChatData, GetChildrenData, GetCollectionInformationsData, GetCollectionsForMemberData, GetCountForTagsData, GetCurrentAccountData, GetDescendantItemsData, GetEtherpadFromItemData, GetFacetsForNameData, GetFacetsForNameError, GetFacetsForNameResponse, GetFeaturedCollectionsData, GetFlagTypesData, GetGeolocationByItemData, GetInvitationByIdData, GetInvitationForItemData, GetItemActionsByDayData, GetItemActionsByHourData, GetItemActionsByWeekdayData, GetItemData, GetItemLoginSchemaData, GetItemLoginSchemaTypeData, GetItemMembershipsForItemData, GetItemsInBoxData, GetLatestItemValidationGroupData, GetLikesForCurrentMemberData, GetLikesForItemData, GetLinkMetadataData, GetMemberProfileData, GetMembershipRequestsByItemIdData, GetMostLikedCollectionsData, GetMostRecentCollectionsData, GetNextMaintenanceData, GetOneMemberData, GetOwnBookmarkData, GetOwnMembershipRequestByItemIdData, GetOwnMentionsData, GetOwnMostUsedAppsData, GetOwnPasswordStatusData, GetOwnProfileData, GetOwnRecycledItemsData, GetOwnRecycledItemsError, GetOwnRecycledItemsResponse, GetParentItemsData, GetShortLinkAvailabilityData, GetShortLinkRedirectionData, GetShortLinksForItemData, GetStorageData, GetStorageFilesData, GetStorageFilesError, GetStorageFilesResponse, GetTagsForItemData, GetUrlData, GraaspZipExportData, GraaspZipExportError, HealthData, ImportH5pData, ImportH5pError, ImportH5pResponse, ImportZipData, ImportZipError, InviteFromCsvData, InviteFromCsvError, InviteFromCsvResponse, InviteFromCsvWithTemplateData, InviteFromCsvWithTemplateError, InviteFromCsvWithTemplateResponse, LoginData, LoginError, LoginOrRegisterAsGuestData, LoginOrRegisterAsGuestError, LoginOrRegisterAsGuestResponse, LoginResponse, MoveManyItemsData, MoveManyItemsError, MoveManyItemsResponse, PagesWebsockets2Data, PagesWebsocketsData, PatchChangeEmailData, PatchChangeEmailError, PatchChangeEmailResponse, PatchChatMessageData, PatchChatMessageError, PatchChatMessageResponse, PatchMentionData, PatchMentionError, PatchMentionResponse, PostActionData, PostActionError, PostActionResponse, PostApiItemsByIdThumbnailsData, PostApiItemsByIdThumbnailsError, PostApiItemsByIdThumbnailsResponse, PostApiMembersAvatarData, PostApiMembersAvatarResponse, PostChangeEmailData, PostChangeEmailError, PostChangeEmailResponse, PublishItemData, PublishItemError, PublishItemResponse, PutGeolocationData, PutGeolocationError, PutGeolocationResponse, RecycleManyItemsData, RecycleManyItemsError, RecycleManyItemsResponse, RegisterData, RegisterError, RegisterResponse, ReorderItemData, ReorderItemError, ReorderItemResponse, RequestPasswordResetLinkData, ResetPasswordData, RestoreManyItemsData, RestoreManyItemsError, RestoreManyItemsResponse, SendInvitationData, SendInvitationError, SendInvitationResponse, SignInWithPasswordData, SignInWithPasswordError, SignInWithPasswordResponse, SignOutData, SignOutError, SignOutResponse, UnpublishItemData, UnpublishItemError, UnpublishItemResponse, UpdateAppData, UpdateAppDataData, UpdateAppDataError, UpdateAppDataResponse, UpdateAppError, UpdateAppResponse, UpdateAppSettingData, UpdateAppSettingError, UpdateAppSettingResponse, UpdateCurrentAccountData, UpdateCurrentAccountError, UpdateCurrentAccountResponse, UpdateDocumentData, UpdateDocumentError, UpdateDocumentResponse, UpdateEtherpadData, UpdateEtherpadError, UpdateEtherpadResponse, UpdateFileData, UpdateFileError, UpdateFolderData, UpdateFolderError, UpdateFolderResponse, UpdateInvitationData, UpdateInvitationError, UpdateInvitationResponse, UpdateItemData, UpdateItemError, UpdateItemLoginSchemaData, UpdateItemLoginSchemaError, UpdateItemMembershipData, UpdateItemMembershipError, UpdateItemMembershipResponse, UpdateItemResponse, UpdateLinkData, UpdateLinkError, UpdateLinkResponse, UpdateOwnProfileData, UpdateOwnProfileError, UpdateOwnProfileResponse, UpdatePasswordData, UpdatePasswordError, UpdatePasswordResponse, UpdateShortcutData, UpdateShortcutError, UpdateShortcutResponse, UpdateShortLinkData, UpdateShortLinkError, UpdateShortLinkResponse, UploadFileData, UploadFileError, UploadFileResponse, ValidateItemData, ValidateItemError, ValidateItemResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -62,12 +62,12 @@ export const healthOptions = (options?: Options<HealthData>) => {
     });
 };
 
-export const getStatusQueryKey = (options?: Options<GetStatusData>) => createQueryKey('getStatus', options);
+export const getApiStatusQueryKey = (options?: Options<GetApiStatusData>) => createQueryKey('getApiStatus', options);
 
-export const getStatusOptions = (options?: Options<GetStatusData>) => {
+export const getApiStatusOptions = (options?: Options<GetApiStatusData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getStatus({
+            const { data } = await getApiStatus({
                 ...options,
                 ...queryKey[0],
                 signal,
@@ -75,16 +75,16 @@ export const getStatusOptions = (options?: Options<GetStatusData>) => {
             });
             return data;
         },
-        queryKey: getStatusQueryKey(options)
+        queryKey: getApiStatusQueryKey(options)
     });
 };
 
-export const getVersionQueryKey = (options?: Options<GetVersionData>) => createQueryKey('getVersion', options);
+export const getApiVersionQueryKey = (options?: Options<GetApiVersionData>) => createQueryKey('getApiVersion', options);
 
-export const getVersionOptions = (options?: Options<GetVersionData>) => {
+export const getApiVersionOptions = (options?: Options<GetApiVersionData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getVersion({
+            const { data } = await getApiVersion({
                 ...options,
                 ...queryKey[0],
                 signal,
@@ -92,7 +92,7 @@ export const getVersionOptions = (options?: Options<GetVersionData>) => {
             });
             return data;
         },
-        queryKey: getVersionQueryKey(options)
+        queryKey: getApiVersionQueryKey(options)
     });
 };
 
@@ -303,12 +303,12 @@ export const getOwnPasswordStatusOptions = (options?: Options<GetOwnPasswordStat
     });
 };
 
-export const getWsQueryKey = (options?: Options<GetWsData>) => createQueryKey('getWs', options);
+export const getApiWsQueryKey = (options?: Options<GetApiWsData>) => createQueryKey('getApiWs', options);
 
-export const getWsOptions = (options?: Options<GetWsData>) => {
+export const getApiWsOptions = (options?: Options<GetApiWsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getWs({
+            const { data } = await getApiWs({
                 ...options,
                 ...queryKey[0],
                 signal,
@@ -316,16 +316,16 @@ export const getWsOptions = (options?: Options<GetWsData>) => {
             });
             return data;
         },
-        queryKey: getWsQueryKey(options)
+        queryKey: getApiWsQueryKey(options)
     });
 };
 
-export const getMembersActionsQueryKey = (options?: Options<GetMembersActionsData>) => createQueryKey('getMembersActions', options);
+export const getApiMembersActionsQueryKey = (options?: Options<GetApiMembersActionsData>) => createQueryKey('getApiMembersActions', options);
 
-export const getMembersActionsOptions = (options?: Options<GetMembersActionsData>) => {
+export const getApiMembersActionsOptions = (options?: Options<GetApiMembersActionsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getMembersActions({
+            const { data } = await getApiMembersActions({
                 ...options,
                 ...queryKey[0],
                 signal,
@@ -333,14 +333,14 @@ export const getMembersActionsOptions = (options?: Options<GetMembersActionsData
             });
             return data;
         },
-        queryKey: getMembersActionsQueryKey(options)
+        queryKey: getApiMembersActionsQueryKey(options)
     });
 };
 
-export const deleteMembersMembersByIdDeleteMutation = (options?: Partial<Options<DeleteMembersMembersByIdDeleteData>>): UseMutationOptions<unknown, DefaultError, Options<DeleteMembersMembersByIdDeleteData>> => {
-    const mutationOptions: UseMutationOptions<unknown, DefaultError, Options<DeleteMembersMembersByIdDeleteData>> = {
+export const deleteApiMembersMembersByIdDeleteMutation = (options?: Partial<Options<DeleteApiMembersMembersByIdDeleteData>>): UseMutationOptions<unknown, DefaultError, Options<DeleteApiMembersMembersByIdDeleteData>> => {
+    const mutationOptions: UseMutationOptions<unknown, DefaultError, Options<DeleteApiMembersMembersByIdDeleteData>> = {
         mutationFn: async (fnOptions) => {
-            const { data } = await deleteMembersMembersByIdDelete({
+            const { data } = await deleteApiMembersMembersByIdDelete({
                 ...options,
                 ...fnOptions,
                 throwOnError: true
@@ -568,10 +568,10 @@ export const postChangeEmailMutation = (options?: Partial<Options<PostChangeEmai
     return mutationOptions;
 };
 
-export const postMembersAvatarMutation = (options?: Partial<Options<PostMembersAvatarData>>): UseMutationOptions<PostMembersAvatarResponse, DefaultError, Options<PostMembersAvatarData>> => {
-    const mutationOptions: UseMutationOptions<PostMembersAvatarResponse, DefaultError, Options<PostMembersAvatarData>> = {
+export const postApiMembersAvatarMutation = (options?: Partial<Options<PostApiMembersAvatarData>>): UseMutationOptions<PostApiMembersAvatarResponse, DefaultError, Options<PostApiMembersAvatarData>> => {
+    const mutationOptions: UseMutationOptions<PostApiMembersAvatarResponse, DefaultError, Options<PostApiMembersAvatarData>> = {
         mutationFn: async (fnOptions) => {
-            const { data } = await postMembersAvatar({
+            const { data } = await postApiMembersAvatar({
                 ...options,
                 ...fnOptions,
                 throwOnError: true
@@ -1395,12 +1395,12 @@ export const getMostRecentCollectionsOptions = (options?: Options<GetMostRecentC
     });
 };
 
-export const getItemsCollectionsSearchRebuildQueryKey = (options?: Options<GetItemsCollectionsSearchRebuildData>) => createQueryKey('getItemsCollectionsSearchRebuild', options);
+export const getApiItemsCollectionsSearchRebuildQueryKey = (options?: Options<GetApiItemsCollectionsSearchRebuildData>) => createQueryKey('getApiItemsCollectionsSearchRebuild', options);
 
-export const getItemsCollectionsSearchRebuildOptions = (options?: Options<GetItemsCollectionsSearchRebuildData>) => {
+export const getApiItemsCollectionsSearchRebuildOptions = (options?: Options<GetApiItemsCollectionsSearchRebuildData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getItemsCollectionsSearchRebuild({
+            const { data } = await getApiItemsCollectionsSearchRebuild({
                 ...options,
                 ...queryKey[0],
                 signal,
@@ -1408,7 +1408,7 @@ export const getItemsCollectionsSearchRebuildOptions = (options?: Options<GetIte
             });
             return data;
         },
-        queryKey: getItemsCollectionsSearchRebuildQueryKey(options)
+        queryKey: getApiItemsCollectionsSearchRebuildQueryKey(options)
     });
 };
 
@@ -1603,10 +1603,10 @@ export const updateShortcutMutation = (options?: Partial<Options<UpdateShortcutD
     return mutationOptions;
 };
 
-export const deleteItemsByIdThumbnailsMutation = (options?: Partial<Options<DeleteItemsByIdThumbnailsData>>): UseMutationOptions<unknown, DefaultError, Options<DeleteItemsByIdThumbnailsData>> => {
-    const mutationOptions: UseMutationOptions<unknown, DefaultError, Options<DeleteItemsByIdThumbnailsData>> = {
+export const deleteApiItemsByIdThumbnailsMutation = (options?: Partial<Options<DeleteApiItemsByIdThumbnailsData>>): UseMutationOptions<unknown, DefaultError, Options<DeleteApiItemsByIdThumbnailsData>> => {
+    const mutationOptions: UseMutationOptions<unknown, DefaultError, Options<DeleteApiItemsByIdThumbnailsData>> = {
         mutationFn: async (fnOptions) => {
-            const { data } = await deleteItemsByIdThumbnails({
+            const { data } = await deleteApiItemsByIdThumbnails({
                 ...options,
                 ...fnOptions,
                 throwOnError: true
@@ -1617,10 +1617,10 @@ export const deleteItemsByIdThumbnailsMutation = (options?: Partial<Options<Dele
     return mutationOptions;
 };
 
-export const postItemsByIdThumbnailsMutation = (options?: Partial<Options<PostItemsByIdThumbnailsData>>): UseMutationOptions<PostItemsByIdThumbnailsResponse, PostItemsByIdThumbnailsError, Options<PostItemsByIdThumbnailsData>> => {
-    const mutationOptions: UseMutationOptions<PostItemsByIdThumbnailsResponse, PostItemsByIdThumbnailsError, Options<PostItemsByIdThumbnailsData>> = {
+export const postApiItemsByIdThumbnailsMutation = (options?: Partial<Options<PostApiItemsByIdThumbnailsData>>): UseMutationOptions<PostApiItemsByIdThumbnailsResponse, PostApiItemsByIdThumbnailsError, Options<PostApiItemsByIdThumbnailsData>> => {
+    const mutationOptions: UseMutationOptions<PostApiItemsByIdThumbnailsResponse, PostApiItemsByIdThumbnailsError, Options<PostApiItemsByIdThumbnailsData>> = {
         mutationFn: async (fnOptions) => {
-            const { data } = await postItemsByIdThumbnails({
+            const { data } = await postApiItemsByIdThumbnails({
                 ...options,
                 ...fnOptions,
                 throwOnError: true
@@ -1952,12 +1952,12 @@ export const createShortLinkMutation = (options?: Partial<Options<CreateShortLin
     return mutationOptions;
 };
 
-export const getItemsPublicationByItemIdStatusQueryKey = (options: Options<GetItemsPublicationByItemIdStatusData>) => createQueryKey('getItemsPublicationByItemIdStatus', options);
+export const getApiItemsPublicationByItemIdStatusQueryKey = (options: Options<GetApiItemsPublicationByItemIdStatusData>) => createQueryKey('getApiItemsPublicationByItemIdStatus', options);
 
-export const getItemsPublicationByItemIdStatusOptions = (options: Options<GetItemsPublicationByItemIdStatusData>) => {
+export const getApiItemsPublicationByItemIdStatusOptions = (options: Options<GetApiItemsPublicationByItemIdStatusData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getItemsPublicationByItemIdStatus({
+            const { data } = await getApiItemsPublicationByItemIdStatus({
                 ...options,
                 ...queryKey[0],
                 signal,
@@ -1965,16 +1965,16 @@ export const getItemsPublicationByItemIdStatusOptions = (options: Options<GetIte
             });
             return data;
         },
-        queryKey: getItemsPublicationByItemIdStatusQueryKey(options)
+        queryKey: getApiItemsPublicationByItemIdStatusQueryKey(options)
     });
 };
 
-export const getItemsH5pAssetsIntegrationHtmlQueryKey = (options?: Options<GetItemsH5pAssetsIntegrationHtmlData>) => createQueryKey('getItemsH5pAssetsIntegrationHtml', options);
+export const getApiItemsH5pAssetsIntegrationHtmlQueryKey = (options?: Options<GetApiItemsH5pAssetsIntegrationHtmlData>) => createQueryKey('getApiItemsH5pAssetsIntegrationHtml', options);
 
-export const getItemsH5pAssetsIntegrationHtmlOptions = (options?: Options<GetItemsH5pAssetsIntegrationHtmlData>) => {
+export const getApiItemsH5pAssetsIntegrationHtmlOptions = (options?: Options<GetApiItemsH5pAssetsIntegrationHtmlData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getItemsH5pAssetsIntegrationHtml({
+            const { data } = await getApiItemsH5pAssetsIntegrationHtml({
                 ...options,
                 ...queryKey[0],
                 signal,
@@ -1982,7 +1982,7 @@ export const getItemsH5pAssetsIntegrationHtmlOptions = (options?: Options<GetIte
             });
             return data;
         },
-        queryKey: getItemsH5pAssetsIntegrationHtmlQueryKey(options)
+        queryKey: getApiItemsH5pAssetsIntegrationHtmlQueryKey(options)
     });
 };
 
@@ -3313,7 +3313,7 @@ export const getDescendantItemsOptions = (options: Options<GetDescendantItemsDat
 export const getParentItemsQueryKey = (options: Options<GetParentItemsData>) => createQueryKey('getParentItems', options);
 
 /**
- * Get parent items of item
+ * Get parents of item
  * Get parent items of item given its id.
  */
 export const getParentItemsOptions = (options: Options<GetParentItemsData>) => {

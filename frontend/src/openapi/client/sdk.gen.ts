@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { AuthenticateData, AuthenticateErrors, ClearAllMentionsData, ClearAllMentionsErrors, ClearAllMentionsResponses, ClearChatMessageData, ClearChatMessageErrors, ClearChatMessageResponses, CollectionSearchData, CollectionSearchErrors, CollectionSearchResponses, CopyManyItemsData, CopyManyItemsErrors, CopyManyItemsResponses, CreateAppActionData, CreateAppActionErrors, CreateAppActionResponses, CreateAppData, CreateAppDataData, CreateAppDataErrors, CreateAppDataFileData, CreateAppDataFileErrors, CreateAppDataFileResponses, CreateAppDataResponses, CreateAppErrors, CreateAppResponses, CreateAppSettingData, CreateAppSettingErrors, CreateAppSettingFileData, CreateAppSettingFileErrors, CreateAppSettingFileResponses, CreateAppSettingResponses, CreateBookmarkData, CreateBookmarkErrors, CreateBookmarkResponses, CreateChatbotCompletionPromptData, CreateChatbotCompletionPromptErrors, CreateChatbotCompletionPromptResponses, CreateChatMessageData, CreateChatMessageErrors, CreateChatMessageResponses, CreateDocumentData, CreateDocumentErrors, CreateDocumentResponses, CreateEtherpadData, CreateEtherpadErrors, CreateEtherpadResponses, CreateFolderData, CreateFolderErrors, CreateFolderResponses, CreateFolderWithThumbnailData, CreateFolderWithThumbnailErrors, CreateFolderWithThumbnailResponses, CreateInvitationData, CreateInvitationErrors, CreateInvitationResponses, CreateItemData, CreateItemErrors, CreateItemFlagData, CreateItemFlagErrors, CreateItemFlagResponses, CreateItemLikeData, CreateItemLikeErrors, CreateItemLikeResponses, CreateItemMembershipData, CreateItemMembershipErrors, CreateItemMembershipResponses, CreateItemResponses, CreateItemWithThumbnailData, CreateItemWithThumbnailErrors, CreateItemWithThumbnailResponses, CreateLinkData, CreateLinkErrors, CreateLinkResponses, CreateMembershipRequestData, CreateMembershipRequestResponses, CreateOwnProfileData, CreateOwnProfileErrors, CreateOwnProfileResponses, CreatePageData, CreatePageErrors, CreatePageResponses, CreatePasswordData, CreatePasswordErrors, CreatePasswordResponses, CreateShortcutData, CreateShortcutErrors, CreateShortcutResponses, CreateShortLinkData, CreateShortLinkErrors, CreateShortLinkResponses, CreateTagForItemData, CreateTagForItemErrors, CreateTagForItemResponses, CreateVisibilityData, CreateVisibilityErrors, CreateVisibilityResponses, DeleteAliasData, DeleteAliasErrors, DeleteAliasResponses, DeleteAppDataData, DeleteAppDataErrors, DeleteAppDataResponses, DeleteAppSettingData, DeleteAppSettingErrors, DeleteAppSettingResponses, DeleteBookmarkData, DeleteBookmarkErrors, DeleteBookmarkResponses, DeleteChatMessageData, DeleteChatMessageErrors, DeleteChatMessageResponses, DeleteCurrentAccountData, DeleteCurrentAccountErrors, DeleteCurrentAccountResponses, DeleteGeolocationData, DeleteGeolocationErrors, DeleteGeolocationResponses, DeleteInvitationData, DeleteInvitationErrors, DeleteInvitationResponses, DeleteItemLikeData, DeleteItemLikeErrors, DeleteItemLikeResponses, DeleteItemLoginSchemaData, DeleteItemLoginSchemaErrors, DeleteItemLoginSchemaResponses, DeleteItemMembershipData, DeleteItemMembershipErrors, DeleteItemMembershipResponses, DeleteItemsByIdThumbnailsData, DeleteItemsByIdThumbnailsResponses, DeleteManyItemsData, DeleteManyItemsErrors, DeleteManyItemsResponses, DeleteMembershipRequestData, DeleteMembershipRequestResponses, DeleteMembersMembersByIdDeleteData, DeleteMembersMembersByIdDeleteResponses, DeleteMentionData, DeleteMentionErrors, DeleteMentionResponses, DeleteTagForItemData, DeleteTagForItemErrors, DeleteTagForItemResponses, DeleteVisibilityData, DeleteVisibilityErrors, DeleteVisibilityResponses, DownloadAppDataFileData, DownloadAppDataFileErrors, DownloadAppDataFileResponses, DownloadAppSettingFileData, DownloadAppSettingFileErrors, DownloadAppSettingFileResponses, DownloadAvatarData, DownloadAvatarErrors, DownloadAvatarResponses, DownloadFileData, DownloadFileErrors, DownloadFileResponses, DownloadItemThumbnailData, DownloadItemThumbnailErrors, DownloadItemThumbnailResponses, EnrollData, EnrollResponses, ExportActionsData, ExportActionsErrors, ExportActionsResponses, ExportMemberDataData, ExportMemberDataErrors, ExportMemberDataResponses, ExportZipData, ExportZipErrors, ExportZipResponses, GenerateAppTokenData, GenerateAppTokenErrors, GenerateAppTokenResponses, GeolocationReverseData, GeolocationReverseErrors, GeolocationReverseResponses, GeolocationSearchData, GeolocationSearchErrors, GeolocationSearchResponses, GetAccessibleItemsData, GetAccessibleItemsErrors, GetAccessibleItemsResponses, GetAppActionsForAppData, GetAppActionsForAppErrors, GetAppActionsForAppResponses, GetAppContextData, GetAppContextResponses, GetAppDataForAppData, GetAppDataForAppErrors, GetAppDataForAppResponses, GetAppListData, GetAppListErrors, GetAppListResponses, GetAppSettingsForAppData, GetAppSettingsForAppErrors, GetAppSettingsForAppResponses, GetChatData, GetChatErrors, GetChatResponses, GetChildrenData, GetChildrenErrors, GetChildrenResponses, GetCollectionInformationsData, GetCollectionInformationsErrors, GetCollectionInformationsResponses, GetCollectionsForMemberData, GetCollectionsForMemberErrors, GetCollectionsForMemberResponses, GetCountForTagsData, GetCountForTagsErrors, GetCountForTagsResponses, GetCurrentAccountData, GetCurrentAccountErrors, GetCurrentAccountResponses, GetDescendantItemsData, GetDescendantItemsErrors, GetDescendantItemsResponses, GetEtherpadFromItemData, GetEtherpadFromItemErrors, GetEtherpadFromItemResponses, GetFacetsForNameData, GetFacetsForNameErrors, GetFacetsForNameResponses, GetFeaturedCollectionsData, GetFeaturedCollectionsErrors, GetFeaturedCollectionsResponses, GetFlagTypesData, GetFlagTypesErrors, GetFlagTypesResponses, GetGeolocationByItemData, GetGeolocationByItemErrors, GetGeolocationByItemResponses, GetInvitationByIdData, GetInvitationByIdErrors, GetInvitationByIdResponses, GetInvitationForItemData, GetInvitationForItemErrors, GetInvitationForItemResponses, GetItemActionsByDayData, GetItemActionsByDayErrors, GetItemActionsByDayResponses, GetItemActionsByHourData, GetItemActionsByHourErrors, GetItemActionsByHourResponses, GetItemActionsByWeekdayData, GetItemActionsByWeekdayErrors, GetItemActionsByWeekdayResponses, GetItemData, GetItemErrors, GetItemLoginSchemaData, GetItemLoginSchemaErrors, GetItemLoginSchemaResponses, GetItemLoginSchemaTypeData, GetItemLoginSchemaTypeErrors, GetItemLoginSchemaTypeResponses, GetItemMembershipsForItemData, GetItemMembershipsForItemErrors, GetItemMembershipsForItemResponses, GetItemResponses, GetItemsCollectionsSearchRebuildData, GetItemsCollectionsSearchRebuildResponses, GetItemsH5pAssetsIntegrationHtmlData, GetItemsH5pAssetsIntegrationHtmlResponses, GetItemsInBoxData, GetItemsInBoxErrors, GetItemsInBoxResponses, GetItemsPublicationByItemIdStatusData, GetItemsPublicationByItemIdStatusResponses, GetLatestItemValidationGroupData, GetLatestItemValidationGroupErrors, GetLatestItemValidationGroupResponses, GetLikesForCurrentMemberData, GetLikesForCurrentMemberErrors, GetLikesForCurrentMemberResponses, GetLikesForItemData, GetLikesForItemErrors, GetLikesForItemResponses, GetLinkMetadataData, GetLinkMetadataErrors, GetLinkMetadataResponses, GetMemberProfileData, GetMemberProfileErrors, GetMemberProfileResponses, GetMembersActionsData, GetMembersActionsErrors, GetMembersActionsResponses, GetMembershipRequestsByItemIdData, GetMembershipRequestsByItemIdResponses, GetMostLikedCollectionsData, GetMostLikedCollectionsErrors, GetMostLikedCollectionsResponses, GetMostRecentCollectionsData, GetMostRecentCollectionsErrors, GetMostRecentCollectionsResponses, GetNextMaintenanceData, GetNextMaintenanceErrors, GetNextMaintenanceResponses, GetOneMemberData, GetOneMemberErrors, GetOneMemberResponses, GetOwnBookmarkData, GetOwnBookmarkErrors, GetOwnBookmarkResponses, GetOwnMembershipRequestByItemIdData, GetOwnMembershipRequestByItemIdResponses, GetOwnMentionsData, GetOwnMentionsErrors, GetOwnMentionsResponses, GetOwnMostUsedAppsData, GetOwnMostUsedAppsErrors, GetOwnMostUsedAppsResponses, GetOwnPasswordStatusData, GetOwnPasswordStatusResponses, GetOwnProfileData, GetOwnProfileErrors, GetOwnProfileResponses, GetOwnRecycledItemsData, GetOwnRecycledItemsErrors, GetOwnRecycledItemsResponses, GetParentItemsData, GetParentItemsErrors, GetParentItemsResponses, GetShortLinkAvailabilityData, GetShortLinkAvailabilityErrors, GetShortLinkAvailabilityResponses, GetShortLinkRedirectionData, GetShortLinkRedirectionErrors, GetShortLinksForItemData, GetShortLinksForItemErrors, GetShortLinksForItemResponses, GetStatusData, GetStatusResponses, GetStorageData, GetStorageErrors, GetStorageFilesData, GetStorageFilesErrors, GetStorageFilesResponses, GetStorageResponses, GetTagsForItemData, GetTagsForItemErrors, GetTagsForItemResponses, GetUrlData, GetUrlErrors, GetUrlResponses, GetVersionData, GetVersionResponses, GetWsData, GetWsResponses, GraaspZipExportData, GraaspZipExportErrors, GraaspZipExportResponses, HealthData, HealthResponses, ImportH5pData, ImportH5pErrors, ImportH5pResponses, ImportZipData, ImportZipErrors, ImportZipResponses, InviteFromCsvData, InviteFromCsvErrors, InviteFromCsvResponses, InviteFromCsvWithTemplateData, InviteFromCsvWithTemplateErrors, InviteFromCsvWithTemplateResponses, LoginData, LoginErrors, LoginOrRegisterAsGuestData, LoginOrRegisterAsGuestErrors, LoginOrRegisterAsGuestResponses, LoginResponses, MoveManyItemsData, MoveManyItemsErrors, MoveManyItemsResponses, PagesWebsockets2Data, PagesWebsockets2Responses, PagesWebsocketsData, PagesWebsocketsResponses, PatchChangeEmailData, PatchChangeEmailErrors, PatchChangeEmailResponses, PatchChatMessageData, PatchChatMessageErrors, PatchChatMessageResponses, PatchMentionData, PatchMentionErrors, PatchMentionResponses, PostActionData, PostActionErrors, PostActionResponses, PostChangeEmailData, PostChangeEmailErrors, PostChangeEmailResponses, PostItemsByIdThumbnailsData, PostItemsByIdThumbnailsErrors, PostItemsByIdThumbnailsResponses, PostMembersAvatarData, PostMembersAvatarResponses, PublishItemData, PublishItemErrors, PublishItemResponses, PutGeolocationData, PutGeolocationErrors, PutGeolocationResponses, RecycleManyItemsData, RecycleManyItemsErrors, RecycleManyItemsResponses, RegisterData, RegisterErrors, RegisterResponses, ReorderItemData, ReorderItemErrors, ReorderItemResponses, RequestPasswordResetLinkData, RequestPasswordResetLinkErrors, RequestPasswordResetLinkResponses, ResetPasswordData, ResetPasswordErrors, ResetPasswordResponses, RestoreManyItemsData, RestoreManyItemsErrors, RestoreManyItemsResponses, SendInvitationData, SendInvitationErrors, SendInvitationResponses, SignInWithPasswordData, SignInWithPasswordErrors, SignInWithPasswordResponses, SignOutData, SignOutErrors, SignOutResponses, UnpublishItemData, UnpublishItemErrors, UnpublishItemResponses, UpdateAppData, UpdateAppDataData, UpdateAppDataErrors, UpdateAppDataResponses, UpdateAppErrors, UpdateAppResponses, UpdateAppSettingData, UpdateAppSettingErrors, UpdateAppSettingResponses, UpdateCurrentAccountData, UpdateCurrentAccountErrors, UpdateCurrentAccountResponses, UpdateDocumentData, UpdateDocumentErrors, UpdateDocumentResponses, UpdateEtherpadData, UpdateEtherpadErrors, UpdateEtherpadResponses, UpdateFileData, UpdateFileErrors, UpdateFileResponses, UpdateFolderData, UpdateFolderErrors, UpdateFolderResponses, UpdateInvitationData, UpdateInvitationErrors, UpdateInvitationResponses, UpdateItemData, UpdateItemErrors, UpdateItemLoginSchemaData, UpdateItemLoginSchemaErrors, UpdateItemLoginSchemaResponses, UpdateItemMembershipData, UpdateItemMembershipErrors, UpdateItemMembershipResponses, UpdateItemResponses, UpdateLinkData, UpdateLinkErrors, UpdateLinkResponses, UpdateOwnProfileData, UpdateOwnProfileErrors, UpdateOwnProfileResponses, UpdatePasswordData, UpdatePasswordErrors, UpdatePasswordResponses, UpdateShortcutData, UpdateShortcutErrors, UpdateShortcutResponses, UpdateShortLinkData, UpdateShortLinkErrors, UpdateShortLinkResponses, UploadFileData, UploadFileErrors, UploadFileResponses, ValidateItemData, ValidateItemErrors, ValidateItemResponses } from './types.gen';
+import type { AuthenticateData, AuthenticateErrors, ClearAllMentionsData, ClearAllMentionsErrors, ClearAllMentionsResponses, ClearChatMessageData, ClearChatMessageErrors, ClearChatMessageResponses, CollectionSearchData, CollectionSearchErrors, CollectionSearchResponses, CopyManyItemsData, CopyManyItemsErrors, CopyManyItemsResponses, CreateAppActionData, CreateAppActionErrors, CreateAppActionResponses, CreateAppData, CreateAppDataData, CreateAppDataErrors, CreateAppDataFileData, CreateAppDataFileErrors, CreateAppDataFileResponses, CreateAppDataResponses, CreateAppErrors, CreateAppResponses, CreateAppSettingData, CreateAppSettingErrors, CreateAppSettingFileData, CreateAppSettingFileErrors, CreateAppSettingFileResponses, CreateAppSettingResponses, CreateBookmarkData, CreateBookmarkErrors, CreateBookmarkResponses, CreateChatbotCompletionPromptData, CreateChatbotCompletionPromptErrors, CreateChatbotCompletionPromptResponses, CreateChatMessageData, CreateChatMessageErrors, CreateChatMessageResponses, CreateDocumentData, CreateDocumentErrors, CreateDocumentResponses, CreateEtherpadData, CreateEtherpadErrors, CreateEtherpadResponses, CreateFolderData, CreateFolderErrors, CreateFolderResponses, CreateFolderWithThumbnailData, CreateFolderWithThumbnailErrors, CreateFolderWithThumbnailResponses, CreateInvitationData, CreateInvitationErrors, CreateInvitationResponses, CreateItemData, CreateItemErrors, CreateItemFlagData, CreateItemFlagErrors, CreateItemFlagResponses, CreateItemLikeData, CreateItemLikeErrors, CreateItemLikeResponses, CreateItemMembershipData, CreateItemMembershipErrors, CreateItemMembershipResponses, CreateItemResponses, CreateItemWithThumbnailData, CreateItemWithThumbnailErrors, CreateItemWithThumbnailResponses, CreateLinkData, CreateLinkErrors, CreateLinkResponses, CreateMembershipRequestData, CreateMembershipRequestResponses, CreateOwnProfileData, CreateOwnProfileErrors, CreateOwnProfileResponses, CreatePageData, CreatePageErrors, CreatePageResponses, CreatePasswordData, CreatePasswordErrors, CreatePasswordResponses, CreateShortcutData, CreateShortcutErrors, CreateShortcutResponses, CreateShortLinkData, CreateShortLinkErrors, CreateShortLinkResponses, CreateTagForItemData, CreateTagForItemErrors, CreateTagForItemResponses, CreateVisibilityData, CreateVisibilityErrors, CreateVisibilityResponses, DeleteAliasData, DeleteAliasErrors, DeleteAliasResponses, DeleteApiItemsByIdThumbnailsData, DeleteApiItemsByIdThumbnailsResponses, DeleteApiMembersMembersByIdDeleteData, DeleteApiMembersMembersByIdDeleteResponses, DeleteAppDataData, DeleteAppDataErrors, DeleteAppDataResponses, DeleteAppSettingData, DeleteAppSettingErrors, DeleteAppSettingResponses, DeleteBookmarkData, DeleteBookmarkErrors, DeleteBookmarkResponses, DeleteChatMessageData, DeleteChatMessageErrors, DeleteChatMessageResponses, DeleteCurrentAccountData, DeleteCurrentAccountErrors, DeleteCurrentAccountResponses, DeleteGeolocationData, DeleteGeolocationErrors, DeleteGeolocationResponses, DeleteInvitationData, DeleteInvitationErrors, DeleteInvitationResponses, DeleteItemLikeData, DeleteItemLikeErrors, DeleteItemLikeResponses, DeleteItemLoginSchemaData, DeleteItemLoginSchemaErrors, DeleteItemLoginSchemaResponses, DeleteItemMembershipData, DeleteItemMembershipErrors, DeleteItemMembershipResponses, DeleteManyItemsData, DeleteManyItemsErrors, DeleteManyItemsResponses, DeleteMembershipRequestData, DeleteMembershipRequestResponses, DeleteMentionData, DeleteMentionErrors, DeleteMentionResponses, DeleteTagForItemData, DeleteTagForItemErrors, DeleteTagForItemResponses, DeleteVisibilityData, DeleteVisibilityErrors, DeleteVisibilityResponses, DownloadAppDataFileData, DownloadAppDataFileErrors, DownloadAppDataFileResponses, DownloadAppSettingFileData, DownloadAppSettingFileErrors, DownloadAppSettingFileResponses, DownloadAvatarData, DownloadAvatarErrors, DownloadAvatarResponses, DownloadFileData, DownloadFileErrors, DownloadFileResponses, DownloadItemThumbnailData, DownloadItemThumbnailErrors, DownloadItemThumbnailResponses, EnrollData, EnrollResponses, ExportActionsData, ExportActionsErrors, ExportActionsResponses, ExportMemberDataData, ExportMemberDataErrors, ExportMemberDataResponses, ExportZipData, ExportZipErrors, ExportZipResponses, GenerateAppTokenData, GenerateAppTokenErrors, GenerateAppTokenResponses, GeolocationReverseData, GeolocationReverseErrors, GeolocationReverseResponses, GeolocationSearchData, GeolocationSearchErrors, GeolocationSearchResponses, GetAccessibleItemsData, GetAccessibleItemsErrors, GetAccessibleItemsResponses, GetApiItemsCollectionsSearchRebuildData, GetApiItemsCollectionsSearchRebuildResponses, GetApiItemsH5pAssetsIntegrationHtmlData, GetApiItemsH5pAssetsIntegrationHtmlResponses, GetApiItemsPublicationByItemIdStatusData, GetApiItemsPublicationByItemIdStatusResponses, GetApiMembersActionsData, GetApiMembersActionsErrors, GetApiMembersActionsResponses, GetApiStatusData, GetApiStatusResponses, GetApiVersionData, GetApiVersionResponses, GetApiWsData, GetApiWsResponses, GetAppActionsForAppData, GetAppActionsForAppErrors, GetAppActionsForAppResponses, GetAppContextData, GetAppContextResponses, GetAppDataForAppData, GetAppDataForAppErrors, GetAppDataForAppResponses, GetAppListData, GetAppListErrors, GetAppListResponses, GetAppSettingsForAppData, GetAppSettingsForAppErrors, GetAppSettingsForAppResponses, GetChatData, GetChatErrors, GetChatResponses, GetChildrenData, GetChildrenErrors, GetChildrenResponses, GetCollectionInformationsData, GetCollectionInformationsErrors, GetCollectionInformationsResponses, GetCollectionsForMemberData, GetCollectionsForMemberErrors, GetCollectionsForMemberResponses, GetCountForTagsData, GetCountForTagsErrors, GetCountForTagsResponses, GetCurrentAccountData, GetCurrentAccountErrors, GetCurrentAccountResponses, GetDescendantItemsData, GetDescendantItemsErrors, GetDescendantItemsResponses, GetEtherpadFromItemData, GetEtherpadFromItemErrors, GetEtherpadFromItemResponses, GetFacetsForNameData, GetFacetsForNameErrors, GetFacetsForNameResponses, GetFeaturedCollectionsData, GetFeaturedCollectionsErrors, GetFeaturedCollectionsResponses, GetFlagTypesData, GetFlagTypesErrors, GetFlagTypesResponses, GetGeolocationByItemData, GetGeolocationByItemErrors, GetGeolocationByItemResponses, GetInvitationByIdData, GetInvitationByIdErrors, GetInvitationByIdResponses, GetInvitationForItemData, GetInvitationForItemErrors, GetInvitationForItemResponses, GetItemActionsByDayData, GetItemActionsByDayErrors, GetItemActionsByDayResponses, GetItemActionsByHourData, GetItemActionsByHourErrors, GetItemActionsByHourResponses, GetItemActionsByWeekdayData, GetItemActionsByWeekdayErrors, GetItemActionsByWeekdayResponses, GetItemData, GetItemErrors, GetItemLoginSchemaData, GetItemLoginSchemaErrors, GetItemLoginSchemaResponses, GetItemLoginSchemaTypeData, GetItemLoginSchemaTypeErrors, GetItemLoginSchemaTypeResponses, GetItemMembershipsForItemData, GetItemMembershipsForItemErrors, GetItemMembershipsForItemResponses, GetItemResponses, GetItemsInBoxData, GetItemsInBoxErrors, GetItemsInBoxResponses, GetLatestItemValidationGroupData, GetLatestItemValidationGroupErrors, GetLatestItemValidationGroupResponses, GetLikesForCurrentMemberData, GetLikesForCurrentMemberErrors, GetLikesForCurrentMemberResponses, GetLikesForItemData, GetLikesForItemErrors, GetLikesForItemResponses, GetLinkMetadataData, GetLinkMetadataErrors, GetLinkMetadataResponses, GetMemberProfileData, GetMemberProfileErrors, GetMemberProfileResponses, GetMembershipRequestsByItemIdData, GetMembershipRequestsByItemIdResponses, GetMostLikedCollectionsData, GetMostLikedCollectionsErrors, GetMostLikedCollectionsResponses, GetMostRecentCollectionsData, GetMostRecentCollectionsErrors, GetMostRecentCollectionsResponses, GetNextMaintenanceData, GetNextMaintenanceErrors, GetNextMaintenanceResponses, GetOneMemberData, GetOneMemberErrors, GetOneMemberResponses, GetOwnBookmarkData, GetOwnBookmarkErrors, GetOwnBookmarkResponses, GetOwnMembershipRequestByItemIdData, GetOwnMembershipRequestByItemIdResponses, GetOwnMentionsData, GetOwnMentionsErrors, GetOwnMentionsResponses, GetOwnMostUsedAppsData, GetOwnMostUsedAppsErrors, GetOwnMostUsedAppsResponses, GetOwnPasswordStatusData, GetOwnPasswordStatusResponses, GetOwnProfileData, GetOwnProfileErrors, GetOwnProfileResponses, GetOwnRecycledItemsData, GetOwnRecycledItemsErrors, GetOwnRecycledItemsResponses, GetParentItemsData, GetParentItemsErrors, GetParentItemsResponses, GetShortLinkAvailabilityData, GetShortLinkAvailabilityErrors, GetShortLinkAvailabilityResponses, GetShortLinkRedirectionData, GetShortLinkRedirectionErrors, GetShortLinksForItemData, GetShortLinksForItemErrors, GetShortLinksForItemResponses, GetStorageData, GetStorageErrors, GetStorageFilesData, GetStorageFilesErrors, GetStorageFilesResponses, GetStorageResponses, GetTagsForItemData, GetTagsForItemErrors, GetTagsForItemResponses, GetUrlData, GetUrlErrors, GetUrlResponses, GraaspZipExportData, GraaspZipExportErrors, GraaspZipExportResponses, HealthData, HealthResponses, ImportH5pData, ImportH5pErrors, ImportH5pResponses, ImportZipData, ImportZipErrors, ImportZipResponses, InviteFromCsvData, InviteFromCsvErrors, InviteFromCsvResponses, InviteFromCsvWithTemplateData, InviteFromCsvWithTemplateErrors, InviteFromCsvWithTemplateResponses, LoginData, LoginErrors, LoginOrRegisterAsGuestData, LoginOrRegisterAsGuestErrors, LoginOrRegisterAsGuestResponses, LoginResponses, MoveManyItemsData, MoveManyItemsErrors, MoveManyItemsResponses, PagesWebsockets2Data, PagesWebsockets2Responses, PagesWebsocketsData, PagesWebsocketsResponses, PatchChangeEmailData, PatchChangeEmailErrors, PatchChangeEmailResponses, PatchChatMessageData, PatchChatMessageErrors, PatchChatMessageResponses, PatchMentionData, PatchMentionErrors, PatchMentionResponses, PostActionData, PostActionErrors, PostActionResponses, PostApiItemsByIdThumbnailsData, PostApiItemsByIdThumbnailsErrors, PostApiItemsByIdThumbnailsResponses, PostApiMembersAvatarData, PostApiMembersAvatarResponses, PostChangeEmailData, PostChangeEmailErrors, PostChangeEmailResponses, PublishItemData, PublishItemErrors, PublishItemResponses, PutGeolocationData, PutGeolocationErrors, PutGeolocationResponses, RecycleManyItemsData, RecycleManyItemsErrors, RecycleManyItemsResponses, RegisterData, RegisterErrors, RegisterResponses, ReorderItemData, ReorderItemErrors, ReorderItemResponses, RequestPasswordResetLinkData, RequestPasswordResetLinkErrors, RequestPasswordResetLinkResponses, ResetPasswordData, ResetPasswordErrors, ResetPasswordResponses, RestoreManyItemsData, RestoreManyItemsErrors, RestoreManyItemsResponses, SendInvitationData, SendInvitationErrors, SendInvitationResponses, SignInWithPasswordData, SignInWithPasswordErrors, SignInWithPasswordResponses, SignOutData, SignOutErrors, SignOutResponses, UnpublishItemData, UnpublishItemErrors, UnpublishItemResponses, UpdateAppData, UpdateAppDataData, UpdateAppDataErrors, UpdateAppDataResponses, UpdateAppErrors, UpdateAppResponses, UpdateAppSettingData, UpdateAppSettingErrors, UpdateAppSettingResponses, UpdateCurrentAccountData, UpdateCurrentAccountErrors, UpdateCurrentAccountResponses, UpdateDocumentData, UpdateDocumentErrors, UpdateDocumentResponses, UpdateEtherpadData, UpdateEtherpadErrors, UpdateEtherpadResponses, UpdateFileData, UpdateFileErrors, UpdateFileResponses, UpdateFolderData, UpdateFolderErrors, UpdateFolderResponses, UpdateInvitationData, UpdateInvitationErrors, UpdateInvitationResponses, UpdateItemData, UpdateItemErrors, UpdateItemLoginSchemaData, UpdateItemLoginSchemaErrors, UpdateItemLoginSchemaResponses, UpdateItemMembershipData, UpdateItemMembershipErrors, UpdateItemMembershipResponses, UpdateItemResponses, UpdateLinkData, UpdateLinkErrors, UpdateLinkResponses, UpdateOwnProfileData, UpdateOwnProfileErrors, UpdateOwnProfileResponses, UpdatePasswordData, UpdatePasswordErrors, UpdatePasswordResponses, UpdateShortcutData, UpdateShortcutErrors, UpdateShortcutResponses, UpdateShortLinkData, UpdateShortLinkErrors, UpdateShortLinkResponses, UploadFileData, UploadFileErrors, UploadFileResponses, ValidateItemData, ValidateItemErrors, ValidateItemResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -24,21 +24,21 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  */
 export const health = <ThrowOnError extends boolean = false>(options?: Options<HealthData, ThrowOnError>) => {
     return (options?.client ?? client).get<HealthResponses, unknown, ThrowOnError>({
-        url: '/health',
+        url: '/api/health',
         ...options
     });
 };
 
-export const getStatus = <ThrowOnError extends boolean = false>(options?: Options<GetStatusData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetStatusResponses, unknown, ThrowOnError>({
-        url: '/status',
+export const getApiStatus = <ThrowOnError extends boolean = false>(options?: Options<GetApiStatusData, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetApiStatusResponses, unknown, ThrowOnError>({
+        url: '/api/status',
         ...options
     });
 };
 
-export const getVersion = <ThrowOnError extends boolean = false>(options?: Options<GetVersionData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetVersionResponses, unknown, ThrowOnError>({
-        url: '/version',
+export const getApiVersion = <ThrowOnError extends boolean = false>(options?: Options<GetApiVersionData, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetApiVersionResponses, unknown, ThrowOnError>({
+        url: '/api/version',
         ...options
     });
 };
@@ -49,7 +49,7 @@ export const getVersion = <ThrowOnError extends boolean = false>(options?: Optio
  */
 export const getNextMaintenance = <ThrowOnError extends boolean = false>(options?: Options<GetNextMaintenanceData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetNextMaintenanceResponses, GetNextMaintenanceErrors, ThrowOnError>({
-        url: '/maintenance/next',
+        url: '/api/maintenance/next',
         ...options
     });
 };
@@ -60,7 +60,7 @@ export const getNextMaintenance = <ThrowOnError extends boolean = false>(options
  */
 export const register = <ThrowOnError extends boolean = false>(options: Options<RegisterData, ThrowOnError>) => {
     return (options.client ?? client).post<RegisterResponses, RegisterErrors, ThrowOnError>({
-        url: '/register',
+        url: '/api/register',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ export const register = <ThrowOnError extends boolean = false>(options: Options<
  */
 export const login = <ThrowOnError extends boolean = false>(options: Options<LoginData, ThrowOnError>) => {
     return (options.client ?? client).post<LoginResponses, LoginErrors, ThrowOnError>({
-        url: '/login',
+        url: '/api/login',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export const login = <ThrowOnError extends boolean = false>(options: Options<Log
  */
 export const authenticate = <ThrowOnError extends boolean = false>(options: Options<AuthenticateData, ThrowOnError>) => {
     return (options.client ?? client).get<unknown, AuthenticateErrors, ThrowOnError>({
-        url: '/auth',
+        url: '/api/auth',
         ...options
     });
 };
@@ -101,7 +101,7 @@ export const authenticate = <ThrowOnError extends boolean = false>(options: Opti
  */
 export const signOut = <ThrowOnError extends boolean = false>(options?: Options<SignOutData, ThrowOnError>) => {
     return (options?.client ?? client).post<SignOutResponses, SignOutErrors, ThrowOnError>({
-        url: '/logout',
+        url: '/api/logout',
         ...options
     });
 };
@@ -112,7 +112,7 @@ export const signOut = <ThrowOnError extends boolean = false>(options?: Options<
  */
 export const signInWithPassword = <ThrowOnError extends boolean = false>(options: Options<SignInWithPasswordData, ThrowOnError>) => {
     return (options.client ?? client).post<SignInWithPasswordResponses, SignInWithPasswordErrors, ThrowOnError>({
-        url: '/login-password',
+        url: '/api/login-password',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ export const signInWithPassword = <ThrowOnError extends boolean = false>(options
  */
 export const updatePassword = <ThrowOnError extends boolean = false>(options: Options<UpdatePasswordData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdatePasswordResponses, UpdatePasswordErrors, ThrowOnError>({
-        url: '/password',
+        url: '/api/password',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ export const updatePassword = <ThrowOnError extends boolean = false>(options: Op
  */
 export const createPassword = <ThrowOnError extends boolean = false>(options: Options<CreatePasswordData, ThrowOnError>) => {
     return (options.client ?? client).post<CreatePasswordResponses, CreatePasswordErrors, ThrowOnError>({
-        url: '/password',
+        url: '/api/password',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ export const createPassword = <ThrowOnError extends boolean = false>(options: Op
  */
 export const resetPassword = <ThrowOnError extends boolean = false>(options: Options<ResetPasswordData, ThrowOnError>) => {
     return (options.client ?? client).patch<ResetPasswordResponses, ResetPasswordErrors, ThrowOnError>({
-        url: '/password/reset',
+        url: '/api/password/reset',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ export const resetPassword = <ThrowOnError extends boolean = false>(options: Opt
  */
 export const requestPasswordResetLink = <ThrowOnError extends boolean = false>(options: Options<RequestPasswordResetLinkData, ThrowOnError>) => {
     return (options.client ?? client).post<RequestPasswordResetLinkResponses, RequestPasswordResetLinkErrors, ThrowOnError>({
-        url: '/password/reset',
+        url: '/api/password/reset',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -187,28 +187,28 @@ export const requestPasswordResetLink = <ThrowOnError extends boolean = false>(o
  */
 export const getOwnPasswordStatus = <ThrowOnError extends boolean = false>(options?: Options<GetOwnPasswordStatusData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetOwnPasswordStatusResponses, unknown, ThrowOnError>({
-        url: '/members/current/password/status',
+        url: '/api/members/current/password/status',
         ...options
     });
 };
 
-export const getWs = <ThrowOnError extends boolean = false>(options?: Options<GetWsData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetWsResponses, unknown, ThrowOnError>({
-        url: '/ws',
+export const getApiWs = <ThrowOnError extends boolean = false>(options?: Options<GetApiWsData, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetApiWsResponses, unknown, ThrowOnError>({
+        url: '/api/ws',
         ...options
     });
 };
 
-export const getMembersActions = <ThrowOnError extends boolean = false>(options?: Options<GetMembersActionsData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetMembersActionsResponses, GetMembersActionsErrors, ThrowOnError>({
-        url: '/members/actions',
+export const getApiMembersActions = <ThrowOnError extends boolean = false>(options?: Options<GetApiMembersActionsData, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetApiMembersActionsResponses, GetApiMembersActionsErrors, ThrowOnError>({
+        url: '/api/members/actions',
         ...options
     });
 };
 
-export const deleteMembersMembersByIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteMembersMembersByIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteMembersMembersByIdDeleteResponses, unknown, ThrowOnError>({
-        url: '/members/members/{id}/delete',
+export const deleteApiMembersMembersByIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteApiMembersMembersByIdDeleteData, ThrowOnError>) => {
+    return (options.client ?? client).delete<DeleteApiMembersMembersByIdDeleteResponses, unknown, ThrowOnError>({
+        url: '/api/members/members/{id}/delete',
         ...options
     });
 };
@@ -219,7 +219,7 @@ export const deleteMembersMembersByIdDelete = <ThrowOnError extends boolean = fa
  */
 export const deleteCurrentAccount = <ThrowOnError extends boolean = false>(options?: Options<DeleteCurrentAccountData, ThrowOnError>) => {
     return (options?.client ?? client).delete<DeleteCurrentAccountResponses, DeleteCurrentAccountErrors, ThrowOnError>({
-        url: '/members/current',
+        url: '/api/members/current',
         ...options
     });
 };
@@ -230,7 +230,7 @@ export const deleteCurrentAccount = <ThrowOnError extends boolean = false>(optio
  */
 export const getCurrentAccount = <ThrowOnError extends boolean = false>(options?: Options<GetCurrentAccountData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCurrentAccountResponses, GetCurrentAccountErrors, ThrowOnError>({
-        url: '/members/current',
+        url: '/api/members/current',
         ...options
     });
 };
@@ -241,7 +241,7 @@ export const getCurrentAccount = <ThrowOnError extends boolean = false>(options?
  */
 export const updateCurrentAccount = <ThrowOnError extends boolean = false>(options?: Options<UpdateCurrentAccountData, ThrowOnError>) => {
     return (options?.client ?? client).patch<UpdateCurrentAccountResponses, UpdateCurrentAccountErrors, ThrowOnError>({
-        url: '/members/current',
+        url: '/api/members/current',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -256,7 +256,7 @@ export const updateCurrentAccount = <ThrowOnError extends boolean = false>(optio
  */
 export const getStorage = <ThrowOnError extends boolean = false>(options?: Options<GetStorageData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetStorageResponses, GetStorageErrors, ThrowOnError>({
-        url: '/members/current/storage',
+        url: '/api/members/current/storage',
         ...options
     });
 };
@@ -267,7 +267,7 @@ export const getStorage = <ThrowOnError extends boolean = false>(options?: Optio
  */
 export const getStorageFiles = <ThrowOnError extends boolean = false>(options: Options<GetStorageFilesData, ThrowOnError>) => {
     return (options.client ?? client).get<GetStorageFilesResponses, GetStorageFilesErrors, ThrowOnError>({
-        url: '/members/current/storage/files',
+        url: '/api/members/current/storage/files',
         ...options
     });
 };
@@ -278,7 +278,7 @@ export const getStorageFiles = <ThrowOnError extends boolean = false>(options: O
  */
 export const getOneMember = <ThrowOnError extends boolean = false>(options: Options<GetOneMemberData, ThrowOnError>) => {
     return (options.client ?? client).get<GetOneMemberResponses, GetOneMemberErrors, ThrowOnError>({
-        url: '/members/{id}',
+        url: '/api/members/{id}',
         ...options
     });
 };
@@ -289,7 +289,7 @@ export const getOneMember = <ThrowOnError extends boolean = false>(options: Opti
  */
 export const patchChangeEmail = <ThrowOnError extends boolean = false>(options?: Options<PatchChangeEmailData, ThrowOnError>) => {
     return (options?.client ?? client).patch<PatchChangeEmailResponses, PatchChangeEmailErrors, ThrowOnError>({
-        url: '/members/current/email/change',
+        url: '/api/members/current/email/change',
         ...options
     });
 };
@@ -300,7 +300,7 @@ export const patchChangeEmail = <ThrowOnError extends boolean = false>(options?:
  */
 export const postChangeEmail = <ThrowOnError extends boolean = false>(options: Options<PostChangeEmailData, ThrowOnError>) => {
     return (options.client ?? client).post<PostChangeEmailResponses, PostChangeEmailErrors, ThrowOnError>({
-        url: '/members/current/email/change',
+        url: '/api/members/current/email/change',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -309,9 +309,9 @@ export const postChangeEmail = <ThrowOnError extends boolean = false>(options: O
     });
 };
 
-export const postMembersAvatar = <ThrowOnError extends boolean = false>(options?: Options<PostMembersAvatarData, ThrowOnError>) => {
-    return (options?.client ?? client).post<PostMembersAvatarResponses, unknown, ThrowOnError>({
-        url: '/members/avatar',
+export const postApiMembersAvatar = <ThrowOnError extends boolean = false>(options?: Options<PostApiMembersAvatarData, ThrowOnError>) => {
+    return (options?.client ?? client).post<PostApiMembersAvatarResponses, unknown, ThrowOnError>({
+        url: '/api/members/avatar',
         ...options
     });
 };
@@ -322,7 +322,7 @@ export const postMembersAvatar = <ThrowOnError extends boolean = false>(options?
  */
 export const downloadAvatar = <ThrowOnError extends boolean = false>(options: Options<DownloadAvatarData, ThrowOnError>) => {
     return (options.client ?? client).get<DownloadAvatarResponses, DownloadAvatarErrors, ThrowOnError>({
-        url: '/members/{id}/avatar/{size}',
+        url: '/api/members/{id}/avatar/{size}',
         ...options
     });
 };
@@ -333,7 +333,7 @@ export const downloadAvatar = <ThrowOnError extends boolean = false>(options: Op
  */
 export const getOwnProfile = <ThrowOnError extends boolean = false>(options?: Options<GetOwnProfileData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetOwnProfileResponses, GetOwnProfileErrors, ThrowOnError>({
-        url: '/members/profile/own',
+        url: '/api/members/profile/own',
         ...options
     });
 };
@@ -344,7 +344,7 @@ export const getOwnProfile = <ThrowOnError extends boolean = false>(options?: Op
  */
 export const getMemberProfile = <ThrowOnError extends boolean = false>(options: Options<GetMemberProfileData, ThrowOnError>) => {
     return (options.client ?? client).get<GetMemberProfileResponses, GetMemberProfileErrors, ThrowOnError>({
-        url: '/members/profile/{memberId}',
+        url: '/api/members/profile/{memberId}',
         ...options
     });
 };
@@ -355,7 +355,7 @@ export const getMemberProfile = <ThrowOnError extends boolean = false>(options: 
  */
 export const updateOwnProfile = <ThrowOnError extends boolean = false>(options?: Options<UpdateOwnProfileData, ThrowOnError>) => {
     return (options?.client ?? client).patch<UpdateOwnProfileResponses, UpdateOwnProfileErrors, ThrowOnError>({
-        url: '/members/profile/',
+        url: '/api/members/profile/',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -370,7 +370,7 @@ export const updateOwnProfile = <ThrowOnError extends boolean = false>(options?:
  */
 export const createOwnProfile = <ThrowOnError extends boolean = false>(options?: Options<CreateOwnProfileData, ThrowOnError>) => {
     return (options?.client ?? client).post<CreateOwnProfileResponses, CreateOwnProfileErrors, ThrowOnError>({
-        url: '/members/profile/',
+        url: '/api/members/profile/',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -385,7 +385,7 @@ export const createOwnProfile = <ThrowOnError extends boolean = false>(options?:
  */
 export const exportMemberData = <ThrowOnError extends boolean = false>(options?: Options<ExportMemberDataData, ThrowOnError>) => {
     return (options?.client ?? client).post<ExportMemberDataResponses, ExportMemberDataErrors, ThrowOnError>({
-        url: '/members/export-data/',
+        url: '/api/members/export-data/',
         ...options
     });
 };
@@ -396,7 +396,7 @@ export const exportMemberData = <ThrowOnError extends boolean = false>(options?:
  */
 export const getAppList = <ThrowOnError extends boolean = false>(options?: Options<GetAppListData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetAppListResponses, GetAppListErrors, ThrowOnError>({
-        url: '/app-items/list',
+        url: '/api/app-items/list',
         ...options
     });
 };
@@ -407,7 +407,7 @@ export const getAppList = <ThrowOnError extends boolean = false>(options?: Optio
  */
 export const getOwnMostUsedApps = <ThrowOnError extends boolean = false>(options?: Options<GetOwnMostUsedAppsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetOwnMostUsedAppsResponses, GetOwnMostUsedAppsErrors, ThrowOnError>({
-        url: '/app-items/most-used',
+        url: '/api/app-items/most-used',
         ...options
     });
 };
@@ -418,7 +418,7 @@ export const getOwnMostUsedApps = <ThrowOnError extends boolean = false>(options
  */
 export const generateAppToken = <ThrowOnError extends boolean = false>(options: Options<GenerateAppTokenData, ThrowOnError>) => {
     return (options.client ?? client).post<GenerateAppTokenResponses, GenerateAppTokenErrors, ThrowOnError>({
-        url: '/app-items/{itemId}/api-access-token',
+        url: '/api/app-items/{itemId}/api-access-token',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -433,7 +433,7 @@ export const generateAppToken = <ThrowOnError extends boolean = false>(options: 
  */
 export const getAppContext = <ThrowOnError extends boolean = false>(options: Options<GetAppContextData, ThrowOnError>) => {
     return (options.client ?? client).get<GetAppContextResponses, unknown, ThrowOnError>({
-        url: '/app-items/{itemId}/context',
+        url: '/api/app-items/{itemId}/context',
         ...options
     });
 };
@@ -444,7 +444,7 @@ export const getAppContext = <ThrowOnError extends boolean = false>(options: Opt
  */
 export const getAppDataForApp = <ThrowOnError extends boolean = false>(options: Options<GetAppDataForAppData, ThrowOnError>) => {
     return (options.client ?? client).get<GetAppDataForAppResponses, GetAppDataForAppErrors, ThrowOnError>({
-        url: '/app-items/{itemId}/app-data',
+        url: '/api/app-items/{itemId}/app-data',
         ...options
     });
 };
@@ -455,7 +455,7 @@ export const getAppDataForApp = <ThrowOnError extends boolean = false>(options: 
  */
 export const createAppData = <ThrowOnError extends boolean = false>(options: Options<CreateAppDataData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateAppDataResponses, CreateAppDataErrors, ThrowOnError>({
-        url: '/app-items/{itemId}/app-data',
+        url: '/api/app-items/{itemId}/app-data',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -470,7 +470,7 @@ export const createAppData = <ThrowOnError extends boolean = false>(options: Opt
  */
 export const deleteAppData = <ThrowOnError extends boolean = false>(options: Options<DeleteAppDataData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteAppDataResponses, DeleteAppDataErrors, ThrowOnError>({
-        url: '/app-items/{itemId}/app-data/{id}',
+        url: '/api/app-items/{itemId}/app-data/{id}',
         ...options
     });
 };
@@ -481,7 +481,7 @@ export const deleteAppData = <ThrowOnError extends boolean = false>(options: Opt
  */
 export const updateAppData = <ThrowOnError extends boolean = false>(options: Options<UpdateAppDataData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateAppDataResponses, UpdateAppDataErrors, ThrowOnError>({
-        url: '/app-items/{itemId}/app-data/{id}',
+        url: '/api/app-items/{itemId}/app-data/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -496,7 +496,7 @@ export const updateAppData = <ThrowOnError extends boolean = false>(options: Opt
  */
 export const createAppDataFile = <ThrowOnError extends boolean = false>(options?: Options<CreateAppDataFileData, ThrowOnError>) => {
     return (options?.client ?? client).post<CreateAppDataFileResponses, CreateAppDataFileErrors, ThrowOnError>({
-        url: '/app-items/app-data/upload',
+        url: '/api/app-items/app-data/upload',
         ...options
     });
 };
@@ -507,7 +507,7 @@ export const createAppDataFile = <ThrowOnError extends boolean = false>(options?
  */
 export const downloadAppDataFile = <ThrowOnError extends boolean = false>(options: Options<DownloadAppDataFileData, ThrowOnError>) => {
     return (options.client ?? client).get<DownloadAppDataFileResponses, DownloadAppDataFileErrors, ThrowOnError>({
-        url: '/app-items/app-data/{id}/download',
+        url: '/api/app-items/app-data/{id}/download',
         ...options
     });
 };
@@ -518,7 +518,7 @@ export const downloadAppDataFile = <ThrowOnError extends boolean = false>(option
  */
 export const getAppActionsForApp = <ThrowOnError extends boolean = false>(options: Options<GetAppActionsForAppData, ThrowOnError>) => {
     return (options.client ?? client).get<GetAppActionsForAppResponses, GetAppActionsForAppErrors, ThrowOnError>({
-        url: '/app-items/{itemId}/app-action',
+        url: '/api/app-items/{itemId}/app-action',
         ...options
     });
 };
@@ -529,7 +529,7 @@ export const getAppActionsForApp = <ThrowOnError extends boolean = false>(option
  */
 export const createAppAction = <ThrowOnError extends boolean = false>(options: Options<CreateAppActionData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateAppActionResponses, CreateAppActionErrors, ThrowOnError>({
-        url: '/app-items/{itemId}/app-action',
+        url: '/api/app-items/{itemId}/app-action',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -544,7 +544,7 @@ export const createAppAction = <ThrowOnError extends boolean = false>(options: O
  */
 export const getAppSettingsForApp = <ThrowOnError extends boolean = false>(options: Options<GetAppSettingsForAppData, ThrowOnError>) => {
     return (options.client ?? client).get<GetAppSettingsForAppResponses, GetAppSettingsForAppErrors, ThrowOnError>({
-        url: '/app-items/{itemId}/app-settings',
+        url: '/api/app-items/{itemId}/app-settings',
         ...options
     });
 };
@@ -555,7 +555,7 @@ export const getAppSettingsForApp = <ThrowOnError extends boolean = false>(optio
  */
 export const createAppSetting = <ThrowOnError extends boolean = false>(options: Options<CreateAppSettingData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateAppSettingResponses, CreateAppSettingErrors, ThrowOnError>({
-        url: '/app-items/{itemId}/app-settings',
+        url: '/api/app-items/{itemId}/app-settings',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -570,7 +570,7 @@ export const createAppSetting = <ThrowOnError extends boolean = false>(options: 
  */
 export const deleteAppSetting = <ThrowOnError extends boolean = false>(options: Options<DeleteAppSettingData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteAppSettingResponses, DeleteAppSettingErrors, ThrowOnError>({
-        url: '/app-items/{itemId}/app-settings/{id}',
+        url: '/api/app-items/{itemId}/app-settings/{id}',
         ...options
     });
 };
@@ -581,7 +581,7 @@ export const deleteAppSetting = <ThrowOnError extends boolean = false>(options: 
  */
 export const updateAppSetting = <ThrowOnError extends boolean = false>(options: Options<UpdateAppSettingData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateAppSettingResponses, UpdateAppSettingErrors, ThrowOnError>({
-        url: '/app-items/{itemId}/app-settings/{id}',
+        url: '/api/app-items/{itemId}/app-settings/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -596,7 +596,7 @@ export const updateAppSetting = <ThrowOnError extends boolean = false>(options: 
  */
 export const createAppSettingFile = <ThrowOnError extends boolean = false>(options?: Options<CreateAppSettingFileData, ThrowOnError>) => {
     return (options?.client ?? client).post<CreateAppSettingFileResponses, CreateAppSettingFileErrors, ThrowOnError>({
-        url: '/app-items/app-settings/upload',
+        url: '/api/app-items/app-settings/upload',
         ...options
     });
 };
@@ -607,7 +607,7 @@ export const createAppSettingFile = <ThrowOnError extends boolean = false>(optio
  */
 export const downloadAppSettingFile = <ThrowOnError extends boolean = false>(options: Options<DownloadAppSettingFileData, ThrowOnError>) => {
     return (options.client ?? client).get<DownloadAppSettingFileResponses, DownloadAppSettingFileErrors, ThrowOnError>({
-        url: '/app-items/app-settings/{id}/download',
+        url: '/api/app-items/app-settings/{id}/download',
         ...options
     });
 };
@@ -618,7 +618,7 @@ export const downloadAppSettingFile = <ThrowOnError extends boolean = false>(opt
  */
 export const createChatbotCompletionPrompt = <ThrowOnError extends boolean = false>(options: Options<CreateChatbotCompletionPromptData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateChatbotCompletionPromptResponses, CreateChatbotCompletionPromptErrors, ThrowOnError>({
-        url: '/app-items/{itemId}/chat-bot',
+        url: '/api/app-items/{itemId}/chat-bot',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -633,7 +633,7 @@ export const createChatbotCompletionPrompt = <ThrowOnError extends boolean = fal
  */
 export const getItemLoginSchemaType = <ThrowOnError extends boolean = false>(options: Options<GetItemLoginSchemaTypeData, ThrowOnError>) => {
     return (options.client ?? client).get<GetItemLoginSchemaTypeResponses, GetItemLoginSchemaTypeErrors, ThrowOnError>({
-        url: '/items/{id}/login-schema-type',
+        url: '/api/items/{id}/login-schema-type',
         ...options
     });
 };
@@ -644,7 +644,7 @@ export const getItemLoginSchemaType = <ThrowOnError extends boolean = false>(opt
  */
 export const deleteItemLoginSchema = <ThrowOnError extends boolean = false>(options: Options<DeleteItemLoginSchemaData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteItemLoginSchemaResponses, DeleteItemLoginSchemaErrors, ThrowOnError>({
-        url: '/items/{id}/login-schema',
+        url: '/api/items/{id}/login-schema',
         ...options
     });
 };
@@ -655,7 +655,7 @@ export const deleteItemLoginSchema = <ThrowOnError extends boolean = false>(opti
  */
 export const getItemLoginSchema = <ThrowOnError extends boolean = false>(options: Options<GetItemLoginSchemaData, ThrowOnError>) => {
     return (options.client ?? client).get<GetItemLoginSchemaResponses, GetItemLoginSchemaErrors, ThrowOnError>({
-        url: '/items/{id}/login-schema',
+        url: '/api/items/{id}/login-schema',
         ...options
     });
 };
@@ -666,7 +666,7 @@ export const getItemLoginSchema = <ThrowOnError extends boolean = false>(options
  */
 export const updateItemLoginSchema = <ThrowOnError extends boolean = false>(options: Options<UpdateItemLoginSchemaData, ThrowOnError>) => {
     return (options.client ?? client).put<UpdateItemLoginSchemaResponses, UpdateItemLoginSchemaErrors, ThrowOnError>({
-        url: '/items/{id}/login-schema',
+        url: '/api/items/{id}/login-schema',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -681,7 +681,7 @@ export const updateItemLoginSchema = <ThrowOnError extends boolean = false>(opti
  */
 export const loginOrRegisterAsGuest = <ThrowOnError extends boolean = false>(options: Options<LoginOrRegisterAsGuestData, ThrowOnError>) => {
     return (options.client ?? client).post<LoginOrRegisterAsGuestResponses, LoginOrRegisterAsGuestErrors, ThrowOnError>({
-        url: '/items/{id}/login',
+        url: '/api/items/{id}/login',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -696,7 +696,7 @@ export const loginOrRegisterAsGuest = <ThrowOnError extends boolean = false>(opt
  */
 export const getOwnBookmark = <ThrowOnError extends boolean = false>(options?: Options<GetOwnBookmarkData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetOwnBookmarkResponses, GetOwnBookmarkErrors, ThrowOnError>({
-        url: '/items/bookmarks',
+        url: '/api/items/bookmarks',
         ...options
     });
 };
@@ -707,7 +707,7 @@ export const getOwnBookmark = <ThrowOnError extends boolean = false>(options?: O
  */
 export const deleteBookmark = <ThrowOnError extends boolean = false>(options: Options<DeleteBookmarkData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteBookmarkResponses, DeleteBookmarkErrors, ThrowOnError>({
-        url: '/items/bookmarks/{itemId}',
+        url: '/api/items/bookmarks/{itemId}',
         ...options
     });
 };
@@ -718,7 +718,7 @@ export const deleteBookmark = <ThrowOnError extends boolean = false>(options: Op
  */
 export const createBookmark = <ThrowOnError extends boolean = false>(options: Options<CreateBookmarkData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateBookmarkResponses, CreateBookmarkErrors, ThrowOnError>({
-        url: '/items/bookmarks/{itemId}',
+        url: '/api/items/bookmarks/{itemId}',
         ...options
     });
 };
@@ -729,7 +729,7 @@ export const createBookmark = <ThrowOnError extends boolean = false>(options: Op
  */
 export const getCollectionsForMember = <ThrowOnError extends boolean = false>(options: Options<GetCollectionsForMemberData, ThrowOnError>) => {
     return (options.client ?? client).get<GetCollectionsForMemberResponses, GetCollectionsForMemberErrors, ThrowOnError>({
-        url: '/items/collections/members/{memberId}',
+        url: '/api/items/collections/members/{memberId}',
         ...options
     });
 };
@@ -740,7 +740,7 @@ export const getCollectionsForMember = <ThrowOnError extends boolean = false>(op
  */
 export const getCollectionInformations = <ThrowOnError extends boolean = false>(options: Options<GetCollectionInformationsData, ThrowOnError>) => {
     return (options.client ?? client).get<GetCollectionInformationsResponses, GetCollectionInformationsErrors, ThrowOnError>({
-        url: '/items/collections/{itemId}/informations',
+        url: '/api/items/collections/{itemId}/informations',
         ...options
     });
 };
@@ -751,7 +751,7 @@ export const getCollectionInformations = <ThrowOnError extends boolean = false>(
  */
 export const publishItem = <ThrowOnError extends boolean = false>(options: Options<PublishItemData, ThrowOnError>) => {
     return (options.client ?? client).post<PublishItemResponses, PublishItemErrors, ThrowOnError>({
-        url: '/items/collections/{itemId}/publish',
+        url: '/api/items/collections/{itemId}/publish',
         ...options
     });
 };
@@ -762,7 +762,7 @@ export const publishItem = <ThrowOnError extends boolean = false>(options: Optio
  */
 export const unpublishItem = <ThrowOnError extends boolean = false>(options: Options<UnpublishItemData, ThrowOnError>) => {
     return (options.client ?? client).delete<UnpublishItemResponses, UnpublishItemErrors, ThrowOnError>({
-        url: '/items/collections/{itemId}/unpublish',
+        url: '/api/items/collections/{itemId}/unpublish',
         ...options
     });
 };
@@ -773,7 +773,7 @@ export const unpublishItem = <ThrowOnError extends boolean = false>(options: Opt
  */
 export const collectionSearch = <ThrowOnError extends boolean = false>(options?: Options<CollectionSearchData, ThrowOnError>) => {
     return (options?.client ?? client).post<CollectionSearchResponses, CollectionSearchErrors, ThrowOnError>({
-        url: '/items/collections/search',
+        url: '/api/items/collections/search',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -788,7 +788,7 @@ export const collectionSearch = <ThrowOnError extends boolean = false>(options?:
  */
 export const getFacetsForName = <ThrowOnError extends boolean = false>(options: Options<GetFacetsForNameData, ThrowOnError>) => {
     return (options.client ?? client).post<GetFacetsForNameResponses, GetFacetsForNameErrors, ThrowOnError>({
-        url: '/items/collections/facets',
+        url: '/api/items/collections/facets',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -803,7 +803,7 @@ export const getFacetsForName = <ThrowOnError extends boolean = false>(options: 
  */
 export const getFeaturedCollections = <ThrowOnError extends boolean = false>(options?: Options<GetFeaturedCollectionsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetFeaturedCollectionsResponses, GetFeaturedCollectionsErrors, ThrowOnError>({
-        url: '/items/collections/featured',
+        url: '/api/items/collections/featured',
         ...options
     });
 };
@@ -814,7 +814,7 @@ export const getFeaturedCollections = <ThrowOnError extends boolean = false>(opt
  */
 export const getMostLikedCollections = <ThrowOnError extends boolean = false>(options?: Options<GetMostLikedCollectionsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetMostLikedCollectionsResponses, GetMostLikedCollectionsErrors, ThrowOnError>({
-        url: '/items/collections/liked',
+        url: '/api/items/collections/liked',
         ...options
     });
 };
@@ -825,14 +825,14 @@ export const getMostLikedCollections = <ThrowOnError extends boolean = false>(op
  */
 export const getMostRecentCollections = <ThrowOnError extends boolean = false>(options?: Options<GetMostRecentCollectionsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetMostRecentCollectionsResponses, GetMostRecentCollectionsErrors, ThrowOnError>({
-        url: '/items/collections/recent',
+        url: '/api/items/collections/recent',
         ...options
     });
 };
 
-export const getItemsCollectionsSearchRebuild = <ThrowOnError extends boolean = false>(options?: Options<GetItemsCollectionsSearchRebuildData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetItemsCollectionsSearchRebuildResponses, unknown, ThrowOnError>({
-        url: '/items/collections/search/rebuild',
+export const getApiItemsCollectionsSearchRebuild = <ThrowOnError extends boolean = false>(options?: Options<GetApiItemsCollectionsSearchRebuildData, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetApiItemsCollectionsSearchRebuildResponses, unknown, ThrowOnError>({
+        url: '/api/items/collections/search/rebuild',
         ...options
     });
 };
@@ -843,7 +843,7 @@ export const getItemsCollectionsSearchRebuild = <ThrowOnError extends boolean = 
  */
 export const getItemMembershipsForItem = <ThrowOnError extends boolean = false>(options: Options<GetItemMembershipsForItemData, ThrowOnError>) => {
     return (options.client ?? client).get<GetItemMembershipsForItemResponses, GetItemMembershipsForItemErrors, ThrowOnError>({
-        url: '/items/{itemId}/memberships',
+        url: '/api/items/{itemId}/memberships',
         ...options
     });
 };
@@ -854,7 +854,7 @@ export const getItemMembershipsForItem = <ThrowOnError extends boolean = false>(
  */
 export const createItemMembership = <ThrowOnError extends boolean = false>(options: Options<CreateItemMembershipData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateItemMembershipResponses, CreateItemMembershipErrors, ThrowOnError>({
-        url: '/items/{itemId}/memberships',
+        url: '/api/items/{itemId}/memberships',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -869,7 +869,7 @@ export const createItemMembership = <ThrowOnError extends boolean = false>(optio
  */
 export const deleteItemMembership = <ThrowOnError extends boolean = false>(options: Options<DeleteItemMembershipData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteItemMembershipResponses, DeleteItemMembershipErrors, ThrowOnError>({
-        url: '/items/{itemId}/memberships/{id}',
+        url: '/api/items/{itemId}/memberships/{id}',
         ...options
     });
 };
@@ -880,7 +880,7 @@ export const deleteItemMembership = <ThrowOnError extends boolean = false>(optio
  */
 export const updateItemMembership = <ThrowOnError extends boolean = false>(options: Options<UpdateItemMembershipData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateItemMembershipResponses, UpdateItemMembershipErrors, ThrowOnError>({
-        url: '/items/{itemId}/memberships/{id}',
+        url: '/api/items/{itemId}/memberships/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -895,7 +895,7 @@ export const updateItemMembership = <ThrowOnError extends boolean = false>(optio
  */
 export const getMembershipRequestsByItemId = <ThrowOnError extends boolean = false>(options: Options<GetMembershipRequestsByItemIdData, ThrowOnError>) => {
     return (options.client ?? client).get<GetMembershipRequestsByItemIdResponses, unknown, ThrowOnError>({
-        url: '/items/{itemId}/memberships/requests',
+        url: '/api/items/{itemId}/memberships/requests',
         ...options
     });
 };
@@ -908,7 +908,7 @@ export const getMembershipRequestsByItemId = <ThrowOnError extends boolean = fal
  */
 export const createMembershipRequest = <ThrowOnError extends boolean = false>(options: Options<CreateMembershipRequestData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateMembershipRequestResponses, unknown, ThrowOnError>({
-        url: '/items/{itemId}/memberships/requests',
+        url: '/api/items/{itemId}/memberships/requests',
         ...options
     });
 };
@@ -919,7 +919,7 @@ export const createMembershipRequest = <ThrowOnError extends boolean = false>(op
  */
 export const getOwnMembershipRequestByItemId = <ThrowOnError extends boolean = false>(options: Options<GetOwnMembershipRequestByItemIdData, ThrowOnError>) => {
     return (options.client ?? client).get<GetOwnMembershipRequestByItemIdResponses, unknown, ThrowOnError>({
-        url: '/items/{itemId}/memberships/requests/own',
+        url: '/api/items/{itemId}/memberships/requests/own',
         ...options
     });
 };
@@ -930,7 +930,7 @@ export const getOwnMembershipRequestByItemId = <ThrowOnError extends boolean = f
  */
 export const deleteMembershipRequest = <ThrowOnError extends boolean = false>(options: Options<DeleteMembershipRequestData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteMembershipRequestResponses, unknown, ThrowOnError>({
-        url: '/items/{itemId}/memberships/requests/{memberId}',
+        url: '/api/items/{itemId}/memberships/requests/{memberId}',
         ...options
     });
 };
@@ -941,7 +941,7 @@ export const deleteMembershipRequest = <ThrowOnError extends boolean = false>(op
  */
 export const createShortcut = <ThrowOnError extends boolean = false>(options: Options<CreateShortcutData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateShortcutResponses, CreateShortcutErrors, ThrowOnError>({
-        url: '/items/shortcuts',
+        url: '/api/items/shortcuts',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -956,7 +956,7 @@ export const createShortcut = <ThrowOnError extends boolean = false>(options: Op
  */
 export const updateShortcut = <ThrowOnError extends boolean = false>(options: Options<UpdateShortcutData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateShortcutResponses, UpdateShortcutErrors, ThrowOnError>({
-        url: '/items/shortcuts/{id}',
+        url: '/api/items/shortcuts/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -965,16 +965,16 @@ export const updateShortcut = <ThrowOnError extends boolean = false>(options: Op
     });
 };
 
-export const deleteItemsByIdThumbnails = <ThrowOnError extends boolean = false>(options: Options<DeleteItemsByIdThumbnailsData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteItemsByIdThumbnailsResponses, unknown, ThrowOnError>({
-        url: '/items/{id}/thumbnails',
+export const deleteApiItemsByIdThumbnails = <ThrowOnError extends boolean = false>(options: Options<DeleteApiItemsByIdThumbnailsData, ThrowOnError>) => {
+    return (options.client ?? client).delete<DeleteApiItemsByIdThumbnailsResponses, unknown, ThrowOnError>({
+        url: '/api/items/{id}/thumbnails',
         ...options
     });
 };
 
-export const postItemsByIdThumbnails = <ThrowOnError extends boolean = false>(options: Options<PostItemsByIdThumbnailsData, ThrowOnError>) => {
-    return (options.client ?? client).post<PostItemsByIdThumbnailsResponses, PostItemsByIdThumbnailsErrors, ThrowOnError>({
-        url: '/items/{id}/thumbnails',
+export const postApiItemsByIdThumbnails = <ThrowOnError extends boolean = false>(options: Options<PostApiItemsByIdThumbnailsData, ThrowOnError>) => {
+    return (options.client ?? client).post<PostApiItemsByIdThumbnailsResponses, PostApiItemsByIdThumbnailsErrors, ThrowOnError>({
+        url: '/api/items/{id}/thumbnails',
         ...options
     });
 };
@@ -985,7 +985,7 @@ export const postItemsByIdThumbnails = <ThrowOnError extends boolean = false>(op
  */
 export const downloadItemThumbnail = <ThrowOnError extends boolean = false>(options: Options<DownloadItemThumbnailData, ThrowOnError>) => {
     return (options.client ?? client).get<DownloadItemThumbnailResponses, DownloadItemThumbnailErrors, ThrowOnError>({
-        url: '/items/{id}/thumbnails/{size}',
+        url: '/api/items/{id}/thumbnails/{size}',
         ...options
     });
 };
@@ -996,7 +996,7 @@ export const downloadItemThumbnail = <ThrowOnError extends boolean = false>(opti
  */
 export const uploadFile = <ThrowOnError extends boolean = false>(options?: Options<UploadFileData, ThrowOnError>) => {
     return (options?.client ?? client).post<UploadFileResponses, UploadFileErrors, ThrowOnError>({
-        url: '/items/upload',
+        url: '/api/items/upload',
         ...options
     });
 };
@@ -1007,7 +1007,7 @@ export const uploadFile = <ThrowOnError extends boolean = false>(options?: Optio
  */
 export const getUrl = <ThrowOnError extends boolean = false>(options: Options<GetUrlData, ThrowOnError>) => {
     return (options.client ?? client).get<GetUrlResponses, GetUrlErrors, ThrowOnError>({
-        url: '/items/{id}/download',
+        url: '/api/items/{id}/download',
         ...options
     });
 };
@@ -1018,7 +1018,7 @@ export const getUrl = <ThrowOnError extends boolean = false>(options: Options<Ge
  */
 export const updateFile = <ThrowOnError extends boolean = false>(options: Options<UpdateFileData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateFileResponses, UpdateFileErrors, ThrowOnError>({
-        url: '/items/files/{id}',
+        url: '/api/items/files/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1033,7 +1033,7 @@ export const updateFile = <ThrowOnError extends boolean = false>(options: Option
  */
 export const deleteVisibility = <ThrowOnError extends boolean = false>(options: Options<DeleteVisibilityData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteVisibilityResponses, DeleteVisibilityErrors, ThrowOnError>({
-        url: '/items/{itemId}/visibilities/{type}',
+        url: '/api/items/{itemId}/visibilities/{type}',
         ...options
     });
 };
@@ -1044,7 +1044,7 @@ export const deleteVisibility = <ThrowOnError extends boolean = false>(options: 
  */
 export const createVisibility = <ThrowOnError extends boolean = false>(options: Options<CreateVisibilityData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateVisibilityResponses, CreateVisibilityErrors, ThrowOnError>({
-        url: '/items/{itemId}/visibilities/{type}',
+        url: '/api/items/{itemId}/visibilities/{type}',
         ...options
     });
 };
@@ -1055,7 +1055,7 @@ export const createVisibility = <ThrowOnError extends boolean = false>(options: 
  */
 export const createFolder = <ThrowOnError extends boolean = false>(options: Options<CreateFolderData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateFolderResponses, CreateFolderErrors, ThrowOnError>({
-        url: '/items/folders',
+        url: '/api/items/folders',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1070,7 +1070,7 @@ export const createFolder = <ThrowOnError extends boolean = false>(options: Opti
  */
 export const updateFolder = <ThrowOnError extends boolean = false>(options: Options<UpdateFolderData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateFolderResponses, UpdateFolderErrors, ThrowOnError>({
-        url: '/items/folders/{id}',
+        url: '/api/items/folders/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1085,7 +1085,7 @@ export const updateFolder = <ThrowOnError extends boolean = false>(options: Opti
  */
 export const createFolderWithThumbnail = <ThrowOnError extends boolean = false>(options?: Options<CreateFolderWithThumbnailData, ThrowOnError>) => {
     return (options?.client ?? client).post<CreateFolderWithThumbnailResponses, CreateFolderWithThumbnailErrors, ThrowOnError>({
-        url: '/items/folders-with-thumbnail',
+        url: '/api/items/folders-with-thumbnail',
         ...options
     });
 };
@@ -1096,7 +1096,7 @@ export const createFolderWithThumbnail = <ThrowOnError extends boolean = false>(
  */
 export const createApp = <ThrowOnError extends boolean = false>(options: Options<CreateAppData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateAppResponses, CreateAppErrors, ThrowOnError>({
-        url: '/items/apps',
+        url: '/api/items/apps',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1111,7 +1111,7 @@ export const createApp = <ThrowOnError extends boolean = false>(options: Options
  */
 export const updateApp = <ThrowOnError extends boolean = false>(options: Options<UpdateAppData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateAppResponses, UpdateAppErrors, ThrowOnError>({
-        url: '/items/apps/{id}',
+        url: '/api/items/apps/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1126,7 +1126,7 @@ export const updateApp = <ThrowOnError extends boolean = false>(options: Options
  */
 export const deleteAlias = <ThrowOnError extends boolean = false>(options: Options<DeleteAliasData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteAliasResponses, DeleteAliasErrors, ThrowOnError>({
-        url: '/items/short-links/{alias}',
+        url: '/api/items/short-links/{alias}',
         ...options
     });
 };
@@ -1137,7 +1137,7 @@ export const deleteAlias = <ThrowOnError extends boolean = false>(options: Optio
  */
 export const getShortLinkRedirection = <ThrowOnError extends boolean = false>(options: Options<GetShortLinkRedirectionData, ThrowOnError>) => {
     return (options.client ?? client).get<unknown, GetShortLinkRedirectionErrors, ThrowOnError>({
-        url: '/items/short-links/{alias}',
+        url: '/api/items/short-links/{alias}',
         ...options
     });
 };
@@ -1148,7 +1148,7 @@ export const getShortLinkRedirection = <ThrowOnError extends boolean = false>(op
  */
 export const updateShortLink = <ThrowOnError extends boolean = false>(options: Options<UpdateShortLinkData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateShortLinkResponses, UpdateShortLinkErrors, ThrowOnError>({
-        url: '/items/short-links/{alias}',
+        url: '/api/items/short-links/{alias}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1163,7 +1163,7 @@ export const updateShortLink = <ThrowOnError extends boolean = false>(options: O
  */
 export const getShortLinkAvailability = <ThrowOnError extends boolean = false>(options: Options<GetShortLinkAvailabilityData, ThrowOnError>) => {
     return (options.client ?? client).get<GetShortLinkAvailabilityResponses, GetShortLinkAvailabilityErrors, ThrowOnError>({
-        url: '/items/short-links/available/{alias}',
+        url: '/api/items/short-links/available/{alias}',
         ...options
     });
 };
@@ -1174,7 +1174,7 @@ export const getShortLinkAvailability = <ThrowOnError extends boolean = false>(o
  */
 export const getShortLinksForItem = <ThrowOnError extends boolean = false>(options: Options<GetShortLinksForItemData, ThrowOnError>) => {
     return (options.client ?? client).get<GetShortLinksForItemResponses, GetShortLinksForItemErrors, ThrowOnError>({
-        url: '/items/short-links/list/{itemId}',
+        url: '/api/items/short-links/list/{itemId}',
         ...options
     });
 };
@@ -1185,7 +1185,7 @@ export const getShortLinksForItem = <ThrowOnError extends boolean = false>(optio
  */
 export const createShortLink = <ThrowOnError extends boolean = false>(options: Options<CreateShortLinkData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateShortLinkResponses, CreateShortLinkErrors, ThrowOnError>({
-        url: '/items/short-links/',
+        url: '/api/items/short-links/',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1194,16 +1194,16 @@ export const createShortLink = <ThrowOnError extends boolean = false>(options: O
     });
 };
 
-export const getItemsPublicationByItemIdStatus = <ThrowOnError extends boolean = false>(options: Options<GetItemsPublicationByItemIdStatusData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetItemsPublicationByItemIdStatusResponses, unknown, ThrowOnError>({
-        url: '/items/publication/{itemId}/status',
+export const getApiItemsPublicationByItemIdStatus = <ThrowOnError extends boolean = false>(options: Options<GetApiItemsPublicationByItemIdStatusData, ThrowOnError>) => {
+    return (options.client ?? client).get<GetApiItemsPublicationByItemIdStatusResponses, unknown, ThrowOnError>({
+        url: '/api/items/publication/{itemId}/status',
         ...options
     });
 };
 
-export const getItemsH5pAssetsIntegrationHtml = <ThrowOnError extends boolean = false>(options?: Options<GetItemsH5pAssetsIntegrationHtmlData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetItemsH5pAssetsIntegrationHtmlResponses, unknown, ThrowOnError>({
-        url: '/items/h5p-assets/integration.html',
+export const getApiItemsH5pAssetsIntegrationHtml = <ThrowOnError extends boolean = false>(options?: Options<GetApiItemsH5pAssetsIntegrationHtmlData, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetApiItemsH5pAssetsIntegrationHtmlResponses, unknown, ThrowOnError>({
+        url: '/api/items/h5p-assets/integration.html',
         ...options
     });
 };
@@ -1214,7 +1214,7 @@ export const getItemsH5pAssetsIntegrationHtml = <ThrowOnError extends boolean = 
  */
 export const importH5P = <ThrowOnError extends boolean = false>(options?: Options<ImportH5pData, ThrowOnError>) => {
     return (options?.client ?? client).post<ImportH5pResponses, ImportH5pErrors, ThrowOnError>({
-        url: '/items/h5p-import',
+        url: '/api/items/h5p-import',
         ...options
     });
 };
@@ -1225,7 +1225,7 @@ export const importH5P = <ThrowOnError extends boolean = false>(options?: Option
  */
 export const createEtherpad = <ThrowOnError extends boolean = false>(options: Options<CreateEtherpadData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateEtherpadResponses, CreateEtherpadErrors, ThrowOnError>({
-        url: '/items/etherpad/create',
+        url: '/api/items/etherpad/create',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1240,7 +1240,7 @@ export const createEtherpad = <ThrowOnError extends boolean = false>(options: Op
  */
 export const updateEtherpad = <ThrowOnError extends boolean = false>(options: Options<UpdateEtherpadData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateEtherpadResponses, UpdateEtherpadErrors, ThrowOnError>({
-        url: '/items/etherpad/{id}',
+        url: '/api/items/etherpad/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1255,7 +1255,7 @@ export const updateEtherpad = <ThrowOnError extends boolean = false>(options: Op
  */
 export const getEtherpadFromItem = <ThrowOnError extends boolean = false>(options: Options<GetEtherpadFromItemData, ThrowOnError>) => {
     return (options.client ?? client).get<GetEtherpadFromItemResponses, GetEtherpadFromItemErrors, ThrowOnError>({
-        url: '/items/etherpad/view/{itemId}',
+        url: '/api/items/etherpad/view/{itemId}',
         ...options
     });
 };
@@ -1266,7 +1266,7 @@ export const getEtherpadFromItem = <ThrowOnError extends boolean = false>(option
  */
 export const importZip = <ThrowOnError extends boolean = false>(options?: Options<ImportZipData, ThrowOnError>) => {
     return (options?.client ?? client).post<ImportZipResponses, ImportZipErrors, ThrowOnError>({
-        url: '/items/zip-import',
+        url: '/api/items/zip-import',
         ...options
     });
 };
@@ -1277,7 +1277,7 @@ export const importZip = <ThrowOnError extends boolean = false>(options?: Option
  */
 export const downloadFile = <ThrowOnError extends boolean = false>(options: Options<DownloadFileData, ThrowOnError>) => {
     return (options.client ?? client).post<DownloadFileResponses, DownloadFileErrors, ThrowOnError>({
-        url: '/items/{itemId}/download-file',
+        url: '/api/items/{itemId}/download-file',
         ...options
     });
 };
@@ -1288,7 +1288,7 @@ export const downloadFile = <ThrowOnError extends boolean = false>(options: Opti
  */
 export const exportZip = <ThrowOnError extends boolean = false>(options: Options<ExportZipData, ThrowOnError>) => {
     return (options.client ?? client).post<ExportZipResponses, ExportZipErrors, ThrowOnError>({
-        url: '/items/{itemId}/export',
+        url: '/api/items/{itemId}/export',
         ...options
     });
 };
@@ -1299,7 +1299,7 @@ export const exportZip = <ThrowOnError extends boolean = false>(options: Options
  */
 export const graaspZipExport = <ThrowOnError extends boolean = false>(options: Options<GraaspZipExportData, ThrowOnError>) => {
     return (options.client ?? client).post<GraaspZipExportResponses, GraaspZipExportErrors, ThrowOnError>({
-        url: '/items/{itemId}/graasp-export',
+        url: '/api/items/{itemId}/graasp-export',
         ...options
     });
 };
@@ -1310,7 +1310,7 @@ export const graaspZipExport = <ThrowOnError extends boolean = false>(options: O
  */
 export const getLinkMetadata = <ThrowOnError extends boolean = false>(options: Options<GetLinkMetadataData, ThrowOnError>) => {
     return (options.client ?? client).get<GetLinkMetadataResponses, GetLinkMetadataErrors, ThrowOnError>({
-        url: '/items/embedded-links/metadata',
+        url: '/api/items/embedded-links/metadata',
         ...options
     });
 };
@@ -1321,7 +1321,7 @@ export const getLinkMetadata = <ThrowOnError extends boolean = false>(options: O
  */
 export const createLink = <ThrowOnError extends boolean = false>(options: Options<CreateLinkData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateLinkResponses, CreateLinkErrors, ThrowOnError>({
-        url: '/items/embedded-links/',
+        url: '/api/items/embedded-links/',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1336,7 +1336,7 @@ export const createLink = <ThrowOnError extends boolean = false>(options: Option
  */
 export const updateLink = <ThrowOnError extends boolean = false>(options: Options<UpdateLinkData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateLinkResponses, UpdateLinkErrors, ThrowOnError>({
-        url: '/items/embedded-links/{id}',
+        url: '/api/items/embedded-links/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1351,7 +1351,7 @@ export const updateLink = <ThrowOnError extends boolean = false>(options: Option
  */
 export const createDocument = <ThrowOnError extends boolean = false>(options: Options<CreateDocumentData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateDocumentResponses, CreateDocumentErrors, ThrowOnError>({
-        url: '/items/documents/',
+        url: '/api/items/documents/',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1366,7 +1366,7 @@ export const createDocument = <ThrowOnError extends boolean = false>(options: Op
  */
 export const updateDocument = <ThrowOnError extends boolean = false>(options: Options<UpdateDocumentData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateDocumentResponses, UpdateDocumentErrors, ThrowOnError>({
-        url: '/items/documents/{id}',
+        url: '/api/items/documents/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1381,7 +1381,7 @@ export const updateDocument = <ThrowOnError extends boolean = false>(options: Op
  */
 export const getInvitationById = <ThrowOnError extends boolean = false>(options: Options<GetInvitationByIdData, ThrowOnError>) => {
     return (options.client ?? client).get<GetInvitationByIdResponses, GetInvitationByIdErrors, ThrowOnError>({
-        url: '/items/invitations/{id}',
+        url: '/api/items/invitations/{id}',
         ...options
     });
 };
@@ -1392,7 +1392,7 @@ export const getInvitationById = <ThrowOnError extends boolean = false>(options:
  */
 export const createInvitation = <ThrowOnError extends boolean = false>(options: Options<CreateInvitationData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateInvitationResponses, CreateInvitationErrors, ThrowOnError>({
-        url: '/items/{id}/invite',
+        url: '/api/items/{id}/invite',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1407,7 +1407,7 @@ export const createInvitation = <ThrowOnError extends boolean = false>(options: 
  */
 export const getInvitationForItem = <ThrowOnError extends boolean = false>(options: Options<GetInvitationForItemData, ThrowOnError>) => {
     return (options.client ?? client).get<GetInvitationForItemResponses, GetInvitationForItemErrors, ThrowOnError>({
-        url: '/items/{id}/invitations',
+        url: '/api/items/{id}/invitations',
         ...options
     });
 };
@@ -1418,7 +1418,7 @@ export const getInvitationForItem = <ThrowOnError extends boolean = false>(optio
  */
 export const deleteInvitation = <ThrowOnError extends boolean = false>(options: Options<DeleteInvitationData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteInvitationResponses, DeleteInvitationErrors, ThrowOnError>({
-        url: '/items/{id}/invitations/{invitationId}',
+        url: '/api/items/{id}/invitations/{invitationId}',
         ...options
     });
 };
@@ -1429,7 +1429,7 @@ export const deleteInvitation = <ThrowOnError extends boolean = false>(options: 
  */
 export const updateInvitation = <ThrowOnError extends boolean = false>(options: Options<UpdateInvitationData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateInvitationResponses, UpdateInvitationErrors, ThrowOnError>({
-        url: '/items/{id}/invitations/{invitationId}',
+        url: '/api/items/{id}/invitations/{invitationId}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1444,7 +1444,7 @@ export const updateInvitation = <ThrowOnError extends boolean = false>(options: 
  */
 export const sendInvitation = <ThrowOnError extends boolean = false>(options: Options<SendInvitationData, ThrowOnError>) => {
     return (options.client ?? client).post<SendInvitationResponses, SendInvitationErrors, ThrowOnError>({
-        url: '/items/{id}/invitations/{invitationId}/send',
+        url: '/api/items/{id}/invitations/{invitationId}/send',
         ...options
     });
 };
@@ -1455,7 +1455,7 @@ export const sendInvitation = <ThrowOnError extends boolean = false>(options: Op
  */
 export const inviteFromCsvWithTemplate = <ThrowOnError extends boolean = false>(options: Options<InviteFromCsvWithTemplateData, ThrowOnError>) => {
     return (options.client ?? client).post<InviteFromCsvWithTemplateResponses, InviteFromCsvWithTemplateErrors, ThrowOnError>({
-        url: '/items/{id}/invitations/upload-csv-template',
+        url: '/api/items/{id}/invitations/upload-csv-template',
         ...options
     });
 };
@@ -1466,7 +1466,7 @@ export const inviteFromCsvWithTemplate = <ThrowOnError extends boolean = false>(
  */
 export const inviteFromCsv = <ThrowOnError extends boolean = false>(options: Options<InviteFromCsvData, ThrowOnError>) => {
     return (options.client ?? client).post<InviteFromCsvResponses, InviteFromCsvErrors, ThrowOnError>({
-        url: '/items/{id}/invitations/upload-csv',
+        url: '/api/items/{id}/invitations/upload-csv',
         ...options
     });
 };
@@ -1478,7 +1478,7 @@ export const inviteFromCsv = <ThrowOnError extends boolean = false>(options: Opt
  */
 export const enroll = <ThrowOnError extends boolean = false>(options: Options<EnrollData, ThrowOnError>) => {
     return (options.client ?? client).post<EnrollResponses, unknown, ThrowOnError>({
-        url: '/items/{itemId}/enroll',
+        url: '/api/items/{itemId}/enroll',
         ...options
     });
 };
@@ -1489,7 +1489,7 @@ export const enroll = <ThrowOnError extends boolean = false>(options: Options<En
  */
 export const getFlagTypes = <ThrowOnError extends boolean = false>(options?: Options<GetFlagTypesData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetFlagTypesResponses, GetFlagTypesErrors, ThrowOnError>({
-        url: '/items/flags',
+        url: '/api/items/flags',
         ...options
     });
 };
@@ -1500,7 +1500,7 @@ export const getFlagTypes = <ThrowOnError extends boolean = false>(options?: Opt
  */
 export const createItemFlag = <ThrowOnError extends boolean = false>(options: Options<CreateItemFlagData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateItemFlagResponses, CreateItemFlagErrors, ThrowOnError>({
-        url: '/items/{itemId}/flags',
+        url: '/api/items/{itemId}/flags',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1515,7 +1515,7 @@ export const createItemFlag = <ThrowOnError extends boolean = false>(options: Op
  */
 export const getOwnRecycledItems = <ThrowOnError extends boolean = false>(options: Options<GetOwnRecycledItemsData, ThrowOnError>) => {
     return (options.client ?? client).get<GetOwnRecycledItemsResponses, GetOwnRecycledItemsErrors, ThrowOnError>({
-        url: '/items/recycled',
+        url: '/api/items/recycled',
         ...options
     });
 };
@@ -1526,7 +1526,7 @@ export const getOwnRecycledItems = <ThrowOnError extends boolean = false>(option
  */
 export const recycleManyItems = <ThrowOnError extends boolean = false>(options: Options<RecycleManyItemsData, ThrowOnError>) => {
     return (options.client ?? client).post<RecycleManyItemsResponses, RecycleManyItemsErrors, ThrowOnError>({
-        url: '/items/recycle',
+        url: '/api/items/recycle',
         ...options
     });
 };
@@ -1537,7 +1537,7 @@ export const recycleManyItems = <ThrowOnError extends boolean = false>(options: 
  */
 export const restoreManyItems = <ThrowOnError extends boolean = false>(options: Options<RestoreManyItemsData, ThrowOnError>) => {
     return (options.client ?? client).post<RestoreManyItemsResponses, RestoreManyItemsErrors, ThrowOnError>({
-        url: '/items/restore',
+        url: '/api/items/restore',
         ...options
     });
 };
@@ -1548,7 +1548,7 @@ export const restoreManyItems = <ThrowOnError extends boolean = false>(options: 
  */
 export const getLatestItemValidationGroup = <ThrowOnError extends boolean = false>(options: Options<GetLatestItemValidationGroupData, ThrowOnError>) => {
     return (options.client ?? client).get<GetLatestItemValidationGroupResponses, GetLatestItemValidationGroupErrors, ThrowOnError>({
-        url: '/items/{itemId}/validations/latest',
+        url: '/api/items/{itemId}/validations/latest',
         ...options
     });
 };
@@ -1559,7 +1559,7 @@ export const getLatestItemValidationGroup = <ThrowOnError extends boolean = fals
  */
 export const validateItem = <ThrowOnError extends boolean = false>(options: Options<ValidateItemData, ThrowOnError>) => {
     return (options.client ?? client).post<ValidateItemResponses, ValidateItemErrors, ThrowOnError>({
-        url: '/items/{itemId}/validate',
+        url: '/api/items/{itemId}/validate',
         ...options
     });
 };
@@ -1570,7 +1570,7 @@ export const validateItem = <ThrowOnError extends boolean = false>(options: Opti
  */
 export const getLikesForCurrentMember = <ThrowOnError extends boolean = false>(options?: Options<GetLikesForCurrentMemberData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetLikesForCurrentMemberResponses, GetLikesForCurrentMemberErrors, ThrowOnError>({
-        url: '/items/liked',
+        url: '/api/items/liked',
         ...options
     });
 };
@@ -1581,7 +1581,7 @@ export const getLikesForCurrentMember = <ThrowOnError extends boolean = false>(o
  */
 export const getLikesForItem = <ThrowOnError extends boolean = false>(options: Options<GetLikesForItemData, ThrowOnError>) => {
     return (options.client ?? client).get<GetLikesForItemResponses, GetLikesForItemErrors, ThrowOnError>({
-        url: '/items/{itemId}/likes',
+        url: '/api/items/{itemId}/likes',
         ...options
     });
 };
@@ -1592,7 +1592,7 @@ export const getLikesForItem = <ThrowOnError extends boolean = false>(options: O
  */
 export const deleteItemLike = <ThrowOnError extends boolean = false>(options: Options<DeleteItemLikeData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteItemLikeResponses, DeleteItemLikeErrors, ThrowOnError>({
-        url: '/items/{itemId}/like',
+        url: '/api/items/{itemId}/like',
         ...options
     });
 };
@@ -1603,7 +1603,7 @@ export const deleteItemLike = <ThrowOnError extends boolean = false>(options: Op
  */
 export const createItemLike = <ThrowOnError extends boolean = false>(options: Options<CreateItemLikeData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateItemLikeResponses, CreateItemLikeErrors, ThrowOnError>({
-        url: '/items/{itemId}/like',
+        url: '/api/items/{itemId}/like',
         ...options
     });
 };
@@ -1614,7 +1614,7 @@ export const createItemLike = <ThrowOnError extends boolean = false>(options: Op
  */
 export const clearAllMentions = <ThrowOnError extends boolean = false>(options?: Options<ClearAllMentionsData, ThrowOnError>) => {
     return (options?.client ?? client).delete<ClearAllMentionsResponses, ClearAllMentionsErrors, ThrowOnError>({
-        url: '/items/mentions',
+        url: '/api/items/mentions',
         ...options
     });
 };
@@ -1625,7 +1625,7 @@ export const clearAllMentions = <ThrowOnError extends boolean = false>(options?:
  */
 export const getOwnMentions = <ThrowOnError extends boolean = false>(options?: Options<GetOwnMentionsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetOwnMentionsResponses, GetOwnMentionsErrors, ThrowOnError>({
-        url: '/items/mentions',
+        url: '/api/items/mentions',
         ...options
     });
 };
@@ -1636,7 +1636,7 @@ export const getOwnMentions = <ThrowOnError extends boolean = false>(options?: O
  */
 export const deleteMention = <ThrowOnError extends boolean = false>(options: Options<DeleteMentionData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteMentionResponses, DeleteMentionErrors, ThrowOnError>({
-        url: '/items/mentions/{mentionId}',
+        url: '/api/items/mentions/{mentionId}',
         ...options
     });
 };
@@ -1647,7 +1647,7 @@ export const deleteMention = <ThrowOnError extends boolean = false>(options: Opt
  */
 export const patchMention = <ThrowOnError extends boolean = false>(options: Options<PatchMentionData, ThrowOnError>) => {
     return (options.client ?? client).patch<PatchMentionResponses, PatchMentionErrors, ThrowOnError>({
-        url: '/items/mentions/{mentionId}',
+        url: '/api/items/mentions/{mentionId}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1662,7 +1662,7 @@ export const patchMention = <ThrowOnError extends boolean = false>(options: Opti
  */
 export const clearChatMessage = <ThrowOnError extends boolean = false>(options: Options<ClearChatMessageData, ThrowOnError>) => {
     return (options.client ?? client).delete<ClearChatMessageResponses, ClearChatMessageErrors, ThrowOnError>({
-        url: '/items/{itemId}/chat',
+        url: '/api/items/{itemId}/chat',
         ...options
     });
 };
@@ -1673,7 +1673,7 @@ export const clearChatMessage = <ThrowOnError extends boolean = false>(options: 
  */
 export const getChat = <ThrowOnError extends boolean = false>(options: Options<GetChatData, ThrowOnError>) => {
     return (options.client ?? client).get<GetChatResponses, GetChatErrors, ThrowOnError>({
-        url: '/items/{itemId}/chat',
+        url: '/api/items/{itemId}/chat',
         ...options
     });
 };
@@ -1684,7 +1684,7 @@ export const getChat = <ThrowOnError extends boolean = false>(options: Options<G
  */
 export const createChatMessage = <ThrowOnError extends boolean = false>(options: Options<CreateChatMessageData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateChatMessageResponses, CreateChatMessageErrors, ThrowOnError>({
-        url: '/items/{itemId}/chat',
+        url: '/api/items/{itemId}/chat',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1699,7 +1699,7 @@ export const createChatMessage = <ThrowOnError extends boolean = false>(options:
  */
 export const deleteChatMessage = <ThrowOnError extends boolean = false>(options: Options<DeleteChatMessageData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteChatMessageResponses, DeleteChatMessageErrors, ThrowOnError>({
-        url: '/items/{itemId}/chat/{messageId}',
+        url: '/api/items/{itemId}/chat/{messageId}',
         ...options
     });
 };
@@ -1710,7 +1710,7 @@ export const deleteChatMessage = <ThrowOnError extends boolean = false>(options:
  */
 export const patchChatMessage = <ThrowOnError extends boolean = false>(options: Options<PatchChatMessageData, ThrowOnError>) => {
     return (options.client ?? client).patch<PatchChatMessageResponses, PatchChatMessageErrors, ThrowOnError>({
-        url: '/items/{itemId}/chat/{messageId}',
+        url: '/api/items/{itemId}/chat/{messageId}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1725,7 +1725,7 @@ export const patchChatMessage = <ThrowOnError extends boolean = false>(options: 
  */
 export const postAction = <ThrowOnError extends boolean = false>(options: Options<PostActionData, ThrowOnError>) => {
     return (options.client ?? client).post<PostActionResponses, PostActionErrors, ThrowOnError>({
-        url: '/items/{id}/actions',
+        url: '/api/items/{id}/actions',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1740,7 +1740,7 @@ export const postAction = <ThrowOnError extends boolean = false>(options: Option
  */
 export const exportActions = <ThrowOnError extends boolean = false>(options: Options<ExportActionsData, ThrowOnError>) => {
     return (options.client ?? client).post<ExportActionsResponses, ExportActionsErrors, ThrowOnError>({
-        url: '/items/{id}/actions/export',
+        url: '/api/items/{id}/actions/export',
         ...options
     });
 };
@@ -1751,7 +1751,7 @@ export const exportActions = <ThrowOnError extends boolean = false>(options: Opt
  */
 export const getItemActionsByDay = <ThrowOnError extends boolean = false>(options: Options<GetItemActionsByDayData, ThrowOnError>) => {
     return (options.client ?? client).get<GetItemActionsByDayResponses, GetItemActionsByDayErrors, ThrowOnError>({
-        url: '/items/{id}/actions/actions-by-day',
+        url: '/api/items/{id}/actions/actions-by-day',
         ...options
     });
 };
@@ -1762,7 +1762,7 @@ export const getItemActionsByDay = <ThrowOnError extends boolean = false>(option
  */
 export const getItemActionsByHour = <ThrowOnError extends boolean = false>(options: Options<GetItemActionsByHourData, ThrowOnError>) => {
     return (options.client ?? client).get<GetItemActionsByHourResponses, GetItemActionsByHourErrors, ThrowOnError>({
-        url: '/items/{id}/actions/actions-by-hour',
+        url: '/api/items/{id}/actions/actions-by-hour',
         ...options
     });
 };
@@ -1773,7 +1773,7 @@ export const getItemActionsByHour = <ThrowOnError extends boolean = false>(optio
  */
 export const getItemActionsByWeekday = <ThrowOnError extends boolean = false>(options: Options<GetItemActionsByWeekdayData, ThrowOnError>) => {
     return (options.client ?? client).get<GetItemActionsByWeekdayResponses, GetItemActionsByWeekdayErrors, ThrowOnError>({
-        url: '/items/{id}/actions/actions-by-weekday',
+        url: '/api/items/{id}/actions/actions-by-weekday',
         ...options
     });
 };
@@ -1784,7 +1784,7 @@ export const getItemActionsByWeekday = <ThrowOnError extends boolean = false>(op
  */
 export const deleteGeolocation = <ThrowOnError extends boolean = false>(options: Options<DeleteGeolocationData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteGeolocationResponses, DeleteGeolocationErrors, ThrowOnError>({
-        url: '/items/{id}/geolocation',
+        url: '/api/items/{id}/geolocation',
         ...options
     });
 };
@@ -1795,7 +1795,7 @@ export const deleteGeolocation = <ThrowOnError extends boolean = false>(options:
  */
 export const getGeolocationByItem = <ThrowOnError extends boolean = false>(options: Options<GetGeolocationByItemData, ThrowOnError>) => {
     return (options.client ?? client).get<GetGeolocationByItemResponses, GetGeolocationByItemErrors, ThrowOnError>({
-        url: '/items/{id}/geolocation',
+        url: '/api/items/{id}/geolocation',
         ...options
     });
 };
@@ -1806,7 +1806,7 @@ export const getGeolocationByItem = <ThrowOnError extends boolean = false>(optio
  */
 export const putGeolocation = <ThrowOnError extends boolean = false>(options: Options<PutGeolocationData, ThrowOnError>) => {
     return (options.client ?? client).put<PutGeolocationResponses, PutGeolocationErrors, ThrowOnError>({
-        url: '/items/{id}/geolocation',
+        url: '/api/items/{id}/geolocation',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1821,7 +1821,7 @@ export const putGeolocation = <ThrowOnError extends boolean = false>(options: Op
  */
 export const getItemsInBox = <ThrowOnError extends boolean = false>(options: Options<GetItemsInBoxData, ThrowOnError>) => {
     return (options.client ?? client).get<GetItemsInBoxResponses, GetItemsInBoxErrors, ThrowOnError>({
-        url: '/items/geolocation',
+        url: '/api/items/geolocation',
         ...options
     });
 };
@@ -1832,7 +1832,7 @@ export const getItemsInBox = <ThrowOnError extends boolean = false>(options: Opt
  */
 export const geolocationReverse = <ThrowOnError extends boolean = false>(options: Options<GeolocationReverseData, ThrowOnError>) => {
     return (options.client ?? client).get<GeolocationReverseResponses, GeolocationReverseErrors, ThrowOnError>({
-        url: '/items/geolocation/reverse',
+        url: '/api/items/geolocation/reverse',
         ...options
     });
 };
@@ -1843,7 +1843,7 @@ export const geolocationReverse = <ThrowOnError extends boolean = false>(options
  */
 export const geolocationSearch = <ThrowOnError extends boolean = false>(options: Options<GeolocationSearchData, ThrowOnError>) => {
     return (options.client ?? client).get<GeolocationSearchResponses, GeolocationSearchErrors, ThrowOnError>({
-        url: '/items/geolocation/search',
+        url: '/api/items/geolocation/search',
         ...options
     });
 };
@@ -1854,7 +1854,7 @@ export const geolocationSearch = <ThrowOnError extends boolean = false>(options:
  */
 export const getTagsForItem = <ThrowOnError extends boolean = false>(options: Options<GetTagsForItemData, ThrowOnError>) => {
     return (options.client ?? client).get<GetTagsForItemResponses, GetTagsForItemErrors, ThrowOnError>({
-        url: '/items/{itemId}/tags',
+        url: '/api/items/{itemId}/tags',
         ...options
     });
 };
@@ -1865,7 +1865,7 @@ export const getTagsForItem = <ThrowOnError extends boolean = false>(options: Op
  */
 export const createTagForItem = <ThrowOnError extends boolean = false>(options: Options<CreateTagForItemData, ThrowOnError>) => {
     return (options.client ?? client).post<CreateTagForItemResponses, CreateTagForItemErrors, ThrowOnError>({
-        url: '/items/{itemId}/tags',
+        url: '/api/items/{itemId}/tags',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1880,7 +1880,7 @@ export const createTagForItem = <ThrowOnError extends boolean = false>(options: 
  */
 export const deleteTagForItem = <ThrowOnError extends boolean = false>(options: Options<DeleteTagForItemData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteTagForItemResponses, DeleteTagForItemErrors, ThrowOnError>({
-        url: '/items/{itemId}/tags/{tagId}',
+        url: '/api/items/{itemId}/tags/{tagId}',
         ...options
     });
 };
@@ -1891,7 +1891,7 @@ export const deleteTagForItem = <ThrowOnError extends boolean = false>(options: 
  */
 export const createPage = <ThrowOnError extends boolean = false>(options: Options<CreatePageData, ThrowOnError>) => {
     return (options.client ?? client).post<CreatePageResponses, CreatePageErrors, ThrowOnError>({
-        url: '/items/pages',
+        url: '/api/items/pages',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1906,7 +1906,7 @@ export const createPage = <ThrowOnError extends boolean = false>(options: Option
  */
 export const pagesWebsockets = <ThrowOnError extends boolean = false>(options: Options<PagesWebsocketsData, ThrowOnError>) => {
     return (options.client ?? client).get<PagesWebsocketsResponses, unknown, ThrowOnError>({
-        url: '/items/pages/{id}/ws/read',
+        url: '/api/items/pages/{id}/ws/read',
         ...options
     });
 };
@@ -1917,7 +1917,7 @@ export const pagesWebsockets = <ThrowOnError extends boolean = false>(options: O
  */
 export const pagesWebsockets2 = <ThrowOnError extends boolean = false>(options: Options<PagesWebsockets2Data, ThrowOnError>) => {
     return (options.client ?? client).get<PagesWebsockets2Responses, unknown, ThrowOnError>({
-        url: '/items/pages/{id}/ws',
+        url: '/api/items/pages/{id}/ws',
         ...options
     });
 };
@@ -1928,7 +1928,7 @@ export const pagesWebsockets2 = <ThrowOnError extends boolean = false>(options: 
  */
 export const deleteManyItems = <ThrowOnError extends boolean = false>(options: Options<DeleteManyItemsData, ThrowOnError>) => {
     return (options.client ?? client).delete<DeleteManyItemsResponses, DeleteManyItemsErrors, ThrowOnError>({
-        url: '/items/',
+        url: '/api/items/',
         ...options
     });
 };
@@ -1939,7 +1939,7 @@ export const deleteManyItems = <ThrowOnError extends boolean = false>(options: O
  */
 export const createItem = <ThrowOnError extends boolean = false>(options?: Options<CreateItemData, ThrowOnError>) => {
     return (options?.client ?? client).post<CreateItemResponses, CreateItemErrors, ThrowOnError>({
-        url: '/items/',
+        url: '/api/items/',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1954,7 +1954,7 @@ export const createItem = <ThrowOnError extends boolean = false>(options?: Optio
  */
 export const getItem = <ThrowOnError extends boolean = false>(options: Options<GetItemData, ThrowOnError>) => {
     return (options.client ?? client).get<GetItemResponses, GetItemErrors, ThrowOnError>({
-        url: '/items/{id}',
+        url: '/api/items/{id}',
         ...options
     });
 };
@@ -1965,7 +1965,7 @@ export const getItem = <ThrowOnError extends boolean = false>(options: Options<G
  */
 export const updateItem = <ThrowOnError extends boolean = false>(options: Options<UpdateItemData, ThrowOnError>) => {
     return (options.client ?? client).patch<UpdateItemResponses, UpdateItemErrors, ThrowOnError>({
-        url: '/items/{id}',
+        url: '/api/items/{id}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1980,7 +1980,7 @@ export const updateItem = <ThrowOnError extends boolean = false>(options: Option
  */
 export const getAccessibleItems = <ThrowOnError extends boolean = false>(options: Options<GetAccessibleItemsData, ThrowOnError>) => {
     return (options.client ?? client).get<GetAccessibleItemsResponses, GetAccessibleItemsErrors, ThrowOnError>({
-        url: '/items/accessible',
+        url: '/api/items/accessible',
         ...options
     });
 };
@@ -1991,7 +1991,7 @@ export const getAccessibleItems = <ThrowOnError extends boolean = false>(options
  */
 export const getChildren = <ThrowOnError extends boolean = false>(options: Options<GetChildrenData, ThrowOnError>) => {
     return (options.client ?? client).get<GetChildrenResponses, GetChildrenErrors, ThrowOnError>({
-        url: '/items/{id}/children',
+        url: '/api/items/{id}/children',
         ...options
     });
 };
@@ -2002,18 +2002,18 @@ export const getChildren = <ThrowOnError extends boolean = false>(options: Optio
  */
 export const getDescendantItems = <ThrowOnError extends boolean = false>(options: Options<GetDescendantItemsData, ThrowOnError>) => {
     return (options.client ?? client).get<GetDescendantItemsResponses, GetDescendantItemsErrors, ThrowOnError>({
-        url: '/items/{id}/descendants',
+        url: '/api/items/{id}/descendants',
         ...options
     });
 };
 
 /**
- * Get parent items of item
+ * Get parents of item
  * Get parent items of item given its id.
  */
 export const getParentItems = <ThrowOnError extends boolean = false>(options: Options<GetParentItemsData, ThrowOnError>) => {
     return (options.client ?? client).get<GetParentItemsResponses, GetParentItemsErrors, ThrowOnError>({
-        url: '/items/{id}/parents',
+        url: '/api/items/{id}/parents',
         ...options
     });
 };
@@ -2024,7 +2024,7 @@ export const getParentItems = <ThrowOnError extends boolean = false>(options: Op
  */
 export const reorderItem = <ThrowOnError extends boolean = false>(options: Options<ReorderItemData, ThrowOnError>) => {
     return (options.client ?? client).patch<ReorderItemResponses, ReorderItemErrors, ThrowOnError>({
-        url: '/items/{id}/reorder',
+        url: '/api/items/{id}/reorder',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -2039,7 +2039,7 @@ export const reorderItem = <ThrowOnError extends boolean = false>(options: Optio
  */
 export const moveManyItems = <ThrowOnError extends boolean = false>(options: Options<MoveManyItemsData, ThrowOnError>) => {
     return (options.client ?? client).post<MoveManyItemsResponses, MoveManyItemsErrors, ThrowOnError>({
-        url: '/items/move',
+        url: '/api/items/move',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -2054,7 +2054,7 @@ export const moveManyItems = <ThrowOnError extends boolean = false>(options: Opt
  */
 export const copyManyItems = <ThrowOnError extends boolean = false>(options: Options<CopyManyItemsData, ThrowOnError>) => {
     return (options.client ?? client).post<CopyManyItemsResponses, CopyManyItemsErrors, ThrowOnError>({
-        url: '/items/copy',
+        url: '/api/items/copy',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -2069,7 +2069,7 @@ export const copyManyItems = <ThrowOnError extends boolean = false>(options: Opt
  */
 export const createItemWithThumbnail = <ThrowOnError extends boolean = false>(options?: Options<CreateItemWithThumbnailData, ThrowOnError>) => {
     return (options?.client ?? client).post<CreateItemWithThumbnailResponses, CreateItemWithThumbnailErrors, ThrowOnError>({
-        url: '/items/with-thumbnail',
+        url: '/api/items/with-thumbnail',
         ...options
     });
 };
@@ -2080,7 +2080,7 @@ export const createItemWithThumbnail = <ThrowOnError extends boolean = false>(op
  */
 export const getCountForTags = <ThrowOnError extends boolean = false>(options: Options<GetCountForTagsData, ThrowOnError>) => {
     return (options.client ?? client).get<GetCountForTagsResponses, GetCountForTagsErrors, ThrowOnError>({
-        url: '/tags/',
+        url: '/api/tags/',
         ...options
     });
 };

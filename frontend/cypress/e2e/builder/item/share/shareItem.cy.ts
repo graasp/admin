@@ -1,9 +1,4 @@
-import {
-  Context,
-  PackedFolderItemFactory,
-  ShortLink,
-  appendPathToUrl,
-} from '@graasp/sdk';
+import { Context, PackedFolderItemFactory, ShortLink } from '@graasp/sdk';
 
 import {
   SHARE_ITEM_QR_BTN_ID,
@@ -13,7 +8,6 @@ import {
   buildShortLinkPlatformTextId,
   buildShortLinkUrlTextId,
 } from '../../../../../src/config/selectors';
-import { GRAASP_REDIRECTION_HOST } from '../../../../support/env';
 import {
   buildGraaspBuilderView,
   buildGraaspLibraryLink,
@@ -64,14 +58,9 @@ const checkContainShortLinkText = (
   platform: ShortLinkPlatform,
   alias: string,
 ) => {
-  const expectedUrl = appendPathToUrl({
-    baseURL: GRAASP_REDIRECTION_HOST,
-    pathname: alias,
-  }).toString();
-
   cy.get(`#${buildShortLinkUrlTextId(platform)}`).should(
     'contain',
-    expectedUrl,
+    `https://go.example.com/${alias}`,
   );
 };
 
