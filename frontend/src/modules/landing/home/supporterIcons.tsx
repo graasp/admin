@@ -1,5 +1,9 @@
 import type { JSX, ReactNode } from 'react';
 
+import beLEARNProjectLogo from '@/assets/projects/BeLEARN.webp';
+import sdcLogo from '@/assets/projects/sdc.webp';
+import swissUniversititesLogo from '@/assets/projects/swissuniversities.webp';
+
 type Props = {
   width: string;
   height: string;
@@ -299,7 +303,7 @@ export function SDC({ width, height }: Readonly<Props>) {
     <img
       alt="SDC logo"
       style={{ maxWidth: width, maxHeight: height }}
-      src="/projects/sdc.webp"
+      src={sdcLogo}
     />
   );
 }
@@ -309,7 +313,7 @@ export function BeLEARN({ width, height }: Readonly<Props>) {
     <img
       alt="BeLEARN logo"
       style={{ maxWidth: width, maxHeight: height }}
-      src="/projects/BeLEARN.webp"
+      src={beLEARNProjectLogo}
     />
   );
 }
@@ -319,7 +323,7 @@ export function SwissUniversities({ width, height }: Readonly<Props>) {
     <img
       alt="SwissUniversities logo"
       style={{ maxWidth: width, maxHeight: height }}
-      src="/projects/swissuniversities.webp"
+      src={swissUniversititesLogo}
     />
   );
 }

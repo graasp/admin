@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Grid, Stack, Typography } from '@mui/material';
 
+import groupWorkIllustration from '@/assets/illustrations/group-work.webp';
+import teacherRedIllustration from '@/assets/illustrations/teacher-red.webp';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { Image } from '@/components/ui/StyledImages';
 import { NS } from '@/config/constants';
@@ -37,7 +39,7 @@ export function UserStorySection(): JSX.Element {
           caption={t('HOME.USER_STORY.TEACHER.LEADING_SENTENCE')}
           buttonText={t('HOME.USER_STORY.TEACHER.BUTTON_TEXT')}
           title={t('HOME.USER_STORY.TEACHER.TITLE')}
-          image={<Image src="/illustration/teacher-red.webp" />}
+          image={<Image src={teacherRedIllustration} />}
         >
           <Typography>
             <span>{t('HOME.USER_STORY.TEACHER.USE_CASE_1')}</span>
@@ -86,7 +88,7 @@ export function UserStorySection(): JSX.Element {
         title={t('HOME.USER_STORY.RESEARCHER.TITLE')}
         image={
           <Image
-            src="/illustration/group-work.webp"
+            src={groupWorkIllustration}
             alt="students experimenting in a lab session"
           />
         }

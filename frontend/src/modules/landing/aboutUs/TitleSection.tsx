@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Grid, Stack, Typography, styled } from '@mui/material';
 
+import teamIllustration from '@/assets/illustrations/team.webp';
 import { Image } from '@/components/ui/StyledImages';
 import { NS } from '@/config/constants';
 
@@ -21,7 +22,7 @@ export function TitleSection() {
           overflow="hidden"
         >
           <Image
-            src="/illustration/team.webp"
+            src={teamIllustration}
             sx={{
               // override the "show top of image" behavior of the Image component
               objectPosition: '0 72%',
