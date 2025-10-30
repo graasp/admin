@@ -8,7 +8,7 @@ defmodule AdminWeb.UserLive.Settings do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <div class="text-center">
         <.header>
           Account Settings
@@ -62,7 +62,7 @@ defmodule AdminWeb.UserLive.Settings do
           Save Password
         </.button>
       </.form>
-    </Layouts.app>
+    </Layouts.admin>
     """
   end
 

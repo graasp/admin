@@ -1,4 +1,4 @@
-<Layouts.app flash={@flash}>
+<Layouts.admin flash={@flash}>
   <.header>
     Planned maintenance "{@planned_maintenance.slug}"
     <:actions>
@@ -23,4 +23,4 @@
       {@planned_maintenance.end_at} - <.relative_date date={@planned_maintenance.end_at} />
     </:item>
   </.list>
-</Layouts.app>
+</Layouts.admin>

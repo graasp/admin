@@ -1,9 +1,5 @@
-defmodule AdminWeb.PageController do
+defmodule AdminWeb.AdminController do
   use AdminWeb, :controller
-
-  def home(conn, _params) do
-    render(conn, :home)
-  end
 
   def dashboard(conn, _params) do
     conn =

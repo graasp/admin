@@ -7,7 +7,7 @@ defmodule AdminWeb.PublisherLive.Form do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <.header>
         {@page_title}
         <:subtitle>
@@ -48,7 +48,7 @@ defmodule AdminWeb.PublisherLive.Form do
           <.button navigate={return_path(@current_scope, @return_to, @publisher)}>Cancel</.button>
         </footer>
       </.form>
-    </Layouts.app>
+    </Layouts.admin>
     """
   end
 

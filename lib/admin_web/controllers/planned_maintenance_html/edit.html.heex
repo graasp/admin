@@ -1,4 +1,4 @@
-<Layouts.app flash={@flash}>
+<Layouts.admin flash={@flash}>
   <.header>
     Edit planned maintenance "{@planned_maintenance.slug}"
   </.header>
@@ -8,4 +8,4 @@
     action={~p"/maintenance/#{@planned_maintenance}"}
     return_to={~p"/maintenance"}
   />
-</Layouts.app>
+</Layouts.admin>

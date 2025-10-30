@@ -4,7 +4,7 @@ if Application.compile_env(:admin, :dev_routes) do
 
     def index(assigns) do
       ~H"""
-      <Layouts.app flash={@flash} current_scope={@current_scope}>
+      <Layouts.admin flash={@flash} current_scope={@current_scope}>
         <.header>
           Listing Buckets
         </.header>
@@ -12,13 +12,13 @@ if Application.compile_env(:admin, :dev_routes) do
           <:col :let={item} label="Name">{item.name}</:col>
           <:col :let={item} label="Creation Date">{item.creation_date}</:col>
         </.table>
-      </Layouts.app>
+      </Layouts.admin>
       """
     end
 
     def show(assigns) do
       ~H"""
-      <Layouts.app flash={@flash} current_scope={@current_scope}>
+      <Layouts.admin flash={@flash} current_scope={@current_scope}>
         <.header>
           Listing Bucket {@bucket.name}
         </.header>
@@ -32,7 +32,7 @@ if Application.compile_env(:admin, :dev_routes) do
             <.link href={~p"/dev/s3/#{@bucket.name}/#{item.key}"} method="delete">Delete</.link>
           </:action>
         </.table>
-      </Layouts.app>
+      </Layouts.admin>
       """
     end
   end
