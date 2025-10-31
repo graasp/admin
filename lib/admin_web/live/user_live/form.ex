@@ -6,7 +6,7 @@ defmodule AdminWeb.UserLive.Form do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <.header>Create a new User</.header>
 
       <.form id="user_form" for={@form} phx-submit="save" phx-change="validate">
@@ -20,7 +20,7 @@ defmodule AdminWeb.UserLive.Form do
         />
         <.button variant="primary">Save</.button>
       </.form>
-    </Layouts.app>
+    </Layouts.admin>
     """
   end
 

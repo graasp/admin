@@ -33,19 +33,9 @@ defmodule AdminWeb.Layouts do
 
   slot :inner_block, required: true
 
-  def app(assigns) do
+  def admin(assigns) do
     ~H"""
-    <%!-- <header class="navbar px-4 sm:px-6 lg:px-8">
-      <div class="flex-1">
-        <a
-          href={~p"/dashboard"}
-          class="flex-1 flex w-fit items-center gap-2"
-        >
-          <img src={~p"/images/logo.svg"} width="36" />
-          <span class="text-sm font-semibold">Admin</span>
-        </a>
-      </div>
-    </header> --%>
+    <.menu_bar {assigns} />
 
     <main class="px-4 py-8 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-4xl space-y-4">

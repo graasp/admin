@@ -6,7 +6,7 @@ defmodule AdminWeb.PublisherLive.Show do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <.header>
         Publisher: {@publisher.name}
         <:subtitle>This is a publisher record from your database.</:subtitle>
@@ -52,7 +52,7 @@ defmodule AdminWeb.PublisherLive.Show do
           </div>
         </div>
       </dialog>
-    </Layouts.app>
+    </Layouts.admin>
     """
   end
 

@@ -1,0 +1,339 @@
+<Layouts.flash_group flash={@flash} />
+
+<div class="flex flex-col justify-center items-center gap-2 max-w-md m-auto pt-5">
+  <%= if @current_scope do %>
+    <p>You are logged in!</p>
+    <.link navigate={~p"/dashboard"} class="btn btn-primary">Dashboard</.link>
+  <% else %>
+    <h2 class="text-xl text-center">Admin</h2>
+    <span class="flex flex-col items-center">
+      <.link navigate={~p"/users/log-in"} class="btn btn-primary">
+        Log in
+      </.link>
+      <p class="text-secondary">
+        You need to log in with an admin account
+      </p>
+    </span>
+  <% end %>
+</div>
+
+<div class="divider" />
+
+<div
+  class="flex flex-col w-full items-center mt-10 p-8 pb-30 gap-10 grow bg-base-100 "
+  id="bodyWrapper"
+>
+  <div class="flex flex-col">
+    <section class="prose flex flex-col my-10 max-w-6xl gap-5">
+      <div class="flex flex-col place-items-center w-full lg:flex-row-reverse lg:justify-between gap-4">
+        <div class="flex flex-col rounded-2xl overflow-hidden max-h-[400px] lg:h-full lg:w-auto">
+          <img
+            alt="cover"
+            class="not-prose w-full lg:w-auto h-fit object-cover min-h-0 min-w-0 object-[0%_70%]"
+            src="/images/landing.webp"
+          />
+        </div>
+        <div class="flex flex-col lg:grow-2 lg:shrink-1">
+          <div class="flex flex-col items-center">
+            <div class="items-center">
+              <h2 class="mb-0 text-primary text-center">
+                Graasp
+              </h2>
+              <h1 class="text-primary text-center">
+                Your learning experience platform
+              </h1>
+            </div>
+            <p class="text-xl text-center">
+              For building, exploring and sharing engaging educational resources integrating interactive and intelligent elements in active learning scenarios for education and research.
+            </p>
+          </div>
+          <div class="flex flex-center justify-center items-center gap-1" id="buttonsContainer">
+            <.button
+              variant="primary"
+              tabindex="0"
+              navigate="/client/auth/register"
+            >
+              Create an account
+            </.button>
+            <.button
+              tabindex="0"
+              href="https://library.graasp.org"
+            >
+              Visit the Library
+            </.button>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col">
+        <p class="text-secondary m-0">Supported by</p>
+        <div
+          class="not-prose flex flex-row flex-wrap items-center gap-1"
+          id="logosContainer"
+        >
+          <%!-- EPFL logo   --%>
+          <.project_link url="https://www.epfl.ch">
+            <.epfl_logo />
+          </.project_link>
+
+          <%!-- BeLEARN logo --%>
+          <.project_link url="https://belearn.swiss/en/">
+            <img
+              alt="BeLEARN logo"
+              src="/images/projects/BeLEARN.webp"
+              class="max-w-[150px] max-h-[3rem]"
+            />
+          </.project_link>
+
+          <%!-- EdTech logo --%>
+          <.project_link url="https://www.edtech-collider.ch">
+            <.collider_logo />
+          </.project_link>
+
+          <%!-- UNINE logo --%>
+          <.project_link url="https://www.unine.ch/imi/en/">
+            <.unine_logo />
+          </.project_link>
+
+          <%!-- GOLAB logo --%>
+          <.project_link url="https://www.golabz.eu/">
+            <.golabz_logo />
+          </.project_link>
+
+          <%!-- Swiss Universities logo --%>
+          <.project_link url="https://www.swissuniversities.ch/fr/themes/digitalisation/open-education-digital-competencies/projets-soutenus">
+            <img
+              alt="SwissUniversities logo"
+              src="/images/projects/swissuniversities.webp"
+              class="max-w-[150px] max-h-[3rem]"
+            />
+          </.project_link>
+
+          <%!-- SDC logo --%>
+          <.project_link url="https://www.eda.admin.ch/eda/en/fdfa/fdfa/organisation-fdfa/directorates-divisions/sdc.html">
+            <img
+              alt="SDC logo"
+              src="/images/projects/sdc.webp"
+              class="max-w-[150px] max-h-[3rem]"
+            />
+          </.project_link>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="MuiStack-root mui-dir-ltr-1tl2sun">
+    <h2 class="MuiTypography-root MuiTypography-h2 mui-dir-ltr-j25eyk">
+      An all-in-one platform, how?
+    </h2>
+    <div class="MuiStack-root mui-dir-ltr-i4ptx9">
+      <div class="MuiStack-root mui-dir-ltr-2yd1zd">
+        <div class="MuiStack-root mui-dir-ltr-eawo5j">
+          <svg viewBox="0 0 1080 1080" class="mui-dir-ltr-1q2o8tg">
+            <g class="mui-dir-ltr-197yn0g">
+              <circle cx="540" cy="540" r="540"></circle>
+              <path d="M656.39,481.93h-228.19c-30.88,0-56-25.12-56-56V250.47c0-30.88,25.12-56,56-56h228.19c30.88,0,56,25.12,56,56v175.46c0,30.88-25.12,56-56,56Zm-228.19-236.33c-2.69,0-4.87,2.18-4.87,4.87v175.46c0,2.69,2.18,4.87,4.87,4.87h228.19c2.69,0,4.87-2.18,4.87-4.87V250.47c0-2.69-2.18-4.87-4.87-4.87h-228.19Z">
+              </path>
+              <path d="M845.1,805.78h-228.19c-30.88,0-56-25.12-56-56v-175.46c0-30.88,25.12-56,56-56h228.19c30.88,0,56,25.12,56,56v175.46c0,30.88-25.12,56-56,56Zm-228.19-236.33c-2.69,0-4.87,2.18-4.87,4.87v175.46c0,2.69,2.18,4.87,4.87,4.87h228.19c2.69,0,4.87-2.18,4.87-4.87v-175.46c0-2.69-2.18-4.87-4.87-4.87h-228.19Z">
+              </path>
+              <path d="M467.68,805.78H239.48c-30.88,0-56-25.12-56-56v-175.46c0-30.88,25.12-56,56-56h228.19c30.88,0,56,25.12,56,56v175.46c0,30.88-25.12,56-56,56Zm-228.19-236.33c-2.69,0-4.87,2.18-4.87,4.87v175.46c0,2.69,2.18,4.87,4.87,4.87h228.19c2.69,0,4.87-2.18,4.87-4.87v-175.46c0-2.69-2.18-4.87-4.87-4.87H239.48Z">
+              </path>
+            </g>
+          </svg>
+          <div class="MuiStack-root mui-dir-ltr-1dtebqj">
+            <p class="MuiTypography-root MuiTypography-body1 mui-dir-ltr-15p8hed">
+              Create your own interactive and intelligent educational resources with the
+              <strong>Builder</strong>
+            </p>
+            <a href="/features/#builder" color="builder" class="mui-dir-ltr-gufmv4">Create</a>
+          </div>
+        </div>
+        <div class="MuiStack-root mui-dir-ltr-1j8mm9h">
+          <svg viewBox="0 0 1080 1080" class="mui-dir-ltr-1q2o8tg">
+            <g class="mui-dir-ltr-yuupyz">
+              <circle cx="540" cy="540" r="540"></circle>
+              <path d="M795.03,549.17h-243.54c-8,0-14.51-6.51-14.51-14.51V274.34c0-9.43-7.88-17.04-17.45-16.48-51.86,3.03-102.08,22.79-145.22,57.14-41.37,32.94-73.48,76.78-92.88,126.79-18.62,48.02-24.05,98.9-15.7,147.15,9.26,53.51,34.51,101.73,75.06,143.34,50.92,52.25,114.66,79.86,184.32,79.86,33.65,0,67.41-6.41,100.37-19.05,32.02-12.28,61.69-29.81,88.19-52.1,55.32-46.54,90.03-108.1,97.74-173.34,.55-4.69-.93-9.41-4.06-12.93-3.13-3.52-7.62-5.54-12.33-5.54Zm-243.54,58.61h189.73c-13.08,32.89-35.62,63.42-65.26,88.36-43.36,36.47-98.33,57.39-150.83,57.39-25.61,0-50.29-4.86-73.36-14.45-25.08-10.42-48.29-26.47-68.99-47.71-32.13-32.97-52.08-70.8-59.29-112.43-6.54-37.76-2.18-77.86,12.6-115.96,15.42-39.77,41.96-76.04,74.74-102.13,20.84-16.59,43.56-28.8,67.55-36.29v210.11c0,40.32,32.8,73.12,73.12,73.12Z">
+              </path>
+              <path d="M584.11,228.53c-9.53-.57-17.53,7.05-17.53,16.48V505.34c0,9.1,7.41,16.51,16.51,16.51h245.52c9.01,0,16.35-7.3,16.35-16.26v-.16c0-146.67-114.58-268.3-260.85-276.89Zm198.16,234.71h-157.08v-168.94c79.71,21.68,141.18,87.79,157.08,168.94Z">
+              </path>
+            </g>
+          </svg>
+          <div class="MuiStack-root mui-dir-ltr-1dtebqj">
+            <p class="MuiTypography-root MuiTypography-body1 mui-dir-ltr-15p8hed">
+              Gain valuable insights and explore dashboards with <strong>Analytics</strong>
+            </p>
+            <a href="/features/#analytics" color="analytics" class="mui-dir-ltr-1rvjv7t">
+              Analyze
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="MuiStack-root mui-dir-ltr-2yd1zd">
+        <div class="MuiStack-root mui-dir-ltr-73zgip">
+          <svg viewBox="0 0 1080 1080" class="mui-dir-ltr-1q2o8tg">
+            <g class="mui-dir-ltr-smivln">
+              <circle cx="540" cy="540" r="540"></circle>
+              <path d="M439.21,340.8l292.95,195.48-292.95,195.48V340.8m-29.63-92.75c-19.29,0-37.21,15.34-37.21,37.16v502.13c0,21.83,17.92,37.16,37.21,37.16,6.91,0,13.99-1.97,20.49-6.3l376.25-251.07c22.01-14.69,22.01-47.03,0-61.72L430.07,254.35c-6.5-4.34-13.58-6.3-20.49-6.3h0Z">
+              </path>
+            </g>
+          </svg>
+          <div class="MuiStack-root mui-dir-ltr-1dtebqj">
+            <p class="MuiTypography-root MuiTypography-body1 mui-dir-ltr-15p8hed">
+              Engage your students in active learning scenarios with the <strong>Player</strong>
+            </p>
+            <a href="/features/#player" color="player" class="mui-dir-ltr-1e3m3b0">Experience</a>
+          </div>
+        </div>
+        <div class="MuiStack-root mui-dir-ltr-1qlj3h3">
+          <svg viewBox="0 0 1080 1080" class="mui-dir-ltr-1q2o8tg">
+            <g class="mui-dir-ltr-1gw9rsj">
+              <circle fill="white" cx="540" cy="540" r="540"></circle>
+              <path d="M368.54,261.87h-106.6c-12.21,0-22.15,9.94-22.15,22.15v503.58c0,12.22,9.94,22.15,22.15,22.15h106.6c12.21,0,22.15-9.94,22.15-22.15V284.02c0-12.21-9.94-22.15-22.15-22.15Zm-22.15,44.3v459.28h-62.3V306.17h62.3Z">
+              </path>
+              <path d="M548.76,261.87h-106.6c-12.22,0-22.15,9.94-22.15,22.15v503.58c0,12.22,9.94,22.15,22.15,22.15h106.6c12.21,0,22.15-9.94,22.15-22.15V284.02c0-12.21-9.94-22.15-22.15-22.15Zm-84.45,503.58V306.17h62.3v459.28h-62.3Z">
+              </path>
+              <path d="M919.72,741.33l-187.72-467.29c-2.21-5.49-6.42-9.8-11.86-12.12-5.44-2.32-11.46-2.39-16.95-.18l-98.92,39.74c-5.49,2.21-9.79,6.42-12.12,11.86s-2.39,11.46-.18,16.95l187.72,467.29c2.21,5.49,6.42,9.79,11.86,12.11,2.76,1.18,5.69,1.78,8.7,1.78,2.84,0,5.62-.54,8.26-1.6l98.92-39.74c5.49-2.21,9.79-6.42,12.12-11.86,2.32-5.44,2.39-11.46,.18-16.95Zm-49.36-4.04l-57.81,23.22-171.21-426.18,57.81-23.22,171.21,426.18Z">
+              </path>
+            </g>
+          </svg>
+          <div class="MuiStack-root mui-dir-ltr-1dtebqj">
+            <p class="MuiTypography-root MuiTypography-body1 mui-dir-ltr-15p8hed">
+              Explore and share open educational resources in our <strong>Library</strong>
+            </p>
+            <a href="/features/#library" color="library" class="mui-dir-ltr-mhcv8s">Explore</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="MuiStack-root mui-dir-ltr-4ewryx">
+    <div class="MuiStack-root mui-dir-ltr-1l9qed9">
+      <a href="#teacher-story" class="mui-dir-ltr-lrztc0">
+        Are you a teacher?<svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-chevron-down"
+          aria-hidden="true"
+        ><path d="m6 9 6 6 6-6"></path></svg>
+      </a>
+      <a href="#researcher-story" class="mui-dir-ltr-lrztc0">
+        Are you a researcher?<svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-chevron-down"
+          aria-hidden="true"
+        ><path d="m6 9 6 6 6-6"></path></svg>
+      </a>
+    </div>
+    <div class="MuiStack-root mui-dir-ltr-d4jhmw">
+      <div class="MuiBox-root mui-dir-ltr-1gckjr5" id="teacher-story"></div>
+      <div class="MuiStack-root image-container mui-dir-ltr-n57peg">
+        <div class="MuiStack-root mui-dir-ltr-9zs9pl">
+          <img class="mui-dir-ltr-1iynpic" src="/illustration/teacher-red.webp" />
+        </div>
+      </div>
+      <div class="MuiStack-root text-container mui-dir-ltr-87gsyh">
+        <div class="MuiBox-root mui-dir-ltr-rz2ctg">
+          <p class="MuiTypography-root MuiTypography-note mui-dir-ltr-px287l">
+            Are you a teacher interested to streamline your digital content creation?
+          </p>
+          <h2 class="MuiTypography-root MuiTypography-h2 mui-dir-ltr-10gc2sc">
+            Build your material with Graasp
+          </h2>
+        </div>
+        <p class="MuiTypography-root MuiTypography-body1 mui-dir-ltr-1gu19pc">
+          <span>Embed interactive apps in your class material</span>
+          <br /><span>Co-create and share resources with peers</span>
+          <br /><span>Explore detailed analytics about your students</span>
+        </p>
+        <a
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary mui-dir-ltr-1p1s7bl"
+          tabindex="0"
+          href="/auth/register"
+        >
+          Start Today
+        </a>
+      </div>
+    </div>
+    <div class="MuiStack-root mui-dir-ltr-d4jhmw">
+      <div class="MuiBox-root mui-dir-ltr-1gckjr5" id="researcher-story"></div>
+      <div class="MuiStack-root image-container mui-dir-ltr-n57peg">
+        <div class="MuiStack-root mui-dir-ltr-9zs9pl">
+          <img
+            alt="students experimenting in a lab session"
+            class="mui-dir-ltr-1iynpic"
+            src="/illustration/group-work.webp"
+          />
+        </div>
+      </div>
+      <div class="MuiStack-root text-container mui-dir-ltr-87gsyh">
+        <div class="MuiBox-root mui-dir-ltr-rz2ctg">
+          <p class="MuiTypography-root MuiTypography-note mui-dir-ltr-px287l">
+            Are you a researcher seeking a platform that seamlessly integrates data collection and interactive learning experiences?
+          </p>
+          <h2 class="MuiTypography-root MuiTypography-h2 mui-dir-ltr-10gc2sc">
+            Start using Graasp for your research
+          </h2>
+        </div>
+        <p class="MuiTypography-root MuiTypography-body1 mui-dir-ltr-1gu19pc">
+          <span>Benefit from a safe environnement for research investigations</span>
+          <br /><span>Conduct tests with various experimental conditions</span>
+          <br /><span>Interact with peers advancing digital learning sciences</span>
+        </p>
+        <a
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary mui-dir-ltr-1p1s7bl"
+          tabindex="0"
+          href="/auth/register"
+        >
+          Register Now
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="MuiStack-root mui-dir-ltr-6c9zn2">
+    <div class="MuiStack-root mui-dir-ltr-1w8go7f">
+      <h2 class="MuiTypography-root MuiTypography-h2 mui-dir-ltr-1plbres">Our vision</h2>
+      <p class="MuiTypography-root MuiTypography-body1 mui-dir-ltr-63y7nh">
+        We aim at empowering educators to fully embrace value-adding digital technology for engaging their students in innovative learning scenarios and for developing their digital skills
+      </p>
+      <div class="MuiStack-root mui-dir-ltr-1821gv5">
+        <p class="MuiTypography-root MuiTypography-body1 mui-dir-ltr-1r9io07">
+          Do you want to know more?
+        </p>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary mui-dir-ltr-175pxnb"
+          tabindex="0"
+          type="button"
+        >
+          Get to know us
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="px-4 py-10 sm:px-6 sm:py-28 xl:px-28 xl:py-32">
+  <div class="mx-auto max-w-xl ">
+    <div class="mt-10 flex justify-between items-center">
+      <h1 class="flex items-center text-sm font-semibold leading-6">
+        Admin
+      </h1>
+    </div>
+
+    <p class="text-[2rem] mt-4 font-semibold leading-10 tracking-tighter text-balance">
+      Graasp Admin Interface
+    </p>
+  </div>
+</div>
