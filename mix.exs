@@ -111,7 +111,10 @@ defmodule Admin.MixProject do
       {:poison, "~> 6.0"},
       {:hackney, "~> 1.9"},
       # optional dependency to parse XML
-      {:sweet_xml, "~> 0.7"}
+      {:sweet_xml, "~> 0.7"},
+      # jobs with Oban
+      {:oban, "~> 2.19"},
+      {:igniter, "~> 0.5", only: [:dev]}
     ]
   end
 
