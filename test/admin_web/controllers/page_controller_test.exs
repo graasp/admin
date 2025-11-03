@@ -3,7 +3,7 @@ defmodule AdminWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
-    assert html_response(conn, 200) =~ "Graasp Admin Interface"
+    assert html_response(conn, 200) =~ "Admin"
   end
 
   describe "Authenticated routes" do

@@ -6,7 +6,7 @@ defmodule AdminWeb.PublisherLive.Index do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <.header>
         Listing Apps by Publishers
         <:actions>
@@ -82,7 +82,7 @@ defmodule AdminWeb.PublisherLive.Index do
         <% end %>
         <div class="not-last:divider" />
       <% end %>
-    </Layouts.app>
+    </Layouts.admin>
     """
   end
 

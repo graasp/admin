@@ -7,7 +7,7 @@ defmodule AdminWeb.UserLive.Listing do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <div class="">
         <.header>
           List users
@@ -60,7 +60,7 @@ defmodule AdminWeb.UserLive.Listing do
           </div>
         </div>
       </dialog>
-    </Layouts.app>
+    </Layouts.admin>
     """
   end
 

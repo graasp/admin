@@ -7,7 +7,7 @@ defmodule AdminWeb.AppInstanceLive.Form do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash} current_scope={@current_scope}>
+    <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <.header>
         {@page_title}
         <:subtitle>Use this form to manage app_instance records in your database.</:subtitle>
@@ -59,7 +59,7 @@ defmodule AdminWeb.AppInstanceLive.Form do
           </.link>
         </span>
       </div>
-    </Layouts.app>
+    </Layouts.admin>
     """
   end
 
