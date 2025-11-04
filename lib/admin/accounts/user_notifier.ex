@@ -24,6 +24,20 @@ defmodule Admin.Accounts.UserNotifier do
     end
   end
 
+  def deliver_notification(user, subject, message_text) do
+    deliver(user.email, subject, """
+
+    ==============================
+
+    Hi #{user.name},
+
+    #{message_text}
+
+    ==============================
+    #{@footer}
+    """)
+  end
+
   @doc """
   Deliver publication removal information.
   """

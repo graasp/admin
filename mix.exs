@@ -114,7 +114,7 @@ defmodule Admin.MixProject do
       {:sweet_xml, "~> 0.7"},
       # jobs with Oban
       {:oban, "~> 2.19"},
-      {:igniter, "~> 0.5", only: [:dev]}
+      {:oban_web, "~> 2.11"}
     ]
   end
 

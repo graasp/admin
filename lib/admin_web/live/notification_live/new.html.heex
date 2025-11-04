@@ -1,0 +1,96 @@
+<Layouts.admin flash={@flash} current_scope={@current_scope}>
+  <.header>
+    New Notification
+  </.header>
+
+  <.form
+    for={@form}
+    as={:notification}
+    id="notification-form"
+    phx-change="validate"
+    phx-submit="submit"
+  >
+    <.input field={@form[:title]} type="text" label="Title" />
+    <.input field={@form[:message]} type="textarea" label="Message" rows="6" />
+
+    <div class="space-y-2">
+      <label class="text-sm font-medium">Recipients source</label>
+      <select
+        name="recipient_method"
+        id="recipient_method"
+        class="input"
+        phx-change="change_method"
+      >
+        <option value="manual" selected={@recipient_method == "manual"}>Enter manually</option>
+        <option value="active_users" selected={@recipient_method == "active_users"}>
+          Active users
+        </option>
+      </select>
+      <p class="text-xs text-muted-foreground">
+        Choose how to populate recipient emails.
+      </p>
+    </div>
+
+    <%= if @recipient_method == "manual" do %>
+      <div class="space-y-3">
+        <label class="text-sm font-medium">Recipient emails</label>
+
+        <div class="space-y-2">
+          <%= for {email, idx} <- Enum.with_index(@manual_recipients) do %>
+            <div class="flex items-center gap-2">
+              <input
+                type="email"
+                value={email}
+                class="input flex-1"
+                placeholder="user@example.com"
+                phx-change="manual_update_row"
+                phx-debounce="300"
+                name={"manual_email_#{idx}"}
+                phx-value-index={idx}
+                phx-value-value={email}
+              />
+              <button
+                type="button"
+                class="button button-secondary"
+                phx-click="manual_remove_row"
+                phx-value-index={idx}
+              >
+                Remove
+              </button>
+            </div>
+          <% end %>
+        </div>
+
+        <button type="button" class="button" phx-click="manual_add_row">
+          + Add email
+        </button>
+
+        <%= if @form.errors[:recipients] do %>
+          <p class="text-sm text-destructive">
+            {elem(@form.errors[:recipients], 0)}
+          </p>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="space-y-2">
+        <label class="text-sm font-medium">Active users</label>
+        <%= if @active_users == [] do %>
+          <p class="text-sm text-muted-foreground">No active users found.</p>
+        <% else %>
+          <ul class="list-disc pl-6 text-sm">
+            <%= for email <- @active_users do %>
+              <li>{email}</li>
+            <% end %>
+          </ul>
+        <% end %>
+        <p class="text-xs text-muted-foreground">
+          Recipients will be set to the current active users list on submit.
+        </p>
+      </div>
+    <% end %>
+
+    <footer>
+      <.button variant="primary">Create Notification</.button>
+    </footer>
+  </.form>
+</Layouts.admin>

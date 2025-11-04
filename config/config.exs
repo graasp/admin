@@ -8,9 +8,15 @@
 import Config
 
 config :admin, Oban,
+  plugins: [
+    # retain jobs for 7 days
+    {Oban.Plugins.Pruner, max_age: 60 * 60 * 24 * 7},
+    # rescue orphan jobs after 2h
+    {Oban.Plugins.Lifeline, rescue_after: :timer.hours(2)}
+  ],
   engine: Oban.Engines.Basic,
   notifier: Oban.Notifiers.Postgres,
-  queues: [default: 10],
+  queues: [default: 10, mailers: 5],
   repo: Admin.Repo
 
 config :admin, :scopes,
