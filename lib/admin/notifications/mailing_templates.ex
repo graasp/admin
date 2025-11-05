@@ -1,4 +1,8 @@
 defmodule Admin.Notifications.MailingTemplates do
+  @moduledoc """
+  Module for managing mailing templates.
+  """
+
   use Phoenix.Component
   import Phoenix.Template, only: [render_to_string: 4]
 

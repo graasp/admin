@@ -7,12 +7,13 @@ defmodule Admin.Accounts.UserNotifier do
   alias Admin.Accounts.Account
   alias Admin.Accounts.User
   alias Admin.Mailer
+  alias Admin.Notifications.MailingTemplates
 
   @footer "Graasp.org is a learning experience platform."
 
   def test_email(scope) do
     html =
-      Admin.Notifications.MailingTemplates.simple_call_to_action(%{
+      MailingTemplates.simple_call_to_action(%{
         user: scope,
         message: "This is a test email.",
         button_text: "Click here",
