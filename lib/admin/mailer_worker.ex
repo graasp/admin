@@ -25,7 +25,7 @@ defmodule Admin.MailerWorker do
     scope = Scope.for_user(user)
 
     with {:ok, member} <- Accounts.get_member_by_email(member_email),
-         notification <- Notifications.get_notification!(scope, notification_id),
+         {:ok, notification} <- Notifications.get_notification(scope, notification_id),
          {:ok, _} <-
            UserNotifier.deliver_notification(
              member,
@@ -43,7 +43,7 @@ defmodule Admin.MailerWorker do
 
       :ok
     else
-      {:error, :not_found} ->
+      {:error, reason} when reason in [:member_not_found, :notification_not_found] ->
         Notifications.save_log(
           scope,
           %{
@@ -53,7 +53,7 @@ defmodule Admin.MailerWorker do
           %Notification{id: notification_id}
         )
 
-        {:cancel, "Member was not found"}
+        {:cancel, reason}
 
       {:error, _} ->
         {:error, "Failed to send notification"}

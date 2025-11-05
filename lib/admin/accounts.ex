@@ -363,11 +363,11 @@ defmodule Admin.Accounts do
   def get_member_by_email(email) do
     case Repo.get_by(Account, email: email) do
       %Account{} = user -> {:ok, user}
-      nil -> {:error, :not_found}
+      nil -> {:error, :member_not_found}
     end
   end
 
-  def get_active_users do
+  def get_active_members do
     Repo.all(
       from(m in Account,
         where:
@@ -377,5 +377,11 @@ defmodule Admin.Accounts do
         order_by: [desc: m.created_at]
       )
     )
+  end
+
+  def create_member(attrs \\ %{}) do
+    %Account{}
+    |> Account.changeset(attrs)
+    |> Repo.insert()
   end
 end

@@ -89,6 +89,25 @@ defmodule Admin.Notifications do
   end
 
   @doc """
+  Gets a single notification.
+
+  ## Examples
+
+      iex> get_notification(scope, 123)
+      {:ok, %Notification{}}
+
+      iex> get_notification(scope, 456)
+      {:error, :not_found}
+
+  """
+  def get_notification(%Scope{} = _scope, id) do
+    case Repo.get_by(Notification, id: id) |> Repo.preload(:logs) do
+      %Notification{} = notification -> {:ok, notification}
+      nil -> {:error, :notification_not_found}
+    end
+  end
+
+  @doc """
   Updates a service_message.
 
   ## Examples

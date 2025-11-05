@@ -157,7 +157,7 @@ defmodule AdminWeb.NotificationLive.New do
         # Fetch active users and set recipients to that list
         # You can do this async if Accounts.get_active_users/0 is slow.
         active =
-          safe_get_active_users()
+          safe_get_active_members()
           # take only email
           |> Enum.map(& &1.email)
 
@@ -276,9 +276,9 @@ defmodule AdminWeb.NotificationLive.New do
     end
   end
 
-  # Safely get active users; in a real app consider async if slow
-  defp safe_get_active_users do
-    Accounts.get_active_users()
+  # Safely get active members; in a real app consider async if slow
+  defp safe_get_active_members do
+    Accounts.get_active_members()
   rescue
     _ -> []
   end
