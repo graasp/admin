@@ -114,7 +114,10 @@ defmodule Admin.MixProject do
       {:sweet_xml, "~> 0.7"},
       # jobs with Oban
       {:oban, "~> 2.19"},
-      {:oban_web, "~> 2.11"}
+      {:oban_web, "~> 2.11"},
+
+      # html templating for emails
+      {:mjml, "~> 5.0"}
     ]
   end
 
