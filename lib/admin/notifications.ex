@@ -35,7 +35,7 @@ defmodule Admin.Notifications do
            change_notification(scope, %Notification{}, attrs)
            |> Repo.insert() do
       broadcast_notification(scope, {:created, notification})
-      {:ok, notification}
+      {:ok, notification |> Repo.preload([:logs])}
     end
   end
 

@@ -5,16 +5,17 @@ defmodule Admin.NotificationsFixtures do
   """
 
   @doc """
-  Generate a service_message.
+  Generate a notification.
   """
-  def service_message_fixture(scope, attrs \\ %{}) do
+  def notification_fixture(scope, attrs \\ %{}) do
     attrs =
       Enum.into(attrs, %{
         message: "some message",
-        subject: "some subject"
+        title: "some title",
+        recipients: ["user1@example.com", "user2@example.com"]
       })
 
-    {:ok, service_message} = Admin.Notifications.create_service_message(scope, attrs)
-    service_message
+    {:ok, notification} = Admin.Notifications.create_notification(scope, attrs)
+    notification
   end
 end

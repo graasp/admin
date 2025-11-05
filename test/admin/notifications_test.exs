@@ -3,111 +3,93 @@ defmodule Admin.NotificationsTest do
 
   alias Admin.Notifications
 
-  describe "service_messages" do
-    alias Admin.Notifications.ServiceMessage
+  describe "notifications" do
+    alias Admin.Notifications.Notification
 
     import Admin.AccountsFixtures, only: [user_scope_fixture: 0]
     import Admin.NotificationsFixtures
 
-    @invalid_attrs %{message: nil, subject: nil}
+    @invalid_attrs %{message: nil, title: nil, recipients: nil}
 
-    test "list_service_messages/1 returns all scoped service_messages" do
+    test "list_notifications/1 returns all notifications" do
       scope = user_scope_fixture()
       other_scope = user_scope_fixture()
-      service_message = service_message_fixture(scope)
-      other_service_message = service_message_fixture(other_scope)
-      assert Notifications.list_service_messages(scope) == [service_message]
-      assert Notifications.list_service_messages(other_scope) == [other_service_message]
+      notifications = notification_fixture(scope)
+      other_notifications = notification_fixture(other_scope)
+      assert Notifications.list_notifications(scope) == [notifications, other_notifications]
     end
 
-    test "get_service_message!/2 returns the service_message with given id" do
+    test "get_notification!/2 returns the notification with given id" do
       scope = user_scope_fixture()
-      service_message = service_message_fixture(scope)
+      notification = notification_fixture(scope)
       other_scope = user_scope_fixture()
-      assert Notifications.get_service_message!(scope, service_message.id) == service_message
-
-      assert_raise Ecto.NoResultsError, fn ->
-        Notifications.get_service_message!(other_scope, service_message.id)
-      end
+      assert Notifications.get_notification!(scope, notification.id) == notification
+      # it is also possible to fetch it with another scope
+      assert Notifications.get_notification!(other_scope, notification.id) == notification
     end
 
-    test "create_service_message/2 with valid data creates a service_message" do
-      valid_attrs = %{message: "some message", subject: "some subject"}
+    test "create_notification/2 with valid data creates a notification" do
+      valid_attrs = %{
+        message: "some message",
+        title: "some subject",
+        recipients: ["user1@example.com", "user2@example.com"]
+      }
+
       scope = user_scope_fixture()
 
-      assert {:ok, %ServiceMessage{} = service_message} =
-               Notifications.create_service_message(scope, valid_attrs)
+      assert {:ok, %Notification{} = notification} =
+               Notifications.create_notification(scope, valid_attrs)
 
-      assert service_message.message == "some message"
-      assert service_message.subject == "some subject"
-      assert service_message.user_id == scope.user.id
+      assert notification.message == "some message"
+      assert notification.title == "some subject"
+      assert notification.recipients == ["user1@example.com", "user2@example.com"]
     end
 
-    test "create_service_message/2 with invalid data returns error changeset" do
+    test "create_notification/2 with invalid data returns error changeset" do
       scope = user_scope_fixture()
 
       assert {:error, %Ecto.Changeset{}} =
-               Notifications.create_service_message(scope, @invalid_attrs)
+               Notifications.create_notification(scope, @invalid_attrs)
     end
 
-    test "update_service_message/3 with valid data updates the service_message" do
+    test "update_notification/3 with valid data updates the notification" do
       scope = user_scope_fixture()
-      service_message = service_message_fixture(scope)
-      update_attrs = %{message: "some updated message", subject: "some updated subject"}
+      notification = notification_fixture(scope)
+      update_attrs = %{message: "some updated message", title: "some updated subject"}
 
-      assert {:ok, %ServiceMessage{} = service_message} =
-               Notifications.update_service_message(scope, service_message, update_attrs)
+      assert {:ok, %Notification{} = notification} =
+               Notifications.update_notification(scope, notification, update_attrs)
 
-      assert service_message.message == "some updated message"
-      assert service_message.subject == "some updated subject"
+      assert notification.message == "some updated message"
+      assert notification.title == "some updated subject"
     end
 
-    test "update_service_message/3 with invalid scope raises" do
+    test "update_notification/3 with invalid data returns error changeset" do
       scope = user_scope_fixture()
-      other_scope = user_scope_fixture()
-      service_message = service_message_fixture(scope)
-
-      assert_raise MatchError, fn ->
-        Notifications.update_service_message(other_scope, service_message, %{})
-      end
-    end
-
-    test "update_service_message/3 with invalid data returns error changeset" do
-      scope = user_scope_fixture()
-      service_message = service_message_fixture(scope)
+      notification = notification_fixture(scope)
 
       assert {:error, %Ecto.Changeset{}} =
-               Notifications.update_service_message(scope, service_message, @invalid_attrs)
+               Notifications.update_notification(scope, notification, @invalid_attrs)
 
-      assert service_message == Notifications.get_service_message!(scope, service_message.id)
+      assert notification == Notifications.get_notification!(scope, notification.id)
     end
 
-    test "delete_service_message/2 deletes the service_message" do
+    test "delete_notification/2 deletes the notification" do
       scope = user_scope_fixture()
-      service_message = service_message_fixture(scope)
+      notification = notification_fixture(scope)
 
-      assert {:ok, %ServiceMessage{}} =
-               Notifications.delete_service_message(scope, service_message)
+      assert {:ok, %Notification{}} =
+               Notifications.delete_notification(scope, notification)
 
       assert_raise Ecto.NoResultsError, fn ->
-        Notifications.get_service_message!(scope, service_message.id)
+        Notifications.get_notification!(scope, notification.id)
       end
     end
 
-    test "delete_service_message/2 with invalid scope raises" do
+    test "change_notification/2 returns a notification changeset" do
       scope = user_scope_fixture()
-      other_scope = user_scope_fixture()
-      service_message = service_message_fixture(scope)
-
-      assert_raise MatchError, fn ->
-        Notifications.delete_service_message(other_scope, service_message)
-      end
-    end
-
-    test "change_service_message/2 returns a service_message changeset" do
-      scope = user_scope_fixture()
-      service_message = service_message_fixture(scope)
-      assert %Ecto.Changeset{} = Notifications.change_service_message(scope, service_message)
+      notification = notification_fixture(scope)
+      assert %Ecto.Changeset{} = Notifications.change_notification(scope, notification)
     end
   end
 end
