@@ -1,30 +1,62 @@
 defmodule Admin.MailerWorker do
+  @moduledoc """
+  Worker for sending notifications via email.
+  """
+
   use Oban.Worker, queue: :mailers
+
+  alias Admin.Accounts
   alias Admin.Accounts.Scope
+  alias Admin.Accounts.UserNotifier
+  alias Admin.Notifications
+  alias Admin.Notifications.Notification
 
   @impl Oban.Worker
   def perform(%Oban.Job{
         args:
           %{
             "user_id" => user_id,
-            "member_id" => member_id,
+            "member_email" => member_email,
             "notification_id" => notification_id
           } =
             _args
       }) do
-    user = Admin.Accounts.get_user!(user_id)
+    user = Accounts.get_user!(user_id)
     scope = Scope.for_user(user)
-    member = Admin.Accounts.get_member!(member_id)
-    notification = Admin.Notifications.get_service_message!(scope, notification_id)
 
-    with {:ok, _} <-
-           Admin.Accounts.UserNotifier.deliver_notification(
+    with {:ok, member} <- Accounts.get_member_by_email(member_email),
+         notification <- Notifications.get_notification!(scope, notification_id),
+         {:ok, _} <-
+           UserNotifier.deliver_notification(
              member,
-             notification.subject,
+             notification.title,
              notification.message
            ) do
-      Admin.Notifications.save_log(member.email, notification)
+      Notifications.save_log(
+        scope,
+        %{
+          email: member.email,
+          status: "sent"
+        },
+        notification
+      )
+
       :ok
+    else
+      {:error, :not_found} ->
+        Notifications.save_log(
+          scope,
+          %{
+            email: member_email,
+            status: "failed"
+          },
+          %Notification{id: notification_id}
+        )
+
+        {:cancel, "Member was not found"}
+
+      {:error, _} ->
+        {:error, "Failed to send notification"}
     end
   end
 end

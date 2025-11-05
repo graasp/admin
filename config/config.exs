@@ -16,7 +16,7 @@ config :admin, Oban,
   ],
   engine: Oban.Engines.Basic,
   notifier: Oban.Notifiers.Postgres,
-  queues: [default: 10, mailers: 5],
+  queues: [default: 10, mailers: 1],
   repo: Admin.Repo
 
 config :admin, :scopes,

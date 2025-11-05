@@ -103,9 +103,8 @@ defmodule AdminWeb.Router do
         live "/new", NotificationLive.New, :new
 
         scope "/:id" do
-          live "/", ServiceMessageLive.Show, :show
-          live "/send", ServiceMessageLive.Send, :send
-          live "/edit", ServiceMessageLive.Form, :edit
+          live "/", NotificationLive.Show, :show
+          # live "/edit", ServiceMessageLive.Form, :edit
         end
       end
     end

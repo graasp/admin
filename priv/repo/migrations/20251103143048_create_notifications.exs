@@ -14,6 +14,7 @@ defmodule Admin.Repo.Migrations.CreateNotifications do
     create table(:notification_logs, primary_key: false) do
       add :id, :uuid, primary_key: true
       add :email, :string
+      add :status, :string, null: false
 
       add :notification_id,
           references(:notifications, type: :binary_id, on_delete: :delete_all),
@@ -22,6 +23,11 @@ defmodule Admin.Repo.Migrations.CreateNotifications do
       # Only inserted_at, stored as UTC
       timestamps(type: :utc_datetime, updated_at: false)
     end
+
+    # Enforce allowed values at the DB level
+    create constraint(:notification_logs, :status_must_be_valid,
+             check: "status IN ('sent', 'failed')"
+           )
 
     create index(:notification_logs, [:notification_id])
     create index(:notification_logs, [:email])

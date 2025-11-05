@@ -1,14 +1,18 @@
 defmodule AdminWeb.NotificationLive.New do
   use AdminWeb, :live_view
 
+  alias Admin.Accounts
   alias Admin.Notifications
   alias Admin.Notifications.Notification
-  alias Admin.Accounts
 
   @impl true
   def mount(_params, _session, socket) do
     notification =
-      Notifications.change_notification(%{"title" => "", "message" => "", "recipients" => []})
+      Notifications.change_notification(socket.assigns.current_scope, %Notification{}, %{
+        "title" => "",
+        "message" => "",
+        "recipients" => []
+      })
 
     # UI state: recipient_method can be "manual" or "active_users"
     socket =
@@ -29,7 +33,7 @@ defmodule AdminWeb.NotificationLive.New do
     {recipient_method, params} = ensure_recipients_from_ui(socket, params)
 
     changeset =
-      Notifications.change_notification(params)
+      Notifications.change_notification(socket.assigns.current_scope, %Notification{}, params)
       |> Map.put(:action, :validate)
 
     {:noreply,
@@ -52,16 +56,14 @@ defmodule AdminWeb.NotificationLive.New do
         # You can do this async if Accounts.get_active_users/0 is slow.
         active =
           safe_get_active_users()
-
-        params = %{
-          "title" => input_value(socket, :title),
-          "message" => input_value(socket, :message),
-          "recipients" => active
-        }
+          # take only email
+          |> Enum.map(& &1.email)
 
         changeset =
-          Notifications.new_notification()
-          |> Notification.changeset(params)
+          Notifications.update_recipients(
+            socket.assigns.form,
+            %{recipients: active}
+          )
           |> Map.put(:action, :validate)
 
         {:noreply,
@@ -91,7 +93,10 @@ defmodule AdminWeb.NotificationLive.New do
   end
 
   @impl true
-  def handle_event("manual_update_row", %{"index" => idx_str, "value" => value}, socket) do
+  def handle_event("manual_update_row", params, socket) do
+    [key | _] = Map.fetch!(params, "_target")
+    value = params[key]
+    "manual_email_" <> idx_str = key
     idx = parse_index(idx_str)
 
     updated =
@@ -99,15 +104,11 @@ defmodule AdminWeb.NotificationLive.New do
       |> Enum.with_index()
       |> Enum.map(fn {v, i} -> if i == idx, do: value, else: v end)
 
-    # Keep live validation in sync
-    params = %{
-      "title" => input_value(socket, :title),
-      "message" => input_value(socket, :message),
-      "recipients" => updated
-    }
-
     changeset =
-      Notifications.change_notification(socket.assigns.current_scope, %Notification{}, params)
+      Notifications.update_recipients(
+        socket.assigns.form,
+        %{recipients: updated}
+      )
       |> Map.put(:action, :validate)
 
     {:noreply,
@@ -121,7 +122,18 @@ defmodule AdminWeb.NotificationLive.New do
     {recipient_method, params} = ensure_recipients_from_ui(socket, params)
 
     case Notifications.create_notification(socket.assigns.current_scope, params) do
-      {:ok, _notif} ->
+      {:ok, %Notification{} = notif} ->
+        Enum.each(
+          notif.recipients,
+          &(%{
+              "member_email" => &1,
+              "user_id" => socket.assigns.current_scope.user.id,
+              "notification_id" => notif.id
+            }
+            |> Admin.MailerWorker.new()
+            |> Oban.insert())
+        )
+
         {:noreply,
          socket
          |> put_flash(:info, "Notification created")
@@ -164,21 +176,8 @@ defmodule AdminWeb.NotificationLive.New do
 
   # Safely get active users; in a real app consider async if slow
   defp safe_get_active_users do
-    try do
-      Accounts.get_active_users()
-      |> Enum.uniq()
-    rescue
-      _ -> []
-    end
-  end
-
-  # Pull current values from the changeset to keep validation stable
-  defp input_value(socket, field) do
-    socket.assigns.changeset
-    |> Ecto.Changeset.get_field(field)
-    |> case do
-      nil -> ""
-      v -> to_string(v)
-    end
+    Accounts.get_active_users()
+  rescue
+    _ -> []
   end
 end

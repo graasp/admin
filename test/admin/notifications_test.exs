@@ -25,14 +25,19 @@ defmodule Admin.NotificationsTest do
       service_message = service_message_fixture(scope)
       other_scope = user_scope_fixture()
       assert Notifications.get_service_message!(scope, service_message.id) == service_message
-      assert_raise Ecto.NoResultsError, fn -> Notifications.get_service_message!(other_scope, service_message.id) end
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Notifications.get_service_message!(other_scope, service_message.id)
+      end
     end
 
     test "create_service_message/2 with valid data creates a service_message" do
       valid_attrs = %{message: "some message", subject: "some subject"}
       scope = user_scope_fixture()
 
-      assert {:ok, %ServiceMessage{} = service_message} = Notifications.create_service_message(scope, valid_attrs)
+      assert {:ok, %ServiceMessage{} = service_message} =
+               Notifications.create_service_message(scope, valid_attrs)
+
       assert service_message.message == "some message"
       assert service_message.subject == "some subject"
       assert service_message.user_id == scope.user.id
@@ -40,7 +45,9 @@ defmodule Admin.NotificationsTest do
 
     test "create_service_message/2 with invalid data returns error changeset" do
       scope = user_scope_fixture()
-      assert {:error, %Ecto.Changeset{}} = Notifications.create_service_message(scope, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Notifications.create_service_message(scope, @invalid_attrs)
     end
 
     test "update_service_message/3 with valid data updates the service_message" do
@@ -48,7 +55,9 @@ defmodule Admin.NotificationsTest do
       service_message = service_message_fixture(scope)
       update_attrs = %{message: "some updated message", subject: "some updated subject"}
 
-      assert {:ok, %ServiceMessage{} = service_message} = Notifications.update_service_message(scope, service_message, update_attrs)
+      assert {:ok, %ServiceMessage{} = service_message} =
+               Notifications.update_service_message(scope, service_message, update_attrs)
+
       assert service_message.message == "some updated message"
       assert service_message.subject == "some updated subject"
     end
@@ -66,22 +75,33 @@ defmodule Admin.NotificationsTest do
     test "update_service_message/3 with invalid data returns error changeset" do
       scope = user_scope_fixture()
       service_message = service_message_fixture(scope)
-      assert {:error, %Ecto.Changeset{}} = Notifications.update_service_message(scope, service_message, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Notifications.update_service_message(scope, service_message, @invalid_attrs)
+
       assert service_message == Notifications.get_service_message!(scope, service_message.id)
     end
 
     test "delete_service_message/2 deletes the service_message" do
       scope = user_scope_fixture()
       service_message = service_message_fixture(scope)
-      assert {:ok, %ServiceMessage{}} = Notifications.delete_service_message(scope, service_message)
-      assert_raise Ecto.NoResultsError, fn -> Notifications.get_service_message!(scope, service_message.id) end
+
+      assert {:ok, %ServiceMessage{}} =
+               Notifications.delete_service_message(scope, service_message)
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Notifications.get_service_message!(scope, service_message.id)
+      end
     end
 
     test "delete_service_message/2 with invalid scope raises" do
       scope = user_scope_fixture()
       other_scope = user_scope_fixture()
       service_message = service_message_fixture(scope)
-      assert_raise MatchError, fn -> Notifications.delete_service_message(other_scope, service_message) end
+
+      assert_raise MatchError, fn ->
+        Notifications.delete_service_message(other_scope, service_message)
+      end
     end
 
     test "change_service_message/2 returns a service_message changeset" do

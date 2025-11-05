@@ -6,9 +6,9 @@ defmodule Admin.Notifications do
   import Ecto.Query, warn: false
   alias Admin.Repo
 
+  alias Admin.Accounts.Scope
   alias Admin.Notifications.Log
   alias Admin.Notifications.Notification
-  alias Admin.Accounts.Scope
 
   # Notifications
   def new_notification, do: %Notification{}
@@ -26,27 +26,35 @@ defmodule Admin.Notifications do
     Notification.changeset(notification, attrs, scope)
   end
 
+  def update_recipients(%Ecto.Changeset{} = notification, %{recipients: _} = attrs) do
+    Notification.update_recipients(notification, attrs)
+  end
+
   def create_notification(%Scope{} = scope, attrs) do
-    change_notification(scope, %Notification{}, attrs)
-    |> Repo.insert()
+    with {:ok, notification = %Notification{}} <-
+           change_notification(scope, %Notification{}, attrs)
+           |> Repo.insert() do
+      broadcast_notification(scope, {:created, notification})
+      {:ok, notification}
+    end
   end
 
   @doc """
-  Subscribes to scoped notifications about any service_message changes.
+  Subscribes to scoped notifications about any notification changes.
 
   The broadcasted messages match the pattern:
 
-    * {:created, %ServiceMessage{}}
-    * {:updated, %ServiceMessage{}}
-    * {:deleted, %ServiceMessage{}}
+    * {:created, %Notification{}}
+    * {:updated, %Notification{}}
+    * {:deleted, %Notification{}}
 
   """
-  def subscribe_service_messages(%Scope{} = _scope) do
-    Phoenix.PubSub.subscribe(Admin.PubSub, "service_messages")
+  def subscribe_notifications(%Scope{} = _scope) do
+    Phoenix.PubSub.subscribe(Admin.PubSub, "notifications")
   end
 
-  defp broadcast_service_message(%Scope{} = _scope, message) do
-    Phoenix.PubSub.broadcast(Admin.PubSub, "service_messages", message)
+  defp broadcast_notification(%Scope{} = _scope, message) do
+    Phoenix.PubSub.broadcast(Admin.PubSub, "notifications", message)
   end
 
   @doc """
@@ -63,43 +71,21 @@ defmodule Admin.Notifications do
   end
 
   @doc """
-  Gets a single service_message.
+  Gets a single notification.
 
-  Raises `Ecto.NoResultsError` if the Service message does not exist.
+  Raises `Ecto.NoResultsError` if the Notification does not exist.
 
   ## Examples
 
-      iex> get_service_message!(scope, 123)
-      %ServiceMessage{}
+      iex> get_notification!(scope, 123)
+      %Notification{}
 
-      iex> get_service_message!(scope, 456)
+      iex> get_notification!(scope, 456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_service_message!(%Scope{} = _scope, id) do
-    Repo.get_by!(Notification, id: id) |> Repo.preload(:message_logs)
-  end
-
-  @doc """
-  Creates a service_message.
-
-  ## Examples
-
-      iex> create_service_message(scope, %{field: value})
-      {:ok, %ServiceMessage{}}
-
-      iex> create_service_message(scope, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_service_message(%Scope{} = scope, attrs) do
-    with {:ok, service_message = %Notification{}} <-
-           %Notification{}
-           |> Notification.changeset(attrs, scope)
-           |> Repo.insert() do
-      broadcast_service_message(scope, {:created, service_message})
-      {:ok, service_message}
-    end
+  def get_notification!(%Scope{} = _scope, id) do
+    Repo.get_by!(Notification, id: id) |> Repo.preload(:logs)
   end
 
   @doc """
@@ -114,39 +100,41 @@ defmodule Admin.Notifications do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_service_message(%Scope{} = scope, %Notification{} = service_message, attrs) do
-    with {:ok, service_message = %Notification{}} <-
-           service_message
+  def update_notification(%Scope{} = scope, %Notification{} = notification, attrs) do
+    with {:ok, notification = %Notification{}} <-
+           notification
            |> Notification.changeset(attrs, scope)
            |> Repo.update() do
-      broadcast_service_message(scope, {:updated, service_message})
-      {:ok, service_message}
+      broadcast_notification(scope, {:updated, notification})
+      {:ok, notification}
     end
   end
 
   @doc """
-  Deletes a service_message.
+  Deletes a notification.
 
   ## Examples
 
-      iex> delete_service_message(scope, service_message)
-      {:ok, %ServiceMessage{}}
+      iex> delete_notification(scope, notification)
+      {:ok, %Notification{}}
 
-      iex> delete_service_message(scope, service_message)
+      iex> delete_notification(scope, notification)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_service_message(%Scope{} = scope, %Notification{} = service_message) do
-    with {:ok, service_message = %Notification{}} <-
-           Repo.delete(service_message) do
-      broadcast_service_message(scope, {:deleted, service_message})
-      {:ok, service_message}
+  def delete_notification(%Scope{} = scope, %Notification{} = notification) do
+    with {:ok, notification = %Notification{}} <-
+           Repo.delete(notification) do
+      broadcast_notification(scope, {:deleted, notification})
+      {:ok, notification}
     end
   end
 
-  def save_log(email, %Notification{} = notification) do
+  def save_log(%Scope{} = scope, log, %Notification{id: notification_id} = notification) do
     %Log{}
-    |> Log.changeset(%{email: email}, notification)
+    |> Log.changeset(log, notification_id)
     |> Repo.insert()
+
+    broadcast_notification(scope, {:updated, notification})
   end
 end

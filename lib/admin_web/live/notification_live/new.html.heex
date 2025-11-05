@@ -4,21 +4,21 @@
   </.header>
 
   <.form
+    :let={form}
     for={@form}
-    as={:notification}
     id="notification-form"
     phx-change="validate"
     phx-submit="submit"
   >
-    <.input field={@form[:title]} type="text" label="Title" />
-    <.input field={@form[:message]} type="textarea" label="Message" rows="6" />
+    <.input field={form[:title]} type="text" label="Title" />
+    <.input field={form[:message]} type="textarea" label="Message" rows="6" />
 
-    <div class="space-y-2">
-      <label class="text-sm font-medium">Recipients source</label>
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend ">Recipients source</legend>
       <select
         name="recipient_method"
         id="recipient_method"
-        class="input"
+        class="select"
         phx-change="change_method"
       >
         <option value="manual" selected={@recipient_method == "manual"}>Enter manually</option>
@@ -26,13 +26,13 @@
           Active users
         </option>
       </select>
-      <p class="text-xs text-muted-foreground">
+      <span class="label ">
         Choose how to populate recipient emails.
-      </p>
-    </div>
+      </span>
+    </fieldset>
 
     <%= if @recipient_method == "manual" do %>
-      <div class="space-y-3">
+      <div class="space-y-3 mb-2">
         <label class="text-sm font-medium">Recipient emails</label>
 
         <div class="space-y-2">
@@ -49,21 +49,21 @@
                 phx-value-index={idx}
                 phx-value-value={email}
               />
-              <button
+              <.button
                 type="button"
-                class="button button-secondary"
+                class="btn btn-soft btn-error"
                 phx-click="manual_remove_row"
                 phx-value-index={idx}
               >
-                Remove
-              </button>
+                <.icon name="hero-trash" class="size-5" />
+              </.button>
             </div>
           <% end %>
         </div>
 
-        <button type="button" class="button" phx-click="manual_add_row">
-          + Add email
-        </button>
+        <.button type="button" class="btn btn-soft btn-secondary" phx-click="manual_add_row">
+          <.icon name="hero-plus" class="size-5" /> Add email
+        </.button>
 
         <%= if @form.errors[:recipients] do %>
           <p class="text-sm text-destructive">
@@ -72,7 +72,7 @@
         <% end %>
       </div>
     <% else %>
-      <div class="space-y-2">
+      <div class="gap-2 mb-2">
         <label class="text-sm font-medium">Active users</label>
         <%= if @active_users == [] do %>
           <p class="text-sm text-muted-foreground">No active users found.</p>

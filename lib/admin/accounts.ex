@@ -366,4 +366,16 @@ defmodule Admin.Accounts do
       nil -> {:error, :not_found}
     end
   end
+
+  def get_active_users do
+    Repo.all(
+      from(m in Account,
+        where:
+          not is_nil(m.last_authenticated_at) and m.last_authenticated_at > ago(90, "day") and
+            m.type == "individual",
+        limit: 100,
+        order_by: [desc: m.created_at]
+      )
+    )
+  end
 end
