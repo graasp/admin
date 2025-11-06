@@ -25,6 +25,7 @@ defmodule AdminWeb.NotificationLive.Show do
         <.table id="notification_logs" rows={@notification.logs}>
           <:col :let={message_log} label="Email">{message_log.email}</:col>
           <:col :let={message_log} label="Sent at">{message_log.created_at}</:col>
+          <:col :let={message_log} label="Status">{message_log.status}</:col>
         </.table>
       <% else %>
         <p>No messages sent yet</p>
@@ -41,7 +42,7 @@ defmodule AdminWeb.NotificationLive.Show do
 
     {:ok,
      socket
-     |> assign(:page_title, "Show Notification")
+     |> assign(:page_title, "Show Mail")
      |> assign(
        :notification,
        Notifications.get_notification!(socket.assigns.current_scope, id)

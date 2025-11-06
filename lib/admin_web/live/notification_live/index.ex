@@ -10,11 +10,12 @@ defmodule AdminWeb.NotificationLive.Index do
         Mailing
         <:actions>
           <.button variant="primary" navigate={~p"/notifications/new"}>
-            <.icon name="hero-plus" /> New mail
+            <.icon name="hero-plus" /> New Mail
           </.button>
         </:actions>
       </.header>
 
+      <%!-- Idea: represent the mails as cards ? --%>
       <.table
         id="notifications"
         rows={@streams.notifications}
@@ -33,7 +34,7 @@ defmodule AdminWeb.NotificationLive.Index do
         </:action>
         <:action :let={{id, notification}}>
           <.link
-            class="btn btn-error"
+            class="text-error"
             phx-click={JS.push("delete", value: %{id: notification.id}) |> hide("##{id}")}
             data-confirm="Are you sure?"
           >
@@ -53,7 +54,7 @@ defmodule AdminWeb.NotificationLive.Index do
 
     {:ok,
      socket
-     |> assign(:page_title, "Listing Service messages")
+     |> assign(:page_title, "Mailing")
      |> stream(:notifications, Notifications.list_notifications(socket.assigns.current_scope))}
   end
 

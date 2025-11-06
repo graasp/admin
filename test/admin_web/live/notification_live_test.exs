@@ -21,7 +21,7 @@ defmodule AdminWeb.ServiceMessageLiveTest do
     test "lists all notifications", %{conn: conn, notification: notification} do
       {:ok, _index_live, html} = live(conn, ~p"/notifications")
 
-      assert html =~ "Notifications"
+      assert html =~ "Mailing"
       assert html =~ notification.title
     end
 
@@ -30,11 +30,11 @@ defmodule AdminWeb.ServiceMessageLiveTest do
 
       assert {:ok, form_live, _} =
                index_live
-               |> element("a", "New Notification")
+               |> element("a", "New Mail")
                |> render_click()
                |> follow_redirect(conn, ~p"/notifications/new")
 
-      assert render(form_live) =~ "New Notification"
+      assert render(form_live) =~ "New Mail"
 
       assert form_live
              |> form("#notification-form", notification: @invalid_attrs)
@@ -80,7 +80,7 @@ defmodule AdminWeb.ServiceMessageLiveTest do
     test "displays notification", %{conn: conn, notification: notification} do
       {:ok, _show_live, html} = live(conn, ~p"/notifications/#{notification}")
 
-      assert html =~ "Show Notification"
+      assert html =~ "Show Mail"
       assert html =~ notification.title
     end
   end

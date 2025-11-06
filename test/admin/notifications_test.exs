@@ -9,7 +9,8 @@ defmodule Admin.NotificationsTest do
     import Admin.AccountsFixtures, only: [user_scope_fixture: 0]
     import Admin.NotificationsFixtures
 
-    @invalid_attrs %{message: nil, title: nil, recipients: nil}
+    @empty_attrs %{message: nil, title: nil, recipients: nil}
+    @invalid_email_attrs %{message: "A message", title: "title", recipients: ["test", "other"]}
 
     test "list_notifications/1 returns all notifications" do
       scope = user_scope_fixture()
@@ -49,7 +50,10 @@ defmodule Admin.NotificationsTest do
       scope = user_scope_fixture()
 
       assert {:error, %Ecto.Changeset{}} =
-               Notifications.create_notification(scope, @invalid_attrs)
+               Notifications.create_notification(scope, @empty_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Notifications.create_notification(scope, @invalid_email_attrs)
     end
 
     test "update_notification/3 with valid data updates the notification" do
@@ -69,7 +73,10 @@ defmodule Admin.NotificationsTest do
       notification = notification_fixture(scope)
 
       assert {:error, %Ecto.Changeset{}} =
-               Notifications.update_notification(scope, notification, @invalid_attrs)
+               Notifications.update_notification(scope, notification, @empty_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Notifications.update_notification(scope, notification, @invalid_email_attrs)
 
       assert notification == Notifications.get_notification!(scope, notification.id)
     end

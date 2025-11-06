@@ -10,7 +10,7 @@ defmodule AdminWeb.NotificationLive.New do
     ~H"""
     <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <.header>
-        New Notification
+        New Mailing
       </.header>
 
       <.form
@@ -24,7 +24,7 @@ defmodule AdminWeb.NotificationLive.New do
         <.input field={form[:message]} type="textarea" label="Message" rows="6" />
 
         <fieldset class="fieldset">
-          <legend class="fieldset-legend ">Recipients source</legend>
+          <legend class="fieldset-legend">Recipients</legend>
           <select
             name="recipient_method"
             id="recipient_method"
@@ -36,7 +36,7 @@ defmodule AdminWeb.NotificationLive.New do
               Active users
             </option>
           </select>
-          <span class="label ">
+          <span class="label">
             Choose how to populate recipient emails.
           </span>
         </fieldset>
@@ -87,20 +87,25 @@ defmodule AdminWeb.NotificationLive.New do
             <%= if @active_users == [] do %>
               <p class="text-sm text-muted-foreground">No active users found.</p>
             <% else %>
-              <ul class="list-disc pl-6 text-sm">
-                <%= for email <- @active_users do %>
-                  <li>{email}</li>
-                <% end %>
-              </ul>
+              <div
+                class="border rounded p-2 bg-base-100 border-base-300 border"
+                phx-click={JS.toggle_class("hidden", to: "#toggled-content")}
+              >
+                <div class="text-md">
+                  {length(@active_users)} active users (click to show)
+                </div>
+                <div class="text-sm hidden" id="toggled-content">
+                  <%= for email <- @active_users do %>
+                    <span>{email}</span>
+                  <% end %>
+                </div>
+              </div>
             <% end %>
-            <p class="text-xs text-muted-foreground">
-              Recipients will be set to the current active users list on submit.
-            </p>
           </div>
         <% end %>
 
         <footer>
-          <.button variant="primary">Create Notification</.button>
+          <.button variant="primary">Create Mail</.button>
         </footer>
       </.form>
     </Layouts.admin>
@@ -119,6 +124,7 @@ defmodule AdminWeb.NotificationLive.New do
     # UI state: recipient_method can be "manual" or "active_users"
     socket =
       socket
+      |> assign(:page_title, "New Mailing")
       |> assign(:form, notification)
       |> assign(:recipient_method, "manual")
       # start with one empty input
@@ -157,7 +163,7 @@ defmodule AdminWeb.NotificationLive.New do
         # Fetch active users and set recipients to that list
         # You can do this async if Accounts.get_active_users/0 is slow.
         active =
-          safe_get_active_members()
+          get_active_members()
           # take only email
           |> Enum.map(& &1.email)
 
@@ -276,8 +282,7 @@ defmodule AdminWeb.NotificationLive.New do
     end
   end
 
-  # Safely get active members; in a real app consider async if slow
-  defp safe_get_active_members do
+  defp get_active_members do
     Accounts.get_active_members()
   rescue
     _ -> []
