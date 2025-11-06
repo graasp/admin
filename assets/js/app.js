@@ -24,6 +24,7 @@ import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import { hooks as colocatedHooks } from "phoenix-colocated/admin";
 import topbar from "../vendor/topbar";
+import VegaLite from "../vendor/vega-lite";
 
 const csrfToken = document
   .querySelector("meta[name='csrf-token']")
@@ -31,7 +32,7 @@ const csrfToken = document
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
-  hooks: { ...colocatedHooks },
+  hooks: { ...colocatedHooks, VegaLite },
 });
 
 // Show progress bar on live navigation and form submits

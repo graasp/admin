@@ -24,7 +24,10 @@ defmodule Admin.Application do
       # Start a worker by calling: Admin.Worker.start_link(arg)
       # {Admin.Worker, arg},
       # Start to serve requests, typically the last entry
-      AdminWeb.Endpoint
+      AdminWeb.Endpoint,
+
+      # Start the ETS-backed event counter
+      Admin.Analytics.EventStore
     ]
 
     Logger.add_handlers(:admin)
