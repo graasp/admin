@@ -11,6 +11,7 @@ defmodule AdminWeb.PublishedItemController do
     published_items = Publications.list_published_items(100)
 
     render(conn, :index,
+      page_title: "Published Items",
       published_items: published_items,
       changeset: PublishedItemSearchForm.changeset(%PublishedItemSearchForm{}, %{})
     )

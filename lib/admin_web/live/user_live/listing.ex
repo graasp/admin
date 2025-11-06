@@ -72,6 +72,7 @@ defmodule AdminWeb.UserLive.Listing do
 
     socket =
       socket
+      |> assign(:page_title, "Users")
       |> stream(:users, Accounts.list_users())
       |> assign(:show_modal, false)
       |> assign(:user_to_delete, nil)

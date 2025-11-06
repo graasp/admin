@@ -7,8 +7,30 @@ defmodule Admin.Accounts.UserNotifier do
   alias Admin.Accounts.Account
   alias Admin.Accounts.User
   alias Admin.Mailer
+  alias Admin.Notifications.MailingTemplates
 
   @footer "Graasp.org is a learning experience platform."
+
+  def test_email(scope) do
+    html =
+      MailingTemplates.simple_call_to_action(%{
+        user: scope,
+        message: "This is a test email.",
+        button_text: "Click here",
+        button_url: "https://example.com"
+      })
+
+    email =
+      new()
+      |> to("basile@graasp.org")
+      |> from({"Admin", "admin@graasp.org"})
+      |> subject("test email")
+      |> html_body(html)
+
+    with {:ok, _metadata} <- Mailer.deliver(email) do
+      {:ok, email}
+    end
+  end
 
   # Delivers the email using the application mailer.
   defp deliver(recipient, subject, body) do
@@ -22,6 +44,20 @@ defmodule Admin.Accounts.UserNotifier do
     with {:ok, _metadata} <- Mailer.deliver(email) do
       {:ok, email}
     end
+  end
+
+  def deliver_notification(user, subject, message_text) do
+    deliver(user.email, subject, """
+
+    ==============================
+
+    Hi #{user.name},
+
+    #{message_text}
+
+    ==============================
+    #{@footer}
+    """)
   end
 
   @doc """
