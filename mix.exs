@@ -118,6 +118,9 @@ defmodule Admin.MixProject do
 
       # html templating for emails
       {:mjml, "~> 5.0"}
+
+      # VegaLite is a JavaScript library for creating interactive visualizations
+      {:vega_lite, "~> 0.1.11"}
     ]
   end
 
