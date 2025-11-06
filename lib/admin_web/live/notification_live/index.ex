@@ -7,10 +7,10 @@ defmodule AdminWeb.NotificationLive.Index do
     ~H"""
     <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <.header>
-        Notifications
+        Mailing
         <:actions>
           <.button variant="primary" navigate={~p"/notifications/new"}>
-            <.icon name="hero-plus" /> New Notification
+            <.icon name="hero-plus" /> New mail
           </.button>
         </:actions>
       </.header>
@@ -30,10 +30,10 @@ defmodule AdminWeb.NotificationLive.Index do
           <div class="sr-only">
             <.link navigate={~p"/notifications/#{notification}"}>Show</.link>
           </div>
-          <%!-- <.link navigate={~p"/notifications/#{notification}/edit"}>Edit</.link> --%>
         </:action>
         <:action :let={{id, notification}}>
           <.link
+            class="btn btn-error"
             phx-click={JS.push("delete", value: %{id: notification.id}) |> hide("##{id}")}
             data-confirm="Are you sure?"
           >

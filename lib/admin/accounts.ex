@@ -372,9 +372,7 @@ defmodule Admin.Accounts do
       from(m in Account,
         where:
           not is_nil(m.last_authenticated_at) and m.last_authenticated_at > ago(90, "day") and
-            m.type == "individual",
-        limit: 100,
-        order_by: [desc: m.created_at]
+            m.type == "individual"
       )
     )
   end

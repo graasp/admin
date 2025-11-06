@@ -38,7 +38,7 @@ defmodule Admin.Notifications.MailingTemplates do
               {@button_text}
             </mj-button>
             <mj-text color="gray">
-              In case you can not click the button above here is the full URL:
+              In case you can not click the button above here is the link:
             </mj-text>
             <mj-text color="gray">
               <a style="color: gray" href={@button_url}>{@button_url}</a>

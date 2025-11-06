@@ -169,7 +169,7 @@ defmodule AdminWeb.Layouts do
                 </ul>
               </li>
               <li><.link navigate={~p"/publishers"}>Apps</.link></li>
-              <li><.link navigate={~p"/notifications"}>Notifications</.link></li>
+              <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
               <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
               <li><.link navigate={~p"/oban"}>Oban</.link></li>
               <div class="divider"></div>
@@ -205,7 +205,7 @@ defmodule AdminWeb.Layouts do
               </details>
             </li>
             <li><.link navigate={~p"/publishers"}>Apps</.link></li>
-            <li><.link navigate={~p"/notifications"}>Notifications</.link></li>
+            <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
             <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
             <li><.link navigate={~p"/oban"}>Oban</.link></li>
           <% end %>
