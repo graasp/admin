@@ -78,6 +78,11 @@ defmodule AdminWeb.Router do
         live "/:app_id", AppInstanceLive.Show, :show
       end
 
+      # analytics
+      scope "/analytics" do
+        live "/example", AnalyticsLive.Example, :show
+      end
+
       scope "/publishers" do
         live "/", PublisherLive.Index, :index
         live "/new", PublisherLive.Form, :new

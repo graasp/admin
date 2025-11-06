@@ -111,7 +111,10 @@ defmodule Admin.MixProject do
       {:poison, "~> 6.0"},
       {:hackney, "~> 1.9"},
       # optional dependency to parse XML
-      {:sweet_xml, "~> 0.7"}
+      {:sweet_xml, "~> 0.7"},
+
+      # VegaLite is a JavaScript library for creating interactive visualizations
+      {:vega_lite, "~> 0.1.11"}
     ]
   end
 
