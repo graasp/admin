@@ -10,6 +10,7 @@ defmodule Admin.AccountsFixtures do
   alias Admin.Accounts.Scope
 
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
+  def unique_user_name, do: "user#{System.unique_integer()}"
   def valid_user_password, do: "hello world!"
 
   def valid_user_attributes(attrs \\ %{}) do
@@ -85,5 +86,19 @@ defmodule Admin.AccountsFixtures do
       from(ut in Accounts.UserToken, where: ut.token == ^token),
       set: [created_at: dt, authenticated_at: dt]
     )
+  end
+
+  defp valid_member_attributes(attrs) do
+    Enum.into(attrs, %{
+      name: unique_user_name(),
+      email: unique_user_email(),
+      type: "individual"
+    })
+  end
+
+  def member_fixture(attrs \\ %{}) do
+    {:ok, member} = attrs |> valid_member_attributes() |> Accounts.create_member()
+
+    member
   end
 end

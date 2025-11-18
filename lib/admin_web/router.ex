@@ -1,6 +1,7 @@
 defmodule AdminWeb.Router do
   use AdminWeb, :router
 
+  import Oban.Web.Router
   import AdminWeb.UserAuth
 
   pipeline :browser do
@@ -96,6 +97,12 @@ defmodule AdminWeb.Router do
           end
         end
       end
+
+      scope "/notifications" do
+        live "/", NotificationLive.Index, :index
+        live "/new", NotificationLive.New, :new
+        live "/:id", NotificationLive.Show, :show
+      end
     end
 
     post "/users/update-password", UserSessionController, :update_password
@@ -128,5 +135,8 @@ defmodule AdminWeb.Router do
     get "/published_items/featured", PublishedItemController, :featured
     resources "/published_items", PublishedItemController, except: [:update, :delete, :edit]
     post "/published_items/search", PublishedItemController, :search
+
+    # oban dashboard for jobs
+    oban_dashboard("/oban")
   end
 end

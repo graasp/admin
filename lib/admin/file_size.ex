@@ -37,11 +37,6 @@ defmodule Admin.Utils.FileSize do
     "#{format_number(value, 2)} #{unit}"
   end
 
-  # Formats numbers with fixed precision, trimming trailing zeros neatly.
-  defp format_number(number, precision) when precision <= 0 do
-    Integer.to_string(trunc(number))
-  end
-
   defp format_number(number, precision) do
     formatted =
       number

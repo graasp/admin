@@ -169,7 +169,9 @@ defmodule AdminWeb.Layouts do
                 </ul>
               </li>
               <li><.link navigate={~p"/publishers"}>Apps</.link></li>
+              <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
               <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
+              <li><.link navigate={~p"/oban"}>Oban</.link></li>
               <div class="divider"></div>
               <div class="flex flex-col items-center">
                 <%= if @current_scope do %>
@@ -203,7 +205,9 @@ defmodule AdminWeb.Layouts do
               </details>
             </li>
             <li><.link navigate={~p"/publishers"}>Apps</.link></li>
+            <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
             <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
+            <li><.link navigate={~p"/oban"}>Oban</.link></li>
           <% end %>
         </ul>
       </div>

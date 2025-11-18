@@ -402,4 +402,30 @@ defmodule Admin.AccountsTest do
       refute Enum.empty?(Accounts.list_users())
     end
   end
+
+  describe "create_member/0" do
+    test "without correct params" do
+      assert {:error, %Ecto.Changeset{} = changeset} =
+               Accounts.create_member(%{name: nil, email: nil, type: nil})
+
+      assert changeset.errors == [
+               name: {"can't be blank", [validation: :required]},
+               email: {"can't be blank", [validation: :required]},
+               type: {"can't be blank", [validation: :required]}
+             ]
+    end
+
+    test "with correct params" do
+      assert {:ok, member} =
+               Accounts.create_member(%{
+                 name: "John Doe",
+                 email: "john@example.com",
+                 type: "member"
+               })
+
+      assert member.name == "John Doe"
+      assert member.email == "john@example.com"
+      assert member.type == "member"
+    end
+  end
 end

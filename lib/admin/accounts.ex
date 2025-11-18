@@ -4,6 +4,7 @@ defmodule Admin.Accounts do
   """
   require Logger
   import Ecto.Query, warn: false
+  alias Admin.Accounts.Account
   alias Admin.Repo
 
   alias Admin.Accounts.{User, UserNotifier, UserToken}
@@ -351,5 +352,34 @@ defmodule Admin.Accounts do
       total: Admin.Repo.aggregate(User, :count),
       confirmed: Admin.Repo.aggregate(from(u in User, where: not is_nil(u.confirmed_at)), :count)
     }
+  end
+
+  # Graasp Members
+
+  def get_member!(id) do
+    Repo.get!(Account, id)
+  end
+
+  def get_member_by_email(email) do
+    case Repo.get_by(Account, email: email) do
+      %Account{} = user -> {:ok, user}
+      nil -> {:error, :member_not_found}
+    end
+  end
+
+  def get_active_members do
+    Repo.all(
+      from(m in Account,
+        where:
+          not is_nil(m.last_authenticated_at) and m.last_authenticated_at > ago(90, "day") and
+            m.type == "individual"
+      )
+    )
+  end
+
+  def create_member(attrs \\ %{}) do
+    %Account{}
+    |> Account.changeset(attrs)
+    |> Repo.insert()
   end
 end
