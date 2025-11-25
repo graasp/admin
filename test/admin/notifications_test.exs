@@ -2,7 +2,7 @@ defmodule Admin.NotificationsTest do
   use Admin.DataCase
 
   alias Admin.Notifications
-  alias Admin.Notifications.{Notification, Log}
+  alias Admin.Notifications.{Log, Notification}
 
   import Admin.AccountsFixtures, only: [user_scope_fixture: 0]
   import Admin.NotificationsFixtures
