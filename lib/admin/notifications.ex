@@ -150,7 +150,7 @@ defmodule Admin.Notifications do
   end
 
   def save_log(%Scope{} = scope, log, %Notification{id: notification_id} = notification) do
-    with {:ok, log = %Log{}} =
+    with {:ok, log = %Log{}} <-
            %Log{}
            |> Log.changeset(log, notification_id)
            |> Repo.insert() do
