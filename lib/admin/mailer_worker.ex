@@ -43,7 +43,7 @@ defmodule Admin.MailerWorker do
 
       :ok
     else
-      {:error, reason} when reason in [:member_not_found, :notification_not_found] ->
+      {:error, :member_not_found} ->
         Notifications.save_log(
           scope,
           %{
@@ -53,7 +53,10 @@ defmodule Admin.MailerWorker do
           %Notification{id: notification_id}
         )
 
-        {:cancel, reason}
+        {:cancel, :member_not_found}
+
+      {:error, :notification_not_found} ->
+        {:cancel, :notification_not_found}
 
       {:error, _} ->
         {:error, "Failed to send notification"}

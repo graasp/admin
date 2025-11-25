@@ -5,7 +5,7 @@ defmodule Admin.Notifications.Log do
   use Admin.Schema
   import Ecto.Changeset
 
-  @statuses ~w(sent failed)a
+  @statuses ~w(sent failed)
 
   schema "notification_logs" do
     field :email, :string

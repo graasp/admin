@@ -2,13 +2,12 @@ defmodule Admin.NotificationsTest do
   use Admin.DataCase
 
   alias Admin.Notifications
+  alias Admin.Notifications.{Log, Notification}
+
+  import Admin.AccountsFixtures, only: [user_scope_fixture: 0]
+  import Admin.NotificationsFixtures
 
   describe "notifications" do
-    alias Admin.Notifications.Notification
-
-    import Admin.AccountsFixtures, only: [user_scope_fixture: 0]
-    import Admin.NotificationsFixtures
-
     @empty_attrs %{message: nil, title: nil, recipients: nil}
     @invalid_email_attrs %{message: "A message", title: "title", recipients: ["test", "other"]}
 
@@ -98,5 +97,40 @@ defmodule Admin.NotificationsTest do
       notification = notification_fixture(scope)
       assert %Ecto.Changeset{} = Notifications.change_notification(scope, notification)
     end
+  end
+
+  describe "notification logs" do
+    setup [:create_notification]
+
+    test "saves log", %{scope: scope, notification: notification} do
+      assert {:ok, %Log{}} =
+               Notifications.save_log(
+                 scope,
+                 %{email: "user@example.com", status: "sent"},
+                 notification
+               )
+
+      assert {:ok, %Log{}} =
+               Notifications.save_log(
+                 scope,
+                 %{email: "user@example.com", status: "failed"},
+                 notification
+               )
+    end
+
+    test "rejects if status is invalid", %{scope: scope, notification: notification} do
+      assert {:error, %Ecto.Changeset{}} =
+               Notifications.save_log(
+                 scope,
+                 %{email: "user@example.com", status: "invalid"},
+                 notification
+               )
+    end
+  end
+
+  defp create_notification(_) do
+    scope = user_scope_fixture()
+    notification = notification_fixture(scope)
+    %{scope: scope, notification: notification}
   end
 end
