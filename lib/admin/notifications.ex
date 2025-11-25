@@ -150,10 +150,12 @@ defmodule Admin.Notifications do
   end
 
   def save_log(%Scope{} = scope, log, %Notification{id: notification_id} = notification) do
-    %Log{}
-    |> Log.changeset(log, notification_id)
-    |> Repo.insert()
-
-    broadcast_notification(scope, {:updated, notification})
+    with {:ok, log = %Log{}} =
+           %Log{}
+           |> Log.changeset(log, notification_id)
+           |> Repo.insert() do
+      broadcast_notification(scope, {:updated, notification})
+      {:ok, log}
+    end
   end
 end
