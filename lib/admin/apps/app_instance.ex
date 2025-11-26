@@ -24,20 +24,19 @@ defmodule Admin.Apps.AppInstance do
   def update_changeset(app_instance, attrs) do
     app_instance
     |> cast(attrs, [:name, :description, :url, :thumbnail, :key])
+    |> unsafe_validate_unique(:url, Admin.Repo,
+      message: "URL already used in another app. URLs must be unique."
+    )
     |> add_uuid_if_missing(:key)
     |> validate_required([:name, :description, :url, :thumbnail, :key])
     |> Validators.validate_url(:url)
+    |> unique_constraint(:url, name: "app_url_key")
     |> Validators.validate_uuid(:key)
   end
 
   @doc false
   def changeset(app_instance, publisher, attrs) do
-    app_instance
-    |> cast(attrs, [:name, :description, :url, :thumbnail, :key])
-    |> add_uuid_if_missing(:key)
-    |> validate_required([:name, :description, :url, :thumbnail, :key])
-    |> Validators.validate_url(:url)
-    |> Validators.validate_uuid(:key)
+    update_changeset(app_instance, attrs)
     |> put_change(:publisher_id, publisher.id)
   end
 

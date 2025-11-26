@@ -171,6 +171,8 @@ defmodule AdminWeb.CoreComponents do
     include: ~w(accept autocomplete capture cols disabled form list max maxlength min minlength
                 multiple pattern placeholder readonly required rows size step)
 
+  slot :inner_block
+
   def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
     errors = if Phoenix.Component.used_input?(field), do: field.errors, else: []
 
@@ -254,20 +256,23 @@ defmodule AdminWeb.CoreComponents do
   def input(assigns) do
     ~H"""
     <div class="fieldset mb-2 w-full">
-      <label>
-        <span :if={@label} class="label mb-1">{@label}</span>
-        <input
-          type={@type}
-          name={@name}
-          id={@id}
-          value={Phoenix.HTML.Form.normalize_value(@type, @value)}
-          class={[
-            @class || "w-full input",
-            @errors != [] && (@error_class || "input-error")
-          ]}
-          {@rest}
-        />
-      </label>
+      <div class="flex flex-row gap-2 items-end">
+        <label class="w-full">
+          <span :if={@label} class="label mb-1">{@label}</span>
+          <input
+            type={@type}
+            name={@name}
+            id={@id}
+            value={Phoenix.HTML.Form.normalize_value(@type, @value)}
+            class={[
+              @class || "w-full input",
+              @errors != [] && (@error_class || "input-error")
+            ]}
+            {@rest}
+          />
+        </label>
+        {render_slot(@inner_block)}
+      </div>
       <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """
