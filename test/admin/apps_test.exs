@@ -11,7 +11,7 @@ defmodule Admin.AppsTest do
 
     @invalid_attrs %{name: nil, description: nil, url: nil, thumbnail: nil}
 
-    test "list_apps/1 returns all scoped apps" do
+    test "list_apps/1 returns all apps" do
       user_scope_fixture()
       %{app: app_instance, publisher: publisher} = app_instance_fixture()
       %{app: other_app_instance} = app_instance_fixture(%{publisher_id: publisher.id})
@@ -26,6 +26,19 @@ defmodule Admin.AppsTest do
                  app_instance,
                  other_app_instance
                ]
+    end
+
+    test "list_apps_by_publisher/1 returns all apps by publisher ordered by name" do
+      user_scope_fixture()
+      publisher_fixture(%{name: "b"})
+      publisher_fixture(%{name: "C"})
+      publisher_fixture(%{name: "A"})
+
+      publisher_names =
+        Apps.list_apps_by_publisher()
+        |> Enum.map(fn pub -> pub.name end)
+
+      assert publisher_names == ["A", "b", "C"]
     end
 
     test "get_app_instance!/2 returns the app_instance with given id" do
