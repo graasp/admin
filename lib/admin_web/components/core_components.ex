@@ -292,7 +292,7 @@ defmodule AdminWeb.CoreComponents do
 
   def header(assigns) do
     ~H"""
-    <header class={[@actions != [] && "flex items-center justify-between gap-6", "pb-4"]}>
+    <header class={[@actions != [] && "flex items-start justify-between gap-6", "pb-4"]}>
       <div>
         <h1 class="text-lg font-semibold leading-8">
           {render_slot(@inner_block)}
@@ -448,10 +448,47 @@ defmodule AdminWeb.CoreComponents do
   end
 
   attr :html, :string, required: true
+  attr :class, :string, default: ""
 
   def raw_html(assigns) do
     ~H"""
-    <div class="prose prose-sm">{HtmlSanitizeEx.basic_html(@html) |> Phoenix.HTML.raw()}</div>
+    <div class={[@class, "prose prose-sm"]}>
+      {HtmlSanitizeEx.basic_html(@html) |> Phoenix.HTML.raw()}
+    </div>
+    """
+  end
+
+  @doc """
+  Add a copy button after the element
+  """
+  attr :id, :string, required: true
+  slot :inner_block, required: true
+
+  def with_copy(assigns) do
+    ~H"""
+    <div class="flex flex-row gap-1 items-center">
+      <span id={@id}>
+        {render_slot(@inner_block)}
+      </span>
+      <button
+        class="btn btn-sm btn-soft group"
+        phx-click={
+          JS.dispatch("phx:copy", to: "##{@id}")
+          |> JS.transition("is-copied",
+            time: 2500
+          )
+        }
+      >
+        <.icon
+          name="hero-clipboard"
+          class="size-4 inline group-[.is-copied]:hidden"
+        />
+        <.icon
+          name="hero-check"
+          class="size-4 hidden group-[.is-copied]:inline"
+        />
+      </button>
+    </div>
     """
   end
 end

@@ -140,7 +140,11 @@ defmodule Admin.MixProject do
         "esbuild admin --minify",
         "phx.digest"
       ],
-      precommit: ["compile --warning-as-errors", "deps.unlock --unused", "format", "test"]
+      precommit: ["compile --warning-as-errors", "deps.unlock --unused", "format", "test"],
+      "check.format": ["format --check-formatted"],
+      "check.credo": ["credo --strict"],
+      "check.compile": ["compile --warning-as-errors"],
+      check: ["check.compile", "format", "check.credo"]
     ]
   end
 end

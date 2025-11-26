@@ -52,7 +52,18 @@ defmodule AdminWeb.PublishedItemHTML do
 
       _ ->
         ~H"""
-        <span>{@publication.creator_id}</span>
+        <div class="flex flex-col align-start min-w-0">
+          <span class=" text-nowrap text-ellipsis overflow-hidden">
+            <span>{@publication.creator.name}</span>
+          </span>
+          <span class="text-sm text-secondary">({@publication.creator_id})</span>
+
+          <div class="text-sm">
+            <.with_copy id={"#{@publication.creator_id}-creator-email"}>
+              {@publication.creator.email}
+            </.with_copy>
+          </div>
+        </div>
         """
     end
   end

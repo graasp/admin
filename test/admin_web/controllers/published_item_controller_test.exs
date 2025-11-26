@@ -39,7 +39,7 @@ defmodule AdminWeb.PublishedItemControllerTest do
       assert redirected_to(conn) == ~p"/published_items/#{id}"
 
       conn = get(conn, ~p"/published_items/#{id}")
-      assert html_response(conn, 200) =~ "Published item #{id}"
+      assert html_response(conn, 200) =~ "Published item: #{item.name}"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
