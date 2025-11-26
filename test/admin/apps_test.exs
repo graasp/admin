@@ -28,7 +28,7 @@ defmodule Admin.AppsTest do
                ]
     end
 
-    test "list_apps_by_publisher/1 returns all apps by publisher ordered by name" do
+    test "list_apps_by_publisher/0 returns publishers ordered by name" do
       user_scope_fixture()
       publisher_fixture(%{name: "b"})
       publisher_fixture(%{name: "C"})
@@ -39,6 +39,21 @@ defmodule Admin.AppsTest do
         |> Enum.map(fn pub -> pub.name end)
 
       assert publisher_names == ["A", "b", "C"]
+    end
+
+    test "list_apps_by_publisher/0 returns apps ordered by name" do
+      user_scope_fixture()
+      %{publisher: publisher} = app_instance_fixture(%{name: "a"})
+      app_instance_fixture(%{publisher_id: publisher.id, name: "c"})
+      app_instance_fixture(%{publisher_id: publisher.id, name: "B"})
+
+      app_names =
+        Apps.list_apps_by_publisher()
+        |> Enum.find(fn pub -> pub.id == publisher.id end)
+        |> Map.get(:apps)
+        |> Enum.map(& &1.name)
+
+      assert app_names == ["a", "B", "c"]
     end
 
     test "get_app_instance!/2 returns the app_instance with given id" do
