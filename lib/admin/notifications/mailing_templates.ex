@@ -19,7 +19,11 @@ defmodule Admin.Notifications.MailingTemplates do
       <mj-body background-color="#f6f6f6">
         <mj-section>
           <mj-column>
-            <mj-image width="80px" src="https://graasp.org/apple-touch-icon.png"></mj-image>
+            <mj-image
+              width="80px"
+              src="https://graasp-prod-assets.s3.eu-central-2.amazonaws.com/assets/brand_logo.png"
+            >
+            </mj-image>
             <mj-text font-size="34px" color="#5050d2" align="center" font-family="Nunito">
               Graasp
             </mj-text>
