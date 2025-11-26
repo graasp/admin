@@ -38,6 +38,7 @@
         <span class="text-gray-500">None</span>
       <% end %>
     </:item>
+    <:item title="Publication Date">{@published_item.created_at}</:item>
     <:item title="Item path">{@published_item.item_path}</:item>
     <:item title="Creator"><.publication_creator publication={@published_item} /></:item>
   </.list>
