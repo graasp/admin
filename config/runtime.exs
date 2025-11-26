@@ -138,4 +138,14 @@ if config_env() == :prod do
 
   config :sentry,
     environment_name: environment_name
+
+  base_host =
+    cond do
+      environment_name == "production" -> "graasp.org"
+      environment_name == "development" -> "dev.graasp.org"
+      environment_name == "local" -> "localhost"
+      true -> "graasp.org"
+    end
+
+  config :admin, base_host: base_host
 end
