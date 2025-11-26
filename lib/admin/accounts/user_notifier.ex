@@ -11,10 +11,10 @@ defmodule Admin.Accounts.UserNotifier do
 
   @footer "Graasp.org is a learning experience platform."
 
-  def test_email(scope) do
+  def test_email(user) do
     html =
       MailingTemplates.simple_call_to_action(%{
-        user: scope,
+        user: user,
         message: "This is a test email.",
         button_text: "Click here",
         button_url: "https://example.com"
@@ -23,7 +23,7 @@ defmodule Admin.Accounts.UserNotifier do
     email =
       new()
       |> to("basile@graasp.org")
-      |> from({"Admin", "admin@graasp.org"})
+      |> from({"Graasp", "admin@graasp.org"})
       |> subject("test email")
       |> html_body(html)
 
