@@ -52,3 +52,5 @@ config :ex_aws, :s3,
 
 # Needed in order for the compiled module to use the Mocked module
 config :admin, :test_doubles, ex_aws: ExAwsMock
+
+config :admin, :base_host, "example.com"
