@@ -36,10 +36,14 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
 
         <.input field={@removal_form[:reason]} type="textarea" label="Reason" required />
 
-        <div role="alert" class="alert alert-warning alert-soft mb-2">
-          <.icon name="hero-exclamation-triangle" />
-          <span>This publication will be removed and the creator will be notified by an email.</span>
-        </div>
+        <%= if @published_item.creator_id do %>
+          <div role="alert" class="alert alert-warning alert-soft mb-2">
+            <.icon name="hero-exclamation-triangle" />
+            <span>
+              This publication will be removed and an email will be sent to <strong>{@published_item.creator.email}</strong>.
+            </span>
+          </div>
+        <% end %>
 
         <.button variant="primary" phx-disable-with="Unpublishing ...">
           Unpublish and notify
