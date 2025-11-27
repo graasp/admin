@@ -1,15 +1,14 @@
 <.form :let={f} for={@changeset} action={@action}>
   <.input autofocus field={f[:slug]} type="text" label="Slug" />
-
   <.input
     field={f[:start_at]}
-    type="text"
+    type="datetime-local"
     label="Starts at (UTC, ISO8601)"
     placeholder="2025-10-14T13:30:00Z"
   />
   <.input
     field={f[:end_at]}
-    type="text"
+    type="datetime-local"
     label="Ends at (UTC, ISO8601)"
     placeholder="2025-10-14T13:30:00Z"
   />
