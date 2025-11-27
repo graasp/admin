@@ -40,12 +40,12 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
           <div role="alert" class="alert alert-warning alert-soft mb-2">
             <.icon name="hero-exclamation-triangle" />
             <span>
-              This publication will be removed and an email will be sent to <strong>{@published_item.creator.email}</strong>.
+              This publication will be removed from the Library and an email will be sent to <strong>{@published_item.creator.email}</strong>.
             </span>
           </div>
         <% end %>
 
-        <.button variant="primary" phx-disable-with="Unpublishing ...">
+        <.button type="submit" variant="primary" phx-disable-with="Unpublishing ...">
           Unpublish and notify
         </.button>
       </.form>
