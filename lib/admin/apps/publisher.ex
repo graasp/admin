@@ -12,7 +12,7 @@ defmodule Admin.Apps.Publisher do
     field :name, :string
     field :origins, {:array, :string}, default: [""]
 
-    has_many :apps, Apps.AppInstance
+    has_many :apps, Apps.AppInstance, preload_order: [asc: :name]
 
     timestamps(type: :utc_datetime)
   end
