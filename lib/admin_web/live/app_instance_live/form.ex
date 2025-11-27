@@ -29,7 +29,7 @@ defmodule AdminWeb.AppInstanceLive.Form do
               type="button"
               phx-click="generate_thumbnail"
             >
-              Generate
+              Use Placeholder
             </.button>
           </.input>
         </div>
@@ -43,7 +43,7 @@ defmodule AdminWeb.AppInstanceLive.Form do
               type="button"
               phx-click="generate_key"
             >
-              Generate
+              Generate key
             </.button>
           </.input>
         </div>
@@ -53,7 +53,7 @@ defmodule AdminWeb.AppInstanceLive.Form do
             phx-disable-with="Saving..."
             variant="primary"
           >
-            Save App instance
+            Save App
           </.button>
         </footer>
       </.form>

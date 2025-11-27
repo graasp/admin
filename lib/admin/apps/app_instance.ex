@@ -25,7 +25,7 @@ defmodule Admin.Apps.AppInstance do
     app_instance
     |> cast(attrs, [:name, :description, :url, :thumbnail, :key])
     |> unsafe_validate_unique(:url, Admin.Repo,
-      message: "URL already used in another app. URLs must be unique."
+      message: "This URL is already used for another app. URLs must be unique."
     )
     |> add_uuid_if_missing(:key)
     |> validate_required([:name, :description, :url, :thumbnail, :key])
