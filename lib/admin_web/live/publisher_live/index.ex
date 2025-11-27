@@ -61,7 +61,10 @@ defmodule AdminWeb.PublisherLive.Index do
             <:col :let={app} label="Credentials">
               <div class="flex flex-col">
                 <div class="flex flex-row items-center gap-1">
-                  <.with_copy id={"app-#{app.id}-key"}>
+                  <.with_copy
+                    id={"app-#{app.id}-key"}
+                    aria_label={"Copy '#{app.name}' key to clipboard"}
+                  >
                     {app.key}
                   </.with_copy>
                 </div>

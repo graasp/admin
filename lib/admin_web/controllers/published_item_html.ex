@@ -59,7 +59,10 @@ defmodule AdminWeb.PublishedItemHTML do
           <span class="text-sm text-secondary">({@publication.creator_id})</span>
 
           <div class="text-sm">
-            <.with_copy id={"#{@publication.creator_id}-creator-email"}>
+            <.with_copy
+              id={"#{@publication.creator_id}-creator-email"}
+              aria_label="Copy creator email to clipboard"
+            >
               {@publication.creator.email}
             </.with_copy>
           </div>

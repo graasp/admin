@@ -462,6 +462,11 @@ defmodule AdminWeb.CoreComponents do
   Add a copy button after the element
   """
   attr :id, :string, required: true
+
+  attr :aria_label, :string,
+    default: "Copy to clipboard",
+    doc: "The accessibility label for the copy button"
+
   slot :inner_block, required: true
 
   def with_copy(assigns) do
@@ -471,6 +476,8 @@ defmodule AdminWeb.CoreComponents do
         {render_slot(@inner_block)}
       </span>
       <button
+        type="button"
+        aria-label={@aria_label}
         class="btn btn-sm btn-soft group"
         phx-click={
           JS.dispatch("phx:copy", to: "##{@id}")
