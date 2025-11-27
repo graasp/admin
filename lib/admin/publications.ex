@@ -10,6 +10,7 @@ defmodule Admin.Publications do
   alias Ecto.Multi
 
   alias Admin.Accounts.Scope
+  alias Admin.Items.Item
   alias Admin.Publications.PublishedItem
 
   @doc """
@@ -68,6 +69,13 @@ defmodule Admin.Publications do
   end
 
   @doc """
+  Checks if a an item exists for the supplied id
+  """
+  def item_exists?(item_id) do
+    Repo.exists?(from(item in Item, where: item.id == ^item_id))
+  end
+
+  @doc """
   Gets a single published_item.
 
   Raises `Ecto.NoResultsError` if the Published item does not exist.
@@ -89,6 +97,18 @@ defmodule Admin.Publications do
     Repo.get_by!(PublishedItem, id: id)
     |> with_creator()
     |> with_item()
+  end
+
+  def get_published_item_id_for_item_id(item_id) do
+    query =
+      from pi in PublishedItem,
+        join: i in Item,
+        on: pi.item_path == i.path,
+        where: i.id == ^item_id,
+        select: pi.id,
+        limit: 1
+
+    Repo.one(query)
   end
 
   def with_item(%PublishedItem{} = published_item) do
