@@ -1,8 +1,8 @@
 <Layouts.admin flash={@flash} current_scope={@current_scope}>
   <.header>
-    Published item {@published_item.id}
+    Published item: {@published_item.item.name}
     <:subtitle>
-      This is a published_item record from your database.
+      <.raw_html class="line-clamp-4" html={@published_item.item.description} />
     </:subtitle>
 
     <:actions>
@@ -31,9 +31,16 @@
 
   <.list>
     <:item title="Name">{@published_item.item.name}</:item>
-    <:item title="Description"><.raw_html html={@published_item.item.description} /></:item>
+    <:item title="Description">
+      <%= if @published_item.item.description do %>
+        <.raw_html html={@published_item.item.description} />
+      <% else %>
+        <span class="text-gray-500">None</span>
+      <% end %>
+    </:item>
+    <:item title="Publication Date">{@published_item.created_at}</:item>
     <:item title="Item path">{@published_item.item_path}</:item>
-    <:item title="Creator ID">{@published_item.creator_id}</:item>
+    <:item title="Creator"><.publication_creator publication={@published_item} /></:item>
   </.list>
 
   <.link
