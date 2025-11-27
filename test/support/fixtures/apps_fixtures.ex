@@ -19,7 +19,7 @@ defmodule Admin.AppsFixtures do
         description: "some description",
         name: "some name",
         thumbnail: "some thumbnail",
-        url: "http://example.com"
+        url: "http://#{System.unique_integer([:positive])}example.com"
       })
 
     {:ok, app_instance} = Admin.Apps.create_app_instance(publisher, attrs)

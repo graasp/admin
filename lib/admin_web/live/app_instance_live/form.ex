@@ -14,7 +14,7 @@ defmodule AdminWeb.AppInstanceLive.Form do
       </.header>
 
       <.form for={@form} id="app_instance-form" phx-change="validate" phx-submit="save">
-        <div class="flex flex-row gap-2 items-end w-full">
+        <div class="flex flex-row gap-2 items-start w-full">
           <div class="w-16 h-16 rounded bg-slate-200 shrink-0 mb-3">
             <img
               :if={@form[:thumbnail].value}
@@ -23,31 +23,38 @@ defmodule AdminWeb.AppInstanceLive.Form do
               alt="Thumbnail url"
             />
           </div>
-          <.input field={@form[:thumbnail]} type="text" label="Thumbnail URL" />
-          <.button
-            class="btn btn-soft btn-primary mb-3"
-            type="button"
-            phx-click="generate_thumbnail"
-          >
-            Use Placeholder
-          </.button>
+          <.input field={@form[:thumbnail]} type="text" label="Thumbnail URL">
+            <.button
+              class="btn btn-soft btn-primary"
+              type="button"
+              phx-click="generate_thumbnail"
+            >
+              Use Placeholder
+            </.button>
+          </.input>
         </div>
         <.input field={@form[:name]} type="text" label="Name" />
         <.input field={@form[:description]} type="text" label="Description" />
         <.input field={@form[:url]} type="text" label="Url" placeholder="https://example.com" />
         <div class="flex flex-row gap-2 items-end w-full">
-          <.input field={@form[:key]} type="text" label="Key" />
-          <.button
-            class="btn btn-soft btn-primary mb-3"
-            type="button"
-            phx-click="generate_key"
-          >
-            Generate key
-          </.button>
+          <.input field={@form[:key]} type="text" label="Key">
+            <.button
+              class="btn btn-soft btn-primary"
+              type="button"
+              phx-click="generate_key"
+            >
+              Generate key
+            </.button>
+          </.input>
         </div>
-        <footer>
-          <.button phx-disable-with="Saving..." variant="primary">Save App instance</.button>
+        <footer class="flex gap-2 justify-end">
           <.button navigate={return_path(@current_scope, @return_to, @app_instance)}>Cancel</.button>
+          <.button
+            phx-disable-with="Saving..."
+            variant="primary"
+          >
+            Save App
+          </.button>
         </footer>
       </.form>
       <div :if={@app_instance.id} role="alert" class="alert alert-info alert-soft">

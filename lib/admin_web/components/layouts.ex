@@ -172,7 +172,7 @@ defmodule AdminWeb.Layouts do
               <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
               <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
               <li><.link navigate={~p"/oban"}>Oban</.link></li>
-              <div class="divider"></div>
+              <div class="divider m-0"></div>
               <div class="flex flex-col items-center">
                 <%= if @current_scope do %>
                   <span>{@current_scope.user.email}</span>
