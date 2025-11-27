@@ -37,7 +37,11 @@ defmodule Admin.Apps do
 
   """
   def list_apps_by_publisher do
-    Repo.all(Publisher) |> Repo.preload([:apps])
+    Publisher
+    # order by lowercase name using a fragment and dynamic names
+    |> order_by([p], fragment("lower(?)", p.name))
+    |> preload(:apps)
+    |> Repo.all()
   end
 
   @doc """
