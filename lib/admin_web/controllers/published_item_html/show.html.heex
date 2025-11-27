@@ -21,10 +21,16 @@
   </.header>
 
   <div class="flex flex-row gap-2">
-    <.link href="https://dev.graasp.org" class="btn btn-outline">
+    <.link
+      href={Admin.Platforms.get_url(:player, @published_item.item.id)}
+      class="btn btn-outline"
+    >
       View in the Player
     </.link>
-    <.link href="https://library.dev.graasp.org" class="btn btn-outline">
+    <.link
+      href={Admin.Platforms.get_url(:library, @published_item.item.id)}
+      class="btn btn-outline"
+    >
       View in the Library
     </.link>
   </div>

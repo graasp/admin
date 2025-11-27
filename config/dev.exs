@@ -94,3 +94,6 @@ config :ex_aws, :s3,
   region: System.get_env("AWS_REGION", "garage"),
   # If using custom endpoints like LocalStack or MinIO, path_style: true is often necessary.
   path_style: true
+
+# Define the base host to use
+config :admin, :base_host, "localhost:3114"
