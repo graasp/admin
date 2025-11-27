@@ -1,5 +1,6 @@
 defmodule AdminWeb.PublishedItemLive.Unpublish do
   alias Admin.Publications
+  import AdminWeb.PublishedItemHTML
   require Logger
   use AdminWeb, :live_view
 
@@ -19,12 +20,30 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
           <:item title="Description">
             <.raw_html html={@published_item.item.description} />
           </:item>
+          <:item title="Creator">
+            <.publication_creator publication={@published_item} />
+          </:item>
         </.list>
       </div>
 
       <.form for={@removal_form} id="removal_form" phx-submit="submit" phx-change="validate">
+        <div role="alert" class="alert alert-info alert-soft mb-2">
+          <.icon name="hero-exclamation-circle" />
+          <span>
+            Please provide a reason for the removal. The reason will be communicated to the publication creator by email. Remember to be kind and to respect others.
+          </span>
+        </div>
+
         <.input field={@removal_form[:reason]} type="textarea" label="Reason" required />
-        <.button variant="primary" phx-disable-with="Unpublishing ...">Unpublish</.button>
+
+        <div role="alert" class="alert alert-warning alert-soft mb-2">
+          <.icon name="hero-exclamation-triangle" />
+          <span>This publication will be removed and the creator will be notified by an email.</span>
+        </div>
+
+        <.button variant="primary" phx-disable-with="Unpublishing ...">
+          Unpublish and notify
+        </.button>
       </.form>
 
       <.button navigate={~p"/published_items/#{@published_item}"}>
