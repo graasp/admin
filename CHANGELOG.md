@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/graasp/admin/compare/v0.2.0...v0.2.1) (2025-11-28)
+
+
+### Bug Fixes
+
+* use correct date comparisons ([#71](https://github.com/graasp/admin/issues/71)) ([82c3d34](https://github.com/graasp/admin/commit/82c3d34048f2882e0f9690e7c64caac42c1cda31))
+
 ## [0.2.0](https://github.com/graasp/admin/compare/v0.1.0...v0.2.0) (2025-11-27)
 
 
