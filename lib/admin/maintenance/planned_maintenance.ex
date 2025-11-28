@@ -37,7 +37,7 @@ defmodule Admin.Maintenance.PlannedMaintenance do
 
     changeset =
       validate_change(changeset, field, fn _, value ->
-        if value < base_value do
+        if DateTime.before?(value, base_value) do
           [{field, "must be after #{base_field}"}]
         else
           []
