@@ -43,9 +43,9 @@ defmodule Admin.MaintenanceTest do
       assert {:error, %Ecto.Changeset{errors: errors}} =
                Maintenance.create_planned_maintenance(%{
                  slug: "reverse-dates",
-                 start_at: ~U[2023-01-02 00:00:00Z],
+                 start_at: ~U[2023-01-02 02:00:00Z],
                  # is a day in advance of start_at
-                 end_at: ~U[2023-01-01 00:00:00Z]
+                 end_at: ~U[2023-01-01 01:00:00Z]
                })
 
       assert errors == [
