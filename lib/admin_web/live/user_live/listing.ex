@@ -112,7 +112,13 @@ defmodule AdminWeb.UserLive.Listing do
   end
 
   def handle_event("send_email", _, socket) do
-    UserNotifier.test_email(%{name: "John Doe", email: "john.doe@example.com"})
+    UserNotifier.deliver_publication_removal(
+      %Accounts.Account{name: "John Doe", email: "test@graasp.org"},
+      %{created_at: ~U[2023-01-01 00:00:00Z], item: %{name: "Sample name"}},
+      %{
+        reason: "Some reason that can look believable\n\neven on multioke lies\n\nSample reason"
+      }
+    )
 
     {:noreply, socket |> put_flash(:info, "Email sent")}
   end

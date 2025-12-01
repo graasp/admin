@@ -7,24 +7,20 @@ defmodule Admin.Accounts.UserNotifier do
   alias Admin.Accounts.Account
   alias Admin.Accounts.User
   alias Admin.Mailer
-  alias Admin.Notifications.MailingTemplates
+
+  alias AdminWeb.EmailTemplates
 
   @footer "Graasp.org is a learning experience platform."
 
-  def test_email(user) do
-    html =
-      MailingTemplates.simple_call_to_action(%{
-        user: user,
-        message: "This is a test email.",
-        button_text: "Click here",
-        button_url: "https://example.com"
-      })
-
+  # Delivers the email using the application mailer.
+  defp deliver(recipient, subject, html, text, reply_to \\ {"Admin", "admin@graasp.org"}) do
     email =
       new()
-      |> to("basile@graasp.org")
-      |> from({"Graasp", "admin@graasp.org"})
-      |> subject("test email")
+      |> to(recipient)
+      |> from({"Admin", "noreply@graasp.org"})
+      |> reply_to(reply_to)
+      |> subject(subject)
+      |> text_body(text)
       |> html_body(html)
 
     with {:ok, _metadata} <- Mailer.deliver(email) do
@@ -32,32 +28,30 @@ defmodule Admin.Accounts.UserNotifier do
     end
   end
 
-  # Delivers the email using the application mailer.
-  defp deliver(recipient, subject, body) do
-    email =
-      new()
-      |> to(recipient)
-      |> from({"Admin", "noreply@graasp.org"})
-      |> subject(subject)
-      |> text_body(body)
-
-    with {:ok, _metadata} <- Mailer.deliver(email) do
-      {:ok, email}
-    end
-  end
-
   def deliver_notification(user, subject, message_text) do
-    deliver(user.email, subject, """
+    html_body =
+      EmailTemplates.render("simple_notification", %{
+        name: user.name,
+        message: message_text
+      })
 
-    ==============================
+    deliver(
+      user.email,
+      subject,
+      html_body,
+      """
 
-    Hi #{user.name},
+      ==============================
 
-    #{message_text}
+      Hi #{user.name},
 
-    ==============================
-    #{@footer}
-    """)
+      #{message_text}
+
+      ==============================
+      #{@footer}
+      """,
+      {"Graasp Support", "support@graasp.org"}
+    )
   end
 
   @doc """
@@ -66,48 +60,78 @@ defmodule Admin.Accounts.UserNotifier do
   def deliver_publication_removal(nil, _publication, _notice), do: {:ok, :not_sent}
 
   def deliver_publication_removal(%Account{} = user, publication, notice) do
-    deliver(user.email, "Your publication has been removed", """
+    name = user.name
+    human_publication_date = Calendar.strftime(publication.created_at, "%a, %B %d %Y")
 
-    ==============================
+    message =
+      "We have decided to remove \"#{publication.item.name}\" (published on #{human_publication_date}) from the public Graasp Library for the following reason:"
 
-    Hi #{user.name},
+    html_body =
+      EmailTemplates.render("publication_removal", %{
+        name: name,
+        message: message,
+        reason: notice.reason
+      })
 
-    We have decided to removed your publication
-    Name: #{publication.item.name}
-    Published on: #{publication.created_at}
+    deliver(
+      user.email,
+      "#{publication.item.name} has been removed from the Graasp Library",
+      html_body,
+      """
 
-    Your publication was removed for the following reason:
+      ==============================
 
-    ---
+      Hi #{name},
 
-    #{notice.reason}
+      #{message}
 
-    ---
+      ---
 
-    You can contact us if you have any questions.
+      #{notice.reason}
 
-    If you didn't publish this content, please ignore this.
+      ---
 
-    ==============================
-    #{@footer}
-    """)
+      You can reply to this email if you have any questions.
+
+      If you didn't publish this content, no further action is required.
+
+      Thank you for using Graasp
+
+      ==============================
+      #{@footer}
+      """,
+      {"Graasp Support", "support@graasp.org"}
+    )
   end
 
   @doc """
   Deliver instructions to update a user email.
   """
   def deliver_update_email_instructions(user, url) do
-    deliver(user.email, "Update email instructions", """
+    name = user.email
+    message = "You can update your email by visiting the URL below:"
+    ignore_message = "If you didn't request this email, please ignore this."
+
+    html_body =
+      EmailTemplates.render("admin_login", %{
+        name: name,
+        message: message,
+        ignore_message: ignore_message,
+        button_text: "Update email",
+        button_url: url
+      })
+
+    deliver(name, "Update email instructions", html_body, """
 
     ==============================
 
-    Hi #{user.email},
+    Hi #{name},
 
-    You can change your email by visiting the URL below:
+    #{message}
 
     #{url}
 
-    If you didn't request this change, please ignore this.
+    #{ignore_message}
 
     ==============================
     #{@footer}
@@ -125,17 +149,30 @@ defmodule Admin.Accounts.UserNotifier do
   end
 
   defp deliver_magic_link_instructions(user, url) do
-    deliver(user.email, "Log in instructions", """
+    name = user.email
+    message = "You can log into your account by visiting the URL below:"
+    ignore_message = "If you didn't request this email, please ignore this."
+
+    html_body =
+      AdminWeb.EmailTemplates.render("admin_login", %{
+        name: name,
+        message: message,
+        ignore_message: ignore_message,
+        button_text: "Log in to admin",
+        button_url: url
+      })
+
+    deliver(user.email, "Log in instructions for admin", html_body, """
 
     ==============================
 
-    Hi #{user.email},
+    Hi #{name},
 
-    You can log into your account by visiting the URL below:
+    #{message}
 
     #{url}
 
-    If you didn't request this email, please ignore this.
+    #{ignore_message}
 
     ==============================
     #{@footer}
@@ -143,17 +180,30 @@ defmodule Admin.Accounts.UserNotifier do
   end
 
   defp deliver_confirmation_instructions(user, url) do
-    deliver(user.email, "Confirmation instructions", """
+    name = user.email
+    message = "You can confirm your account by visiting the URL below:"
+    ignore_message = "If you didn't request this email, please ignore this."
+
+    html_body =
+      AdminWeb.EmailTemplates.render("admin_login", %{
+        name: name,
+        message: message,
+        ignore_message: ignore_message,
+        button_text: "Confirm your admin account",
+        button_url: url
+      })
+
+    deliver(user.email, "Confirmation instructions for admin", html_body, """
 
     ==============================
 
     Hi #{user.email},
 
-    You can confirm your account by visiting the URL below:
+    #{message}
 
     #{url}
 
-    If you didn't create an account with us, please ignore this.
+    #{ignore_message}
 
     ==============================
     #{@footer}

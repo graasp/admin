@@ -55,6 +55,11 @@ defmodule AdminWeb.Router do
       # S3 debug interface
       delete "/s3/:id/:key", AdminWeb.Dev.S3Controller, :delete
       resources "/s3", AdminWeb.Dev.S3Controller, only: [:index, :show]
+
+      live_session :dev_authenticated_user,
+        on_mount: [{AdminWeb.UserAuth, :require_authenticated}] do
+        live "/tools", AdminWeb.DevLive.Index, :index
+      end
     end
   end
 

@@ -1,0 +1,49 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="Nunito" />
+    </mj-attributes>
+    <mj-font name="Nunito" href="https://fonts.googleapis.com/css?family=Nunito" />
+  </mj-head>
+
+  <mj-body background-color="#f6f6f6">
+    <mj-section>
+      <mj-column>
+        <mj-image
+          width="80px"
+          src="https://graasp-prod-assets.s3.eu-central-2.amazonaws.com/assets/brand_logo.png"
+        >
+        </mj-image>
+        <mj-text font-size="34px" color="#5050d2" align="center" font-family="Nunito">
+          <%= if @title do %>
+            {@title}
+          <% else %>
+            Graasp
+          <% end %>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#fefefe" border-radius="6px">
+      {render_slot(@inner_block)}
+    </mj-section>
+
+    <mj-section>
+      <%= if @footer do %>
+        {render_slot(@footer)}
+      <% else %>
+        <mj-column>
+          <mj-text align="center" color="#aaa">
+            You are receiving this email because of your account on <a
+              style="color: #aaa"
+              href="https://graasp.org"
+            >Graasp</a>.
+          </mj-text>
+          <mj-text align="center" color="#aaa">
+            Graasp Association, Valais, Switzerland
+          </mj-text>
+        </mj-column>
+      <% end %>
+    </mj-section>
+  </mj-body>
+</mjml>

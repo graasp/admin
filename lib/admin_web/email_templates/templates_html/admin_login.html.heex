@@ -1,0 +1,36 @@
+<.layout title="Graasp Admin">
+  <mj-column border-radius="10px">
+    <mj-text>
+      Hello {@name},
+    </mj-text>
+    <mj-text>
+      This is a login message. Please click the button below to log in.
+    </mj-text>
+    <mj-button background-color="#5050d2" href={@button_url}>
+      {@button_text}
+    </mj-button>
+    <mj-text color="gray">
+      In case you can not click the button above here is the link:
+    </mj-text>
+    <mj-text color="gray">
+      <a style="color: gray" href={@button_url}>{@button_url}</a>
+    </mj-text>
+    <mj-text color="gray">
+      {@ignore_message}
+    </mj-text>
+  </mj-column>
+
+  <:footer>
+    <mj-column>
+      <mj-text align="center" color="#aaa">
+        You are receiving this email because of your admin account on <a
+          style="color: #aaa"
+          href="https://graasp.org"
+        >Graasp</a>.
+      </mj-text>
+      <mj-text align="center" color="#aaa">
+        Graasp Admin
+      </mj-text>
+    </mj-column>
+  </:footer>
+</.layout>
