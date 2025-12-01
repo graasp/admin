@@ -1,4 +1,15 @@
 defmodule AdminWeb.EmailTemplates do
+  @moduledoc """
+  Provides email templates for communications.
+
+  This module exposes MJML templates for emails.
+
+  ## Examples
+
+      EmailTemplates.render("simple_notification", %{name: "John Doe", message: "A simple notification"})
+
+  """
+
   use AdminWeb, :html
   import Phoenix.Template, only: [render_to_string: 4]
 
