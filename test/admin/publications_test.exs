@@ -17,8 +17,8 @@ defmodule Admin.PublicationsTest do
 
       published_item =
         published_item_fixture(scope)
-        |> Admin.Publications.with_item()
         |> Admin.Publications.with_creator()
+        |> Admin.Publications.with_item()
 
       assert Publications.list_published_items() == [published_item]
     end

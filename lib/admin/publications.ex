@@ -42,6 +42,7 @@ defmodule Admin.Publications do
   """
   def list_published_items do
     Repo.all(from p in PublishedItem, order_by: [desc: :created_at], preload: [:item, :creator])
+    |> Enum.map(&populate_thumbnails(&1))
   end
 
   @doc """
@@ -87,7 +88,6 @@ defmodule Admin.Publications do
     Repo.get!(PublishedItem, id)
     |> with_creator()
     |> with_item()
-    |> populate_thumbnails()
   end
 
   def get_published_item!(%Scope{} = _scope, id) do
@@ -98,6 +98,8 @@ defmodule Admin.Publications do
 
   def with_item(%PublishedItem{} = published_item) do
     published_item |> Repo.preload([:item])
+    |> populate_thumbnails()
+
   end
 
   def with_creator(%PublishedItem{} = published_item) do
