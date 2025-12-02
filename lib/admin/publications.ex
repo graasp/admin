@@ -97,9 +97,9 @@ defmodule Admin.Publications do
   end
 
   def with_item(%PublishedItem{} = published_item) do
-    published_item |> Repo.preload([:item])
+    published_item
+    |> Repo.preload([:item])
     |> populate_thumbnails()
-
   end
 
   def with_creator(%PublishedItem{} = published_item) do

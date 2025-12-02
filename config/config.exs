@@ -98,7 +98,6 @@ config :phoenix, :json_library, Jason
 aws_region = System.get_env("AWS_REGION", "eu-central-1")
 
 config :ex_aws, :s3,
-  scheme: "https",
   region: aws_region,
   # If using custom endpoints like LocalStack or MinIO, path_style: true is often necessary.
   path_style: true
