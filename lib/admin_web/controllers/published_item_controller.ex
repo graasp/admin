@@ -8,7 +8,7 @@ defmodule AdminWeb.PublishedItemController do
   alias AdminWeb.Forms.PublishedItemSearchForm
 
   def index(conn, _params) do
-    published_items = Publications.list_published_items(100)
+    published_items = Publications.list_published_items(50)
 
     render(conn, :index,
       page_title: "Published Items",

@@ -1,5 +1,5 @@
 if Application.compile_env(:admin, :dev_routes) do
-  defmodule AdminWeb.S3HTML do
+  defmodule AdminWeb.Dev.S3HTML do
     use AdminWeb, :html
 
     def index(assigns) do

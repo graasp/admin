@@ -26,7 +26,15 @@ defmodule AdminWeb.PublishedItemHTML do
     ~H"""
     <div class="flex flex-row justify-between items-start min-w-0 border border-gray-300 bg-base-200 p-2 gap-1 rounded">
       <div class="flex flex-row shrink-1 gap-2 align-center min-w-0">
-        <div class="shrink-0 size-12 bg-gray-500 rounded" />
+        <%= if Map.get(@publication, :thumbnails) |> Map.get(:small) do %>
+          <img
+            class="shrink-0 size-12 bg-gray-500 rounded"
+            src={@publication.thumbnails.small}
+            alt={@publication.item.name}
+          />
+        <% else %>
+          <div class="shrink-0 size-12 bg-gray-500 rounded" />
+        <% end %>
         <div class="flex flex-col align-start min-w-0">
           <span class="font-bold text-nowrap text-ellipsis overflow-hidden">
             {@publication.item.name}

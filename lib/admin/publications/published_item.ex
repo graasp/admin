@@ -9,6 +9,9 @@ defmodule Admin.Publications.PublishedItem do
     belongs_to :item, Admin.Items.Item, type: :string, foreign_key: :item_path, references: :path
     belongs_to :creator, Admin.Accounts.Account, type: :binary_id
 
+    # will contain small, medium, large keys
+    field :thumbnails, :map, virtual: true
+
     timestamps(type: :utc_datetime)
   end
 
