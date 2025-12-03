@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.1](https://github.com/graasp/admin/compare/v0.2.0...v0.2.1) (2025-12-03)
+
+
+### Bug Fixes
+
+* add s3 thumbnails for published_items ([#74](https://github.com/graasp/admin/issues/74)) ([5c4c634](https://github.com/graasp/admin/commit/5c4c634e45a80e24de94bbffdc61912f7f1020e5))
+* display small thumbnails to their correct size ([ae65f75](https://github.com/graasp/admin/commit/ae65f752b71977be57228b50293567e8fc0e0d1b))
+* improve emails with HTML ([#59](https://github.com/graasp/admin/issues/59)) ([b5f3eee](https://github.com/graasp/admin/commit/b5f3eeef64c1ffd144e244019761c705c991c9e5))
+* published item search should use item_id ([#70](https://github.com/graasp/admin/issues/70)) ([fabf57d](https://github.com/graasp/admin/commit/fabf57dddf2cbeb6e3fc50f9b32a966691121788))
+* send emails using ex_aws credentials ([#80](https://github.com/graasp/admin/issues/80)) ([7be1b9c](https://github.com/graasp/admin/commit/7be1b9cffcf669ba044cedb9b2a2323e5875a86f))
+* set aws s3 region from env in runtime config ([#77](https://github.com/graasp/admin/issues/77)) ([40a8965](https://github.com/graasp/admin/commit/40a8965e09b2a1bbfc70f961ef6c10d6aa1ff245))
+* upgrade elixir version to v1.19.4 ([#73](https://github.com/graasp/admin/issues/73)) ([a6f23e1](https://github.com/graasp/admin/commit/a6f23e19d002fabebe4a33c65b36f8581ae87366))
+* use correct date comparisons ([#71](https://github.com/graasp/admin/issues/71)) ([82c3d34](https://github.com/graasp/admin/commit/82c3d34048f2882e0f9690e7c64caac42c1cda31))
+
 ## [0.2.0](https://github.com/graasp/admin/compare/v0.1.0...v0.2.0) (2025-11-27)
 
 
