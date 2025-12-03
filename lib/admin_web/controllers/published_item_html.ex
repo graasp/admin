@@ -28,7 +28,7 @@ defmodule AdminWeb.PublishedItemHTML do
       <div class="flex flex-row shrink-1 gap-2 align-center min-w-0">
         <%= if Map.get(@publication, :thumbnails) |> Map.get(:small) do %>
           <img
-            class="shrink-0 size-12 bg-gray-500 rounded"
+            class="shrink-0 size-10 bg-gray-500 rounded"
             src={@publication.thumbnails.small}
             alt={@publication.item.name}
           />
