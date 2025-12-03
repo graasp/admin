@@ -28,6 +28,13 @@
     rows={@published_items}
     row_click={&JS.navigate(~p"/published_items/#{&1}")}
   >
+    <:col :let={published_item}>
+      <img
+        src={published_item.thumbnails.small}
+        alt={published_item.item.name}
+        class="size-12 rounded"
+      />
+    </:col>
     <:col :let={published_item} label="Publication">
       <div class="flex flex-col align-center gap-1">
         <span class="font-bold">{published_item.item.name}</span>

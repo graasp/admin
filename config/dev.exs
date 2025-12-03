@@ -66,6 +66,9 @@ config :admin, AdminWeb.Endpoint,
 # Enable dev routes for dashboard and mailbox
 config :admin, dev_routes: true
 
+# Set the File Items bucket name
+config :admin, :file_items_bucket, "file-items"
+
 # Do not include metadata nor timestamps in development logs
 config :logger, :default_formatter, format: "[$level] $message\n"
 

@@ -10,6 +10,7 @@ defmodule Admin.Publications do
   alias Ecto.Multi
 
   alias Admin.Accounts.Scope
+  alias Admin.Items.Item
   alias Admin.Publications.PublishedItem
 
   @doc """
@@ -41,6 +42,7 @@ defmodule Admin.Publications do
   """
   def list_published_items do
     Repo.all(from p in PublishedItem, order_by: [desc: :created_at], preload: [:item, :creator])
+    |> Enum.map(&populate_thumbnails(&1))
   end
 
   @doc """
@@ -53,6 +55,7 @@ defmodule Admin.Publications do
         limit: ^limit,
         preload: [:item, :creator]
     )
+    |> Enum.map(&populate_thumbnails(&1))
   end
 
   def list_featured_published_items do
@@ -82,7 +85,9 @@ defmodule Admin.Publications do
 
   """
   def get_published_item!(id) do
-    Repo.get!(PublishedItem, id) |> with_creator() |> with_item()
+    Repo.get!(PublishedItem, id)
+    |> with_creator()
+    |> with_item()
   end
 
   def get_published_item!(%Scope{} = _scope, id) do
@@ -92,7 +97,9 @@ defmodule Admin.Publications do
   end
 
   def with_item(%PublishedItem{} = published_item) do
-    published_item |> Repo.preload([:item])
+    published_item
+    |> Repo.preload([:item])
+    |> populate_thumbnails()
   end
 
   def with_creator(%PublishedItem{} = published_item) do
@@ -242,5 +249,17 @@ defmodule Admin.Publications do
         {:error, reason} -> {:error, reason}
       end
     end)
+  end
+
+  defp populate_thumbnails(%PublishedItem{item: %Item{id: item_id}} = pub) do
+    thumbnails =
+      Admin.ItemThumbnails.get_item_thumbnails(item_id)
+
+    Map.put(pub, :thumbnails, thumbnails)
+  end
+
+  # item association is not loaded
+  defp populate_thumbnails(%PublishedItem{} = pub) do
+    Map.put(pub, :thumbnails, %{small: nil, medium: nil, large: nil})
   end
 end
