@@ -63,7 +63,7 @@ defmodule AdminWeb.PublishedItemControllerTest do
         post(conn, ~p"/published_items/search", %{published_item_search_form: %{item_id: item_id}})
 
       assert html_response(conn, 200) =~
-               "An Item with id &#39;#{item_id}&#39; could not be found"
+               "Publication does not exist for item with id &#39;#{item_id}&#39;"
     end
   end
 
