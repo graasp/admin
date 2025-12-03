@@ -105,11 +105,7 @@ if config_env() == :prod do
   # In production you need to configure the mailer to use a different adapter.
   # Here is an example configuration for Mailgun:
   #
-  config :admin, Admin.Mailer,
-    adapter: Swoosh.Adapters.AmazonSES,
-    region: System.get_env("MAILER_SES_REGION", "eu-central-1"),
-    access_key: System.get_env("MAILER_SES_ACCESS_KEY"),
-    secret: System.get_env("MAILER_SES_SECRET")
+  config :admin, Admin.Mailer, adapter: Swoosh.Adapters.ExAWSAmazonSES
 
   #
   # Most non-SMTP adapters require an API client. Swoosh supports Req, Hackney,
@@ -156,4 +152,9 @@ if config_env() == :prod do
     region: System.get_env("AWS_REGION", "eu-central-1"),
     # If using custom endpoints like LocalStack or MinIO, path_style: true is often necessary.
     path_style: true
+  # Configure Ex_AWS using first env vars, then instance role (automatic credentials in ECS tasks)
+  config :ex_aws,
+    access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :pod_identity, :instance_role],
+    secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, :pod_identity, :instance_role],
+    region: {:system, "AWS_REGION"}
 end
