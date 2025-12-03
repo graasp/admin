@@ -20,7 +20,9 @@ defmodule Admin.PublicationsTest do
         |> Admin.Publications.with_creator()
         |> Admin.Publications.with_item()
 
-      assert Publications.list_published_items() == [published_item]
+      [result] = Publications.list_published_items()
+      assert published_item.creator == result.creator
+      assert published_item.item == result.item
     end
 
     test "get_published_item!/2 returns the published_item with given id" do

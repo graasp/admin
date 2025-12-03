@@ -64,8 +64,8 @@ defmodule AdminWeb.PublishedItemController do
     changeset = PublishedItemSearchForm.changeset(%PublishedItemSearchForm{}, params)
 
     if changeset.valid? do
-      item_id = Ecto.Changeset.get_field(changeset, :item_id)
-      redirect(conn, to: ~p"/published_items/#{item_id}")
+      published_item_id = Ecto.Changeset.get_field(changeset, :published_item_id)
+      redirect(conn, to: ~p"/published_items/#{published_item_id}")
     else
       published_items =
         Publications.list_published_items()

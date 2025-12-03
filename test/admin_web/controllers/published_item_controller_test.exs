@@ -63,7 +63,7 @@ defmodule AdminWeb.PublishedItemControllerTest do
         post(conn, ~p"/published_items/search", %{published_item_search_form: %{item_id: item_id}})
 
       assert html_response(conn, 200) =~
-               "Publication with id &#39;#{item_id}&#39; could not be found"
+               "Publication does not exist for item with id &#39;#{item_id}&#39;"
     end
   end
 
@@ -74,19 +74,23 @@ defmodule AdminWeb.PublishedItemControllerTest do
       conn: conn,
       published_item: published_item
     } do
-      item_id = published_item.id
+      item_id = published_item.item.id
+      published_item_id = published_item.id
 
       conn =
         post(conn, ~p"/published_items/search", %{
           published_item_search_form: %{item_id: "#{item_id}"}
         })
 
-      assert redirected_to(conn) == ~p"/published_items/#{item_id}"
+      assert redirected_to(conn) == ~p"/published_items/#{published_item_id}"
     end
   end
 
   defp create_published_item(%{scope: scope}) do
-    published_item = published_item_fixture(scope)
+    published_item =
+      published_item_fixture(scope)
+      |> Admin.Publications.with_item()
+      |> Admin.Publications.with_creator()
 
     %{published_item: published_item}
   end

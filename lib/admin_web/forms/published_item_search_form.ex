@@ -9,6 +9,7 @@ defmodule AdminWeb.Forms.PublishedItemSearchForm do
   @primary_key false
   embedded_schema do
     field :item_id, :string
+    field :published_item_id, :string
   end
 
   def changeset(form, params) do
@@ -16,7 +17,7 @@ defmodule AdminWeb.Forms.PublishedItemSearchForm do
     |> cast(params, [:item_id])
     |> validate_required([:item_id])
     |> validate_uuid(:item_id)
-    |> maybe_validate_id_exists()
+    |> validate_and_put_published_item_id()
     |> Map.put(:action, :validate)
   end
 
@@ -29,20 +30,24 @@ defmodule AdminWeb.Forms.PublishedItemSearchForm do
     end)
   end
 
-  @spec maybe_validate_id_exists(Ecto.Changeset.t()) :: Ecto.Changeset.t()
-  defp maybe_validate_id_exists(%Ecto.Changeset{valid?: false} = changeset), do: changeset
+  @spec validate_and_put_published_item_id(Ecto.Changeset.t()) :: Ecto.Changeset.t()
+  defp validate_and_put_published_item_id(%Ecto.Changeset{valid?: false} = changeset),
+    do: changeset
 
-  defp maybe_validate_id_exists(changeset) do
+  defp validate_and_put_published_item_id(changeset) do
     item_id = Ecto.Changeset.get_field(changeset, :item_id)
 
-    if Publications.exists?(item_id) do
-      changeset
-    else
-      Ecto.Changeset.add_error(
-        changeset,
-        :item_id,
-        "Publication with id '#{item_id}' could not be found"
-      )
+    case Publications.get_published_item_id_for_item_id(item_id) do
+      nil ->
+        Ecto.Changeset.add_error(
+          changeset,
+          # set the error on the item_id since the published_item_id is not displayed
+          :item_id,
+          "Publication does not exist for item with id '#{item_id}'"
+        )
+
+      published_item_id ->
+        Ecto.Changeset.put_change(changeset, :published_item_id, published_item_id)
     end
   end
 end

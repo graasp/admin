@@ -1,4 +1,4 @@
-defmodule AdminWeb.UserLive.ListingTest do
+defmodule AdminWeb.UserLive.UserListingTest do
   use AdminWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
