@@ -94,14 +94,6 @@ config :logger, :default_formatter,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-# Configure AWS with ExAWS with default parameters
-aws_region = System.get_env("AWS_REGION", "eu-central-1")
-
-config :ex_aws, :s3,
-  region: aws_region,
-  # If using custom endpoints like LocalStack or MinIO, path_style: true is often necessary.
-  path_style: true
-
 # Open telemetry configuration
 config :opentelemetry, span_processor: {Sentry.OpenTelemetry.SpanProcessor, []}
 config :opentelemetry, sampler: {Sentry.OpenTelemetry.Sampler, []}
