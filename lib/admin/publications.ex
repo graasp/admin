@@ -105,8 +105,7 @@ defmodule Admin.Publications do
         join: i in Item,
         on: pi.item_path == i.path,
         where: i.id == ^item_id,
-        select: pi.id,
-        limit: 1
+        select: pi.id
 
     Repo.one(query)
   end
