@@ -151,4 +151,9 @@ if config_env() == :prod do
 
   # Config the File Items bucket name
   config :admin, :file_items_bucket, System.get_env("FILE_ITEMS_BUCKET_NAME", "file-items")
+
+  config :ex_aws, :s3,
+    region: System.get_env("AWS_REGION", "eu-central-1"),
+    # If using custom endpoints like LocalStack or MinIO, path_style: true is often necessary.
+    path_style: true
 end
