@@ -158,4 +158,7 @@ if config_env() == :prod do
     access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :pod_identity, :instance_role],
     secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, :pod_identity, :instance_role],
     region: {:system, "AWS_REGION"}
+
+  # override the ses region to use Frankfurt since SES does not exist in eu-central-2
+  config :ex_aws, :ses, region: "eu-central-1"
 end
