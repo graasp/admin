@@ -8,9 +8,12 @@ defmodule AdminWeb.DevLive.Index do
   def render(assigns) do
     ~H"""
     <Layouts.admin flash={@flash} current_scope={@current_scope}>
-      <h1>Dev Live Index</h1>
-      <.button phx-click="send_removal_email">Send removal email</.button>
-      <.button phx-click="send_notification_email">Send notification email</.button>
+      <h1>Dev Tools</h1>
+
+      <p>Emails are sent to test@graasp.org</p>
+      <p>Email values are hard coded</p>
+      <.button phx-click="send_unpublication_email">Send unpublication email</.button>
+      <.button phx-click="send_notification_email">Send a simple email</.button>
     </Layouts.admin>
     """
   end
@@ -25,7 +28,7 @@ defmodule AdminWeb.DevLive.Index do
   end
 
   @impl true
-  def handle_event("send_removal_email", _, socket) do
+  def handle_event("send_unpublication_email", _, socket) do
     UserNotifier.deliver_publication_removal(
       %Account{name: "John Doe", email: "test@graasp.org"},
       %{created_at: ~U[2023-01-01 00:00:00Z], item: %{name: "Sample name"}},

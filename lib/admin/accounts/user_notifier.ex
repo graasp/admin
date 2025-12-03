@@ -11,14 +11,29 @@ defmodule Admin.Accounts.UserNotifier do
   alias AdminWeb.EmailTemplates
 
   @footer "Graasp.org is a learning experience platform."
+  @content_moderation_email {"Graasp Content Moderation", "content-moderation@graasp.org"}
+  @support_email {"Graasp Support", "support@graasp.org"}
+  @admin_email {"Graasp Admin", "admin@graasp.org"}
+  @noreply_email {"Graasp No-Reply", "noreply@graasp.org"}
 
   # Delivers the email using the application mailer.
-  defp deliver(recipient, subject, html, text, reply_to \\ {"Admin", "admin@graasp.org"}) do
+  defp deliver(
+         recipient,
+         subject,
+         html,
+         text,
+         opts
+       ) do
+    # specify a from address
+    from = Keyword.get(opts, :from, @noreply_email)
+    # specify a reply-to address
+    reply = Keyword.get(opts, :reply_to, @admin_email)
+
     email =
       new()
       |> to(recipient)
-      |> from({"Admin", "noreply@graasp.org"})
-      |> reply_to(reply_to)
+      |> from(from)
+      |> reply_to(reply)
       |> subject(subject)
       |> text_body(text)
       |> html_body(html)
@@ -50,7 +65,7 @@ defmodule Admin.Accounts.UserNotifier do
       ==============================
       #{@footer}
       """,
-      {"Graasp Support", "support@graasp.org"}
+      reply_to: @support_email
     )
   end
 
@@ -64,7 +79,7 @@ defmodule Admin.Accounts.UserNotifier do
     human_publication_date = Calendar.strftime(publication.created_at, "%a, %B %d %Y")
 
     message =
-      "We have decided to remove \"#{publication.item.name}\" (published on #{human_publication_date}) from the public Graasp Library for the following reason:"
+      "The Graasp Team removed \"#{publication.item.name}\" (published on #{human_publication_date}) from the public Graasp Library for the following reason:"
 
     html_body =
       EmailTemplates.render("publication_removal", %{
@@ -91,16 +106,17 @@ defmodule Admin.Accounts.UserNotifier do
 
       ---
 
-      You can reply to this email if you have any questions.
+      If you have any questions, please reply to this email and our team will be happy to assist you.
 
-      If you didn't publish this content, no further action is required.
+      If you did not publish this content, you can safely discard this message.
 
-      Thank you for using Graasp
+      Thank you for using Graasp!
 
       ==============================
       #{@footer}
       """,
-      {"Graasp Support", "support@graasp.org"}
+      from: @content_moderation_email,
+      reply_to: @content_moderation_email
     )
   end
 
@@ -121,21 +137,28 @@ defmodule Admin.Accounts.UserNotifier do
         button_url: url
       })
 
-    deliver(name, "Update email instructions", html_body, """
+    deliver(
+      name,
+      "Update email instructions",
+      html_body,
+      """
 
-    ==============================
+      ==============================
 
-    Hi #{name},
+      Hi #{name},
 
-    #{message}
+      #{message}
 
-    #{url}
+      #{url}
 
-    #{ignore_message}
+      #{ignore_message}
 
-    ==============================
-    #{@footer}
-    """)
+      ==============================
+      #{@footer}
+      """,
+      from: @admin_email,
+      reply_to: @admin_email
+    )
   end
 
   @doc """
@@ -162,21 +185,28 @@ defmodule Admin.Accounts.UserNotifier do
         button_url: url
       })
 
-    deliver(user.email, "Log in instructions for admin", html_body, """
+    deliver(
+      user.email,
+      "Log in instructions for admin",
+      html_body,
+      """
 
-    ==============================
+      ==============================
 
-    Hi #{name},
+      Hi #{name},
 
-    #{message}
+      #{message}
 
-    #{url}
+      #{url}
 
-    #{ignore_message}
+      #{ignore_message}
 
-    ==============================
-    #{@footer}
-    """)
+      ==============================
+      #{@footer}
+      """,
+      from: @admin_email,
+      reply_to: @admin_email
+    )
   end
 
   defp deliver_confirmation_instructions(user, url) do
@@ -193,20 +223,27 @@ defmodule Admin.Accounts.UserNotifier do
         button_url: url
       })
 
-    deliver(user.email, "Confirmation instructions for admin", html_body, """
+    deliver(
+      user.email,
+      "Confirmation instructions for admin",
+      html_body,
+      """
 
-    ==============================
+      ==============================
 
-    Hi #{user.email},
+      Hi #{user.email},
 
-    #{message}
+      #{message}
 
-    #{url}
+      #{url}
 
-    #{ignore_message}
+      #{ignore_message}
 
-    ==============================
-    #{@footer}
-    """)
+      ==============================
+      #{@footer}
+      """,
+      from: @admin_email,
+      reply_to: @admin_email
+    )
   end
 end
