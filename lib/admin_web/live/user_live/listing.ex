@@ -3,7 +3,6 @@ defmodule AdminWeb.UserLive.Listing do
 
   require Logger
   alias Admin.Accounts
-  alias Admin.Accounts.UserNotifier
 
   @impl true
   def render(assigns) do
@@ -18,7 +17,6 @@ defmodule AdminWeb.UserLive.Listing do
           </:actions>
           <:actions>
             <.button navigate={~p"/users/new"} id="new_user">New User</.button>
-            <.button phx-click="send_email">Send test email</.button>
           </:actions>
         </.header>
       </div>
@@ -109,18 +107,6 @@ defmodule AdminWeb.UserLive.Listing do
       Accounts.register_user(%{email: "#{System.unique_integer([:positive])}@graasp.org"})
 
     {:noreply, stream_insert(socket, :users, user) |> put_flash(:info, "New user created")}
-  end
-
-  def handle_event("send_email", _, socket) do
-    UserNotifier.deliver_publication_removal(
-      %Accounts.Account{name: "John Doe", email: "test@graasp.org"},
-      %{created_at: ~U[2023-01-01 00:00:00Z], item: %{name: "Sample name"}},
-      %{
-        reason: "Some reason that can look believable\n\neven on multioke lies\n\nSample reason"
-      }
-    )
-
-    {:noreply, socket |> put_flash(:info, "Email sent")}
   end
 
   @impl true
