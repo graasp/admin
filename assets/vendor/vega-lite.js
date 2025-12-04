@@ -1,5 +1,3 @@
-// import vegaEmbed from "./vega-embed.min.js";
-
 /**
  * A hook used to render graphics according to the given
  * Vega-Lite specification.
@@ -27,97 +25,38 @@
  */
 
 const VegaLite = {
-  // mounted() {
-  //   // Read initial data/spec from dataset
-  //   this.spec = JSON.parse(this.el.dataset.spec);
-  //   this.values = JSON.parse(this.el.dataset.values || "[]");
-  //   this.title = this.el.dataset.title || "";
-  //   // Initialize chart once
-  //   this.embedChart(this.spec, this.values, this.title);
-  // },
-  // updated() {
-  //   // On any assign change, LiveView patches the element’s dataset
-  //   const newValues = JSON.parse(this.el.dataset.values || "[]");
-  //   const newTitle = this.el.dataset.title || "";
-  //   // Efficiently update without full re-embed:
-  //   if (this.view && this.view.changeset) {
-  //     // Update title and data via Vega signals/data changes
-  //     // If your spec defines a top-level title as a signal, update it; else re-embed if title changed
-  //     const titleChanged = newTitle !== this.title;
-  //     if (titleChanged) {
-  //       this.title = newTitle;
-  //       // vega-lite title isn’t a signal by default; simplest is re-embed if title changes
-  //       this.embedChart(this.spec, newValues, this.title);
-  //       return;
-  //     }
-  //     // Update data in the named source that vega-lite generates: "source"
-  //     // vega-lite compiles to vega with a main dataset typically named "data".
-  //     // vega-embed exposes view.change for updating data.
-  //     const changeset = vega
-  //       .changeset()
-  //       .remove(() => true)
-  //       .insert(newValues);
-  //     this.view.change("data", changeset).run();
-  //     this.values = newValues;
-  //   } else {
-  //     // Fallback: re-embed
-  //     this.embedChart(this.spec, newValues, newTitle);
-  //   }
-  // },
-  // async embedChart(spec, values, title) {
-  //   const fullSpec = {
-  //     ...spec,
-  //     title,
-  //   };
-  //   // Provide inline data
-  //   const specWithData = {
-  //     ...fullSpec,
-  //     data: { name: "data" }, // define named dataset to update later
-  //   };
-  //   // Render
-  //   const result = await vegaEmbed(this.el, specWithData, {
-  //     actions: false,
-  //     renderer: "canvas",
-  //     tooltip: true,
-  //   });
-  //   // vega view instance
-  //   this.view = result.view;
-  //   // Seed data after embed so we can use named dataset updates
-  //   const changeset = vega
-  //     .changeset()
-  //     .remove(() => true)
-  //     .insert(values);
-  //   this.view.change("data", changeset).run();
-  //   // Handle resize
-  //   const ro = new ResizeObserver(() => this.view && this.view.resize().run());
-  //   ro.observe(this.el);
-  //   this._ro = ro;
-  // },
-  // destroyed() {
-  //   if (this._ro) this._ro.disconnect();
-  //   if (this.view) this.view.finalize();
-  // },
   // event based interaction
-  // mounted() {
-  //   this.id = this.el.getAttribute("data-id");
-  //   this.viewPromise = null;
-  //   const container = document.createElement("div");
-  //   this.el.appendChild(container);
-  //   this.handleEvent(`vega_lite:${this.id}:init`, ({ spec }) => {
-  //     this.viewPromise = vegaEmbed(container, spec, { actions: false })
-  //       .then((result) => result.view)
-  //       .catch((error) => {
-  //         console.error(
-  //           `Failed to render the given Vega-Lite specification, got the following error:\n\n    ${error.message}\n\nMake sure to check for typos.`,
-  //         );
-  //       });
-  //   });
-  // },
-  // destroyed() {
-  //   if (this.viewPromise) {
-  //     this.viewPromise.then((view) => view.finalize());
-  //   }
-  // },
+  mounted() {
+    this.id = this.el.getAttribute("data-id");
+    this.viewPromise = null;
+    const container = document.createElement("div");
+    this.el.appendChild(container);
+    this.handleEvent(`vega_lite:${this.id}:init`, ({ spec }) => {
+      this.viewPromise = vegaEmbed(
+        container,
+        { ...spec, data: { name: "data" } },
+        { actions: false },
+      )
+        .then((result) => result.view)
+        .catch((error) => {
+          console.error(
+            `Failed to render the given Vega-Lite specification, got the following error:\n\n    ${error.message}\n\nMake sure to check for typos.`,
+          );
+        });
+    });
+    this.handleEvent(`vega_lite:${this.id}:update`, ({ spec }) => {
+      const changes = vega
+        .changeset()
+        .remove(() => true)
+        .insert(spec.data.values);
+      this.viewPromise.then((view) => view.change("data", changes).run());
+    });
+  },
+  destroyed() {
+    if (this.viewPromise) {
+      this.viewPromise.then((view) => view.finalize());
+    }
+  },
 };
 
 export default VegaLite;

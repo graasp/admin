@@ -6,7 +6,7 @@ defmodule Admin.Analytics.EventStore do
 
   use GenServer
 
-  @table :events_per_second
+  @table :analytics_events
 
   # Public API
 
@@ -19,32 +19,7 @@ defmodule Admin.Analytics.EventStore do
   Safe to call from anywhere; the GenServer owns the ETS table.
   """
   def track_event(ts) do
-    key =
-      cond do
-        is_binary(ts) ->
-          case DateTime.from_iso8601(ts) do
-            {:ok, dt, _} ->
-              second_key_from_dt(DateTime.shift_zone!(dt, "Etc/UTC"))
-
-            _ ->
-              case NaiveDateTime.from_iso8601(ts) do
-                {:ok, ndt} -> second_key_from_naive(ndt)
-                _ -> second_key_from_dt(DateTime.utc_now())
-              end
-          end
-
-        match?(%DateTime{}, ts) ->
-          second_key_from_dt(DateTime.shift_zone!(ts, "Etc/UTC"))
-
-        match?(%NaiveDateTime{}, ts) ->
-          second_key_from_naive(ts)
-
-        true ->
-          second_key_from_dt(DateTime.utc_now())
-      end
-
-    # Atomic counter update; if row absent, initialize to 0 then increment by 1
-    :ets.update_counter(@table, key, {2, 1}, {key, 0})
+    GenServer.cast(__MODULE__, {:track_event, ts})
   end
 
   @doc """
@@ -117,6 +92,38 @@ defmodule Admin.Analytics.EventStore do
     ])
 
     {:ok, %{table: @table}}
+  end
+
+  @impl true
+  def handle_cast({:track_event, ts}, _state) do
+    key =
+      cond do
+        is_binary(ts) ->
+          case DateTime.from_iso8601(ts) do
+            {:ok, dt, _} ->
+              second_key_from_dt(DateTime.shift_zone!(dt, "Etc/UTC"))
+
+            _ ->
+              case NaiveDateTime.from_iso8601(ts) do
+                {:ok, ndt} -> second_key_from_naive(ndt)
+                _ -> second_key_from_dt(DateTime.utc_now())
+              end
+          end
+
+        match?(%DateTime{}, ts) ->
+          second_key_from_dt(DateTime.shift_zone!(ts, "Etc/UTC"))
+
+        match?(%NaiveDateTime{}, ts) ->
+          second_key_from_naive(ts)
+
+        true ->
+          second_key_from_dt(DateTime.utc_now())
+      end
+
+    # Atomic counter update; if row absent, initialize to 0 then increment by 1
+    :ets.update_counter(@table, key, {2, 1}, {key, 0})
+
+    {:noreply, %{table: @table}}
   end
 
   # Helpers

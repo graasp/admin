@@ -170,6 +170,7 @@ defmodule AdminWeb.Layouts do
               <li><.link navigate={~p"/publishers"}>Apps</.link></li>
               <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
               <li><.link navigate={~p"/users"}>Admins</.link></li>
+              <li><.link navigate={~p"/analytics/graph"}>Analytics</.link></li>
               <li><.link navigate={~p"/oban"}>Oban</.link></li>
               <div class="divider m-0"></div>
               <div class="flex flex-col items-center gap-1">
@@ -202,13 +203,16 @@ defmodule AdminWeb.Layouts do
                 <summary>Publications</summary>
                 <ul class="p-2">
                   <li><.link navigate={~p"/published_items"}>Recent</.link></li>
-                  <li><.link navigate={~p"/published_items/featured"}>Featured</.link></li>
+                  <li>
+                    <.link navigate={~p"/published_items/featured"}>Featured</.link>
+                  </li>
                 </ul>
               </details>
             </li>
             <li><.link navigate={~p"/publishers"}>Apps</.link></li>
             <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
             <li><.link navigate={~p"/users"}>Admins</.link></li>
+            <li><.link navigate={~p"/analytics/graph"}>Analytics</.link></li>
 
             <li><.link navigate={~p"/oban"}>Oban</.link></li>
           <% end %>

@@ -1,4 +1,4 @@
-defmodule AdminWeb.Live.AnalyticsLive.EventGenerator do
+defmodule AdminWeb.AnalyticsLive.EventGenerator do
   use AdminWeb, :live_view
 
   @impl true
