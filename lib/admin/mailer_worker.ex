@@ -58,8 +58,8 @@ defmodule Admin.MailerWorker do
       {:error, :notification_not_found} ->
         {:cancel, :notification_not_found}
 
-      {:error, _} ->
-        {:error, "Failed to send notification"}
+      {:error, error} ->
+        {:error, "Failed to send notification: #{inspect(error)}"}
     end
   end
 end
