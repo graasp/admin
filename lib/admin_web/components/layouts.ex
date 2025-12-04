@@ -160,7 +160,6 @@ defmodule AdminWeb.Layouts do
               tabindex="0"
               class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li><.link navigate={~p"/users"}>Users</.link></li>
               <li>
                 <.link navigate={~p"/published_items"}>Publications</.link>
                 <ul class="p-2">
@@ -170,8 +169,10 @@ defmodule AdminWeb.Layouts do
               </li>
               <li><.link navigate={~p"/publishers"}>Apps</.link></li>
               <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
+              <li><.link navigate={~p"/analytics/graph"}>Analytics</.link></li>
               <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
               <li><.link navigate={~p"/oban"}>Oban</.link></li>
+              <li><.link navigate={~p"/users"}>Admins</.link></li>
               <div class="divider m-0"></div>
               <div class="flex flex-col items-center">
                 <%= if @current_scope do %>
@@ -194,20 +195,23 @@ defmodule AdminWeb.Layouts do
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
           <%= if @current_scope do %>
-            <li><.link navigate={~p"/users"}>Users</.link></li>
             <li>
               <details>
                 <summary>Publications</summary>
                 <ul class="p-2">
                   <li><.link navigate={~p"/published_items"}>Recent</.link></li>
-                  <li><.link navigate={~p"/published_items/featured"}>Featured</.link></li>
+                  <li>
+                    <.link navigate={~p"/published_items/featured"}>Featured</.link>
+                  </li>
                 </ul>
               </details>
             </li>
             <li><.link navigate={~p"/publishers"}>Apps</.link></li>
             <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
+            <li><.link navigate={~p"/analytics/graph"}>Analytics</.link></li>
             <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
             <li><.link navigate={~p"/oban"}>Oban</.link></li>
+            <li><.link navigate={~p"/users"}>Admins</.link></li>
           <% end %>
         </ul>
       </div>

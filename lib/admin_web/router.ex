@@ -86,7 +86,8 @@ defmodule AdminWeb.Router do
 
       # analytics
       scope "/analytics" do
-        live "/example", AnalyticsLive.Example, :show
+        live "/graph", AnalyticsLive.Example, :show
+        live "/events", AnalyticsLive.EventGenerator, :show
       end
 
       scope "/publishers" do
