@@ -47,6 +47,14 @@ defmodule AdminWeb.AppInstanceLive.Form do
             </.button>
           </.input>
         </div>
+        <%= if @compatible_publishers do %>
+          <.input
+            field={@form[:publisher_id]}
+            type="select"
+            label="Publisher"
+            options={@compatible_publishers}
+          />
+        <% end %>
         <footer class="flex gap-2 justify-end">
           <.button navigate={return_path(@current_scope, @return_to, @app_instance)}>Cancel</.button>
           <.button
@@ -85,9 +93,20 @@ defmodule AdminWeb.AppInstanceLive.Form do
   defp apply_action(socket, :edit, %{"app_id" => id}) do
     app_instance = Apps.get_app_instance!(socket.assigns.publisher, id)
 
+    app_origin =
+      URI.parse(app_instance.url)
+      |> Map.put(:path, "")
+      |> Map.put(:query, nil)
+      |> URI.to_string()
+
+    compatible_publishers =
+      Apps.get_compatible_publishers(app_origin)
+      |> Enum.map(fn publisher -> {publisher.name, publisher.id} end)
+
     socket
     |> assign(:page_title, "Edit App instance")
     |> assign(:app_instance, app_instance)
+    |> assign(:compatible_publishers, compatible_publishers)
     |> assign(
       :form,
       to_form(Apps.change_app_instance(app_instance))
@@ -100,6 +119,7 @@ defmodule AdminWeb.AppInstanceLive.Form do
     socket
     |> assign(:page_title, "New App instance")
     |> assign(:app_instance, app_instance)
+    |> assign(:compatible_publishers, nil)
     |> assign(
       :form,
       to_form(Apps.change_app_instance(app_instance))

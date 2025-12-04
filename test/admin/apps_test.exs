@@ -121,6 +121,17 @@ defmodule Admin.AppsTest do
                Apps.get_app_instance!(app_instance.id)
     end
 
+    test "update_app_instance/3 with invalid publisher_id returns error changeset" do
+      user_scope_fixture()
+      %{app: app_instance} = app_instance_fixture()
+
+      assert {:error, %Ecto.Changeset{}} =
+               Apps.update_app_instance(app_instance, %{publisher_id: Ecto.UUID.generate()})
+
+      assert app_instance |> Admin.Apps.with_publisher() ==
+               Apps.get_app_instance!(app_instance.id)
+    end
+
     test "delete_app_instance/2 deletes the app_instance" do
       user_scope_fixture()
       %{app: app_instance} = app_instance_fixture()
@@ -204,6 +215,24 @@ defmodule Admin.AppsTest do
       user_scope_fixture()
       publisher = publisher_fixture()
       assert %Ecto.Changeset{} = Apps.change_publisher(publisher)
+    end
+
+    test "publisher_exists?/1 returns true if publisher exists" do
+      publisher = publisher_fixture()
+      assert Apps.publisher_exists?(publisher.id)
+    end
+
+    test "publisher_exists?/1 returns false if publisher does not exist" do
+      refute Apps.publisher_exists?(Ecto.UUID.generate())
+    end
+
+    test "get_compatible_publishers/1 returns a list of compatible publishers" do
+      target_origin = "http://example.com"
+      publisher_1 = publisher_fixture(%{origins: [target_origin]})
+      publisher_2 = publisher_fixture(%{origins: [target_origin, "http://example2.com"]})
+      publisher_fixture(%{origins: ["http://example3.com"]})
+
+      assert Apps.get_compatible_publishers(target_origin) == [publisher_1, publisher_2]
     end
   end
 end

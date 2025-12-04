@@ -22,8 +22,16 @@ defmodule Admin.Apps.AppInstance do
 
   @doc false
   def update_changeset(app_instance, attrs) do
+    create_changeset(app_instance, attrs)
+    |> cast(attrs, [:publisher_id])
+    |> validate_compatible_publisher()
+    |> validate_required([:publisher_id])
+  end
+
+  @doc false
+  def create_changeset(app_instance, attrs) do
     app_instance
-    |> cast(attrs, [:name, :description, :url, :thumbnail, :key])
+    |> cast(attrs, [:name, :description, :url, :thumbnail, :key, :publisher_id])
     |> unsafe_validate_unique(:url, Admin.Repo,
       message: "This URL is already used for another app. URLs must be unique."
     )
@@ -36,7 +44,7 @@ defmodule Admin.Apps.AppInstance do
 
   @doc false
   def changeset(app_instance, publisher, attrs) do
-    update_changeset(app_instance, attrs)
+    create_changeset(app_instance, attrs)
     |> put_change(:publisher_id, publisher.id)
   end
 
@@ -44,6 +52,20 @@ defmodule Admin.Apps.AppInstance do
     case get_field(changeset, field) do
       nil -> put_change(changeset, field, Ecto.UUID.generate())
       _ -> changeset
+    end
+  end
+
+  defp validate_compatible_publisher(changeset) do
+    case get_change(changeset, :publisher_id) do
+      # no change, it is ok
+      nil ->
+        changeset
+
+      publisher_id ->
+        case Apps.publisher_exists?(publisher_id) do
+          false -> add_error(changeset, :publisher_id, "Publisher does not exist")
+          true -> changeset
+        end
     end
   end
 end
