@@ -25,7 +25,7 @@ jobs:
     environment: ${{ inputs.environment || 'development' }}
     # Do not run simultaneous builds
     concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+      group: ${{ github.workflow }}-${{ inputs.environment || 'development' }}-${{ github.ref }}
       cancel-in-progress: false
 
     steps:
