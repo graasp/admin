@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.2](https://github.com/graasp/admin/compare/v0.2.1...v0.2.2) (2025-12-05)
+
+
+### Bug Fixes
+
+* allow to move app between compatible publishers ([#85](https://github.com/graasp/admin/issues/85)) ([dc82d5f](https://github.com/graasp/admin/commit/dc82d5f181890b4e3adb6c24f1a9a6a0e6dc8669))
+* email region issue ([#81](https://github.com/graasp/admin/issues/81)) ([3bfe66a](https://github.com/graasp/admin/commit/3bfe66a68ded89433c2ac2d92c657cef63d0b277))
+* restrict the deployment concurrency to each env ([#84](https://github.com/graasp/admin/issues/84)) ([9ac3839](https://github.com/graasp/admin/commit/9ac38397f57efb70adc8943c7575d9f9ec1ed3d0))
+
 ## [0.2.1](https://github.com/graasp/admin/compare/v0.2.0...v0.2.1) (2025-12-03)
 
 
