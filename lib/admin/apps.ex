@@ -212,6 +212,15 @@ defmodule Admin.Apps do
     end
   end
 
+  def publisher_exists?(id) do
+    Repo.exists?(from publisher in Publisher, where: publisher.id == ^id)
+  end
+
+  def get_compatible_publishers(origin) do
+    from(publisher in Publisher, where: fragment("? = ANY(?)", ^origin, publisher.origins))
+    |> Repo.all()
+  end
+
   @doc """
   Updates a publisher.
 
