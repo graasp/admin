@@ -118,13 +118,10 @@ defmodule Admin.Analytics.EventStore do
     end
   end
 
-  defp get_key_from_ts(ts)
-       when match?(%DateTime{}, ts),
-       do: second_key_from_dt(DateTime.shift_zone!(ts, "Etc/UTC"))
+  defp get_key_from_ts(%DateTime{} = ts),
+    do: second_key_from_dt(DateTime.shift_zone!(ts, "Etc/UTC"))
 
-  defp get_key_from_ts(ts)
-       when match?(%NaiveDateTime{}, ts),
-       do: second_key_from_naive(ts)
+  defp get_key_from_ts(%NaiveDateTime{} = ts), do: second_key_from_naive(ts)
 
   defp get_key_from_ts(_ts), do: second_key_from_dt(DateTime.utc_now())
 
