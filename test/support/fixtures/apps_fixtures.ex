@@ -17,7 +17,7 @@ defmodule Admin.AppsFixtures do
     attrs =
       Enum.into(attrs, %{
         description: "some description",
-        name: "some name",
+        name: "some name for a fixture",
         thumbnail: "some thumbnail",
         url: "http://#{System.unique_integer([:positive])}example.com"
       })

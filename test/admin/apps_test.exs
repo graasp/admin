@@ -13,8 +13,10 @@ defmodule Admin.AppsTest do
 
     test "list_apps/1 returns all apps" do
       user_scope_fixture()
-      %{app: app_instance, publisher: publisher} = app_instance_fixture()
-      %{app: other_app_instance} = app_instance_fixture(%{publisher_id: publisher.id})
+      %{app: app_instance, publisher: publisher} = app_instance_fixture(%{name: "app A"})
+
+      %{app: other_app_instance} =
+        app_instance_fixture(%{name: "app B", publisher_id: publisher.id})
 
       apps =
         Apps.list_apps_by_publisher()
