@@ -10,13 +10,10 @@ defmodule AdminWeb.UserLive.Listing do
     <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <div class="">
         <.header>
-          List users
+          Admin users
           <:subtitle>Show users that are currently registered in the app</:subtitle>
           <:actions>
-            <.button phx-click="new_random_user" id="new_random_user">New Random User</.button>
-          </:actions>
-          <:actions>
-            <.button navigate={~p"/users/new"} id="new_user">New User</.button>
+            <.button navigate={~p"/users/new"} id="new_user">Add an admin user</.button>
           </:actions>
         </.header>
       </div>
@@ -72,7 +69,7 @@ defmodule AdminWeb.UserLive.Listing do
 
     socket =
       socket
-      |> assign(:page_title, "Users")
+      |> assign(:page_title, "Admin Users")
       |> stream(:users, Accounts.list_users())
       |> assign(:show_modal, false)
       |> assign(:user_to_delete, nil)
