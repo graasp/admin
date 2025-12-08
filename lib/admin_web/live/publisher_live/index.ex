@@ -27,6 +27,9 @@ defmodule AdminWeb.PublisherLive.Index do
                 <span>{origin}</span>
               <% end %>
             </div>
+            <.link class="link text-sm text-secondary" href={~p"/publishers/#{publisher.id}"}>
+              View details
+            </.link>
           </:subtitle>
           <:actions>
             <.button navigate={~p"/publishers/#{publisher.id}/edit"}>
@@ -34,7 +37,10 @@ defmodule AdminWeb.PublisherLive.Index do
             </.button>
           </:actions>
           <:actions>
-            <.button variant="primary" navigate={~p"/publishers/#{publisher.id}/apps/new"}>
+            <.button
+              variant="primary"
+              navigate={~p"/publishers/#{publisher.id}/apps/new"}
+            >
               <.icon name="hero-plus" /> New App
             </.button>
           </:actions>
