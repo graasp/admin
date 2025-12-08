@@ -96,29 +96,7 @@ defmodule Admin.Analytics.EventStore do
 
   @impl true
   def handle_cast({:track_event, ts}, _state) do
-    key =
-      cond do
-        is_binary(ts) ->
-          case DateTime.from_iso8601(ts) do
-            {:ok, dt, _} ->
-              second_key_from_dt(DateTime.shift_zone!(dt, "Etc/UTC"))
-
-            _ ->
-              case NaiveDateTime.from_iso8601(ts) do
-                {:ok, ndt} -> second_key_from_naive(ndt)
-                _ -> second_key_from_dt(DateTime.utc_now())
-              end
-          end
-
-        match?(%DateTime{}, ts) ->
-          second_key_from_dt(DateTime.shift_zone!(ts, "Etc/UTC"))
-
-        match?(%NaiveDateTime{}, ts) ->
-          second_key_from_naive(ts)
-
-        true ->
-          second_key_from_dt(DateTime.utc_now())
-      end
+    key = get_key_from_ts(ts)
 
     # Atomic counter update; if row absent, initialize to 0 then increment by 1
     :ets.update_counter(@table, key, {2, 1}, {key, 0})
@@ -127,6 +105,28 @@ defmodule Admin.Analytics.EventStore do
   end
 
   # Helpers
+
+  defp get_key_from_ts(ts) when is_binary(ts) do
+    case DateTime.from_iso8601(ts) do
+      {:ok, dt, _} ->
+        second_key_from_dt(DateTime.shift_zone!(dt, "Etc/UTC"))
+
+      _ ->
+        case NaiveDateTime.from_iso8601(ts) do
+          {:ok, ndt} -> second_key_from_naive(ndt)
+        end
+    end
+  end
+
+  defp get_key_from_ts(ts)
+       when match?(%DateTime{}, ts),
+       do: second_key_from_dt(DateTime.shift_zone!(ts, "Etc/UTC"))
+
+  defp get_key_from_ts(ts)
+       when match?(%NaiveDateTime{}, ts),
+       do: second_key_from_naive(ts)
+
+  defp get_key_from_ts(_ts), do: second_key_from_dt(DateTime.utc_now())
 
   defp second_key_from_naive(%NaiveDateTime{
          year: y,

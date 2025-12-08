@@ -1,6 +1,8 @@
 defmodule AdminWeb.AnalyticsLive.EventGenerator do
   use AdminWeb, :live_view
 
+  alias Admin.Analytics.EventStore
+
   @impl true
   def render(assigns) do
     # creates an interface with a single button that send an event when pressed
@@ -13,7 +15,7 @@ defmodule AdminWeb.AnalyticsLive.EventGenerator do
 
   @impl true
   def handle_event("send_event", _params, socket) do
-    Admin.Analytics.EventStore.track_event(DateTime.utc_now())
+    EventStore.track_event(DateTime.utc_now())
     {:noreply, socket}
   end
 end

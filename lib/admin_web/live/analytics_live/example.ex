@@ -1,6 +1,6 @@
 defmodule AdminWeb.AnalyticsLive.Example do
   use AdminWeb, :live_view
-
+  alias Admin.Analytics.EventStore
   alias VegaLite, as: Vl
 
   @intervall_ms 1_000
@@ -39,7 +39,7 @@ defmodule AdminWeb.AnalyticsLive.Example do
     end
 
     data =
-      Admin.Analytics.EventStore.list_all_in_range_tabular(
+      EventStore.list_all_in_range_tabular(
         DateTime.add(DateTime.utc_now(), -30, :second),
         DateTime.utc_now()
       )
@@ -56,7 +56,7 @@ defmodule AdminWeb.AnalyticsLive.Example do
   @impl true
   def handle_info(:tick, socket) do
     data =
-      Admin.Analytics.EventStore.list_all_in_range_tabular(
+      EventStore.list_all_in_range_tabular(
         DateTime.add(DateTime.utc_now(), -60, :second),
         DateTime.utc_now()
       )
