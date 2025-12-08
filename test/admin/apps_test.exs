@@ -132,6 +132,18 @@ defmodule Admin.AppsTest do
                Apps.get_app_instance!(app_instance.id)
     end
 
+    test "update_app_instance/3 with duplicated name returns error changeset" do
+      user_scope_fixture()
+      app_instance_fixture(%{name: "I already exist"})
+      %{app: app_instance} = app_instance_fixture()
+
+      assert {:error, %Ecto.Changeset{}} =
+               Apps.update_app_instance(app_instance, %{name: "I already exist"})
+
+      assert app_instance |> Admin.Apps.with_publisher() ==
+               Apps.get_app_instance!(app_instance.id)
+    end
+
     test "delete_app_instance/2 deletes the app_instance" do
       user_scope_fixture()
       %{app: app_instance} = app_instance_fixture()
