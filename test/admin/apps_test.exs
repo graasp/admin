@@ -246,5 +246,17 @@ defmodule Admin.AppsTest do
 
       assert Apps.get_compatible_publishers(target_origin) == [publisher_1, publisher_2]
     end
+
+    test "publisher changeset trims origins" do
+      publisher =
+        publisher_fixture(%{origins: [" http://example1.com ", " http://example2.com "]})
+
+      changeset = Apps.change_publisher(publisher)
+      # here we check that data ingestion correctly trims the origins
+      assert changeset.data.origins == ["http://example1.com", "http://example2.com"]
+      # create a change in the origins and verify that the changeset trims the origins
+      changeset = Apps.change_publisher(publisher, %{origins: ["     http://otherorigin.com  "]})
+      assert changeset.changes.origins == ["http://otherorigin.com"]
+    end
   end
 end
