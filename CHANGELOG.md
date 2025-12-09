@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.3.0](https://github.com/graasp/admin/compare/v0.2.1...v0.3.0) (2025-12-09)
+
+
+### Features
+
+* POC using vega-lite ([#88](https://github.com/graasp/admin/issues/88)) ([4550e0a](https://github.com/graasp/admin/commit/4550e0adaff88851bf24f40a2eca91049d13f76d))
+
+
+### Bug Fixes
+
+* add "View details" button for publisher list ([#92](https://github.com/graasp/admin/issues/92)) ([600735a](https://github.com/graasp/admin/commit/600735a54179f312bc4a8d2b7fd7e506fdd229ef))
+* allow to move app between compatible publishers ([#85](https://github.com/graasp/admin/issues/85)) ([dc82d5f](https://github.com/graasp/admin/commit/dc82d5f181890b4e3adb6c24f1a9a6a0e6dc8669))
+* duplicate app name constraint ([#91](https://github.com/graasp/admin/issues/91)) ([7df9aae](https://github.com/graasp/admin/commit/7df9aae02fcf4b1daa3e963b23042bfed0429b5c))
+* email region issue ([#81](https://github.com/graasp/admin/issues/81)) ([3bfe66a](https://github.com/graasp/admin/commit/3bfe66a68ded89433c2ac2d92c657cef63d0b277))
+* publication thumbnail fallback ([#94](https://github.com/graasp/admin/issues/94)) ([08e5bbd](https://github.com/graasp/admin/commit/08e5bbd808c77b3e7e2b9866b847e55961b100a0))
+* restrict the deployment concurrency to each env ([#84](https://github.com/graasp/admin/issues/84)) ([9ac3839](https://github.com/graasp/admin/commit/9ac38397f57efb70adc8943c7575d9f9ec1ed3d0))
+* update admin users page and header ([#89](https://github.com/graasp/admin/issues/89)) ([2118089](https://github.com/graasp/admin/commit/2118089535215d3f99fef398c2628d03f383ae1d))
+* update menu names ([#95](https://github.com/graasp/admin/issues/95)) ([2d33ae7](https://github.com/graasp/admin/commit/2d33ae7d105f9ebae703610f4aa58ce9c8bdd8ba))
+
 ## [0.2.1](https://github.com/graasp/admin/compare/v0.2.0...v0.2.1) (2025-12-03)
 
 
