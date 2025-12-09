@@ -93,6 +93,7 @@ defmodule AdminWeb do
       # Common modules used in templates
       alias AdminWeb.Layouts
       alias Phoenix.LiveView.JS
+      alias AdminWeb.Components.Graphs
 
       # Placeholder components for mocks
       alias AdminWeb.Placeholders

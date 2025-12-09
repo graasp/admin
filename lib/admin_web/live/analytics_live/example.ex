@@ -9,6 +9,7 @@ defmodule AdminWeb.AnalyticsLive.Example do
   def render(assigns) do
     ~H"""
     <Layouts.admin flash={@flash} current_scope={@current_scope}>
+      <Graphs.init />
       <.header>
         Vega lite chart example
         <:subtitle>Example of a Vega lite chart</:subtitle>
@@ -19,7 +20,6 @@ defmodule AdminWeb.AnalyticsLive.Example do
         </:actions>
       </.header>
       <div
-        class="w-full"
         id={"vega-lite-#{@id}"}
         phx-hook="VegaLite"
         phx-update="ignore"
@@ -67,7 +67,7 @@ defmodule AdminWeb.AnalyticsLive.Example do
   end
 
   defp example_vega_lite_spec(data) do
-    Vl.new(width: -1, height: 200)
+    Vl.new(width: 500, height: 200)
     |> Vl.config(background: "transparent")
     |> Vl.data_from_values(data)
     |> Vl.mark(:bar)
