@@ -503,4 +503,33 @@ defmodule AdminWeb.CoreComponents do
     </div>
     """
   end
+
+  attr :src, :string, required: true
+  attr :size, :string, default: "small"
+  attr :alt, :string, required: true
+
+  def thumbnail(assigns) do
+    assigns =
+      assign(assigns,
+        size_class:
+          case assigns.size do
+            "small" -> "size-10"
+            "medium" -> "size-24"
+            "large" -> "size-96"
+          end
+      )
+
+    ~H"""
+    <object
+      data={@src}
+      type="image/webp"
+      class={[@size_class, "rounded"]}
+      alt={@alt}
+    >
+      <div class={[@size_class, "shrink-0 bg-base-300 rounded flex items-center justify-center"]}>
+        <.icon name="hero-photo" class="size-5 text-base-content" />
+      </div>
+    </object>
+    """
+  end
 end

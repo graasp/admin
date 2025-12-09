@@ -37,9 +37,9 @@
 
   <.list>
     <:item title="Thumbnail">
-      <img
-        class="size-24 rounded"
+      <.thumbnail
         src={@published_item.thumbnails.medium}
+        size="medium"
         alt={@published_item.item.name}
       />
     </:item>

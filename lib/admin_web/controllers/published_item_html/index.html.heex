@@ -30,10 +30,10 @@
     row_click={&JS.navigate(~p"/published_items/#{&1}")}
   >
     <:col :let={published_item}>
-      <img
+      <.thumbnail
         src={published_item.thumbnails.small}
+        size="small"
         alt={published_item.item.name}
-        class="size-10 rounded"
       />
     </:col>
     <:col :let={published_item} label="Publication">
