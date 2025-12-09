@@ -30,11 +30,14 @@
     row_click={&JS.navigate(~p"/published_items/#{&1}")}
   >
     <:col :let={published_item}>
-      <img
-        src={published_item.thumbnails.small}
-        alt={published_item.item.name}
+      <object
+        data={published_item.thumbnails.small}
+        type="image/webp"
         class="size-10 rounded"
-      />
+        alt={published_item.item.name}
+      >
+        <div class="shrink-0 size-10 bg-gray-500 rounded" />
+      </object>
     </:col>
     <:col :let={published_item} label="Publication">
       <div class="flex flex-col align-center gap-1">
