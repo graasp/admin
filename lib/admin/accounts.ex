@@ -88,7 +88,6 @@ defmodule Admin.Accounts do
            |> User.email_changeset(attrs)
            |> Repo.insert() do
       broadcast_users({:created, user})
-      Logger.info("sent a broadcast message for #{inspect(user)}")
       {:ok, user}
     end
   end

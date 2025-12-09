@@ -7,7 +7,12 @@ defmodule AdminWeb.UserLive.Form do
   def render(assigns) do
     ~H"""
     <Layouts.admin flash={@flash} current_scope={@current_scope}>
-      <.header>Create a new User</.header>
+      <.header>
+        Create a new admin user
+        <:subtitle>
+          This user will have admin privileges. They will be able to manage applications, publications and send email to graasp members.
+        </:subtitle>
+      </.header>
 
       <.form id="user_form" for={@form} phx-submit="save" phx-change="validate">
         <.input

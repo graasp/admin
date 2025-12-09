@@ -8,7 +8,7 @@ defmodule AdminWeb.UserLive.FormTest do
     test "renders form for new user", %{conn: conn} do
       {:ok, lv, html} = live(conn, ~p"/users/new")
 
-      assert html =~ "Create a new User"
+      assert html =~ "Create a new admin user"
       assert has_element?(lv, "form")
 
       assert form(lv, "#user_form", user: %{email: "test@example.com"})

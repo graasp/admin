@@ -8,7 +8,7 @@ defmodule AdminWeb.UserLive.UserListingTest do
     test "render user list", %{conn: conn} do
       {:ok, _lv, html} = conn |> log_in_user(user_fixture()) |> live(~p"/users")
 
-      assert html =~ "List users"
+      assert html =~ "Admin users"
     end
 
     test "redirects if user is not logged in", %{conn: conn} do

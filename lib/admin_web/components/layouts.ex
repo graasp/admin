@@ -160,7 +160,6 @@ defmodule AdminWeb.Layouts do
               tabindex="0"
               class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li><.link navigate={~p"/users"}>Users</.link></li>
               <li>
                 <.link navigate={~p"/published_items"}>Publications</.link>
                 <ul class="p-2">
@@ -170,14 +169,18 @@ defmodule AdminWeb.Layouts do
               </li>
               <li><.link navigate={~p"/publishers"}>Apps</.link></li>
               <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
-              <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
+              <li><.link navigate={~p"/users"}>Admins</.link></li>
               <li><.link navigate={~p"/oban"}>Oban</.link></li>
               <div class="divider m-0"></div>
-              <div class="flex flex-col items-center">
+              <div class="flex flex-col items-center gap-1">
                 <%= if @current_scope do %>
                   <span>{@current_scope.user.email}</span>
-                  <.link class="btn btn-ghost" href={~p"/users/log-out"} method="delete">
-                    Log out
+
+                  <.link class="btn btn-soft" navigate={~p"/users/settings"}>
+                    <.icon name="hero-cog" class="size-5 " /> Settings
+                  </.link>
+                  <.link class="btn btn-soft" href={~p"/users/log-out"} method="delete">
+                    <.icon name="hero-arrow-right-on-rectangle" class="size-5 " /> Log out
                   </.link>
                 <% else %>
                   <.link class="btn btn-ghost" href={~p"/users/log-in"}>Log in</.link>
@@ -194,7 +197,6 @@ defmodule AdminWeb.Layouts do
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
           <%= if @current_scope do %>
-            <li><.link navigate={~p"/users"}>Users</.link></li>
             <li>
               <details>
                 <summary>Publications</summary>
@@ -206,16 +208,22 @@ defmodule AdminWeb.Layouts do
             </li>
             <li><.link navigate={~p"/publishers"}>Apps</.link></li>
             <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
-            <li><.link navigate={~p"/users/settings"}>Settings</.link></li>
+            <li><.link navigate={~p"/users"}>Admins</.link></li>
+
             <li><.link navigate={~p"/oban"}>Oban</.link></li>
           <% end %>
         </ul>
       </div>
       <div class="navbar-end gap-1">
-        <div class="hidden items-center lg:flex">
+        <div class="hidden items-center lg:flex gap-2">
           <%= if @current_scope do %>
             <span>{@current_scope.user.email}</span>
-            <.link class="btn btn-ghost" href={~p"/users/log-out"} method="delete">Log out</.link>
+            <.link class="btn btn-circle" navigate={~p"/users/settings"} title="Settings">
+              <.icon name="hero-cog" class="size-5 " />
+            </.link>
+            <.link class="btn btn-circle" href={~p"/users/log-out"} title="Log out" method="delete">
+              <.icon name="hero-arrow-right-on-rectangle" class="size-5 " />
+            </.link>
           <% else %>
             <.link class="btn btn-ghost" href={~p"/users/log-in"}>Log in</.link>
           <% end %>
