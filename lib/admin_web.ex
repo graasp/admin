@@ -91,9 +91,9 @@ defmodule AdminWeb do
       import AdminWeb.CoreComponents
 
       # Common modules used in templates
+      alias AdminWeb.Components.Graphs
       alias AdminWeb.Layouts
       alias Phoenix.LiveView.JS
-      alias AdminWeb.Components.Graphs
 
       # Placeholder components for mocks
       alias AdminWeb.Placeholders

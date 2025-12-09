@@ -1,4 +1,8 @@
 defmodule AdminWeb.Components.Graphs do
+  @moduledoc """
+  Module for rendering graphs using Vega Lite.
+  """
+
   use Phoenix.Component
 
   def init(assigns) do
