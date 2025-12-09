@@ -18,11 +18,11 @@ defmodule AdminWeb.PublisherLive.Index do
 
       <%= for {id, publisher} <- @streams.publishers do %>
         <div
-          id={id}
+          id={"#{id}-wrapper"}
           class="bg-base-200 rounded-xl p-4"
           phx-click={
             JS.toggle_class("hidden", to: "#publisher-#{publisher.id}-apps")
-            |> JS.toggle_class("rotate-[-90deg]", to: "##{id} .chevron", time: 300)
+            |> JS.toggle_class("rotate-[-90deg]", to: "##{id}-wrapper .chevron", time: 300)
           }
         >
           <.header>
