@@ -27,7 +27,7 @@
 const VegaLite = {
   // event based interaction
   mounted() {
-    this.id = this.el.getAttribute("data-id");
+    this.id = this.el.dataset.id;
     this.viewPromise = null;
     const container = document.createElement("div");
     this.el.appendChild(container);
