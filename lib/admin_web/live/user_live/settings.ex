@@ -104,6 +104,25 @@ defmodule AdminWeb.UserLive.Settings do
           Save Password
         </.button>
       </.form>
+
+      <.form
+        for={@name_form}
+        id="name_form"
+        phx-change="validate_name"
+        phx-submit="update_name"
+      >
+        <.input
+          field={@name_form[:name]}
+          type="text"
+          label="Name"
+          autocomplete="name"
+          required
+        />
+
+        <.button variant="primary" phx-disable-with="Saving...">
+          Save Name
+        </.button>
+      </.form>
     </Layouts.admin>
     """
   end

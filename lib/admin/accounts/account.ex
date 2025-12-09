@@ -9,6 +9,7 @@ defmodule Admin.Accounts.Account do
     field :name, :string
     field :email, :string
     field :type, :string
+    field :extra, :map
 
     timestamps(type: :utc_datetime)
   end

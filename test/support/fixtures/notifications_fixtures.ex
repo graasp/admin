@@ -10,9 +10,9 @@ defmodule Admin.NotificationsFixtures do
   def notification_fixture(scope, attrs \\ %{}) do
     attrs =
       Enum.into(attrs, %{
-        message: "some message",
-        title: "some title",
-        recipients: ["user1@example.com", "user2@example.com"]
+        name: "some name",
+        audience: "all",
+        default_language: "en"
       })
 
     {:ok, notification} = Admin.Notifications.create_notification(scope, attrs)

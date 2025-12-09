@@ -4,8 +4,8 @@ defmodule AdminWeb.ServiceMessageLiveTest do
   import Phoenix.LiveViewTest
   import Admin.NotificationsFixtures
 
-  @create_attrs %{title: "some title", message: "some message"}
-  @invalid_attrs %{title: nil, message: nil}
+  @create_attrs %{name: "some name", audience: "all", default_language: "en"}
+  @invalid_attrs %{name: nil, audience: nil, default_language: nil}
 
   setup :register_and_log_in_user
 
@@ -22,7 +22,7 @@ defmodule AdminWeb.ServiceMessageLiveTest do
       {:ok, _index_live, html} = live(conn, ~p"/admin/notifications")
 
       assert html =~ "Mailing"
-      assert html =~ notification.title
+      assert html =~ notification.name
     end
 
     test "saves new notification", %{conn: conn} do
@@ -40,15 +40,6 @@ defmodule AdminWeb.ServiceMessageLiveTest do
              |> form("#notification-form", notification: @invalid_attrs)
              |> render_change() =~ "can&#39;t be blank"
 
-      # The first dynamic email input uses the name "manual_email_0"
-
-      form_live
-      |> element("input[name=manual_email_0]")
-      |> render_change(%{
-        "_target" => ["manual_email_0"],
-        "manual_email_0" => "alice@example.com"
-      })
-
       # After rows are set, validate the form fields
       assert {:ok, index_live, _html} =
                form_live
@@ -56,11 +47,11 @@ defmodule AdminWeb.ServiceMessageLiveTest do
                  notification: @create_attrs
                )
                |> render_submit()
-               |> follow_redirect(conn, ~p"/admin/notifications")
+               |> follow_redirect(conn)
 
       html = render(index_live)
       assert html =~ "Notification created"
-      assert html =~ "some title"
+      assert html =~ "some name"
     end
 
     test "deletes notification in listing", %{conn: conn, notification: notification} do
@@ -81,7 +72,7 @@ defmodule AdminWeb.ServiceMessageLiveTest do
       {:ok, _show_live, html} = live(conn, ~p"/admin/notifications/#{notification}")
 
       assert html =~ "Show Mail"
-      assert html =~ notification.title
+      assert html =~ notification.name
     end
   end
 end

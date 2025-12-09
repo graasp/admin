@@ -34,6 +34,7 @@ defmodule Admin.Repo.Migrations.CreateUsersAuthTables do
       add :name, :string
       add :email, :string
       add :type, :string
+      add :extra, :map
 
       timestamps(type: :utc_datetime)
     end
