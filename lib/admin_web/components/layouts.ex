@@ -171,7 +171,13 @@ defmodule AdminWeb.Layouts do
               <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
               <li><.link navigate={~p"/users"}>Admins</.link></li>
               <li><.link navigate={~p"/analytics/graph"}>Analytics</.link></li>
-              <li><.link navigate={~p"/oban"}>Oban</.link></li>
+              <li>
+                <span>Development</span>
+                <ul class="p-2">
+                  <li><.link navigate={~p"/oban"}>Job Queues</.link></li>
+                </ul>
+              </li>
+
               <div class="divider m-0"></div>
               <div class="flex flex-col items-center gap-1">
                 <%= if @current_scope do %>
@@ -213,8 +219,14 @@ defmodule AdminWeb.Layouts do
             <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
             <li><.link navigate={~p"/users"}>Admins</.link></li>
             <li><.link navigate={~p"/analytics/graph"}>Analytics</.link></li>
-
-            <li><.link navigate={~p"/oban"}>Oban</.link></li>
+            <li>
+              <details>
+                <summary>Development</summary>
+                <ul class="p-2">
+                  <li><.link navigate={~p"/oban"}>Job Queues</.link></li>
+                </ul>
+              </details>
+            </li>
           <% end %>
         </ul>
       </div>

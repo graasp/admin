@@ -1,6 +1,6 @@
 [tools]
-elixir = "1.19.4-otp-27"
-erlang = "27.3"
+elixir = "1.19.4-otp-28"
+erlang = "28"
 
 [tasks.log]
 run = '''
