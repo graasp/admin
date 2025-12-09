@@ -39,9 +39,6 @@ defmodule AdminWeb.PublisherLive.Index do
                   <span>{origin}</span>
                 <% end %>
               </div>
-              <!-- <.link class="link text-sm text-secondary" href={~p"/publishers/#{publisher.id}"}>
-                View details
-              </.link> -->
             </:subtitle>
             <:actions>
               <.button navigate={~p"/publishers/#{publisher.id}"}>
@@ -104,7 +101,6 @@ defmodule AdminWeb.PublisherLive.Index do
             <% end %>
           </div>
         </div>
-        <!-- <div class="not-last:divider" /> -->
       <% end %>
     </Layouts.admin>
     """
