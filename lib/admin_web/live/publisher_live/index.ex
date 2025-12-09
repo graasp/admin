@@ -51,10 +51,7 @@ defmodule AdminWeb.PublisherLive.Index do
               </.button>
             </:actions>
             <:actions>
-              <.button
-                class="btn btn-accent btn-soft"
-                navigate={~p"/publishers/#{publisher.id}/apps/new"}
-              >
+              <.button variant="primary" navigate={~p"/publishers/#{publisher.id}/apps/new"}>
                 <.icon name="hero-plus" /> New App
               </.button>
             </:actions>
