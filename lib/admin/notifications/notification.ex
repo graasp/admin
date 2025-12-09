@@ -7,19 +7,22 @@ defmodule Admin.Notifications.Notification do
   import Ecto.Changeset
 
   schema "notifications" do
-    field :title, :string
-    field :message, :string
+    field :name, :string
+    field :audience, :string
+    field :default_language, :string, default: "en"
     field :recipients, {:array, :string}
 
     has_many :logs, Admin.Notifications.Log
+    has_many :localized_emails, Admin.Notifications.LocalizedEmail
     timestamps(type: :utc_datetime)
   end
 
   @doc false
   def changeset(notification, attrs, _user_scope) do
     notification
-    |> cast(attrs, [:title, :message, :recipients])
-    |> validate_required([:title, :message, :recipients])
+    |> cast(attrs, [:name, :audience, :default_language, :recipients])
+    |> validate_required([:name, :audience, :default_language, :recipients])
+    |> validate_inclusion(:default_language, ["en", "fr", "es", "it", "de"])
     |> normalize_emails(:recipients)
     |> validate_email_list(:recipients)
   end
