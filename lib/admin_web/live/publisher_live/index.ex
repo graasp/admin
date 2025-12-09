@@ -17,69 +17,87 @@ defmodule AdminWeb.PublisherLive.Index do
       </.header>
 
       <%= for {id, publisher} <- @streams.publishers do %>
-        <.header>
-          <.link navigate={~p"/publishers/#{publisher.id}"}>
-            {publisher.name}
-          </.link>
-          <:subtitle>
-            <div class="flex flex-col">
-              <%= for origin <- publisher.origins do %>
-                <span>{origin}</span>
-              <% end %>
-            </div>
-          </:subtitle>
-          <:actions>
-            <.button navigate={~p"/publishers/#{publisher.id}/edit"}>
-              <.icon name="hero-pencil" /> Edit
-            </.button>
-          </:actions>
-          <:actions>
-            <.button variant="primary" navigate={~p"/publishers/#{publisher.id}/apps/new"}>
-              <.icon name="hero-plus" /> New App
-            </.button>
-          </:actions>
-        </.header>
-
-        <%= if Enum.empty?(publisher.apps) do %>
-          <p class="text-center text-sm text-secondary">No apps yet.</p>
-        <% else %>
-          <.table
-            id={id}
-            rows={publisher.apps}
-            row_click={fn app -> JS.navigate(~p"/apps/#{app}") end}
-            row_id={fn app -> "apps-#{app.id}" end}
-          >
-            <:col :let={app} label="Thumbnail">
-              <img class="w-16 h-16 rounded" src={app.thumbnail} />
-            </:col>
-            <:col :let={app} label="Name">
+        <div
+          id={"#{id}-wrapper"}
+          class="bg-base-200 rounded-xl p-4"
+          phx-click={
+            JS.toggle_class("hidden", to: "#publisher-#{publisher.id}-apps")
+            |> JS.toggle_class("rotate-[-90deg]", to: "##{id}-wrapper .chevron", time: 300)
+          }
+        >
+          <.header>
+            <.icon
+              class="align-middle mb-1 size-5 chevron transition-all duration-300"
+              name="hero-chevron-down"
+            />
+            <.link navigate={~p"/publishers/#{publisher.id}"}>
+              {publisher.name}
+            </.link>
+            <:subtitle>
               <div class="flex flex-col">
-                <span>{app.name}</span>
-                <span class="text-xs text-secondary">{app.description}</span>
+                <%= for origin <- publisher.origins do %>
+                  <span>{origin}</span>
+                <% end %>
               </div>
-            </:col>
-            <:col :let={app} label="Credentials">
-              <div class="flex flex-col">
-                <div class="flex flex-row items-center gap-1">
-                  <.with_copy
-                    id={"app-#{app.id}-key"}
-                    aria_label={"Copy '#{app.name}' key to clipboard"}
-                  >
-                    {app.key}
-                  </.with_copy>
-                </div>
-              </div>
-            </:col>
-            <:col :let={app} label="URL">{app.url}</:col>
-            <:action :let={app}>
-              <div class="sr-only">
-                <.link navigate={~p"/apps/#{app}"}>Show</.link>
-              </div>
-              <.link navigate={~p"/publishers/#{publisher}/apps/#{app}/edit"}>Edit</.link>
-            </:action>
-          </.table>
-        <% end %>
-        <div class="not-last:divider" />
+            </:subtitle>
+            <:actions>
+              <.button navigate={~p"/publishers/#{publisher.id}"}>
+                <.icon name="hero-eye" /> View
+              </.button>
+            </:actions>
+            <:actions>
+              <.button navigate={~p"/publishers/#{publisher.id}/edit"}>
+                <.icon name="hero-pencil" /> Edit
+              </.button>
+            </:actions>
+            <:actions>
+              <.button variant="primary" navigate={~p"/publishers/#{publisher.id}/apps/new"}>
+                <.icon name="hero-plus" /> New App
+              </.button>
+            </:actions>
+          </.header>
+          <div id={"publisher-#{publisher.id}-apps"}>
+            <%= if Enum.empty?(publisher.apps) do %>
+              <p class="text-center text-sm text-secondary">No apps yet.</p>
+            <% else %>
+              <.table
+                id={id}
+                rows={publisher.apps}
+                row_click={fn app -> JS.navigate(~p"/apps/#{app}") end}
+                row_id={fn app -> "apps-#{app.id}" end}
+              >
+                <:col :let={app} label="Thumbnail">
+                  <img class="w-16 h-16 rounded" src={app.thumbnail} />
+                </:col>
+                <:col :let={app} label="Name">
+                  <div class="flex flex-col">
+                    <span>{app.name}</span>
+                    <span class="text-xs text-secondary">{app.description}</span>
+                  </div>
+                </:col>
+                <:col :let={app} label="Credentials">
+                  <div class="flex flex-col">
+                    <div class="flex flex-row items-center gap-1">
+                      <.with_copy
+                        id={"app-#{app.id}-key"}
+                        aria_label={"Copy '#{app.name}' key to clipboard"}
+                      >
+                        {app.key}
+                      </.with_copy>
+                    </div>
+                  </div>
+                </:col>
+                <:col :let={app} label="URL">{app.url}</:col>
+                <:action :let={app}>
+                  <div class="sr-only">
+                    <.link navigate={~p"/apps/#{app}"}>Show</.link>
+                  </div>
+                  <.link navigate={~p"/publishers/#{publisher}/apps/#{app}/edit"}>Edit</.link>
+                </:action>
+              </.table>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </Layouts.admin>
     """
