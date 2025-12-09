@@ -39,8 +39,11 @@ npm-debug.log
 .env.prod
 .env.sh
 
-# elixir_ls dir
+# lsp dirs
 .elixir_ls
+.next-ls
+.lexical
+.expert
 
 # Mac OS finder files
 .DS_Store
