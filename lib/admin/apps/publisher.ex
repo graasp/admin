@@ -23,6 +23,17 @@ defmodule Admin.Apps.Publisher do
     |> cast(attrs, [:name, :origins], empty_values: [[], nil] ++ Ecto.Changeset.empty_values())
     |> validate_required([:name, :origins])
     |> validate_length(:origins, min: 1)
+    |> trim_array_values(:origins)
     |> Validators.validate_urls_array(:origins)
+  end
+
+  defp trim_array_values(changeset, field) do
+    case get_change(changeset, field, nil) do
+      nil ->
+        changeset
+
+      _ ->
+        update_change(changeset, field, &Enum.map(&1, fn origin -> origin |> String.trim() end))
+    end
   end
 end

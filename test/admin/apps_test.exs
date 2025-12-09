@@ -13,8 +13,10 @@ defmodule Admin.AppsTest do
 
     test "list_apps/1 returns all apps" do
       user_scope_fixture()
-      %{app: app_instance, publisher: publisher} = app_instance_fixture()
-      %{app: other_app_instance} = app_instance_fixture(%{publisher_id: publisher.id})
+      %{app: app_instance, publisher: publisher} = app_instance_fixture(%{name: "app A"})
+
+      %{app: other_app_instance} =
+        app_instance_fixture(%{name: "app B", publisher_id: publisher.id})
 
       apps =
         Apps.list_apps_by_publisher()
@@ -132,6 +134,18 @@ defmodule Admin.AppsTest do
                Apps.get_app_instance!(app_instance.id)
     end
 
+    test "update_app_instance/3 with duplicated name returns error changeset" do
+      user_scope_fixture()
+      app_instance_fixture(%{name: "I already exist"})
+      %{app: app_instance} = app_instance_fixture()
+
+      assert {:error, %Ecto.Changeset{}} =
+               Apps.update_app_instance(app_instance, %{name: "I already exist"})
+
+      assert app_instance |> Admin.Apps.with_publisher() ==
+               Apps.get_app_instance!(app_instance.id)
+    end
+
     test "delete_app_instance/2 deletes the app_instance" do
       user_scope_fixture()
       %{app: app_instance} = app_instance_fixture()
@@ -233,6 +247,18 @@ defmodule Admin.AppsTest do
       publisher_fixture(%{origins: ["http://example3.com"]})
 
       assert Apps.get_compatible_publishers(target_origin) == [publisher_1, publisher_2]
+    end
+
+    test "publisher changeset trims origins" do
+      publisher =
+        publisher_fixture(%{origins: [" http://example1.com ", " http://example2.com "]})
+
+      changeset = Apps.change_publisher(publisher)
+      # here we check that data ingestion correctly trims the origins
+      assert changeset.data.origins == ["http://example1.com", "http://example2.com"]
+      # create a change in the origins and verify that the changeset trims the origins
+      changeset = Apps.change_publisher(publisher, %{origins: ["     http://otherorigin.com  "]})
+      assert changeset.changes.origins == ["http://otherorigin.com"]
     end
   end
 end

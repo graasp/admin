@@ -35,10 +35,14 @@ defmodule Admin.Apps.AppInstance do
     |> unsafe_validate_unique(:url, Admin.Repo,
       message: "This URL is already used for another app. URLs must be unique."
     )
+    |> unsafe_validate_unique(:name, Admin.Repo,
+      message: "This name is already used for another app. Names must be unique."
+    )
     |> add_uuid_if_missing(:key)
     |> validate_required([:name, :description, :url, :thumbnail, :key])
     |> Validators.validate_url(:url)
     |> unique_constraint(:url, name: "app_url_key")
+    |> unique_constraint(:name, name: "UQ_f36adbb7b096ceeb6f3e80ad14c")
     |> Validators.validate_uuid(:key)
   end
 
