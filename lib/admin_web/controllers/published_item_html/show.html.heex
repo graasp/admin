@@ -37,14 +37,11 @@
 
   <.list>
     <:item title="Thumbnail">
-      <object
-        data={@published_item.thumbnails.medium}
-        type="image/webp"
-        class="size-24 rounded"
+      <.thumbnail
+        src={@published_item.thumbnails.medium}
+        size="medium"
         alt={@published_item.item.name}
-      >
-        <div class="shrink-0 size-24 bg-gray-500 rounded" />
-      </object>
+      />
     </:item>
     <:item title="Name">{@published_item.item.name}</:item>
     <:item title="Description">
