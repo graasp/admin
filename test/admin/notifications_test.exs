@@ -8,8 +8,12 @@ defmodule Admin.NotificationsTest do
   import Admin.NotificationsFixtures
 
   describe "notifications" do
-    @empty_attrs %{message: nil, title: nil, recipients: nil}
-    @invalid_email_attrs %{message: "A message", title: "title", recipients: ["test", "other"]}
+    @empty_attrs %{name: nil, audience: nil, default_language: nil}
+    @invalid_language_attrs %{
+      name: "A mailing message",
+      audience: "custom",
+      default_language: "invalid"
+    }
 
     test "list_notifications/1 returns all notifications" do
       scope = user_scope_fixture()
@@ -30,9 +34,9 @@ defmodule Admin.NotificationsTest do
 
     test "create_notification/2 with valid data creates a notification" do
       valid_attrs = %{
-        message: "some message",
-        title: "some subject",
-        recipients: ["user1@example.com", "user2@example.com"]
+        name: "some message",
+        audience: "custom",
+        default_language: "en"
       }
 
       scope = user_scope_fixture()
@@ -40,9 +44,9 @@ defmodule Admin.NotificationsTest do
       assert {:ok, %Notification{} = notification} =
                Notifications.create_notification(scope, valid_attrs)
 
-      assert notification.message == "some message"
-      assert notification.title == "some subject"
-      assert notification.recipients == ["user1@example.com", "user2@example.com"]
+      assert notification.name == "some message"
+      assert notification.audience == "custom"
+      assert notification.default_language == "en"
     end
 
     test "create_notification/2 with invalid data returns error changeset" do
@@ -52,19 +56,19 @@ defmodule Admin.NotificationsTest do
                Notifications.create_notification(scope, @empty_attrs)
 
       assert {:error, %Ecto.Changeset{}} =
-               Notifications.create_notification(scope, @invalid_email_attrs)
+               Notifications.create_notification(scope, @invalid_language_attrs)
     end
 
     test "update_notification/3 with valid data updates the notification" do
       scope = user_scope_fixture()
       notification = notification_fixture(scope)
-      update_attrs = %{message: "some updated message", title: "some updated subject"}
+      update_attrs = %{name: "some updated name", audience: "recent"}
 
       assert {:ok, %Notification{} = notification} =
                Notifications.update_notification(scope, notification, update_attrs)
 
-      assert notification.message == "some updated message"
-      assert notification.title == "some updated subject"
+      assert notification.name == "some updated name"
+      assert notification.audience == "recent"
     end
 
     test "update_notification/3 with invalid data returns error changeset" do
@@ -75,7 +79,7 @@ defmodule Admin.NotificationsTest do
                Notifications.update_notification(scope, notification, @empty_attrs)
 
       assert {:error, %Ecto.Changeset{}} =
-               Notifications.update_notification(scope, notification, @invalid_email_attrs)
+               Notifications.update_notification(scope, notification, @invalid_language_attrs)
 
       assert notification == Notifications.get_notification!(scope, notification.id)
     end
