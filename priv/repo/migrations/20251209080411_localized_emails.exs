@@ -6,8 +6,20 @@ defmodule Admin.Repo.Migrations.LocalizedEmails do
 
     alter table(:notifications) do
       remove :message, :string
-      add :audience, :string, null: false
+
+      add :audience, :string
+      add :total_recipients, :integer, default: 0
       add :default_language, :string, null: false, default: "en"
+    end
+
+    execute "Update notifications set audience = 'custom' where audience is null", ""
+
+    execute "Update notifications set total_recipients = ARRAY_LENGTH(recipients, 1) where total_recipients is null",
+            ""
+
+    alter table(:notifications) do
+      modify :audience, :string, null: false, from: {:string, null: true}
+      remove :recipients, {:array, :string}
     end
 
     create table(:localized_emails, primary_key: false) do

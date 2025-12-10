@@ -7,6 +7,7 @@ defmodule Admin.Notifications do
   alias Admin.Repo
 
   alias Admin.Accounts.Scope
+  alias Admin.Notifications.LocalizedEmail
   alias Admin.Notifications.Log
   alias Admin.Notifications.Notification
 
@@ -157,5 +158,9 @@ defmodule Admin.Notifications do
       broadcast_notification(scope, {:updated, notification})
       {:ok, log}
     end
+  end
+
+  def change_localized_email(%Scope{} = scope, %LocalizedEmail{} = localized_email, attrs) do
+    LocalizedEmail.changeset(localized_email, attrs, scope)
   end
 end

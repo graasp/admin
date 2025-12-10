@@ -20,82 +20,36 @@ defmodule AdminWeb.NotificationLive.New do
         phx-change="validate"
         phx-submit="submit"
       >
-        <.input field={form[:title]} type="text" label="Title" />
-        <.input field={form[:message]} type="textarea" label="Message" rows="6" />
+        <.input field={form[:name]} type="text" label="Name" />
 
-        <fieldset class="fieldset">
-          <legend class="fieldset-legend">Recipients</legend>
-          <select
-            name="recipient_method"
-            id="recipient_method"
-            class="select"
-            phx-change="change_method"
-          >
-            <option value="manual" selected={@recipient_method == "manual"}>Enter manually</option>
-            <option value="active_users" selected={@recipient_method == "active_users"}>
-              Active users
-            </option>
-          </select>
-          <span class="label">
-            Choose how to populate recipient emails.
-          </span>
-        </fieldset>
+        <.input
+          field={form[:audience]}
+          type="select"
+          prompt="Select the audience"
+          options={[
+            "Active users": "active",
+            "French speaking users": "french",
+            "Inactive users": "inactive",
+            "All users": "all"
+          ]}
+          label="Audience"
+        />
 
-        <%= if @recipient_method == "manual" do %>
-          <div class="space-y-3 mb-2">
-            <label class="text-sm font-medium">Recipient emails</label>
-
-            <div class="space-y-2">
-              <%= for {email, idx} <- Enum.with_index(@manual_recipients) do %>
-                <div class="flex items-center gap-2">
-                  <input
-                    type="email"
-                    value={email}
-                    class="input flex-1"
-                    placeholder="user@example.com"
-                    phx-change="manual_update_row"
-                    phx-debounce="300"
-                    name={"manual_email_#{idx}"}
-                    phx-value-index={idx}
-                    phx-value-value={email}
-                  />
-                  <.button
-                    type="button"
-                    class="btn btn-soft btn-error"
-                    phx-click="manual_remove_row"
-                    phx-value-index={idx}
-                  >
-                    <.icon name="hero-trash" class="size-5" />
-                  </.button>
-                </div>
-              <% end %>
-            </div>
-
-            <.button type="button" class="btn btn-soft btn-secondary" phx-click="manual_add_row">
-              <.icon name="hero-plus" class="size-5" /> Add email
-            </.button>
-
-            <%= if @form.errors[:recipients] do %>
-              <p class="text-sm text-destructive">
-                {elem(@form.errors[:recipients], 0)}
-              </p>
-            <% end %>
-          </div>
-        <% else %>
+        <%= if @form.data.audience do %>
           <div class="gap-2 mb-2">
-            <label class="text-sm font-medium">Active users</label>
-            <%= if @active_users == [] do %>
-              <p class="text-sm text-muted-foreground">No active users found.</p>
+            <label class="text-sm font-medium">Recipients</label>
+            <%= if @recipients == [] do %>
+              <p class="text-sm text-muted-foreground">No recipients for this audience found.</p>
             <% else %>
               <div
                 class="border rounded p-2 bg-base-100 border-base-300 border"
                 phx-click={JS.toggle_class("hidden", to: "#toggled-content")}
               >
                 <div class="text-md">
-                  {length(@active_users)} active users (click to show)
+                  {length(@recipients)} recipients for this audience (click to show)
                 </div>
                 <div class="text-sm hidden" id="toggled-content">
-                  <%= for email <- @active_users do %>
+                  <%= for email <- @recipients do %>
                     <span>{email}</span>
                   <% end %>
                 </div>
@@ -105,7 +59,7 @@ defmodule AdminWeb.NotificationLive.New do
         <% end %>
 
         <footer>
-          <.button variant="primary">Create Mail</.button>
+          <.button variant="primary">Save Mail</.button>
         </footer>
       </.form>
     </Layouts.admin>
@@ -116,38 +70,29 @@ defmodule AdminWeb.NotificationLive.New do
   def mount(_params, _session, socket) do
     notification =
       Notifications.change_notification(socket.assigns.current_scope, %Notification{}, %{
-        "title" => "",
-        "message" => "",
-        "recipients" => []
+        "name" => "",
+        "audience" => ""
       })
 
-    # UI state: recipient_method can be "manual" or "active_users"
     socket =
       socket
       |> assign(:page_title, "New Mailing")
       |> assign(:form, notification)
-      |> assign(:recipient_method, "manual")
       # start with one empty input
-      |> assign(:manual_recipients, [""])
-      |> assign(:active_users, [])
-      |> assign(:loading_active_users, false)
+      |> assign(:recipients, [])
 
     {:ok, socket}
   end
 
   @impl true
   def handle_event("validate", %{"notification" => params}, socket) do
-    # Merge recipients from UI state before validating
-    {recipient_method, params} = ensure_recipients_from_ui(socket, params)
-
     changeset =
       Notifications.change_notification(socket.assigns.current_scope, %Notification{}, params)
       |> Map.put(:action, :validate)
 
     {:noreply,
      socket
-     |> assign(:form, changeset)
-     |> assign(:recipient_method, recipient_method)}
+     |> assign(:form, changeset)}
   end
 
   @impl true
@@ -227,52 +172,29 @@ defmodule AdminWeb.NotificationLive.New do
 
   @impl true
   def handle_event("submit", %{"notification" => params}, socket) do
-    {recipient_method, params} = ensure_recipients_from_ui(socket, params)
-
     case Notifications.create_notification(socket.assigns.current_scope, params) do
       {:ok, %Notification{} = notif} ->
-        Enum.each(
-          notif.recipients,
-          &(%{
-              "member_email" => &1,
-              "user_id" => socket.assigns.current_scope.user.id,
-              "notification_id" => notif.id
-            }
-            |> Admin.MailerWorker.new()
-            |> Oban.insert())
-        )
+        # Enum.each(
+        #   notif.recipients,
+        #   &(%{
+        #       "member_email" => &1,
+        #       "user_id" => socket.assigns.current_scope.user.id,
+        #       "notification_id" => notif.id
+        #     }
+        #     |> Admin.MailerWorker.new()
+        #     |> Oban.insert())
+        # )
 
         {:noreply,
          socket
          |> put_flash(:info, "Notification created")
-         |> push_navigate(to: ~p"/notifications")}
+         |> push_navigate(to: ~p"/notifications/#{notif}")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply,
          socket
-         |> assign(:form, changeset)
-         |> assign(:recipient_method, recipient_method)}
+         |> assign(:form, changeset)}
     end
-  end
-
-  defp ensure_recipients_from_ui(socket, params) do
-    method = socket.assigns.recipient_method
-
-    recipients =
-      case method do
-        "manual" ->
-          socket.assigns.manual_recipients
-          |> Enum.map(&String.trim/1)
-          |> Enum.reject(&(&1 == ""))
-
-        "active_users" ->
-          socket.assigns.active_users
-
-        _ ->
-          []
-      end
-
-    {method, Map.put(params, "recipients", recipients)}
   end
 
   defp parse_index(idx) do

@@ -21,12 +21,13 @@ defmodule AdminWeb.NotificationLive.Index do
         rows={@streams.notifications}
         row_click={fn {_id, notification} -> JS.navigate(~p"/notifications/#{notification}") end}
       >
-        <:col :let={{_id, notification}} label="Title">{notification.title}</:col>
-        <:col :let={{_id, notification}} label="Message">{notification.message}</:col>
-        <:col :let={{_id, notification}} label="Recipients">
-          {length(notification.recipients || [])}
+        <:col :let={{_id, notification}} label="Name">{notification.name}</:col>
+        <:col :let={{_id, notification}} label="Audience">{notification.audience}</:col>
+        <:col :let={{_id, notification}} label="Default Language">
+          {notification.default_language}
         </:col>
         <:col :let={{_id, notification}} label="Sent">{length(notification.logs)}</:col>
+        <:col :let={{_id, notification}} label="Total">{notification.total_recipients}</:col>
         <:action :let={{_id, notification}}>
           <div class="sr-only">
             <.link navigate={~p"/notifications/#{notification}"}>Show</.link>

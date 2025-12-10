@@ -8,7 +8,7 @@ defmodule AdminWeb.NotificationLive.Show do
     ~H"""
     <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <.header>
-        Message: {@notification.title}
+        Message: {@notification.name}
         <:actions>
           <.button navigate={~p"/notifications"}>
             <.icon name="hero-arrow-left" />
@@ -17,9 +17,15 @@ defmodule AdminWeb.NotificationLive.Show do
       </.header>
 
       <.list>
-        <:item title="Title">{@notification.title}</:item>
-        <:item title="Message">{@notification.message}</:item>
+        <:item title="Title">{@notification.name}</:item>
+        <:item title="Audience">{@notification.audience}</:item>
+        <:item title="Default language">{@notification.default_language}</:item>
+        <:item title="Total recipients">{@notification.total_recipients}</:item>
       </.list>
+
+      <.button navigate={~p"/notifications/#{@notification}/messages/new"}>
+        Add a localized message
+      </.button>
 
       <%= if length(@notification.logs) > 0 do %>
         <.table id="notification_logs" rows={@notification.logs}>
@@ -35,7 +41,7 @@ defmodule AdminWeb.NotificationLive.Show do
   end
 
   @impl true
-  def mount(%{"id" => id}, _session, socket) do
+  def mount(%{"notification_id" => id}, _session, socket) do
     if connected?(socket) do
       Notifications.subscribe_notifications(socket.assigns.current_scope)
     end

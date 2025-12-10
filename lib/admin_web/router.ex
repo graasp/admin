@@ -112,7 +112,12 @@ defmodule AdminWeb.Router do
       scope "/notifications" do
         live "/", NotificationLive.Index, :index
         live "/new", NotificationLive.New, :new
-        live "/:id", NotificationLive.Show, :show
+
+        scope "/:notification_id" do
+          live "/", NotificationLive.Show, :show
+          live "/messages/new", NotificationMessageLive.New, :new
+          live "/messages/:lang/edit", NotificationMessageLive.Form, :edit
+        end
       end
     end
 

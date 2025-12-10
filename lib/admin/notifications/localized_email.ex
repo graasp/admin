@@ -19,8 +19,8 @@ defmodule Admin.Notifications.LocalizedEmail do
   end
 
   @doc false
-  def changeset(notification, attrs, _user_scope) do
-    notification
+  def changeset(localized_email, attrs, _user_scope) do
+    localized_email
     |> cast(attrs, [:subject, :message, :button_text, :button_url, :language])
     |> validate_required([:subject, :message, :language])
     |> validate_inclusion(:language, ["en", "fr", "es", "it", "de"])
