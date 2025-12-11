@@ -58,6 +58,10 @@ defmodule Admin.Notifications do
     Phoenix.PubSub.broadcast(Admin.PubSub, "notifications", message)
   end
 
+  defp broadcast_localized_email(%Scope{} = _scope, notification_id, message) do
+    Phoenix.PubSub.broadcast(Admin.PubSub, "notifications:#{notification_id}", message)
+  end
+
   @doc """
   Returns the list of notifications.
 
@@ -86,7 +90,7 @@ defmodule Admin.Notifications do
 
   """
   def get_notification!(%Scope{} = _scope, id) do
-    Repo.get_by!(Notification, id: id) |> Repo.preload(:logs)
+    Repo.get_by!(Notification, id: id) |> Repo.preload([:logs, :localized_emails])
   end
 
   @doc """
@@ -160,7 +164,26 @@ defmodule Admin.Notifications do
     end
   end
 
-  def change_localized_email(%Scope{} = scope, %LocalizedEmail{} = localized_email, attrs) do
-    LocalizedEmail.changeset(localized_email, attrs, scope)
+  def change_localized_email(
+        %Scope{} = scope,
+        notification_id,
+        %LocalizedEmail{} = localized_email,
+        attrs
+      ) do
+    LocalizedEmail.changeset(localized_email, attrs, notification_id, scope)
+  end
+
+  def create_localized_email(%Scope{} = scope, notification_id, attrs) do
+    with {:ok, localized_email = %LocalizedEmail{}} <-
+           change_localized_email(scope, notification_id, %LocalizedEmail{}, attrs)
+           |> Repo.insert() do
+      broadcast_localized_email(
+        scope,
+        localized_email.notification_id,
+        {:created, localized_email}
+      )
+
+      {:ok, localized_email}
+    end
   end
 end
