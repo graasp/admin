@@ -8,7 +8,7 @@ defmodule AdminWeb.NotificationLive.Show do
     ~H"""
     <Layouts.admin flash={@flash} current_scope={@current_scope}>
       <.header>
-        Message: {@notification.name}
+        Composing message
         <:actions>
           <.button navigate={~p"/notifications"}>
             <.icon name="hero-arrow-left" />
@@ -20,10 +20,22 @@ defmodule AdminWeb.NotificationLive.Show do
       </.header>
 
       <.list>
-        <:item title="Title">{@notification.name}</:item>
-        <:item title="Audience">{@notification.audience}</:item>
-        <:item title="Total recipients">{@notification.total_recipients}</:item>
-        <:item title="Default language">{@notification.default_language}</:item>
+        <:item title="Name">{@notification.name}</:item>
+        <:item title="Target Audience">{@notification.audience}</:item>
+        <:item title="Default language">
+          <div class="flex flex-col gap-2">
+            {@notification.default_language}
+
+            <label class="label text-sm">
+              <input
+                type="checkbox"
+                phx-click="toggle_strict_languages"
+                checked={if @notification.use_strict_languages, do: "checked", else: nil}
+                class="checkbox"
+              /> Use only specified languages
+            </label>
+          </div>
+        </:item>
       </.list>
 
       <div class="grid grid-cols-3 gap-2">
@@ -46,23 +58,31 @@ defmodule AdminWeb.NotificationLive.Show do
               <p>{localized_email.button_url}</p>
               <div class="card-actions justify-end">
                 <.button navigate={
-                  ~p"/notifications/#{@notification}/messages/#{localized_email}/edit"
+                  ~p"/notifications/#{@notification}/messages/#{localized_email.language}/edit"
                 }>
                   Edit
+                </.button>
+                <.button
+                  phx-click="delete"
+                  phx-value-id={localized_email.id}
+                  phx-value-language={localized_email.language}
+                >
+                  Delete
                 </.button>
               </div>
             </div>
           </div>
         <% end %>
+        <div class="card bg-base-100 w-full shadow-sm">
+          <div class="card-body">
+            <.button navigate={~p"/notifications/#{@notification}/messages/new"}>
+              Add a localized message
+            </.button>
+          </div>
+        </div>
       </div>
 
-      <.button navigate={~p"/notifications/#{@notification}/messages/new"}>
-        Add a localized message
-      </.button>
-
-      <.button autofocus navigate={~p"/notifications/#{@notification}/edit"}>
-        Use default language when not specified
-      </.button>
+      <div class="flex flex-col gap-2"></div>
 
       <%= if length(@notification.logs) > 0 do %>
         <.table id="notification_logs" rows={@notification.logs}>
@@ -80,7 +100,7 @@ defmodule AdminWeb.NotificationLive.Show do
   @impl true
   def mount(%{"notification_id" => id}, _session, socket) do
     if connected?(socket) do
-      Notifications.subscribe_notifications(socket.assigns.current_scope)
+      Notifications.subscribe_notifications(socket.assigns.current_scope, id)
     end
 
     {:ok,
@@ -90,6 +110,31 @@ defmodule AdminWeb.NotificationLive.Show do
        :notification,
        Notifications.get_notification!(socket.assigns.current_scope, id)
      )}
+  end
+
+  @impl true
+  def handle_event("toggle_strict_languages", _, socket) do
+    {:ok, _notification} =
+      Notifications.toggle_strict_languages(
+        socket.assigns.current_scope,
+        socket.assigns.notification
+      )
+
+    {:noreply, socket}
+  end
+
+  def handle_event("delete", %{"id" => id} = _params, socket) do
+    localized_email =
+      socket.assigns.notification.localized_emails
+      |> Enum.find(&(&1.id == id))
+
+    {:ok, _localized_email} =
+      Notifications.delete_localized_email(
+        socket.assigns.current_scope,
+        localized_email
+      )
+
+    {:noreply, socket}
   end
 
   @impl true
@@ -113,5 +158,18 @@ defmodule AdminWeb.NotificationLive.Show do
   def handle_info({type, %Admin.Notifications.Notification{}}, socket)
       when type in [:created, :updated, :deleted] do
     {:noreply, socket}
+  end
+
+  def handle_info(
+        {type, %Admin.Notifications.LocalizedEmail{} = localized_email},
+        %{assigns: %{notification: %{id: id}}} = socket
+      )
+      when type in [:created, :updated, :deleted] do
+    {:noreply,
+     assign(
+       socket,
+       :notification,
+       Notifications.get_notification!(socket.assigns.current_scope, id)
+     )}
   end
 end

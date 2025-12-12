@@ -58,6 +58,10 @@ defmodule Admin.Notifications do
     Phoenix.PubSub.broadcast(Admin.PubSub, "notifications", message)
   end
 
+  def subscribe_notifications(%Scope{} = _scope, notification_id) do
+    Phoenix.PubSub.subscribe(Admin.PubSub, "notifications:#{notification_id}")
+  end
+
   defp broadcast_localized_email(%Scope{} = _scope, notification_id, message) do
     Phoenix.PubSub.broadcast(Admin.PubSub, "notifications:#{notification_id}", message)
   end
@@ -134,6 +138,16 @@ defmodule Admin.Notifications do
     end
   end
 
+  def toggle_strict_languages(%Scope{} = scope, %Notification{} = notification) do
+    with {:ok, notification = %Notification{}} <-
+           notification
+           |> Notification.toggle_strict_languages()
+           |> Repo.update() do
+      broadcast_notification(scope, {:updated, notification})
+      {:ok, notification}
+    end
+  end
+
   @doc """
   Deletes a notification.
 
@@ -181,6 +195,46 @@ defmodule Admin.Notifications do
         scope,
         localized_email.notification_id,
         {:created, localized_email}
+      )
+
+      {:ok, localized_email}
+    end
+  end
+
+  def update_localized_email(%Scope{} = scope, %LocalizedEmail{} = localized_email, attrs) do
+    with {:ok, localized_email = %LocalizedEmail{}} <-
+           change_localized_email(scope, localized_email.notification_id, localized_email, attrs)
+           |> Repo.update() do
+      broadcast_localized_email(
+        scope,
+        localized_email.notification_id,
+        {:updated, localized_email}
+      )
+
+      {:ok, localized_email}
+    end
+  end
+
+  def get_localized_email_by_lang!(%Scope{} = _scope, notification_id, language) do
+    case Repo.one(
+           from l in LocalizedEmail,
+             where:
+               l.notification_id == ^notification_id and
+                 l.language == ^language,
+             limit: 1
+         ) do
+      nil -> raise "Localized email not found"
+      localized_email -> localized_email
+    end
+  end
+
+  def delete_localized_email(%Scope{} = scope, localized_email) do
+    with {:ok, localized_email = %LocalizedEmail{}} <-
+           Repo.delete(localized_email) do
+      broadcast_localized_email(
+        scope,
+        localized_email.notification_id,
+        {:deleted, localized_email}
       )
 
       {:ok, localized_email}

@@ -10,6 +10,7 @@ defmodule Admin.Notifications.Notification do
     field :name, :string
     field :audience, :string
     field :default_language, :string, default: "en"
+    field :use_strict_languages, :boolean, default: false
     field :total_recipients, :integer, default: 0
 
     has_many :logs, Admin.Notifications.Log
@@ -29,6 +30,13 @@ defmodule Admin.Notifications.Notification do
     notification
     |> cast(attrs, [:total_recipients])
     |> validate_required([:total_recipients])
+  end
+
+  def toggle_strict_languages(notification) do
+    notification
+    # cast to changeset, but do not use any attr values
+    |> change(%{})
+    |> put_change(:use_strict_languages, !notification.use_strict_languages)
   end
 
   # # Normalize each email string: trim, downcase, drop empty values

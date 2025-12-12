@@ -7,8 +7,12 @@ defmodule Admin.Languages do
     %{value: "it", key: "Italian"}
   ]
 
-  def list do
+  def all do
     @languages
+  end
+
+  def all_options do
+    @languages |> Enum.map(&Keyword.new(&1))
   end
 
   @doc """

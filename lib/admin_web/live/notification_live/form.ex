@@ -31,7 +31,7 @@ defmodule AdminWeb.NotificationLive.Form do
             "Inactive users": "inactive",
             "All users": "all"
           ]}
-          label="Audience"
+          label="Target Audience"
         />
 
         <%= if @form.data.audience do %>
@@ -57,6 +57,13 @@ defmodule AdminWeb.NotificationLive.Form do
           </div>
         <% end %>
 
+        <.input
+          field={form[:default_language]}
+          type="select"
+          label="Default Language"
+          options={Admin.Languages.all_options()}
+        />
+
         <footer>
           <.button variant="primary">Save Mail</.button>
         </footer>
@@ -78,7 +85,8 @@ defmodule AdminWeb.NotificationLive.Form do
     notification =
       Notifications.change_notification(socket.assigns.current_scope, %Notification{}, %{
         "name" => "",
-        "audience" => ""
+        "audience" => "",
+        "default_language" => ""
       })
 
     socket

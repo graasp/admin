@@ -33,7 +33,7 @@ defmodule AdminWeb.NotificationMessageLive.Form do
 
         <footer>
           <.button variant="primary">Save Mail</.button>
-          <.button type="button" variant="primary" navigate={~p"/notifications/#{@notification}"}>
+          <.button type="button" navigate={~p"/notifications/#{@notification}"}>
             Cancel
           </.button>
         </footer>
@@ -52,27 +52,32 @@ defmodule AdminWeb.NotificationMessageLive.Form do
   end
 
   @impl true
-  def mount(%{"notification_id" => notification_id}, _session, socket) do
+  def mount(%{"notification_id" => notification_id} = params, _session, socket) do
     notification = Notifications.get_notification!(socket.assigns.current_scope, notification_id)
     already_assigned_langs = notification.localized_emails |> Enum.map(& &1.language)
 
-    language_options =
-      [
-        English: "en",
-        French: "fr",
-        Spanish: "es",
-        Italian: "it",
-        German: "de"
-      ]
-      |> Enum.map(fn {name, code} ->
-        Keyword.new(key: name, value: code, disabled: Enum.member?(already_assigned_langs, code))
-      end)
+    language_options = Admin.Languages.disabling(already_assigned_langs)
 
-    localized_email =
+    socket =
+      socket
+      |> assign(:notification, notification)
+      |> assign(:language_options, language_options)
+      |> apply_action(socket.assigns.live_action, params)
+
+      # start with one empty input
+      |> assign(:recipients, [])
+
+    {:ok, socket}
+  end
+
+  def apply_action(socket, :new, _params) do
+    localized_email = %LocalizedEmail{}
+
+    changeset =
       Notifications.change_localized_email(
         socket.assigns.current_scope,
-        notification,
-        %LocalizedEmail{},
+        socket.assigns.notification,
+        localized_email,
         %{
           "subject" => "",
           "message" => "",
@@ -82,19 +87,38 @@ defmodule AdminWeb.NotificationMessageLive.Form do
         }
       )
 
-    preview_html = render_email_preview(localized_email)
+    preview_html = render_email_preview(changeset)
 
-    socket =
-      socket
-      |> assign(:page_title, "New Mailing")
-      |> assign(:notification, notification)
-      |> assign(:form, localized_email)
-      |> assign(:language_options, language_options)
-      |> assign(:preview_html, preview_html)
-      # start with one empty input
-      |> assign(:recipients, [])
+    socket
+    |> assign(:page_title, "New Mailing")
+    |> assign(:localized_email, localized_email)
+    |> assign(:form, changeset)
+    |> assign(:preview_html, preview_html)
+  end
 
-    {:ok, socket}
+  def apply_action(socket, :edit, %{"lang" => lang} = _params) do
+    localized_email =
+      Notifications.get_localized_email_by_lang!(
+        socket.assigns.current_scope,
+        socket.assigns.notification.id,
+        lang
+      )
+
+    changeset =
+      Notifications.change_localized_email(
+        socket.assigns.current_scope,
+        socket.assigns.notification,
+        localized_email,
+        %{}
+      )
+
+    preview_html = render_email_preview(changeset)
+
+    socket
+    |> assign(:page_title, "Edit Mailing")
+    |> assign(:localized_email, localized_email)
+    |> assign(:form, changeset)
+    |> assign(:preview_html, preview_html)
   end
 
   @impl true
@@ -117,11 +141,32 @@ defmodule AdminWeb.NotificationMessageLive.Form do
   end
 
   @impl true
-  def handle_event("submit", %{"localized_email" => params}, socket) do
+  def handle_event("submit", %{"localized_email" => localized_email_params}, socket) do
+    save_localized_email(socket, socket.assigns.live_action, localized_email_params)
+  end
+
+  defp save_localized_email(socket, :edit, localized_email_params) do
+    case Notifications.update_localized_email(
+           socket.assigns.current_scope,
+           socket.assigns.localized_email,
+           localized_email_params
+         ) do
+      {:ok, %LocalizedEmail{} = _localized_email} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "Localized email updated successfully")
+         |> push_navigate(to: ~p"/notifications/#{socket.assigns.notification}")}
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply, assign(socket, form: to_form(changeset))}
+    end
+  end
+
+  defp save_localized_email(socket, :new, localized_email_params) do
     case Notifications.create_localized_email(
            socket.assigns.current_scope,
            socket.assigns.notification.id,
-           params
+           localized_email_params
          ) do
       {:ok, %LocalizedEmail{} = _localized_email} ->
         {:noreply,

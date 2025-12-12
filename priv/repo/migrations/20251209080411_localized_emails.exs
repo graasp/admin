@@ -10,6 +10,7 @@ defmodule Admin.Repo.Migrations.LocalizedEmails do
       add :audience, :string
       add :total_recipients, :integer, default: 0
       add :default_language, :string, null: false, default: "en"
+      add :use_strict_languages, :boolean, null: false, default: false
     end
 
     execute "Update notifications set audience = 'custom' where audience is null", ""
