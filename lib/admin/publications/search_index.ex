@@ -40,9 +40,10 @@ defmodule Admin.Publications.SearchIndex do
                 Logger.error("SearchIndex.reindex failed: #{inspect(resp)}")
                 {:error, resp.status}
               end
+
             {:error, reason} ->
-                Logger.error("SearchIndex.reindex failed: #{inspect(reason)}")
-                {:error, 500}
+              Logger.error("SearchIndex.reindex failed: #{inspect(reason)}")
+              {:error, 500}
           end
       end
     end

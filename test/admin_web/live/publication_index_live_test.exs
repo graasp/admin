@@ -26,10 +26,9 @@ defmodule AdminWeb.PublicationIndexLiveTest do
     view |> element("button", "Start Reindex") |> render_click()
 
     assert render(view) =~ "Reindex failed"
-
   end
 
-  test "show waiting status on success", %{conn: conn} do
+  test "show waitingstatus on success", %{conn: conn} do
     Application.put_env(:admin, :publication_index_url, "http://example")
     Application.put_env(:admin, :publication_index_header_value, "token")
 
@@ -51,6 +50,5 @@ defmodule AdminWeb.PublicationIndexLiveTest do
     refute render(view) =~ "Reindex failed"
 
     assert view |> element("button[disabled]", "Start Reindex") |> has_element?()
-
   end
 end
