@@ -46,3 +46,6 @@ config :admin, Admin.SentryFilter, keep_db_spans: true
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
+
+config :admin,
+  publication_reindex_headers: {"meilisearch-rebuild", System.get_env("PUBLICATION_INDEX_HEADER_VALUE")}

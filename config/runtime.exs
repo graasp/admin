@@ -144,6 +144,7 @@ if config_env() == :prod do
     end
 
   config :admin, base_host: base_host
+  config :admin, backend_host: base_host
 
   # Config the File Items bucket name
   config :admin, :file_items_bucket, System.get_env("FILE_ITEMS_BUCKET_NAME", "file-items")
