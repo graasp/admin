@@ -1,4 +1,4 @@
-defmodule Admin.Publications.PublicationSearchIndex do
+defmodule Admin.Publications.SearchIndex do
   @moduledoc """
   Utilities to trigger a publication reindex on an external indexing endpoint.
 
@@ -37,11 +37,11 @@ defmodule Admin.Publications.PublicationSearchIndex do
               if resp.status in 200..299 do
                 {:ok, resp}
               else
-                Logger.error("PublicationSearchIndex.reindex failed: #{inspect(resp)}")
+                Logger.error("SearchIndex.reindex failed: #{inspect(resp)}")
                 {:error, resp.status}
               end
             {:error, reason} ->
-                Logger.error("PublicationSearchIndex.reindex failed: #{inspect(reason)}")
+                Logger.error("SearchIndex.reindex failed: #{inspect(reason)}")
                 {:error, 500}
           end
       end

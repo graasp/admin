@@ -1,7 +1,7 @@
 defmodule Admin.Publications.PublicationSearchIndexTest do
   use ExUnit.Case, async: true
 
-  alias Admin.Publications.PublicationSearchIndex
+  alias Admin.Publications.SearchIndex
 
   setup do
     # ensure we start with a clean client config
@@ -13,14 +13,14 @@ defmodule Admin.Publications.PublicationSearchIndexTest do
     Application.delete_env(:admin, :publication_index_url)
     Application.put_env(:admin, :publication_index_header_value, "token")
 
-    assert {:error, :missing_publication_index_url} = PublicationSearchIndex.reindex()
+    assert {:error, :missing_publication_index_url} = SearchIndex.reindex()
   end
 
   test "returns error when header value is missing" do
     Application.put_env(:admin, :publication_index_url, "http://example")
     Application.delete_env(:admin, :publication_index_header_value)
 
-    assert {:error, :missing_publication_index_header_value} = PublicationSearchIndex.reindex()
+    assert {:error, :missing_publication_index_header_value} = SearchIndex.reindex()
   end
 
   test "returns ok on 2xx response" do
@@ -39,7 +39,7 @@ defmodule Admin.Publications.PublicationSearchIndexTest do
 
     Application.put_env(:admin, :publication_index_http_client, client)
 
-    assert {:ok, resp} = PublicationSearchIndex.reindex()
+    assert {:ok, resp} = SearchIndex.reindex()
     assert resp.status == 200
   end
 
@@ -58,7 +58,7 @@ defmodule Admin.Publications.PublicationSearchIndexTest do
 
     Application.put_env(:admin, :publication_index_http_client, client)
 
-    assert {:error, 500} = PublicationSearchIndex.reindex()
+    assert {:error, 500} = SearchIndex.reindex()
   end
 
   test "returns error tuple when client errors" do
@@ -75,6 +75,6 @@ defmodule Admin.Publications.PublicationSearchIndexTest do
 
     Application.put_env(:admin, :publication_index_http_client, client)
 
-    assert {:error, :econnrefused} = PublicationSearchIndex.reindex()
+    assert {:error, :econnrefused} = SearchIndex.reindex()
   end
 end

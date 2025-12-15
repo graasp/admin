@@ -1,7 +1,7 @@
 defmodule AdminWeb.PublicationSearchIndexLive do
   use AdminWeb, :live_view
 
-  alias Admin.Publications.PublicationSearchIndex
+  alias Admin.Publications.SearchIndex
 
   @impl true
   def render(assigns) do
@@ -35,7 +35,7 @@ defmodule AdminWeb.PublicationSearchIndexLive do
   @impl true
   def handle_event("reindex", _params, socket) do
 
-    case PublicationSearchIndex.reindex() do
+    case SearchIndex.reindex() do
       {:ok, _resp} ->
         {:noreply, assign(socket, indexing: true, status: "Reindex has started. It might take some time to complete.")}
 
