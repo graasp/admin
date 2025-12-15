@@ -44,7 +44,7 @@ defmodule AdminWeb.PublishedItemLive.UnpublishTest do
       {:ok, lv, _html} = live(conn, ~p"/published_items/#{published_item}/unpublish")
       reason = "Not appropriate"
 
-      assert {:error, {:live_redirect, _}} =
+      assert {:error, {:redirect, _}} =
                lv
                |> form("#removal_form", publication_removal_notice: %{reason: reason})
                |> render_submit()
