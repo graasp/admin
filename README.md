@@ -57,19 +57,19 @@ The admin platform uses the same database as the core platform.
 
 We recommend that you use the database provided by the devcontainer for the graasp/core project when running the admin.
 
-For tests and in case you would only need access to things that the admin does (nothing related to graasp) you would be fine using a local postgres instance for example via a docker container, or with an app such as [Postgres.app](https://postgresapp.com/) on MacOS.
+For tests or if you only need to access admin's related data, you will be fine using a local postgres instance for example via a docker container, or with an app such as [Postgres.app](https://postgresapp.com/) on MacOS.
 
 #### Devcontainer database
 
-You want to use all features of graasp and have an install of the core project running in the devcotnainer.
-In this case, you should have a the user `graasper` owning the `graasp` database accessible on `localhost:5432` from the host machine.
+You want to use all features of graasp and have an install of the core project running in the devcontainer.
+In this case, you should find a user `graasper` owning the `graasp` database accessible on `localhost:5432` from the host machine.
 Ensure this postgres is running when running the admin.
 
 You should ensure that the migrations from the core project are applied. After that run the admin-specific migrations with: `mix ecto.migrate`.
 
 #### Local database docker
 
-In case you do not want to use the devcontainer, you can use the following command to start a postgresql server in a docker container.
+In case you want to run the admin standalone, you can use the following command to start a postgresql server in a docker container.
 
 ```sh
 docker run -d -p 5432:5432 \
@@ -89,8 +89,7 @@ You can also use a graphical client like [Postgres.app](https://postgresapp.com/
 1. Install project dependencies with: `mix deps.get`
 2. Compile the project with: `mix compile`
 3. Run the migrations with: `mix ecto.migrate`
-4. Create a env.sh
-5. Create a `.env.sh` file with the following content. Use the values you get from configuring garage in the core project:
+4. Create a `.env.sh` file with the following content. Use the values you get from configuring garage in the core project:
    ```sh
    # .env.sh
    export AWS_ACCESS_KEY_ID=GK3b...
@@ -101,7 +100,7 @@ You can also use a graphical client like [Postgres.app](https://postgresapp.com/
    ```sh
    source .env.sh
    ```
-6. Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+5. Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
    Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## Testing
