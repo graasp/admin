@@ -10,14 +10,14 @@ defmodule AdminWeb.PublishedItemControllerTest do
 
   describe "index" do
     test "lists all published_items", %{conn: conn} do
-      conn = get(conn, ~p"/published_items")
+      conn = get(conn, ~p"/admin/published_items")
       assert html_response(conn, 200) =~ "Published items"
     end
   end
 
   describe "new published_item" do
     test "renders form", %{conn: conn} do
-      conn = get(conn, ~p"/published_items/new")
+      conn = get(conn, ~p"/admin/published_items/new")
       assert html_response(conn, 200) =~ "New Published item"
     end
   end
@@ -33,17 +33,17 @@ defmodule AdminWeb.PublishedItemControllerTest do
         item_path: item.path
       }
 
-      conn = post(conn, ~p"/published_items", published_item: create_attrs)
+      conn = post(conn, ~p"/admin/published_items", published_item: create_attrs)
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == ~p"/published_items/#{id}"
+      assert redirected_to(conn) == ~p"/admin/published_items/#{id}"
 
-      conn = get(conn, ~p"/published_items/#{id}")
+      conn = get(conn, ~p"/admin/published_items/#{id}")
       assert html_response(conn, 200) =~ "Published item: #{item.name}"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, ~p"/published_items", published_item: @invalid_attrs)
+      conn = post(conn, ~p"/admin/published_items", published_item: @invalid_attrs)
       assert html_response(conn, 200) =~ "New Published item"
     end
   end
@@ -51,7 +51,9 @@ defmodule AdminWeb.PublishedItemControllerTest do
   describe "published item does not exist" do
     test "Invalid UUID for publication", %{conn: conn} do
       conn =
-        post(conn, ~p"/published_items/search", %{published_item_search_form: %{item_id: "toto"}})
+        post(conn, ~p"/admin/published_items/search", %{
+          published_item_search_form: %{item_id: "toto"}
+        })
 
       assert html_response(conn, 200) =~ "is not a valid UUID"
     end
@@ -60,7 +62,9 @@ defmodule AdminWeb.PublishedItemControllerTest do
       item_id = "00000000-0000-4000-a000-000000000000"
 
       conn =
-        post(conn, ~p"/published_items/search", %{published_item_search_form: %{item_id: item_id}})
+        post(conn, ~p"/admin/published_items/search", %{
+          published_item_search_form: %{item_id: item_id}
+        })
 
       assert html_response(conn, 200) =~
                "Publication does not exist for item with id &#39;#{item_id}&#39;"
@@ -78,11 +82,11 @@ defmodule AdminWeb.PublishedItemControllerTest do
       published_item_id = published_item.id
 
       conn =
-        post(conn, ~p"/published_items/search", %{
+        post(conn, ~p"/admin/published_items/search", %{
           published_item_search_form: %{item_id: "#{item_id}"}
         })
 
-      assert redirected_to(conn) == ~p"/published_items/#{published_item_id}"
+      assert redirected_to(conn) == ~p"/admin/published_items/#{published_item_id}"
     end
   end
 
