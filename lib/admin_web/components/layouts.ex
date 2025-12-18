@@ -161,20 +161,20 @@ defmodule AdminWeb.Layouts do
               class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <.link navigate={~p"/published_items"}>Publications</.link>
+                <.link navigate={~p"/admin/published_items"}>Publications</.link>
                 <ul class="p-2">
-                  <li><.link navigate={~p"/published_items"}>Recent</.link></li>
-                  <li><.link navigate={~p"/published_items/featured"}>Featured</.link></li>
+                  <li><.link navigate={~p"/admin/published_items"}>Recent</.link></li>
+                  <li><.link navigate={~p"/admin/published_items/featured"}>Featured</.link></li>
                 </ul>
               </li>
-              <li><.link navigate={~p"/publishers"}>Apps</.link></li>
-              <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
-              <li><.link navigate={~p"/users"}>Admins</.link></li>
-              <li><.link navigate={~p"/analytics/graph"}>Analytics</.link></li>
+              <li><.link navigate={~p"/admin/publishers"}>Apps</.link></li>
+              <li><.link navigate={~p"/admin/notifications"}>Mailing</.link></li>
+              <li><.link navigate={~p"/admin/users"}>Admins</.link></li>
+              <li><.link navigate={~p"/admin/analytics/graph"}>Analytics</.link></li>
               <li>
                 <span>Development</span>
                 <ul class="p-2">
-                  <li><.link navigate={~p"/oban"}>Job Queues</.link></li>
+                  <li><.link navigate={~p"/admin/oban"}>Job Queues</.link></li>
                 </ul>
               </li>
 
@@ -183,20 +183,20 @@ defmodule AdminWeb.Layouts do
                 <%= if @current_scope do %>
                   <span>{@current_scope.user.email}</span>
 
-                  <.link class="btn btn-soft" navigate={~p"/users/settings"}>
+                  <.link class="btn btn-soft" navigate={~p"/admin/users/settings"}>
                     <.icon name="hero-cog" class="size-5 " /> Settings
                   </.link>
-                  <.link class="btn btn-soft" href={~p"/users/log-out"} method="delete">
+                  <.link class="btn btn-soft" href={~p"/admin/users/log-out"} method="delete">
                     <.icon name="hero-arrow-right-on-rectangle" class="size-5 " /> Log out
                   </.link>
                 <% else %>
-                  <.link class="btn btn-ghost" href={~p"/users/log-in"}>Log in</.link>
+                  <.link class="btn btn-ghost" href={~p"/admin/users/log-in"}>Log in</.link>
                 <% end %>
               </div>
             </ul>
           </div>
         <% end %>
-        <.link navigate={~p"/dashboard"} class="btn btn-ghost text-xl">
+        <.link navigate={~p"/admin/dashboard"} class="btn btn-ghost text-xl">
           <img src="/images/logo.svg" width="32" />
           <span class="text-sm font-semibold">Admin</span>
         </.link>
@@ -208,22 +208,22 @@ defmodule AdminWeb.Layouts do
               <details>
                 <summary>Publications</summary>
                 <ul class="p-2">
-                  <li><.link navigate={~p"/published_items"}>Recent</.link></li>
+                  <li><.link navigate={~p"/admin/published_items"}>Recent</.link></li>
                   <li>
-                    <.link navigate={~p"/published_items/featured"}>Featured</.link>
+                    <.link navigate={~p"/admin/published_items/featured"}>Featured</.link>
                   </li>
                 </ul>
               </details>
             </li>
-            <li><.link navigate={~p"/publishers"}>Apps</.link></li>
-            <li><.link navigate={~p"/notifications"}>Mailing</.link></li>
-            <li><.link navigate={~p"/users"}>Admins</.link></li>
-            <li><.link navigate={~p"/analytics/graph"}>Analytics</.link></li>
+            <li><.link navigate={~p"/admin/publishers"}>Apps</.link></li>
+            <li><.link navigate={~p"/admin/notifications"}>Mailing</.link></li>
+            <li><.link navigate={~p"/admin/users"}>Admins</.link></li>
+            <li><.link navigate={~p"/admin/analytics/graph"}>Analytics</.link></li>
             <li>
               <details>
                 <summary>Development</summary>
                 <ul class="p-2">
-                  <li><.link navigate={~p"/oban"}>Job Queues</.link></li>
+                  <li><.link navigate={~p"/admin/oban"}>Job Queues</.link></li>
                 </ul>
               </details>
             </li>
@@ -234,14 +234,19 @@ defmodule AdminWeb.Layouts do
         <div class="hidden items-center lg:flex gap-2">
           <%= if @current_scope do %>
             <span>{@current_scope.user.email}</span>
-            <.link class="btn btn-circle" navigate={~p"/users/settings"} title="Settings">
+            <.link class="btn btn-circle" navigate={~p"/admin/users/settings"} title="Settings">
               <.icon name="hero-cog" class="size-5 " />
             </.link>
-            <.link class="btn btn-circle" href={~p"/users/log-out"} title="Log out" method="delete">
+            <.link
+              class="btn btn-circle"
+              href={~p"/admin/users/log-out"}
+              title="Log out"
+              method="delete"
+            >
               <.icon name="hero-arrow-right-on-rectangle" class="size-5 " />
             </.link>
           <% else %>
-            <.link class="btn btn-ghost" href={~p"/users/log-in"}>Log in</.link>
+            <.link class="btn btn-ghost" href={~p"/admin/users/log-in"}>Log in</.link>
           <% end %>
         </div>
         <.theme_toggle />

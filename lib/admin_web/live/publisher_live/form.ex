@@ -142,6 +142,6 @@ defmodule AdminWeb.PublisherLive.Form do
     end
   end
 
-  defp return_path(_scope, "index", _publisher), do: ~p"/publishers"
-  defp return_path(_scope, "show", publisher), do: ~p"/publishers/#{publisher}"
+  defp return_path(_scope, "index", _publisher), do: ~p"/admin/publishers"
+  defp return_path(_scope, "show", publisher), do: ~p"/admin/publishers/#{publisher}"
 end

@@ -42,7 +42,8 @@ defmodule AdminWeb.UserLive.Form do
   def handle_event("save", %{"user" => %{"email" => email}}, socket) do
     case Accounts.register_user(%{email: email}) do
       {:ok, _user} ->
-        {:noreply, socket |> put_flash(:info, "User registered") |> push_navigate(to: ~p"/users")}
+        {:noreply,
+         socket |> put_flash(:info, "User registered") |> push_navigate(to: ~p"/admin/users")}
 
       {:error, changeset} ->
         {:noreply,

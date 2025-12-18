@@ -19,7 +19,7 @@ defmodule AdminWeb.PlannedMaintenanceController do
       {:ok, planned_maintenance} ->
         conn
         |> put_flash(:info, "Planned maintenance created successfully.")
-        |> redirect(to: ~p"/maintenance/#{planned_maintenance}")
+        |> redirect(to: ~p"/admin/maintenance/#{planned_maintenance}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :new, changeset: changeset)
@@ -44,7 +44,7 @@ defmodule AdminWeb.PlannedMaintenanceController do
       {:ok, planned_maintenance} ->
         conn
         |> put_flash(:info, "Planned maintenance updated successfully.")
-        |> redirect(to: ~p"/maintenance/#{planned_maintenance}")
+        |> redirect(to: ~p"/admin/maintenance/#{planned_maintenance}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :edit, planned_maintenance: planned_maintenance, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule AdminWeb.PlannedMaintenanceController do
 
     conn
     |> put_flash(:info, "Planned maintenance deleted successfully.")
-    |> redirect(to: ~p"/maintenance")
+    |> redirect(to: ~p"/admin/maintenance")
   end
 end
