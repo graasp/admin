@@ -24,13 +24,26 @@ defmodule AdminWeb.UserLive.Listing do
             class="flex flex-row justify-between"
           >
             <div class="">
-              <.link navigate={~p"/users/#{user}"}><span>{user.email}</span></.link>
-              <div :if={user.id == @current_scope.user.id} class="badge badge-soft badge-info text-xs">
-                You
+              <.link navigate={~p"/users/#{user}"}>
+                <span>{user.name}</span>
+
+                <div class="flex flex-row gap-1">
+                  <span>{user.email}</span>
+                  <div
+                    :if={user.id == @current_scope.user.id}
+                    class="badge badge-soft badge-info text-xs"
+                  >
+                    You
+                  </div>
+                  <div :if={user.confirmed_at} class="badge badge-soft badge-success text-xs">
+                    <.icon name="hero-check-circle" class="size-4 shrink-0" /> Email
+                  </div>
+                </div>
+              </.link>
+              <div class="text-xs">
+                <span class="text-secondary">Language:</span> {user.language}
               </div>
-              <div :if={user.confirmed_at} class="badge badge-soft badge-success text-xs">
-                <.icon name="hero-check-circle" class="size-4 shrink-0" /> Email
-              </div>
+
               <div class="flex flex-row gap-2 text-xs">
                 <span class="text-secondary">{user.id}</span>
                 <AdminWeb.DateTimeComponents.relative_date date={user.created_at} />

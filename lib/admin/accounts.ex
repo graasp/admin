@@ -189,6 +189,16 @@ defmodule Admin.Accounts do
     |> Repo.update()
   end
 
+  def change_user_language(user, attrs \\ %{}) do
+    User.language_changeset(user, attrs)
+  end
+
+  def update_user_language(user, attrs \\ %{}) do
+    user
+    |> User.language_changeset(attrs)
+    |> Repo.update()
+  end
+
   ## Session
 
   @doc """

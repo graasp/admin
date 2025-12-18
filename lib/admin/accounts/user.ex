@@ -151,5 +151,6 @@ defmodule Admin.Accounts.User do
     user
     |> cast(attrs, [:language])
     |> validate_required([:language])
+    |> validate_inclusion(:language, Admin.Languages.all_values())
   end
 end
