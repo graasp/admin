@@ -1,6 +1,6 @@
 <Layouts.admin flash={@flash} current_scope={@current_scope}>
   <.header>
-    Welcome, {@current_scope.user.email}
+    Welcome, {@current_scope.user.name || @current_scope.user.email}
   </.header>
 
   <div class="stats shadow">

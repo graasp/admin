@@ -179,6 +179,16 @@ defmodule Admin.Accounts do
     |> update_user_and_delete_all_tokens()
   end
 
+  def change_user_name(user, attrs \\ %{}) do
+    User.name_changeset(user, attrs)
+  end
+
+  def update_user_name(user, attrs \\ %{}) do
+    user
+    |> User.name_changeset(attrs)
+    |> Repo.update()
+  end
+
   ## Session
 
   @doc """
@@ -369,9 +379,19 @@ defmodule Admin.Accounts do
   def get_active_members do
     Repo.all(
       from(m in Account,
+        select: %{name: m.name, email: m.email, lang: fragment("?->>?", m.extra, "lang")},
         where:
           not is_nil(m.last_authenticated_at) and m.last_authenticated_at > ago(90, "day") and
             m.type == "individual"
+      )
+    )
+  end
+
+  def get_members_by_language(language) do
+    Repo.all(
+      from(m in Account,
+        select: %{name: m.name, email: m.email, lang: fragment("?->>?", m.extra, "lang")},
+        where: fragment("?->>? = ?", m.extra, "lang", ^language) and m.type == "individual"
       )
     )
   end

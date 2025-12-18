@@ -10,6 +10,8 @@ defmodule Admin.Accounts.User do
   # when we unify the access control for all users and use user roles to define who is an admin or not.
   schema "admins" do
     field :email, :string
+    field :name, :string
+    field :language, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :utc_datetime
@@ -137,5 +139,17 @@ defmodule Admin.Accounts.User do
   def valid_password?(_, _) do
     Bcrypt.no_user_verify()
     false
+  end
+
+  def name_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:name])
+    |> validate_required([:name])
+  end
+
+  def language_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:language])
+    |> validate_required([:language])
   end
 end
