@@ -56,7 +56,7 @@ if config_env() == :prod do
   config :admin, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
   config :admin, AdminWeb.Endpoint,
-    url: [host: host, port: 443, scheme: "https"],
+    url: [scheme: "https", host: host, port: 443, path: "/admin"],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
