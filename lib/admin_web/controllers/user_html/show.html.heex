@@ -7,30 +7,10 @@
   </.header>
   <.list>
     <:item title="ID">{@user.id}</:item>
-    <:item title="Name">{@user.email}</:item>
+    <:item title="Name">{@user.name}</:item>
+    <:item title="Email">{@user.email}</:item>
+    <:item title="Language">{@user.language}</:item>
     <:item title="Inserted at">{@user.created_at}</:item>
     <:item title="Confirmed at">{@user.confirmed_at || "Not confirmed yet"}</:item>
   </.list>
-
-  <%!-- <.header>
-    Removal Notices
-    <:subtitle>Records of publications that have been removed for this user.</:subtitle>
-  </.header>
-  <%= if Enum.empty?(@user.removal_notices) do %>
-    <p class="italic text-secondary">No removal notices for user yet</p>
-  <% else %>
-    <.table id="removal-notices" rows={@user.removal_notices}>
-      <:col :let={notice} label="Name">{notice.publication_name}</:col>
-      <:col :let={notice} label="Removed on">
-        <div class="flex flex-col">
-          <.relative_date date={notice.created_at} />
-          <span class="text-xs text-secondary">
-            {notice.created_at}
-          </span>
-        </div>
-      </:col>
-      <:col :let={notice} label="By">{notice.creator.email}</:col>
-      <:col :let={notice} label="Reason">{notice.reason}</:col>
-    </.table>
-  <% end %> --%>
 </Layouts.admin>
