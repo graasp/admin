@@ -252,6 +252,116 @@ defmodule Admin.AccountsTest do
     end
   end
 
+  describe "change_user_name/3" do
+    test "returns a user changeset" do
+      assert %Ecto.Changeset{} = changeset = Accounts.change_user_name(%User{})
+      assert changeset.required == [:name]
+    end
+
+    test "allows fields to be set" do
+      changeset =
+        Accounts.change_user_name(
+          %User{},
+          %{
+            "name" => "new valid name"
+          }
+        )
+
+      assert changeset.valid?
+      assert get_change(changeset, :name) == "new valid name"
+    end
+  end
+
+  describe "update_user_name/2" do
+    setup do
+      %{user: user_fixture()}
+    end
+
+    test "validates name", %{user: user} do
+      {:error, changeset} =
+        Accounts.update_user_name(user, %{
+          name: nil
+        })
+
+      assert %{
+               name: ["can't be blank"]
+             } = errors_on(changeset)
+    end
+
+    test "updates the name", %{user: user} do
+      {:ok, user} =
+        Accounts.update_user_name(user, %{
+          name: "new valid name"
+        })
+
+      assert user == Accounts.get_user_by_email(user.email)
+    end
+  end
+
+  describe "change_user_language/3" do
+    test "returns a user changeset" do
+      assert %Ecto.Changeset{} = changeset = Accounts.change_user_language(%User{})
+      assert changeset.required == [:language]
+    end
+
+    test "allows fields to be set" do
+      changeset =
+        Accounts.change_user_language(
+          %User{},
+          %{
+            "language" => "fr"
+          }
+        )
+
+      assert changeset.valid?
+      assert get_change(changeset, :language) == "fr"
+    end
+
+    test "invalid language returns changeset error" do
+      changeset =
+        Accounts.change_user_language(
+          %User{},
+          %{
+            "language" => "invalid"
+          }
+        )
+
+      refute changeset.valid?
+
+      assert changeset.errors == [
+               language:
+                 {"is invalid",
+                  [{:validation, :inclusion}, {:enum, ["en", "fr", "es", "de", "it"]}]}
+             ]
+    end
+  end
+
+  describe "update_user_language/2" do
+    setup do
+      %{user: user_fixture()}
+    end
+
+    test "validates language", %{user: user} do
+      {:error, changeset} =
+        Accounts.update_user_language(user, %{
+          language: nil
+        })
+
+      assert %{
+               language: ["can't be blank"]
+             } = errors_on(changeset)
+    end
+
+    test "updates the language", %{user: user} do
+      {:ok, user} =
+        Accounts.update_user_language(user, %{
+          language: "fr"
+        })
+
+      assert user == Accounts.get_user_by_email(user.email)
+    end
+  end
+
   describe "generate_user_session_token/1" do
     setup do
       %{user: user_fixture()}
