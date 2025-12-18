@@ -245,7 +245,7 @@ defmodule AdminWeb.NotificationLive.New do
         {:noreply,
          socket
          |> put_flash(:info, "Notification created")
-         |> push_navigate(to: ~p"/notifications")}
+         |> push_navigate(to: ~p"/admin/notifications")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply,

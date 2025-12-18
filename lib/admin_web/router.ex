@@ -26,7 +26,7 @@ defmodule AdminWeb.Router do
     get "/health", HealthController, :up
   end
 
-  scope "/", AdminWeb do
+  scope "/admin", AdminWeb do
     pipe_through :browser
 
     get "/", LandingController, :home
@@ -64,7 +64,7 @@ defmodule AdminWeb.Router do
   end
 
   ## Authentication LV routes
-  scope "/", AdminWeb do
+  scope "/admin", AdminWeb do
     pipe_through [:browser, :require_authenticated_user]
 
     live_session :require_authenticated_user,
@@ -120,7 +120,7 @@ defmodule AdminWeb.Router do
   end
 
   ## Authentication related routes
-  scope "/", AdminWeb do
+  scope "/admin", AdminWeb do
     pipe_through [:browser]
 
     live_session :current_user,
@@ -136,7 +136,7 @@ defmodule AdminWeb.Router do
   end
 
   ## Authenticated controller routes
-  scope "/", AdminWeb do
+  scope "/admin", AdminWeb do
     pipe_through [:browser, :require_authenticated_user]
 
     get "/dashboard", AdminController, :dashboard

@@ -9,7 +9,7 @@ defmodule AdminWeb.NotificationLive.Index do
       <.header>
         Mailing
         <:actions>
-          <.button variant="primary" navigate={~p"/notifications/new"}>
+          <.button variant="primary" navigate={~p"/admin/notifications/new"}>
             <.icon name="hero-plus" /> New Mail
           </.button>
         </:actions>
@@ -19,7 +19,9 @@ defmodule AdminWeb.NotificationLive.Index do
       <.table
         id="notifications"
         rows={@streams.notifications}
-        row_click={fn {_id, notification} -> JS.navigate(~p"/notifications/#{notification}") end}
+        row_click={
+          fn {_id, notification} -> JS.navigate(~p"/admin/notifications/#{notification}") end
+        }
       >
         <:col :let={{_id, notification}} label="Title">{notification.title}</:col>
         <:col :let={{_id, notification}} label="Message">{notification.message}</:col>
@@ -29,7 +31,7 @@ defmodule AdminWeb.NotificationLive.Index do
         <:col :let={{_id, notification}} label="Sent">{length(notification.logs)}</:col>
         <:action :let={{_id, notification}}>
           <div class="sr-only">
-            <.link navigate={~p"/notifications/#{notification}"}>Show</.link>
+            <.link navigate={~p"/admin/notifications/#{notification}"}>Show</.link>
           </div>
         </:action>
         <:action :let={{id, notification}}>

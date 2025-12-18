@@ -50,7 +50,7 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
         </.button>
       </.form>
 
-      <.button navigate={~p"/published_items/#{@published_item}"}>
+      <.button navigate={~p"/admin/published_items/#{@published_item}"}>
         <.icon name="hero-arrow-left" />
       </.button>
     </Layouts.admin>
@@ -99,7 +99,7 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
         {:noreply,
          socket
          |> put_flash(:success, "Publication was removed and user notified")
-         |> push_navigate(to: ~p"/published_items")}
+         |> push_navigate(to: ~p"/admin/published_items")}
 
       {:error, changeset} ->
         {:noreply, assign(socket, removal_form: to_form(changeset))}
@@ -118,6 +118,6 @@ defmodule AdminWeb.PublishedItemLive.Unpublish do
     {:noreply,
      socket
      |> put_flash(:error, "Publication was deleted")
-     |> push_navigate(to: ~p"/published_items")}
+     |> push_navigate(to: ~p"/admin/published_items")}
   end
 end

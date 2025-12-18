@@ -2,23 +2,27 @@
   <.header>
     Listing Maintenances
     <:actions>
-      <.button href={~p"/maintenance/new"}>
+      <.button href={~p"/admin/maintenance/new"}>
         <.icon name="hero-plus" /> New Planned maintenance
       </.button>
     </:actions>
   </.header>
 
-  <.table id="maintenance" rows={@maintenance} row_click={&JS.navigate(~p"/maintenance/#{&1}")}>
+  <.table
+    id="maintenance"
+    rows={@maintenance}
+    row_click={&JS.navigate(~p"/admin/maintenance/#{&1}")}
+  >
     <:col :let={planned_maintenance} label="Slug">{planned_maintenance.slug}</:col>
     <:action :let={planned_maintenance}>
       <div class="sr-only">
-        <.link navigate={~p"/maintenance/#{planned_maintenance}"}>Show</.link>
+        <.link navigate={~p"/admin/maintenance/#{planned_maintenance}"}>Show</.link>
       </div>
-      <.link navigate={~p"/maintenance/#{planned_maintenance}/edit"}>Edit</.link>
+      <.link navigate={~p"/admin/maintenance/#{planned_maintenance}/edit"}>Edit</.link>
     </:action>
     <:action :let={planned_maintenance}>
       <.link
-        href={~p"/maintenance/#{planned_maintenance}"}
+        href={~p"/admin/maintenance/#{planned_maintenance}"}
         method="delete"
         data-confirm="Are you sure?"
       >

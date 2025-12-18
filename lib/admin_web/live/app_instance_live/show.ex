@@ -11,13 +11,13 @@ defmodule AdminWeb.AppInstanceLive.Show do
         App: {@app_instance.name}
         <:subtitle>This is a app_instance record from your database.</:subtitle>
         <:actions>
-          <.button navigate={~p"/publishers"}>
+          <.button navigate={~p"/admin/publishers"}>
             <.icon name="hero-arrow-left" />
           </.button>
           <.button
             variant="primary"
             navigate={
-              ~p"/publishers/#{@app_instance.publisher}/apps/#{@app_instance}/edit?return_to=show"
+              ~p"/admin/publishers/#{@app_instance.publisher}/apps/#{@app_instance}/edit?return_to=show"
             }
           >
             <.icon name="hero-pencil-square" /> Edit
@@ -88,7 +88,7 @@ defmodule AdminWeb.AppInstanceLive.Show do
         {:noreply,
          socket
          |> put_flash(:info, "App instance deleted.")
-         |> push_navigate(to: ~p"/publishers")}
+         |> push_navigate(to: ~p"/admin/publishers")}
 
       {:error, reason} ->
         {:noreply, socket |> put_flash(:error, reason) |> assign(:show_modal, false)}
@@ -110,7 +110,7 @@ defmodule AdminWeb.AppInstanceLive.Show do
     {:noreply,
      socket
      |> put_flash(:error, "The current app_instance was deleted.")
-     |> push_navigate(to: ~p"/publishers")}
+     |> push_navigate(to: ~p"/admin/publishers")}
   end
 
   def handle_info({type, %Admin.Apps.AppInstance{}}, socket)

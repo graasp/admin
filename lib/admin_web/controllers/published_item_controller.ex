@@ -31,7 +31,7 @@ defmodule AdminWeb.PublishedItemController do
       {:ok, published_item} ->
         conn
         |> put_flash(:info, "Published item created successfully.")
-        |> redirect(to: ~p"/published_items/#{published_item}")
+        |> redirect(to: ~p"/admin/published_items/#{published_item}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :new, changeset: changeset)
@@ -43,29 +43,12 @@ defmodule AdminWeb.PublishedItemController do
     render(conn, :show, published_item: published_item)
   end
 
-  # def edit(conn, %{"id" => id}) do
-  #   published_item = Publications.get_published_item!(conn.assigns.current_scope, id)
-  #   changeset = Publications.change_published_item(conn.assigns.current_scope, published_item)
-  #   render(conn, :edit, published_item: published_item, changeset: changeset)
-  # end
-
-  # def delete(conn, %{"id" => id}) do
-  #   published_item = Publications.get_published_item!(conn.assigns.current_scope, id)
-
-  #   {:ok, _published_item} =
-  #     Publications.delete_published_item(conn.assigns.current_scope, published_item)
-
-  #   conn
-  #   |> put_flash(:info, "Published item deleted successfully.")
-  #   |> redirect(to: ~p"/published_items")
-  # end
-
   def search(conn, %{"published_item_search_form" => params}) do
     changeset = PublishedItemSearchForm.changeset(%PublishedItemSearchForm{}, params)
 
     if changeset.valid? do
       published_item_id = Ecto.Changeset.get_field(changeset, :published_item_id)
-      redirect(conn, to: ~p"/published_items/#{published_item_id}")
+      redirect(conn, to: ~p"/admin/published_items/#{published_item_id}")
     else
       published_items =
         Publications.list_published_items()

@@ -10,7 +10,7 @@ defmodule AdminWeb.NotificationLive.Show do
       <.header>
         Message: {@notification.title}
         <:actions>
-          <.button navigate={~p"/notifications"}>
+          <.button navigate={~p"/admin/notifications"}>
             <.icon name="hero-arrow-left" />
           </.button>
         </:actions>
@@ -64,7 +64,7 @@ defmodule AdminWeb.NotificationLive.Show do
     {:noreply,
      socket
      |> put_flash(:error, "The current notification was deleted.")
-     |> push_navigate(to: ~p"/notifications")}
+     |> push_navigate(to: ~p"/admin/notifications")}
   end
 
   def handle_info({type, %Admin.Notifications.Notification{}}, socket)

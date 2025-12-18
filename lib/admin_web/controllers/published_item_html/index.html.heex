@@ -3,7 +3,7 @@
     Published items
     <:actions>
       <.button
-        href={~p"/published_items/featured"}
+        href={~p"/admin/published_items/featured"}
         class="btn btn-soft btn-disabled"
       >
         <.icon name="hero-bolt" /> Featured collections
@@ -11,7 +11,7 @@
     </:actions>
   </.header>
 
-  <.form :let={f} for={@changeset} action={~p"/published_items/search"} method="post">
+  <.form :let={f} for={@changeset} action={~p"/admin/published_items/search"} method="post">
     <div class="flex flex-row items-center gap-1">
       <.input
         field={f[:item_id]}
@@ -27,7 +27,7 @@
   <.table
     id="published_items"
     rows={@published_items}
-    row_click={&JS.navigate(~p"/published_items/#{&1}")}
+    row_click={&JS.navigate(~p"/admin/published_items/#{&1}")}
   >
     <:col :let={published_item}>
       <.thumbnail
@@ -50,7 +50,7 @@
     </:col>
     <:action :let={published_item}>
       <div class="sr-only">
-        <.link navigate={~p"/published_items/#{published_item}"}>Show</.link>
+        <.link navigate={~p"/admin/published_items/#{published_item}"}>Show</.link>
       </div>
     </:action>
   </.table>
