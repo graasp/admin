@@ -16,7 +16,8 @@ defmodule AdminWeb.PublicationIndexLiveTest do
     client = Module.concat([__MODULE__, :FailClient])
 
     defmodule client do
-      def get(_url, _opts), do: {:error, :econnrefused}
+      def new(_opts), do: :req_request
+      def request(_req), do: {:error, :econnrefused}
     end
 
     Application.put_env(:admin, :publication_index_http_client, client)
@@ -35,7 +36,8 @@ defmodule AdminWeb.PublicationIndexLiveTest do
     client = Module.concat([__MODULE__, :OkClient])
 
     defmodule client do
-      def get(_url, _opts) do
+      def new(_opts), do: :req_request
+      def request(_req) do
         resp = %Req.Response{status: 200, body: "ok"}
         {:ok, resp}
       end

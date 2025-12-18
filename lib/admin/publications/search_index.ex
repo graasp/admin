@@ -20,32 +20,57 @@ defmodule Admin.Publications.SearchIndex do
   Returns `{:ok, %Req.Response{}}` on success or `{:error, error_code}` on failure.
   """
   def reindex do
-    url = Application.get_env(:admin, :publication_index_url)
+    with {:ok, client, url, headers} <- build_reindex_request() do
 
-    if is_nil(url) do
-      {:error, :missing_publication_index_url}
-    else
-      case Application.fetch_env(:admin, :publication_index_header_value) do
-        :error ->
-          {:error, :missing_publication_index_header_value}
+      req = client.new(method: :get, url: url, headers: headers)
 
-        {:ok, header_value} ->
-          headers = [{"meilisearch-rebuild", header_value}]
+      IO.puts("Reindex request: #{inspect(req)}")
 
-          case http_client().get(url, headers: headers) do
-            {:ok, resp} ->
-              if resp.status in 200..299 do
-                {:ok, resp}
-              else
-                Logger.error("SearchIndex.reindex failed: #{inspect(resp)}")
-                {:error, resp.status}
-              end
-
-            {:error, reason} ->
-              Logger.error("SearchIndex.reindex failed: #{inspect(reason)}")
-              {:error, 500}
+      case client.request(req) do
+        %Req.Response{} = resp ->
+          if resp.status in 200..299 do
+            {:ok, resp}
+          else
+            Logger.error("SearchIndex.reindex failed: #{inspect(resp)}")
+            {:error, resp.status}
           end
+
+        {:ok, %Req.Response{} = resp} ->
+          if resp.status in 200..299 do
+            {:ok, resp}
+          else
+            Logger.error("SearchIndex.reindex failed: #{inspect(resp)}")
+            {:error, resp.status}
+          end
+
+        {:error, reason} ->
+          Logger.error("SearchIndex.reindex failed: #{inspect(reason)}")
+          {:error, 500}
+
+        other ->
+          Logger.error("SearchIndex.reindex unexpected response: #{inspect(other)}")
+          {:error, :unexpected_response}
       end
+    end
+  end
+
+  @doc false
+  # Build the HTTP client, url, and headers for the reindex request.
+  defp build_reindex_request do
+
+    case Application.get_env(:admin, :backend_host) do
+      nil ->
+        {:error, :missing_publication_index_url}
+
+        url ->
+          case Application.get_env(:admin, :publication_reindex_headers) do
+            :error ->
+              {:error, :missing_publication_index_header_value}
+
+          headers_value ->
+            client = http_client()
+            {:ok, client, "http://#{url}/items/collections/search/rebuild", headers_value}
+        end
     end
   end
 end

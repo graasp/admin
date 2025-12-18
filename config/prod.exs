@@ -45,7 +45,5 @@ config :admin, :logger, [
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
 
-# Publication index (production should provide env vars)
 config :admin,
-  publication_index_url: System.get_env("PUBLICATION_INDEX_URL"),
-  publication_index_header_value: System.get_env("PUBLICATION_INDEX_HEADER_VALUE")
+  publication_reindex_headers: {"meilisearch-rebuild", System.get_env("PUBLICATION_INDEX_HEADER_VALUE")}

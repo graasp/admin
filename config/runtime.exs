@@ -144,22 +144,10 @@ if config_env() == :prod do
     end
 
   config :admin, base_host: base_host
+  config :admin, backend_host: base_host
 
   # Config the File Items bucket name
   config :admin, :file_items_bucket, System.get_env("FILE_ITEMS_BUCKET_NAME", "file-items")
-
-  # Publication index runtime configuration - require in production
-  publication_index_url =
-    System.get_env("PUBLICATION_INDEX_URL") ||
-      raise "environment variable PUBLICATION_INDEX_URL is missing. It should point to the library indexing endpoint."
-
-  publication_index_header_value =
-    System.get_env("PUBLICATION_INDEX_HEADER_VALUE") ||
-      raise "environment variable PUBLICATION_INDEX_HEADER_VALUE is missing. Provide the header value/token for reindexing the library."
-
-  config :admin, :publications,
-    publication_index_url: publication_index_url,
-    publication_index_header_value: publication_index_header_value
 
   config :ex_aws, :s3,
     region: System.get_env("AWS_REGION", "eu-central-1"),

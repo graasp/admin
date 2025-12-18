@@ -101,7 +101,8 @@ config :ex_aws, :s3,
 # Define the base host to use
 config :admin, :base_host, "localhost:3114"
 
+# Define the backend host to use
+config :admin, :backend_host, "localhost:3000"
+
 # Publication index (development defaults)
-config :admin,
-  publication_index_url: "http://localhost:3000/api/items/collections/search/rebuild",
-  publication_index_header_value: "secret"
+config :admin, :publication_reindex_headers, [{"meilisearch-rebuild", "secret"}]
