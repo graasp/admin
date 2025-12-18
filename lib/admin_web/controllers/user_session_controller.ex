@@ -25,7 +25,7 @@ defmodule AdminWeb.UserSessionController do
       _ ->
         conn
         |> put_flash(:error, "The link is invalid or it has expired.")
-        |> redirect(to: ~p"/users/log-in")
+        |> redirect(to: ~p"/admin/users/log-in")
     end
   end
 
@@ -42,7 +42,7 @@ defmodule AdminWeb.UserSessionController do
       conn
       |> put_flash(:error, "Invalid email or password")
       |> put_flash(:email, String.slice(email, 0, 160))
-      |> redirect(to: ~p"/users/log-in")
+      |> redirect(to: ~p"/admin/users/log-in")
     end
   end
 
@@ -55,7 +55,7 @@ defmodule AdminWeb.UserSessionController do
     UserAuth.disconnect_sessions(expired_tokens)
 
     conn
-    |> put_session(:user_return_to, ~p"/users/settings")
+    |> put_session(:user_return_to, ~p"/admin/users/settings")
     |> create(params, "Password updated successfully!")
   end
 

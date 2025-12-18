@@ -11,10 +11,13 @@ defmodule AdminWeb.PublisherLive.Show do
         Publisher: {@publisher.name}
         <:subtitle>This is a publisher record from your database.</:subtitle>
         <:actions>
-          <.button navigate={~p"/publishers"}>
+          <.button navigate={~p"/admin/publishers"}>
             <.icon name="hero-arrow-left" />
           </.button>
-          <.button variant="primary" navigate={~p"/publishers/#{@publisher}/edit?return_to=show"}>
+          <.button
+            variant="primary"
+            navigate={~p"/admin/publishers/#{@publisher}/edit?return_to=show"}
+          >
             <.icon name="hero-pencil-square" /> Edit
           </.button>
         </:actions>
@@ -84,7 +87,7 @@ defmodule AdminWeb.PublisherLive.Show do
         {:noreply,
          socket
          |> put_flash(:success, "Publisher deleted.")
-         |> push_navigate(to: ~p"/publishers")}
+         |> push_navigate(to: ~p"/admin/publishers")}
 
       {:error, reason} ->
         {:noreply, socket |> assign(:show_modal, false) |> put_flash(:error, reason)}
@@ -106,7 +109,7 @@ defmodule AdminWeb.PublisherLive.Show do
     {:noreply,
      socket
      |> put_flash(:error, "The current publisher was deleted.")
-     |> push_navigate(to: ~p"/publishers")}
+     |> push_navigate(to: ~p"/admin/publishers")}
   end
 
   def handle_info({type, %Admin.Apps.Publisher{}}, socket)

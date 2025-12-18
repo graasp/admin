@@ -2,12 +2,12 @@
   <.header>
     Planned maintenance "{@planned_maintenance.slug}"
     <:actions>
-      <.button navigate={~p"/dashboard"}>
+      <.button navigate={~p"/admin/dashboard"}>
         <.icon name="hero-arrow-left" />
       </.button>
       <.button
         variant="primary"
-        navigate={~p"/maintenance/#{@planned_maintenance}/edit?return_to=show"}
+        navigate={~p"/admin/maintenance/#{@planned_maintenance}/edit?return_to=show"}
       >
         <.icon name="hero-pencil-square" /> Edit planned maintenance
       </.button>

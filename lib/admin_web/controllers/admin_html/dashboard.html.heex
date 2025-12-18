@@ -23,13 +23,13 @@
     <div>
       <div class="flex items-center justify-between">
         <div class="flex flex-col align-start">
-          <h2><.link href="/maintenance">Planned Maintenance</.link></h2>
+          <h2><.link navigate={~p"/admin/maintenance"}>Planned Maintenance</.link></h2>
           <span class="text-xs text-secondary">
             Showing {length(@maintenances)} upcoming events.
-            <.link class="link" navigate={~p"/maintenance"}>View all</.link>
+            <.link class="link" navigate={~p"/admin/maintenance"}>View all</.link>
           </span>
         </div>
-        <.button navigate={~p"/maintenance/new"}>
+        <.button navigate={~p"/admin/maintenance/new"}>
           <.icon name="hero-plus" /> New
         </.button>
       </div>
@@ -37,7 +37,7 @@
         <%= for maintenance <- @maintenances do %>
           <AdminWeb.PlannedMaintenanceHTML.planned_maintenance_row
             maintenance={maintenance}
-            row_click={&JS.navigate(~p"/maintenance/#{&1}")}
+            row_click={&JS.navigate(~p"/admin/maintenance/#{&1}")}
           />
         <% end %>
         <%= if length(@maintenances) == 0 do %>
@@ -54,16 +54,16 @@
           <h2>Recent Publications</h2>
           <span class="text-xs text-secondary">
             Showing {length(@publications)} most recent.
-            <.link class="link" navigate={~p"/published_items"}>View all</.link>
+            <.link class="link" navigate={~p"/admin/published_items"}>View all</.link>
           </span>
         </div>
-        <.button navigate={~p"/published_items"}>View all</.button>
+        <.button navigate={~p"/admin/published_items"}>View all</.button>
       </div>
       <div class="flex flex-col mt-2 gap-1">
         <%= for publication <- @publications do %>
           <AdminWeb.PublishedItemHTML.publication_row publication={publication}>
             <:action>
-              <.button navigate={~p"/published_items/#{publication}"} class="btn btn-soft">
+              <.button navigate={~p"/admin/published_items/#{publication}"} class="btn btn-soft">
                 Manage
               </.button>
             </:action>
@@ -74,7 +74,7 @@
 
     <Placeholders.mock_section title="My Section">
       <:action>
-        <.button navigate={~p"/"}>View</.button>
+        <.button navigate={~p"/admin"}>View</.button>
       </:action>
       <:placeholder />
       <:placeholder />
@@ -83,7 +83,7 @@
 
     <Placeholders.mock_section title="Notifications">
       <:action>
-        <.button navigate={~p"/"}>View</.button>
+        <.button navigate={~p"/admin"}>View</.button>
       </:action>
       <:placeholder />
       <:placeholder />

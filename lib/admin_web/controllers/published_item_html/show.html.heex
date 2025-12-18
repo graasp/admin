@@ -6,7 +6,7 @@
     </:subtitle>
 
     <:actions>
-      <.button navigate={~p"/published_items"}>
+      <.button navigate={~p"/admin/published_items"}>
         <.icon name="hero-arrow-left" />
       </.button>
       <%!-- <%= if @current_scope.user.id == @published_item.creator.id do %>
@@ -57,7 +57,7 @@
   </.list>
 
   <.link
-    href={~p"/published_items/#{@published_item}/unpublish"}
+    href={~p"/admin/published_items/#{@published_item}/unpublish"}
     class="btn btn-primary"
   >
     Unpublish

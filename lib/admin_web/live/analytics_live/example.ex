@@ -14,7 +14,7 @@ defmodule AdminWeb.AnalyticsLive.Example do
         Vega lite chart example
         <:subtitle>Example of a Vega lite chart</:subtitle>
         <:actions>
-          <.button href={~p"/analytics/events"}>
+          <.button href={~p"/admin/analytics/events"}>
             Event generation page
           </.button>
         </:actions>
