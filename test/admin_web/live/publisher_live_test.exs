@@ -20,20 +20,20 @@ defmodule AdminWeb.PublisherLiveTest do
     setup [:create_publisher]
 
     test "lists all publishers", %{conn: conn, publisher: publisher} do
-      {:ok, _index_live, html} = live(conn, ~p"/publishers")
+      {:ok, _index_live, html} = live(conn, ~p"/admin/publishers")
 
       assert html =~ "Listing Publishers"
       assert html =~ publisher.name
     end
 
     test "saves new publisher", %{conn: conn} do
-      {:ok, index_live, _html} = live(conn, ~p"/publishers")
+      {:ok, index_live, _html} = live(conn, ~p"/admin/publishers")
 
       assert {:ok, form_live, _} =
                index_live
                |> element("a", "New Publisher")
                |> render_click()
-               |> follow_redirect(conn, ~p"/publishers/new")
+               |> follow_redirect(conn, ~p"/admin/publishers/new")
 
       assert render(form_live) =~ "New Publisher"
 
@@ -45,7 +45,7 @@ defmodule AdminWeb.PublisherLiveTest do
                form_live
                |> form("#publisher-form", publisher: @create_attrs)
                |> render_submit()
-               |> follow_redirect(conn, ~p"/publishers")
+               |> follow_redirect(conn, ~p"/admin/publishers")
 
       html = render(index_live)
       assert html =~ "Publisher created successfully"
@@ -54,13 +54,13 @@ defmodule AdminWeb.PublisherLiveTest do
 
     @tag :skip
     test "updates publisher in listing", %{conn: conn, publisher: publisher} do
-      {:ok, index_live, _html} = live(conn, ~p"/publishers")
+      {:ok, index_live, _html} = live(conn, ~p"/admin/publishers")
 
       assert {:ok, form_live, _html} =
                index_live
                |> element("#publishers-#{publisher.id} a", "Edit")
                |> render_click()
-               |> follow_redirect(conn, ~p"/publishers/#{publisher}/edit")
+               |> follow_redirect(conn, ~p"/admin/publishers/#{publisher}/edit")
 
       assert render(form_live) =~ "Edit Publisher"
 
@@ -72,7 +72,7 @@ defmodule AdminWeb.PublisherLiveTest do
                form_live
                |> form("#publisher-form", publisher: @update_attrs)
                |> render_submit()
-               |> follow_redirect(conn, ~p"/publishers")
+               |> follow_redirect(conn, ~p"/admin/publishers")
 
       html = render(index_live)
       assert html =~ "Publisher updated successfully"
@@ -84,20 +84,20 @@ defmodule AdminWeb.PublisherLiveTest do
     setup [:create_publisher]
 
     test "displays publisher", %{conn: conn, publisher: publisher} do
-      {:ok, _show_live, html} = live(conn, ~p"/publishers/#{publisher}")
+      {:ok, _show_live, html} = live(conn, ~p"/admin/publishers/#{publisher}")
 
       assert html =~ "Show Publisher"
       assert html =~ publisher.name
     end
 
     test "updates publisher and returns to show", %{conn: conn, publisher: publisher} do
-      {:ok, show_live, _html} = live(conn, ~p"/publishers/#{publisher}")
+      {:ok, show_live, _html} = live(conn, ~p"/admin/publishers/#{publisher}")
 
       assert {:ok, form_live, _} =
                show_live
                |> element("a", "Edit")
                |> render_click()
-               |> follow_redirect(conn, ~p"/publishers/#{publisher}/edit?return_to=show")
+               |> follow_redirect(conn, ~p"/admin/publishers/#{publisher}/edit?return_to=show")
 
       assert render(form_live) =~ "Edit Publisher"
 
@@ -109,7 +109,7 @@ defmodule AdminWeb.PublisherLiveTest do
                form_live
                |> form("#publisher-form", publisher: @update_attrs)
                |> render_submit()
-               |> follow_redirect(conn, ~p"/publishers/#{publisher}")
+               |> follow_redirect(conn, ~p"/admin/publishers/#{publisher}")
 
       html = render(show_live)
       assert html =~ "Publisher updated successfully"
@@ -117,7 +117,7 @@ defmodule AdminWeb.PublisherLiveTest do
     end
 
     test "deletes publisher and returns to index", %{conn: conn, publisher: publisher} do
-      {:ok, lv, _html} = live(conn, ~p"/publishers/#{publisher}")
+      {:ok, lv, _html} = live(conn, ~p"/admin/publishers/#{publisher}")
 
       # open dialog to delete
       lv
@@ -139,7 +139,7 @@ defmodule AdminWeb.PublisherLiveTest do
                lv
                |> element("#confirm_button")
                |> render_click()
-               |> follow_redirect(conn, ~p"/publishers")
+               |> follow_redirect(conn, ~p"/admin/publishers")
 
       assert render(index_lv) =~ "Publisher deleted"
     end

@@ -19,20 +19,20 @@ defmodule AdminWeb.ServiceMessageLiveTest do
     setup [:create_notification]
 
     test "lists all notifications", %{conn: conn, notification: notification} do
-      {:ok, _index_live, html} = live(conn, ~p"/notifications")
+      {:ok, _index_live, html} = live(conn, ~p"/admin/notifications")
 
       assert html =~ "Mailing"
       assert html =~ notification.title
     end
 
     test "saves new notification", %{conn: conn} do
-      {:ok, index_live, _html} = live(conn, ~p"/notifications")
+      {:ok, index_live, _html} = live(conn, ~p"/admin/notifications")
 
       assert {:ok, form_live, _} =
                index_live
                |> element("a", "New Mail")
                |> render_click()
-               |> follow_redirect(conn, ~p"/notifications/new")
+               |> follow_redirect(conn, ~p"/admin/notifications/new")
 
       assert render(form_live) =~ "New Mail"
 
@@ -56,7 +56,7 @@ defmodule AdminWeb.ServiceMessageLiveTest do
                  notification: @create_attrs
                )
                |> render_submit()
-               |> follow_redirect(conn, ~p"/notifications")
+               |> follow_redirect(conn, ~p"/admin/notifications")
 
       html = render(index_live)
       assert html =~ "Notification created"
@@ -64,7 +64,7 @@ defmodule AdminWeb.ServiceMessageLiveTest do
     end
 
     test "deletes notification in listing", %{conn: conn, notification: notification} do
-      {:ok, index_live, _html} = live(conn, ~p"/notifications")
+      {:ok, index_live, _html} = live(conn, ~p"/admin/notifications")
 
       assert index_live
              |> element("#notifications-#{notification.id} a", "Delete")
@@ -78,7 +78,7 @@ defmodule AdminWeb.ServiceMessageLiveTest do
     setup [:create_notification]
 
     test "displays notification", %{conn: conn, notification: notification} do
-      {:ok, _show_live, html} = live(conn, ~p"/notifications/#{notification}")
+      {:ok, _show_live, html} = live(conn, ~p"/admin/notifications/#{notification}")
 
       assert html =~ "Show Mail"
       assert html =~ notification.title

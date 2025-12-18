@@ -31,13 +31,13 @@ defmodule AdminWeb.AppInstanceLiveTest do
     setup [:create_app_instance]
 
     test "saves new app_instance", %{conn: conn, publisher: publisher} do
-      {:ok, index_live, _html} = live(conn, ~p"/publishers")
+      {:ok, index_live, _html} = live(conn, ~p"/admin/publishers")
 
       assert {:ok, form_live, _} =
                index_live
                |> element("a", "New App")
                |> render_click()
-               |> follow_redirect(conn, ~p"/publishers/#{publisher}/apps/new")
+               |> follow_redirect(conn, ~p"/admin/publishers/#{publisher}/apps/new")
 
       assert render(form_live) =~ "New App"
 
@@ -49,7 +49,7 @@ defmodule AdminWeb.AppInstanceLiveTest do
                form_live
                |> form("#app_instance-form", app_instance: @create_attrs)
                |> render_submit()
-               |> follow_redirect(conn, ~p"/publishers")
+               |> follow_redirect(conn, ~p"/admin/publishers")
 
       html = render(index_live)
       assert html =~ "App instance created successfully"
@@ -61,13 +61,16 @@ defmodule AdminWeb.AppInstanceLiveTest do
       app_instance: app_instance,
       publisher: publisher
     } do
-      {:ok, index_live, _html} = live(conn, ~p"/publishers")
+      {:ok, index_live, _html} = live(conn, ~p"/admin/publishers")
 
       assert {:ok, form_live, _html} =
                index_live
                |> element("#apps-#{app_instance.id} a", "Edit")
                |> render_click()
-               |> follow_redirect(conn, ~p"/publishers/#{publisher}/apps/#{app_instance}/edit")
+               |> follow_redirect(
+                 conn,
+                 ~p"/admin/publishers/#{publisher}/apps/#{app_instance}/edit"
+               )
 
       assert render(form_live) =~ "Edit App instance"
 
@@ -79,7 +82,7 @@ defmodule AdminWeb.AppInstanceLiveTest do
                form_live
                |> form("#app_instance-form", app_instance: @update_attrs)
                |> render_submit()
-               |> follow_redirect(conn, ~p"/publishers")
+               |> follow_redirect(conn, ~p"/admin/publishers")
 
       html = render(index_live)
       assert html =~ "App instance updated successfully"
@@ -88,7 +91,7 @@ defmodule AdminWeb.AppInstanceLiveTest do
 
     @tag :skip
     test "deletes app_instance in listing", %{conn: conn, app_instance: app_instance} do
-      {:ok, index_live, _html} = live(conn, ~p"/publishers")
+      {:ok, index_live, _html} = live(conn, ~p"/admin/publishers")
 
       assert index_live |> element("#apps-#{app_instance.id} a", "Delete") |> render_click()
       refute has_element?(index_live, "#apps-#{app_instance.id}")
@@ -99,7 +102,7 @@ defmodule AdminWeb.AppInstanceLiveTest do
     setup [:create_app_instance]
 
     test "displays app_instance", %{conn: conn, app_instance: app_instance} do
-      {:ok, _show_live, html} = live(conn, ~p"/apps/#{app_instance}")
+      {:ok, _show_live, html} = live(conn, ~p"/admin/apps/#{app_instance}")
 
       assert html =~ "Show App instance"
       assert html =~ app_instance.name
@@ -110,7 +113,7 @@ defmodule AdminWeb.AppInstanceLiveTest do
       app_instance: app_instance,
       publisher: publisher
     } do
-      {:ok, show_live, _html} = live(conn, ~p"/apps/#{app_instance}")
+      {:ok, show_live, _html} = live(conn, ~p"/admin/apps/#{app_instance}")
 
       assert {:ok, form_live, _} =
                show_live
@@ -118,7 +121,7 @@ defmodule AdminWeb.AppInstanceLiveTest do
                |> render_click()
                |> follow_redirect(
                  conn,
-                 ~p"/publishers/#{publisher}/apps/#{app_instance}/edit?return_to=show"
+                 ~p"/admin/publishers/#{publisher}/apps/#{app_instance}/edit?return_to=show"
                )
 
       assert render(form_live) =~ "Edit App instance"
@@ -131,7 +134,7 @@ defmodule AdminWeb.AppInstanceLiveTest do
                form_live
                |> form("#app_instance-form", app_instance: @update_attrs)
                |> render_submit()
-               |> follow_redirect(conn, ~p"/apps/#{app_instance}")
+               |> follow_redirect(conn, ~p"/admin/apps/#{app_instance}")
 
       html = render(show_live)
       assert html =~ "App instance updated successfully"
