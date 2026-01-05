@@ -2,7 +2,7 @@
 
 function show_help() {
     echo "This script allows to auth to the ECR service"
-    echo "Usage: bash docker/auth.sh ECR_URI REGION"
+    echo "Usage: bash scripts/auth.sh ECR_URI REGION"
     echo "Arguments:"
     echo "  ECR_URI      URI of the ECR in AWS, example: public.ecr.aws/qzuer78 or a private ECR XXXXXXXX.dkr.ecr.region.amazonaws.com/repo."
     echo "  REGION       REGION of the ECR in AWS, example: eu-central-1"
