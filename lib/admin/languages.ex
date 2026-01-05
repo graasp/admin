@@ -5,11 +5,11 @@ defmodule Admin.Languages do
   It allows to get a language list suitable for displaying a select input with some options disabled.
   """
   @languages [
+    %{value: "de", key: "Deutsch"},
     %{value: "en", key: "English"},
-    %{value: "fr", key: "French"},
-    %{value: "es", key: "Spanish"},
-    %{value: "de", key: "German"},
-    %{value: "it", key: "Italian"}
+    %{value: "es", key: "Español"},
+    %{value: "fr", key: "Français"},
+    %{value: "it", key: "Italiano"}
   ]
 
   def all do
@@ -29,7 +29,11 @@ defmodule Admin.Languages do
 
   ## Examples
     iex> Admin.Languages.excluding(["en", "fr"])
-    [%{value: "es", key: "Spanish"}, %{value: "de", key: "German"}, %{value: "it", key: "Italian"}]
+    [
+      %{value: "de", key: "Deutsch"},
+      %{value: "es", key: "Español"},
+      %{value: "it", key: "Italiano"}
+    ]
   """
   def excluding(language_codes) when is_list(language_codes) do
     @languages |> Enum.reject(&(&1.value in language_codes))
@@ -41,11 +45,11 @@ defmodule Admin.Languages do
   ## Examples
     iex> Admin.Languages.disabling(["en", "fr"])
     [
+      [value: "de", key: "Deutsch", disabled: false],
       [value: "en", key: "English", disabled: true],
-      [value: "fr", key: "French", disabled: true],
-      [value: "es", key: "Spanish", disabled: false],
-      [value: "de", key: "German", disabled: false],
-      [value: "it", key: "Italian", disabled: false]
+      [value: "es", key: "Español", disabled: false],
+      [value: "fr", key: "Français", disabled: true],
+      [value: "it", key: "Italiano", disabled: false]
     ]
   """
   def disabling(language_codes) when is_list(language_codes) do
