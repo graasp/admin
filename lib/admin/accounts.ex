@@ -179,6 +179,26 @@ defmodule Admin.Accounts do
     |> update_user_and_delete_all_tokens()
   end
 
+  def change_user_name(user, attrs \\ %{}) do
+    User.name_changeset(user, attrs)
+  end
+
+  def update_user_name(user, attrs \\ %{}) do
+    user
+    |> User.name_changeset(attrs)
+    |> Repo.update()
+  end
+
+  def change_user_language(user, attrs \\ %{}) do
+    User.language_changeset(user, attrs)
+  end
+
+  def update_user_language(user, attrs \\ %{}) do
+    user
+    |> User.language_changeset(attrs)
+    |> Repo.update()
+  end
+
   ## Session
 
   @doc """

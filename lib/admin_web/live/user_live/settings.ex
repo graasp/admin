@@ -16,6 +16,27 @@ defmodule AdminWeb.UserLive.Settings do
         </.header>
       </div>
 
+      <.form
+        for={@name_form}
+        id="name_form"
+        phx-change="validate_name"
+        phx-submit="update_name"
+      >
+        <.input
+          field={@name_form[:name]}
+          type="text"
+          label="Name"
+          autocomplete="name"
+          required
+        />
+
+        <.button variant="primary" phx-disable-with="Saving...">
+          Save Name
+        </.button>
+      </.form>
+
+      <div class="divider" />
+
       <.form for={@email_form} id="email_form" phx-submit="update_email" phx-change="validate_email">
         <.input
           field={@email_form[:email]}
@@ -25,6 +46,27 @@ defmodule AdminWeb.UserLive.Settings do
           required
         />
         <.button variant="primary" phx-disable-with="Changing...">Change Email</.button>
+      </.form>
+
+      <div class="divider" />
+
+      <.form
+        for={@language_form}
+        id="language_form"
+        phx-change="validate_language"
+        phx-submit="update_language"
+      >
+        <.input
+          field={@language_form[:language]}
+          type="select"
+          label="Language"
+          options={Admin.Languages.all_options()}
+          required
+        />
+
+        <.button variant="primary" phx-disable-with="Saving...">
+          Save Language
+        </.button>
       </.form>
 
       <div class="divider" />
@@ -84,12 +126,17 @@ defmodule AdminWeb.UserLive.Settings do
     user = socket.assigns.current_scope.user
     email_changeset = Accounts.change_user_email(user, %{}, validate_unique: false)
     password_changeset = Accounts.change_user_password(user, %{}, hash_password: false)
+    name_changeset = Accounts.change_user_name(user, %{})
+    language_changeset = Accounts.change_user_language(user, %{})
 
     socket =
       socket
+      |> assign(:page_title, "Account Settings")
       |> assign(:current_email, user.email)
       |> assign(:email_form, to_form(email_changeset))
       |> assign(:password_form, to_form(password_changeset))
+      |> assign(:name_form, to_form(name_changeset))
+      |> assign(:language_form, to_form(language_changeset))
       |> assign(:trigger_submit, false)
 
     {:ok, socket}
@@ -152,6 +199,66 @@ defmodule AdminWeb.UserLive.Settings do
 
       changeset ->
         {:noreply, assign(socket, password_form: to_form(changeset, action: :insert))}
+    end
+  end
+
+  def handle_event("validate_name", params, socket) do
+    %{"user" => user_params} = params
+
+    name_form =
+      socket.assigns.current_scope.user
+      |> Accounts.change_user_name(user_params)
+      |> Map.put(:action, :validate)
+      |> to_form()
+
+    {:noreply, assign(socket, name_form: name_form)}
+  end
+
+  def handle_event("update_name", params, socket) do
+    %{"user" => user_params} = params
+    user = socket.assigns.current_scope.user
+    true = Accounts.sudo_mode?(user)
+
+    case Accounts.update_user_name(
+           user,
+           user_params
+         ) do
+      {:ok, _user} ->
+        info = "The user name has been updated."
+        {:noreply, socket |> put_flash(:info, info)}
+
+      %Ecto.Changeset{} = changeset ->
+        {:noreply, assign(socket, name_form: to_form(changeset, action: :insert))}
+    end
+  end
+
+  def handle_event("validate_language", params, socket) do
+    %{"user" => user_params} = params
+
+    language_form =
+      socket.assigns.current_scope.user
+      |> Accounts.change_user_language(user_params)
+      |> Map.put(:action, :validate)
+      |> to_form()
+
+    {:noreply, assign(socket, language_form: language_form)}
+  end
+
+  def handle_event("update_language", params, socket) do
+    %{"user" => user_params} = params
+    user = socket.assigns.current_scope.user
+    true = Accounts.sudo_mode?(user)
+
+    case Accounts.update_user_language(
+           user,
+           user_params
+         ) do
+      {:ok, _user} ->
+        info = "The user language has been updated."
+        {:noreply, socket |> put_flash(:info, info)}
+
+      %Ecto.Changeset{} = changeset ->
+        {:noreply, assign(socket, name_form: to_form(changeset, action: :insert))}
     end
   end
 end
