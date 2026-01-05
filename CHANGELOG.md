@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/graasp/admin/compare/v0.4.0...v0.4.1) (2026-01-05)
+
+
+### Bug Fixes
+
+* **ci:** add id-token permission for release please to aws OIDC ([e95bf0f](https://github.com/graasp/admin/commit/e95bf0fcf730938b15285b3472fca4d23bd8e480))
+
 ## [0.4.0](https://github.com/graasp/admin/compare/v0.3.0...v0.4.0) (2026-01-05)
 
 
