@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.4.0](https://github.com/graasp/admin/compare/v0.3.0...v0.4.0) (2026-01-05)
+
+
+### Features
+
+* add admin name and lang ([#105](https://github.com/graasp/admin/issues/105)) ([3f6d491](https://github.com/graasp/admin/commit/3f6d491fde7d1dbcc8e65679ca6bfe6671ed45f8))
+
+
+### Bug Fixes
+
+* add task to restart containers ([9825700](https://github.com/graasp/admin/commit/98257000214ba7beb69f96e4c00372bfc9fa5742))
+* improve readme ([#103](https://github.com/graasp/admin/issues/103)) ([a8f7b7f](https://github.com/graasp/admin/commit/a8f7b7fe1b79d1630f4ff7637cc3b0bdc54ad7ce))
+* revert favicon to admin color ([1dc6ba1](https://github.com/graasp/admin/commit/1dc6ba1167cb28a6781557c6daeac0e9dc9f43bf))
+* use redirect to navigate to the controller view ([#98](https://github.com/graasp/admin/issues/98)) ([e26bdc3](https://github.com/graasp/admin/commit/e26bdc383246a000195399b7e50ca5ef62d8b169))
+
+
+### Chores
+
+* **deps:** update dependency credo to v1.7.15 ([#107](https://github.com/graasp/admin/issues/107)) ([c0651d0](https://github.com/graasp/admin/commit/c0651d0ad7540fce3e626a22be914f3d82d355e9))
+* **deps:** update dependency dialyxir to v1.4.7 ([#108](https://github.com/graasp/admin/issues/108)) ([eafa7b3](https://github.com/graasp/admin/commit/eafa7b3c2e1835f46f5038cd35dc59d4f4d34ebc))
+* push a public image to ECR repository on release ([#109](https://github.com/graasp/admin/issues/109)) ([bc2629f](https://github.com/graasp/admin/commit/bc2629f904088aeb213cf5bfda773f7bfc5a060c))
+
 ## [0.3.0](https://github.com/graasp/admin/compare/v0.2.1...v0.3.0) (2025-12-09)
 
 
