@@ -28,5 +28,16 @@ defmodule Admin.Repo.Migrations.CreateUsersAuthTables do
 
     create index(:users_tokens, [:user_id])
     create unique_index(:users_tokens, [:context, :token])
+
+    # this is the accounts table for graasp users (created by drizzle)
+    create table(:account) do
+      add :name, :string
+      add :email, :string
+      add :type, :string
+
+      timestamps(type: :utc_datetime)
+    end
+
+    create unique_index(:account, [:email], name: "member_email_key1")
   end
 end
