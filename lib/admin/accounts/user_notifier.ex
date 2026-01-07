@@ -69,6 +69,36 @@ defmodule Admin.Accounts.UserNotifier do
     )
   end
 
+  def deliver_call_to_action(user, subject, message_text, button_text, button_url) do
+    html_body =
+      EmailTemplates.render("call_to_action", %{
+        name: user.name,
+        message: message_text,
+        button_text: button_text,
+        button_url: button_url
+      })
+
+    deliver(
+      user.email,
+      subject,
+      html_body,
+      """
+
+      ==============================
+
+      Hi #{user.name},
+
+      #{message_text}
+
+      #{button_text} #{button_url}
+
+      ==============================
+      #{@footer}
+      """,
+      reply_to: @support_email
+    )
+  end
+
   @doc """
   Deliver publication removal information.
   """

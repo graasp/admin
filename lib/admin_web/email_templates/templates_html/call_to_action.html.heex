@@ -1,0 +1,35 @@
+<.layout title="Graasp">
+  <mj-column border-radius="10px">
+    <mj-text>
+      Hi {@name},
+    </mj-text>
+    <mj-text>
+      <pre style="font-family: inherit; white-space: pre-wrap;">{@message}</pre>
+    </mj-text>
+    <%= if @button_text do %>
+      <mj-button background-color="#5050d2" href={@button_url}>
+        {@button_text}
+      </mj-button>
+      <mj-text color="gray">
+        In case you can not click the button above here is the link:
+      </mj-text>
+      <mj-text color="gray">
+        <a style="color: gray" href={@button_url}>{@button_url}</a>
+      </mj-text>
+    <% end %>
+  </mj-column>
+
+  <:footer>
+    <mj-column>
+      <mj-text align="center" color="#aaa">
+        You are receiving this email because you have an account on <a
+          style="color: #aaa"
+          href="https://graasp.org"
+        >Graasp</a>.
+      </mj-text>
+      <mj-text align="center" color="#aaa">
+        Graasp Association, Valais, Switzerland
+      </mj-text>
+    </mj-column>
+  </:footer>
+</.layout>

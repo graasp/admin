@@ -130,6 +130,8 @@
             transform: rotate(-3deg);
         }
     }
+    /* Define the root bg color to be a slightly darker color than the base 100 used for contrast boxes */
+    --root-bg: var(--color-base-200);
 }
 
 @layer base {
