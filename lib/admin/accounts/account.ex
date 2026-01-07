@@ -10,6 +10,7 @@ defmodule Admin.Accounts.Account do
     field :email, :string
     field :type, :string
     field :extra, :map
+    field :last_authenticated_at, :utc_datetime
 
     timestamps(type: :utc_datetime)
   end

@@ -34,6 +34,7 @@ defmodule AdminWeb.NotificationLive.Index do
       <.table
         id="wip_notifications"
         rows={@streams.wip_notifications}
+        row_id={fn {_id, notification} -> "notifications-#{notification.id}" end}
         row_click={
           fn {_id, notification} -> JS.navigate(~p"/admin/notifications/#{notification}") end
         }
@@ -48,7 +49,7 @@ defmodule AdminWeb.NotificationLive.Index do
         <:action :let={{id, notification}}>
           <.link
             class="text-error"
-            phx-click={JS.push("delete", value: %{id: notification.id}) |> hide("##{id}")}
+            phx-click={JS.push("delete_wip", value: %{id: notification.id}) |> hide("##{id}")}
             data-confirm="Are you sure?"
           >
             Delete
@@ -81,7 +82,7 @@ defmodule AdminWeb.NotificationLive.Index do
         <:action :let={{id, notification}}>
           <.link
             class="text-error"
-            phx-click={JS.push("delete", value: %{id: notification.id}) |> hide("##{id}")}
+            phx-click={JS.push("delete_sent", value: %{id: notification.id}) |> hide("##{id}")}
             data-confirm="Are you sure?"
           >
             Delete
@@ -109,10 +110,6 @@ defmodule AdminWeb.NotificationLive.Index do
      socket
      |> assign(:page_title, "Mailing")
      |> assign(:sending_status, nil)
-     |> assign(
-       :sent_notifications,
-       Notifications.list_recently_sent_notifications(socket.assigns.current_scope)
-     )
      |> stream(
        :wip_notifications,
        wip_notifications
@@ -124,11 +121,23 @@ defmodule AdminWeb.NotificationLive.Index do
   end
 
   @impl true
-  def handle_event("delete", %{"id" => id}, socket) do
-    notification = Notifications.get_notification!(socket.assigns.current_scope, id)
-    {:ok, _} = Notifications.delete_notification(socket.assigns.current_scope, notification)
+  def handle_event("delete_sent", %{"id" => id}, socket) do
+    notification = delete_notification(socket.assigns.current_scope, id)
 
-    {:noreply, stream_delete(socket, :notifications, notification)}
+    {:noreply, stream_delete(socket, :sent_notifications, notification)}
+  end
+
+  @impl true
+  def handle_event("delete_wip", %{"id" => id}, socket) do
+    notification = delete_notification(socket.assigns.current_scope, id)
+
+    {:noreply, stream_delete(socket, :wip_notifications, notification)}
+  end
+
+  defp delete_notification(scope, id) do
+    notification = Notifications.get_notification!(scope, id)
+    {:ok, _} = Notifications.delete_notification(scope, notification)
+    notification
   end
 
   @impl true

@@ -4,7 +4,12 @@ defmodule AdminWeb.ServiceMessageLiveTest do
   import Phoenix.LiveViewTest
   import Admin.NotificationsFixtures
 
-  @create_attrs %{name: "some name", audience: "all", default_language: "en"}
+  @create_attrs %{
+    name: "some name",
+    audience: "active",
+    default_language: "en",
+    use_strict_languages: false
+  }
   @invalid_attrs %{name: nil, audience: nil, default_language: nil}
 
   setup :register_and_log_in_user
@@ -50,18 +55,18 @@ defmodule AdminWeb.ServiceMessageLiveTest do
                |> follow_redirect(conn)
 
       html = render(index_live)
-      assert html =~ "Notification created"
+      assert html =~ "Composing message"
       assert html =~ "some name"
     end
 
     test "deletes notification in listing", %{conn: conn, notification: notification} do
       {:ok, index_live, _html} = live(conn, ~p"/admin/notifications")
 
+      # using the delete_sent event directly since we have a browser based confirmation that is hard to do in tests.
       assert index_live
-             |> element("#notifications-#{notification.id} a", "Delete")
-             |> render_click()
+             |> render_change("delete_sent", %{"id" => notification.id})
 
-      refute has_element?(index_live, "#notifications-#{notification.id}")
+      refute has_element?(index_live, "#sent_notifications-#{notification.id}")
     end
   end
 

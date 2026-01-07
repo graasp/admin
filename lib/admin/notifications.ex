@@ -98,7 +98,8 @@ defmodule Admin.Notifications do
 
   """
   def list_notifications(%Scope{} = _scope) do
-    Repo.all(from n in Notification, order_by: [desc: :updated_at]) |> Repo.preload([:logs])
+    Repo.all(from n in Notification, order_by: [desc: :updated_at])
+    |> Repo.preload([:logs, :localized_emails])
   end
 
   def list_notifications_by_status(%Scope{} = _scope) do

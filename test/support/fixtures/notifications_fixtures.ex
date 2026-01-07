@@ -11,8 +11,9 @@ defmodule Admin.NotificationsFixtures do
     attrs =
       Enum.into(attrs, %{
         name: "some name",
-        audience: "all",
-        default_language: "en"
+        audience: "active",
+        default_language: "en",
+        use_strict_languages: false
       })
 
     {:ok, notification} = Admin.Notifications.create_notification(scope, attrs)
