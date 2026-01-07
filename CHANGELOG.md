@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.0](https://github.com/graasp/admin/compare/v0.4.1...v0.5.0) (2026-01-07)
+
+
+### Features
+
+* single origin ([#106](https://github.com/graasp/admin/issues/106)) ([80213b8](https://github.com/graasp/admin/commit/80213b8d1467a416222bed4339e015b7d77a8924))
+
+
+### Chores
+
+* update migrations and merge together to simplify ([#111](https://github.com/graasp/admin/issues/111)) ([8513ad8](https://github.com/graasp/admin/commit/8513ad8998a269e16b229ecbac3c2c066e637678))
+
 ## [0.4.1](https://github.com/graasp/admin/compare/v0.4.0...v0.4.1) (2026-01-05)
 
 
