@@ -207,5 +207,5 @@ defmodule AdminWeb.NotificationLive.Form do
   end
 
   defp return_path(_scope, "show", notification), do: ~p"/admin/notifications/#{notification}"
-  defp return_path(_scope, _, notification), do: ~p"/admin/notifications"
+  defp return_path(_scope, _, _), do: ~p"/admin/notifications"
 end

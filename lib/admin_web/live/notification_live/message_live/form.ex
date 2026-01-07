@@ -72,8 +72,6 @@ defmodule AdminWeb.NotificationMessageLive.Form do
 
   def apply_action(socket, :new, params) do
     localized_email = %LocalizedEmail{}
-    params |> IO.inspect()
-    Map.get(params, "language", "") |> IO.inspect()
 
     changeset =
       Notifications.change_localized_email(

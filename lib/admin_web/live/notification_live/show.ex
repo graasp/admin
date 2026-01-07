@@ -226,30 +226,30 @@ defmodule AdminWeb.NotificationLive.Show do
 
   def handle_event("send_notification", _params, socket) do
     # verify there is a local version for the default lang
-    with {:ok, _localized_email} <-
-           Notifications.get_localized_email_by_lang(
-             socket.assigns.current_scope,
-             socket.assigns.notification.id,
-             socket.assigns.notification.default_language
-           ) do
-      %{
-        user_id: socket.assigns.current_scope.user.id,
-        notification_id: socket.assigns.notification.id
-      }
-      |> Admin.MailingWorker.new()
-      |> Oban.insert()
+    case Notifications.get_localized_email_by_lang(
+           socket.assigns.current_scope,
+           socket.assigns.notification.id,
+           socket.assigns.notification.default_language
+         ) do
+      {:ok, _localized_email} ->
+        %{
+          user_id: socket.assigns.current_scope.user.id,
+          notification_id: socket.assigns.notification.id
+        }
+        |> Admin.MailingWorker.new()
+        |> Oban.insert()
 
-      {:ok, _notification} =
-        Notifications.update_sent_at(
-          socket.assigns.current_scope,
-          socket.assigns.notification
-        )
+        {:ok, _notification} =
+          Notifications.update_sent_at(
+            socket.assigns.current_scope,
+            socket.assigns.notification
+          )
 
-      {:noreply,
-       socket
-       |> put_flash(:info, "Notification sent successfully")
-       |> push_navigate(to: ~p"/admin/notifications")}
-    else
+        {:noreply,
+         socket
+         |> put_flash(:info, "Notification sent successfully")
+         |> push_navigate(to: ~p"/admin/notifications")}
+
       {:error, :not_found} ->
         {:noreply, socket |> put_flash(:error, "The default language is not available")}
     end

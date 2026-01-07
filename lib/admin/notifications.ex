@@ -34,15 +34,13 @@ defmodule Admin.Notifications do
   end
 
   def update_sent_at(%Scope{} = _scope, %Notification{} = notification) do
-    with {1, notification} <-
-           from(n in Notification,
-             where: n.id == ^notification.id,
-             select: n,
-             update: [set: [sent_at: fragment("NOW()")]]
-           )
-           |> Repo.update_all([]) do
-      {:ok, notification}
-    else
+    case from(n in Notification,
+           where: n.id == ^notification.id,
+           select: n,
+           update: [set: [sent_at: fragment("NOW()")]]
+         )
+         |> Repo.update_all([]) do
+      {1, notification} -> {:ok, notification}
       {:error, error} -> {:error, error}
     end
   end
