@@ -532,4 +532,47 @@ defmodule AdminWeb.CoreComponents do
     </object>
     """
   end
+
+  attr :severity, :string, default: "info", values: ["info", "success", "warning", "error"]
+  attr :variant, :string, values: ["soft", "outline", "dash"]
+  slot :inner_block, required: true
+  slot :action, required: false
+
+  def alert(assigns) do
+    assigns =
+      assign(
+        assigns,
+        :icon_name,
+        case assigns.severity do
+          "info" -> "hero-info-circle"
+          "success" -> "hero-check-circle"
+          "warning" -> "hero-exclamation-triangle"
+          "error" -> "hero-x-circle"
+        end
+      )
+
+    ~H"""
+    <div
+      role="alert"
+      class={[
+        [
+          "alert alert-vertical sm:alert-horizontal alert-#{@severity}",
+          if Map.get(assigns, :variant) do
+            "alert-#{@variant}"
+          end
+        ]
+      ]}
+    >
+      <.icon name={@icon_name} class="w-6 h-6 mr-2" />
+      <span>
+        {render_slot(@inner_block)}
+      </span>
+      <div :if={@action != []}>
+        <%= for action <- @action do %>
+          {render_slot(action)}
+        <% end %>
+      </div>
+    </div>
+    """
+  end
 end

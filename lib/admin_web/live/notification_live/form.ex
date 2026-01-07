@@ -73,9 +73,28 @@ defmodule AdminWeb.NotificationLive.Form do
           options={Admin.Languages.all_options()}
         />
 
+        <fieldset class="fieldset">
+          <legend class="label">Use only defined languages</legend>
+
+          <.input
+            type="checkbox"
+            field={form[:use_strict_languages]}
+            label="Only defined languages"
+            class="checkbox checkbox-primary mb-0"
+          />
+          <p class="label">
+            <%= if Ecto.Changeset.get_field(@form, :use_strict_languages) do %>
+              Only users <strong>with a matching language</strong> will receive the notification.
+            <% else %>
+              <strong>All users in the target audience</strong>
+              for undefined languages, <strong>the default language will be used</strong>.
+            <% end %>
+          </p>
+        </fieldset>
+
         <footer>
           <.button variant="primary">Save Mail</.button>
-          <.button navigate={~p"/admin/notifications/#{@notification}"}>Cancel</.button>
+          <.button navigate={return_path(@current_scope, @return_to, @notification)}>Cancel</.button>
         </footer>
       </.form>
     </Layouts.admin>
@@ -98,7 +117,8 @@ defmodule AdminWeb.NotificationLive.Form do
       Notifications.change_notification(socket.assigns.current_scope, notification, %{
         "name" => "",
         "audience" => "",
-        "default_language" => ""
+        "default_language" => "",
+        "use_strict_languages" => false
       })
 
     socket
@@ -106,6 +126,7 @@ defmodule AdminWeb.NotificationLive.Form do
     |> assign(:notification, notification)
     |> assign(:form, changeset)
     |> assign(:recipients, [])
+    |> assign(:return_to, "index")
   end
 
   defp apply_action(socket, :edit, %{"notification_id" => id}) do
@@ -127,6 +148,7 @@ defmodule AdminWeb.NotificationLive.Form do
       Notifications.change_notification(socket.assigns.current_scope, notification)
     )
     |> assign(:recipients, recipients)
+    |> assign(:return_to, "show")
   end
 
   @impl true
@@ -183,4 +205,7 @@ defmodule AdminWeb.NotificationLive.Form do
          |> assign(:form, changeset)}
     end
   end
+
+  defp return_path(_scope, "show", notification), do: ~p"/admin/notifications/#{notification}"
+  defp return_path(_scope, _, notification), do: ~p"/admin/notifications"
 end
