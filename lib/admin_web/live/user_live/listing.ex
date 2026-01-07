@@ -13,7 +13,7 @@ defmodule AdminWeb.UserLive.Listing do
           Admin users
           <:subtitle>Show users that are currently registered in the app</:subtitle>
           <:actions>
-            <.button navigate={~p"/users/new"} id="new_user">Add an admin user</.button>
+            <.button navigate={~p"/admin/users/new"} id="new_user">Add an admin user</.button>
           </:actions>
         </.header>
       </div>
@@ -24,7 +24,7 @@ defmodule AdminWeb.UserLive.Listing do
             class="flex flex-row justify-between"
           >
             <div class="">
-              <.link navigate={~p"/users/#{user}"}>
+              <.link navigate={~p"/admin/users/#{user}"}>
                 <span>{user.name}</span>
 
                 <div class="flex flex-row gap-1">

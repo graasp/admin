@@ -202,6 +202,6 @@ defmodule AdminWeb.AppInstanceLive.Form do
     end
   end
 
-  defp return_path(_scope, "index", _app_instance), do: ~p"/publishers"
-  defp return_path(_scope, "show", app_instance), do: ~p"/apps/#{app_instance}"
+  defp return_path(_scope, "index", _app_instance), do: ~p"/admin/publishers"
+  defp return_path(_scope, "show", app_instance), do: ~p"/admin/apps/#{app_instance}"
 end

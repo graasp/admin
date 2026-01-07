@@ -10,7 +10,7 @@ defmodule AdminWeb.PublisherLive.Index do
       <.header>
         Listing Apps by Publishers
         <:actions>
-          <.button variant="primary" navigate={~p"/publishers/new"}>
+          <.button variant="primary" navigate={~p"/admin/publishers/new"}>
             <.icon name="hero-plus" /> New Publisher
           </.button>
         </:actions>
@@ -30,7 +30,7 @@ defmodule AdminWeb.PublisherLive.Index do
               class="align-middle mb-1 size-5 chevron transition-all duration-300"
               name="hero-chevron-down"
             />
-            <.link navigate={~p"/publishers/#{publisher.id}"}>
+            <.link navigate={~p"/admin/publishers/#{publisher.id}"}>
               {publisher.name}
             </.link>
             <:subtitle>
@@ -41,17 +41,17 @@ defmodule AdminWeb.PublisherLive.Index do
               </div>
             </:subtitle>
             <:actions>
-              <.button navigate={~p"/publishers/#{publisher.id}"}>
+              <.button navigate={~p"/admin/publishers/#{publisher.id}"}>
                 <.icon name="hero-eye" /> View
               </.button>
             </:actions>
             <:actions>
-              <.button navigate={~p"/publishers/#{publisher.id}/edit"}>
+              <.button navigate={~p"/admin/publishers/#{publisher.id}/edit"}>
                 <.icon name="hero-pencil" /> Edit
               </.button>
             </:actions>
             <:actions>
-              <.button variant="primary" navigate={~p"/publishers/#{publisher.id}/apps/new"}>
+              <.button variant="primary" navigate={~p"/admin/publishers/#{publisher.id}/apps/new"}>
                 <.icon name="hero-plus" /> New App
               </.button>
             </:actions>
@@ -63,7 +63,7 @@ defmodule AdminWeb.PublisherLive.Index do
               <.table
                 id={id}
                 rows={publisher.apps}
-                row_click={fn app -> JS.navigate(~p"/apps/#{app}") end}
+                row_click={fn app -> JS.navigate(~p"/admin/apps/#{app}") end}
                 row_id={fn app -> "apps-#{app.id}" end}
               >
                 <:col :let={app} label="Thumbnail">
@@ -90,9 +90,9 @@ defmodule AdminWeb.PublisherLive.Index do
                 <:col :let={app} label="URL">{app.url}</:col>
                 <:action :let={app}>
                   <div class="sr-only">
-                    <.link navigate={~p"/apps/#{app}"}>Show</.link>
+                    <.link navigate={~p"/admin/apps/#{app}"}>Show</.link>
                   </div>
-                  <.link navigate={~p"/publishers/#{publisher}/apps/#{app}/edit"}>Edit</.link>
+                  <.link navigate={~p"/admin/publishers/#{publisher}/apps/#{app}/edit"}>Edit</.link>
                 </:action>
               </.table>
             <% end %>

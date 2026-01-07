@@ -59,7 +59,7 @@ defmodule AdminWeb.UserAuth do
     conn
     |> renew_session(nil)
     |> delete_resp_cookie(@remember_me_cookie)
-    |> redirect(to: ~p"/")
+    |> redirect(to: ~p"/admin")
   end
 
   @doc """
@@ -227,7 +227,7 @@ defmodule AdminWeb.UserAuth do
       socket =
         socket
         |> Phoenix.LiveView.put_flash(:error, "You must log in to access this page.")
-        |> Phoenix.LiveView.redirect(to: ~p"/users/log-in")
+        |> Phoenix.LiveView.redirect(to: ~p"/admin/users/log-in")
 
       {:halt, socket}
     end
@@ -242,7 +242,7 @@ defmodule AdminWeb.UserAuth do
       socket =
         socket
         |> Phoenix.LiveView.put_flash(:error, "You must re-authenticate to access this page.")
-        |> Phoenix.LiveView.redirect(to: ~p"/users/log-in")
+        |> Phoenix.LiveView.redirect(to: ~p"/admin/users/log-in")
 
       {:halt, socket}
     end
@@ -262,10 +262,10 @@ defmodule AdminWeb.UserAuth do
   @doc "Returns the path to redirect to after log in."
   # the user was already logged in, redirect to settings
   def signed_in_path(%Plug.Conn{assigns: %{current_scope: %Scope{user: %Accounts.User{}}}}) do
-    ~p"/users/settings"
+    ~p"/admin/users/settings"
   end
 
-  def signed_in_path(_), do: ~p"/dashboard"
+  def signed_in_path(_), do: ~p"/admin/dashboard"
 
   @doc """
   Plug for routes that require the user to be authenticated.
@@ -277,7 +277,7 @@ defmodule AdminWeb.UserAuth do
       conn
       |> put_flash(:error, "You must log in to access this page.")
       |> maybe_store_return_to()
-      |> redirect(to: ~p"/users/log-in")
+      |> redirect(to: ~p"/admin/users/log-in")
       |> halt()
     end
   end
