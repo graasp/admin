@@ -29,7 +29,7 @@ import VegaLite from "../vendor/vega-lite";
 const csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");
-const liveSocket = new LiveSocket("/admin/live", Socket, {
+const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
   hooks: { ...colocatedHooks, VegaLite },
