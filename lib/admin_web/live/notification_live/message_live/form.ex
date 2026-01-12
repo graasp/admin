@@ -195,8 +195,6 @@ defmodule AdminWeb.NotificationMessageLive.Form do
   end
 
   defp render_email_preview(changeset) do
-    Gettext.get_locale(AdminWeb.EmailTemplates.Gettext) |> IO.inspect(label: "email local")
-
     AdminWeb.EmailTemplates.render("call_to_action", %{
       name: "<USER_NAME>",
       message: Ecto.Changeset.get_field(changeset, :message),

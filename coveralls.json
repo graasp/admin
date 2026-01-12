@@ -3,10 +3,11 @@
     "lib/admin/release.ex",
     "lib/admin_web/controllers/error_html.ex",
     "lib/admin_web/telemetry.ex",
+    "lib/admin_web/live/dev_live/index.ex",
     "lib/admin/application.ex",
     "lib/admin/analytics/event_store.ex",
-    "lib/adminweb/analytics_live/example.ex",
-    "lib/adminweb/analytics_live/event_generator.ex"
+    "lib/admin_web/live/analytics_live/example.ex",
+    "lib/admin_web/live/analytics_live/event_generator.ex"
   ],
 
   "coverage_options": {
