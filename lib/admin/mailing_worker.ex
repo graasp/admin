@@ -54,7 +54,8 @@ defmodule Admin.MailingWorker do
       |> Enum.with_index(1)
       |> Enum.each(fn {user, index} ->
         # set the locale for the email template to the user's language
-        # We use a different backend for the email text, so changing the locale for the email template does not affect the connected user locale
+        # We use a different backend for the email text, so changing the locale
+        # for the email template does not affect the connected user locale
         Gettext.put_locale(AdminWeb.EmailTemplates.Gettext, user.lang)
         send_local_email(scope, user, notification)
 
