@@ -11,7 +11,7 @@ defmodule Admin.Application do
     # for Bandit (Phoenix 1.7+)
     OpentelemetryBandit.setup()
     OpentelemetryPhoenix.setup(adapter: :bandit)
-    OpentelemetryEcto.setup([:admin, :repo], db_statement: :enabled)
+    Admin.OpentelemetryEcto.setup([:admin, :repo], db_statement: :enabled)
     # Optional: Set up Oban instrumentation
     # OpentelemetryOban.setup()
 

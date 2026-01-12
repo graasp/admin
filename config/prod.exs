@@ -42,5 +42,7 @@ config :admin, :logger, [
    }}
 ]
 
+config :admin, Admin.SentryFilter, remove_db_spans: false
+
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
