@@ -93,7 +93,7 @@ defmodule Admin.Accounts.UserNotifier do
 
         ==============================
 
-        #{gettext("Hi %{name}", name: user.name)}
+        #{gettext("Hi %{name},", name: user.name)}
 
         #{message_text}
 

@@ -45,6 +45,9 @@ config :admin, Admin.Repo,
     inserted_at: :created_at
   ]
 
+# Configure Gettext
+config :gettext, default_locale: "en"
+
 # Configures the endpoint
 config :admin, AdminWeb.Endpoint,
   url: [host: "localhost"],
