@@ -27,12 +27,12 @@ defmodule AdminWeb.PlannedMaintenanceHTML do
       <span>{@maintenance.slug}</span>
       <div class="text-xs">
         Start: <.relative_date date={@maintenance.start_at} />
-        <span class="text-secondary">({@maintenance.start_at})</span>
+        <span class="text-secondary">({"#{@maintenance.start_at}"})</span>
       </div>
       <div class="text-xs">
         End: <.relative_date date={@maintenance.end_at} />
         <span class="text-secondary">
-          ({@maintenance.end_at})
+          ({"#{@maintenance.end_at}"})
         </span>
       </div>
     </div>

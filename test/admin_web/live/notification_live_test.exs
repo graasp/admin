@@ -1,4 +1,4 @@
-defmodule AdminWeb.ServiceMessageLiveTest do
+defmodule AdminWeb.NotificationLiveTest do
   use AdminWeb.ConnCase
 
   import Phoenix.LiveViewTest
@@ -16,6 +16,17 @@ defmodule AdminWeb.ServiceMessageLiveTest do
 
   defp create_notification(%{scope: scope}) do
     notification = notification_fixture(scope)
+
+    %{notification: notification}
+  end
+
+  defp create_localized_messages(%{scope: scope, notification: notification}) do
+    localized_messages_fixture(scope, notification, %{
+      subject: "some subject",
+      language: notification.default_language
+    })
+
+    notification = Admin.Notifications.get_notification!(scope, notification.id)
 
     %{notification: notification}
   end
@@ -78,6 +89,32 @@ defmodule AdminWeb.ServiceMessageLiveTest do
 
       assert html =~ "Show Mail"
       assert html =~ notification.name
+    end
+
+    test "adds localized messages", %{conn: conn, notification: notification} do
+      {:ok, show_live, _html} = live(conn, ~p"/admin/notifications/#{notification}")
+
+      assert {:ok, _add_default_locale, html} =
+               show_live
+               |> element("a", "Add default locale")
+               |> render_click()
+               |> follow_redirect(
+                 conn,
+                 ~p"/admin/notifications/#{notification}/messages/new?language=#{notification.default_language}"
+               )
+
+      assert html =~ "New localized message"
+      assert html =~ notification.default_language
+    end
+  end
+
+  describe "Localized Messages" do
+    setup [:create_notification, :create_localized_messages]
+
+    test "Shows localized messages", %{conn: conn, notification: notification} do
+      {:ok, _show_live, html} = live(conn, ~p"/admin/notifications/#{notification}")
+      assert html =~ "Show Mail"
+      assert html =~ notification.localized_emails |> Enum.at(0) |> Map.get(:subject)
     end
   end
 end

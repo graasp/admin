@@ -90,7 +90,7 @@ defmodule AdminWeb.NotificationMessageLive.Form do
     preview_html = render_email_preview(changeset)
 
     socket
-    |> assign(:page_title, "New Mailing")
+    |> assign(:page_title, "New localized message")
     |> assign(:localized_email, localized_email)
     |> assign(:form, changeset)
     |> assign(:preview_html, preview_html)

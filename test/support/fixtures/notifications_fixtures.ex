@@ -19,4 +19,17 @@ defmodule Admin.NotificationsFixtures do
     {:ok, notification} = Admin.Notifications.create_notification(scope, attrs)
     notification
   end
+
+  def localized_messages_fixture(scope, notification, attrs \\ %{}) do
+    attrs =
+      Enum.into(attrs, %{
+        language: "fr",
+        message: "some message"
+      })
+
+    {:ok, localized_message} =
+      Admin.Notifications.create_localized_email(scope, notification.id, attrs)
+
+    localized_message
+  end
 end

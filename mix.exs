@@ -14,7 +14,13 @@ defmodule Admin.MixProject do
       listeners: [Phoenix.CodeReloader],
       test_coverage: [
         tool: ExCoveralls,
-        ignore_modules: [Admin.Release, AdminWeb.Dev, AdminWeb.DevLive]
+        ignore_modules: [
+          Admin.Release,
+          AdminWeb.Dev,
+          AdminWeb.DevLive,
+          AdminWeb.AnalyticsLive,
+          AdminWeb.Analytics
+        ]
       ],
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/project.plt"}

@@ -80,5 +80,27 @@ defmodule Admin.PublicationsTest do
       published_item = published_item_fixture(scope)
       assert %Ecto.Changeset{} = Publications.change_published_item(scope, published_item)
     end
+
+    test "exists?/1 returns false when item is not published" do
+      assert false == Publications.exists?(Ecto.UUID.generate())
+    end
+
+    test "exists?/1 returns true when item is published" do
+      scope = user_scope_fixture()
+      published_item = published_item_fixture(scope)
+      assert true == Publications.exists?(published_item.id)
+    end
+
+    test "item_exists?/1 returns true when item exists" do
+      scope = user_scope_fixture()
+      item = item_fixture(scope)
+      assert true == Publications.item_exists?(item.id)
+    end
+  end
+
+  describe "featured publications" do
+    test "WIP" do
+      assert [] == Publications.list_featured_published_items()
+    end
   end
 end
