@@ -538,4 +538,44 @@ defmodule Admin.AccountsTest do
       assert member.type == "member"
     end
   end
+
+  describe "get_member!/1" do
+    test "returns member" do
+      member = member_fixture()
+      assert Accounts.get_member!(member.id) == member
+    end
+
+    test "throws for invalid id" do
+      assert_raise Ecto.NoResultsError, fn ->
+        Accounts.get_member!(Ecto.UUID.generate())
+      end
+    end
+  end
+
+  describe "get_member_by_email/1" do
+    test "returns member" do
+      member = member_fixture()
+      assert {:ok, %Accounts.Account{} = res} = Accounts.get_member_by_email(member.email)
+      assert member == res
+    end
+
+    test "returns error for invalid email" do
+      assert {:error, :member_not_found} = Accounts.get_member_by_email("invalid@example.com")
+    end
+  end
+
+  describe "get_members_by_language/1" do
+    test "returns members" do
+      member = member_fixture(%{extra: %{lang: "en"}})
+      assert [res] = Accounts.get_members_by_language("en")
+      # result is a special struct with email, name, and lang fields
+      assert member.email == res.email
+      assert member.name == res.name
+      assert member.extra.lang == res.lang
+    end
+
+    test "returns empty list for invalid language" do
+      assert [] = Accounts.get_members_by_language("invalid")
+    end
+  end
 end

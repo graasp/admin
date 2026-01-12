@@ -64,7 +64,7 @@ defmodule Admin.Publications do
   end
 
   @doc """
-  Checks if a publicaiton exists for the supplied id
+  Checks if a published item exists for the supplied id
   """
   def exists?(id) do
     Repo.exists?(from(p in PublishedItem, where: p.id == ^id))

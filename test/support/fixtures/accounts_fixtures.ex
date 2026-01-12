@@ -92,7 +92,9 @@ defmodule Admin.AccountsFixtures do
     Enum.into(attrs, %{
       name: unique_user_name(),
       email: unique_user_email(),
-      type: "individual"
+      type: "individual",
+      extra: %{},
+      last_authenticated_at: DateTime.utc_now()
     })
   end
 

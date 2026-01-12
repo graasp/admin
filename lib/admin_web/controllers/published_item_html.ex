@@ -24,7 +24,7 @@ defmodule AdminWeb.PublishedItemHTML do
 
   def publication_row(assigns) do
     ~H"""
-    <div class="flex flex-row justify-between items-start min-w-0 border border-base-300 bg-base-200 p-2 gap-1 rounded">
+    <div class="flex flex-row justify-between items-start min-w-0 border border-base-300 bg-base-100 p-2 gap-1 rounded">
       <div class="flex flex-row shrink-1 gap-2 align-center min-w-0">
         <%= if Map.get(@publication, :thumbnails) |> Map.get(:small) do %>
           <.thumbnail
