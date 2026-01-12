@@ -1,84 +1,65 @@
 defmodule Admin.Publications.PublicationSearchIndexTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case
+
+  import Mox
 
   alias Admin.Publications.SearchIndex
 
-  setup do
-    # ensure we start with a clean client config
-    Application.delete_env(:admin, :publication_index_http_client)
-    :ok
-  end
+  setup :verify_on_exit!
 
   test "returns error when url is missing" do
-    Application.delete_env(:admin, :publication_index_url)
-    Application.put_env(:admin, :publication_index_header_value, "token")
+    expect(SearchIndexConfigBehaviorMock, :backend_host, fn -> nil end)
 
     assert {:error, :missing_publication_index_url} = SearchIndex.reindex()
   end
 
   test "returns error when header value is missing" do
-    Application.put_env(:admin, :publication_index_url, "http://example")
-    Application.delete_env(:admin, :publication_index_header_value)
+    expect(SearchIndexConfigBehaviorMock, :backend_host, fn -> "http://example" end)
+    expect(SearchIndexConfigBehaviorMock, :publication_reindex_headers, fn -> nil end)
 
-    assert {:error, :missing_publication_index_header_value} = SearchIndex.reindex()
+    assert {:error, :missing_publication_reindex_headers} = SearchIndex.reindex()
   end
 
   test "returns ok on 2xx response" do
-    Application.put_env(:admin, :publication_index_url, "http://example")
-    Application.put_env(:admin, :publication_index_header_value, "token")
+    expect(SearchIndexConfigBehaviorMock, :backend_host, fn -> "http://example" end)
+    expect(SearchIndexConfigBehaviorMock, :publication_reindex_headers, fn -> [
+      {"meilisearch-rebuild", "secret"}
+    ] end)
+    expect(SearchIndexConfigBehaviorMock, :publication_reindex_opts, fn -> [plug: {Req.Test, Admin.Publications.SearchIndex}] end)
 
-    client =
-      Module.concat([__MODULE__, :SuccessClient])
-
-    defmodule client do
-      def new(_opts), do: :req_request
-
-      def request(_req) do
-        resp = %Req.Response{status: 200, body: "ok"}
-        {:ok, resp}
-      end
-    end
-
-    Application.put_env(:admin, :publication_index_http_client, client)
+    Req.Test.stub(Admin.Publications.SearchIndex, fn conn ->
+      Req.Test.json(conn, %{"ok" => true})
+    end)
 
     assert {:ok, resp} = SearchIndex.reindex()
     assert resp.status == 200
   end
 
   test "returns error on non-2xx response" do
-    Application.put_env(:admin, :publication_index_url, "http://example")
-    Application.put_env(:admin, :publication_index_header_value, "token")
+    expect(SearchIndexConfigBehaviorMock, :backend_host, fn -> "http://example" end)
+    expect(SearchIndexConfigBehaviorMock, :publication_reindex_headers, fn -> [
+      {"meilisearch-rebuild", "secret"}
+    ] end)
+    expect(SearchIndexConfigBehaviorMock, :publication_reindex_opts, fn -> [plug: {Req.Test, Admin.Publications.SearchIndex}] end)
 
-    client = Module.concat([__MODULE__, :BadResponseClient])
-
-    defmodule client do
-      def new(_opts), do: :req_request
-
-      def request(_req) do
-        resp = %Req.Response{status: 500, body: "nope"}
-        {:ok, resp}
-      end
-    end
-
-    Application.put_env(:admin, :publication_index_http_client, client)
+    Req.Test.stub(Admin.Publications.SearchIndex, fn conn ->
+      Plug.Conn.send_resp(conn, 500, "nope")
+    end)
 
     assert {:error, 500} = SearchIndex.reindex()
   end
 
   test "returns error tuple when client errors" do
-    Application.put_env(:admin, :publication_index_url, "http://example")
-    Application.put_env(:admin, :publication_index_header_value, "token")
+    expect(SearchIndexConfigBehaviorMock, :backend_host, fn -> "http://example" end)
+    expect(SearchIndexConfigBehaviorMock, :publication_reindex_headers, fn -> [
+      {"meilisearch-rebuild", "secret"}
+    ] end)
+    expect(SearchIndexConfigBehaviorMock, :publication_reindex_opts, fn -> [plug: {Req.Test, Admin.Publications.SearchIndex}] end)
 
-    client = Module.concat([__MODULE__, :ErrClient])
+    Req.Test.stub(Admin.Publications.SearchIndex, fn conn ->
+      Req.Test.transport_error(conn, :econnrefused)
+    end)
 
-    defmodule client do
-      def new(_opts), do: :req_request
-
-      def request(_req), do: {:error, :econnrefused}
-    end
-
-    Application.put_env(:admin, :publication_index_http_client, client)
-
-    assert {:error, :econnrefused} = SearchIndex.reindex()
+    assert {:error, 500} = SearchIndex.reindex()
   end
 end

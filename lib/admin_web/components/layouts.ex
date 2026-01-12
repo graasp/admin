@@ -214,7 +214,7 @@ defmodule AdminWeb.Layouts do
                     <.link navigate={~p"/admin/published_items/featured"}>Featured</.link>
                   </li>
                   <li>
-                    <.link navigate={~p"/published_items/search_index"}>Search Index</.link>
+                    <.link navigate={~p"/admin/published_items/search_index"}>Search Index</.link>
                   </li>
                 </ul>
               </details>
