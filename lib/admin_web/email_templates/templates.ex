@@ -11,6 +11,7 @@ defmodule AdminWeb.EmailTemplates do
   """
 
   use AdminWeb, :html
+
   import Phoenix.Template, only: [render_to_string: 4]
 
   embed_templates "templates_html/*"

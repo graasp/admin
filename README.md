@@ -118,6 +118,46 @@ This repo simply builds the docker images and pushes them to the private ECR reg
 
 Please checkout [the setup docs](./docs/setup.md) for more information on how to bootstrap a server to deploy your app in production.
 
+## Translations
+
+This project uses [gettext](https://hexdocs.pm/gettext/Gettext.html) for translations.
+Gettext works by extracting strings from the code and storing them in a `.pot` file. This file is the template and should not be modified directly.
+Active translations are stored in `.po` files. These are the files that translators need to work on.
+
+Gettext allows to group translations by domain. This is useful to separate translations for different parts of the application. The `default` domain is used when nothing is specified.
+
+Gettext allows to define multiple backends. This allows to separate translations for different concerns. In our application, we have the application UI and the email templates. Since the user's interface can be in a different language than the email template, we use two backends: `AdminWeb.Gettext` for the UI and `AdminWeb.EmailTemplates.Gettext` for the email templates. This allows us to set a locale for each backend independently.
+
+The UI translations are stored in `priv/gettext/*`. The email template translations are stored in `priv/gettext_email_templates/*`.
+
+The next sections describe how to work with translations. A commodity mix alias is provided to make it easier to update and merge translations: `mix i18n`.
+
+### Extracting strings from code
+
+To extract translation strings from the code, run `mix gettext.extract`.
+
+The message strings should be literal strings solvable at compile time.
+
+### Translating strings
+
+Translated message strings are stored in `.po` files. The language specific translation files are stored in `admin/priv/gettext/<lang>/LC_MESSAGES/<domain>.po`.
+For example, the `en` (English) translations for the `default` domain are stored in `admin/priv/gettext/en/LC_MESSAGES/default.po`.
+To sync the translations, run `mix gettext.merge priv/gettext` and `mix gettext.merge priv/gettext_email_templates`.
+
+### Adding new languages
+
+To support a new language, create a new folder in `priv/gettext` then run `mix gettext.merge priv/gettext`.
+Do the same for `priv/gettext_email_templates`.
+
+### Correctly extracting strings from MJML-enabled templates
+
+Email templates under `lib/admin_web/email_templates/templates_html` are MJML-enabled. In order for gettext to correctly extract the translation strings at compile time we need to:
+
+- include `<% use Gettext, backend: AdminWeb.EmailTemplates.Gettext %>` at the top of the template file.
+- use the `gettext` macro with literal strings in the template body
+
+This should allow to correctly extract the translation strings at compile time. It can be verified by adding a new string to a template and running `mix gettext.extract` then `mix gettext.merge priv/gettext_email_templates`.
+
 ## Common commands
 
 Checkout [the memento](./docs/memento.md) for an overview of helpful commands for managing the project (deployment and development).

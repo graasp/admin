@@ -1,3 +1,4 @@
+<% use Gettext, backend: AdminWeb.EmailTemplates.Gettext %>
 <.layout title="Graasp">
   <mj-column border-radius="10px">
     <mj-text>
@@ -22,10 +23,8 @@
   <:footer>
     <mj-column>
       <mj-text align="center" color="#aaa">
-        {gettext("You are receiving this email because you have an account on %{link}.",
-          link:
-            Phoenix.HTML.raw("<a style=\"color: #aaa\" href=\"https://graasp.org\">Graasp</a>")
-        )}
+        {gettext("You are receiving this email because you have an account on Graasp: ")}
+        <a style="color: #aaa" href="https://graasp.org">https://graasp.org</a>
       </mj-text>
       <mj-text align="center" color="#aaa">
         Graasp Association, Valais, Switzerland

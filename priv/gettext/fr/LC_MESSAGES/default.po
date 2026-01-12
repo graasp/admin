@@ -23,22 +23,6 @@ msgstr "Actions"
 msgid "Attempting to reconnect"
 msgstr "Essai de reconnection"
 
-#: lib/admin/accounts/user_notifier.ex:103
-#, elixir-autogen, elixir-format
-msgid "Graasp.org is a learning experience platform."
-msgstr "Graasp.org est une plateforme d'expérience d'apprentissage."
-
-#: lib/admin/accounts/user_notifier.ex:96
-#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:4
-#, elixir-autogen, elixir-format
-msgid "Hi %{name},"
-msgstr "Bonjour %{name},"
-
-#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:14
-#, elixir-autogen, elixir-format
-msgid "In case you can not click the button above here is the link:"
-msgstr "Si vous ne pouvez pas cliquer sur le bouton ci-dessus, voici le lien :"
-
 #: lib/admin_web/components/layouts.ex:82
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
@@ -48,11 +32,6 @@ msgstr "Quelque chose s'est mal passé !"
 #, elixir-autogen, elixir-format
 msgid "We can't find the internet"
 msgstr "Nous ne pouvons pas trouver l'internet"
-
-#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:25
-#, elixir-autogen, elixir-format
-msgid "You are receiving this email because you have an account on %{link}."
-msgstr "Vous recevez cet e-mail car vous avez un compte sur %{link}."
 
 #: lib/admin_web/components/core_components.ex:78
 #, elixir-autogen, elixir-format

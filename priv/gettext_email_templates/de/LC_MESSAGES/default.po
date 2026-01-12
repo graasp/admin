@@ -8,32 +8,26 @@
 ### to merge POT files into PO files.
 msgid ""
 msgstr ""
-"Language: en\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/admin_web/components/core_components.ex:351
-#: lib/admin_web/live/notification_live/show.ex:41
+#: lib/admin/accounts/user_notifier.ex:98
 #, elixir-autogen, elixir-format
-msgid "Actions"
+msgid "Graasp.org is a learning experience platform."
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:75
-#: lib/admin_web/components/layouts.ex:87
+#: lib/admin/accounts/user_notifier.ex:91
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:5
 #, elixir-autogen, elixir-format
-msgid "Attempting to reconnect"
+msgid "Hi %{name},"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:82
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:15
 #, elixir-autogen, elixir-format
-msgid "Something went wrong!"
+msgid "In case you can not click the button above here is the link:"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:70
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:26
 #, elixir-autogen, elixir-format
-msgid "We can't find the internet"
-msgstr ""
-
-#: lib/admin_web/components/core_components.ex:78
-#, elixir-autogen, elixir-format
-msgid "close"
+msgid "You are receiving this email because you have an account on Graasp: "
 msgstr ""
