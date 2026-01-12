@@ -52,6 +52,7 @@ defmodule Admin.MailingWorker do
       audience
       |> Enum.with_index(1)
       |> Enum.each(fn {user, index} ->
+        Gettext.put_locale(AdminWeb.Gettext, user.lang)
         send_local_email(scope, user, notification)
 
         current_progress = trunc(index / length(audience) * 100)

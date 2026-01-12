@@ -4,6 +4,8 @@ defmodule Admin.Accounts.UserNotifier do
   """
   import Swoosh.Email
 
+  use Gettext, backend: AdminWeb.Gettext
+
   alias Admin.Accounts.Account
   alias Admin.Accounts.User
   alias Admin.Mailer
@@ -78,25 +80,34 @@ defmodule Admin.Accounts.UserNotifier do
         button_url: button_url
       })
 
-    deliver(
-      user.email,
-      subject,
-      html_body,
-      """
+    current_locale = Gettext.get_locale()
+    # override locale
+    Gettext.put_locale(Admin.Gettext, user.lang)
 
-      ==============================
+    res =
+      deliver(
+        user.email,
+        subject,
+        html_body,
+        """
 
-      Hi #{user.name},
+        ==============================
 
-      #{message_text}
+        #{gettext("Hi %{name}", name: user.name)}
 
-      #{button_text} #{button_url}
+        #{message_text}
 
-      ==============================
-      #{@footer}
-      """,
-      reply_to: @support_email
-    )
+        #{button_text} #{button_url}
+
+        ==============================
+        #{gettext(@footer)}
+        """,
+        reply_to: @support_email
+      )
+
+    # restore locale
+    Gettext.put_locale(Admin.Gettext, current_locale)
+    res
   end
 
   @doc """

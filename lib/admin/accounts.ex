@@ -386,6 +386,9 @@ defmodule Admin.Accounts do
     end
   end
 
+  @type audience :: %{name: String.t(), email: String.t(), lang: String.t()}
+
+  @spec get_active_members() :: [audience]
   def get_active_members do
     Repo.all(
       from(m in Account,
@@ -397,6 +400,7 @@ defmodule Admin.Accounts do
     )
   end
 
+  @spec get_members_by_language(String.t()) :: [audience]
   def get_members_by_language(language) do
     Repo.all(
       from(m in Account,
