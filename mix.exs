@@ -12,7 +12,10 @@ defmodule Admin.MixProject do
       deps: deps(),
       compilers: [:phoenix_live_view] ++ Mix.compilers(),
       listeners: [Phoenix.CodeReloader],
-      test_coverage: [tool: ExCoveralls, ignore_modules: [Admin.Release, AdminWeb.Dev]],
+      test_coverage: [
+        tool: ExCoveralls,
+        ignore_modules: [Admin.Release, AdminWeb.Dev, AdminWeb.DevLive]
+      ],
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/project.plt"}
       ]
