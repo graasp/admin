@@ -6,6 +6,8 @@ defmodule Admin.Release do
   @app :admin
   require Logger
 
+  alias Admin.Tools.Uptime
+
   @doc """
   Migrate the database. Defaults to migrating to the latest, `[all: true]`
   Also accepts `[step: 1]` or `[to: 20200118045751]`
@@ -33,7 +35,7 @@ defmodule Admin.Release do
   end
 
   def uptime do
-    Admin.Tools.Uptime.print()
+    Uptime.print()
   end
 
   defp print_migrations_for(repo) do

@@ -11,7 +11,7 @@ defmodule Admin.Tools.Uptime do
   end
 
   defp hh_mm_ss(seconds) do
-    {days, seconds} = div_rem(seconds, 86400)
+    {days, seconds} = div_rem(seconds, 86_400)
     {hours, seconds} = div_rem(seconds, 3600)
     {minutes, seconds} = div_rem(seconds, 60)
     "#{days}d #{hours}h #{minutes}m #{seconds}s"
