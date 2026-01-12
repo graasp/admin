@@ -1,6 +1,6 @@
 defmodule Admin.Release do
   @moduledoc """
-  Used for executing DB release tasks when run in production without Mix
+  Used for executing administration tasks over the DB run in production without Mix
   installed.
   """
   @app :admin
@@ -30,6 +30,10 @@ defmodule Admin.Release do
     load_app()
 
     for repo <- repos(), do: print_migrations_for(repo)
+  end
+
+  def uptime do
+    Admin.Tools.Uptime.print()
   end
 
   defp print_migrations_for(repo) do
