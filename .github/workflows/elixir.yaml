@@ -142,6 +142,9 @@ jobs:
         # --format dialyxir allows the raw GitHub actions logs to be useful because they have the full warning printed
         run: mix dialyzer --format github --format dialyxir --ignore-exit-status
 
+      - name: Check translations are extracted
+        run: mix gettext.extract --check-up-to-date
+
       - name: Compute coverage
         run: mix coveralls.html
 
