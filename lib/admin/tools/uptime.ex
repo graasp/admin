@@ -6,8 +6,7 @@ defmodule Admin.Tools.Uptime do
   def print do
     # get the total time from the Erlang VM
     {total_milisecond, _} = :erlang.statistics(:wall_clock)
-    formatted_uptime = hh_mm_ss(div(total_milisecond, 1_000))
-    IO.puts("Uptime: #{formatted_uptime}")
+    hh_mm_ss(div(total_milisecond, 1_000))
   end
 
   defp hh_mm_ss(seconds) do
