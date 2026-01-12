@@ -36,37 +36,34 @@ defmodule Admin.Accounts.Account do
   defp maybe_validate_lang(changeset, field) when is_atom(field) do
     map = get_field(changeset, field)
 
-    # Skip validation if nil or empty map
-    if is_nil(map) or (is_map(map) and map == %{}) do
-      changeset
-    else
+    cond do
+      # Skip validation if nil or empty map
+      is_nil(map) or (is_map(map) and map == %{}) ->
+        changeset
+
       # If provided but not a map, type error
-      if not is_map(map) do
+      not is_map(map) ->
         add_error(changeset, field, "must be a map")
-      else
-        # Support both string and atom keys; validate only if present
-        value =
-          cond do
-            Map.has_key?(map, "lang") -> map["lang"]
-            Map.has_key?(map, :lang) -> map[:lang]
-            true -> :no_lang_key
-          end
 
-        case value do
-          :no_lang_key ->
-            # Key absent is OK
-            changeset
+      true ->
+        map_contains_string(changeset, field, map, :lang)
+    end
+  end
 
-          v when is_binary(v) and v != "" ->
-            changeset
+  defp map_contains_string(changeset, field, map, key) do
+    case Map.get(map, key) do
+      nil ->
+        # Key absent is OK
+        changeset
 
-          v when is_binary(v) ->
-            add_error(changeset, field, "\"lang\" must be a non-empty string")
+      v when is_binary(v) and v != "" ->
+        changeset
 
-          _ ->
-            add_error(changeset, field, "\"lang\" must be a string")
-        end
-      end
+      v when is_binary(v) ->
+        add_error(changeset, field, "\"lang\" must be a non-empty string")
+
+      _ ->
+        add_error(changeset, field, "\"lang\" must be a string")
     end
   end
 end
