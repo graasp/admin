@@ -47,6 +47,19 @@ defmodule AdminWeb.Layouts do
     """
   end
 
+  def landing(assigns) do
+    ~H"""
+    <.landing_menu {assigns} />
+    <main class="px-4 py-8 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl space-y-4">
+        {render_slot(@inner_block)}
+      </div>
+    </main>
+
+    <.flash_group flash={@flash} />
+    """
+  end
+
   @doc """
   Shows the flash group with standard titles and content.
 
@@ -256,6 +269,61 @@ defmodule AdminWeb.Layouts do
           <% end %>
         </div>
         <.theme_toggle />
+      </div>
+    </div>
+    """
+  end
+
+  def landing_menu(assigns) do
+    ~H"""
+    <div class="navbar bg-base-100 shadow-sm">
+      <div class="w-full flex flex-row lg:max-w-screen-lg lg:mx-auto ">
+        <div class="navbar-start ">
+          <div class="dropdown">
+            <.burger_menu />
+            <ul
+              tabindex="0"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <.link navigate={~p"/admin/dashboard"}>Admin</.link>
+              </li>
+
+              <div class="divider m-0"></div>
+              <div class="flex flex-col items-center gap-1">
+                <%= if @current_scope do %>
+                  <.link class="btn btn-soft" navigate="/builder">
+                    Start Here
+                  </.link>
+                <% else %>
+                  <.link class="btn btn-soft" href="/auth/login">
+                    Log in
+                  </.link>
+                <% end %>
+              </div>
+            </ul>
+          </div>
+          <.link navigate={~p"/admin/dashboard"} class="flex flex-row items-center gap-2 text-primary">
+            <.logo size={44} fill="var(--color-primary)" />
+            <span class="text-2xl font-semibold">Graasp</span>
+          </.link>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal px-1">
+            <li><.link navigate={~p"/admin/dashboard"}>Admin</.link></li>
+          </ul>
+        </div>
+        <div class="navbar-end gap-1">
+          <div class="hidden items-center lg:flex gap-2">
+            <%= if @current_scope do %>
+              <.link class="btn btn-primary" navigate="/builder">
+                Continue
+              </.link>
+            <% else %>
+              <.link class="btn btn-primary" href="/auth/login">Log in</.link>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
     """
