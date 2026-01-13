@@ -1,5 +1,32 @@
 # Changelog
 
+## [0.5.0](https://github.com/graasp/admin/compare/v0.4.1...v0.5.0) (2026-01-13)
+
+
+### Features
+
+* add improved mailing ([#102](https://github.com/graasp/admin/issues/102)) ([5b6e0cc](https://github.com/graasp/admin/commit/5b6e0ccedc503382f3adeba6d92fad4206bc0457))
+* setup `Gettext` for internationalisation in emails  ([#113](https://github.com/graasp/admin/issues/113)) ([b0450cd](https://github.com/graasp/admin/commit/b0450cdcc281dfa939917a30e1be2b7c69a282d2))
+* single origin ([#106](https://github.com/graasp/admin/issues/106)) ([80213b8](https://github.com/graasp/admin/commit/80213b8d1467a416222bed4339e015b7d77a8924))
+
+
+### Bug Fixes
+
+* add an uptime command ([#115](https://github.com/graasp/admin/issues/115)) ([4695a3f](https://github.com/graasp/admin/commit/4695a3f5997e6f9f17e417a54e0b535412cf0957))
+* credo ([5b6e0cc](https://github.com/graasp/admin/commit/5b6e0ccedc503382f3adeba6d92fad4206bc0457))
+* do not send db event to sentry tracing ([#114](https://github.com/graasp/admin/issues/114)) ([1386a14](https://github.com/graasp/admin/commit/1386a14ef102e23f61d3268fb2f86b4550aa7317))
+* improve mailing with localized langs ([5b6e0cc](https://github.com/graasp/admin/commit/5b6e0ccedc503382f3adeba6d92fad4206bc0457))
+* make improvements ([5b6e0cc](https://github.com/graasp/admin/commit/5b6e0ccedc503382f3adeba6d92fad4206bc0457))
+* make imrpovements ([5b6e0cc](https://github.com/graasp/admin/commit/5b6e0ccedc503382f3adeba6d92fad4206bc0457))
+* make progress and have a working worker ([5b6e0cc](https://github.com/graasp/admin/commit/5b6e0ccedc503382f3adeba6d92fad4206bc0457))
+* update views to use forms ([5b6e0cc](https://github.com/graasp/admin/commit/5b6e0ccedc503382f3adeba6d92fad4206bc0457))
+* work in progress ([5b6e0cc](https://github.com/graasp/admin/commit/5b6e0ccedc503382f3adeba6d92fad4206bc0457))
+
+
+### Chores
+
+* update migrations and merge together to simplify ([#111](https://github.com/graasp/admin/issues/111)) ([8513ad8](https://github.com/graasp/admin/commit/8513ad8998a269e16b229ecbac3c2c066e637678))
+
 ## [0.4.1](https://github.com/graasp/admin/compare/v0.4.0...v0.4.1) (2026-01-05)
 
 
