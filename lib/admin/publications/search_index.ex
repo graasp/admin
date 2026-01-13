@@ -27,7 +27,11 @@ defmodule Admin.Publications.SearchIndexConfigBehaviorImpl do
 
   @impl true
   def publication_reindex_opts do
-    Application.get_env(:admin, :publication_reindex_opts)
+    case Application.get_env(:admin, :publication_reindex_opts) do
+      nil -> []
+      opt when is_list(opt) -> opt
+      other -> [other]
+    end
   end
 end
 
@@ -98,12 +102,7 @@ defmodule Admin.Publications.SearchIndex do
             {:error, :missing_publication_reindex_headers}
 
           headers_list ->
-            opts =
-              case @config.publication_reindex_opts() do
-                nil -> []
-                opt when is_list(opt) -> opt
-                other -> [other]
-              end
+            opts = @config.publication_reindex_opts()
 
             {:ok, "http://#{to_string(url)}/api/items/collections/search/rebuild", headers_list,
              opts}
