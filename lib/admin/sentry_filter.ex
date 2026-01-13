@@ -9,17 +9,17 @@ defmodule Admin.SentryFilter do
     spans = Map.get(event, "spans", [])
     module_opts = Application.get_env(:admin, Admin.SentryFilter, [])
 
-    remove_db_spans = Keyword.get(module_opts, :remove_db_spans, true)
+    keep_db_spans = Keyword.get(module_opts, :keep_db_spans, true)
 
-    filtered_spans = spans |> filter_spans(remove_db_spans)
+    filtered_spans = spans |> process_db_spans(keep_db_spans)
 
     event
     |> Map.put("spans", filtered_spans)
   end
 
-  defp filter_spans(_, false), do: []
+  defp process_db_spans(spans, true), do: spans
 
-  defp filter_spans(spans, true) do
+  defp process_db_spans(spans, false) do
     Enum.reject(spans, fn
       %{"op" => "db"} -> true
       %{:op => "db"} -> true
