@@ -55,8 +55,8 @@ defmodule AdminWeb.NotificationLive.Form do
                 </div>
                 <div class="text-sm hidden" id="toggled-content">
                   <ul class="list-disc list-inside">
-                    <%= for %{name: name, email: email} <- @recipients do %>
-                      <li>{name} ({email})</li>
+                    <%= for %{name: name, email: email, lang: lang} <- @recipients do %>
+                      <li>{name} ({email}) - {lang}</li>
                     <% end %>
                   </ul>
                 </div>

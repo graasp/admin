@@ -305,6 +305,28 @@ defmodule Admin.Notifications do
     end
   end
 
+  @type audience :: %{name: String.t(), email: String.t(), lang: String.t()}
+  @spec get_target_audience(Scope.t(), String.t(), Keyword.t()) ::
+          {:ok, [audience]} | {:error, String.t()}
+  @doc """
+  Get the target audience for a notification.
+
+  The supported target audiences are
+      - `active`
+      - `french`
+      - `graasp_team`
+
+  ## Examples
+
+      iex> get_target_audience(%Scope{}, "active", [])
+      {:ok, [%{name: "John Doe", email: "john@example.com", lang: "en"}]}
+
+      iex> get_target_audience(%Scope{}, "french", [])
+      {:ok, [%{name: "Jean Dupont", email: "jean@example.com", lang: "fr"}]}
+
+      iex> get_target_audience(%Scope{}, "invalid_target", [])
+      {:error, "Invalid target audience"}
+  """
   def get_target_audience(scope, target_audience, opts \\ [])
 
   def get_target_audience(%Scope{} = _scope, "active", opts) do

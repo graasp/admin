@@ -4,6 +4,8 @@ defmodule Admin.Accounts.UserNotifier do
   """
   import Swoosh.Email
 
+  use Gettext, backend: AdminWeb.EmailTemplates.Gettext
+
   alias Admin.Accounts.Account
   alias Admin.Accounts.User
   alias Admin.Mailer
@@ -86,14 +88,14 @@ defmodule Admin.Accounts.UserNotifier do
 
       ==============================
 
-      Hi #{user.name},
+      #{gettext("Hi %{name},", name: user.name)}
 
       #{message_text}
 
       #{button_text} #{button_url}
 
       ==============================
-      #{@footer}
+      #{gettext(@footer)}
       """,
       reply_to: @support_email
     )

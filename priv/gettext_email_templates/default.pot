@@ -1,0 +1,33 @@
+## This file is a PO Template file.
+##
+## "msgid"s here are often extracted from source code.
+## Add new messages manually only if they're dynamic
+## messages that can't be statically extracted.
+##
+## Run "mix gettext.extract" to bring this file up to
+## date. Leave "msgstr"s empty as changing them here has no
+## effect: edit them in PO (.po) files instead.
+#
+msgid ""
+msgstr ""
+
+#: lib/admin/accounts/user_notifier.ex:98
+#, elixir-autogen, elixir-format
+msgid "Graasp.org is a learning experience platform."
+msgstr ""
+
+#: lib/admin/accounts/user_notifier.ex:91
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "Hi %{name},"
+msgstr ""
+
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:15
+#, elixir-autogen, elixir-format
+msgid "In case you can not click the button above here is the link:"
+msgstr ""
+
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:26
+#, elixir-autogen, elixir-format
+msgid "You are receiving this email because you have an account on Graasp: "
+msgstr ""

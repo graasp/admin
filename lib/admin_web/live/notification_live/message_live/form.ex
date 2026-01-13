@@ -72,6 +72,11 @@ defmodule AdminWeb.NotificationMessageLive.Form do
 
   def apply_action(socket, :new, params) do
     localized_email = %LocalizedEmail{}
+    # language supplied in the params of the url
+    language = Map.get(params, "language", "")
+
+    # set the locale for the email translation
+    Gettext.put_locale(AdminWeb.EmailTemplates.Gettext, language)
 
     changeset =
       Notifications.change_localized_email(
@@ -83,7 +88,7 @@ defmodule AdminWeb.NotificationMessageLive.Form do
           "message" => "",
           "button_text" => "",
           "button_url" => "",
-          "language" => Map.get(params, "language", "")
+          "language" => language
         }
       )
 
@@ -103,6 +108,9 @@ defmodule AdminWeb.NotificationMessageLive.Form do
         socket.assigns.notification.id,
         lang
       )
+
+    # set the locale for the email translation
+    Gettext.put_locale(AdminWeb.EmailTemplates.Gettext, lang)
 
     changeset =
       Notifications.change_localized_email(
@@ -131,6 +139,11 @@ defmodule AdminWeb.NotificationMessageLive.Form do
         params
       )
       |> Map.put(:action, :validate)
+
+    # get updated value
+    language = Ecto.Changeset.get_field(changeset, :language)
+    # set the locale for the email translation
+    Gettext.put_locale(AdminWeb.EmailTemplates.Gettext, language)
 
     preview_html = render_email_preview(changeset)
 

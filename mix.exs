@@ -153,10 +153,20 @@ defmodule Admin.MixProject do
         "phx.digest"
       ],
       precommit: ["compile --warning-as-errors", "deps.unlock --unused", "format", "test"],
+      # checking code quality
       "check.format": ["format --check-formatted"],
       "check.credo": ["credo --strict"],
       "check.compile": ["compile --warning-as-errors"],
-      check: ["check.compile", "format", "check.credo"]
+      check: ["check.compile", "format", "check.credo"],
+      # handling translations
+      i18n: [
+        # 1. extract translation strings from code
+        "gettext.extract",
+        # 2. update application translations
+        "gettext.merge priv/gettext",
+        # 3. update email template translations
+        "gettext.merge priv/gettext_email_templates"
+      ]
     ]
   end
 end
