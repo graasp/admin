@@ -26,6 +26,11 @@ defmodule AdminWeb.Router do
     get "/health", HealthController, :up
   end
 
+  scope "/", AdminWeb do
+    pipe_through :browser
+    get "/", LandingController, :index
+  end
+
   scope "/admin", AdminWeb do
     pipe_through :browser
 
