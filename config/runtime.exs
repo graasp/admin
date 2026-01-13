@@ -162,5 +162,4 @@ if config_env() == :prod do
 
   # override the ses region to use Frankfurt since SES does not exist in eu-central-2
   config :ex_aws, :ses, region: "eu-central-1"
-
 end

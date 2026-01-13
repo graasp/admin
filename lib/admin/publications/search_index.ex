@@ -39,7 +39,11 @@ defmodule Admin.Publications.SearchIndex do
 
   require Logger
 
-  @config Application.compile_env(:admin, [:test_doubles, :search_config],  Admin.Publications.SearchIndexConfigBehaviorImpl)
+  @config Application.compile_env(
+            :admin,
+            [:test_doubles, :search_config],
+            Admin.Publications.SearchIndexConfigBehaviorImpl
+          )
 
   @doc """
   Trigger a reindex by calling the configured endpoint with the configured header.
@@ -48,7 +52,6 @@ defmodule Admin.Publications.SearchIndex do
   """
   def reindex do
     with {:ok, url, headers, opts} <- build_reindex_request() do
-
       req_opts = [method: :get, url: url, headers: headers] ++ opts
       req = Req.new(req_opts)
 
@@ -102,7 +105,8 @@ defmodule Admin.Publications.SearchIndex do
                 other -> [other]
               end
 
-            {:ok, "http://#{to_string(url)}/api/items/collections/search/rebuild", headers_list, opts}
+            {:ok, "http://#{to_string(url)}/api/items/collections/search/rebuild", headers_list,
+             opts}
         end
     end
   end
