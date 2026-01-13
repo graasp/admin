@@ -22,7 +22,7 @@ config :sentry,
   release: Mix.Project.config()[:version],
   enable_source_code_context: true,
   root_source_code_paths: [File.cwd!()],
-  # sample 10% of transactions
+  # sample 20% of transactions
   traces_sample_rate: 0.2,
   integrations: [
     telemetry: [
