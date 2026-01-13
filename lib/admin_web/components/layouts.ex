@@ -165,7 +165,9 @@ defmodule AdminWeb.Layouts do
                 <ul class="p-2">
                   <li><.link navigate={~p"/admin/published_items"}>Recent</.link></li>
                   <li><.link navigate={~p"/admin/published_items/featured"}>Featured</.link></li>
-                  <li><.link navigate={~p"/admin/published_items/search_index"}>Search Index</.link></li>
+                  <li>
+                    <.link navigate={~p"/admin/published_items/search_index"}>Search Index</.link>
+                  </li>
                 </ul>
               </li>
               <li><.link navigate={~p"/admin/publishers"}>Apps</.link></li>
