@@ -1,10 +1,12 @@
 defmodule Admin.Release do
   @moduledoc """
-  Used for executing DB release tasks when run in production without Mix
+  Used for executing administration tasks over the DB run in production without Mix
   installed.
   """
   @app :admin
   require Logger
+
+  alias Admin.Tools.Uptime
 
   @doc """
   Migrate the database. Defaults to migrating to the latest, `[all: true]`
@@ -30,6 +32,10 @@ defmodule Admin.Release do
     load_app()
 
     for repo <- repos(), do: print_migrations_for(repo)
+  end
+
+  def uptime do
+    IO.puts(Uptime.print())
   end
 
   defp print_migrations_for(repo) do
