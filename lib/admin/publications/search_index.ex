@@ -2,6 +2,9 @@ defmodule Admin.Publications.SearchIndexConfig.Behaviour do
   @moduledoc """
   Behaviour defining configuration accessors for the Publication Search Index.
 
+  These are defined as a behaviour to be able to use the Mox library in tests.
+  This way we can set different values without tempering with the application
+  config which is a bad idea if you want to run tests in parallel.
   """
   @callback backend_host() :: String.t()
   @callback publication_reindex_headers() :: term()
@@ -9,7 +12,7 @@ end
 
 defmodule Admin.Publications.SearchIndexConfig do
   @moduledoc """
-  Default implementation of the SearchIndexConfigBehavior that reads from application config.
+  Default implementation of the `SearchIndexConfig.Behaviour` that reads from the application config.
 
   """
   @behaviour Admin.Publications.SearchIndexConfig.Behaviour
@@ -27,12 +30,13 @@ end
 
 defmodule Admin.Publications.SearchIndex do
   @moduledoc """
-  Utilities to trigger a publication reindex on an external indexing endpoint.
+  Module handling search index management allowing for example to trigger a publication reindex on an external indexing endpoint.
 
   """
 
   require Logger
 
+  # get the search index config. This allows to use test doubles.
   @config Application.compile_env(
             :admin,
             [:test_doubles, :search_config],
