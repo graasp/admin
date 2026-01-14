@@ -14,16 +14,10 @@ defmodule AdminWeb.PublicationIndexLiveTest do
   end
 
   test "shows error when reindex fails", %{conn: conn} do
-    expect(SearchIndexConfigBehaviorMock, :backend_host, fn -> "http://example" end)
+    expect(SearchIndexConfigMock, :backend_host, fn -> "example.com" end)
 
-    expect(SearchIndexConfigBehaviorMock, :publication_reindex_headers, fn ->
-      [
-        {"meilisearch-rebuild", "secret"}
-      ]
-    end)
-
-    expect(SearchIndexConfigBehaviorMock, :publication_reindex_opts, fn ->
-      [plug: {Req.Test, Admin.Publications.SearchIndex}]
+    expect(SearchIndexConfigMock, :publication_reindex_headers, fn ->
+      [{"meilisearch-rebuild", "secret"}]
     end)
 
     Req.Test.stub(Admin.Publications.SearchIndex, fn conn ->
@@ -38,16 +32,10 @@ defmodule AdminWeb.PublicationIndexLiveTest do
   end
 
   test "show waitingstatus on success", %{conn: conn} do
-    expect(SearchIndexConfigBehaviorMock, :backend_host, fn -> "http://example" end)
+    expect(SearchIndexConfigMock, :backend_host, fn -> "example.com" end)
 
-    expect(SearchIndexConfigBehaviorMock, :publication_reindex_headers, fn ->
-      [
-        {"meilisearch-rebuild", "secret"}
-      ]
-    end)
-
-    expect(SearchIndexConfigBehaviorMock, :publication_reindex_opts, fn ->
-      [plug: {Req.Test, Admin.Publications.SearchIndex}]
+    expect(SearchIndexConfigMock, :publication_reindex_headers, fn ->
+      [{"meilisearch-rebuild", "secret"}]
     end)
 
     Req.Test.stub(Admin.Publications.SearchIndex, fn conn ->

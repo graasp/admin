@@ -53,4 +53,8 @@ config :ex_aws, :s3,
 # Needed in order for the compiled module to use the Mocked module
 config :admin, :test_doubles,
   ex_aws: ExAwsMock,
-  search_config: SearchIndexConfigBehaviorMock
+  search_config: SearchIndexConfigMock
+
+config :admin, :publication_reindex_opts,
+  plug: {Req.Test, Admin.Publications.SearchIndex},
+  retry: false

@@ -146,6 +146,10 @@ if config_env() == :prod do
   config :admin, base_host: base_host
   config :admin, backend_host: base_host
 
+  config :admin,
+         :publication_reindex_opts,
+         headers: [{"meilisearch-rebuild", System.get_env("MEILISEARCH_REBUILD_SECRET")}]
+
   # Config the File Items bucket name
   config :admin, :file_items_bucket, System.get_env("FILE_ITEMS_BUCKET_NAME", "file-items")
 

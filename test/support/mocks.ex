@@ -1,2 +1,2 @@
 Mox.defmock(ExAwsMock, for: ExAws.Behaviour)
-Mox.defmock(SearchIndexConfigBehaviorMock, for: Admin.Publications.SearchIndexConfigBehavior)
+Mox.defmock(SearchIndexConfigMock, for: Admin.Publications.SearchIndexConfig.Behaviour)

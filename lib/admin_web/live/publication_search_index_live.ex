@@ -7,27 +7,29 @@ defmodule AdminWeb.PublicationSearchIndexLive do
   def render(assigns) do
     ~H"""
     <Layouts.admin flash={@flash} current_scope={@current_scope}>
-      <div class="p-6">
-        <.header>
-          Index Status
-          <:subtitle>
-            You can start a reindex of the library index. This is useful if your search engine is not up to date.
-          </:subtitle>
-        </.header>
+      <.header>
+        Index Status
+        <:subtitle>
+          You can start a reindex of the library index. This is useful if your search engine is not up to date.
+        </:subtitle>
+      </.header>
+
+      <div class="flex flex-col gap-2">
         <div role="alert" class="alert alert-warning">
           <.icon name="hero-exclamation-triangle" />
           <span>This operation is heavy on the database and might take some time to complete.</span>
         </div>
-        <p class="my-4">{@status || ""}</p>
-        <div>
-          <button
-            phx-click="reindex"
-            class="px-4 py-2 disabled:bg-gray-600 bg-blue-600 text-white rounded"
-            disabled={@indexing}
-          >
-            Start Reindex
-          </button>
-        </div>
+
+        <p class="">{@status || ""}</p>
+
+        <.button
+          variant="primary"
+          class="w-fit"
+          phx-click="reindex"
+          disabled={@indexing}
+        >
+          Start Reindex
+        </.button>
       </div>
     </Layouts.admin>
     """
