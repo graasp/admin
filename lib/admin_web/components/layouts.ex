@@ -50,8 +50,8 @@ defmodule AdminWeb.Layouts do
   def landing(assigns) do
     ~H"""
     <.landing_menu {assigns} />
-    <main class="px-4 py-8 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-4xl space-y-4">
+    <main class="">
+      <div class="mx-auto">
         {render_slot(@inner_block)}
       </div>
     </main>
@@ -280,6 +280,9 @@ defmodule AdminWeb.Layouts do
               class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
+                <.link navigate="/library">Library</.link>
+              </li>
+              <li>
                 <.link navigate={~p"/admin/dashboard"}>Admin</.link>
               </li>
 
@@ -304,6 +307,9 @@ defmodule AdminWeb.Layouts do
         </div>
         <div class="navbar-center hidden lg:flex">
           <ul class="menu menu-horizontal px-1">
+            <li><.link navigate="/library">Library</.link></li>
+          </ul>
+          <ul class="menu menu-horizontal px-1">
             <li><.link navigate={~p"/admin/dashboard"}>Admin</.link></li>
           </ul>
         </div>
@@ -311,7 +317,7 @@ defmodule AdminWeb.Layouts do
           <div class="hidden items-center lg:flex gap-2">
             <%= if @current_scope do %>
               <.link class="btn btn-primary" navigate="/builder">
-                Continue
+                Get Started
               </.link>
             <% else %>
               <.link class="btn btn-primary" href="/auth/login">Log in</.link>
