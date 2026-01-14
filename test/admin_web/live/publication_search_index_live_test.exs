@@ -5,13 +5,7 @@ defmodule AdminWeb.PublicationIndexLiveTest do
 
   import Mox
 
-  setup :verify_on_exit!
-
-  setup %{conn: conn} do
-    %{conn: conn} = register_and_log_in_user(%{conn: conn})
-    :ok
-    {:ok, conn: conn}
-  end
+  setup [:verify_on_exit!, :register_and_log_in_user]
 
   test "shows error when reindex fails", %{conn: conn} do
     expect(SearchIndexConfigMock, :backend_host, fn -> "example.com" end)
