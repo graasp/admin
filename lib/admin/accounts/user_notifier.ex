@@ -16,7 +16,7 @@ defmodule Admin.Accounts.UserNotifier do
   @content_moderation_email {"Graasp Content Moderation", "content-moderation@graasp.org"}
   @support_email {"Graasp Support", "support@graasp.org"}
   @admin_email {"Graasp Admin", "admin@graasp.org"}
-  @noreply_email {"Graasp No-Reply", "noreply@graasp.org"}
+  @noreply_email {"Graasp", "noreply@graasp.org"}
 
   # Delivers the email using the application mailer.
   defp deliver(
