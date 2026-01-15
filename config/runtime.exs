@@ -143,7 +143,16 @@ if config_env() == :prod do
       true -> "graasp.org"
     end
 
+  # A note about these configurations is made in the dev.exs file.
+  # TLDR: We need to use 2 configs for now in development because of the vite proxy limitations.
+  #       In production these configs have the same value.
   config :admin, base_host: base_host
+  config :admin, backend_origin: "https://#{base_host}"
+
+  # Get the value of the header secret to communicate with Meilisearch
+  config :admin, :publication_reindex_headers, [
+    {"meilisearch-rebuild", System.get_env("MEILISEARCH_REBUILD_SECRET")}
+  ]
 
   # Config the File Items bucket name
   config :admin, :file_items_bucket, System.get_env("FILE_ITEMS_BUCKET_NAME", "file-items")

@@ -78,6 +78,7 @@ defmodule AdminWeb.Router do
 
       # published_items
       live "/published_items/:id/unpublish", PublishedItemLive.Unpublish, :unpublish
+      live "/published_items/search_index", PublicationSearchIndexLive, :index
 
       # apps
       scope "/apps" do
