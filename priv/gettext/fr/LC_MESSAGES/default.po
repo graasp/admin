@@ -21,12 +21,12 @@ msgstr "Actions"
 #: lib/admin_web/components/layouts.ex:87
 #, elixir-autogen, elixir-format
 msgid "Attempting to reconnect"
-msgstr "Essai de reconnection"
+msgstr "Tentative de reconnexion"
 
 #: lib/admin_web/components/layouts.ex:82
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
-msgstr "Quelque chose s'est mal passé !"
+msgstr "Quelque chose a mal fonctionné !"
 
 #: lib/admin_web/components/layouts.ex:70
 #, elixir-autogen, elixir-format
