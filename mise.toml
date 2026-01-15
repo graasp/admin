@@ -8,8 +8,11 @@ aws logs tail '/ecs/admin' --follow --profile $1
 '''
 
 [tasks.restart]
+usage = '''
+arg "profile" "AWS profile name" default="dev"
+'''
 run = '''
-aws ecs update-service --cluster graasp-$1 --service admin --force-new-deployment --profile $1
+aws ecs update-service --cluster graasp-$usage_profile --service admin --force-new-deployment --profile $usage_profile
 '''
 
 [tasks.remote]
