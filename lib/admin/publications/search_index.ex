@@ -1,19 +1,21 @@
-defmodule Admin.Publications.SearchIndexConfigBehavior do
+defmodule Admin.Publications.SearchIndexConfig.Behaviour do
   @moduledoc """
   Behaviour defining configuration accessors for the Publication Search Index.
 
+  These are defined as a behaviour to be able to use the Mox library in tests.
+  This way we can set different values without tempering with the application
+  config which is a bad idea if you want to run tests in parallel.
   """
   @callback backend_host() :: String.t()
   @callback publication_reindex_headers() :: term()
-  @callback publication_reindex_opts() :: term()
 end
 
-defmodule Admin.Publications.SearchIndexConfigBehaviorImpl do
+defmodule Admin.Publications.SearchIndexConfig do
   @moduledoc """
-  Default implementation of the SearchIndexConfigBehavior that reads from application config.
+  Default implementation of the `SearchIndexConfig.Behaviour` that reads from the application config.
 
   """
-  @behaviour Admin.Publications.SearchIndexConfigBehavior
+  @behaviour Admin.Publications.SearchIndexConfig.Behaviour
 
   @impl true
   def backend_host do
@@ -24,30 +26,26 @@ defmodule Admin.Publications.SearchIndexConfigBehaviorImpl do
   def publication_reindex_headers do
     Application.get_env(:admin, :publication_reindex_headers)
   end
-
-  @impl true
-  def publication_reindex_opts do
-    case Application.get_env(:admin, :publication_reindex_opts) do
-      nil -> []
-      opt when is_list(opt) -> opt
-      other -> [other]
-    end
-  end
 end
 
 defmodule Admin.Publications.SearchIndex do
   @moduledoc """
-  Utilities to trigger a publication reindex on an external indexing endpoint.
+  Module handling search index management allowing for example to trigger a publication reindex on an external indexing endpoint.
 
   """
 
   require Logger
 
+  # get the search index config. This allows to use test doubles.
   @config Application.compile_env(
             :admin,
             [:test_doubles, :search_config],
-            Admin.Publications.SearchIndexConfigBehaviorImpl
+            Admin.Publications.SearchIndexConfig
           )
+
+  defp get_reindex_opts do
+    Application.get_env(:admin, :publication_reindex_opts, [])
+  end
 
   @doc """
   Trigger a reindex by calling the configured endpoint with the configured header.
@@ -55,21 +53,14 @@ defmodule Admin.Publications.SearchIndex do
   Returns `{:ok, %Req.Response{}}` on success or `{:error, error_code}` on failure.
   """
   def reindex do
-    with {:ok, url, headers, opts} <- build_reindex_request() do
-      req_opts = [method: :get, url: url, headers: headers] ++ opts
-      req = Req.new(req_opts)
-
-      IO.puts("Reindex request: #{inspect(req)}")
+    with {:ok, url} <- get_reindex_url(@config.backend_host()),
+         {:ok, headers} <- get_reindex_headers(@config.publication_reindex_headers()) do
+      req =
+        [method: :get, url: url, headers: headers]
+        |> Keyword.merge(get_reindex_opts())
+        |> Req.new()
 
       case Req.request(req) do
-        %Req.Response{} = resp ->
-          if resp.status in 200..299 do
-            {:ok, resp}
-          else
-            Logger.error("SearchIndex.reindex failed: #{inspect(resp)}")
-            {:error, resp.status}
-          end
-
         {:ok, %Req.Response{} = resp} ->
           if resp.status in 200..299 do
             {:ok, resp}
@@ -81,32 +72,13 @@ defmodule Admin.Publications.SearchIndex do
         {:error, reason} ->
           Logger.error("SearchIndex.reindex failed: #{inspect(reason)}")
           {:error, 500}
-
-        other ->
-          Logger.error("SearchIndex.reindex unexpected response: #{inspect(other)}")
-          {:error, :unexpected_response}
       end
     end
   end
 
-  @doc false
-  # Build the HTTP client, url, and headers for the reindex request.
-  defp build_reindex_request do
-    case @config.backend_host() do
-      nil ->
-        {:error, :missing_publication_index_url}
+  defp get_reindex_url(nil), do: {:error, :missing_publication_index_host}
+  defp get_reindex_url(url), do: {:ok, "http://#{url}/api/items/collections/search/rebuild"}
 
-      url ->
-        case @config.publication_reindex_headers() do
-          nil ->
-            {:error, :missing_publication_reindex_headers}
-
-          headers_list ->
-            opts = @config.publication_reindex_opts()
-
-            {:ok, "http://#{to_string(url)}/api/items/collections/search/rebuild", headers_list,
-             opts}
-        end
-    end
-  end
+  defp get_reindex_headers(nil), do: {:error, :missing_publication_reindex_headers}
+  defp get_reindex_headers(headers), do: {:ok, headers}
 end

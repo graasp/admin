@@ -100,8 +100,12 @@ config :ex_aws, :s3,
 
 # Define the base host to use
 config :admin, :base_host, "localhost:3114"
-
-# Define the backend host to use
+# define the backend host to use
+# NOTE: We currently define a host for both the client and the backend event though they are the same domain in production.
+#       This is because in development the "domain" is the vite dev server which can forward calls to the backend via the vite proxy.
+#       While testing, it was discovered that requests made from Elixir could not reach the vite proxy.
+#
+#       In the future, if we change the setup and the entity that handles the "domain" in local dev is able to forward the requests to the backend correctly, this can be removed
 config :admin, :backend_host, "localhost:3001"
 
 # Publication index (development defaults)

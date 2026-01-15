@@ -53,4 +53,12 @@ config :ex_aws, :s3,
 # Needed in order for the compiled module to use the Mocked module
 config :admin, :test_doubles,
   ex_aws: ExAwsMock,
-  search_config: SearchIndexConfigBehaviorMock
+  search_config: SearchIndexConfigMock
+
+# This is the configuration that allows to use stubs for the external requests inside the tests
+# The options are merged with the request config
+config :admin, :publication_reindex_opts,
+  # The plug config allows to use to use the stub defined in the test via `Req.Test.stub(Admin.Publications.SearchIndex, fn conn -> ... end)` to stub the request
+  plug: {Req.Test, Admin.Publications.SearchIndex},
+  # in test we do not want to retry a failed call, as it is probably expected to fail. This speeds up the tests.
+  retry: false
