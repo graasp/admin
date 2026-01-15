@@ -15,25 +15,25 @@ msgstr ""
 #: lib/admin_web/live/notification_live/show.ex:41
 #, elixir-autogen, elixir-format
 msgid "Actions"
-msgstr ""
+msgstr "Actions"
 
 #: lib/admin_web/components/layouts.ex:75
 #: lib/admin_web/components/layouts.ex:87
 #, elixir-autogen, elixir-format
 msgid "Attempting to reconnect"
-msgstr ""
+msgstr "Attempting to reconnect"
 
 #: lib/admin_web/components/layouts.ex:82
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
-msgstr ""
+msgstr "Something went wrong!"
 
 #: lib/admin_web/components/layouts.ex:70
 #, elixir-autogen, elixir-format
 msgid "We can't find the internet"
-msgstr ""
+msgstr "We can't find the internet"
 
 #: lib/admin_web/components/core_components.ex:78
 #, elixir-autogen, elixir-format
 msgid "close"
-msgstr ""
+msgstr "close"
