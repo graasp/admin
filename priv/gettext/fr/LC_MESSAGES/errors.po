@@ -12,79 +12,79 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "can't be blank"
-msgstr "can't be blank"
+msgstr "ne peut pas être vide"
 
 msgid "has already been taken"
-msgstr "has already been taken"
+msgstr "a déjà été pris"
 
 msgid "is invalid"
-msgstr "is invalid"
+msgstr "est invalide"
 
 msgid "must be accepted"
-msgstr "must be accepted"
+msgstr "doit être accepté"
 
 msgid "has invalid format"
 msgstr "a un format invalide"
 
 msgid "has an invalid entry"
-msgstr "has an invalid entry"
+msgstr "contient une entrée invalide"
 
 msgid "is reserved"
-msgstr "is reserved"
+msgstr "est réservé"
 
 msgid "does not match confirmation"
-msgstr "does not match confirmation"
+msgstr "ne correspond pas à la confirmation"
 
 msgid "is still associated with this entry"
-msgstr "is still associated with this entry"
+msgstr "est toujours associé à cette entrée"
 
 msgid "are still associated with this entry"
-msgstr "are still associated with this entry"
+msgstr "sont toujours associés à cette entrée"
 
 msgid "should have %{count} item(s)"
 msgid_plural "should have %{count} item(s)"
 msgstr[0] "devrait contenir %{count} élément"
-msgstr[1] "should have %{count} items"
+msgstr[1] "devrait contenir %{count} éléments"
 
 msgid "should be %{count} character(s)"
 msgid_plural "should be %{count} character(s)"
-msgstr[0] "should be %{count} character"
-msgstr[1] "should be %{count} characters"
+msgstr[0] "devrait être %{count} caractère"
+msgstr[1] "devrait contenir %{count} caractères"
 
 msgid "should be %{count} byte(s)"
 msgid_plural "should be %{count} byte(s)"
-msgstr[0] "should be %{count} byte"
-msgstr[1] "should be %{count} bytes"
+msgstr[0] "devrait être %{count} octet"
+msgstr[1] "devrait être %{count} octets"
 
 msgid "should have at least %{count} item(s)"
 msgid_plural "should have at least %{count} item(s)"
 msgstr[0] "devrait avoir au moins %{count} élément"
-msgstr[1] "should have at least %{count} items"
+msgstr[1] "devrait contenir au moins %{count} éléments"
 
 msgid "should be at least %{count} character(s)"
 msgid_plural "should be at least %{count} character(s)"
 msgstr[0] "devrait contenir au moins %{count} caractère"
-msgstr[1] "should be at least %{count} characters"
+msgstr[1] "devrait contenir au moins %{count} caractères"
 
 msgid "should be at least %{count} byte(s)"
 msgid_plural "should be at least %{count} byte(s)"
 msgstr[0] "devrait être d'au moins %{count} octet"
-msgstr[1] "should be at least %{count} bytes"
+msgstr[1] "devrait faire au moins %{count} octets"
 
 msgid "should have at most %{count} item(s)"
 msgid_plural "should have at most %{count} item(s)"
 msgstr[0] "devrait contenir au maximum %{count} élément"
-msgstr[1] "should have at most %{count} items"
+msgstr[1] "devrait contenir au maximum %{count} éléments"
 
 msgid "should be at most %{count} character(s)"
 msgid_plural "should be at most %{count} character(s)"
 msgstr[0] "devrait contenir au maximum %{count} caractère"
-msgstr[1] "should be at most %{count} characters"
+msgstr[1] "devrait contenir au maximum %{count} caractères"
 
 msgid "should be at most %{count} byte(s)"
 msgid_plural "should be at most %{count} byte(s)"
-msgstr[0] "should be at most %{count} byte"
-msgstr[1] "should be at most %{count} bytes"
+msgstr[0] "devrait être au maximum %{count} octet"
+msgstr[1] "devrait être au maximum %{count} octets"
 
 msgid "must be less than %{number}"
 msgstr "doit être inférieur à %{number}"
