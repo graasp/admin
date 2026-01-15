@@ -8,8 +8,8 @@
 ### to merge POT files into PO files.
 msgid ""
 msgstr ""
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n>1);\n"
 
 #: lib/admin_web/components/core_components.ex:351
 #: lib/admin_web/live/notification_live/show.ex:41
