@@ -8,20 +8,20 @@ defmodule Admin.Publications.PublicationSearchIndexTest do
   setup :verify_on_exit!
 
   test "returns error when url is missing" do
-    expect(SearchIndexConfigMock, :backend_host, fn -> nil end)
+    expect(SearchIndexConfigMock, :backend_origin, fn -> nil end)
 
     assert {:error, :missing_publication_index_host} = SearchIndex.reindex()
   end
 
   test "returns error when header value is missing" do
-    expect(SearchIndexConfigMock, :backend_host, fn -> "example.com" end)
+    expect(SearchIndexConfigMock, :backend_origin, fn -> "https://example.com" end)
     expect(SearchIndexConfigMock, :publication_reindex_headers, fn -> nil end)
 
     assert {:error, :missing_publication_reindex_headers} = SearchIndex.reindex()
   end
 
   test "returns ok on 2xx response" do
-    expect(SearchIndexConfigMock, :backend_host, fn -> "example.com" end)
+    expect(SearchIndexConfigMock, :backend_origin, fn -> "https://example.com" end)
 
     expect(SearchIndexConfigMock, :publication_reindex_headers, fn ->
       [{"meilisearch-rebuild", "secret"}]
@@ -36,7 +36,7 @@ defmodule Admin.Publications.PublicationSearchIndexTest do
   end
 
   test "returns error on non-2xx response" do
-    expect(SearchIndexConfigMock, :backend_host, fn -> "example.com" end)
+    expect(SearchIndexConfigMock, :backend_origin, fn -> "https://example.com" end)
 
     expect(SearchIndexConfigMock, :publication_reindex_headers, fn ->
       [{"meilisearch-rebuild", "secret"}]
@@ -50,7 +50,7 @@ defmodule Admin.Publications.PublicationSearchIndexTest do
   end
 
   test "returns error tuple when client errors" do
-    expect(SearchIndexConfigMock, :backend_host, fn -> "example.com" end)
+    expect(SearchIndexConfigMock, :backend_origin, fn -> "https://example.com" end)
 
     expect(SearchIndexConfigMock, :publication_reindex_headers, fn ->
       [{"meilisearch-rebuild", "secret"}]

@@ -8,7 +8,7 @@ defmodule AdminWeb.PublicationIndexLiveTest do
   setup [:verify_on_exit!, :register_and_log_in_user]
 
   test "shows error when reindex fails", %{conn: conn} do
-    expect(SearchIndexConfigMock, :backend_host, fn -> "example.com" end)
+    expect(SearchIndexConfigMock, :backend_origin, fn -> "https://example.com" end)
 
     expect(SearchIndexConfigMock, :publication_reindex_headers, fn ->
       [{"meilisearch-rebuild", "secret"}]
@@ -26,7 +26,7 @@ defmodule AdminWeb.PublicationIndexLiveTest do
   end
 
   test "show waitingstatus on success", %{conn: conn} do
-    expect(SearchIndexConfigMock, :backend_host, fn -> "example.com" end)
+    expect(SearchIndexConfigMock, :backend_origin, fn -> "https://example.com" end)
 
     expect(SearchIndexConfigMock, :publication_reindex_headers, fn ->
       [{"meilisearch-rebuild", "secret"}]

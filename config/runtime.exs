@@ -147,7 +147,7 @@ if config_env() == :prod do
   # TLDR: We need to use 2 configs for now in development because of the vite proxy limitations.
   #       In production these configs have the same value.
   config :admin, base_host: base_host
-  config :admin, backend_host: base_host
+  config :admin, backend_origin: "https://#{base_host}"
 
   # Get the value of the header secret to communicate with Meilisearch
   config :admin, :publication_reindex_headers, [

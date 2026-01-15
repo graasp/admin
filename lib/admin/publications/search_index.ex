@@ -6,7 +6,7 @@ defmodule Admin.Publications.SearchIndexConfig.Behaviour do
   This way we can set different values without tempering with the application
   config which is a bad idea if you want to run tests in parallel.
   """
-  @callback backend_host() :: String.t()
+  @callback backend_origin() :: String.t()
   @callback publication_reindex_headers() :: term()
 end
 
@@ -18,8 +18,8 @@ defmodule Admin.Publications.SearchIndexConfig do
   @behaviour Admin.Publications.SearchIndexConfig.Behaviour
 
   @impl true
-  def backend_host do
-    Application.get_env(:admin, :backend_host)
+  def backend_origin do
+    Application.get_env(:admin, :backend_origin)
   end
 
   @impl true
@@ -53,7 +53,7 @@ defmodule Admin.Publications.SearchIndex do
   Returns `{:ok, %Req.Response{}}` on success or `{:error, error_code}` on failure.
   """
   def reindex do
-    with {:ok, url} <- get_reindex_url(@config.backend_host()),
+    with {:ok, url} <- get_reindex_url(@config.backend_origin()),
          {:ok, headers} <- get_reindex_headers(@config.publication_reindex_headers()) do
       req =
         [method: :get, url: url, headers: headers]
@@ -77,7 +77,7 @@ defmodule Admin.Publications.SearchIndex do
   end
 
   defp get_reindex_url(nil), do: {:error, :missing_publication_index_host}
-  defp get_reindex_url(url), do: {:ok, "http://#{url}/api/items/collections/search/rebuild"}
+  defp get_reindex_url(origin), do: {:ok, "#{origin}/api/items/collections/search/rebuild"}
 
   defp get_reindex_headers(nil), do: {:error, :missing_publication_reindex_headers}
   defp get_reindex_headers(headers), do: {:ok, headers}
