@@ -1,5 +1,10 @@
 # Graasp Admin
 
+[![gitlocalized german](https://gitlocalize.com/repo/10639/de/badge.svg)](https://gitlocalize.com/repo/10639/de?utm_source=badge)
+[![gitlocalized french](https://gitlocalize.com/repo/10639/fr/badge.svg)](https://gitlocalize.com/repo/10639/fr?utm_source=badge)
+[![gitlocalized italian](https://gitlocalize.com/repo/10639/it/badge.svg)](https://gitlocalize.com/repo/10639/it?utm_source=badge)
+[![gitlocalized spanish](https://gitlocalize.com/repo/10639/es/badge.svg)](https://gitlocalize.com/repo/10639/es?utm_source=badge)
+
 This is the codebase for the Graasp admin platform written in [Elixir](https://elixir-lang.org/) using [the Phoenix web framework](https://phoenixframework.org).
 
 The admin platform enables administrators to:
