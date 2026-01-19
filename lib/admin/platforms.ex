@@ -14,6 +14,4 @@ defmodule Admin.Platforms do
   def get_url(:player, root_id, item_id) do
     "https://#{base_host()}/player/#{root_id}/#{item_id}"
   end
-
-
 end

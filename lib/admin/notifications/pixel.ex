@@ -1,4 +1,8 @@
 defmodule Admin.Notifications.Pixel do
+  @moduledoc """
+  Represents a notification pixel used for tracking in emails.
+  """
+
   use Admin.Schema
   import Ecto.Changeset
 

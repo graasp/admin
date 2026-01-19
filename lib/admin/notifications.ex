@@ -373,9 +373,8 @@ defmodule Admin.Notifications do
            id: pixel_resp["id"],
            name: pixel_resp["name"],
            slug: pixel_resp["slug"]
-         },
-         {:ok, pixel} <- Admin.Repo.insert(pixel) do
-      {:ok, pixel}
+         } do
+      Admin.Repo.insert(pixel)
     end
   end
 end
