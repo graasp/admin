@@ -24,7 +24,7 @@ defmodule Admin.NotificationsTest do
       assert Notifications.list_notifications(scope) == [notifications, other_notifications]
     end
 
-    test "get_notification!/2 returns the notification with given id" do
+    test "get_notification!/2 returns the notification with gmix iven id" do
       scope = user_scope_fixture()
       notification = notification_fixture(scope)
       other_scope = user_scope_fixture()
@@ -136,7 +136,7 @@ defmodule Admin.NotificationsTest do
   describe "notification pixels" do
     setup [:create_notification]
 
-    test "create pixel", %{notification: notification} do
+    test "create pixel", %{scope: scope, notification: notification} do
       Req.Test.stub(Admin.UmamiApi, fn conn ->
         case conn.request_path do
           "/api/auth/verify" ->
@@ -157,7 +157,7 @@ defmodule Admin.NotificationsTest do
       end)
 
       assert {:ok, %Admin.Notifications.Pixel{} = pixel} =
-               Notifications.create_pixel(notification)
+               Notifications.create_pixel(scope, notification)
 
       assert pixel.notification_id == notification.id
       assert pixel.name == "example_name"

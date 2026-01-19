@@ -366,15 +366,17 @@ defmodule Admin.Notifications do
     audience |> Enum.filter(fn user -> MapSet.member?(only_langs, user.lang) end)
   end
 
-  def create_pixel(%Admin.Notifications.Notification{} = notification) do
+  def create_pixel(%Scope{} = scope, %Admin.Notifications.Notification{} = notification) do
     with {:ok, pixel_resp} <- Admin.UmamiApi.create_pixel(notification.name),
          pixel = %Admin.Notifications.Pixel{
            notification_id: notification.id,
            id: pixel_resp["id"],
            name: pixel_resp["name"],
            slug: pixel_resp["slug"]
-         } do
-      Admin.Repo.insert(pixel)
+         },
+         {:ok, pixel} <- Admin.Repo.insert(pixel) do
+      broadcast_localized_email(scope, notification.id, {:updated, pixel})
+      {:ok, pixel}
     end
   end
 end

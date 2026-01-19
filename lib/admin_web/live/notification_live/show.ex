@@ -273,7 +273,7 @@ defmodule AdminWeb.NotificationLive.Show do
   end
 
   def handle_event("create_pixel", _params, socket) do
-    Admin.Notifications.create_pixel(socket.assigns.notification)
+    Admin.Notifications.create_pixel(socket.assigns.current_scope, socket.assigns.notification)
     {:noreply, socket}
   end
 
@@ -295,13 +295,8 @@ defmodule AdminWeb.NotificationLive.Show do
      |> push_navigate(to: ~p"/admin/notifications")}
   end
 
-  def handle_info({type, %Admin.Notifications.Notification{}}, socket)
-      when type in [:created, :updated, :deleted] do
-    {:noreply, socket}
-  end
-
   def handle_info(
-        {type, %Admin.Notifications.LocalizedEmail{} = _localized_email},
+        {type, _localized_email},
         %{assigns: %{notification: %{id: id}}} = socket
       )
       when type in [:created, :updated, :deleted] do
@@ -311,5 +306,10 @@ defmodule AdminWeb.NotificationLive.Show do
        :notification,
        Notifications.get_notification!(socket.assigns.current_scope, id)
      )}
+  end
+
+  def handle_info({type, %Admin.Notifications.Notification{}}, socket)
+      when type in [:created, :updated, :deleted] do
+    {:noreply, socket}
   end
 end
