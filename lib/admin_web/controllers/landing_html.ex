@@ -11,7 +11,7 @@ defmodule AdminWeb.LandingHTML do
 
   def project_link(assigns) do
     ~H"""
-    <a href={@url} class="min-w-[150px] min-h-[3rem] flex items-center justify-center">
+    <a href={@url} class="min-w-[90px] min-h-[3rem] flex items-center justify-center">
       {render_slot(@inner_block)}
     </a>
     """
@@ -329,7 +329,7 @@ defmodule AdminWeb.LandingHTML do
   end
 
   # define classes to apply to the logos
-  @logo_classes "h-[3rem] max-h-[3rem] max-w-[150px] w-fit"
+  @logo_classes "h-[3rem] max-h-[3rem] max-w-[90px] w-fit"
 
   # we need to define a function that returns the logo classes so we can use them in the template
   defp logo_classes, do: @logo_classes
