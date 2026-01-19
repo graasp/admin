@@ -27,6 +27,23 @@ defmodule AdminWeb.NotificationLive.Show do
             {@notification.default_language}
           </div>
         </:item>
+        <:item title="Tracking Pixel">
+          <%= if @notification.pixel != nil do %>
+            {@notification.pixel.name}
+            {@notification.pixel.slug}
+            <.link class="link" href={Admin.UmamiApi.pixel_url(@notification.pixel)} target="_blank">
+              View pixel <.icon name="hero-arrow-top-right-on-square" />
+            </.link>
+          <% else %>
+            <.button
+              type="button"
+              phx-click="create_pixel"
+              phx-value-id={@notification.id}
+            >
+              <.icon name="hero-plus" /> Create tracking pixel
+            </.button>
+          <% end %>
+        </:item>
       </.list>
 
       <h2 class="text-md font-bold">Localized Emails</h2>
@@ -253,6 +270,11 @@ defmodule AdminWeb.NotificationLive.Show do
       {:error, :not_found} ->
         {:noreply, socket |> put_flash(:error, "The default language is not available")}
     end
+  end
+
+  def handle_event("create_pixel", _params, socket) do
+    Admin.Notifications.create_pixel(socket.assigns.notification)
+    {:noreply, socket}
   end
 
   @impl true

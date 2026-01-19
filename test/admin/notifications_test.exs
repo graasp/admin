@@ -132,6 +132,38 @@ defmodule Admin.NotificationsTest do
     end
   end
 
+  describe "notification pixels" do
+    setup [:create_notification]
+
+    test "create pixel", %{notification: notification} do
+      Req.Test.stub(Admin.UmamiApi, fn conn ->
+        case conn.request_path do
+          "/api/auth/verify" ->
+            Plug.Conn.send_resp(conn, 401, "Not authorized")
+
+          "/api/auth/login" ->
+            Req.Test.json(
+              conn,
+              %{"token" => "token_example", "user" => %{"teams" => [%{"name" => "graasp"}]}}
+            )
+
+          "/api/pixels" ->
+            Req.Test.json(
+              conn,
+              %{"id" => Ecto.UUID.generate(), "name" => "example_name", "slug" => "example_slug"}
+            )
+        end
+      end)
+
+      assert {:ok, %Admin.Notifications.Pixel{} = pixel} =
+               Notifications.create_pixel(notification)
+
+      assert pixel.notification_id == notification.id
+      assert pixel.name == "example_name"
+      assert pixel.slug == "example_slug"
+    end
+  end
+
   defp create_notification(_) do
     scope = user_scope_fixture()
     notification = notification_fixture(scope)

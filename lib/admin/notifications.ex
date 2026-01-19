@@ -50,7 +50,7 @@ defmodule Admin.Notifications do
            change_notification(scope, %Notification{}, attrs)
            |> Repo.insert() do
       broadcast_notification(scope, {:created, notification})
-      {:ok, notification |> Repo.preload([:logs, :localized_emails])}
+      {:ok, notification |> Repo.preload([:logs, :localized_emails, :pixel])}
     end
   end
 
@@ -129,7 +129,7 @@ defmodule Admin.Notifications do
 
   """
   def get_notification!(%Scope{} = _scope, id) do
-    Repo.get_by!(Notification, id: id) |> Repo.preload([:logs, :localized_emails])
+    Repo.get_by!(Notification, id: id) |> Repo.preload([:logs, :localized_emails, :pixel])
   end
 
   @doc """
@@ -145,7 +145,7 @@ defmodule Admin.Notifications do
 
   """
   def get_notification(%Scope{} = _scope, id) do
-    case Repo.get_by(Notification, id: id) |> Repo.preload([:logs, :localized_emails]) do
+    case Repo.get_by(Notification, id: id) |> Repo.preload([:logs, :localized_emails, :pixel]) do
       %Notification{} = notification -> {:ok, notification}
       nil -> {:error, :notification_not_found}
     end
@@ -364,5 +364,18 @@ defmodule Admin.Notifications do
   defp filter_audience_with_options(audience, opts) do
     only_langs = Keyword.get(opts, :only_langs, Admin.Languages.all_values()) |> MapSet.new()
     audience |> Enum.filter(fn user -> MapSet.member?(only_langs, user.lang) end)
+  end
+
+  def create_pixel(%Admin.Notifications.Notification{} = notification) do
+    with {:ok, pixel_resp} <- Admin.UmamiApi.create_pixel(notification.name),
+         pixel = %Admin.Notifications.Pixel{
+           notification_id: notification.id,
+           id: pixel_resp["id"],
+           name: pixel_resp["name"],
+           slug: pixel_resp["slug"]
+         },
+         {:ok, pixel} <- Admin.Repo.insert(pixel) do
+      {:ok, pixel}
+    end
   end
 end

@@ -83,7 +83,8 @@ defmodule Admin.MailingWorker do
           localized_email.subject,
           localized_email.message,
           localized_email.button_text,
-          localized_email.button_url
+          localized_email.button_url,
+          notification.pixel
         )
 
         # save message log

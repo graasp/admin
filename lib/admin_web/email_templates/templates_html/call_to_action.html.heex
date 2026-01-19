@@ -29,6 +29,11 @@
       <mj-text align="center" color="#aaa">
         Graasp Association, Valais, Switzerland
       </mj-text>
+      <%= if @pixel do %>
+        <mj-raw>
+          <img src={Admin.UmamiApi.pixel_src(@pixel)} width="0" height="0" />
+        </mj-raw>
+      <% end %>
     </mj-column>
   </:footer>
 </.layout>
