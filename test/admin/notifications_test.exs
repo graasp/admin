@@ -18,8 +18,9 @@ defmodule Admin.NotificationsTest do
     test "list_notifications/1 returns all notifications" do
       scope = user_scope_fixture()
       other_scope = user_scope_fixture()
-      notifications = notification_fixture(scope)
-      other_notifications = notification_fixture(other_scope)
+      notifications = notification_fixture(scope, %{name: "Notification 1"})
+      other_notifications = notification_fixture(other_scope, %{name: "Notification 2"})
+      # are ordered from newest to oldest
       assert Notifications.list_notifications(scope) == [notifications, other_notifications]
     end
 
