@@ -157,7 +157,8 @@ defmodule Admin.MixProject do
       "check.format": ["format --check-formatted"],
       "check.credo": ["credo --strict"],
       "check.compile": ["compile --warning-as-errors"],
-      check: ["check.compile", "format", "check.credo"],
+      "check.translations": ["gettext.extract --check-up-to-date"],
+      check: ["check.compile", "format", "check.credo", "check.translations"],
       # handling translations
       i18n: [
         # 1. extract translation strings from code

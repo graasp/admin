@@ -12,6 +12,7 @@ defmodule Admin.Notifications do
   alias Admin.Notifications.LocalizedEmail
   alias Admin.Notifications.Log
   alias Admin.Notifications.Notification
+  alias Admin.Notifications.Pixel
 
   # Notifications
   def new_notification, do: %Notification{}
@@ -368,12 +369,13 @@ defmodule Admin.Notifications do
 
   def create_pixel(%Scope{} = scope, %Admin.Notifications.Notification{} = notification) do
     with {:ok, pixel_resp} <- Admin.UmamiApi.create_pixel(notification.name),
-         pixel = %Admin.Notifications.Pixel{
-           notification_id: notification.id,
-           id: pixel_resp["id"],
-           name: pixel_resp["name"],
-           slug: pixel_resp["slug"]
-         },
+         pixel =
+           Pixel.changeset(%Pixel{}, %{
+             id: pixel_resp["id"],
+             name: pixel_resp["name"],
+             slug: pixel_resp["slug"],
+             notification_id: notification.id
+           }),
          {:ok, pixel} <- Admin.Repo.insert(pixel) do
       broadcast_localized_email(scope, notification.id, {:updated, pixel})
       {:ok, pixel}
