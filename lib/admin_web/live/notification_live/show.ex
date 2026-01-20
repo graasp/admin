@@ -28,9 +28,12 @@ defmodule AdminWeb.NotificationLive.Show do
           </div>
         </:item>
         <:item title="Tracking Pixel">
+          <p class="text-sm text-secondary">
+            A tracking pixel is a small image that is embedded in an email to track user interactions.
+            The interactions are recorded in the Umami analytics platform.
+          </p>
           <%= if @notification.pixel != nil do %>
             {@notification.pixel.name}
-            {@notification.pixel.slug}
             <.link class="link" href={Admin.UmamiApi.pixel_url(@notification.pixel)} target="_blank">
               View pixel <.icon name="hero-arrow-top-right-on-square" />
             </.link>
