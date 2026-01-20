@@ -50,7 +50,7 @@ defmodule Admin.MailingWorkerTest do
         notification_id: notification.id
       }
 
-      assert {:error, "Failed to send notification: :invalid_target_audience"} =
+      assert {:cancel, :invalid_target_audience} =
                perform_job(Admin.MailingWorker, args)
     end
   end

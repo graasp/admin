@@ -357,6 +357,9 @@ defmodule Admin.Notifications do
     {:ok, audience}
   end
 
+  # support legacy audience, this is what the pervious audience is converted to.
+  def get_target_audience(%Scope{} = _scope, "custom", _opts), do: {:ok, []}
+
   def get_target_audience(%Scope{} = _scope, target_audience, _opts) do
     Logger.error("Invalid target audience: #{target_audience}")
     {:error, :invalid_target_audience}

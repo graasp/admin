@@ -1,7 +1,6 @@
 defmodule AdminWeb.UserLive.Listing do
   use AdminWeb, :live_view
 
-  require Logger
   alias Admin.Accounts
 
   @impl true

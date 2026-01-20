@@ -9,7 +9,6 @@ defmodule Admin.MailingWorker do
   alias Admin.Accounts.Scope
   alias Admin.Accounts.UserNotifier
   alias Admin.Notifications
-  require Logger
 
   @impl Oban.Worker
   def perform(%Oban.Job{

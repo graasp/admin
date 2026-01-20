@@ -1,7 +1,6 @@
 defmodule AdminWeb.PublishedItemLive.Unpublish do
   alias Admin.Publications
   import AdminWeb.PublishedItemHTML
-  require Logger
   use AdminWeb, :live_view
 
   @impl true
