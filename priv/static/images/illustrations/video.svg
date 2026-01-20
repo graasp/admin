@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 269 203" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-831.893665,-854.75)">
+        <g id="img">
+        </g>
+        <g id="video" transform="matrix(1,0,0,1,643.143665,0)">
+            <path d="M451,889.668L451,1022.332C451,1038.154 438.154,1051 422.332,1051L223.668,1051C207.846,1051 195,1038.154 195,1022.332L195,889.668C195,873.846 207.846,861 223.668,861L422.332,861C438.154,861 451,873.846 451,889.668Z" style="fill:rgb(177,171,245);stroke:rgb(68,56,200);stroke-width:12.5px;"/>
+            <g transform="matrix(0,1,-1,0,1287.5,-10)">
+                <path d="M966,921L1005,990L927,990L966,921Z" style="fill:rgb(235,235,235);stroke:rgb(68,56,200);stroke-width:12.5px;"/>
+            </g>
+            <g transform="matrix(0.992063,0,0,1,-636.469062,-8)">
+                <path d="M841,898L1093,898" style="fill:none;stroke:rgb(68,56,200);stroke-width:12.55px;stroke-dasharray:25.099,25.099,25.099,25.099,25.099,25.099;stroke-dashoffset:12.55;"/>
+            </g>
+            <g transform="matrix(0.992063,0,0,1,-636.469062,124.95723)">
+                <path d="M841,898L1093,898" style="fill:none;stroke:rgb(68,56,200);stroke-width:12.55px;stroke-dasharray:25.099,25.099,25.099,25.099,25.099,25.099;stroke-dashoffset:12.55;"/>
+            </g>
+            <path d="M451,889.668L451,1022.332C451,1038.154 438.154,1051 422.332,1051L223.668,1051C207.846,1051 195,1038.154 195,1022.332L195,889.668C195,873.846 207.846,861 223.668,861L422.332,861C438.154,861 451,873.846 451,889.668Z" style="fill:none;stroke:rgb(68,56,200);stroke-width:12.5px;"/>
+        </g>
+        <g id="pdf">
+        </g>
+        <g id="h5p">
+        </g>
+        <g id="quiz">
+        </g>
+        <g id="sim">
+        </g>
+        <g id="audio">
+        </g>
+    </g>
+</svg>

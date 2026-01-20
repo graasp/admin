@@ -43,7 +43,7 @@
                   <div class="flex flex-col items-center lg:items-start" id="buttonsContainer">
                     <.button
                       class="btn btn-primary btn-soft btn-lg"
-                      dataumamievent="header-register-button"
+                      data-umami-event="header-register-button"
                       href="/auth/register"
                     >
                       Créer un compte
@@ -111,79 +111,69 @@
           </div>
         </div>
       </div>
-      <div class="MuiStack-root mui-dir-ltr-1tsjroi" id="bodyWrapper">
-        <section class="MuiStack-root mui-dir-ltr-tjucu2">
-          <div class="MuiStack-root mui-dir-ltr-vrf0o4">
-            <div class="MuiStack-root mui-dir-ltr-j7qwjs">
-              <div class="MuiStack-root mui-dir-ltr-sljpm4">
-                <div class="MuiStack-root image-container mui-dir-ltr-n57peg">
-                  <img
-                    alt="Création de supports interactifs pédagogiques"
-                    src="/illustration/landing-message-create.svg"
-                    style="max-width: 500px;"
-                  />
-                </div>
-                <div class="MuiStack-root text-container mui-dir-ltr-5rc72j">
-                  <h2 class="MuiTypography-root MuiTypography-h2 mui-dir-ltr-10gc2sc">
-                    Création de supports interactifs pédagogiques
-                  </h2>
-                  <p class="MuiTypography-root MuiTypography-body1 mui-dir-ltr-1gu19pc">
-                    Avec Graasp, il est facile de mettre des <strong style="color: rgb(80, 80, 210);">supports pédagogiques en ligne</strong>, en transformant <strong style="color: rgb(80, 80, 210);">images</strong>,
-                    <strong style="color: rgb(80, 80, 210);">PDFs</strong>
-                    et ressources traditionnelles en
-                    <strong style="color: rgb(80, 80, 210);">
-                      leçons numériques interactives
-                    </strong>
-                    en quelques minutes.
-                  </p>
-                  <p class="MuiTypography-root MuiTypography-body1 mui-dir-ltr-1gu19pc">
-                    Ce qui rend Graasp réellement puissant, c'est sa capacité à aider à concevoir des
-                    <strong style="color: rgb(80, 80, 210);">
-                      activités d'apprentissage engageantes
-                    </strong>
-                    en intégrant des <strong style="color: rgb(80, 80, 210);">vidéos</strong>
-                    et des <strong style="color: rgb(80, 80, 210);">applications interactives</strong>. Il est possible de créer des leçons qui captivent les élèves, suscitent la curiosité et favorisent une participation active.
-                  </p>
-                  <a
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorSecondary MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorSecondary mui-dir-ltr-71s4ln"
-                    tabindex="0"
-                    dataumamievent="messages-create-button"
-                    href="/features"
-                  >
-                    En savoir plus
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="MuiStack-root mui-dir-ltr-1i43dhb">
-              <h5 class="MuiTypography-root MuiTypography-h5 mui-dir-ltr-322og3">
+      <div class="flex flex-col p-10 gap-6 items-center" id="bodyWrapper">
+        <section class="flex flex-col max-w-4xl space-y-[200px]">
+          <.section
+            id="contenu_interactif"
+            title="Création de supports interactifs pédagogiques"
+            image_src="/images/illustrations/landing-message-create.svg"
+          >
+            <:content>
+              Avec Graasp, il est facile de mettre des <strong class="text-primary">supports pédagogiques en ligne</strong>, en transformant <strong class="text-primary">images</strong>,
+              <strong class="text-primary">PDFs</strong>
+              et ressources traditionnelles en
+              <strong style="color: rgb(80, 80, 210);">
+                leçons numériques interactives
+              </strong>
+              en quelques minutes.
+            </:content>
+            <:content>
+              Ce qui rend Graasp réellement puissant, c'est sa capacité à aider à concevoir des
+              <strong class="text-primary">activités d'apprentissage engageantes</strong>
+              en intégrant des <strong class="text-primary">vidéos</strong>
+              et des <strong class="text-primary">applications interactives</strong>. Il est possible de créer des leçons qui captivent les élèves, suscitent la curiosité et favorisent une participation active.
+            </:content>
+
+            <:action>
+              <.link
+                class="btn btn-primary btn-outline"
+                data-umami-event="messages-create-button"
+                href="/features"
+              >
+                En savoir plus
+              </.link>
+            </:action>
+
+            <div class="flex flex-col gap-6">
+              <h5 class="text-md text-primary font-bold lg:text-lg ">
                 Intégrer du contenu interactif dans des supports pédagogiques
               </h5>
-              <div class="MuiStack-root mui-dir-ltr-xy3k8x">
+              <div class="flex flex-row gap-2 lg:gap-4 w-full">
                 <div class="MuiStack-root mui-dir-ltr-j7qwjs">
-                  <img alt="img icon" width="100%" src="/landing/img.svg" />
+                  <img alt="img icon" width="100%" src="/images/illustrations/img.svg" />
                 </div>
                 <div class="MuiStack-root mui-dir-ltr-j7qwjs">
-                  <img alt="audio icon" width="100%" src="/landing/audio.svg" />
+                  <img alt="audio icon" width="100%" src="/images/illustrations/audio.svg" />
                 </div>
                 <div class="MuiStack-root mui-dir-ltr-j7qwjs">
-                  <img alt="video icon" width="100%" src="/landing/video.svg" />
+                  <img alt="video icon" width="100%" src="/images/illustrations/video.svg" />
                 </div>
                 <div class="MuiStack-root mui-dir-ltr-j7qwjs">
-                  <img alt="h5p icon" width="100%" src="/landing/h5p.svg" />
+                  <img alt="h5p icon" width="100%" src="/images/illustrations/h5p.svg" />
                 </div>
                 <div class="MuiStack-root mui-dir-ltr-j7qwjs">
-                  <img alt="pdf icon" width="100%" src="/landing/pdf.svg" />
+                  <img alt="pdf icon" width="100%" src="/images/illustrations/pdf.svg" />
                 </div>
                 <div class="MuiStack-root mui-dir-ltr-j7qwjs">
-                  <img alt="quiz icon" width="100%" src="/landing/quiz.svg" />
+                  <img alt="quiz icon" width="100%" src="/images/illustrations/quiz.svg" />
                 </div>
                 <div class="MuiStack-root mui-dir-ltr-j7qwjs">
-                  <img alt="sim icon" width="100%" src="/landing/sim.svg" />
+                  <img alt="sim icon" width="100%" src="/images/illustrations/sim.svg" />
                 </div>
               </div>
             </div>
-          </div>
+          </.section>
+
           <div class="MuiStack-root mui-dir-ltr-6r2fzw">
             <div class="MuiStack-root mui-dir-ltr-j7qwjs">
               <div class="MuiStack-root mui-dir-ltr-sljpm4">
@@ -210,7 +200,7 @@
                   <a
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorSecondary MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorSecondary mui-dir-ltr-71s4ln"
                     tabindex="0"
-                    dataumamievent="messages-share-button"
+                    data-umami-event="messages-share-button"
                     href="/features"
                   >
                     En savoir plus
@@ -313,7 +303,7 @@
                     <a
                       class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary mui-dir-ltr-1sp2zny"
                       tabindex="0"
-                      dataumamievent="messages-library-button"
+                      data-umami-event="messages-library-button"
                       href="https://library.graasp.org"
                     >
                       Aller sur Graasp Library
@@ -321,7 +311,7 @@
                     <a
                       class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorSecondary MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorSecondary mui-dir-ltr-71s4ln"
                       tabindex="0"
-                      dataumamievent="messages-library-oer-button"
+                      data-umami-event="messages-library-oer-button"
                       href="https://library.graasp.org/oer"
                     >
                       Qu'est-ce que les RELs&nbsp;?
@@ -538,7 +528,7 @@
                     <a
                       class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorSecondary MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorSecondary mui-dir-ltr-1h210b4"
                       tabindex="0"
-                      dataumamievent="missions-contact-us-button"
+                      data-umami-event="missions-contact-us-button"
                       href="/contact-us"
                     >
                       Nous contacter
@@ -564,7 +554,7 @@
                     <a
                       class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorSecondary MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorSecondary mui-dir-ltr-1h210b4"
                       tabindex="0"
-                      dataumamievent="about-us"
+                      data-umami-event="about-us"
                       href="/about-us"
                     >
                       A propos de l'association
@@ -598,7 +588,7 @@
                     <a
                       class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorSecondary MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorSecondary mui-dir-ltr-1h210b4"
                       tabindex="0"
-                      dataumamievent="github"
+                      data-umami-event="github"
                       href="https://github.com/graasp"
                     >
                       <span class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeLarge mui-dir-ltr-j2as55"><svg
@@ -656,7 +646,7 @@
           <a
             class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary mui-dir-ltr-lsa41r"
             tabindex="0"
-            dataumamievent="call-to-action-register-button"
+            data-umami-event="call-to-action-register-button"
             href="/auth/register"
           >
             Créer un compte

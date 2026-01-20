@@ -6,6 +6,45 @@ defmodule AdminWeb.LandingHTML do
 
   embed_templates "landing_html/*"
 
+  attr :id, :string, required: true, doc: "The id of the section"
+  attr :title, :string, required: true, doc: "The title of the section"
+  attr :image_src, :string, required: true, doc: "The source of the image"
+  slot :inner_block, doc: "The content that follows the section"
+  slot :content, doc: "The inside content for the section"
+  slot :action, doc: "Actions at the end of the section content"
+
+  def section(assigns) do
+    ~H"""
+    <div class="flex flex-col gap-12" id={@id}>
+      <div class="flex flex-col">
+        <div class="flex flex-col gap-0 lg:flex-row lg:gap-6">
+          <div class="flex flex-col items-center flex-[1_1_0%]">
+            <img
+              alt={@title}
+              src={@image_src}
+              class="max-w-[500px]"
+            />
+          </div>
+          <div class="flex flex-col flex-[2_1_0%] gap-6 text-container">
+            <h2 class="text-2xl font-bold lg:text-3xl text-primary">
+              {@title}
+            </h2>
+            <%= for content <- @content do %>
+              <p>{render_slot(content)}</p>
+            <% end %>
+            <div class="flex flex-row gap-2">
+              <%= for action <- @action do %>
+                {render_slot(action)}
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      {render_slot(@inner_block)}
+    </div>
+    """
+  end
+
   attr :url, :string, required: true, doc: "The URL of the project"
   slot :inner_block, doc: "The content inside the project link"
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 269 203" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-2119.742979,-854.75)">
+        <g id="img">
+        </g>
+        <g id="video">
+        </g>
+        <g id="pdf">
+        </g>
+        <g id="h5p">
+        </g>
+        <g id="quiz">
+        </g>
+        <g id="sim" transform="matrix(1,0,0,1,1930.992979,0)">
+            <path d="M451,889.668L451,1022.332C451,1038.154 438.154,1051 422.332,1051L223.668,1051C207.846,1051 195,1038.154 195,1022.332L195,889.668C195,873.846 207.846,861 223.668,861L422.332,861C438.154,861 451,873.846 451,889.668Z" style="fill:white;stroke:rgb(68,56,200);stroke-width:12.5px;"/>
+            <g transform="matrix(1,0,0,1,-1930.992979,0)">
+                <path d="M2376.467,1039.247C2371.249,1046.371 2362.823,1051 2353.325,1051L2154.661,1051C2138.839,1051 2125.993,1038.154 2125.993,1022.332L2125.993,894.787C2252.209,907.362 2352.394,965.362 2376.467,1039.247Z" style="fill:rgb(177,171,245);"/>
+            </g>
+            <path d="M451,889.668L451,1022.332C451,1038.154 438.154,1051 422.332,1051L223.668,1051C207.846,1051 195,1038.154 195,1022.332L195,889.668C195,873.846 207.846,861 223.668,861L422.332,861C438.154,861 451,873.846 451,889.668Z" style="fill:none;stroke:rgb(68,56,200);stroke-width:12.5px;"/>
+            <g transform="matrix(1,0,0,1,-1932.992979,6)">
+                <circle cx="2200.496" cy="959" r="36" style="fill:rgb(68,56,200);"/>
+            </g>
+            <g transform="matrix(0.880651,-0.473766,0.473766,0.880651,-2145.778676,1145.905015)">
+                <path d="M2349,1022.25L2349,1022.75C2349,1022.888 2348.888,1023 2348.75,1023L2178.25,1023C2178.112,1023 2178,1022.888 2178,1022.75L2178,1022.25C2178,1022.112 2178.112,1022 2178.25,1022L2348.75,1022C2348.888,1022 2349,1022.112 2349,1022.25Z" style="fill:rgb(68,56,200);stroke:rgb(68,56,200);stroke-width:12.5px;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,-1961.1875,13)">
+                <path d="M2296.188,971L2319.375,1007L2273,1007L2296.188,971Z" style="fill:white;stroke:rgb(68,56,200);stroke-width:12.5px;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,-1930.410909,-6)">
+                <circle cx="2319.375" cy="918.625" r="17.375" style="fill:none;stroke:rgb(68,56,200);stroke-width:12.5px;"/>
+            </g>
+        </g>
+        <g id="audio">
+        </g>
+    </g>
+</svg>
