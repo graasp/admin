@@ -24,7 +24,7 @@ defmodule Admin.NotificationsTest do
       assert Notifications.list_notifications(scope) == [notifications, other_notifications]
     end
 
-    test "get_notification!/2 returns the notification with gmix iven id" do
+    test "get_notification!/2 returns the notification with given id" do
       scope = user_scope_fixture()
       notification = notification_fixture(scope)
       other_scope = user_scope_fixture()

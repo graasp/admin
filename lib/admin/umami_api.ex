@@ -5,9 +5,10 @@ defmodule Admin.UmamiApi do
   require Logger
 
   @slug_charset ~c"abcdefghijklmnopqrstuvwxyz0123456789"
+  @team_name "graasp"
 
   defp umami_origin do
-    Application.get_env(:admin, :umami_origin, "https://umami.graasp.org")
+    Application.fetch_env!(:admin, :umami_origin)
   end
 
   defp base_request_options do
@@ -30,14 +31,25 @@ defmodule Admin.UmamiApi do
     options |> Keyword.merge(Application.get_env(:admin, :umami_req_options, []))
   end
 
+  defp get_team_id(nil) do
+    username = get_credentials() |> Map.get(:username)
+
+    Logger.error(
+      "No teams found, this may indicate a misconfiguration. Ensure the user `#{username}` is member of a team with the name `#{@team_name}`"
+    )
+
+    nil
+  end
+
   defp get_team_id(teams) when is_list(teams) do
     teams
-    |> Enum.find(fn %{"name" => name} = _ -> String.downcase(name) == "graasp" end)
+    |> Enum.find(fn %{"name" => name} = _ -> String.downcase(name) == @team_name end)
     |> Map.get("id")
   end
 
   defp get_credentials do
-    Application.get_env(:admin, :umami, [{:username, "admin"}, {:password, "umami"}])
+    # the config should be a keyword list of username and password
+    Application.fetch_env!(:admin, :umami)
     |> Map.new()
   end
 
