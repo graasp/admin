@@ -14,6 +14,8 @@ defmodule Admin.Notifications.Notification do
     field :total_recipients, :integer, default: 0
     field :sent_at, :utc_datetime
 
+    has_one :pixel, Admin.Notifications.Pixel
+
     has_many :logs, Admin.Notifications.Log
 
     has_many :localized_emails, Admin.Notifications.LocalizedEmail,

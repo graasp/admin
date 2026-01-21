@@ -62,3 +62,10 @@ config :admin, :publication_reindex_opts,
   plug: {Req.Test, Admin.Publications.SearchIndex},
   # in test we do not want to retry a failed call, as it is probably expected to fail. This speeds up the tests.
   retry: false
+
+config :admin, :umami,
+  username: "test",
+  password: "testest"
+
+config :admin, :umami_origin, "http://localhost:8000"
+config :admin, :umami_req_options, plug: {Req.Test, Admin.UmamiApi}, retry: false

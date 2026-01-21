@@ -18,8 +18,9 @@ defmodule Admin.NotificationsTest do
     test "list_notifications/1 returns all notifications" do
       scope = user_scope_fixture()
       other_scope = user_scope_fixture()
-      notifications = notification_fixture(scope)
-      other_notifications = notification_fixture(other_scope)
+      notifications = notification_fixture(scope, %{name: "Notification 1"})
+      other_notifications = notification_fixture(other_scope, %{name: "Notification 2"})
+      # are ordered from newest to oldest
       assert Notifications.list_notifications(scope) == [notifications, other_notifications]
     end
 
@@ -129,6 +130,38 @@ defmodule Admin.NotificationsTest do
                  %{email: "user@example.com", status: "invalid"},
                  notification
                )
+    end
+  end
+
+  describe "notification pixels" do
+    setup [:create_notification]
+
+    test "create pixel", %{scope: scope, notification: notification} do
+      Req.Test.stub(Admin.UmamiApi, fn conn ->
+        case conn.request_path do
+          "/api/auth/verify" ->
+            Plug.Conn.send_resp(conn, 401, "Not authorized")
+
+          "/api/auth/login" ->
+            Req.Test.json(
+              conn,
+              %{"token" => "token_example", "user" => %{"teams" => [%{"name" => "graasp"}]}}
+            )
+
+          "/api/pixels" ->
+            Req.Test.json(
+              conn,
+              %{"id" => Ecto.UUID.generate(), "name" => "example_name", "slug" => "example_slug"}
+            )
+        end
+      end)
+
+      assert {:ok, %Admin.Notifications.Pixel{} = pixel} =
+               Notifications.create_pixel(scope, notification)
+
+      assert pixel.notification_id == notification.id
+      assert pixel.name == "example_name"
+      assert pixel.slug == "example_slug"
     end
   end
 

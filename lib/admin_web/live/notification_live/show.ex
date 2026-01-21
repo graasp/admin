@@ -27,6 +27,26 @@ defmodule AdminWeb.NotificationLive.Show do
             {@notification.default_language}
           </div>
         </:item>
+        <:item title="Tracking Pixel">
+          <p class="text-sm text-secondary">
+            A tracking pixel is a small image that is embedded in an email to track user interactions.
+            The interactions are recorded in the Umami analytics platform.
+          </p>
+          <%= if @notification.pixel != nil do %>
+            {@notification.pixel.name}
+            <.link class="link" href={Admin.UmamiApi.pixel_url(@notification.pixel)} target="_blank">
+              View pixel <.icon name="hero-arrow-top-right-on-square" />
+            </.link>
+          <% else %>
+            <.button
+              type="button"
+              phx-click="create_pixel"
+              phx-value-id={@notification.id}
+            >
+              <.icon name="hero-plus" /> Create tracking pixel
+            </.button>
+          <% end %>
+        </:item>
       </.list>
 
       <h2 class="text-md font-bold">Localized Emails</h2>
@@ -255,6 +275,11 @@ defmodule AdminWeb.NotificationLive.Show do
     end
   end
 
+  def handle_event("create_pixel", _params, socket) do
+    Admin.Notifications.create_pixel(socket.assigns.current_scope, socket.assigns.notification)
+    {:noreply, socket}
+  end
+
   @impl true
   def handle_info(
         {:updated, %Admin.Notifications.Notification{id: id} = notification},
@@ -273,13 +298,8 @@ defmodule AdminWeb.NotificationLive.Show do
      |> push_navigate(to: ~p"/admin/notifications")}
   end
 
-  def handle_info({type, %Admin.Notifications.Notification{}}, socket)
-      when type in [:created, :updated, :deleted] do
-    {:noreply, socket}
-  end
-
   def handle_info(
-        {type, %Admin.Notifications.LocalizedEmail{} = _localized_email},
+        {type, _localized_email},
         %{assigns: %{notification: %{id: id}}} = socket
       )
       when type in [:created, :updated, :deleted] do
@@ -289,5 +309,10 @@ defmodule AdminWeb.NotificationLive.Show do
        :notification,
        Notifications.get_notification!(socket.assigns.current_scope, id)
      )}
+  end
+
+  def handle_info({type, %Admin.Notifications.Notification{}}, socket)
+      when type in [:created, :updated, :deleted] do
+    {:noreply, socket}
   end
 end

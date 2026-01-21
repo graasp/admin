@@ -55,6 +55,13 @@ defmodule AdminWeb.EmailTemplates do
   attr :reason, :string, required: true, doc: "The reason for the removal"
   def publication_removal(assigns)
 
+  attr :name, :string, required: true
+  attr :message, :string, required: true, doc: "The primary message of the email"
+  attr :pixel, :string, doc: "The tracking pixel"
+  attr :button_text, :string, doc: "The text of the button"
+  attr :button_url, :string, doc: "The URL of the button"
+  def call_to_action(assigns)
+
   def render(template, assigns \\ %{}) do
     {:ok, html} = render_to_string(__MODULE__, template, "html", assigns) |> Mjml.to_html()
     html

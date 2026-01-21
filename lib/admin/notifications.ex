@@ -12,6 +12,7 @@ defmodule Admin.Notifications do
   alias Admin.Notifications.LocalizedEmail
   alias Admin.Notifications.Log
   alias Admin.Notifications.Notification
+  alias Admin.Notifications.Pixel
 
   # Notifications
   def new_notification, do: %Notification{}
@@ -50,7 +51,7 @@ defmodule Admin.Notifications do
            change_notification(scope, %Notification{}, attrs)
            |> Repo.insert() do
       broadcast_notification(scope, {:created, notification})
-      {:ok, notification |> Repo.preload([:logs, :localized_emails])}
+      {:ok, notification |> Repo.preload([:logs, :localized_emails, :pixel])}
     end
   end
 
@@ -99,12 +100,12 @@ defmodule Admin.Notifications do
   """
   def list_notifications(%Scope{} = _scope) do
     Repo.all(from n in Notification, order_by: [desc: :updated_at])
-    |> Repo.preload([:logs, :localized_emails])
+    |> Repo.preload([:logs, :localized_emails, :pixel])
   end
 
   def list_notifications_by_status(%Scope{} = _scope) do
     Repo.all(from n in Notification, order_by: [desc: :sent_at])
-    |> Repo.preload([:logs, :localized_emails])
+    |> Repo.preload([:logs, :localized_emails, :pixel])
   end
 
   def list_recently_sent_notifications(%Scope{} = _scope) do
@@ -129,7 +130,7 @@ defmodule Admin.Notifications do
 
   """
   def get_notification!(%Scope{} = _scope, id) do
-    Repo.get_by!(Notification, id: id) |> Repo.preload([:logs, :localized_emails])
+    Repo.get_by!(Notification, id: id) |> Repo.preload([:logs, :localized_emails, :pixel])
   end
 
   @doc """
@@ -145,7 +146,7 @@ defmodule Admin.Notifications do
 
   """
   def get_notification(%Scope{} = _scope, id) do
-    case Repo.get_by(Notification, id: id) |> Repo.preload([:logs, :localized_emails]) do
+    case Repo.get_by(Notification, id: id) |> Repo.preload([:logs, :localized_emails, :pixel]) do
       %Notification{} = notification -> {:ok, notification}
       nil -> {:error, :notification_not_found}
     end
@@ -356,6 +357,9 @@ defmodule Admin.Notifications do
     {:ok, audience}
   end
 
+  # support legacy audience, this is what the pervious audience is converted to.
+  def get_target_audience(%Scope{} = _scope, "custom", _opts), do: {:ok, []}
+
   def get_target_audience(%Scope{} = _scope, target_audience, _opts) do
     Logger.error("Invalid target audience: #{target_audience}")
     {:error, :invalid_target_audience}
@@ -364,5 +368,20 @@ defmodule Admin.Notifications do
   defp filter_audience_with_options(audience, opts) do
     only_langs = Keyword.get(opts, :only_langs, Admin.Languages.all_values()) |> MapSet.new()
     audience |> Enum.filter(fn user -> MapSet.member?(only_langs, user.lang) end)
+  end
+
+  def create_pixel(%Scope{} = scope, %Admin.Notifications.Notification{} = notification) do
+    with {:ok, pixel_resp} <- Admin.UmamiApi.create_pixel(notification.name),
+         pixel =
+           Pixel.changeset(%Pixel{}, %{
+             id: pixel_resp["id"],
+             name: pixel_resp["name"],
+             slug: pixel_resp["slug"],
+             notification_id: notification.id
+           }),
+         {:ok, pixel} <- Admin.Repo.insert(pixel) do
+      broadcast_localized_email(scope, notification.id, {:updated, pixel})
+      {:ok, pixel}
+    end
   end
 end

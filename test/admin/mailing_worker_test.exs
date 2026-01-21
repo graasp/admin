@@ -40,5 +40,18 @@ defmodule Admin.MailingWorkerTest do
 
       assert {:cancel, :notification_not_found} = perform_job(Admin.MailingWorker, args)
     end
+
+    test "invalid audience" do
+      scope = user_scope_fixture()
+      notification = notification_fixture(scope, %{audience: "invalid"})
+
+      args = %{
+        user_id: scope.user.id,
+        notification_id: notification.id
+      }
+
+      assert {:cancel, :invalid_target_audience} =
+               perform_job(Admin.MailingWorker, args)
+    end
   end
 end

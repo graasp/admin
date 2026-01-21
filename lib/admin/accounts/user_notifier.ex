@@ -71,13 +71,14 @@ defmodule Admin.Accounts.UserNotifier do
     )
   end
 
-  def deliver_call_to_action(user, subject, message_text, button_text, button_url) do
+  def deliver_call_to_action(user, subject, message_text, button_text, button_url, pixel) do
     html_body =
       EmailTemplates.render("call_to_action", %{
         name: user.name,
         message: message_text,
         button_text: button_text,
-        button_url: button_url
+        button_url: button_url,
+        pixel: pixel
       })
 
     deliver(

@@ -12,7 +12,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/admin_web/components/core_components.ex:353
-#: lib/admin_web/live/notification_live/show.ex:41
+#: lib/admin_web/live/notification_live/show.ex:61
 #, elixir-autogen, elixir-format
 msgid "Actions"
 msgstr "Actions"

@@ -11,12 +11,12 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/admin/accounts/user_notifier.ex:98
+#: lib/admin/accounts/user_notifier.ex:99
 #, elixir-autogen, elixir-format
 msgid "Graasp.org is a learning experience platform."
 msgstr ""
 
-#: lib/admin/accounts/user_notifier.ex:91
+#: lib/admin/accounts/user_notifier.ex:92
 #: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "Hi %{name},"

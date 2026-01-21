@@ -9,7 +9,6 @@ defmodule Admin.MailingWorker do
   alias Admin.Accounts.Scope
   alias Admin.Accounts.UserNotifier
   alias Admin.Notifications
-  require Logger
 
   @impl Oban.Worker
   def perform(%Oban.Job{
@@ -40,6 +39,9 @@ defmodule Admin.MailingWorker do
     else
       {:error, :notification_not_found} ->
         {:cancel, :notification_not_found}
+
+      {:error, :invalid_target_audience} ->
+        {:cancel, :invalid_target_audience}
 
       {:error, error} ->
         {:error, "Failed to send notification: #{inspect(error)}"}
@@ -83,7 +85,8 @@ defmodule Admin.MailingWorker do
           localized_email.subject,
           localized_email.message,
           localized_email.button_text,
-          localized_email.button_url
+          localized_email.button_url,
+          notification.pixel
         )
 
         # save message log

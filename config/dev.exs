@@ -107,6 +107,11 @@ config :admin, :base_host, "localhost:3114"
 #
 #       In the future, if we change the setup and the entity that handles the "domain" in local dev is able to forward the requests to the backend correctly, this can be removed
 config :admin, :backend_origin, "http://localhost:3001"
+config :admin, :umami_origin, "http://localhost:8000"
 
 # Publication index (development defaults)
 config :admin, :publication_reindex_headers, [{"meilisearch-rebuild", "secret"}]
+
+config :admin, :umami,
+  username: System.get_env("UMAMI_USERNAME"),
+  password: System.get_env("UMAMI_PASSWORD")

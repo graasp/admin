@@ -199,7 +199,8 @@ defmodule AdminWeb.NotificationMessageLive.Form do
       name: "<USER_NAME>",
       message: Ecto.Changeset.get_field(changeset, :message),
       button_text: Ecto.Changeset.get_field(changeset, :button_text),
-      button_url: Ecto.Changeset.get_field(changeset, :button_url)
+      button_url: Ecto.Changeset.get_field(changeset, :button_url),
+      pixel: nil
     })
   end
 end

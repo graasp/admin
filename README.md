@@ -100,6 +100,8 @@ You can also use a graphical client like [Postgres.app](https://postgresapp.com/
    export AWS_ACCESS_KEY_ID=GK3b...
    export AWS_SECRET_ACCESS_KEY=a03cf77e181...
    export AWS_DEFAULT_REGION=garage
+   export UMAMI_USERNAME=some_username
+   export UMAMI_PASSWORD=a_strong_password
    ```
    You will need to source this file in your shell before starting the server:
    ```sh

@@ -4,7 +4,6 @@ defmodule Admin.Release do
   installed.
   """
   @app :admin
-  require Logger
 
   alias Admin.Tools.Uptime
 
