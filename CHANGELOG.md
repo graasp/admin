@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.6.0](https://github.com/graasp/admin/compare/v0.5.0...v0.6.0) (2026-01-21)
+
+
+### Features
+
+* add a page with reindex functionality ([#101](https://github.com/graasp/admin/issues/101)) ([a743e31](https://github.com/graasp/admin/commit/a743e31ea12b6df9bc340a50c4c287ec1db2e63f))
+* add landing page ([#119](https://github.com/graasp/admin/issues/119)) ([f52d52d](https://github.com/graasp/admin/commit/f52d52d7b9792c8bf7e8a0a95ccfc5a68afe7cbc))
+* add tracking pixels ([#128](https://github.com/graasp/admin/issues/128)) ([c771159](https://github.com/graasp/admin/commit/c7711599f7b7749292b82d9923e0f68787dbe0d7))
+
+
+### Bug Fixes
+
+* add english translations ([075ff00](https://github.com/graasp/admin/commit/075ff00a988ce49430a1782a5ef0a33e9ccb4f72))
+* **de:** update translations ([#125](https://github.com/graasp/admin/issues/125)) ([e05af25](https://github.com/graasp/admin/commit/e05af2599d728d9ca98e3bf8e86cefdec00cbcd9))
+* **es:** update translations ([#130](https://github.com/graasp/admin/issues/130)) ([eebc0d9](https://github.com/graasp/admin/commit/eebc0d9992fe0d7b49d27f59955797caedfbdfda))
+* **fr:** update translations ([#122](https://github.com/graasp/admin/issues/122)) ([5925a65](https://github.com/graasp/admin/commit/5925a65e81bc6012d359eb3d874214112fb22f99))
+* **it:** update translations ([#133](https://github.com/graasp/admin/issues/133)) ([4166636](https://github.com/graasp/admin/commit/4166636115cb4d526d9996759bfb79f76f0ebb0e))
+* use `Graasp` as display name for noreply email ([#126](https://github.com/graasp/admin/issues/126)) ([4a2a70b](https://github.com/graasp/admin/commit/4a2a70bb16bde9fbda909c4c92ccdd4887efeab0))
+
+
+### Chores
+
+* add translation labels to readme ([c9e6397](https://github.com/graasp/admin/commit/c9e6397823853057e7f30a1c8b785972dce2c831))
+* **mise:** use named arguments for `restart` task ([#120](https://github.com/graasp/admin/issues/120)) ([5ac7c60](https://github.com/graasp/admin/commit/5ac7c606fbb22585120d141681efa18733d55ffa))
+
 ## [0.5.0](https://github.com/graasp/admin/compare/v0.4.1...v0.5.0) (2026-01-13)
 
 
