@@ -17,18 +17,18 @@ msgstr ""
 msgid "Actions"
 msgstr "Actions"
 
-#: lib/admin_web/components/layouts.ex:75
-#: lib/admin_web/components/layouts.ex:87
+#: lib/admin_web/components/layouts.ex:88
+#: lib/admin_web/components/layouts.ex:100
 #, elixir-autogen, elixir-format
 msgid "Attempting to reconnect"
 msgstr "Attempting to reconnect"
 
-#: lib/admin_web/components/layouts.ex:82
+#: lib/admin_web/components/layouts.ex:95
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr "Something went wrong!"
 
-#: lib/admin_web/components/layouts.ex:70
+#: lib/admin_web/components/layouts.ex:83
 #, elixir-autogen, elixir-format
 msgid "We can't find the internet"
 msgstr "We can't find the internet"

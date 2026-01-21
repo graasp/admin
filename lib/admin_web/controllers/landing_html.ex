@@ -4,16 +4,248 @@ defmodule AdminWeb.LandingHTML do
   """
   use AdminWeb, :html
 
+  def interactive_content_types,
+    do: [
+      %{name: "Image", src: "/images/illustrations/img.svg"},
+      %{name: "Audio", src: "/images/illustrations/audio.svg"},
+      %{name: "Video", src: "/images/illustrations/video.svg"},
+      %{name: "H5P", src: "/images/illustrations/h5p.svg"},
+      %{name: "PDF", src: "/images/illustrations/pdf.svg"},
+      %{name: "Quiz", src: "/images/illustrations/quiz.svg"},
+      %{name: "Simulation", src: "/images/illustrations/sim.svg"}
+    ]
+
+  def collections("fr"),
+    do: [
+      %{
+        href:
+          "https://graasp.org/player/0604830c-6241-4fc0-8337-c64390d8b2c3/fbc0e22d-c972-461e-bf40-ec83d3ce4e9f?fullscreen:false",
+        src: "/images/capsules/coeur.webp",
+        title: "Préparation à la dissection du coeur"
+      },
+      %{
+        href:
+          "https://graasp.org/player/95b4e981-56d0-42b2-9672-13c546c79aa1/95b4e981-56d0-42b2-9672-13c546c79aa1?fullscreen=false",
+        title: "GLOBE : utiliser des mesures prises dans l'environnement",
+        src: "/images/capsules/Globe_logo.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/8bea12d8-061d-4c00-807d-6501e2778312/8bea12d8-061d-4c00-807d-6501e2778312?fullscreen=false",
+        title: "Virus SARS-CoV-2",
+        src: "/images/capsules/covid.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/7336b9f7-e161-4990-9d74-0bdb0f04409e/4baf6561-c264-45d8-89ea-b855537656b7?fullscreen=false",
+        title: "Comprendre l'effet de serre climatique",
+        src: "/images/capsules/climate.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/e14d82a9-2824-45ad-876c-1ac317319820/e14d82a9-2824-45ad-876c-1ac317319820?fullscreen=false",
+        title: "Scrabble des formes irrégulières du présent",
+        src: "/images/capsules/scrabble.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/4a185298-3c1e-44f6-918f-378568499643/4a185298-3c1e-44f6-918f-378568499643?fullscreen=false",
+        title: "Séquence du corps humain en bilingue",
+        src: "/images/capsules/corps.webp"
+      }
+    ]
+
   embed_templates "landing_html/*"
+
+  attr :id, :string, required: true, doc: "The id of the section"
+  attr :title, :string, required: true, doc: "The title of the section"
+  attr :image_src, :string, required: true, doc: "The source of the image"
+  slot :inner_block, doc: "The content that follows the section"
+  slot :content, doc: "The inside content for the section"
+  slot :action, doc: "Actions at the end of the section content"
+
+  def section(assigns) do
+    ~H"""
+    <div class="flex flex-col gap-12" id={@id}>
+      <div class="flex flex-col">
+        <div class="flex flex-col gap-0 lg:flex-row lg:gap-6">
+          <div class="flex flex-col items-center flex-[1_1_0%]">
+            <img
+              alt={@title}
+              src={@image_src}
+              class="max-w-[500px]"
+            />
+          </div>
+          <div class="flex flex-col flex-[2_1_0%] gap-6 text-container">
+            <h2 class="text-2xl font-bold lg:text-3xl text-primary text-balance">
+              {@title}
+            </h2>
+            <%= for content <- @content do %>
+              <p>{render_slot(content)}</p>
+            <% end %>
+            <div class="flex flex-row gap-2 flex-wrap">
+              <%= for action <- @action do %>
+                {render_slot(action)}
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      {render_slot(@inner_block)}
+    </div>
+    """
+  end
+
+  attr :title, :string, required: true, doc: "The title of the card"
+  attr :icon, :string, required: true, doc: "The name of the icon"
+  slot :inner_block, doc: "The content inside the card"
+
+  def card(assigns) do
+    ~H"""
+    <div class="card bg-base-100 border border-2 border-base-300 text-primary">
+      <div class="card-body flex flex-row items-center gap-4">
+        <div class="card-icon">
+          <.icon name={@icon} class="size-10" />
+        </div>
+        <div>
+          <p class="text-lg font-bold">
+            {@title}
+          </p>
+          {render_slot(@inner_block)}
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  attr :href, :string, required: true, doc: "The URL of the collection"
+  attr :src, :string, required: true, doc: "The URL of the collection image"
+  attr :title, :string, required: true, doc: "The title of the collection"
+
+  def collection_card(assigns) do
+    ~H"""
+    <div class="bg-base-100 rounded-2xl shadow-md">
+      <a
+        href={@href}
+        target="_blank"
+        rel="noopener noreferrer"
+        alt={@title}
+      >
+        <img
+          src={@src}
+          alt={@title}
+          class="w-full h-full object-cover aspect-square overflow-hidden rounded-2xl "
+        />
+      </a>
+    </div>
+    """
+  end
+
+  attr :title, :string, required: true, doc: "The mission title"
+  attr :image_src, :string, required: true, doc: "The URL of the mission illustration image"
+  slot :action, doc: "The URL of the mission"
+
+  def mission_card(assigns) do
+    ~H"""
+    <div class="flex flex-col sm:flex-row lg:flex-col items-center gap-4 bg-base-100 p-6 rounded-2xl lg:grow lg:shrink">
+      <div class="">
+        <img
+          alt={@title}
+          src={@image_src}
+          class="w-full max-w-[300px] min-w-[150px]"
+        />
+      </div>
+      <div class="flex flex-col items-center sm:items-start lg:items-center gap-4 justify-space-between h-full">
+        <div class="flex flex-col grow gap-4 items-center sm:items-start lg:items-center">
+          <h3 class="text-primary font-bold text-xl text-center sm:text-start lg:text-center text-balance">
+            {@title}
+          </h3>
+          {render_slot(@inner_block)}
+        </div>
+        {render_slot(@action)}
+      </div>
+    </div>
+    """
+  end
+
+  attr :class, :string, default: "", doc: "The class of the call card"
+  attr :rest, :global, doc: "the arbitrary HTML attributes to add to the flash container"
+  slot :inner_block
+
+  def call_card(assigns) do
+    ~H"""
+    <div
+      class={[
+        "flex flex-row p-4 bg-violet-200 rounded-2xl justify-center items-center gap-4 lg:gap-8 lg:p-8",
+        @class
+      ]}
+      {@rest}
+    >
+      {render_slot(@inner_block)}
+    </div>
+    """
+  end
+
+  attr :title, :string, required: true, doc: "The title of the footer section"
+  slot :inner_block
+
+  def footer_section(assigns) do
+    ~H"""
+    <div class="flex flex-col gap-2 grow">
+      <span class="font-bold text-lg">
+        {@title}
+      </span>
+      <div class="flex flex-col">
+        {render_slot(@inner_block)}
+      </div>
+    </div>
+    """
+  end
+
+  attr :href, :string, required: true, doc: "The URL of the footer link"
+  attr :class, :string, default: "", doc: "The class of the footer link"
+  attr :external, :boolean, default: false, doc: "Whether the link is external"
+  slot :inner_block
+
+  def footer_link(assigns) do
+    ~H"""
+    <.link
+      href={@href}
+      class={[
+        "px-4 py-2 rounded hover:underline hover:bg-black/20 flex flex-row items-center gap-1",
+        @class
+      ]}
+    >
+      {render_slot(@inner_block)}
+      <%= if @external do %>
+        <.icon name="hero-arrow-top-right-on-square" class="size-4 align-baseline mb-1" />
+      <% end %>
+    </.link>
+    """
+  end
 
   attr :url, :string, required: true, doc: "The URL of the project"
   slot :inner_block, doc: "The content inside the project link"
 
   def project_link(assigns) do
     ~H"""
-    <a href={@url} class="min-w-[150px] min-h-[3rem] flex items-center justify-center">
+    <a href={@url} class="min-w-[90px] min-h-[3rem] flex items-center justify-center">
       {render_slot(@inner_block)}
     </a>
+    """
+  end
+
+  def swiss_flag(assigns) do
+    ~H"""
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="13"
+      height="13"
+      viewBox="0 0 32 32"
+    >
+      <path d="m0 0h32v32h-32z" fill="#f00"></path>
+      <path d="m13 6h6v7h7v6h-7v7h-6v-7h-7v-6h7z" fill="#fff"></path>
+    </svg>
     """
   end
 
@@ -329,7 +561,7 @@ defmodule AdminWeb.LandingHTML do
   end
 
   # define classes to apply to the logos
-  @logo_classes "h-[3rem] max-h-[3rem] max-w-[150px] w-fit"
+  @logo_classes "h-[3rem] max-h-[3rem] max-w-[90px] w-fit"
 
   # we need to define a function that returns the logo classes so we can use them in the template
   defp logo_classes, do: @logo_classes

@@ -1,0 +1,499 @@
+<Layouts.landing flash={@flash} current_scope={@current_scope}>
+  <div class="" id="__root">
+    <div class="">
+      <div class="">
+        <div id="splash_section" class="flex flex-col">
+          <div class="p-4 md:p-16 flex flex-col bg-wave-primary text-white">
+            <section class="flex flex-col mx-auto my-10 max-w-screen-xl">
+              <div class="flex flex-row items-center justify-items-start lg:gap-2">
+                <div class="flex flex-col gap-8 lg:flex-2">
+                  <div class="flex flex-row justify-center items-center gap-2 lg:justify-start">
+                    <.logo class="lg:hidden" size={60} fill="white" />
+                    <h1 class="text-[70px] font-bold lg:text-3xl">
+                      Graasp
+                    </h1>
+                  </div>
+
+                  <h2 class="text-center self-center font-bold text-3xl lg:self-start lg:text-start lg:text-[50px] text-balance">
+                    La plateforme d'apprentissage interactive
+                  </h2>
+
+                  <p class="text-center self-center text-xl lg:self-start lg:text-start">
+                    Une plateforme <strong>ouverte</strong>
+                    et <strong>gratuite</strong>
+                    qui permet de <strong>créer</strong>
+                    et <strong>partager</strong>
+                    des <strong>supports pédagogiques interactifs</strong>, ainsi que des
+                    <strong>Ressources Éducatives Libres</strong>
+                  </p>
+                  <div class="flex-col justify-center">
+                    <h6 class="flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:justify-center sm:gap-2 lg:justify-start">
+                      Par l'association Graasp, basée en Suisse <.swiss_flag />
+                    </h6>
+                  </div>
+                  <div class="flex flex-col items-center lg:items-start" id="buttonsContainer">
+                    <.button
+                      class="btn btn-primary btn-soft btn-lg"
+                      data-umami-event="header-register-button"
+                      href="/auth/register"
+                    >
+                      Créer un compte
+                    </.button>
+                  </div>
+                </div>
+                <div class="hidden lg:flex lg:flex-col lg:overflow-hidden lg:flex-1">
+                  <.logo size={400} fill="white" />
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div id="supported_by" class="flex flex-col px-4 py-3 md:px-12 md:py-6 bg-white">
+          <div class="flex flex-col max-w-screen-xl mx-auto justify-between w-full lg:flex-row lg:items-center">
+            <p class="text-secondary">Soutenue par</p>
+            <div class="flex flex-wrap gap-2 align-center" id="logosContainer">
+              <%!-- EPFL logo   --%>
+              <.project_link url="https://www.epfl.ch">
+                <.epfl_logo />
+              </.project_link>
+
+              <%!-- BeLEARN logo --%>
+              <.project_link url="https://belearn.swiss">
+                <img
+                  alt="BeLEARN logo"
+                  src="/images/projects/BeLEARN.webp"
+                  class="max-w-[150px] max-h-[3rem]"
+                />
+              </.project_link>
+
+              <%!-- EdTech logo --%>
+              <.project_link url="https://www.edtech-collider.ch">
+                <.collider_logo />
+              </.project_link>
+
+              <%!-- UNINE logo --%>
+              <.project_link url="https://www.unine.ch/imi/en/">
+                <.unine_logo />
+              </.project_link>
+
+              <%!-- GOLAB logo --%>
+              <.project_link url="https://www.golabz.eu/">
+                <.golabz_logo />
+              </.project_link>
+
+              <%!-- Swiss Universities logo --%>
+              <.project_link url="https://www.swissuniversities.ch/fr/themes/digitalisation/open-education-digital-competencies/projets-soutenus">
+                <img
+                  alt="SwissUniversities logo"
+                  src="/images/projects/swissuniversities.webp"
+                  class="max-w-[150px] max-h-[3rem]"
+                />
+              </.project_link>
+
+              <%!-- SDC logo --%>
+              <.project_link url="https://www.eda.admin.ch/eda/en/fdfa/fdfa/organisation-fdfa/directorates-divisions/sdc.html">
+                <img
+                  alt="SDC logo"
+                  src="/images/projects/sdc.webp"
+                  class="max-w-[150px] max-h-[3rem]"
+                />
+              </.project_link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="content"
+        class="flex flex-col p-10 mt-12 lg:mt-[86px] gap-[86px] lg:gap-[200px] items-center"
+      >
+        <section class="flex flex-col max-w-4xl gap-[86px] lg:gap-[200px]">
+          <.section
+            id="contenu_interactif"
+            title="Création de supports interactifs pédagogiques"
+            image_src="/images/illustrations/landing-message-create.svg"
+          >
+            <:content>
+              Avec Graasp, il est facile de mettre des <strong class="text-primary">supports pédagogiques en ligne</strong>, en transformant <strong class="text-primary">images</strong>,
+              <strong class="text-primary">PDFs</strong>
+              et ressources traditionnelles en
+              <strong style="color: rgb(80, 80, 210);">
+                leçons numériques interactives
+              </strong>
+              en quelques minutes.
+            </:content>
+            <:content>
+              Ce qui rend Graasp réellement puissant, c'est sa capacité à aider à concevoir des
+              <strong class="text-primary">activités d'apprentissage engageantes</strong>
+              en intégrant des <strong class="text-primary">vidéos</strong>
+              et des <strong class="text-primary">applications interactives</strong>. Il est possible de créer des leçons qui captivent les élèves, suscitent la curiosité et favorisent une participation active.
+            </:content>
+
+            <:action>
+              <.link
+                class="btn btn-primary"
+                data-umami-event="messages-create-button"
+                href="/features"
+              >
+                En savoir plus
+              </.link>
+            </:action>
+
+            <div class="flex flex-col gap-6">
+              <h5 class="text-md text-primary font-bold lg:text-lg ">
+                Intégrer du contenu interactif dans des supports pédagogiques
+              </h5>
+              <div class="flex flex-row gap-2 lg:gap-4 w-full">
+                <%= for content_type <- AdminWeb.LandingHTML.interactive_content_types do %>
+                  <div class="flex flex-col">
+                    <img alt={"#{content_type.name} icon"} width="100%" src={content_type.src} />
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </.section>
+
+          <.section
+            id="sharing"
+            title="Partager facilement avec les apprenants"
+            image_src="/images/illustrations/landing-message-share.svg"
+          >
+            <:content>
+              Que ce soit pour collaborer avec une <strong class="text-primary">classe entière</strong>, un
+              <strong class="text-primary">groupe spécifique</strong>
+              ou un <strong class="text-primary">collègue</strong>, Graasp offre des
+              <strong class="text-primary">options de partage flexibles</strong>
+              et personnalisables à tout moment, ainsi qu'un
+              <strong class="text-primary">contrôle total</strong>
+              sur qui peut voir, modifier ou commenter vos ressources.
+            </:content>
+            <:action>
+              <.link
+                class="btn btn-primary"
+                data-umami-event="messages-share-button"
+                href="/features"
+              >
+                En savoir plus
+              </.link>
+            </:action>
+
+            <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
+              <.card icon="folder-lock" title="Contrôle d'accès granulaire">
+                Seules les personnes approuvées peuvent accéder au contenu, et les demandes d'accès peuvent être examinées avant d'être autorisées.
+              </.card>
+
+              <.card icon="users-silhouette" title="Accès simplifié pour les participants">
+                Partager du contenu via un lien privé, avec la possibilité d'ajouter un mot de passe. Idéal pour les participants qui n'ont pas d'adresse e-mail.
+              </.card>
+            </div>
+          </.section>
+
+          <.section
+            id="message-library"
+            title="Profiter et contribuer à une bibliothèque de Ressources Éducatives Libres (REL)"
+            image_src="/images/illustrations/landing-message-library.svg"
+          >
+            <:content>
+              La <strong class="text-primary">collaboration</strong>
+              est au cœur de la <strong class="text-primary">Graasp Library</strong>, où enseignants et professionnels se réunissent pour <strong class="text-primary">partager, co-créer et apprendre</strong>. En partageant des
+              <strong class="text-primary">ressources éducatives libres</strong>
+              (REL), les éducateurs ont accès à une bibliothèque en constante expansion et y contribuent, enrichissant ainsi le <strong class="text-primary">savoir collectif</strong>.
+            </:content>
+
+            <:action>
+              <.link
+                class="btn btn-primary"
+                data-umami-event="messages-library-button"
+                href="https://library.graasp.org"
+              >
+                Aller sur Graasp Library
+              </.link>
+            </:action>
+            <:action>
+              <.link
+                class="btn btn-accent"
+                data-umami-event="messages-library-oer-button"
+                href="https://library.graasp.org/oer"
+              >
+                Qu'est-ce que les RELs&nbsp;?
+              </.link>
+            </:action>
+
+            <div class="flex flex-col gap-6">
+              <h5 class="text-md text-primary font-bold lg:text-lg ">
+                Découvrez les activités créées par nos utilisateurs
+              </h5>
+
+              <div class="grid grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-4 w-full">
+                <%= for collection <- AdminWeb.LandingHTML.collections("fr") do %>
+                  <.collection_card
+                    href={collection.href}
+                    title={collection.title}
+                    src={collection.src}
+                  />
+                <% end %>
+              </div>
+            </div>
+          </.section>
+
+          <.call_card id="support">
+            <.icon name="headset" class="size-8 text-primary shrink-0 max-w-16" />
+            <div class="flex flex-col items-start gap-2">
+              <h2 class="text-xl font-bold text-primary">
+                Besoin d'aide&nbsp;?
+              </h2>
+              <p class="MuiTypography-root MuiTypography-body1 mui-dir-ltr-1gu19pc">
+                Nous sommes heureux d'aider en cas de questions, doutes ou besoin de conseils sur la manière dont Graasp peut répondre aux besoins. Notre boîte email
+                <strong class="text-primary">support@graasp.org</strong>
+                est ouverte et notre équipe répondra dans les plus brefs délais.
+              </p>
+              <.link
+                class="btn btn-accent"
+                href="mailto:support@graasp.org"
+                data-umami-event="need-support-button"
+              >
+                Nous contacter
+              </.link>
+            </div>
+          </.call_card>
+        </section>
+
+        <div id="missions" class="flex flex-col gap-6 items-center max-w-screen-xl">
+          <h2 class="text-2xl font-bold text-primary">Nos Missions</h2>
+
+          <div class="grid grid-flow-row gap-10 lg:grid-flow-col ">
+            <.mission_card
+              title="Nous faisons avancer la recherche dans l'éducation"
+              image_src="/images/illustrations/landing-mission-research.svg"
+            >
+              <p class="w-full">
+                De nombreux articles académiques et retours d'expériences pratiques se sont appuyés sur Graasp, mettant en évidence son efficacité à favoriser l'apprentissage collaboratif fondé sur l'investigation ainsi que son impact significatif au sein de la communauté des technologies éducatives. <.link
+                  class="link"
+                  href="/about-us#papers"
+                >Découvrir tous les articles</.link>.
+              </p>
+              <p class="w-full">
+                Besoin d'aide pour vos recherches&nbsp;? Nous sommes à l'écoute pour vous aider.
+              </p>
+              <:action>
+                <a
+                  class="btn btn-accent"
+                  data-umami-event="missions-contact-us-button"
+                  href="/contact-us"
+                >
+                  Nous contacter
+                </a>
+              </:action>
+            </.mission_card>
+
+            <.mission_card
+              title="Nous protégeons la vie privée et la souveraineté des données"
+              image_src="/images/illustrations/landing-mission-privacy.svg"
+            >
+              <p>
+                Développé avec une forte attention portée à la confidentialité et à la souveraineté des données, Graasp permet aux utilisateurs de conserver un contrôle total sur leurs informations, à l'abri de toute exploitation par des tiers. Hébergé en Suisse et géré par l'association à but non lucratif Graasp Association, il bénéficie des solides lois suisses sur la protection des données qui renforcent ces principes fondamentaux.
+              </p>
+              <:action>
+                <a
+                  class="btn btn-accent"
+                  data-umami-event="about-us"
+                  href="/about-us"
+                >
+                  A propos de l'association
+                </a>
+              </:action>
+            </.mission_card>
+
+            <.mission_card
+              title="Nous défendons l'ouverture et la transparence"
+              image_src="/images/illustrations/landing-mission-open.svg"
+            >
+              <p>
+                En tant que projet open source, Graasp promeut la transparence, la confiance et la collaboration.
+              </p>
+              <p>
+                Sa nature ouverte encourage les contributions de la communauté, l'amélioration continue et l'adaptabilité. Nous veillons à ce que la plateforme évolue en harmonie avec les besoins des enseignants et des apprenants.
+              </p>
+              <:action>
+                <.link
+                  class="btn btn-accent"
+                  data-umami-event="github"
+                  href="https://github.com/graasp"
+                >
+                  <.icon name="github" class="size-5" /> Voir sur GitHub
+                </.link>
+              </:action>
+            </.mission_card>
+          </div>
+        </div>
+
+        <.call_card class="max-w-screen-lg flex-col! lg:flex-row!">
+          <div class="flex flex-col gap-2 items-center lg:items-start">
+            <h2 class="text-2xl font-bold text-primary text-center">
+              Voulez-vous rester informé&#8209;e&nbsp;?
+            </h2>
+            <p class="text-balance text-center lg:text-start">
+              Nous vous communiquerons les mises à jour importantes de la plateforme par email.
+            </p>
+          </div>
+
+          <.link
+            class="btn btn-primary"
+            href="https://forms.gle/QAUYtioZvDtKwozXA"
+          >
+            S'abonner
+          </.link>
+        </.call_card>
+
+        <div class="flex flex-col items-center gap-8 max-w-lg">
+          <div class="flex flex-row items-center gap-2">
+            <.logo size={40} />
+            <span class="text-3xl font-bold text-primary">Graasp</span>
+          </div>
+          <span class="text-2xl font-bold text-center text-balance">
+            Révolutionner l'enseignement grâce à des outils d'apprentissage interactifs sur Graasp&nbsp;!
+          </span>
+          <.button
+            variant="primary"
+            class="btn-lg"
+            data-umami-event="call-to-action-register-button"
+            href="/auth/register"
+          >
+            Créer un compte
+          </.button>
+        </div>
+      </div>
+    </div>
+
+    <footer
+      id="footer"
+      class="flex flex-col items-center bg-primary text-white p-6 mt-[86px] lg:mt-[200px]"
+    >
+      <div class="flex flex-col items-center max-w-screen-xl">
+        <p class="font-bold">
+          Développé en Suisse par l'association Graasp
+        </p>
+        <div class="flex flex-col lg:flex-row gap-12 m-8 justify-space-between">
+          <div class="flex flex-col sm:flex-row gap-8">
+            <.footer_section title="Contenu">
+              <.footer_link href={~p"/"}>
+                Accueil
+              </.footer_link>
+              <.footer_link href="/features">
+                Fonctionnalités
+              </.footer_link>
+              <.footer_link href="/about-us">
+                À propos de nous
+              </.footer_link>
+              <.footer_link href="/support">
+                Support utilisateur
+              </.footer_link>
+              <.footer_link href="/contact-us">
+                Contactez-nous
+              </.footer_link>
+              <.footer_link
+                href="https://graasp.github.io/docs/blog"
+                external={true}
+              >
+                Blog
+              </.footer_link>
+            </.footer_section>
+            <.footer_section title="Partenaires">
+              <.footer_link href="https://epfl.ch" external={true}>EPFL</.footer_link>
+              <.footer_link href="https://edtech-collider.ch" external={true}>
+                Swiss EdTech Collider
+              </.footer_link>
+              <.footer_link
+                href="https://www.golabz.eu"
+                external={true}
+              >
+                Go-Lab
+              </.footer_link>
+              <.footer_link
+                href="https://d-skills.ch/"
+                external={true}
+              >
+                Swiss Digital Skills Academy
+              </.footer_link>
+              <.footer_link
+                href="https://www.ihub4schools.eu/"
+                external={true}
+              >
+                iHub4Schools
+              </.footer_link>
+              <.footer_link
+                href="https://belearn.swiss/en/"
+                external={true}
+              >
+                BeLEARN
+              </.footer_link>
+              <.footer_link
+                href="https://go-ga.org/"
+                external={true}
+              >
+                GO-GA
+              </.footer_link>
+            </.footer_section>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-8">
+            <.footer_section title="Réseaux sociaux">
+              <.footer_link href="https://www.facebook.com/graasp">
+                <.icon name="facebook" class="size-5" /> Facebook
+              </.footer_link>
+              <.footer_link href="https://twitter.com/graasp">
+                <.icon name="twitter" class="size-5" /> Twitter
+              </.footer_link>
+              <.footer_link href="https://www.instagram.com/graasper">
+                <.icon name="instagram" class="size-5" /> Instagram
+              </.footer_link>
+              <.footer_link href="https://www.linkedin.com/company/graasp">
+                <.icon name="linkedin" class="size-5" /> LinkedIn
+              </.footer_link>
+              <.footer_link href="https://github.com/graasp">
+                <.icon name="github" class="size-5" /> Github
+              </.footer_link>
+              <.footer_link href="https://tooting.ch/@graasp">
+                <.icon name="mastodon" class="size-5" /> Mastodon
+              </.footer_link>
+            </.footer_section>
+            <.footer_section title="Autre">
+              <.footer_link href="/terms">
+                Conditions d'utilisation
+              </.footer_link>
+              <.footer_link href="/policy">
+                Politique de confidentialité
+              </.footer_link>
+              <.footer_link href="/disclaimer">
+                Clause de non-responsabilité
+              </.footer_link>
+              <div class="flex flex-row items-center">
+                <div>
+                  <button
+                    class="flex flex-row items-center gap-1"
+                    tabindex="0"
+                    type="button"
+                    aria-haspopup="true"
+                  >
+                    <.icon name="hero-language" class="size-6" /> Français
+                    <.icon name="hero-chevron-down" class="size-6" />
+                  </button>
+                </div>
+              </div>
+            </.footer_section>
+          </div>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <p class="text-sm">
+            © Graasp 2014 - 2026
+          </p>
+          <.link
+            href="https://storyset.com/idea"
+            class="text-[10px] text-slate-400 text-decoration-none"
+          >
+            Idea illustrations by Storyset
+          </.link>
+        </div>
+      </div>
+    </footer>
+  </div>
+</Layouts.landing>
