@@ -8,26 +8,26 @@
 ### to merge POT files into PO files.
 msgid ""
 msgstr ""
-"Language: es\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/admin/accounts/user_notifier.ex:99
 #, elixir-autogen, elixir-format
 msgid "Graasp.org is a learning experience platform."
-msgstr ""
+msgstr "Graasp.org es una plataforma de experiencia de aprendizaje."
 
 #: lib/admin/accounts/user_notifier.ex:92
 #: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "Hi %{name},"
-msgstr ""
+msgstr "Hola %{name},"
 
 #: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "In case you can not click the button above here is the link:"
-msgstr ""
+msgstr "En caso de que no puedas hacer clic en el botón de arriba aquí está el enlace:"
 
 #: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:26
 #, elixir-autogen, elixir-format
 msgid "You are receiving this email because you have an account on Graasp: "
-msgstr ""
+msgstr "Estás recibiendo este correo electrónico porque tienes una cuenta en Graasp:"
