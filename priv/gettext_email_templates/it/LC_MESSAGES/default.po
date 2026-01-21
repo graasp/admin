@@ -1,0 +1,33 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/admin/accounts/user_notifier.ex:99
+#, elixir-autogen, elixir-format
+msgid "Graasp.org is a learning experience platform."
+msgstr "Graasp.org è una piattaforma di esperienze di apprendimento."
+
+#: lib/admin/accounts/user_notifier.ex:92
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "Hi %{name},"
+msgstr "Ciao %{name},"
+
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:15
+#, elixir-autogen, elixir-format
+msgid "In case you can not click the button above here is the link:"
+msgstr "Nel caso non riuscissi a cliccare sul pulsante qui sopra ecco il link:"
+
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:26
+#, elixir-autogen, elixir-format
+msgid "You are receiving this email because you have an account on Graasp: "
+msgstr "Stai ricevendo questa email perché hai un account su Graasp:"
