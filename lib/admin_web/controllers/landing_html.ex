@@ -176,7 +176,7 @@ defmodule AdminWeb.LandingHTML do
     ~H"""
     <div
       class={[
-        "flex flex-row p-4 bg-violet-200 rounded-2xl justify-center items-center gap-4 lg:gap-8 lg:p-8",
+        "flex flex-row p-4 bg-base-100 rounded-2xl justify-center items-center gap-4 lg:gap-8 lg:p-8",
         @class
       ]}
       {@rest}

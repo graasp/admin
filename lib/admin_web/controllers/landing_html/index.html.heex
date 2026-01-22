@@ -32,13 +32,13 @@
                     </h6>
                   </div>
                   <div class="flex flex-col items-center lg:items-start" id="buttonsContainer">
-                    <.button
-                      class="btn btn-primary btn-soft btn-lg"
+                    <.link
+                      class="btn btn-accent btn-lg"
                       data-umami-event="header-register-button"
                       href="/auth/register"
                     >
                       Créer un compte
-                    </.button>
+                    </.link>
                   </div>
                 </div>
                 <div class="hidden lg:flex lg:flex-col lg:overflow-hidden lg:flex-1">
@@ -211,7 +211,7 @@
             </:action>
             <:action>
               <.link
-                class="btn btn-accent"
+                class="btn btn-primary btn-soft"
                 data-umami-event="messages-library-oer-button"
                 href="https://library.graasp.org/oer"
               >
@@ -248,7 +248,7 @@
                 est ouverte et notre équipe répondra dans les plus brefs délais.
               </p>
               <.link
-                class="btn btn-accent"
+                class="btn btn-primary btn-soft"
                 href="mailto:support@graasp.org"
                 data-umami-event="need-support-button"
               >
@@ -277,7 +277,7 @@
               </p>
               <:action>
                 <a
-                  class="btn btn-accent"
+                  class="btn btn-primary btn-soft"
                   data-umami-event="missions-contact-us-button"
                   href="/contact-us"
                 >
@@ -295,7 +295,7 @@
               </p>
               <:action>
                 <a
-                  class="btn btn-accent"
+                  class="btn btn-primary btn-soft"
                   data-umami-event="about-us"
                   href="/about-us"
                 >
@@ -316,7 +316,7 @@
               </p>
               <:action>
                 <.link
-                  class="btn btn-accent"
+                  class="btn btn-primary btn-soft"
                   data-umami-event="github"
                   href="https://github.com/graasp"
                 >
@@ -353,14 +353,13 @@
           <span class="text-2xl font-bold text-center text-balance">
             Révolutionner l'enseignement grâce à des outils d'apprentissage interactifs sur Graasp&nbsp;!
           </span>
-          <.button
-            variant="primary"
-            class="btn-lg"
+          <.link
+            class="btn btn-lg btn-accent"
             data-umami-event="call-to-action-register-button"
             href="/auth/register"
           >
             Créer un compte
-          </.button>
+          </.link>
         </div>
       </div>
     </div>
@@ -478,6 +477,9 @@
                     <.icon name="hero-chevron-down" class="size-6" />
                   </button>
                 </div>
+              </div>
+              <div class="text-primary w-fit pt-8">
+                <Layouts.theme_toggle />
               </div>
             </.footer_section>
           </div>
