@@ -129,7 +129,11 @@ defmodule Admin.MixProject do
       {:mjml, "~> 5.0"},
 
       # VegaLite is a JavaScript library for creating interactive visualizations
-      {:vega_lite, "~> 0.1.11"}
+      {:vega_lite, "~> 0.1.11"},
+
+      # publish documentation via markdown
+      {:nimble_publisher, "~> 1.0"},
+      {:yaml_elixir, "~> 2.12"}
     ]
   end
 

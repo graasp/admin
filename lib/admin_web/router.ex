@@ -29,6 +29,9 @@ defmodule AdminWeb.Router do
   scope "/", AdminWeb do
     pipe_through :browser
     get "/", LandingController, :index
+
+    get "/blog", BlogController, :index
+    get "/blog/:id", BlogController, :show
   end
 
   scope "/admin", AdminWeb do

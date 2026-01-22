@@ -289,6 +289,9 @@ defmodule AdminWeb.Layouts do
                 <.link navigate="/library">Library</.link>
               </li>
               <li>
+                <.link navigate={~p"/blog"}>Blog</.link>
+              </li>
+              <li>
                 <.link navigate={~p"/admin/dashboard"}>Admin</.link>
               </li>
 
@@ -314,6 +317,7 @@ defmodule AdminWeb.Layouts do
         <div class="navbar-center hidden lg:flex">
           <ul class="menu menu-horizontal px-1">
             <li><.link navigate="/library">Library</.link></li>
+            <li><.link navigate={~p"/blog"}>Blog</.link></li>
           </ul>
           <ul class="menu menu-horizontal px-1">
             <li><.link navigate={~p"/admin/dashboard"}>Admin</.link></li>
