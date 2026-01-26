@@ -8,8 +8,6 @@ authors:
 
 Here is the first release of Graasp for 2026! We made several small improvements and finally applied our policy about trashed items. Read on for the full list of changes.
 
-> #### Info can be long here I think it is a good idea to have a longer info message {: .info}
-
 <!-- Everything below this will not be shown in the post overview -->
 
 <!-- truncate -->
