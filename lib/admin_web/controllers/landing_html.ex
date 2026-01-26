@@ -2,7 +2,116 @@ defmodule AdminWeb.LandingHTML do
   @moduledoc """
   This module contains pages rendered by LandingController.
   """
+  alias Hex.Crypto.ContentEncryptor
   use AdminWeb, :html
+
+  def team do
+    [
+      %{name: "Denis Gillet", role: "President", src: "/images/team/denis.webp"},
+      %{
+        name: "María Jesús Rodríguez‑Triana",
+        role: "VP Research",
+        src: "/images/team/maria.webp"
+      },
+      %{name: "Juan Carlos Farah", role: "VP Product", src: "/images/team/juancarlos.webp"},
+      %{name: "Kim Lan Phan Hoang", role: "VP Engineering", src: "/images/team/kim.webp"},
+      %{name: "Jérémy La Scala", role: "VP Outreach", src: "/images/team/jeremy.webp"},
+      %{name: "Basile Spaenlehauer", role: "VP Technology", src: "/images/team/basile.webp"},
+      %{
+        name: "Michele Notari",
+        role: "VP Education and Content",
+        src: "/images/team/michele.webp"
+      },
+      %{name: "Hagop Taminian", role: "Software Engineer", src: "/images/team/hagop.webp"},
+      %{name: "Philippe Kobel", role: "Ambassador", src: "/images/team/philippe.webp"}
+    ]
+  end
+
+  def papers do
+    [
+      %{
+        title: "Integrated model for comprehensive digital education platforms",
+        year: "2022",
+        authors:
+          "Denis Gillet, Isabelle Vonèche-Cardia, Juan Carlos Farah, Kim Lan Phan Hoang, María Jesús Rodríguez-Triana",
+        url: "https://ieeexplore.ieee.org/abstract/document/9766795"
+      },
+      %{
+        title:
+          "Understanding teacher design practices for digital inquiry–based science learning: The case of Go-Lab",
+        year: "2021",
+        authors:
+          "Ton de Jong, Denis Gillet, María Jesús Rodríguez-Triana, Tasos Hovardas, Diana Dikke, Rosa Doran, Olga Dziabenko, Jens Koslowsky, Miikka Korventausta, Effie Law, Margus Pedaste, Evita Tasiopoulou, Gérard Vidal, Zacharias C Zacharia",
+        url: "https://link.springer.com/article/10.1007/s11423-020-09904-z"
+      },
+      %{
+        title: "Stimulating Brainstorming Activities with Generative AI in Higher Education",
+        year: "2025",
+        authors: "Jérémy La Scala, Sonia Sahli, Denis Gillet",
+        url: "https://ieeexplore.ieee.org/document/11016340"
+      },
+      %{
+        title:
+          "Implementation Framework and Strategies for AI-Augmented Open Educational Resources (OER): A Comprehensive Approach Applied to Secondary and Higher Education",
+        year: "2024",
+        authors: "Denis Gillet, Michele Notari, Basile Spacnlchauer, Thibault Reidy",
+        url: "https://ieeexplore.ieee.org/document/10837633"
+      },
+      %{
+        title:
+          "Developing Transversal Skills and Strengthening Collaborative Blended Learning Activities in Engineering Education: a Pilot Study",
+        year: "2022",
+        authors: "Jérémy La Scala; Graciana Aad; Isabelle Vonèche-Cardia; Denis Gillet",
+        url: "https://ieeexplore.ieee.org/abstract/document/10031948"
+      },
+      %{
+        title:
+          "Introducing Alternative Value Proposition Canvases for Collaborative and Blended Design Thinking Activities in Science and Engineering Education",
+        year: "2022",
+        authors: "Denis Gillet; Isabelle Vonèche-Cardia; Jérémy La Scala",
+        url: "https://ieeexplore.ieee.org/abstract/document/10148548"
+      },
+      %{
+        title:
+          "Promoting computational thinking skills in non-computer-science students: Gamifying computational notebooks to increase student engagement",
+        year: "2022",
+        authors:
+          "Alessio De Santo, Juan Carlos Farah, Marc Lafuente Martínez, Arielle Moro, Kristoffer Bergram, Aditya Kumar Purohit, Pascal Felber, Denis Gillet, Adrian Holzer",
+        url:
+          "https://arodes.hes-so.ch/record/10857/files/deSanto_2022_promoting_computational_thinking_skills_non_computer_science_students.pdf"
+      },
+      %{
+        title:
+          "Supporting developers in creating web apps for education via an app development framework",
+        year: "2022",
+        authors: "Juan Carlos Farah, Sandy Ingram, Denis Gillet",
+        url:
+          "https://arodes.hes-so.ch/record/10447/files/Ingram_2022_supporting_developers_creating_web_apps_education_app_development_framework_POSTPRINT.pdf"
+      },
+      %{
+        title: "Promoting and implementing digital STEM education at secondary schools in Africa",
+        year: "2019",
+        authors:
+          "Denis Gillet, Bosun Tijani, Senam Beheton, Juan Carlos Farah, Diana Dikke, Aurelle Noutahi, Rosa Doran, Nuno RC Gomes, Sam Rich, Ton De Jong, Célia Gavaud",
+        url:
+          "https://infoscience.epfl.ch/entities/publication/c622fa65-9e9e-4d9c-b279-2ec657cf828a"
+      },
+      %{
+        title: "Innovations in STEM education: the Go-Lab federation of online labs (2014)",
+        year: "2014",
+        authors: "Ton de Jong, Sofoklis Sotiriou, Denis Gillet",
+        url: "https://link.springer.com/article/10.1186/s40561-014-0003-6"
+      },
+      %{
+        title:
+          "Using Social Media for Collaborative Learning in Higher Education: A Case Study (2012)",
+        year: "2012",
+        authors: "Na Li, Sandy El Helou, Denis Gillet",
+        url:
+          "https://infoscience.epfl.ch/entities/publication/672772bf-1312-41b3-9e8b-d1f27415e482"
+      }
+    ]
+  end
 
   def collections("fr"),
     do: [
@@ -175,6 +284,54 @@ defmodule AdminWeb.LandingHTML do
     """
   end
 
+  attr :value, :string, required: true, doc: "The value of the stats card"
+  attr :description, :string, required: true, doc: "The description of the stats card"
+
+  def stats_card(assigns) do
+    ~H"""
+    <div class="flex flex-col items-center bg-base-100 rounded-2xl p-4">
+      <span class="text-2xl font-bold text-primary">
+        {@value}
+      </span>
+      <span class="text-sm text-gray-500">
+        {@description}
+      </span>
+    </div>
+    """
+  end
+
+  attr :href, :string
+  attr :icon, :string
+  attr :name, :string
+
+  def social_card(assigns) do
+    ~H"""
+    <a class="flex flex-col items-center bg-base-100 p-4 rounded-lg gap-2" href={@href}>
+      <.icon name={@icon} class="size-6 text-primary" /> {@name}
+    </a>
+    """
+  end
+
+  attr :title, :string, required: true, doc: "The title of the footer section"
+  attr :description, :string, required: true, doc: "The description of the project card"
+  attr :image_src, :string, required: true, doc: "The image source of the project card"
+
+  def project_card(assigns) do
+    ~H"""
+    <div class="flex flex-col gap-4 p-8 bg-base-100 rounded-2xl shadow-md">
+      <div class="flex flex-col items-center gap-2">
+        <img alt={@title} src={@image_src} class="max-h-24" />
+        <p class="font-bold text-lg">
+          {@title}
+        </p>
+        <p class="text-center">
+          {@description}
+        </p>
+      </div>
+    </div>
+    """
+  end
+
   attr :title, :string, required: true, doc: "The title of the footer section"
   slot :inner_block
 
@@ -221,6 +378,144 @@ defmodule AdminWeb.LandingHTML do
     <a href={@url} class="min-w-[90px] min-h-[3rem] flex items-center justify-center">
       {render_slot(@inner_block)}
     </a>
+    """
+  end
+
+  def landing_footer(assigns) do
+    ~H"""
+    <footer
+      id="footer"
+      class="flex flex-col items-center bg-primary text-white p-6 mt-[86px] lg:mt-[200px]"
+    >
+      <div class="flex flex-col items-center max-w-screen-xl">
+        <p class="font-bold">
+          Développé en Suisse par l'association Graasp
+        </p>
+        <div class="flex flex-col lg:flex-row gap-12 m-8 justify-space-between">
+          <div class="flex flex-col sm:flex-row gap-8">
+            <.footer_section title="Contenu">
+              <.footer_link href={~p"/"}>
+                Accueil
+              </.footer_link>
+              <.footer_link href="/features">
+                Fonctionnalités
+              </.footer_link>
+              <.footer_link href="/about-us">
+                À propos de nous
+              </.footer_link>
+              <.footer_link href="/support">
+                Support utilisateur
+              </.footer_link>
+              <.footer_link href="/contact-us">
+                Contactez-nous
+              </.footer_link>
+              <.footer_link
+                href="https://graasp.github.io/docs/blog"
+                external={true}
+              >
+                Blog
+              </.footer_link>
+            </.footer_section>
+            <.footer_section title="Partenaires">
+              <.footer_link href="https://epfl.ch" external={true}>EPFL</.footer_link>
+              <.footer_link href="https://edtech-collider.ch" external={true}>
+                Swiss EdTech Collider
+              </.footer_link>
+              <.footer_link
+                href="https://www.golabz.eu"
+                external={true}
+              >
+                Go-Lab
+              </.footer_link>
+              <.footer_link
+                href="https://d-skills.ch/"
+                external={true}
+              >
+                Swiss Digital Skills Academy
+              </.footer_link>
+              <.footer_link
+                href="https://www.ihub4schools.eu/"
+                external={true}
+              >
+                iHub4Schools
+              </.footer_link>
+              <.footer_link
+                href="https://belearn.swiss/en/"
+                external={true}
+              >
+                BeLEARN
+              </.footer_link>
+              <.footer_link
+                href="https://go-ga.org/"
+                external={true}
+              >
+                GO-GA
+              </.footer_link>
+            </.footer_section>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-8">
+            <.footer_section title="Réseaux sociaux">
+              <.footer_link href="https://www.facebook.com/graasp">
+                <.icon name="facebook" class="size-5" /> Facebook
+              </.footer_link>
+              <.footer_link href="https://twitter.com/graasp">
+                <.icon name="twitter" class="size-5" /> Twitter
+              </.footer_link>
+              <.footer_link href="https://www.instagram.com/graasper">
+                <.icon name="instagram" class="size-5" /> Instagram
+              </.footer_link>
+              <.footer_link href="https://www.linkedin.com/company/graasp">
+                <.icon name="linkedin" class="size-5" /> LinkedIn
+              </.footer_link>
+              <.footer_link href="https://github.com/graasp">
+                <.icon name="github" class="size-5" /> Github
+              </.footer_link>
+              <.footer_link href="https://tooting.ch/@graasp">
+                <.icon name="mastodon" class="size-5" /> Mastodon
+              </.footer_link>
+            </.footer_section>
+            <.footer_section title="Autre">
+              <.footer_link href="/terms">
+                Conditions d'utilisation
+              </.footer_link>
+              <.footer_link href="/policy">
+                Politique de confidentialité
+              </.footer_link>
+              <.footer_link href="/disclaimer">
+                Clause de non-responsabilité
+              </.footer_link>
+              <div class="flex flex-row items-center">
+                <div>
+                  <button
+                    class="flex flex-row items-center gap-1"
+                    tabindex="0"
+                    type="button"
+                    aria-haspopup="true"
+                  >
+                    <.icon name="hero-language" class="size-6" /> Français
+                    <.icon name="hero-chevron-down" class="size-6" />
+                  </button>
+                </div>
+              </div>
+              <div class="text-primary w-fit pt-8">
+                <Layouts.theme_toggle />
+              </div>
+            </.footer_section>
+          </div>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <p class="text-sm">
+            © Graasp 2014 - 2026
+          </p>
+          <.link
+            href="https://storyset.com/idea"
+            class="text-[10px] text-secondary text-decoration-none"
+          >
+            Idea illustrations by Storyset
+          </.link>
+        </div>
+      </div>
+    </footer>
     """
   end
 

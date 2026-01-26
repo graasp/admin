@@ -292,6 +292,12 @@ defmodule AdminWeb.Layouts do
                 <.link navigate={~p"/blog"}>{gettext("Blog")}</.link>
               </li>
               <li>
+                <.link navigate={~p"/about-us"}>{gettext("About Us")}</.link>
+              </li>
+              <li>
+                <.link navigate={~p"/contact"}>{gettext("Contact Us")}</.link>
+              </li>
+              <li>
                 <.link navigate={~p"/admin/dashboard"}>{gettext("Admin")}</.link>
               </li>
 
@@ -320,7 +326,21 @@ defmodule AdminWeb.Layouts do
             <li><.link navigate={~p"/blog"}>{gettext("Blog")}</.link></li>
           </ul>
           <ul class="menu menu-horizontal px-1">
-            <li><.link navigate={~p"/admin/dashboard"}>{gettext("Admin")}</.link></li>
+            <<<<<<<
+              HEAD
+              <li
+            >
+              <.link navigate={~p"/admin/dashboard"}>{gettext("Admin")}</.link>
+            </<<<<<<>
+            =======
+            <li><.link navigate={~p"/about-us"}>About</.link></li>
+          </ul>
+          <ul class="menu menu-horizontal px-1">
+            <li><.link navigate={~p"/contact"}>Contact</.link></li>
+          </ul>
+          <ul class="menu menu-horizontal px-1">
+            <li><.link navigate={~p"/admin/dashboard"}>Admin</.link></li>
+            >>>>>>> 87dde677 (fix: add contact and about us page)
           </ul>
         </div>
         <div class="navbar-end gap-1">

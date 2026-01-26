@@ -57,7 +57,7 @@ config :admin, AdminWeb.Endpoint,
   live_reload: [
     web_console_logger: true,
     patterns: [
-      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg|webp)$",
       ~r"priv/gettext/.*(po)$",
       ~r"priv/blog/.*(md)$",
       ~r"lib/admin_web/(?:controllers|live|components|router)/?.*\.(ex|heex)$"
