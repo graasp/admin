@@ -19,14 +19,14 @@ The Graasp team brings to you new updates including CSV export for user actions 
 
 - Allow users to export actions as csv files.
 
-![download export action csv](./screenshots/2024-06-13-analytics-export-csv.png)
+![download export action csv](/images/blog/2024-06-13-analytics-export-csv.png)
 
 ## Builder
 
 - **Publication Page Enhancement**: The publication page has undergone a comprehensive revamp, featuring extensive guidelines for setting useful metadata. Validation is now required whenever an item is updated and will run automatically whenever an item is published.
 - Allow apps to longer than 70vh.
 
-![publication library](./screenshots/2024-06-13-builder-publication.png)
+![publication library](/images/blog/2024-06-13-builder-publication.png)
 
 ## Player
 

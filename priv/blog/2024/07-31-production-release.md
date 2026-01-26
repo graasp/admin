@@ -20,18 +20,17 @@ To complete July, we added back the functionalities to apply on many items. Also
 ## Builder
 
 - **Multi-Operation Features**: Add back multi-operation functionalities for home, recycle bin, and folder screens.
-
   - **Click to select many items to move, copy or recycle**
 
-![upload in between](./screenshots/2024-07-31-delete-many.gif)
+![upload in between](/images/blog/2024-07-31-delete-many.gif)
 
 - **Drag & Select many items**
 
-![upload in between](./screenshots/2024-07-31-drag-copy-many.gif)
+![upload in between](/images/blog/2024-07-31-drag-copy-many.gif)
 
 - **Drag & Move many items in a folder**
 
-![upload in between](./screenshots/2024-07-31-drag-move-many.gif)
+![upload in between](/images/blog/2024-07-31-drag-move-many.gif)
 
 - **Member Validation Warning Banner**: Due to a change of managing accounts in our database, we now validate members on sign up. Previously registered users are validated by default. New users might have to validate their email, otherwise a warning banner will notify them about validation requirements.
 - **Visibility Change Modal**: Display a modal when changing the visibility of a published item.

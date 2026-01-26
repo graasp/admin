@@ -15,7 +15,7 @@ As the sunny days make their return, here is your new Graasp update, with a new 
 
 - Enhancement of the Graasp account home page: A concise summary of user data is now displayed, and users can update their avatars. Additional improvements will be implemented in the coming weeks!
 
-![graasp account home page](./screenshots/graasp-account-home-page.png)
+![graasp account home page](/images/blog/graasp-account-home-page.png)
 
 ## Builder
 
@@ -24,7 +24,7 @@ As the sunny days make their return, here is your new Graasp update, with a new 
   2. As a fancy card, showing the website thumbnail and description
   3. When supported by the website you are adding, as an embedded iframe, allowing direct navigation from inside your learning unit. This option is also available when the lunk you are adding targets rich media like videos, who expose embedded media players.
 
-![Link Demo](./screenshots/link-demo.gif)
+![Link Demo](/images/blog/link-demo.gif)
 
 - Update and improve the map functionality.
 

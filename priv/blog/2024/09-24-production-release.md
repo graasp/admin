@@ -15,7 +15,7 @@ Now that summer is over, we are back with awesome updates such as **Membership r
 
 We updated the interface to display the 4 available services Graasp offers. This change will be followed with a new interface to reset a password.
 
-![auth interface](./screenshots/2024-09-24-auth-interface.png)
+![auth interface](/images/blog/2024-09-24-auth-interface.png)
 
 ## Player
 
@@ -51,18 +51,18 @@ We’ve just introduced a **Membership Request** feature that makes it easier fo
 - **Requesting Access to Restricted Items:**
   If a user tries to access an item that is restricted (i.e., they don’t have permission), they will now see an option to request access. When a user submits this request, it will be sent to the admin for approval. The admin can then accept or reject the request, determining whether the user will be granted access. The admin can further increase the access level for this user if needed.
 
-![auth interface](./screenshots/2024-09-24-request-access.png)
+![auth interface](/images/blog/2024-09-24-request-access.png)
 
 - **Automatic Enrollment for Pseudonymized Items:**
   For items that are set to pseudonymized, users can self-enroll directly without needing approval.
 
-![auth interface](./screenshots/2024-09-24-enroll.png)
+![auth interface](/images/blog/2024-09-24-enroll.png)
 
 This new feature provides more flexibility for users seeking access and gives admins control over who can view or interact with restricted content.
 
 In the process we've also simplified the access management section to group together authorized users, authenticated users and invitations! You'll also find the requests tab in the same section.
 
-![auth interface](./screenshots/2024-09-24-request-table.png)
+![auth interface](/images/blog/2024-09-24-request-table.png)
 
 Additionally, we've also improved Graasp Builder with:
 

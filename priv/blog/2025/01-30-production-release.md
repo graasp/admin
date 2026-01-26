@@ -15,22 +15,20 @@ Since last year, the Graasp team has been working on simplifying the code base t
 
 We improved our collection cards in Library to include tags and bigger space for the description. For those that didn't chose a thumbnail for their collections, we added some hint of colors! Let us know what you think of this new design.
 
-![library cards](./screenshots/2025-01-30-library-cards.png)
+![library cards](/images/blog/2025-01-30-library-cards.png)
 
 ## Unique domain: graasp.org
 
 For a better management of our platform, we moved our links to a unique domain: [graasp.org](https://graasp.org).
 You can discover our new [landing page](https://graasp.org) with more details about us and the complete Graasp ecosystem! You can also learn more about [specific features](https://graasp.org/features) with our [tutorials page](https://graasp.org/support). Let us know if you wish other tutorials to help you get started!
 
-:::warning
+> #### Compatibility with previous links {: .warning}
+>
+> All previous links are still valid, but should be updated for better compatibility.
 
-All previous links are still valid, but should be updated for better compatibility.
+![landing page](/images/blog/2025-01-30-landing-page.png)
 
-:::
-
-![landing page](./screenshots/2025-01-30-landing-page.png)
-
-![tutorials page](./screenshots/2025-01-30-landing-tutorials.png)
+![tutorials page](/images/blog/2025-01-30-landing-tutorials.png)
 
 ## Apps
 

@@ -15,7 +15,7 @@ The latest update to Graasp bring numerous improvements. Highlights include a <s
 
 - Introducing a navigation bar. This makes navigating lessons in order a lot easier.
 
-![alt text](./screenshots/2024-03-12-player-navigation.png)
+![alt text](/images/blog/2024-03-12-player-navigation.png)
 
 ## Graasp Builder
 

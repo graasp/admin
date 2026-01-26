@@ -1,12 +1,14 @@
 <Layouts.landing flash={@flash} current_scope={@current_scope}>
-  <div class="p-8 max-w-screen-md mx-auto">
-    <.link class="btn btn-ghost" href={~p"/blog"}>
-      <.icon name="hero-arrow-left" /> Back to post list
+  <div class="p-8 max-w-screen-lg mx-auto gap-4 flex flex-col align-start">
+    <.link class="btn btn-ghost w-fit" href={~p"/blog"}>
+      <.icon name="hero-arrow-left" /> Back to posts
     </.link>
-    <h1 class="text-4xl font-bold text-primary mb-4">{@post.title}</h1>
-    <p class="text-gray-400 text-sm mb-4">
-      <time datetime={@post.date}>{@post.date}</time> by {Enum.join(@post.authors, ", ")}
-    </p>
-    <div class="prose">{raw(@post.body)}</div>
+    <div class="flex flex-col max-w-screen-md mx-auto">
+      <h1 class="text-4xl font-bold text-primary mb-4">{@post.title}</h1>
+      <p class="text-gray-400 text-sm mb-4">
+        <time datetime={@post.date}>{@post.date}</time> by {Enum.join(@post.authors, ", ")}
+      </p>
+      <div class="prose">{raw(@post.body)}</div>
+    </div>
   </div>
 </Layouts.landing>

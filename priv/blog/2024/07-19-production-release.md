@@ -26,21 +26,25 @@ Summer is around the corner and the Graasp Team has been working on some hot upd
 
 We've revamped the item list in Builder with a sleek, redesigned interface featuring intuitive drag-and-drop capabilities. Additionally, we've improved the account profile page, quiz app and analytics dashboard! Read further for more details!
 
-:::warning[Operations on multiple items]
-The multiple items operations have been disabled for now, but will come back in a very near future. Let us know if it's a key feature you need!
-:::
+> #### Error {: .error}
+>
+> This syntax will render an error block
+
+> #### Operations on multiple items {: .warning}
+>
+> The multiple items operations have been disabled for now, but will come back in a very near future. Let us know if it's a key feature you need!
 
 - **Drag & upload files in between items**
 
-![upload in between](./screenshots/2024-07-19-upload-between-items.gif)
+![upload in between](/images/blog/2024-07-19-upload-between-items.gif)
 
 - **Drag & upload files in items**
 
-![upload in item](./screenshots/2024-07-19-upload-in-item.gif)
+![upload in item](/images/blog/2024-07-19-upload-in-item.gif)
 
 - It's finally here: **moving an item into a folder!**
 
-![move in item](./screenshots/2024-07-19-move-in-item.gif)
+![move in item](/images/blog/2024-07-19-move-in-item.gif)
 
 Additionally, the following change has been made in the Builder:
 

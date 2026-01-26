@@ -17,11 +17,9 @@ Thanks to the feedback of a user, an annoying bug was detected. The bug affected
 
 We deployed a fix that will ensure future copies are not affected. So, if you copy a PDF file starting today, you should not be affected by the bug. Please let us know if it still happens to you.
 
-:::info[How do I stop my PDF files from automatically downloading when I open them?]
-
-If you have PDF files that exhibit the faulty behavior, you should download them, then delete the faulty copy. You should create them again by uploading the downloaded PDF or creating it from a fresh copy of the known good file. Once done, the PDF file should not download automatically anymore.
-
-:::
+> #### How do I stop my PDF files from automatically downloading when I open them? {: .info}
+>
+> If you have PDF files that exhibit the faulty behavior, you should download them, then delete the faulty copy. You should create them again by uploading the downloaded PDF or creating it from a fresh copy of the known good file. Once done, the PDF file should not download automatically anymore.
 
 ## Fixed an issue affecting sub-elements not displaying in the Trash
 

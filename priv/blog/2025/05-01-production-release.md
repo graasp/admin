@@ -11,7 +11,7 @@ This update introduces helpful interface improvements—like maintenance message
 <!-- Everything below this will not be shown in the post overview -->
 <!-- truncate -->
 
-![maintenance and bookmark management](./screenshots/2025-05-01-maintenance-bookmarks.png)
+![maintenance and bookmark management](/images/blog/2025-05-01-maintenance-bookmarks.png)
 
 ## Maintenance notice
 

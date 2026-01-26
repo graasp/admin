@@ -17,7 +17,7 @@ This week we fixed an annoying issue where users being already logged in, but ac
 
 If you are signed in and access Graasp from the homepage (graasp.org) via the signIn button you should now be greeted with the following screen (but with your account name instead 😉):
 
-![welcome screen](./screenshots/2024-10-23-welcome-screen.png)
+![welcome screen](/images/blog/2024-10-23-welcome-screen.png)
 
 <!-- Generic message -->
 

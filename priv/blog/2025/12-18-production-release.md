@@ -8,9 +8,9 @@ authors:
 
 We're wrapping up the year with some small but useful updates to make your experience smoother. Also, please note the following notice:
 
-:::warning[Deleting old items in your Trash]
-Starting mid-January, items in the Trash that are older than 3 months will be permanently deleted. Please review or restore any important items before then.
-:::
+> #### Deleting old items in your Trash {: .warning}
+>
+> Starting mid-January, items in the Trash that are older than 3 months will be permanently deleted. Please review or restore any important items before then.
 
 Read on for the full list of changes.
 

@@ -15,7 +15,7 @@ We're thrilled to unveil our latest visual enhancement: the introduction of a ne
 
 We're thrilled to unveil our latest visual enhancement: the introduction of a new font _Nunito_. This addition marks a pivotal moment in our journey toward revitalizing our aesthetic, amplifying our communication and reinforcing our distinct identity across all platforms. We're moving all of our interfaces to use this font, the change might take some time to be 100% effective. Let us know if we missed any spot!
 
-![library new font](./screenshots/2024-04-15-library-home-new-font.png)
+![library new font](/images/blog/2024-04-15-library-home-new-font.png)
 
 ## Graasp Account
 
@@ -28,11 +28,11 @@ We're thrilled to unveil our latest visual enhancement: the introduction of a ne
 
 We addressed a common challenge faced in Graasp analytics: unclear data labels. Previously, users often struggled to discern the meaning behind different elements on the dashboard due to ambiguous naming conventions. To bring more clarity and organization to the analytics dashboard, we added a dialog offering a **legend** for all graphics. With clear labels and color-coded indicators, the data representation is now simpler and more intuitive. There are plenty of rooms to improve the descriptions, so if you have any feedback on the descriptions, write to us!
 
-![analytics legend](./screenshots/2024-04-15-analytics-legends.png)
+![analytics legend](/images/blog/2024-04-15-analytics-legends.png)
 
 We've also introduced a dedicated page for our often overlooked feature: **exporting analytics**. This functionality enables users to locally save analytic data pertaining to specific items along with their related information, facilitating further analysis, sharing, or archival needs. Our new page not only showcases the contents of the downloaded archive but also emphasizes how we optimize its archival process.
 
-![analytics export page](./screenshots/2024-04-15-analytics-export-page.png)
+![analytics export page](/images/blog/2024-04-15-analytics-export-page.png)
 
 - **Update favicons and header color**: These small changes allow to align the website with the guidelines we have developed and make the service more identifiable.
 - **Fix crash when displaying shared items**

@@ -23,7 +23,7 @@ Our chatbot has received a full layout redesign along with powerful new features
 
 Want to learn more? Check out the full documentation [here](/user/apps/chatbot).
 
-![chatbot conversation](../docs/user/apps/chatbot.png)
+![chatbot conversation](/images/blog/chatbot-conversation.png)
 
 ---
 
@@ -32,7 +32,7 @@ Want to learn more? Check out the full documentation [here](/user/apps/chatbot).
 We’ve rolled out a major update to the Graasp homepage.  
 While more refinements are coming soon, we believe this new version better reflects our mission and offers a clearer experience for our audience.
 
-![new landing page](./screenshots/2025-12-08-landing-page.gif)
+![new landing page](/images/blog/2025-12-08-landing-page.gif)
 
 ---
 

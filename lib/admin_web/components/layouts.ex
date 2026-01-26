@@ -309,7 +309,7 @@ defmodule AdminWeb.Layouts do
               </div>
             </ul>
           </div>
-          <.link navigate={~p"/admin/dashboard"} class="flex flex-row items-center gap-2 text-primary">
+          <.link navigate={~p"/"} class="flex flex-row items-center gap-2 text-primary">
             <.logo size={44} fill="var(--color-primary)" />
             <span class="text-2xl font-semibold">Graasp</span>
           </.link>

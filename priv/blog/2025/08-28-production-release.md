@@ -19,18 +19,18 @@ The copy mechanism has been relocated to Builder, enabling dynamic feedback if t
 
 The layout of a folder in Builder has been slightly changed for a more responsive layout, showcasing the thumbnail for a more appealing view. The layout is based on the Player's layout.
 
-![builder folder layout](./screenshots/2025-08-28-builder-folder-layout.png)
+![builder folder layout](/images/blog/2025-08-28-builder-folder-layout.png)
 
 ## Pages (Beta)
 
 We are developing a new interactive interface to enhance the user experience. Instead of designing each element individually, the goal is to create entire pages as a whole, and as previewed by the readers. The interface will continuously expand with new element types to fully support all Graasp features. The implementation embedded collaboration by default, allowing multiple writers to edit the content.
 If you’d like to test this feature, please email us at beta@graasp.org. Your feedback is greatly appreciated!
 
-:::warning
-The new "Page" interface is currently in beta. Please note that any data saved may be lost in the future. We recommend using this feature only for testing purposes or keeping a backup of your work, either by saving your text locally or in a separate document within Graasp.
-:::
+> #### New page feature {: .warning}
+>
+> The new "Page" interface is currently in beta. Please note that any data saved may be lost in the future. We recommend using this feature only for testing purposes or keeping a backup of your work, either by saving your text locally or in a separate document within Graasp.
 
-![builder page](./screenshots/2025-08-28-page.png)
+![builder page](/images/blog/2025-08-28-page.png)
 
 ## Other changes
 

@@ -15,11 +15,11 @@ During the last weeks, the Graasp team has work diligently to bring you a new ho
 
 With this update, we've redesigned the interface of your personal homepage for a more streamlined experience. It now displays, just like before, the items shared with you and your bookmarked content, but with enhanced accessibility. We hope this update makes it even easier to access the items you use most frequently!
 
-![home page](./screenshots/2025-03-07-new-home-page.png)
+![home page](/images/blog/2025-03-07-new-home-page.png)
 
 Additionally, we've revamped the side menu of the Builder view. It now features the same navigation tree as in the Player, providing a clear view of your item's structure and a better understanding of the hierarchy of your content.
 
-![builder interface](./screenshots/2025-03-07-builder-interface.png)
+![builder interface](/images/blog/2025-03-07-builder-interface.png)
 
 **Bullet list of the improvements:**
 

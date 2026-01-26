@@ -15,7 +15,7 @@ The latest updates outline various enhancements and additions across Graasp Buil
 
 - **Include a thumbnail when creating a Folder**: Enhance user experience by implementing a feature that allows users to upload or select thumbnails while creating folders, enabling them to personalize and visually distinguish their content within the platform.
 
-![new folder thumbnail](./screenshots/2024-05-03-new-folder-thumbnail.png)
+![new folder thumbnail](/images/blog/2024-05-03-new-folder-thumbnail.png)
 
 - **Allow CC License Preview**: Enable users to preview different licensing options directly within the dialog before making a final selection, providing them with more information and flexibility in choosing the appropriate license for their content.
 - **Improve Settings Page and Overall**: Conduct a comprehensive review of the settings page to streamline options, improve user interface elements, and enhance overall user experience, ensuring that users can easily access and manage their items' settings.
@@ -35,7 +35,7 @@ The latest updates outline various enhancements and additions across Graasp Buil
 
 ## Graasp Mobile
 
-![mobile app logo](./screenshots/2024-05-03-mobile-google-play.png)
+![mobile app logo](/images/blog/2024-05-03-mobile-google-play.png)
 
 We deployed the newest version of the mobile app which features:
 
