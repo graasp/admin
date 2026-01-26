@@ -1,4 +1,8 @@
 defmodule Admin.Blog.Post do
+  @moduledoc """
+  Module representing a blog post data.
+  """
+
   @enforce_keys [:id, :authors, :title, :body, :description, :tags, :date]
   defstruct [:id, :authors, :title, :body, :description, :tags, :date]
 

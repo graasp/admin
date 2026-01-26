@@ -1,7 +1,15 @@
 defmodule Admin.Blog do
+  @moduledoc """
+  Module for managing blog posts.
+  """
+
   alias Admin.Blog.Post
 
   defmodule Parser do
+    @moduledoc """
+    A specific parser for the the blog properties to support yaml frontmatter
+    """
+
     def parse(_path, contents) do
       [attrs, body] = :binary.split(contents, ["\n---\n"])
       {:ok, parsed_attrs} = YamlElixir.read_from_string(attrs)
@@ -27,8 +35,8 @@ defmodule Admin.Blog do
   def all_posts, do: @posts
   def all_tags, do: @tags
 
-  def posts_by_year() do
-    Enum.group_by(@posts, & &1.date.year) |> Enum.sort_by(&elem(&1, 0), :desc) |> IO.inspect()
+  def posts_by_year do
+    Enum.group_by(@posts, & &1.date.year) |> Enum.sort_by(&elem(&1, 0), :desc)
   end
 
   def get_post_by_id!(id) do
