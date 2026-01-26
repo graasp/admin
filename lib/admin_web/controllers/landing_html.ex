@@ -2,7 +2,6 @@ defmodule AdminWeb.LandingHTML do
   @moduledoc """
   This module contains pages rendered by LandingController.
   """
-  alias Hex.Crypto.ContentEncryptor
   use AdminWeb, :html
 
   def team do
