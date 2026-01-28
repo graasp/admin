@@ -72,7 +72,7 @@ defmodule AdminWeb.PublisherLive.Index do
                 <:col :let={app} label="Name">
                   <div class="flex flex-col">
                     <span>{app.name}</span>
-                    <span class="text-xs text-secondary">{app.description}</span>
+                    <span class="text-xs text-neutral">{app.description}</span>
                   </div>
                 </:col>
                 <:col :let={app} label="Credentials">

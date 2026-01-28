@@ -32,13 +32,13 @@
                     </h6>
                   </div>
                   <div class="flex flex-col items-center lg:items-start" id="buttonsContainer">
-                    <.button
-                      class="btn btn-primary btn-soft btn-lg"
+                    <.link
+                      class="btn btn-accent btn-lg"
                       data-umami-event="header-register-button"
                       href="/auth/register"
                     >
                       Créer un compte
-                    </.button>
+                    </.link>
                   </div>
                 </div>
                 <div class="hidden lg:flex lg:flex-col lg:overflow-hidden lg:flex-1">
@@ -48,9 +48,9 @@
             </section>
           </div>
         </div>
-        <div id="supported_by" class="flex flex-col px-4 py-3 md:px-12 md:py-6 bg-white">
+        <div id="supported_by" class="flex flex-col px-4 py-3 md:px-12 md:py-6 bg-base-100">
           <div class="flex flex-col max-w-screen-xl mx-auto justify-between w-full lg:flex-row lg:items-center">
-            <p class="text-secondary">Soutenue par</p>
+            <p class="text-base">Soutenue par</p>
             <div class="flex flex-wrap gap-2 align-center" id="logosContainer">
               <%!-- EPFL logo   --%>
               <.project_link url="https://www.epfl.ch">
@@ -59,11 +59,7 @@
 
               <%!-- BeLEARN logo --%>
               <.project_link url="https://belearn.swiss">
-                <img
-                  alt="BeLEARN logo"
-                  src="/images/projects/BeLEARN.webp"
-                  class="max-w-[150px] max-h-[3rem]"
-                />
+                <.belearn_logo />
               </.project_link>
 
               <%!-- EdTech logo --%>
@@ -92,11 +88,7 @@
 
               <%!-- SDC logo --%>
               <.project_link url="https://www.eda.admin.ch/eda/en/fdfa/fdfa/organisation-fdfa/directorates-divisions/sdc.html">
-                <img
-                  alt="SDC logo"
-                  src="/images/projects/sdc.webp"
-                  class="max-w-[150px] max-h-[3rem]"
-                />
+                <.eda_logo />
               </.project_link>
             </div>
           </div>
@@ -117,7 +109,7 @@
               Avec Graasp, il est facile de mettre des <strong class="text-primary">supports pédagogiques en ligne</strong>, en transformant <strong class="text-primary">images</strong>,
               <strong class="text-primary">PDFs</strong>
               et ressources traditionnelles en
-              <strong style="color: rgb(80, 80, 210);">
+              <strong class="text-primary">
                 leçons numériques interactives
               </strong>
               en quelques minutes.
@@ -144,11 +136,13 @@
                 Intégrer du contenu interactif dans des supports pédagogiques
               </h5>
               <div class="flex flex-row gap-2 lg:gap-4 w-full">
-                <%= for content_type <- AdminWeb.LandingHTML.interactive_content_types do %>
-                  <div class="flex flex-col">
-                    <img alt={"#{content_type.name} icon"} width="100%" src={content_type.src} />
-                  </div>
-                <% end %>
+                <AdminWeb.Components.ItemTypes.image />
+                <AdminWeb.Components.ItemTypes.audio />
+                <AdminWeb.Components.ItemTypes.video />
+                <AdminWeb.Components.ItemTypes.h5p />
+                <AdminWeb.Components.ItemTypes.pdf />
+                <AdminWeb.Components.ItemTypes.quiz />
+                <AdminWeb.Components.ItemTypes.simulation />
               </div>
             </div>
           </.section>
@@ -211,7 +205,7 @@
             </:action>
             <:action>
               <.link
-                class="btn btn-accent"
+                class="btn btn-primary btn-soft"
                 data-umami-event="messages-library-oer-button"
                 href="https://library.graasp.org/oer"
               >
@@ -248,7 +242,7 @@
                 est ouverte et notre équipe répondra dans les plus brefs délais.
               </p>
               <.link
-                class="btn btn-accent"
+                class="btn btn-primary btn-soft"
                 href="mailto:support@graasp.org"
                 data-umami-event="need-support-button"
               >
@@ -277,7 +271,7 @@
               </p>
               <:action>
                 <a
-                  class="btn btn-accent"
+                  class="btn btn-primary btn-soft"
                   data-umami-event="missions-contact-us-button"
                   href="/contact-us"
                 >
@@ -295,7 +289,7 @@
               </p>
               <:action>
                 <a
-                  class="btn btn-accent"
+                  class="btn btn-primary btn-soft"
                   data-umami-event="about-us"
                   href="/about-us"
                 >
@@ -316,7 +310,7 @@
               </p>
               <:action>
                 <.link
-                  class="btn btn-accent"
+                  class="btn btn-primary btn-soft"
                   data-umami-event="github"
                   href="https://github.com/graasp"
                 >
@@ -347,20 +341,19 @@
 
         <div class="flex flex-col items-center gap-8 max-w-lg">
           <div class="flex flex-row items-center gap-2">
-            <.logo size={40} />
+            <.logo size={40} fill="var(--color-primary)" />
             <span class="text-3xl font-bold text-primary">Graasp</span>
           </div>
           <span class="text-2xl font-bold text-center text-balance">
             Révolutionner l'enseignement grâce à des outils d'apprentissage interactifs sur Graasp&nbsp;!
           </span>
-          <.button
-            variant="primary"
-            class="btn-lg"
+          <.link
+            class="btn btn-lg btn-accent"
             data-umami-event="call-to-action-register-button"
             href="/auth/register"
           >
             Créer un compte
-          </.button>
+          </.link>
         </div>
       </div>
     </div>
@@ -479,6 +472,9 @@
                   </button>
                 </div>
               </div>
+              <div class="text-primary w-fit pt-8">
+                <Layouts.theme_toggle />
+              </div>
             </.footer_section>
           </div>
         </div>
@@ -488,7 +484,7 @@
           </p>
           <.link
             href="https://storyset.com/idea"
-            class="text-[10px] text-slate-400 text-decoration-none"
+            class="text-[10px] text-secondary text-decoration-none"
           >
             Idea illustrations by Storyset
           </.link>

@@ -322,7 +322,7 @@ defmodule AdminWeb.Layouts do
         <div class="navbar-end gap-1">
           <div class="hidden items-center lg:flex gap-2">
             <%= if @current_scope do %>
-              <.link class="btn btn-primary" navigate="/builder">
+              <.link class="btn btn-accent" navigate="/builder">
                 Get Started
               </.link>
             <% else %>
