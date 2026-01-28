@@ -292,10 +292,10 @@ defmodule AdminWeb.Layouts do
                 <.link navigate={~p"/blog"}>{gettext("Blog")}</.link>
               </li>
               <li>
-                <.link navigate={~p"/about-us"}>{gettext("About Us")}</.link>
+                <.link navigate={~p"/about-us"}>{gettext("About")}</.link>
               </li>
               <li>
-                <.link navigate={~p"/contact"}>{gettext("Contact Us")}</.link>
+                <.link navigate={~p"/contact"}>{gettext("Contact")}</.link>
               </li>
               <li>
                 <.link navigate={~p"/admin/dashboard"}>{gettext("Admin")}</.link>
@@ -324,23 +324,13 @@ defmodule AdminWeb.Layouts do
           <ul class="menu menu-horizontal px-1">
             <li><.link navigate="/library">{gettext("Library")}</.link></li>
             <li><.link navigate={~p"/blog"}>{gettext("Blog")}</.link></li>
-          </ul>
-          <ul class="menu menu-horizontal px-1">
-            <<<<<<<
-              HEAD
-              <li
-            >
-              <.link navigate={~p"/admin/dashboard"}>{gettext("Admin")}</.link>
-            </<<<<<<>
-            =======
-            <li><.link navigate={~p"/about-us"}>About</.link></li>
-          </ul>
-          <ul class="menu menu-horizontal px-1">
-            <li><.link navigate={~p"/contact"}>Contact</.link></li>
-          </ul>
-          <ul class="menu menu-horizontal px-1">
-            <li><.link navigate={~p"/admin/dashboard"}>Admin</.link></li>
-            >>>>>>> 87dde677 (fix: add contact and about us page)
+            <li><.link navigate={~p"/about-us"}>{gettext("About")}</.link></li>
+            <li><.link navigate={~p"/contact"}>{gettext("Contact")}</.link></li>
+            <%= if @current_scope do %>
+              <li>
+                <.link navigate={~p"/admin/dashboard"}>{gettext("Admin")}</.link>
+              </li>
+            <% end %>
           </ul>
         </div>
         <div class="navbar-end gap-1">

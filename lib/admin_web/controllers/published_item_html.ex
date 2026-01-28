@@ -64,7 +64,7 @@ defmodule AdminWeb.PublishedItemHTML do
           <span class=" text-nowrap text-ellipsis overflow-hidden">
             <span>{@publication.creator.name}</span>
           </span>
-          <span class="text-sm text-secondary">({@publication.creator_id})</span>
+          <span class="text-sm text-neutral">({@publication.creator_id})</span>
 
           <div class="text-sm">
             <.with_copy
