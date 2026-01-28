@@ -278,7 +278,7 @@ defmodule AdminWeb.Layouts do
     ~H"""
     <div class="navbar bg-base-100 shadow-xl shadow-xl/30">
       <div class="w-full flex flex-row lg:max-w-screen-xl lg:mx-auto ">
-        <div class="navbar-start ">
+        <div class="navbar-start w-fit">
           <div class="dropdown">
             <.burger_menu />
             <ul
@@ -333,7 +333,7 @@ defmodule AdminWeb.Layouts do
             <% end %>
           </ul>
         </div>
-        <div class="navbar-end gap-1">
+        <div class="navbar-end gap-1 w-full">
           <div class="hidden items-center lg:flex gap-2">
             <%= if @current_scope do %>
               <.link class="btn btn-accent" navigate="/builder">
