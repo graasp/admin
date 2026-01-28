@@ -27,7 +27,12 @@ msgstr "Hi %{name},"
 msgid "In case you can not click the button above here is the link:"
 msgstr "In case you can not click the button above here is the link:"
 
-#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:26
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:29
 #, elixir-autogen, elixir-format
 msgid "You are receiving this email because you have an account on Graasp: "
 msgstr "You are receiving this email because you have an account on Graasp: "
+
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:22
+#, elixir-autogen, elixir-format
+msgid "Your Graasp Team"
+msgstr ""
