@@ -12,8 +12,4 @@ defmodule AdminWeb.LandingController do
   def contact(conn, _params) do
     render(conn, :contact)
   end
-
-  def home(conn, _params) do
-    render(conn, :home)
-  end
 end
