@@ -36,7 +36,7 @@ defmodule AdminWeb.Placeholders do
         <% end %>
       </div>
       <%= for placeholder <- @placeholder do %>
-        <div class="h-5 w-full bg-gray-400 rounded"></div>
+        <div class="h-5 w-full bg-neutral rounded"></div>
       <% end %>
     </div>
     """

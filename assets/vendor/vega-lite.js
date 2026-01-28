@@ -34,7 +34,19 @@ const VegaLite = {
     this.handleEvent(`vega_lite:${this.id}:init`, ({ spec }) => {
       this.viewPromise = vegaEmbed(
         container,
-        { ...spec, data: { name: "data" } },
+        {
+          ...spec,
+          data: { name: "data" },
+          // define color via CSS variables that are managed by the theme of the application
+          config: {
+            background: null,
+            axis: {
+              gridColor: "var(--color-neutral)",
+              labelColor: "var(--color-base-content)",
+              titleColor: "var(--color-base-content)",
+            },
+          },
+        },
         { actions: false },
       )
         .then((result) => result.view)

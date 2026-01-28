@@ -24,7 +24,7 @@
       <div class="flex items-center justify-between">
         <div class="flex flex-col align-start">
           <h2><.link navigate={~p"/admin/maintenance"}>Planned Maintenance</.link></h2>
-          <span class="text-xs text-secondary">
+          <span class="text-xs text-neutral">
             Showing {length(@maintenances)} upcoming events.
             <.link class="link" navigate={~p"/admin/maintenance"}>View all</.link>
           </span>
@@ -33,7 +33,7 @@
           <.icon name="hero-plus" /> New
         </.button>
       </div>
-      <div class="flex flex-col mt-2 divide-y divide-gray-200 last:border-b-0">
+      <div class="flex flex-col mt-2 divide-y divide-neutral last:border-b-0">
         <%= for maintenance <- @maintenances do %>
           <AdminWeb.PlannedMaintenanceHTML.planned_maintenance_row
             maintenance={maintenance}
@@ -41,7 +41,7 @@
           />
         <% end %>
         <%= if length(@maintenances) == 0 do %>
-          <div class="flex flex-row items-center justify-center gap-3 italic text-secondary p-4 border border-dashed rounded-xl border-base-300">
+          <div class="flex flex-row items-center justify-center gap-3 italic text-neutral p-4 border border-dashed rounded-xl border-base-300">
             <.icon name="ghost" class="animate-wiggle" /> No upcoming maintenance events
           </div>
         <% end %>
@@ -52,7 +52,7 @@
       <div class="flex items-center justify-between">
         <div class="flex flex-col align-start">
           <h2>Recent Publications</h2>
-          <span class="text-xs text-secondary">
+          <span class="text-xs text-neutral">
             Showing {length(@publications)} most recent.
             <.link class="link" navigate={~p"/admin/published_items"}>View all</.link>
           </span>

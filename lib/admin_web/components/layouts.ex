@@ -218,7 +218,7 @@ defmodule AdminWeb.Layouts do
         </.link>
       </div>
       <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
+        <ul class="menu menu-horizontal px-1 z-1000">
           <%= if @current_scope do %>
             <li>
               <details>
