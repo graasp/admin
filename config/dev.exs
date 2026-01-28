@@ -59,6 +59,7 @@ config :admin, AdminWeb.Endpoint,
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
+      ~r"priv/blog/.*(md)$",
       ~r"lib/admin_web/(?:controllers|live|components|router)/?.*\.(ex|heex)$"
     ]
   ]

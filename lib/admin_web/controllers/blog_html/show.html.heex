@@ -1,0 +1,39 @@
+<Layouts.landing flash={@flash} current_scope={@current_scope}>
+  <div class="p-8 max-w-screen-lg mx-auto gap-4 flex flex-col align-start">
+    <.link class="btn btn-ghost w-fit" href={~p"/blog"}>
+      <.icon name="hero-arrow-left" /> {gettext("Back to posts")}
+    </.link>
+    <article class="flex flex-col max-w-screen-md mx-auto bg-base-100 py-8 px-12 rounded-lg">
+      <h1 class="text-4xl font-bold text-primary mb-4">{@post.title}</h1>
+      <p class="text-gray-400 text-sm mb-4">
+        <time datetime={@post.date}>{@post.date}</time>{gettext(" by %{authors}",
+          authors: Enum.join(@post.authors, ", ")
+        )}
+      </p>
+      <div class="prose">{raw(@post.body)}</div>
+    </article>
+    <div class="flex flex-row justify-between w-full">
+      <%= if @post.next_post do %>
+        <.link
+          class="btn btn-primary btn-outline"
+          href={~p"/blog/#{@post.next_post.id}"}
+        >
+          <.icon name="hero-arrow-left" /> {@post.next_post.title}
+        </.link>
+      <% else %>
+        <div />
+      <% end %>
+      <%= if @post.previous_post do %>
+        <.link
+          class="btn btn-primary btn-outline"
+          href={~p"/blog/#{@post.previous_post.id}"}
+        >
+          {@post.previous_post.title}
+          <.icon name="hero-arrow-right" />
+        </.link>
+      <% else %>
+        <div />
+      <% end %>
+    </div>
+  </div>
+</Layouts.landing>

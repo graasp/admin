@@ -37,3 +37,54 @@ msgstr "We can't find the internet"
 #, elixir-autogen, elixir-format
 msgid "close"
 msgstr "close"
+
+#: lib/admin_web/controllers/blog_html/index.html.heex:26
+#: lib/admin_web/controllers/blog_html/show.html.heex:9
+#, elixir-autogen, elixir-format
+msgid " by %{authors}"
+msgstr ""
+
+#: lib/admin_web/controllers/blog_html/show.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "Back to posts"
+msgstr ""
+
+#: lib/admin_web/controllers/blog_html/index.html.heex:39
+#, elixir-autogen, elixir-format
+msgid "Read more"
+msgstr ""
+
+#: lib/admin_web/controllers/blog_html/index.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "Recent Posts"
+msgstr ""
+
+#: lib/admin_web/components/layouts.ex:295
+#: lib/admin_web/components/layouts.ex:323
+#, elixir-autogen, elixir-format
+msgid "Admin"
+msgstr ""
+
+#: lib/admin_web/components/layouts.ex:292
+#: lib/admin_web/components/layouts.ex:320
+#, elixir-autogen, elixir-format
+msgid "Blog"
+msgstr ""
+
+#: lib/admin_web/components/layouts.ex:302
+#: lib/admin_web/components/layouts.ex:330
+#, elixir-autogen, elixir-format
+msgid "Get started"
+msgstr ""
+
+#: lib/admin_web/components/layouts.ex:289
+#: lib/admin_web/components/layouts.ex:319
+#, elixir-autogen, elixir-format
+msgid "Library"
+msgstr ""
+
+#: lib/admin_web/components/layouts.ex:306
+#: lib/admin_web/components/layouts.ex:334
+#, elixir-autogen, elixir-format
+msgid "Log in"
+msgstr ""
