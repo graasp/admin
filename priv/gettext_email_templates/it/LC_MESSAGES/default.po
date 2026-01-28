@@ -35,4 +35,4 @@ msgstr "Stai ricevendo questa email perché hai un account su Graasp:"
 #: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:22
 #, elixir-autogen, elixir-format
 msgid "Your Graasp Team"
-msgstr ""
+msgstr "Il tuo team Graasp"
