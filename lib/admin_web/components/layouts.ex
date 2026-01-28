@@ -292,6 +292,12 @@ defmodule AdminWeb.Layouts do
                 <.link navigate={~p"/blog"}>{gettext("Blog")}</.link>
               </li>
               <li>
+                <.link navigate={~p"/about-us"}>{gettext("About")}</.link>
+              </li>
+              <li>
+                <.link navigate={~p"/contact"}>{gettext("Contact")}</.link>
+              </li>
+              <li>
                 <.link navigate={~p"/admin/dashboard"}>{gettext("Admin")}</.link>
               </li>
 
@@ -318,9 +324,13 @@ defmodule AdminWeb.Layouts do
           <ul class="menu menu-horizontal px-1">
             <li><.link navigate="/library">{gettext("Library")}</.link></li>
             <li><.link navigate={~p"/blog"}>{gettext("Blog")}</.link></li>
-          </ul>
-          <ul class="menu menu-horizontal px-1">
-            <li><.link navigate={~p"/admin/dashboard"}>{gettext("Admin")}</.link></li>
+            <li><.link navigate={~p"/about-us"}>{gettext("About")}</.link></li>
+            <li><.link navigate={~p"/contact"}>{gettext("Contact")}</.link></li>
+            <%= if @current_scope do %>
+              <li>
+                <.link navigate={~p"/admin/dashboard"}>{gettext("Admin")}</.link>
+              </li>
+            <% end %>
           </ul>
         </div>
         <div class="navbar-end gap-1">

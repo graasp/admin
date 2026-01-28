@@ -59,32 +59,44 @@ msgstr ""
 msgid "Recent Posts"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:295
-#: lib/admin_web/components/layouts.ex:323
+#: lib/admin_web/components/layouts.ex:301
+#: lib/admin_web/components/layouts.ex:331
 #, elixir-autogen, elixir-format
 msgid "Admin"
 msgstr ""
 
 #: lib/admin_web/components/layouts.ex:292
-#: lib/admin_web/components/layouts.ex:320
+#: lib/admin_web/components/layouts.ex:326
 #, elixir-autogen, elixir-format
 msgid "Blog"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:302
-#: lib/admin_web/components/layouts.ex:330
+#: lib/admin_web/components/layouts.ex:308
+#: lib/admin_web/components/layouts.ex:340
 #, elixir-autogen, elixir-format
 msgid "Get started"
 msgstr ""
 
 #: lib/admin_web/components/layouts.ex:289
-#: lib/admin_web/components/layouts.ex:319
+#: lib/admin_web/components/layouts.ex:325
 #, elixir-autogen, elixir-format
 msgid "Library"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:306
-#: lib/admin_web/components/layouts.ex:334
+#: lib/admin_web/components/layouts.ex:312
+#: lib/admin_web/components/layouts.ex:344
 #, elixir-autogen, elixir-format
 msgid "Log in"
+msgstr ""
+
+#: lib/admin_web/components/layouts.ex:295
+#: lib/admin_web/components/layouts.ex:327
+#, elixir-autogen, elixir-format
+msgid "About"
+msgstr ""
+
+#: lib/admin_web/components/layouts.ex:298
+#: lib/admin_web/components/layouts.ex:328
+#, elixir-autogen, elixir-format
+msgid "Contact"
 msgstr ""

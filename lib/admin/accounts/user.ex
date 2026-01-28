@@ -23,6 +23,17 @@ defmodule Admin.Accounts.User do
     timestamps(type: :utc_datetime)
   end
 
+  @type t :: %__MODULE__{
+          id: Ecto.UUID.t(),
+          email: String.t(),
+          name: String.t(),
+          language: String.t(),
+          confirmed_at: DateTime.t(),
+          authenticated_at: DateTime.t(),
+          created_at: DateTime.t(),
+          updated_at: DateTime.t()
+        }
+
   @doc """
   A user changeset for registering or changing the email.
 

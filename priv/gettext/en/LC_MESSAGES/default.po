@@ -42,49 +42,61 @@ msgstr "close"
 #: lib/admin_web/controllers/blog_html/show.html.heex:9
 #, elixir-autogen, elixir-format
 msgid " by %{authors}"
-msgstr ""
+msgstr "by %{authors}"
 
 #: lib/admin_web/controllers/blog_html/show.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Back to posts"
-msgstr ""
+msgstr "Back to posts"
 
 #: lib/admin_web/controllers/blog_html/index.html.heex:39
 #, elixir-autogen, elixir-format
 msgid "Read more"
-msgstr ""
+msgstr "Read more"
 
 #: lib/admin_web/controllers/blog_html/index.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Recent Posts"
-msgstr ""
+msgstr "Recent Posts"
 
-#: lib/admin_web/components/layouts.ex:295
-#: lib/admin_web/components/layouts.ex:323
+#: lib/admin_web/components/layouts.ex:301
+#: lib/admin_web/components/layouts.ex:331
 #, elixir-autogen, elixir-format
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 #: lib/admin_web/components/layouts.ex:292
-#: lib/admin_web/components/layouts.ex:320
+#: lib/admin_web/components/layouts.ex:326
 #, elixir-autogen, elixir-format
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
-#: lib/admin_web/components/layouts.ex:302
-#: lib/admin_web/components/layouts.ex:330
+#: lib/admin_web/components/layouts.ex:308
+#: lib/admin_web/components/layouts.ex:340
 #, elixir-autogen, elixir-format
 msgid "Get started"
-msgstr ""
+msgstr "Get started"
 
 #: lib/admin_web/components/layouts.ex:289
-#: lib/admin_web/components/layouts.ex:319
+#: lib/admin_web/components/layouts.ex:325
 #, elixir-autogen, elixir-format
 msgid "Library"
-msgstr ""
+msgstr "Library"
 
-#: lib/admin_web/components/layouts.ex:306
-#: lib/admin_web/components/layouts.ex:334
+#: lib/admin_web/components/layouts.ex:312
+#: lib/admin_web/components/layouts.ex:344
 #, elixir-autogen, elixir-format
 msgid "Log in"
-msgstr ""
+msgstr "Log in"
+
+#: lib/admin_web/components/layouts.ex:295
+#: lib/admin_web/components/layouts.ex:327
+#, elixir-autogen, elixir-format
+msgid "About"
+msgstr "About"
+
+#: lib/admin_web/components/layouts.ex:298
+#: lib/admin_web/components/layouts.ex:328
+#, elixir-autogen, elixir-format
+msgid "Contact"
+msgstr "Contact"
