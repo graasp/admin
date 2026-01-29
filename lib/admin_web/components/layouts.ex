@@ -51,9 +51,7 @@ defmodule AdminWeb.Layouts do
     ~H"""
     <.landing_menu {assigns} />
     <main class="">
-      <div class="mx-auto">
-        {render_slot(@inner_block)}
-      </div>
+      {render_slot(@inner_block)}
     </main>
 
     <.flash_group flash={@flash} />
