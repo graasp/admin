@@ -1,0 +1,92 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/admin_web/controllers/landing_html/index.html.heex:29
+#, elixir-autogen, elixir-format
+msgid "Brought to you by the Graasp Association based in Switzerland"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html/index.html.heex:16
+#, elixir-autogen, elixir-format
+msgid "Your Learning Experience Platform"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:404
+#, elixir-autogen, elixir-format
+msgid "About Us"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:413
+#, elixir-autogen, elixir-format
+msgid "Blog"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:410
+#, elixir-autogen, elixir-format
+msgid "Contact Us"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:398
+#, elixir-autogen, elixir-format
+msgid "Content"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:394
+#, elixir-autogen, elixir-format
+msgid "Developed in Switzerland by the Graasp association"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:482
+#, elixir-autogen, elixir-format
+msgid "Disclaimer"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:400
+#, elixir-autogen, elixir-format
+msgid "Home"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:513
+#, elixir-autogen, elixir-format
+msgid "Idea illustrations by Storyset"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:474
+#, elixir-autogen, elixir-format
+msgid "Other"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:416
+#, elixir-autogen, elixir-format
+msgid "Partners"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:479
+#, elixir-autogen, elixir-format
+msgid "Privacy Policy"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:454
+#, elixir-autogen, elixir-format
+msgid "Social Media"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:407
+#, elixir-autogen, elixir-format
+msgid "Support"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:476
+#, elixir-autogen, elixir-format
+msgid "Terms of Use"
+msgstr ""

@@ -100,3 +100,8 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "Contact"
 msgstr ""
+
+#: lib/admin_web/components/layouts/root.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "Home"
+msgstr ""
