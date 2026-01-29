@@ -1,4 +1,4 @@
-<Layouts.landing flash={@flash} current_scope={@current_scope}>
+<Layouts.landing flash={@flash} current_scope={@current_scope} locale_form={@locale_form}>
   <div class="flex flex-col max-w-screen-xl m-auto p-8 gap-[86px]" id="bodyWrapper">
     <div class="max-w-screen-lg m-auto flex flex-col gap-[60px]">
       <div class="flex flex-col md:flex-row-reverse gap-8 pt-4 items-center w-full">
@@ -10,53 +10,72 @@
         </div>
         <div class="flex flex-col gap-2 items-center md:items-start grow-2">
           <h1 class="text-primary text-5xl font-bold text-balance">
-            Meet the people behind Graasp
+            {dgettext("landing", "Meet the people behind Graasp")}
           </h1>
           <div class="flex flex-col gap-2 items-center">
             <p class="">
-              Founded by a dedicated team of professionals, our mission is to bridge the gap between cutting-edge technology and education, empowering educators and researchers globally.
+              {dgettext(
+                "landing",
+                "Founded by a dedicated team of professionals, our mission is to bridge the gap between cutting-edge technology and education, empowering educators and researchers globally."
+              )}
             </p>
             <p class="">
-              We aim to bridge the gap between research environments and traditional educational settings such as schools. We envision a future where Graasp empowers educators and students in traditional educational setups and more, revolutionizing teaching methodologies and fostering engaging learning experiences.
+              {dgettext(
+                "landing",
+                "We aim to bridge the gap between research environments and traditional educational settings such as schools. We envision a future where Graasp empowers educators and students in traditional educational setups and more, revolutionizing teaching methodologies and fostering engaging learning experiences."
+              )}
             </p>
           </div>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-        <.stats_card value="50k+" description="Builder activities" />
-        <.stats_card value="1000+" description="Library's projects" />
-        <.stats_card value="20+" description="Templates" />
-        <.stats_card value="12" description="Apps" />
+        <.stats_card value="50k+" description={dgettext("landing", "Builder Activities")} />
+        <.stats_card value="1000+" description={dgettext("landing", "Published Capsules")} />
+        <.stats_card value="20+" description={dgettext("landing", "Pedagogical Templates")} />
+        <.stats_card value="12" description={dgettext("landing", "Interactive Apps")} />
       </div>
     </div>
     <div class="flex flex-col gap-12 items-center max-w-screen-lg m-auto">
       <div class="flex flex-col gap-4 items-center">
         <h2 class="text-primary text-2xl font-bold">
-          Graasp Association
+          {dgettext("landing", "Graasp Association")}
         </h2>
         <p class="">
-          Graasp is more than a Learning Experience Platform. It is a product behind which there is a Swiss Non-Profit Organization dedicated to advancing digital education. Our primary goal is to support educators and researchers every step of the way, providing help and training to achieve their objectives effectively.
+          {dgettext(
+            "landing",
+            "Graasp is more than a Learning Experience Platform. It is a product behind which there is a Swiss Non-Profit Organization dedicated to advancing digital education. Our primary goal is to support educators and researchers every step of the way, providing help and training to achieve their objectives effectively."
+          )}
         </p>
       </div>
       <div class="flex flex-col gap-8 items-center">
-        <h3 class="text-primary text-xl">Other projects</h3>
+        <h3 class="text-primary text-xl">{dgettext("landing", "Other projects")}</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <.project_card
-            title="Helvetas"
+            title={dgettext("landing", "Helvetas")}
             image_src="/images/projects/helvetas.svg"
-            description="Collaborative digital platform for training young people on migration routes"
+            description={
+              dgettext(
+                "landing",
+                "Collaborative digital platform for training young people on migration routes"
+              )
+            }
           />
           <.project_card
-            title="Climate"
+            title={dgettext("landing", "Climate")}
             image_src="/images/projects/climate.svg"
-            description="Active learning simulations for investigating the science of global warming"
+            description={
+              dgettext(
+                "landing",
+                "Active learning simulations for investigating the science of global warming"
+              )
+            }
           />
         </div>
       </div>
     </div>
     <div class="flex flex-col gap-8">
       <h2 class="text-primary text-2xl font-bold max-w-screen-lg m-auto">
-        Meet the team!
+        {dgettext("landing", "Meet the team!")}
       </h2>
       <div class="flex flex-wrap flex-row gap-4 items-center justify-center items-stretch">
         <%= for member <- team()  do %>
@@ -80,7 +99,9 @@
     </div>
 
     <div class="max-w-screen-lg flex flex-col gap-12 mx-auto" id="papers">
-      <h2 class="text-primary text-3xl font-bold text-center">Papers</h2>
+      <h2 class="text-primary text-3xl font-bold text-center">
+        {dgettext("landing", "Research Papers")}
+      </h2>
       <ul class="flex flex-row flex-wrap gap-4 items-stretch justify-center">
         <%= for paper <- papers() do %>
           <li class="flex flex-col gap-1 bg-base-100 rounded-lg p-4 max-w-md">
@@ -96,13 +117,14 @@
       <.call_card>
         <div class="flex flex-row items-center gap-2">
           <.icon name="hero-chat-bubble-left-right" class="size-6 text-primary" />
-          <p class="text-primary text-center text-lg font-bold">Have a question for us ?</p>
+          <p class="text-primary text-center text-lg font-bold">
+            {dgettext("landing", "Have a question for us?")}
+          </p>
         </div>
         <.link class="btn btn-soft btn-primary" navigate={~p"/contact"}>
-          Contact us
+          {dpgettext("landing", "link", "Contact us")}
         </.link>
       </.call_card>
     </div>
   </div>
-  <.landing_footer />
 </Layouts.landing>

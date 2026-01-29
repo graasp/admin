@@ -2,27 +2,56 @@ defmodule AdminWeb.LandingHTML do
   @moduledoc """
   This module contains pages rendered by LandingController.
   """
+  alias Admin.Languages
   use AdminWeb, :html
 
   def team do
     [
-      %{name: "Denis Gillet", role: "President", src: "/images/team/denis.webp"},
+      %{
+        name: "Denis Gillet",
+        role: dgettext("landing", "President"),
+        src: "/images/team/denis.webp"
+      },
       %{
         name: "María Jesús Rodríguez‑Triana",
-        role: "VP Research",
+        role: dgettext("landing", "VP Research"),
         src: "/images/team/maria.webp"
       },
-      %{name: "Juan Carlos Farah", role: "VP Product", src: "/images/team/juancarlos.webp"},
-      %{name: "Kim Lan Phan Hoang", role: "VP Engineering", src: "/images/team/kim.webp"},
-      %{name: "Jérémy La Scala", role: "VP Outreach", src: "/images/team/jeremy.webp"},
-      %{name: "Basile Spaenlehauer", role: "VP Technology", src: "/images/team/basile.webp"},
+      %{
+        name: "Juan Carlos Farah",
+        role: dgettext("landing", "VP Product"),
+        src: "/images/team/juancarlos.webp"
+      },
+      %{
+        name: "Kim Lan Phan Hoang",
+        role: dgettext("landing", "VP Engineering"),
+        src: "/images/team/kim.webp"
+      },
+      %{
+        name: "Jérémy La Scala",
+        role: dgettext("landing", "VP Outreach"),
+        src: "/images/team/jeremy.webp"
+      },
+      %{
+        name: "Basile Spaenlehauer",
+        role: dgettext("landing", "VP Technology"),
+        src: "/images/team/basile.webp"
+      },
       %{
         name: "Michele Notari",
-        role: "VP Education and Content",
+        role: dgettext("landing", "VP Education and Content"),
         src: "/images/team/michele.webp"
       },
-      %{name: "Hagop Taminian", role: "Software Engineer", src: "/images/team/hagop.webp"},
-      %{name: "Philippe Kobel", role: "Ambassador", src: "/images/team/philippe.webp"}
+      %{
+        name: "Hagop Taminian",
+        role: dgettext("landing", "Software Engineer"),
+        src: "/images/team/hagop.webp"
+      },
+      %{
+        name: "Philippe Kobel",
+        role: dgettext("landing", "Ambassador"),
+        src: "/images/team/philippe.webp"
+      }
     ]
   end
 
@@ -152,6 +181,46 @@ defmodule AdminWeb.LandingHTML do
       }
     ]
 
+  def collections(_),
+    do: [
+      %{
+        href:
+          "https://graasp.org/player/86281673-76cf-4af0-a09d-86c287ed0e6b/86281673-76cf-4af0-a09d-86c287ed0e6b?fullscreen=false",
+        title: "Understanding the climatic greenhouse effect",
+        src: "/images/capsules/climate.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/0e56d2fb-4344-4be5-95e6-531548158b14/0e56d2fb-4344-4be5-95e6-531548158b14?fullscreen=false",
+        title: "ESLint Lesson",
+        src: "/images/capsules/eslint.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/e7cf4d11-f830-47a7-b281-b81f59726c49/e7cf4d11-f830-47a7-b281-b81f59726c49?fullscreen=false",
+        title: "The Hitchhiker's Guide to OERs",
+        src: "/images/capsules/hitchhiker_oer.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/757861bf-944b-42f3-8f89-a1fa10cad61b/757861bf-944b-42f3-8f89-a1fa10cad61b?fullscreen=false",
+        title: "Newtonian mechanics (UNITY-based simulations)",
+        src: "/images/capsules/newtonian_mechanics.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/5fc87751-e6e7-4aaf-9611-7571e9e37f8c/5fc87751-e6e7-4aaf-9611-7571e9e37f8c?fullscreen=false",
+        title: "Towards a global climate model",
+        src: "/images/capsules/globaleffect.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/72eb0555-786a-43c5-885d-310da87d7add/72eb0555-786a-43c5-885d-310da87d7add?fullscreen=false",
+        title: "Sustainable Development Goals (SDGs)",
+        src: "/images/capsules/sdg.webp"
+      }
+    ]
+
   embed_templates "landing_html/*"
 
   attr :id, :string, required: true, doc: "The id of the section"
@@ -200,7 +269,7 @@ defmodule AdminWeb.LandingHTML do
   def card(assigns) do
     ~H"""
     <div class="card bg-base-100 border border-2 border-base-300 text-primary">
-      <div class="card-body flex flex-row items-center gap-4">
+      <div class="card-body flex flex-row items-center gap-4 text-base">
         <div class="card-icon">
           <.icon name={@icon} class="size-10" />
         </div>
@@ -292,7 +361,7 @@ defmodule AdminWeb.LandingHTML do
       <span class="text-2xl font-bold text-primary">
         {@value}
       </span>
-      <span class="text-sm text-gray-500">
+      <span class="text-sm text-gray-500 text-center">
         {@description}
       </span>
     </div>
@@ -370,52 +439,60 @@ defmodule AdminWeb.LandingHTML do
   end
 
   attr :url, :string, required: true, doc: "The URL of the project"
+  attr :name, :string, required: true, doc: "The name of the project"
   slot :inner_block, doc: "The content inside the project link"
 
   def project_link(assigns) do
     ~H"""
-    <a href={@url} class="min-w-[90px] min-h-[3rem] flex items-center justify-center">
+    <a
+      href={@url}
+      class="min-w-[90px] min-h-[3rem] flex items-center justify-center"
+      name={
+        dgettext(
+          "landing",
+          "View the website of %{institution}, one of our supporting entities",
+          institution: @name
+        )
+      }
+    >
       {render_slot(@inner_block)}
     </a>
     """
   end
 
+  attr :locale_form, :map
+
   def landing_footer(assigns) do
     ~H"""
     <footer
       id="footer"
-      class="flex flex-col items-center bg-primary text-white p-6 mt-[86px] lg:mt-[200px]"
+      class="flex flex-col items-center bg-primary text-white p-6"
     >
       <div class="flex flex-col items-center max-w-screen-xl">
         <p class="font-bold">
-          Développé en Suisse par l'association Graasp
+          {dgettext("landing", "Developed in Switzerland by the Graasp association")}
         </p>
         <div class="flex flex-col lg:flex-row gap-12 m-8 justify-space-between">
           <div class="flex flex-col sm:flex-row gap-8">
-            <.footer_section title="Contenu">
+            <.footer_section title={dgettext("landing", "Content")}>
               <.footer_link href={~p"/"}>
-                Accueil
+                {dgettext("landing", "Home")}
               </.footer_link>
-              <.footer_link href="/features">
-                Fonctionnalités
-              </.footer_link>
+
               <.footer_link href="/about-us">
-                À propos de nous
+                {dgettext("landing", "About Us")}
               </.footer_link>
               <.footer_link href="/support">
-                Support utilisateur
+                {dgettext("landing", "Support")}
               </.footer_link>
-              <.footer_link href="/contact-us">
-                Contactez-nous
+              <.footer_link href={~p"/contact"}>
+                {dpgettext("landing", "footer link", "Contact Us")}
               </.footer_link>
-              <.footer_link
-                href="https://graasp.github.io/docs/blog"
-                external={true}
-              >
-                Blog
+              <.footer_link href={~p"/blog"}>
+                {dgettext("landing", "Blog")}
               </.footer_link>
             </.footer_section>
-            <.footer_section title="Partenaires">
+            <.footer_section title={dgettext("landing", "Partners")}>
               <.footer_link href="https://epfl.ch" external={true}>EPFL</.footer_link>
               <.footer_link href="https://edtech-collider.ch" external={true}>
                 Swiss EdTech Collider
@@ -453,7 +530,7 @@ defmodule AdminWeb.LandingHTML do
             </.footer_section>
           </div>
           <div class="flex flex-col sm:flex-row gap-8">
-            <.footer_section title="Réseaux sociaux">
+            <.footer_section title={dgettext("landing", "Social Media")}>
               <.footer_link href="https://www.facebook.com/graasp">
                 <.icon name="facebook" class="size-5" /> Facebook
               </.footer_link>
@@ -473,29 +550,31 @@ defmodule AdminWeb.LandingHTML do
                 <.icon name="mastodon" class="size-5" /> Mastodon
               </.footer_link>
             </.footer_section>
-            <.footer_section title="Autre">
+            <.footer_section title={dgettext("landing", "Other")}>
               <.footer_link href="/terms">
-                Conditions d'utilisation
+                {dgettext("landing", "Terms of Use")}
               </.footer_link>
               <.footer_link href="/policy">
-                Politique de confidentialité
+                {dgettext("landing", "Privacy Policy")}
               </.footer_link>
               <.footer_link href="/disclaimer">
-                Clause de non-responsabilité
+                {dgettext("landing", "Disclaimer")}
               </.footer_link>
-              <div class="flex flex-row items-center">
-                <div>
-                  <button
-                    class="flex flex-row items-center gap-1"
-                    tabindex="0"
-                    type="button"
-                    aria-haspopup="true"
-                  >
-                    <.icon name="hero-language" class="size-6" /> Français
-                    <.icon name="hero-chevron-down" class="size-6" />
-                  </button>
-                </div>
+              <div class="text-primary">
+                <.form
+                  for={@locale_form}
+                  action={~p"/locale"}
+                  method="post"
+                >
+                  <.input
+                    onchange="this.form.submit()"
+                    type="select"
+                    field={@locale_form[:locale]}
+                    options={Languages.all_options()}
+                  />
+                </.form>
               </div>
+
               <div class="text-primary w-fit pt-8">
                 <Layouts.theme_toggle />
               </div>
@@ -510,7 +589,7 @@ defmodule AdminWeb.LandingHTML do
             href="https://storyset.com/idea"
             class="text-[10px] text-secondary text-decoration-none"
           >
-            Idea illustrations by Storyset
+            {dgettext("landing", "Idea illustrations by Storyset")}
           </.link>
         </div>
       </div>

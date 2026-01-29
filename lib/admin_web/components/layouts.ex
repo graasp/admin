@@ -5,6 +5,8 @@ defmodule AdminWeb.Layouts do
   """
   use AdminWeb, :html
 
+  alias AdminWeb.LandingHTML
+
   # Embed all files in layouts/* within this module.
   # The default root.html.heex file contains the HTML
   # skeleton of your application, namely HTML headers
@@ -50,8 +52,11 @@ defmodule AdminWeb.Layouts do
   def landing(assigns) do
     ~H"""
     <.landing_menu {assigns} />
-    <main class="">
-      {render_slot(@inner_block)}
+    <main class="grow flex flex-col">
+      <div class="grow">
+        {render_slot(@inner_block)}
+      </div>
+      <LandingHTML.landing_footer {assigns} />
     </main>
 
     <.flash_group flash={@flash} />
@@ -116,6 +121,7 @@ defmodule AdminWeb.Layouts do
         class="flex p-2 cursor-pointer w-1/3"
         phx-click={JS.dispatch("phx:set-theme")}
         data-phx-theme="system"
+        aria-label={gettext("Use system theme")}
       >
         <.icon name="hero-computer-desktop-micro" class="size-4 opacity-75 hover:opacity-100" />
       </button>
@@ -124,6 +130,7 @@ defmodule AdminWeb.Layouts do
         class="flex p-2 cursor-pointer w-1/3"
         phx-click={JS.dispatch("phx:set-theme")}
         data-phx-theme="light"
+        aria-label={gettext("Use light theme")}
       >
         <.icon name="hero-sun-micro" class="size-4 opacity-75 hover:opacity-100" />
       </button>
@@ -132,6 +139,7 @@ defmodule AdminWeb.Layouts do
         class="flex p-2 cursor-pointer w-1/3"
         phx-click={JS.dispatch("phx:set-theme")}
         data-phx-theme="dark"
+        aria-label={gettext("Use dark theme")}
       >
         <.icon name="hero-moon-micro" class="size-4 opacity-75 hover:opacity-100" />
       </button>
