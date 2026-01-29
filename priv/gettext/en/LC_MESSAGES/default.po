@@ -17,18 +17,18 @@ msgstr ""
 msgid "Actions"
 msgstr "Actions"
 
-#: lib/admin_web/components/layouts.ex:88
-#: lib/admin_web/components/layouts.ex:100
+#: lib/admin_web/components/layouts.ex:90
+#: lib/admin_web/components/layouts.ex:102
 #, elixir-autogen, elixir-format
 msgid "Attempting to reconnect"
 msgstr "Attempting to reconnect"
 
-#: lib/admin_web/components/layouts.ex:95
+#: lib/admin_web/components/layouts.ex:97
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr "Something went wrong!"
 
-#: lib/admin_web/components/layouts.ex:83
+#: lib/admin_web/components/layouts.ex:85
 #, elixir-autogen, elixir-format
 msgid "We can't find the internet"
 msgstr "We can't find the internet"
@@ -59,44 +59,49 @@ msgstr "Read more"
 msgid "Recent Posts"
 msgstr "Recent Posts"
 
-#: lib/admin_web/components/layouts.ex:301
-#: lib/admin_web/components/layouts.ex:331
+#: lib/admin_web/components/layouts.ex:303
+#: lib/admin_web/components/layouts.ex:333
 #, elixir-autogen, elixir-format
 msgid "Admin"
 msgstr "Admin"
 
-#: lib/admin_web/components/layouts.ex:292
-#: lib/admin_web/components/layouts.ex:326
+#: lib/admin_web/components/layouts.ex:294
+#: lib/admin_web/components/layouts.ex:328
 #, elixir-autogen, elixir-format
 msgid "Blog"
 msgstr "Blog"
 
-#: lib/admin_web/components/layouts.ex:308
-#: lib/admin_web/components/layouts.ex:340
+#: lib/admin_web/components/layouts.ex:310
+#: lib/admin_web/components/layouts.ex:342
 #, elixir-autogen, elixir-format
 msgid "Get started"
 msgstr "Get started"
 
-#: lib/admin_web/components/layouts.ex:289
-#: lib/admin_web/components/layouts.ex:325
+#: lib/admin_web/components/layouts.ex:291
+#: lib/admin_web/components/layouts.ex:327
 #, elixir-autogen, elixir-format
 msgid "Library"
 msgstr "Library"
 
-#: lib/admin_web/components/layouts.ex:312
-#: lib/admin_web/components/layouts.ex:344
+#: lib/admin_web/components/layouts.ex:314
+#: lib/admin_web/components/layouts.ex:346
 #, elixir-autogen, elixir-format
 msgid "Log in"
 msgstr "Log in"
 
-#: lib/admin_web/components/layouts.ex:295
-#: lib/admin_web/components/layouts.ex:327
+#: lib/admin_web/components/layouts.ex:297
+#: lib/admin_web/components/layouts.ex:329
 #, elixir-autogen, elixir-format
 msgid "About"
 msgstr "About"
 
-#: lib/admin_web/components/layouts.ex:298
-#: lib/admin_web/components/layouts.ex:328
+#: lib/admin_web/components/layouts.ex:300
+#: lib/admin_web/components/layouts.ex:330
 #, elixir-autogen, elixir-format
 msgid "Contact"
 msgstr "Contact"
+
+#: lib/admin_web/components/layouts/root.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "Home"
+msgstr ""

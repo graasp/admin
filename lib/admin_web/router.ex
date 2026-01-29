@@ -12,6 +12,7 @@ defmodule AdminWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_scope_for_user
+    plug AdminWeb.Plugs.Locale, "en"
   end
 
   pipeline :api do
@@ -36,6 +37,11 @@ defmodule AdminWeb.Router do
       get "/", BlogController, :index
       get "/:id", BlogController, :show
     end
+
+    # routes to test locale
+    get "/locale", LandingController, :locale
+    post "/locale", LandingController, :change_locale
+    delete "/locale", LandingController, :remove_locale
   end
 
   scope "/admin", AdminWeb do
