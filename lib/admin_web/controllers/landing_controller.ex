@@ -4,15 +4,15 @@ defmodule AdminWeb.LandingController do
   alias AdminWeb.Plugs.Locale
 
   def index(conn, _params) do
-    render(conn, :index)
+    render(conn, :index, page_title: pgettext("page title", "Home"))
   end
 
   def about(conn, _params) do
-    render(conn, :about)
+    render(conn, :about, page_title: pgettext("page title", "About"))
   end
 
   def contact(conn, _params) do
-    render(conn, :contact)
+    render(conn, :contact, page_title: pgettext("page title", "Contact"))
   end
 
   def locale(conn, _params) do
