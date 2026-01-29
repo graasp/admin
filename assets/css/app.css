@@ -39,6 +39,7 @@
     default: false;
     prefersdark: true;
     color-scheme: "dark";
+    --page-scroll-bg: oklch(25.26% 0.014 253.1);
     --color-base-100: oklch(30.33% 0.016 252.42);
     --color-base-200: oklch(25.26% 0.014 253.1);
     --color-base-300: oklch(20.15% 0.012 254.09);
@@ -74,6 +75,7 @@
     default: true;
     prefersdark: false;
     color-scheme: "light";
+    --page-scroll-bg: #f2eff6;
     --color-base-100: #f9f7fd;
     --color-base-200: #f2eff6;
     --color-base-300: #c0c6ed;
@@ -130,8 +132,6 @@
             transform: rotate(-3deg);
         }
     }
-    /* Define the root bg color to be a slightly darker color than the base 100 used for contrast boxes */
-    --root-bg: var(--color-base-200);
 }
 
 @layer base {
