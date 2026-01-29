@@ -1,27 +1,36 @@
 <Layouts.landing flash={@flash} current_scope={@current_scope} locale_form={@locale_form}>
-  <div class="max-screen-xl m-auto p-8 pt-12">
-    <div class="flex flex-col gap-12 max-w-screen-lg m-auto">
-      <h1 class="text-primary text-5xl font-bold">Contact us</h1>
+  <div class="max-screen-xl m-auto p-8 pt-12 h-full">
+    <div class="flex flex-col gap-12 max-w-screen-lg m-auto h-full">
+      <h1 class="text-primary text-5xl font-bold">{dgettext("landing", "Contact us")}</h1>
       <div class="flex flex-col gap-4">
         <p class="max-w-lg">
-          We value feedback from our users. Whether you are facing an issue, want to let us know about an idea, or a feature you are missing, let us know!
+          {dgettext(
+            "landing",
+            "We value feedback from our users. Whether you are facing an issue, want to let us know about an idea, or a feature you are missing, let us know!"
+          )}
         </p>
       </div>
 
       <div class="flex flex-col md:flex-row gap-12">
         <div class="flex flex-col gap-4 p-4 bg-base-100 grow shrink-0 rounded-lg">
-          <h2 class="text-2xl font-bold">Facing an issue?</h2>
+          <h2 class="text-2xl font-bold">{dgettext("landing", "Facing an issue?")}</h2>
           <p class="max-w-lg">
-            We offer support for issues related to login, publication of material, and general questions related to use-cases. Drop us an email and we will get back to you as soon as possible. We reply between 3-5 business days.
+            {dgettext(
+              "landing",
+              "We offer support for issues related to login, publication of material, and general questions related to use-cases. Drop us an email and we will get back to you as soon as possible. We reply between 3-5 business days."
+            )}
           </p>
           <p class="font-bold">
             support@graasp.org
           </p>
         </div>
         <div class="flex flex-col gap-4 p-4 bg-base-100 grow shrink-0 rounded-lg">
-          <h2 class="text-2xl font-bold">Something else?</h2>
+          <h2 class="text-2xl font-bold">{dgettext("landing", "Something else?")}</h2>
           <p class="max-w-lg">
-            Have anything else you want to discuss with us?
+            {dgettext(
+              "landing",
+              "Have anything else you want to discuss with us?"
+            )}
           </p>
           <p class="font-bold">
             contact@graasp.org
@@ -30,10 +39,13 @@
       </div>
       <div class="flex flex-col gap-4">
         <h2 class="text-2xl font-bold">
-          Share cool stuff with us on social media
+          {dgettext("landing", "Share cool stuff with us on social media")}
         </h2>
         <p class="max-w-lg">
-          Built something cool using Graasp? Want to let the world know about what you created? Mention us on social media, we are happy to share it further!
+          {dgettext(
+            "landing",
+            "Built something cool using Graasp? Want to let the world know about what you created? Mention us on social media, we are happy to share it further!"
+          )}
         </p>
         <div class="grid auto-cols-fr grid-flow-col gap-4">
           <.social_card href="https://www.facebook.com/graasp" name="Facebook" icon="facebook" />

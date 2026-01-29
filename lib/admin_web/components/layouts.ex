@@ -3,8 +3,9 @@ defmodule AdminWeb.Layouts do
   This module holds layouts and related functionality
   used by your application.
   """
-  alias AdminWeb.LandingHTML
   use AdminWeb, :html
+
+  alias AdminWeb.LandingHTML
 
   # Embed all files in layouts/* within this module.
   # The default root.html.heex file contains the HTML
@@ -51,10 +52,12 @@ defmodule AdminWeb.Layouts do
   def landing(assigns) do
     ~H"""
     <.landing_menu {assigns} />
-    <main class="">
-      {render_slot(@inner_block)}
+    <main class="grow flex flex-col">
+      <div class="grow">
+        {render_slot(@inner_block)}
+      </div>
+      <LandingHTML.landing_footer {assigns} />
     </main>
-    <LandingHTML.landing_footer {assigns} />
 
     <.flash_group flash={@flash} />
     """

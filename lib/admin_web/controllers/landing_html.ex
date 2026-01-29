@@ -7,23 +7,51 @@ defmodule AdminWeb.LandingHTML do
 
   def team do
     [
-      %{name: "Denis Gillet", role: "President", src: "/images/team/denis.webp"},
+      %{
+        name: "Denis Gillet",
+        role: dgettext("landing", "President"),
+        src: "/images/team/denis.webp"
+      },
       %{
         name: "María Jesús Rodríguez‑Triana",
-        role: "VP Research",
+        role: dgettext("landing", "VP Research"),
         src: "/images/team/maria.webp"
       },
-      %{name: "Juan Carlos Farah", role: "VP Product", src: "/images/team/juancarlos.webp"},
-      %{name: "Kim Lan Phan Hoang", role: "VP Engineering", src: "/images/team/kim.webp"},
-      %{name: "Jérémy La Scala", role: "VP Outreach", src: "/images/team/jeremy.webp"},
-      %{name: "Basile Spaenlehauer", role: "VP Technology", src: "/images/team/basile.webp"},
+      %{
+        name: "Juan Carlos Farah",
+        role: dgettext("landing", "VP Product"),
+        src: "/images/team/juancarlos.webp"
+      },
+      %{
+        name: "Kim Lan Phan Hoang",
+        role: dgettext("landing", "VP Engineering"),
+        src: "/images/team/kim.webp"
+      },
+      %{
+        name: "Jérémy La Scala",
+        role: dgettext("landing", "VP Outreach"),
+        src: "/images/team/jeremy.webp"
+      },
+      %{
+        name: "Basile Spaenlehauer",
+        role: dgettext("landing", "VP Technology"),
+        src: "/images/team/basile.webp"
+      },
       %{
         name: "Michele Notari",
-        role: "VP Education and Content",
+        role: dgettext("landing", "VP Education and Content"),
         src: "/images/team/michele.webp"
       },
-      %{name: "Hagop Taminian", role: "Software Engineer", src: "/images/team/hagop.webp"},
-      %{name: "Philippe Kobel", role: "Ambassador", src: "/images/team/philippe.webp"}
+      %{
+        name: "Hagop Taminian",
+        role: dgettext("landing", "Software Engineer"),
+        src: "/images/team/hagop.webp"
+      },
+      %{
+        name: "Philippe Kobel",
+        role: dgettext("landing", "Ambassador"),
+        src: "/images/team/philippe.webp"
+      }
     ]
   end
 
@@ -153,6 +181,46 @@ defmodule AdminWeb.LandingHTML do
       }
     ]
 
+  def collections(_),
+    do: [
+      %{
+        href:
+          "https://graasp.org/player/86281673-76cf-4af0-a09d-86c287ed0e6b/86281673-76cf-4af0-a09d-86c287ed0e6b?fullscreen=false",
+        title: "Understanding the climatic greenhouse effect",
+        src: "/images/capsules/climate.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/0e56d2fb-4344-4be5-95e6-531548158b14/0e56d2fb-4344-4be5-95e6-531548158b14?fullscreen=false",
+        title: "ESLint Lesson",
+        src: "/images/capsules/eslint.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/e7cf4d11-f830-47a7-b281-b81f59726c49/e7cf4d11-f830-47a7-b281-b81f59726c49?fullscreen=false",
+        title: "The Hitchhiker's Guide to OERs",
+        src: "/images/capsules/hitchhiker_oer.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/757861bf-944b-42f3-8f89-a1fa10cad61b/757861bf-944b-42f3-8f89-a1fa10cad61b?fullscreen=false",
+        title: "Newtonian mechanics (UNITY-based simulations)",
+        src: "/images/capsules/newtonian_mechanics.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/5fc87751-e6e7-4aaf-9611-7571e9e37f8c/5fc87751-e6e7-4aaf-9611-7571e9e37f8c?fullscreen=false",
+        title: "Towards a global climate model",
+        src: "/images/capsules/globaleffect.webp"
+      },
+      %{
+        href:
+          "https://graasp.org/player/72eb0555-786a-43c5-885d-310da87d7add/72eb0555-786a-43c5-885d-310da87d7add?fullscreen=false",
+        title: "Sustainable Development Goals (SDGs)",
+        src: "/images/capsules/sdg.webp"
+      }
+    ]
+
   embed_templates "landing_html/*"
 
   attr :id, :string, required: true, doc: "The id of the section"
@@ -201,7 +269,7 @@ defmodule AdminWeb.LandingHTML do
   def card(assigns) do
     ~H"""
     <div class="card bg-base-100 border border-2 border-base-300 text-primary">
-      <div class="card-body flex flex-row items-center gap-4">
+      <div class="card-body flex flex-row items-center gap-4 text-base">
         <div class="card-icon">
           <.icon name={@icon} class="size-10" />
         </div>
