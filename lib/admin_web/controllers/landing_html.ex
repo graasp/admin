@@ -2,6 +2,7 @@ defmodule AdminWeb.LandingHTML do
   @moduledoc """
   This module contains pages rendered by LandingController.
   """
+  alias Admin.Languages
   use AdminWeb, :html
 
   def team do
@@ -380,42 +381,39 @@ defmodule AdminWeb.LandingHTML do
     """
   end
 
+  attr :locale_form, :map
+
   def landing_footer(assigns) do
     ~H"""
     <footer
       id="footer"
-      class="flex flex-col items-center bg-primary text-white p-6 mt-[86px] lg:mt-[200px]"
+      class="flex flex-col items-center bg-primary text-white p-6"
     >
       <div class="flex flex-col items-center max-w-screen-xl">
         <p class="font-bold">
-          Développé en Suisse par l'association Graasp
+          {dgettext("landing", "Developed in Switzerland by the Graasp association")}
         </p>
         <div class="flex flex-col lg:flex-row gap-12 m-8 justify-space-between">
           <div class="flex flex-col sm:flex-row gap-8">
-            <.footer_section title="Contenu">
+            <.footer_section title={dgettext("landing", "Content")}>
               <.footer_link href={~p"/"}>
-                Accueil
+                {dgettext("landing", "Home")}
               </.footer_link>
-              <.footer_link href="/features">
-                Fonctionnalités
-              </.footer_link>
+
               <.footer_link href="/about-us">
-                À propos de nous
+                {dgettext("landing", "About Us")}
               </.footer_link>
               <.footer_link href="/support">
-                Support utilisateur
+                {dgettext("landing", "Support")}
               </.footer_link>
-              <.footer_link href="/contact-us">
-                Contactez-nous
+              <.footer_link href={~p"/contact"}>
+                {dgettext("landing", "Contact Us")}
               </.footer_link>
-              <.footer_link
-                href="https://graasp.github.io/docs/blog"
-                external={true}
-              >
-                Blog
+              <.footer_link href={~p"/blog"}>
+                {dgettext("landing", "Blog")}
               </.footer_link>
             </.footer_section>
-            <.footer_section title="Partenaires">
+            <.footer_section title={dgettext("landing", "Partners")}>
               <.footer_link href="https://epfl.ch" external={true}>EPFL</.footer_link>
               <.footer_link href="https://edtech-collider.ch" external={true}>
                 Swiss EdTech Collider
@@ -453,7 +451,7 @@ defmodule AdminWeb.LandingHTML do
             </.footer_section>
           </div>
           <div class="flex flex-col sm:flex-row gap-8">
-            <.footer_section title="Réseaux sociaux">
+            <.footer_section title={dgettext("landing", "Social Media")}>
               <.footer_link href="https://www.facebook.com/graasp">
                 <.icon name="facebook" class="size-5" /> Facebook
               </.footer_link>
@@ -473,29 +471,31 @@ defmodule AdminWeb.LandingHTML do
                 <.icon name="mastodon" class="size-5" /> Mastodon
               </.footer_link>
             </.footer_section>
-            <.footer_section title="Autre">
+            <.footer_section title={dgettext("landing", "Other")}>
               <.footer_link href="/terms">
-                Conditions d'utilisation
+                {dgettext("landing", "Terms of Use")}
               </.footer_link>
               <.footer_link href="/policy">
-                Politique de confidentialité
+                {dgettext("landing", "Privacy Policy")}
               </.footer_link>
               <.footer_link href="/disclaimer">
-                Clause de non-responsabilité
+                {dgettext("landing", "Disclaimer")}
               </.footer_link>
-              <div class="flex flex-row items-center">
-                <div>
-                  <button
-                    class="flex flex-row items-center gap-1"
-                    tabindex="0"
-                    type="button"
-                    aria-haspopup="true"
-                  >
-                    <.icon name="hero-language" class="size-6" /> Français
-                    <.icon name="hero-chevron-down" class="size-6" />
-                  </button>
-                </div>
+              <div class="text-primary">
+                <.form
+                  for={@locale_form}
+                  action={~p"/locale"}
+                  method="post"
+                >
+                  <.input
+                    onchange="this.form.submit()"
+                    type="select"
+                    field={@locale_form[:locale]}
+                    options={Languages.all_options()}
+                  />
+                </.form>
               </div>
+
               <div class="text-primary w-fit pt-8">
                 <Layouts.theme_toggle />
               </div>
@@ -510,7 +510,7 @@ defmodule AdminWeb.LandingHTML do
             href="https://storyset.com/idea"
             class="text-[10px] text-secondary text-decoration-none"
           >
-            Idea illustrations by Storyset
+            {dgettext("landing", "Idea illustrations by Storyset")}
           </.link>
         </div>
       </div>

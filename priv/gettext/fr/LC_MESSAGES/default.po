@@ -69,13 +69,13 @@ msgstr ""
 #: lib/admin_web/components/layouts.ex:324
 #, elixir-autogen, elixir-format
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 #: lib/admin_web/components/layouts.ex:306
 #: lib/admin_web/components/layouts.ex:338
 #, elixir-autogen, elixir-format
 msgid "Get started"
-msgstr ""
+msgstr "Commencer"
 
 #: lib/admin_web/components/layouts.ex:287
 #: lib/admin_web/components/layouts.ex:323
@@ -87,16 +87,21 @@ msgstr ""
 #: lib/admin_web/components/layouts.ex:342
 #, elixir-autogen, elixir-format
 msgid "Log in"
-msgstr ""
+msgstr "Se connecter"
 
 #: lib/admin_web/components/layouts.ex:293
 #: lib/admin_web/components/layouts.ex:325
 #, elixir-autogen, elixir-format
 msgid "About"
-msgstr ""
+msgstr "À propos"
 
 #: lib/admin_web/components/layouts.ex:296
 #: lib/admin_web/components/layouts.ex:326
 #, elixir-autogen, elixir-format
 msgid "Contact"
+msgstr "Contact"
+
+#: lib/admin_web/components/layouts/root.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "Home"
 msgstr ""

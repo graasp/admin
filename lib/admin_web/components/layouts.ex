@@ -3,6 +3,7 @@ defmodule AdminWeb.Layouts do
   This module holds layouts and related functionality
   used by your application.
   """
+  alias AdminWeb.LandingHTML
   use AdminWeb, :html
 
   # Embed all files in layouts/* within this module.
@@ -53,6 +54,7 @@ defmodule AdminWeb.Layouts do
     <main class="">
       {render_slot(@inner_block)}
     </main>
+    <LandingHTML.landing_footer {assigns} />
 
     <.flash_group flash={@flash} />
     """
