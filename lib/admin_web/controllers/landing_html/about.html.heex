@@ -29,10 +29,10 @@
         </div>
       </div>
       <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-        <.stats_card value="50k+" description={dgettext("landing", "Builder activities")} />
-        <.stats_card value="1000+" description={dgettext("landing", "Library's projects")} />
-        <.stats_card value="20+" description={dgettext("landing", "Templates")} />
-        <.stats_card value="12" description={dgettext("landing", "Apps")} />
+        <.stats_card value="50k+" description={dgettext("landing", "Builder Activities")} />
+        <.stats_card value="1000+" description={dgettext("landing", "Published Capsules")} />
+        <.stats_card value="20+" description={dgettext("landing", "Pedagogical Templates")} />
+        <.stats_card value="12" description={dgettext("landing", "Interactive Apps")} />
       </div>
     </div>
     <div class="flex flex-col gap-12 items-center max-w-screen-lg m-auto">
@@ -122,7 +122,7 @@
           </p>
         </div>
         <.link class="btn btn-soft btn-primary" navigate={~p"/contact"}>
-          {dgettext("landing", "Contact us")}
+          {dpgettext("landing", "link", "Contact us")}
         </.link>
       </.call_card>
     </div>

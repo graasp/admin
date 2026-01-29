@@ -1,7 +1,9 @@
 <Layouts.landing flash={@flash} current_scope={@current_scope} locale_form={@locale_form}>
   <div class="max-screen-xl m-auto p-8 pt-12 h-full">
     <div class="flex flex-col gap-12 max-w-screen-lg m-auto h-full">
-      <h1 class="text-primary text-5xl font-bold">{dgettext("landing", "Contact us")}</h1>
+      <h1 class="text-primary text-5xl font-bold">
+        {dpgettext("landing", "title", "Contact us")}
+      </h1>
       <div class="flex flex-col gap-4">
         <p class="max-w-lg">
           {dgettext(

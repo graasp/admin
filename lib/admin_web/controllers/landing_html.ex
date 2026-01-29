@@ -361,7 +361,7 @@ defmodule AdminWeb.LandingHTML do
       <span class="text-2xl font-bold text-primary">
         {@value}
       </span>
-      <span class="text-sm text-gray-500">
+      <span class="text-sm text-gray-500 text-center">
         {@description}
       </span>
     </div>
@@ -439,11 +439,22 @@ defmodule AdminWeb.LandingHTML do
   end
 
   attr :url, :string, required: true, doc: "The URL of the project"
+  attr :name, :string, required: true, doc: "The name of the project"
   slot :inner_block, doc: "The content inside the project link"
 
   def project_link(assigns) do
     ~H"""
-    <a href={@url} class="min-w-[90px] min-h-[3rem] flex items-center justify-center">
+    <a
+      href={@url}
+      class="min-w-[90px] min-h-[3rem] flex items-center justify-center"
+      name={
+        dgettext(
+          "landing",
+          "View the website of %{institution}, one of our supporting entities",
+          institution: @name
+        )
+      }
+    >
       {render_slot(@inner_block)}
     </a>
     """
@@ -475,7 +486,7 @@ defmodule AdminWeb.LandingHTML do
                 {dgettext("landing", "Support")}
               </.footer_link>
               <.footer_link href={~p"/contact"}>
-                {dgettext("landing", "Contact Us")}
+                {dpgettext("landing", "footer link", "Contact Us")}
               </.footer_link>
               <.footer_link href={~p"/blog"}>
                 {dgettext("landing", "Blog")}

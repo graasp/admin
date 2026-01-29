@@ -4,6 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
+    <meta
+      name="description"
+      content={
+        assigns[:page_description] ||
+          gettext("Graasp is a platform for collaborative learning and teaching.")
+      }
+    />
     <.live_title default={gettext("Home")} suffix=" · Graasp">
       {assigns[:page_title]}
     </.live_title>
