@@ -2,7 +2,7 @@ defmodule AdminWeb.AdminController do
   use AdminWeb, :controller
 
   def home(conn, _params) do
-    render(conn, :home)
+    render(conn, :home, page_title: pgettext("page title", "Admin"))
   end
 
   def dashboard(conn, _params) do
@@ -21,6 +21,6 @@ defmodule AdminWeb.AdminController do
         Admin.Maintenance.list_upcoming_maintenance()
       )
 
-    render(conn, :dashboard, page_title: "Dashboard")
+    render(conn, :dashboard, page_title: pgettext("page title", "Dashboard"))
   end
 end

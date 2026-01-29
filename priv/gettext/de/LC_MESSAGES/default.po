@@ -101,14 +101,44 @@ msgstr "Über uns"
 msgid "Contact"
 msgstr "Kontakt"
 
-#: lib/admin_web/components/layouts/root.html.heex:14
+#: lib/admin_web/controllers/landing_controller.ex:11
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "page title"
+msgid "About"
+msgstr ""
+
+#: lib/admin_web/controllers/admin_controller.ex:5
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "page title"
+msgid "Admin"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_controller.ex:15
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "page title"
+msgid "Contact"
+msgstr ""
+
+#: lib/admin_web/controllers/admin_controller.ex:24
 #, elixir-autogen, elixir-format
+msgctxt "page title"
+msgid "Dashboard"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_controller.ex:7
+#, elixir-autogen, elixir-format
+msgctxt "page title"
 msgid "Home"
 msgstr ""
 
 #: lib/admin_web/components/layouts/root.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Graasp is a platform for collaborative learning and teaching."
+msgstr ""
+
+#: lib/admin_web/components/layouts/root.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "Home"
 msgstr ""
 
 #: lib/admin_web/components/layouts.ex:142

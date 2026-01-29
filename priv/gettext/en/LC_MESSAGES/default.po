@@ -101,27 +101,57 @@ msgstr "About"
 msgid "Contact"
 msgstr "Contact"
 
-#: lib/admin_web/components/layouts/root.html.heex:14
+#: lib/admin_web/controllers/landing_controller.ex:11
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "page title"
+msgid "About"
+msgstr "About"
+
+#: lib/admin_web/controllers/admin_controller.ex:5
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "page title"
+msgid "Admin"
+msgstr "Admin"
+
+#: lib/admin_web/controllers/landing_controller.ex:15
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "page title"
+msgid "Contact"
+msgstr "Contact"
+
+#: lib/admin_web/controllers/admin_controller.ex:24
 #, elixir-autogen, elixir-format
+msgctxt "page title"
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: lib/admin_web/controllers/landing_controller.ex:7
+#, elixir-autogen, elixir-format
+msgctxt "page title"
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: lib/admin_web/components/layouts/root.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Graasp is a platform for collaborative learning and teaching."
-msgstr ""
+msgstr "Graasp is a platform for collaborative learning and teaching."
+
+#: lib/admin_web/components/layouts/root.html.heex:14
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Home"
+msgstr "Home"
 
 #: lib/admin_web/components/layouts.ex:142
 #, elixir-autogen, elixir-format
 msgid "Use dark theme"
-msgstr ""
+msgstr "Use dark theme"
 
 #: lib/admin_web/components/layouts.ex:133
 #, elixir-autogen, elixir-format
 msgid "Use light theme"
-msgstr ""
+msgstr "Use light theme"
 
 #: lib/admin_web/components/layouts.ex:124
 #, elixir-autogen, elixir-format
 msgid "Use system theme"
-msgstr ""
+msgstr "Use system theme"
