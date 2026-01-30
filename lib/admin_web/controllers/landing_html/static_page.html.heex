@@ -11,7 +11,7 @@
         <%= if @user_locale != "" do %>
           <p class="text-sm">
             {gettext("This page is available in your preferred language:")}
-            <.link class="link" href={AdminWeb.Marketing.Localized.get_path(@page.id)}>
+            <.link class="link" href={AdminWeb.Marketing.get_path(@page.id)}>
               {Admin.Languages.display_name(@user_locale)}
             </.link>
           </p>

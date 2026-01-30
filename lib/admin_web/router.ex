@@ -4,7 +4,7 @@ defmodule AdminWeb.Router do
   import Oban.Web.Router
   import AdminWeb.UserAuth
 
-  import AdminWeb.Marketing.Routes
+  import AdminWeb.Marketing.Macros, only: [generate_localized_routes: 0]
 
   pipeline :browser do
     plug :accepts, ["html"]

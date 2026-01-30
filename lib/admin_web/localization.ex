@@ -4,7 +4,7 @@ defmodule AdminWeb.Localization do
   """
 
   def supported_locales,
-    do: (["en"] ++ Gettext.known_locales(AdminWeb.Gettext)) |> Enum.uniq()
+    do: ["en", "fr", "es", "de", "it"]
 
   def locale_path_prefix("en"), do: "/"
   def locale_path_prefix(locale), do: "/#{locale}"
