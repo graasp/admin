@@ -551,13 +551,13 @@ defmodule AdminWeb.LandingHTML do
               </.footer_link>
             </.footer_section>
             <.footer_section title={dgettext("landing", "Other")}>
-              <.footer_link href="/terms">
+              <.footer_link href={~p"/#{Gettext.get_locale(AdminWeb.Gettext)}/terms"}>
                 {dgettext("landing", "Terms of Use")}
               </.footer_link>
-              <.footer_link href="/policy">
+              <.footer_link href={~p"/#{Gettext.get_locale(AdminWeb.Gettext)}/policy"}>
                 {dgettext("landing", "Privacy Policy")}
               </.footer_link>
-              <.footer_link href="/disclaimer">
+              <.footer_link href={~p"/#{Gettext.get_locale(AdminWeb.Gettext)}/disclaimer"}>
                 {dgettext("landing", "Disclaimer")}
               </.footer_link>
               <div class="text-primary">
