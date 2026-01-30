@@ -1,7 +1,6 @@
 defmodule AdminWeb.LandingController do
   use AdminWeb, :controller
 
-  alias AdminWeb.Marketing.Routes
   alias AdminWeb.Plugs.Locale
 
   def index(conn, _params) do
@@ -28,7 +27,7 @@ defmodule AdminWeb.LandingController do
     user_locale_page_exists = Admin.StaticPages.exists?(user_locale, page)
 
     if is_nil(page_data) do
-      redirect(conn, to: Routes.get_path(page))
+      redirect(conn, to: AdminWeb.Marketing.get_path(page, "en"))
     else
       assigns = [
         page_title: page_data.title,

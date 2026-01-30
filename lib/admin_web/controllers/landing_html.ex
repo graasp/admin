@@ -551,13 +551,13 @@ defmodule AdminWeb.LandingHTML do
               </.footer_link>
             </.footer_section>
             <.footer_section title={dgettext("landing", "Other")}>
-              <.footer_link href={AdminWeb.Marketing.Localized.terms_path()}>
+              <.footer_link href={AdminWeb.Marketing.terms_path()}>
                 {dgettext("landing", "Terms of Use")}
               </.footer_link>
-              <.footer_link href={AdminWeb.Marketing.Localized.privacy_policy_path()}>
+              <.footer_link href={AdminWeb.Marketing.privacy_policy_path()}>
                 {dgettext("landing", "Privacy Policy")}
               </.footer_link>
-              <.footer_link href={AdminWeb.Marketing.Localized.disclaimer_path()}>
+              <.footer_link href={AdminWeb.Marketing.disclaimer_path()}>
                 {dgettext("landing", "Disclaimer")}
               </.footer_link>
               <div class="text-primary">

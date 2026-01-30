@@ -1,33 +1,36 @@
-defmodule AdminWeb.Marketing.Localized do
+defmodule AdminWeb.Marketing do
   @moduledoc """
   Module for managing localized marketing pages.
   """
-  use Phoenix.VerifiedRoutes,
-    router: AdminWeb.Router,
-    endpoint: AdminWeb.Endpoint,
-    path_prefixes: [{Gettext, :get_locale, []}]
 
-  def disclaimer_path, do: ~p"/disclaimer"
-  def privacy_policy_path, do: ~p"/privacy"
-  def terms_path, do: ~p"/terms"
+  alias AdminWeb.Localization
 
-  def get_path(page_name) do
+  def disclaimer_path,
+    do: Path.join(Localization.locale_path_prefix(Gettext.get_locale()), "disclaimer")
+
+  def privacy_policy_path,
+    do: Path.join(Localization.locale_path_prefix(Gettext.get_locale()), "privacy")
+
+  def terms_path, do: Path.join(Localization.locale_path_prefix(Gettext.get_locale()), "terms")
+
+  def get_path(page_name), do: get_path(page_name, Gettext.get_locale())
+
+  def get_path(page_name, locale) do
+    locale_path_prefix = Localization.locale_path_prefix(locale)
+
     case page_name do
-      "disclaimer" -> disclaimer_path()
-      "privacy" -> privacy_policy_path()
-      "terms" -> terms_path()
-      _ -> ~p"/"
+      "disclaimer" -> Path.join(locale_path_prefix, "disclaimer")
+      "privacy" -> Path.join(locale_path_prefix, "privacy")
+      "terms" -> Path.join(locale_path_prefix, "terms")
+      _ -> "/"
     end
   end
 end
 
-defmodule AdminWeb.Marketing.Routes do
+defmodule AdminWeb.Marketing.Macros do
   @moduledoc """
   Module for managing marketing routes.
   """
-  use Phoenix.VerifiedRoutes,
-    router: AdminWeb.Router,
-    endpoint: AdminWeb.Endpoint
 
   @doc """
   A macro that generates localized routes for the marketing pages.
@@ -46,15 +49,6 @@ defmodule AdminWeb.Marketing.Routes do
             private: private
         end
       end
-    end
-  end
-
-  def get_path(page_name) do
-    case page_name do
-      "disclaimer" -> ~p"/disclaimer"
-      "privacy" -> ~p"/privacy"
-      "terms" -> ~p"/terms"
-      _ -> ~p"/"
     end
   end
 end
