@@ -22,7 +22,7 @@ defmodule AdminWeb.Gettext do
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
 
-  def default_locale, do: Application.get_env(:gettext, :default_locale)
+  def default_locale, do: "en"
 
   use Gettext.Backend, otp_app: :admin
 end
