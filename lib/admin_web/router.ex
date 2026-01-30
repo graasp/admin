@@ -4,6 +4,8 @@ defmodule AdminWeb.Router do
   import Oban.Web.Router
   import AdminWeb.UserAuth
 
+  import AdminWeb.Marketing.Routes
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -43,7 +45,7 @@ defmodule AdminWeb.Router do
     post "/locale", LandingController, :change_locale
     delete "/locale", LandingController, :remove_locale
 
-    get "/:locale/:page", LandingController, :static_page
+    generate_localized_routes()
   end
 
   scope "/admin", AdminWeb do

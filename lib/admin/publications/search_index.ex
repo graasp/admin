@@ -52,6 +52,7 @@ defmodule Admin.Publications.SearchIndex do
 
   Returns `{:ok, %Req.Response{}}` on success or `{:error, error_code}` on failure.
   """
+  # credo:disable-for-next-line Credo.Check.Refactor.Nesting
   def reindex do
     with {:ok, url} <- get_reindex_url(@config.backend_origin()),
          {:ok, headers} <- get_reindex_headers(@config.publication_reindex_headers()) do

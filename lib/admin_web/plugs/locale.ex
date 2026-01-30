@@ -78,8 +78,6 @@ defmodule AdminWeb.Plugs.Locale.Headers do
     end)
   end
 
-  def supported_locale?(locale), do: Enum.member?(supported_locales(), locale)
-
-  defp supported_locales,
-    do: Gettext.known_locales(AdminWeb.Gettext)
+  def supported_locale?(locale),
+    do: Enum.member?(AdminWeb.Localization.supported_locales(), locale)
 end

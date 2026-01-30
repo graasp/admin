@@ -1,6 +1,7 @@
 defmodule AdminWeb.LandingController do
   use AdminWeb, :controller
 
+  alias AdminWeb.Marketing.Routes
   alias AdminWeb.Plugs.Locale
 
   def index(conn, _params) do
@@ -15,7 +16,10 @@ defmodule AdminWeb.LandingController do
     render(conn, :contact, page_title: pgettext("page title", "Contact"))
   end
 
-  def static_page(conn, %{"locale" => locale, "page" => page}) do
+  def static_page(conn, _params) do
+    page = conn.request_path |> Path.split() |> List.last()
+    locale = conn.private.locale
+
     user_locale = conn.assigns.locale
 
     page_data =
@@ -24,7 +28,7 @@ defmodule AdminWeb.LandingController do
     user_locale_page_exists = Admin.StaticPages.exists?(user_locale, page)
 
     if is_nil(page_data) do
-      redirect(conn, to: ~p"/#{AdminWeb.Gettext.default_locale()}/#{page}")
+      redirect(conn, to: Routes.get_path(page))
     else
       assigns = [
         page_title: page_data.title,
