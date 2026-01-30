@@ -101,7 +101,7 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: lib/admin_web/controllers/landing_controller.ex:12
+#: lib/admin_web/controllers/landing_controller.ex:11
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page title"
 msgid "About"
@@ -113,7 +113,7 @@ msgctxt "page title"
 msgid "Admin"
 msgstr ""
 
-#: lib/admin_web/controllers/landing_controller.ex:16
+#: lib/admin_web/controllers/landing_controller.ex:15
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page title"
 msgid "Contact"
@@ -125,7 +125,7 @@ msgctxt "page title"
 msgid "Dashboard"
 msgstr ""
 
-#: lib/admin_web/controllers/landing_controller.ex:8
+#: lib/admin_web/controllers/landing_controller.ex:7
 #, elixir-autogen, elixir-format
 msgctxt "page title"
 msgid "Home"
