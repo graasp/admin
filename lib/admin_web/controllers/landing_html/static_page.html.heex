@@ -1,0 +1,27 @@
+<Layouts.landing flash={@flash} current_scope={@current_scope} locale_form={@locale_form}>
+  <div class="max-w-screen-md mx-auto p-8">
+    <%= if @user_locale != @locale do %>
+      <.alert severity="info" variant="soft">
+        <p class="text-sm">
+          {gettext(
+            "You are viewing this page in: %{locale}",
+            locale: Admin.Languages.display_name(@locale)
+          )}
+        </p>
+        <%= if @user_locale != "" do %>
+          <p class="text-sm">
+            {gettext("This page is available in your preferred language:")}
+            <.link class="link" href={~p"/#{@user_locale}/#{@page.id}"}>
+              {Admin.Languages.display_name(@user_locale)}
+            </.link>
+          </p>
+        <% end %>
+      </.alert>
+    <% end %>
+
+    <div class="prose p-4 mx-auto my-12">
+      <h1 class="font-bold text-primary">{@page.title}</h1>
+      {raw(@page.body)}
+    </div>
+  </div>
+</Layouts.landing>

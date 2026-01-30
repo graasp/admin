@@ -42,6 +42,8 @@ defmodule AdminWeb.Router do
     get "/locale", LandingController, :locale
     post "/locale", LandingController, :change_locale
     delete "/locale", LandingController, :remove_locale
+
+    get "/:locale/:page", LandingController, :static_page
   end
 
   scope "/admin", AdminWeb do

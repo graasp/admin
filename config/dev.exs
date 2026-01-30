@@ -60,6 +60,7 @@ config :admin, AdminWeb.Endpoint,
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg|webp)$",
       ~r"priv/gettext/.*(po)$",
       ~r"priv/blog/.*(md)$",
+      ~r"priv/pages/.*(md)$",
       ~r"lib/admin_web/(?:controllers|live|components|router)/?.*\.(ex|heex)$"
     ]
   ]
