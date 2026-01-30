@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.7.0](https://github.com/graasp/admin/compare/v0.6.0...v0.7.0) (2026-01-29)
+
+
+### Features
+
+* add `About` and `Contact` page ([#136](https://github.com/graasp/admin/issues/136)) ([fa8946e](https://github.com/graasp/admin/commit/fa8946e8da7934185f66310bf57dbac46367cf82))
+* add translations and locale to landing ([#140](https://github.com/graasp/admin/issues/140)) ([a951a89](https://github.com/graasp/admin/commit/a951a89227d749a200bd3062d82c3923f2e8778c))
+* blog with nimble publisher ([#135](https://github.com/graasp/admin/issues/135)) ([d3fa230](https://github.com/graasp/admin/commit/d3fa2302288fccec661f062c124de74d1ca37492))
+
+
+### Bug Fixes
+
+* add sign-off to call to action email ([#137](https://github.com/graasp/admin/issues/137)) ([9569ccb](https://github.com/graasp/admin/commit/9569ccba0424e1597106a9f492f1503c218d9a82))
+* addapt the colors ([d659e9f](https://github.com/graasp/admin/commit/d659e9f442cbfcf6432f50ae9823cd5774382d2d))
+* define better theme colors ([#134](https://github.com/graasp/admin/issues/134)) ([6786834](https://github.com/graasp/admin/commit/67868347c4d15502922f6f3b1d6a93c015ec0fc6))
+* re-organize admin home ([#139](https://github.com/graasp/admin/issues/139)) ([e780ced](https://github.com/graasp/admin/commit/e780ced569ce5afa387fe40f77838b699b53ea5b))
+* set page titles ([#142](https://github.com/graasp/admin/issues/142)) ([21218aa](https://github.com/graasp/admin/commit/21218aa96bc87d3f050422e19ce84b1bf2ce5ce1))
+* update daisyUI  ([#141](https://github.com/graasp/admin/issues/141)) ([0cbd29f](https://github.com/graasp/admin/commit/0cbd29f989a90223fe18664c2d0a5824b7af0faf))
+
+
+### Chores
+
+* upgrade otp to 28.1 ([196099f](https://github.com/graasp/admin/commit/196099f8b474aa7f514e6622420052b2f884d983))
+
 ## [0.6.0](https://github.com/graasp/admin/compare/v0.5.0...v0.6.0) (2026-01-21)
 
 
