@@ -155,3 +155,13 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "Use system theme"
 msgstr ""
+
+#: lib/admin_web/controllers/landing_html/static_page.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "This page is available in your preferred language:"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html/static_page.html.heex:6
+#, elixir-autogen, elixir-format
+msgid "You are viewing this page in: %{locale}"
+msgstr ""

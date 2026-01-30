@@ -58,4 +58,8 @@ defmodule Admin.Languages do
       Keyword.new(value: value, key: key, disabled: value in language_codes)
     end)
   end
+
+  def display_name(locale) do
+    Enum.find(@languages, &(&1.value == locale))[:key]
+  end
 end
