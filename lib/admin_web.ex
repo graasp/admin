@@ -17,7 +17,8 @@ defmodule AdminWeb do
   those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images icons favicon.ico robots.txt)
+  def static_paths,
+    do: ~w(assets fonts images icons favicon.ico favicons robots.txt)
 
   def router do
     quote do

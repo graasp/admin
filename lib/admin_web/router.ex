@@ -17,6 +17,17 @@ defmodule AdminWeb.Router do
     plug AdminWeb.Plugs.Locale, "en"
   end
 
+  pipeline :browser_admin do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_live_flash
+    plug :put_root_layout, html: {AdminWeb.Layouts, :admin_root}
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+    plug :fetch_current_scope_for_user
+    plug AdminWeb.Plugs.Locale, "en"
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -49,7 +60,7 @@ defmodule AdminWeb.Router do
   end
 
   scope "/admin", AdminWeb do
-    pipe_through :browser
+    pipe_through :browser_admin
 
     get "/", AdminController, :home
   end
@@ -69,7 +80,7 @@ defmodule AdminWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/dev" do
-      pipe_through :browser
+      pipe_through :browser_admin
 
       live_dashboard "/dashboard", metrics: AdminWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
@@ -87,7 +98,7 @@ defmodule AdminWeb.Router do
 
   ## Authentication LV routes
   scope "/admin", AdminWeb do
-    pipe_through [:browser, :require_authenticated_user]
+    pipe_through [:browser_admin, :require_authenticated_user]
 
     live_session :require_authenticated_user,
       on_mount: [{AdminWeb.UserAuth, :require_authenticated}] do
@@ -152,7 +163,7 @@ defmodule AdminWeb.Router do
 
   ## Authentication related routes
   scope "/admin", AdminWeb do
-    pipe_through [:browser]
+    pipe_through [:browser_admin]
 
     live_session :current_user,
       on_mount: [{AdminWeb.UserAuth, :mount_current_scope}] do
@@ -168,7 +179,7 @@ defmodule AdminWeb.Router do
 
   ## Authenticated controller routes
   scope "/admin", AdminWeb do
-    pipe_through [:browser, :require_authenticated_user]
+    pipe_through [:browser_admin, :require_authenticated_user]
 
     get "/dashboard", AdminController, :dashboard
     resources "/maintenance", PlannedMaintenanceController
