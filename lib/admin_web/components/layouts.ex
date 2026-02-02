@@ -49,6 +49,18 @@ defmodule AdminWeb.Layouts do
     """
   end
 
+  attr :flash, :map, required: true, doc: "the map of flash messages"
+
+  attr :current_scope, :map,
+    default: nil,
+    doc: "the current [scope](https://hexdocs.pm/phoenix/scopes.html)"
+
+  attr :locale_form, :map,
+    default: nil,
+    doc: "the form for locale selection"
+
+  slot :inner_block, required: true
+
   def landing(assigns) do
     ~H"""
     <.landing_menu {assigns} />
