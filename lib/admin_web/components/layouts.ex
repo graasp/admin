@@ -295,7 +295,7 @@ defmodule AdminWeb.Layouts do
   def landing_menu(assigns) do
     ~H"""
     <div class="navbar bg-base-100 shadow-xl shadow-xl/30">
-      <div class="w-full flex flex-row lg:max-w-screen-xl lg:mx-auto ">
+      <div class="w-full flex flex-row lg:max-w-screen-xl lg:mx-auto gap-4">
         <div class="navbar-start w-fit">
           <div class="dropdown">
             <.burger_menu />
