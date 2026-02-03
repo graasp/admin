@@ -374,7 +374,10 @@ defmodule AdminWeb.LandingHTML do
 
   def social_card(assigns) do
     ~H"""
-    <a class="flex flex-col items-center bg-base-100 p-4 rounded-lg gap-2" href={@href}>
+    <a
+      class="flex flex-col items-center bg-base-100 p-4 rounded-lg gap-2 hover:shadow-md"
+      href={@href}
+    >
       <.icon name={@icon} class="size-6 text-primary" /> {@name}
     </a>
     """

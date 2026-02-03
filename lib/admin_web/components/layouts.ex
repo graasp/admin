@@ -304,7 +304,7 @@ defmodule AdminWeb.Layouts do
               class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <.link navigate="/library">{gettext("Library")}</.link>
+                <.link navigate={~p"/library"}>{gettext("Library")}</.link>
               </li>
               <li>
                 <.link navigate={~p"/blog"}>{gettext("Blog")}</.link>
@@ -326,7 +326,7 @@ defmodule AdminWeb.Layouts do
                     {gettext("Get started")}
                   </.link>
                 <% else %>
-                  <.link class="btn btn-soft" href="/auth/login">
+                  <.link class="btn btn-soft" navigate={~p"/auth/login"}>
                     {gettext("Log in")}
                   </.link>
                 <% end %>
@@ -340,13 +340,13 @@ defmodule AdminWeb.Layouts do
         </div>
         <div class="navbar-center hidden lg:flex">
           <ul class="menu menu-horizontal px-1">
-            <li><.link navigate="/library">{gettext("Library")}</.link></li>
-            <li><.link navigate={~p"/blog"}>{gettext("Blog")}</.link></li>
-            <li><.link navigate={~p"/about-us"}>{gettext("About")}</.link></li>
-            <li><.link navigate={~p"/contact"}>{gettext("Contact")}</.link></li>
+            <li><.link class="text-primary" navigate={~p"/library"}>{gettext("Library")}</.link></li>
+            <li><.link class="text-primary" navigate={~p"/blog"}>{gettext("Blog")}</.link></li>
+            <li><.link class="text-primary" navigate={~p"/about-us"}>{gettext("About")}</.link></li>
+            <li><.link class="text-primary" navigate={~p"/contact"}>{gettext("Contact")}</.link></li>
             <%= if @current_scope do %>
               <li>
-                <.link navigate={~p"/admin/dashboard"}>{gettext("Admin")}</.link>
+                <.link class="text-primary" navigate={~p"/admin/dashboard"}>{gettext("Admin")}</.link>
               </li>
             <% end %>
           </ul>
@@ -358,7 +358,7 @@ defmodule AdminWeb.Layouts do
                 {gettext("Get started")}
               </.link>
             <% else %>
-              <.link class="btn btn-accent" href="/auth/login">
+              <.link class="btn btn-accent" navigate={~p"/auth/login"}>
                 {gettext("Log in")}
               </.link>
             <% end %>

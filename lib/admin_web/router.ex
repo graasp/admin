@@ -57,6 +57,9 @@ defmodule AdminWeb.Router do
     delete "/locale", LandingController, :remove_locale
 
     generate_localized_routes()
+    # redirections for now
+    get "/library", RedirectionController, :library
+    get "/auth/login", RedirectionController, :login
   end
 
   scope "/admin", AdminWeb do

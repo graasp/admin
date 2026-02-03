@@ -148,7 +148,9 @@ if config_env() == :prod do
   #       In production these configs have the same value.
   config :admin, base_host: base_host
   config :admin, backend_origin: "https://#{base_host}"
+  config :admin, client_origin: "https://#{base_host}"
   config :admin, umami_origin: "https://umami.#{base_host}"
+  config :admin, library_origin: "https://library.#{base_host}"
 
   # Get the value of the header secret to communicate with Meilisearch
   config :admin, :publication_reindex_headers, [
