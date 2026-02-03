@@ -358,7 +358,7 @@ defmodule AdminWeb.Layouts do
                 {gettext("Get started")}
               </.link>
             <% else %>
-              <.link class="btn btn-primary" href="/auth/login">
+              <.link class="btn btn-accent" href="/auth/login">
                 {gettext("Log in")}
               </.link>
             <% end %>
