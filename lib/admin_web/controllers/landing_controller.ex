@@ -29,19 +29,13 @@ defmodule AdminWeb.LandingController do
     if is_nil(page_data) do
       redirect(conn, to: AdminWeb.Marketing.get_path(page, "en"))
     else
-      assigns = [
+      render(conn, :static_page,
         page_title: page_data.title,
         page: page_data,
         locale: locale,
-        user_locale:
-          if user_locale_page_exists do
-            user_locale
-          else
-            ""
-          end
-      ]
-
-      render(conn, :static_page, assigns)
+        user_locale: user_locale,
+        user_locale_page_exists: user_locale_page_exists
+      )
     end
   end
 

@@ -597,6 +597,10 @@ defmodule AdminWeb.LandingHTML do
     """
   end
 
+  attr :user_locale, :string, required: true
+  attr :user_locale_page_exists, :boolean, required: true
+  def static_page(assigns)
+
   def swiss_flag(assigns) do
     ~H"""
     <svg

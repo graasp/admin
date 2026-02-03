@@ -8,7 +8,7 @@
             locale: Admin.Languages.display_name(@locale)
           )}
         </p>
-        <%= if @user_locale != "" do %>
+        <%= if @user_locale_page_exists do %>
           <p class="text-sm">
             {gettext("This page is available in your preferred language:")}
             <.link class="link" href={AdminWeb.Marketing.get_path(@page.id)}>
