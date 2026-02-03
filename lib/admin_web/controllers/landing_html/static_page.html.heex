@@ -5,14 +5,14 @@
         <p class="text-sm">
           {gettext(
             "You are viewing this page in: %{locale}",
-            locale: Admin.Languages.display_name(@locale)
+            locale: Admin.Languages.get_label(@locale)
           )}
         </p>
         <%= if @user_locale_page_exists do %>
           <p class="text-sm">
             {gettext("This page is available in your preferred language:")}
             <.link class="link" href={AdminWeb.Marketing.get_path(@page.id)}>
-              {Admin.Languages.display_name(@user_locale)}
+              {Admin.Languages.get_label(@user_locale)}
             </.link>
           </p>
         <% end %>
