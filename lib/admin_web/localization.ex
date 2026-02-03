@@ -3,6 +3,9 @@ defmodule AdminWeb.Localization do
   Module for managing localization.
   """
 
+  # this is the locales that we support for pages.
+  # They are not sorted alphabeticaly, english is
+  # expected to be the first one so that the routes for english are the first to be generated.
   def supported_locales,
     do: ["en", "fr", "es", "de", "it"]
 
