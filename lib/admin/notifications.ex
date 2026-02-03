@@ -333,7 +333,15 @@ defmodule Admin.Notifications do
   def get_target_audience(%Scope{} = _scope, "active", opts) do
     audience =
       Accounts.get_active_members()
-      |> Enum.map(&%{name: &1.name, email: &1.email, lang: &1.lang})
+      |> Enum.map(
+        &%{
+          id: &1.id,
+          name: &1.name,
+          email: &1.email,
+          lang: &1.lang,
+          marketing_emails_subscribed_at: &1.marketing_emails_subscribed_at
+        }
+      )
       |> filter_audience_with_options(opts)
 
     {:ok, audience}
@@ -342,7 +350,15 @@ defmodule Admin.Notifications do
   def get_target_audience(%Scope{} = _scope, "french", opts) do
     audience =
       Accounts.get_members_by_language("fr")
-      |> Enum.map(&%{name: &1.name, email: &1.email, lang: &1.lang})
+      |> Enum.map(
+        &%{
+          id: &1.id,
+          name: &1.name,
+          email: &1.email,
+          lang: &1.lang,
+          marketing_emails_subscribed_at: &1.marketing_emails_subscribed_at
+        }
+      )
       |> filter_audience_with_options(opts)
 
     {:ok, audience}
@@ -351,7 +367,7 @@ defmodule Admin.Notifications do
   def get_target_audience(%Scope{} = _scope, "graasp_team", opts) do
     audience =
       Accounts.list_users()
-      |> Enum.map(&%{name: &1.name, email: &1.email, lang: &1.language})
+      |> Enum.map(&%{id: &1.id, name: &1.name, email: &1.email, lang: &1.language})
       |> filter_audience_with_options(opts)
 
     {:ok, audience}
@@ -367,7 +383,10 @@ defmodule Admin.Notifications do
 
   defp filter_audience_with_options(audience, opts) do
     only_langs = Keyword.get(opts, :only_langs, Admin.Languages.all_values()) |> MapSet.new()
-    audience |> Enum.filter(fn user -> MapSet.member?(only_langs, user.lang) end)
+
+    audience
+    |> Enum.filter(fn user -> MapSet.member?(only_langs, user.lang) end)
+    |> Enum.filter(fn user -> user.marketing_emails_subscribed_at != nil end)
   end
 
   def create_pixel(%Scope{} = scope, %Admin.Notifications.Notification{} = notification) do

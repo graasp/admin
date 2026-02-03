@@ -58,6 +58,7 @@ defmodule AdminWeb.EmailTemplates do
   attr :name, :string, required: true
   attr :message, :string, required: true, doc: "The primary message of the email"
   attr :pixel, :string, doc: "The tracking pixel"
+  attr :account, :string, doc: "The account (for emails targetting graasp members)"
   attr :button_text, :string, doc: "The text of the button"
   attr :button_url, :string, doc: "The URL of the button"
   def call_to_action(assigns)

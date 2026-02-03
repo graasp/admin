@@ -1,0 +1,23 @@
+<Layouts.simple flash={@flash} current_scope={@current_scope}>
+  <div class="flex flex-col items-center mx-auto max-w-screen-md p-8 gap-2 mt-8">
+    <div class="prose">
+      <h1>{@page_title}</h1>
+      <%= if is_nil(@account.marketing_emails_subscribed_at) do %>
+        <p>
+          <.icon name="hero-check-circle" class="size-6 text-success mr-2" />You have successfully unsubscribed from marketing emails.
+        </p>
+        <p>
+          You can subscribe to marketing emails via your account settings or with the button below.
+        </p>
+      <% else %>
+        <p>
+          <.icon name="hero-check-circle" class="size-6 text-success mr-2" />You have successfully subscribed to marketing emails.
+        </p>
+      <% end %>
+    </div>
+
+    <.link class="btn btn-primary" href={~p"/accounts/#{@account.id}/marketing/subscribe"}>
+      Subscribe to Marketing Emails
+    </.link>
+  </div>
+</Layouts.simple>

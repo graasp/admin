@@ -60,6 +60,13 @@ defmodule AdminWeb.Router do
     # redirections for now
     get "/library", RedirectionController, :library
     get "/auth/login", RedirectionController, :login
+    get "/accounts/:account_id/marketing/unsubscribe",
+        AccountController,
+        :marketing_emails_unsubscribe
+
+    get "/accounts/:account_id/marketing/subscribe",
+        AccountController,
+        :marketing_emails_subscribe
   end
 
   scope "/admin", AdminWeb do
