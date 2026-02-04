@@ -67,5 +67,7 @@ config :admin, :umami,
   username: "test",
   password: "testest"
 
+config :admin, :base_host, "graasp.org"
+config :admin, :library_origin, "https://library.graasp.org"
 config :admin, :umami_origin, "http://localhost:8000"
 config :admin, :umami_req_options, plug: {Req.Test, Admin.UmamiApi}, retry: false
