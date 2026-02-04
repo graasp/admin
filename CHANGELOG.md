@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.8.0](https://github.com/graasp/admin/compare/v0.7.0...v0.8.0) (2026-02-04)
+
+
+### Features
+
+* add static pages for terms, disclaimer and privacy ([#143](https://github.com/graasp/admin/issues/143)) ([cb3b20a](https://github.com/graasp/admin/commit/cb3b20a1b6ecd183a382c8663b8c0cb2479a0bb3))
+
+
+### Bug Fixes
+
+* add language form to blog pages to remove the crash ([#147](https://github.com/graasp/admin/issues/147)) ([e4f416a](https://github.com/graasp/admin/commit/e4f416a9c3c026c5a16157ebc4832e1b61519039))
+* small fixups ([#151](https://github.com/graasp/admin/issues/151)) ([2617afb](https://github.com/graasp/admin/commit/2617afb912ab5e29a6e257650c0de5b4dbc60b2e))
+* use standard graasp favicon for landing pages ([#148](https://github.com/graasp/admin/issues/148)) ([ab1cce1](https://github.com/graasp/admin/commit/ab1cce110a80d08f0db23d2ff72ab57485db1926))
+
+
+### Chores
+
+* **deps:** update dependency bandit to v1.10.2 ([#144](https://github.com/graasp/admin/issues/144)) ([68bdbab](https://github.com/graasp/admin/commit/68bdbab680f795fb35d16a9c53c68396756e63b5))
+* **deps:** update dependency credo to v1.7.16 ([#145](https://github.com/graasp/admin/issues/145)) ([a2baf73](https://github.com/graasp/admin/commit/a2baf7337de6cadba50dab8334d89a5d55734e08))
+* **lint:** udpate credo setting ([904b796](https://github.com/graasp/admin/commit/904b796c82d7a60adc3f5b8577ef0d1d84d38805))
+
 ## [0.7.0](https://github.com/graasp/admin/compare/v0.6.0...v0.7.0) (2026-01-29)
 
 
