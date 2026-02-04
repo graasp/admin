@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page not found</title>
+    <link rel="stylesheet" href="/assets/css/app.css" />
+    <script defer type="text/javascript" src="/assets/js/app.js">
+    </script>
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <main class="flex-1 grow flex flex-col">
+      <section class="hero bg-base-200 h-full grow">
+        <div class="hero-content text-center">
+          <div class="max-w-md flex flex-col">
+            <h1 class="text-5xl font-bold">Page Not Found</h1>
+            <code class="code">
+              {@conn.request_path}
+            </code>
+            <p class="py-6">Sorry, the page you are looking for does not exist.</p>
+            <a href="/" class="btn btn-primary">Go back to Home Page</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -13,7 +13,7 @@ defmodule AdminWeb.ErrorHTML do
   #   * lib/admin_web/controllers/error_html/404.html.heex
   #   * lib/admin_web/controllers/error_html/500.html.heex
   #
-  # embed_templates "error_html/*"
+  embed_templates "error_html/*"
 
   def render("500.html", assigns) do
     case Sentry.get_last_event_id_and_source() do

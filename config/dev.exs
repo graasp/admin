@@ -63,7 +63,8 @@ config :admin, AdminWeb.Endpoint,
       ~r"priv/pages/.*(md)$",
       ~r"lib/admin_web/(?:controllers|live|components|router)/?.*\.(ex|heex)$"
     ]
-  ]
+  ],
+  debug_errors: false
 
 # Enable dev routes for dashboard and mailbox
 config :admin, dev_routes: true
