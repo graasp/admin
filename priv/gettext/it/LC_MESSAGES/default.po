@@ -131,11 +131,13 @@ msgctxt "page title"
 msgid "Home"
 msgstr ""
 
+#: lib/admin_web/components/layouts/admin_root.html.heex:11
 #: lib/admin_web/components/layouts/root.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Graasp is a platform for collaborative learning and teaching."
 msgstr ""
 
+#: lib/admin_web/components/layouts/admin_root.html.heex:14
 #: lib/admin_web/components/layouts/root.html.heex:14
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Home"
