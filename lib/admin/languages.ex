@@ -5,23 +5,23 @@ defmodule Admin.Languages do
   It allows to get a language list suitable for displaying a select input with some options disabled.
   """
   @languages [
-    %{value: "de", key: "Deutsch"},
-    %{value: "en", key: "English"},
-    %{value: "es", key: "Español"},
-    %{value: "fr", key: "Français"},
-    %{value: "it", key: "Italiano"}
+    %{value: "de", label: "Deutsch"},
+    %{value: "en", label: "English"},
+    %{value: "es", label: "Español"},
+    %{value: "fr", label: "Français"},
+    %{value: "it", label: "Italiano"}
   ]
 
   def all do
-    @languages
+    @languages |> Enum.map(&%{value: &1.value, key: &1.label})
   end
 
   def all_options do
-    @languages |> Enum.map(&Keyword.new(&1))
+    all() |> Enum.map(&Keyword.new(&1))
   end
 
   def all_values do
-    @languages |> Enum.map(& &1.value)
+    all() |> Enum.map(& &1.value)
   end
 
   @doc """
@@ -36,7 +36,8 @@ defmodule Admin.Languages do
     ]
   """
   def excluding(language_codes) when is_list(language_codes) do
-    @languages |> Enum.reject(&(&1.value in language_codes))
+    all()
+    |> Enum.reject(&(&1.value in language_codes))
   end
 
   @doc """
@@ -54,8 +55,12 @@ defmodule Admin.Languages do
   """
   def disabling(language_codes) when is_list(language_codes) do
     @languages
-    |> Enum.map(fn %{value: value, key: key} ->
-      Keyword.new(value: value, key: key, disabled: value in language_codes)
+    |> Enum.map(fn %{value: value, label: label} ->
+      Keyword.new(value: value, key: label, disabled: value in language_codes)
     end)
+  end
+
+  def get_label(locale) do
+    Enum.find(@languages, &(&1.value == locale))[:label]
   end
 end

@@ -546,7 +546,7 @@ defmodule AdminWeb.CoreComponents do
         assigns,
         :icon_name,
         case assigns.severity do
-          "info" -> "hero-info-circle"
+          "info" -> "hero-exclamation-circle"
           "success" -> "hero-check-circle"
           "warning" -> "hero-exclamation-triangle"
           "error" -> "hero-x-circle"
