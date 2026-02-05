@@ -145,7 +145,7 @@ defmodule AdminWeb.NotificationLive.Show do
         <.button navigate={~p"/admin/notifications/#{@notification}/messages/new"}>
           Add a localized message
         </.button>
-        <%= if length(@recipients) > 0 do %>
+        <%= if @recipients.included > 0 do %>
           <div class="flex justify-end">
             <.button variant="primary" phx-click="confirm_send_notification">
               Send Notification
