@@ -165,6 +165,51 @@ defmodule Admin.NotificationsTest do
     end
   end
 
+  describe "localized emails" do
+    setup [:create_notification]
+
+    test "creates a localized email", %{scope: scope, notification: notification} do
+      assert {:ok, %Admin.Notifications.LocalizedEmail{} = localized_email} =
+               Notifications.create_localized_email(scope, notification.id, %{
+                 subject: "example_subject",
+                 message: "This is an example message",
+                 button_text: "example_button_text",
+                 button_url: "https://example.com",
+                 language: "en"
+               })
+
+      assert localized_email.notification_id == notification.id
+    end
+
+    test "allows long messages", %{scope: scope, notification: notification} do
+      assert {:ok, %Admin.Notifications.LocalizedEmail{} = localized_email} =
+               Notifications.create_localized_email(scope, notification.id, %{
+                 subject: "example_subject",
+                 message: String.duplicate("a", 2050),
+                 button_text: "example_button_text",
+                 button_url: "https://example.com",
+                 language: "en"
+               })
+
+      assert localized_email.notification_id == notification.id
+    end
+
+    test "errors for url too long", %{scope: scope, notification: notification} do
+      assert {:error, %Ecto.Changeset{} = changeset} =
+               Notifications.create_localized_email(scope, notification.id, %{
+                 subject: "example_subject",
+                 message: "This is an example message",
+                 button_text: "example_button_text",
+                 button_url: String.duplicate("a", 2050),
+                 language: "en"
+               })
+
+      assert changeset.errors[:button_url] ==
+               {"should be at most %{count} character(s)",
+                [{:count, 2048}, {:validation, :length}, {:kind, :max}, {:type, :string}]}
+    end
+  end
+
   defp create_notification(_) do
     scope = user_scope_fixture()
     notification = notification_fixture(scope)

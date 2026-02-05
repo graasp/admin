@@ -22,6 +22,7 @@ defmodule Admin.Notifications.LocalizedEmail do
     localized_email
     |> cast(attrs, [:subject, :message, :button_text, :button_url, :language])
     |> validate_required([:subject, :message, :language])
+    |> validate_length(:button_url, max: 2048)
     |> validate_inclusion(:language, ["en", "fr", "es", "it", "de"])
     |> put_change(:notification_id, notification_id)
   end
