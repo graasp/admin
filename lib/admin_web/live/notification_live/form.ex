@@ -133,7 +133,7 @@ defmodule AdminWeb.NotificationLive.Form do
     notification = Notifications.get_notification!(socket.assigns.current_scope, id)
     included_langs = notification.localized_emails |> Enum.map(& &1.language)
 
-    {:ok, recipients} =
+    {:ok, recipients, _meta} =
       Notifications.get_target_audience(
         socket.assigns.current_scope,
         notification.audience,
@@ -153,7 +153,7 @@ defmodule AdminWeb.NotificationLive.Form do
 
   @impl true
   def handle_event("fetch_recipients", %{"audience" => audience}, socket) do
-    {:ok, recipients} =
+    {:ok, recipients, _meta} =
       Notifications.get_target_audience(socket.assigns.current_scope, audience)
 
     socket = socket |> assign(:recipients, recipients)
