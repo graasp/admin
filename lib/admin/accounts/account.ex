@@ -21,7 +21,7 @@ defmodule Admin.Accounts.Account do
     |> cast(attrs, [:name, :email, :type, :extra])
     |> validate_required([:name, :email, :type])
     |> validate_email()
-    |> maybe_validate_lang(:extra)
+    |> validate_change(:extra, fn _, value -> validate_lang(value) end)
   end
 
   defp validate_email(changeset) do
@@ -33,37 +33,18 @@ defmodule Admin.Accounts.Account do
   end
 
   # Validates `lang` only if present; permits nil or empty maps.
-  defp maybe_validate_lang(changeset, field) when is_atom(field) do
-    map = get_field(changeset, field)
+  defp validate_lang(map) when is_map(map) and map == %{}, do: []
 
-    cond do
-      # Skip validation if nil or empty map
-      is_nil(map) or (is_map(map) and map == %{}) ->
-        changeset
+  defp validate_lang(map) when is_map(map) do
+    case Map.fetch(map, "lang") do
+      :error ->
+        []
 
-      # If provided but not a map, type error
-      not is_map(map) ->
-        add_error(changeset, field, "must be a map")
+      {:ok, lang} when is_binary(lang) and lang != "" ->
+        []
 
-      true ->
-        map_contains_string(changeset, field, map, :lang)
-    end
-  end
-
-  defp map_contains_string(changeset, field, map, key) do
-    case Map.get(map, key) do
-      nil ->
-        # Key absent is OK
-        changeset
-
-      v when is_binary(v) and v != "" ->
-        changeset
-
-      v when is_binary(v) ->
-        add_error(changeset, field, "\"lang\" must be a non-empty string")
-
-      _ ->
-        add_error(changeset, field, "\"lang\" must be a string")
+      {:ok, _} ->
+        [extra: {"must be a non-empty string", []}]
     end
   end
 end
