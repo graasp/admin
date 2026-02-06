@@ -11,12 +11,12 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/admin/accounts/user_notifier.ex:99
+#: lib/admin/accounts/user_notifier.ex:100
 #, elixir-autogen, elixir-format
 msgid "Graasp.org is a learning experience platform."
 msgstr "Graasp.org è una piattaforma di esperienze di apprendimento."
 
-#: lib/admin/accounts/user_notifier.ex:92
+#: lib/admin/accounts/user_notifier.ex:93
 #: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "Hi %{name},"
@@ -36,3 +36,8 @@ msgstr "Stai ricevendo questa email perché hai un account su Graasp:"
 #, elixir-autogen, elixir-format
 msgid "Your Graasp Team"
 msgstr "Il tuo team Graasp"
+
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:43
+#, elixir-autogen, elixir-format
+msgid "unsubscribe"
+msgstr ""

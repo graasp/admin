@@ -12,23 +12,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/admin_web/components/core_components.ex:353
-#: lib/admin_web/live/notification_live/show.ex:61
+#: lib/admin_web/live/notification_live/show.ex:70
 #, elixir-autogen, elixir-format
 msgid "Actions"
 msgstr "Azioni"
 
-#: lib/admin_web/components/layouts.ex:103
-#: lib/admin_web/components/layouts.ex:115
+#: lib/admin_web/components/layouts.ex:131
+#: lib/admin_web/components/layouts.ex:143
 #, elixir-autogen, elixir-format
 msgid "Attempting to reconnect"
 msgstr "Tentativo di riconnessione"
 
-#: lib/admin_web/components/layouts.ex:110
+#: lib/admin_web/components/layouts.ex:138
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr "Qualcosa è andato storto!"
 
-#: lib/admin_web/components/layouts.ex:98
+#: lib/admin_web/components/layouts.ex:126
 #, elixir-autogen, elixir-format
 msgid "We can't find the internet"
 msgstr "Non riusciamo a trovare Internet"
@@ -59,44 +59,44 @@ msgstr ""
 msgid "Recent Posts"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:319
-#: lib/admin_web/components/layouts.ex:349
+#: lib/admin_web/components/layouts.ex:347
+#: lib/admin_web/components/layouts.ex:374
 #, elixir-autogen, elixir-format
 msgid "Admin"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:310
-#: lib/admin_web/components/layouts.ex:344
+#: lib/admin_web/components/layouts.ex:338
+#: lib/admin_web/components/layouts.ex:369
 #, elixir-autogen, elixir-format
 msgid "Blog"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:326
-#: lib/admin_web/components/layouts.ex:358
+#: lib/admin_web/components/layouts.ex:354
+#: lib/admin_web/components/layouts.ex:383
 #, elixir-autogen, elixir-format
 msgid "Get started"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:307
-#: lib/admin_web/components/layouts.ex:343
+#: lib/admin_web/components/layouts.ex:335
+#: lib/admin_web/components/layouts.ex:368
 #, elixir-autogen, elixir-format
 msgid "Library"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:330
-#: lib/admin_web/components/layouts.ex:362
+#: lib/admin_web/components/layouts.ex:358
+#: lib/admin_web/components/layouts.ex:387
 #, elixir-autogen, elixir-format
 msgid "Log in"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:313
-#: lib/admin_web/components/layouts.ex:345
+#: lib/admin_web/components/layouts.ex:341
+#: lib/admin_web/components/layouts.ex:370
 #, elixir-autogen, elixir-format
 msgid "About"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:316
-#: lib/admin_web/components/layouts.ex:346
+#: lib/admin_web/components/layouts.ex:344
+#: lib/admin_web/components/layouts.ex:371
 #, elixir-autogen, elixir-format
 msgid "Contact"
 msgstr ""
@@ -143,17 +143,17 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:154
+#: lib/admin_web/components/layouts.ex:182
 #, elixir-autogen, elixir-format
 msgid "Use dark theme"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:145
+#: lib/admin_web/components/layouts.ex:173
 #, elixir-autogen, elixir-format
 msgid "Use light theme"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:136
+#: lib/admin_web/components/layouts.ex:164
 #, elixir-autogen, elixir-format
 msgid "Use system theme"
 msgstr ""
@@ -166,4 +166,9 @@ msgstr ""
 #: lib/admin_web/controllers/landing_html/static_page.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "You are viewing this page in: %{locale}"
+msgstr ""
+
+#: lib/admin_web/live/notification_live/show.ex:28
+#, elixir-autogen, elixir-format
+msgid "Excluded: %{count} (incompatible language, or not subscribed)"
 msgstr ""
