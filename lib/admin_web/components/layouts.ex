@@ -75,6 +75,34 @@ defmodule AdminWeb.Layouts do
     """
   end
 
+  attr :flash, :map, required: true, doc: "the map of flash messages"
+
+  attr :current_scope, :map,
+    default: nil,
+    doc: "the current [scope](https://hexdocs.pm/phoenix/scopes.html)"
+
+  slot :inner_block, required: true, doc: "the inner block of the layout"
+
+  def simple(assigns) do
+    ~H"""
+    <div class="navbar bg-base-100 shadow-sm ">
+      <div class="flex flex-row max-w-screen-xl mx-auto w-full">
+        <div class="navbar-start">
+          <.graasp_logo_link />
+        </div>
+        <div class="navbar-end"></div>
+      </div>
+    </div>
+    <main class="grow flex flex-col">
+      <div class="grow">
+        {render_slot(@inner_block)}
+      </div>
+    </main>
+
+    <.flash_group flash={@flash} />
+    """
+  end
+
   @doc """
   Shows the flash group with standard titles and content.
 
@@ -333,10 +361,7 @@ defmodule AdminWeb.Layouts do
               </div>
             </ul>
           </div>
-          <.link navigate={~p"/"} class="flex flex-row items-center gap-2 text-primary">
-            <.logo size={44} fill="var(--color-primary)" />
-            <span class="text-2xl font-semibold">Graasp</span>
-          </.link>
+          <.graasp_logo_link />
         </div>
         <div class="navbar-center hidden lg:flex">
           <ul class="menu menu-horizontal px-1">
@@ -366,6 +391,15 @@ defmodule AdminWeb.Layouts do
         </div>
       </div>
     </div>
+    """
+  end
+
+  def graasp_logo_link(assigns) do
+    ~H"""
+    <.link navigate={~p"/"} class="flex flex-row items-center gap-2 text-primary">
+      <.logo size={44} fill="var(--color-primary)" />
+      <span class="text-2xl font-semibold">Graasp</span>
+    </.link>
     """
   end
 end

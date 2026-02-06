@@ -308,7 +308,7 @@ defmodule Admin.Notifications do
 
   @type audience :: %{name: String.t(), email: String.t(), lang: String.t()}
   @spec get_target_audience(Scope.t(), String.t(), Keyword.t()) ::
-          {:ok, [audience]} | {:error, String.t()}
+          {:ok, [audience], %{total: integer, excluded: integer}} | {:error, String.t()}
   @doc """
   Get the target audience for a notification.
 
@@ -331,34 +331,51 @@ defmodule Admin.Notifications do
   def get_target_audience(scope, target_audience, opts \\ [])
 
   def get_target_audience(%Scope{} = _scope, "active", opts) do
-    audience =
+    {audience, meta} =
       Accounts.get_active_members()
-      |> Enum.map(&%{name: &1.name, email: &1.email, lang: &1.lang})
+      |> Enum.map(
+        &%{
+          id: &1.id,
+          name: &1.name,
+          email: &1.email,
+          lang: &1.lang,
+          marketing_emails_subscribed_at: &1.marketing_emails_subscribed_at
+        }
+      )
       |> filter_audience_with_options(opts)
 
-    {:ok, audience}
+    {:ok, audience, meta}
   end
 
   def get_target_audience(%Scope{} = _scope, "french", opts) do
-    audience =
+    {audience, meta} =
       Accounts.get_members_by_language("fr")
-      |> Enum.map(&%{name: &1.name, email: &1.email, lang: &1.lang})
+      |> Enum.map(
+        &%{
+          id: &1.id,
+          name: &1.name,
+          email: &1.email,
+          lang: &1.lang,
+          marketing_emails_subscribed_at: &1.marketing_emails_subscribed_at
+        }
+      )
       |> filter_audience_with_options(opts)
 
-    {:ok, audience}
+    {:ok, audience, meta}
   end
 
   def get_target_audience(%Scope{} = _scope, "graasp_team", opts) do
-    audience =
+    {audience, meta} =
       Accounts.list_users()
-      |> Enum.map(&%{name: &1.name, email: &1.email, lang: &1.language})
+      |> Enum.map(&%{id: &1.id, name: &1.name, email: &1.email, lang: &1.language})
       |> filter_audience_with_options(opts)
 
-    {:ok, audience}
+    {:ok, audience, meta}
   end
 
   # support legacy audience, this is what the pervious audience is converted to.
-  def get_target_audience(%Scope{} = _scope, "custom", _opts), do: {:ok, []}
+  def get_target_audience(%Scope{} = _scope, "custom", _opts),
+    do: {:ok, [], %{total: 0, excluded: 0}}
 
   def get_target_audience(%Scope{} = _scope, target_audience, _opts) do
     Logger.error("Invalid target audience: #{target_audience}")
@@ -367,7 +384,15 @@ defmodule Admin.Notifications do
 
   defp filter_audience_with_options(audience, opts) do
     only_langs = Keyword.get(opts, :only_langs, Admin.Languages.all_values()) |> MapSet.new()
-    audience |> Enum.filter(fn user -> MapSet.member?(only_langs, user.lang) end)
+
+    filtered_audience =
+      audience
+      |> Enum.filter(fn user ->
+        MapSet.member?(only_langs, user.lang) and user.marketing_emails_subscribed_at != nil
+      end)
+
+    {filtered_audience,
+     %{total: length(audience), excluded: length(audience) - length(filtered_audience)}}
   end
 
   def create_pixel(%Scope{} = scope, %Admin.Notifications.Notification{} = notification) do

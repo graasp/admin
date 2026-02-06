@@ -11,6 +11,7 @@ defmodule Admin.Accounts.Account do
     field :type, :string
     field :extra, :map
     field :last_authenticated_at, :utc_datetime
+    field :marketing_emails_subscribed_at, :utc_datetime
 
     timestamps(type: :utc_datetime)
   end
@@ -22,6 +23,28 @@ defmodule Admin.Accounts.Account do
     |> validate_required([:name, :email, :type])
     |> validate_email()
     |> validate_change(:extra, fn _, value -> validate_lang(value) end)
+  end
+
+  @doc false
+  def create_changeset(account, attrs) do
+    account
+    |> changeset(attrs)
+    |> put_change(:marketing_emails_subscribed_at, DateTime.utc_now(:second))
+  end
+
+  def marketing_emails_changeset(account, true) do
+    account
+    |> change(%{
+      marketing_emails_subscribed_at: DateTime.utc_now(:second)
+    })
+    |> validate_required([:marketing_emails_subscribed_at])
+  end
+
+  def marketing_emails_changeset(account, false) do
+    account
+    |> change(%{
+      marketing_emails_subscribed_at: nil
+    })
   end
 
   defp validate_email(changeset) do

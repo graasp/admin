@@ -37,6 +37,13 @@
           <img src={Admin.UmamiApi.pixel_src(@pixel)} width="0" height="0" />
         </mj-raw>
       <% end %>
+      <%= if @account do %>
+        <mj-text align="center" color="#aaa">
+          <a style="color: #aaa" href={~p"/accounts/#{@account.id}/marketing/unsubscribe"}>
+            {gettext("unsubscribe")}
+          </a>
+        </mj-text>
+      <% end %>
     </mj-column>
   </:footer>
 </.layout>
