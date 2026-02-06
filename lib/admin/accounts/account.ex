@@ -20,8 +20,15 @@ defmodule Admin.Accounts.Account do
     account
     |> cast(attrs, [:name, :email, :type, :extra])
     |> validate_required([:name, :email, :type])
+    |> validate_name()
     |> validate_email()
+    |> validate_type()
     |> validate_change(:extra, fn _, value -> validate_lang(value) end)
+  end
+
+  defp validate_name(changeset) do
+    changeset
+    |> validate_length(:name, min: 3, max: 60)
   end
 
   defp validate_email(changeset) do
@@ -30,6 +37,11 @@ defmodule Admin.Accounts.Account do
       message: "must have the @ sign and no spaces"
     )
     |> validate_length(:email, max: 160)
+  end
+
+  defp validate_type(changeset) do
+    changeset
+    |> validate_inclusion(:type, ["individual", "guest"])
   end
 
   # Validates `lang` only if present; permits nil or empty maps.
