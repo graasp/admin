@@ -65,6 +65,10 @@ config :admin, AdminWeb.Endpoint,
     ]
   ]
 
+# In development phoenix gives a lot of helpful information when there is a bug.
+# Un-comment below to see something closed to the "real production environment"
+# debug_errors: false
+
 # Enable dev routes for dashboard and mailbox
 config :admin, dev_routes: true
 
