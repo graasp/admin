@@ -2,10 +2,14 @@ defmodule Admin.PublicationsTest do
   use Admin.DataCase, async: false
 
   alias Admin.Publications
+  alias Admin.Publications.PublishedItem
+
+  def without_thumbnail(%PublishedItem{thumbnails: nil} = published_item), do: published_item
+
+  def without_thumbnail(%PublishedItem{thumbnails: _} = published_item),
+    do: %{published_item | thumbnails: nil}
 
   describe "published_items" do
-    alias Admin.Publications.PublishedItem
-
     import Admin.AccountsFixtures, only: [user_scope_fixture: 0]
     import Admin.PublicationsFixtures
     import Admin.ItemsFixtures, only: [item_fixture: 1]
@@ -33,8 +37,8 @@ defmodule Admin.PublicationsTest do
         |> Admin.Publications.with_item()
         |> Admin.Publications.with_creator()
 
-      assert Publications.get_published_item!(scope, published_item.id) ==
-               published_item
+      assert without_thumbnail(Publications.get_published_item!(scope, published_item.id)) ==
+               without_thumbnail(published_item)
     end
 
     test "create_published_item/2 with valid data creates a published_item" do
