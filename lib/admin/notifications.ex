@@ -387,8 +387,9 @@ defmodule Admin.Notifications do
 
     filtered_audience =
       audience
-      |> Enum.filter(fn user -> MapSet.member?(only_langs, user.lang) end)
-      |> Enum.filter(fn user -> user.marketing_emails_subscribed_at != nil end)
+      |> Enum.filter(fn user ->
+        MapSet.member?(only_langs, user.lang) and user.marketing_emails_subscribed_at != nil
+      end)
 
     {filtered_audience,
      %{total: length(audience), excluded: length(audience) - length(filtered_audience)}}
