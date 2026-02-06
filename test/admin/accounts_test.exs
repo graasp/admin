@@ -530,12 +530,12 @@ defmodule Admin.AccountsTest do
                Accounts.create_member(%{
                  name: "John Doe",
                  email: "john@example.com",
-                 type: "member"
+                 type: "individual"
                })
 
       assert member.name == "John Doe"
       assert member.email == "john@example.com"
-      assert member.type == "member"
+      assert member.type == "individual"
     end
   end
 

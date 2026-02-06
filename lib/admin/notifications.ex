@@ -99,7 +99,7 @@ defmodule Admin.Notifications do
 
   """
   def list_notifications(%Scope{} = _scope) do
-    Repo.all(from n in Notification, order_by: [desc: :updated_at])
+    Repo.all(from n in Notification, order_by: [desc: :updated_at, asc: :name])
     |> Repo.preload([:logs, :localized_emails, :pixel])
   end
 
