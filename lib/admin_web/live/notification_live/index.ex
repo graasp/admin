@@ -46,10 +46,13 @@ defmodule AdminWeb.NotificationLive.Index do
             <.link navigate={~p"/admin/notifications/#{notification}"}>Show</.link>
           </div>
         </:action>
-        <:action :let={{id, notification}}>
+        <:action :let={{_id, notification}}>
           <.link
             class="text-error"
-            phx-click={JS.push("delete_wip", value: %{id: notification.id}) |> hide("##{id}")}
+            phx-click={
+              JS.push("delete_wip", value: %{id: notification.id})
+              |> hide("#notifications-#{notification.id}")
+            }
             data-confirm="Are you sure?"
           >
             Delete

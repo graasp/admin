@@ -85,13 +85,13 @@ defmodule AdminWeb.NotificationLive.Show do
               >
                 <div class="flex flex-col">
                   <span>{localized_email.subject}</span>
-                  <span class="text-sm text-secondary">{localized_email.message}</span>
+                  <span class="text-sm text-neutral">{localized_email.message}</span>
                 </div>
               </td>
               <td class="w-1/4">
                 <div class="flex flex-col">
                   <span>{localized_email.button_text}</span>
-                  <span class="text-sm text-secondary break-all">{localized_email.button_url}</span>
+                  <span class="text-sm text-neutral break-all">{localized_email.button_url}</span>
                 </div>
               </td>
               <td class="w-0">
