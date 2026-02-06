@@ -30,6 +30,13 @@ defmodule Admin.Accounts.Account do
   defp validate_name(changeset) do
     changeset
     |> validate_length(:name, min: 3, max: 60)
+  @doc false
+  def create_changeset(account, attrs) do
+    account
+    |> changeset(attrs)
+    |> put_change(:marketing_emails_subscribed_at, DateTime.utc_now(:second))
+  end
+
   def marketing_emails_changeset(account, true) do
     account
     |> change(%{
