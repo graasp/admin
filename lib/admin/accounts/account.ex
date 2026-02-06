@@ -25,6 +25,13 @@ defmodule Admin.Accounts.Account do
     |> validate_change(:extra, fn _, value -> validate_lang(value) end)
   end
 
+  @doc false
+  def create_changeset(account, attrs) do
+    account
+    |> changeset(attrs)
+    |> put_change(:marketing_emails_subscribed_at, DateTime.utc_now(:second))
+  end
+
   def marketing_emails_changeset(account, true) do
     account
     |> change(%{

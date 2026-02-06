@@ -430,7 +430,7 @@ defmodule Admin.Accounts do
 
   def create_member(attrs \\ %{}) do
     %Account{}
-    |> Account.changeset(attrs)
+    |> Account.create_changeset(attrs)
     |> Repo.insert()
   end
 
