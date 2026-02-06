@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.8.1](https://github.com/graasp/admin/compare/v0.8.0...v0.8.1) (2026-02-06)
+
+
+### Bug Fixes
+
+* add error page ([#153](https://github.com/graasp/admin/issues/153)) ([91fbb64](https://github.com/graasp/admin/commit/91fbb640e2fc5609d0b4d4db3d26f3c013c1b763))
+* add validation to account ([#160](https://github.com/graasp/admin/issues/160)) ([035e8e9](https://github.com/graasp/admin/commit/035e8e9ea21932ec11940d50bfb73bb523f5a9dc))
+* improve coverage by adding missing tests ([#157](https://github.com/graasp/admin/issues/157)) ([47b574b](https://github.com/graasp/admin/commit/47b574b21d7dd314355afdbec56d470e3195e683))
+* message length issues ([#156](https://github.com/graasp/admin/issues/156)) ([e4501b6](https://github.com/graasp/admin/commit/e4501b69277ec576bf1f402969adf271d7b25c76))
+
 ## [0.8.0](https://github.com/graasp/admin/compare/v0.7.0...v0.8.0) (2026-02-04)
 
 
