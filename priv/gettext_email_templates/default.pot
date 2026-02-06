@@ -11,12 +11,12 @@
 msgid ""
 msgstr ""
 
-#: lib/admin/accounts/user_notifier.ex:99
+#: lib/admin/accounts/user_notifier.ex:100
 #, elixir-autogen, elixir-format
 msgid "Graasp.org is a learning experience platform."
 msgstr ""
 
-#: lib/admin/accounts/user_notifier.ex:92
+#: lib/admin/accounts/user_notifier.ex:93
 #: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "Hi %{name},"
@@ -35,4 +35,9 @@ msgstr ""
 #: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:22
 #, elixir-autogen, elixir-format
 msgid "Your Graasp Team"
+msgstr ""
+
+#: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:43
+#, elixir-autogen, elixir-format
+msgid "unsubscribe"
 msgstr ""

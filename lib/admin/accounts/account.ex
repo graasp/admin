@@ -30,6 +30,8 @@ defmodule Admin.Accounts.Account do
   defp validate_name(changeset) do
     changeset
     |> validate_length(:name, min: 3, max: 60)
+  end
+
   @doc false
   def create_changeset(account, attrs) do
     account
