@@ -17,18 +17,18 @@ msgstr ""
 msgid "Actions"
 msgstr "Azioni"
 
-#: lib/admin_web/components/layouts.ex:103
-#: lib/admin_web/components/layouts.ex:115
+#: lib/admin_web/components/layouts.ex:104
+#: lib/admin_web/components/layouts.ex:116
 #, elixir-autogen, elixir-format
 msgid "Attempting to reconnect"
 msgstr "Tentativo di riconnessione"
 
-#: lib/admin_web/components/layouts.ex:110
+#: lib/admin_web/components/layouts.ex:111
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr "Qualcosa è andato storto!"
 
-#: lib/admin_web/components/layouts.ex:98
+#: lib/admin_web/components/layouts.ex:99
 #, elixir-autogen, elixir-format
 msgid "We can't find the internet"
 msgstr "Non riusciamo a trovare Internet"
@@ -59,44 +59,44 @@ msgstr ""
 msgid "Recent Posts"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:319
-#: lib/admin_web/components/layouts.ex:349
+#: lib/admin_web/components/layouts.ex:325
+#: lib/admin_web/components/layouts.ex:358
 #, elixir-autogen, elixir-format
 msgid "Admin"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:310
-#: lib/admin_web/components/layouts.ex:344
+#: lib/admin_web/components/layouts.ex:311
+#: lib/admin_web/components/layouts.ex:350
 #, elixir-autogen, elixir-format
 msgid "Blog"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:326
-#: lib/admin_web/components/layouts.ex:358
+#: lib/admin_web/components/layouts.ex:332
+#: lib/admin_web/components/layouts.ex:367
 #, elixir-autogen, elixir-format
 msgid "Get started"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:307
-#: lib/admin_web/components/layouts.ex:343
+#: lib/admin_web/components/layouts.ex:308
+#: lib/admin_web/components/layouts.ex:349
 #, elixir-autogen, elixir-format
 msgid "Library"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:330
-#: lib/admin_web/components/layouts.ex:362
+#: lib/admin_web/components/layouts.ex:336
+#: lib/admin_web/components/layouts.ex:371
 #, elixir-autogen, elixir-format
 msgid "Log in"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:313
-#: lib/admin_web/components/layouts.ex:345
+#: lib/admin_web/components/layouts.ex:319
+#: lib/admin_web/components/layouts.ex:354
 #, elixir-autogen, elixir-format
 msgid "About"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:316
-#: lib/admin_web/components/layouts.ex:346
+#: lib/admin_web/components/layouts.ex:322
+#: lib/admin_web/components/layouts.ex:355
 #, elixir-autogen, elixir-format
 msgid "Contact"
 msgstr ""
@@ -143,17 +143,17 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:154
+#: lib/admin_web/components/layouts.ex:155
 #, elixir-autogen, elixir-format
 msgid "Use dark theme"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:145
+#: lib/admin_web/components/layouts.ex:146
 #, elixir-autogen, elixir-format
 msgid "Use light theme"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:136
+#: lib/admin_web/components/layouts.ex:137
 #, elixir-autogen, elixir-format
 msgid "Use system theme"
 msgstr ""
@@ -166,4 +166,75 @@ msgstr ""
 #: lib/admin_web/controllers/landing_html/static_page.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "You are viewing this page in: %{locale}"
+msgstr ""
+
+#: lib/admin_web/controllers/docs_html/show.html.heex:22
+#, elixir-autogen, elixir-format
+msgid "Back to documentation"
+msgstr ""
+
+#: lib/admin_web/components/layouts.ex:315
+#: lib/admin_web/components/layouts.ex:352
+#: lib/admin_web/controllers/docs_html/index.html.heex:3
+#: lib/admin_web/controllers/docs_html/show.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "Documentation"
+msgstr ""
+
+#: lib/admin_web/controllers/docs_html/search.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "Search documentation for %{tag}"
+msgstr ""
+
+#: lib/admin_web/controllers/docs_html/index.html.heex:28
+#, elixir-autogen, elixir-format
+msgid "Topics"
+msgstr ""
+
+#: lib/admin_web/controllers/docs_html/index.html.heex:5
+#: lib/admin_web/controllers/docs_html/search.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "Welcome to the documentation page. Here you can find information about our products and services."
+msgstr ""
+
+#: lib/admin_web/controllers/docs_controller.ex:10
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "page_title"
+msgid "Search Documentation"
+msgstr ""
+
+#: lib/admin/docs.ex:15
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "documentation section"
+msgid "account"
+msgstr ""
+
+#: lib/admin/docs.ex:15
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "documentation section"
+msgid "presenting"
+msgstr ""
+
+#: lib/admin/docs.ex:15
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "documentation section"
+msgid "publishing"
+msgstr ""
+
+#: lib/admin/docs.ex:15
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "documentation section"
+msgid "research"
+msgstr ""
+
+#: lib/admin/docs.ex:15
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "documentation section"
+msgid "teaching"
+msgstr ""
+
+#: lib/admin/docs.ex:15
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "documentation section"
+msgid "tips"
 msgstr ""
