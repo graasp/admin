@@ -1,0 +1,37 @@
+<Layouts.landing flash={@flash} current_scope={@current_scope} locale_form={@locale_form}>
+  <div class="flex flex-col gap-4 p-10 max-w-screen-lg mx-auto">
+    <h1 class="text-3xl font-semibold text-primary">{gettext("Documentation")}</h1>
+    <p class="text-base">
+      {gettext(
+        "Welcome to the documentation page. Here you can find information about our products and services."
+      )}
+    </p>
+    <div class="flex flex-row p-4 gap-8">
+      <div class="flex flex-col gap-2 grow">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 wrap px-2">
+          <%= for {section, section_pages} <- @sections do %>
+            <article id={section} class="flex flex-col gap-4 bg-base-100 p-6 rounded-lg">
+              <h2 class="text-2xl font-semibold text-primary">
+                {Admin.Docs.translate_section(section)}
+              </h2>
+              <%= for page <- section_pages do %>
+                <div class="flex flex-col">
+                  <.link href={~p"/docs/#{page.id}"}>{page.title}</.link>
+                  <span class="text-sm text-neutral">{page.description}</span>
+                </div>
+              <% end %>
+            </article>
+          <% end %>
+        </div>
+      </div>
+      <nav class="flex-col gap-4 wrap px-2 grow w-full max-w-[180px] hidden md:flex">
+        <h2 class="text-xl font-semibold">{gettext("Topics")}</h2>
+        <div class="flex flex-col ps-4">
+          <%= for topic <- Admin.Docs.all_topics() do %>
+            <span class="text-base font-medium text-primary">{topic}</span>
+          <% end %>
+        </div>
+      </nav>
+    </div>
+  </div>
+</Layouts.landing>
