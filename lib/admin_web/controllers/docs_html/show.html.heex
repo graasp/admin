@@ -1,15 +1,27 @@
 <Layouts.landing flash={@flash} current_scope={@current_scope} locale_form={@locale_form}>
-  <div class="flex flex-row gap-4 p-10 max-w-screen-lg mx-auto">
-    <nav class="flex flex-col gap-4 wrap px-2 grow w-full max-w-[180px] hidden md:flex">
+  <div class="flex flex-row gap-4 p-10 max-w-screen-xl mx-auto">
+    <nav class="flex flex-col gap-4 wrap px-2 flex-1 w-full min-w-[180px] shrink-0 hidden md:flex">
       <h2 class="text-xl font-semibold">{gettext("Documentation")}</h2>
       <div class="flex flex-col gap-4">
         <%= for {section, pages} <- Admin.Docs.for_locale_by_sections(Gettext.get_locale()) do %>
           <div>
-            <span class="text-primary">{section}</span>
+            <span class="text-primary">{Admin.Docs.translate_section(section)}</span>
             <div class="gap-1 flex flex-col">
               <%= for page <- pages do %>
-                <.link class="ps-4 link link-hover" href={~p"/docs/#{page.id}"}>
+                <.link
+                  class={[
+                    "ps-4 link",
+                    if(page.id == @page.id, do: "font-bold", else: "link-hover")
+                  ]}
+                  href={~p"/docs/#{page.id}"}
+                >
                   {page.title}
+                  <span
+                    :if={page.locale != Gettext.get_locale()}
+                    class="badge badge-outline badge-xs"
+                  >
+                    {page.locale}
+                  </span>
                 </.link>
               <% end %>
             </div>
@@ -17,12 +29,17 @@
         <% end %>
       </div>
     </nav>
-    <div class="p-8 gap-4 flex flex-col align-start grow">
+    <div class="flex flex-col gap-2 align-start flex-5 max-w-screen-md mx-auto ">
       <.link class="btn btn-ghost w-fit" href={~p"/docs"}>
         <.icon name="hero-arrow-left" /> {gettext("Back to documentation")}
       </.link>
-      <article class="flex flex-col max-w-screen-md mx-auto bg-base-100 py-8 px-12 rounded-lg">
+      <article class="flex flex-col bg-base-100 py-8 px-12 rounded-lg w-full h-full">
         <h1 class="text-4xl font-bold text-primary mb-4">{@page.title}</h1>
+        <div class="flex flex-row gap-1">
+          <.link :for={tag <- @page.tags} class="badge badge-primary" href={~p"/docs/?tag=#{tag}"}>
+            {tag}
+          </.link>
+        </div>
         <p class="text-gray-400 text-sm mb-4"></p>
         <div class="prose">{raw(@page.body)}</div>
       </article>

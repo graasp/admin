@@ -18,6 +18,10 @@ defmodule Admin.Docs.Sections do
           pgettext("documentation section", unquote(folder))
         end
       end
+
+      def translate_section("") do
+        pgettext("documentation section", "Introduction")
+      end
     end
   end
 end

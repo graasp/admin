@@ -3,6 +3,7 @@ title: "Login",
 description: "How to log in to Graasp",
 slug: "login",
 topics: ["account"],
+order: 10
 }
 
 ---

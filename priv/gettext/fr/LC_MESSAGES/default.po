@@ -171,7 +171,7 @@ msgstr "Vous regardez la version %{locale} de cette page"
 #: lib/admin_web/controllers/docs_html/show.html.heex:22
 #, elixir-autogen, elixir-format
 msgid "Back to documentation"
-msgstr ""
+msgstr "Retour à la documentation"
 
 #: lib/admin_web/components/layouts.ex:315
 #: lib/admin_web/components/layouts.ex:352
@@ -179,62 +179,62 @@ msgstr ""
 #: lib/admin_web/controllers/docs_html/show.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Documentation"
-msgstr ""
+msgstr "Documentation"
 
 #: lib/admin_web/controllers/docs_html/search.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Search documentation for %{tag}"
-msgstr ""
+msgstr "Rechercher dans la documentation pour '%{tag}'"
 
 #: lib/admin_web/controllers/docs_html/index.html.heex:28
 #, elixir-autogen, elixir-format
 msgid "Topics"
-msgstr ""
+msgstr "Sujets"
 
 #: lib/admin_web/controllers/docs_html/index.html.heex:5
 #: lib/admin_web/controllers/docs_html/search.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Welcome to the documentation page. Here you can find information about our products and services."
-msgstr ""
+msgstr "Bienvenue sur la page de documentation. Ici, vous pouvez trouver des informations sur nos produits et services."
 
 #: lib/admin_web/controllers/docs_controller.ex:10
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page_title"
 msgid "Search Documentation"
-msgstr ""
+msgstr "Chercher dans la documentation"
 
 #: lib/admin/docs.ex:15
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "account"
-msgstr ""
+msgstr "Compte"
 
 #: lib/admin/docs.ex:15
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "presenting"
-msgstr ""
+msgstr "Présenter du contenu"
 
 #: lib/admin/docs.ex:15
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "publishing"
-msgstr ""
+msgstr "Publier du contenu"
 
 #: lib/admin/docs.ex:15
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "research"
-msgstr ""
+msgstr "Recherche académique"
 
 #: lib/admin/docs.ex:15
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "teaching"
-msgstr ""
+msgstr "Enseignement"
 
 #: lib/admin/docs.ex:15
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "tips"
-msgstr ""
+msgstr "Astuces"

@@ -1,14 +1,15 @@
 %{
 title: "Email address",
 description: "Learn how to change your email address on the Graasp platform.",
-tags: ["test", "email"]
+tags: ["email"],
+order: 50
 }
 
 ---
 
 On the Graasp platform, your email is used to log in (via magic link) and receive notifications (you can disable notifications in your profile).
 
-## What email is used with my Graasp account ? {: #email-used }
+## What email is used with my Graasp account? {: #email-used}
 
 You can find which email is used with your current Graasp account by clicking your name in the top right corner of the page. The popup should display your name, avatar picture and email address like the image below.
 

@@ -7,8 +7,27 @@
       )}
     </p>
     <div class="flex flex-row p-4 gap-8">
-      <div class="flex flex-col gap-2 grow">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 wrap px-2">
+      <div class="flex flex-col gap-4 grow">
+        <article id="intro" class="flex flex-col gap-4 bg-base-100 p-6 rounded-lg">
+          <h2 class="text-2xl font-semibold text-primary">
+            {Admin.Docs.translate_section("")}
+          </h2>
+          <%= for page <- @intro do %>
+            <div class="flex flex-col">
+              <.link href={~p"/docs/#{page.id}"}>
+                {page.title}
+                <span
+                  :if={page.locale != Gettext.get_locale()}
+                  class="badge badge-outline badge-neutral badge-xs align-top"
+                >
+                  {page.locale}
+                </span>
+              </.link>
+              <span class="text-sm text-neutral">{page.description}</span>
+            </div>
+          <% end %>
+        </article>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 wrap">
           <%= for {section, section_pages} <- @sections do %>
             <article id={section} class="flex flex-col gap-4 bg-base-100 p-6 rounded-lg">
               <h2 class="text-2xl font-semibold text-primary">
@@ -16,7 +35,15 @@
               </h2>
               <%= for page <- section_pages do %>
                 <div class="flex flex-col">
-                  <.link href={~p"/docs/#{page.id}"}>{page.title}</.link>
+                  <.link href={~p"/docs/#{page.id}"}>
+                    {page.title}
+                    <span
+                      :if={page.locale != Gettext.get_locale()}
+                      class="badge badge-outline badge-neutral badge-xs align-top"
+                    >
+                      {page.locale}
+                    </span>
+                  </.link>
                   <span class="text-sm text-neutral">{page.description}</span>
                 </div>
               <% end %>
@@ -24,14 +51,6 @@
           <% end %>
         </div>
       </div>
-      <nav class="flex-col gap-4 wrap px-2 grow w-full max-w-[180px] hidden md:flex">
-        <h2 class="text-xl font-semibold">{gettext("Topics")}</h2>
-        <div class="flex flex-col ps-4">
-          <%= for topic <- Admin.Docs.all_topics() do %>
-            <span class="text-base font-medium text-primary">{topic}</span>
-          <% end %>
-        </div>
-      </nav>
     </div>
   </div>
 </Layouts.landing>

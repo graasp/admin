@@ -15,7 +15,7 @@ The email address verification is required to create content, publish content in
 
 If you see the message "Your account needs to be validated" (see the image bellow) it means we still need to validate that you have access to the **email address** you provided when you created your Graasp account.
 
-## How to validate my account ? {: #validate-account}
+## How to validate my account? {: #validate-account}
 
 To validate your account you need to:
 

@@ -1,7 +1,7 @@
 %{
 title: "Data Collection",
 description: "This article describes what data we collect and who we share it with.",
-topics: ["account"]
+tags: ["account"]
 }
 
 ---
@@ -11,7 +11,7 @@ topics: ["account"]
 When you use the Graasp platform we collect usage data.
 This article describes what data we collect and who we share it with.
 
-## Purpose of the data collection{#data-collection-purpose}
+## Purpose of the data collection {: #data-collection-purpose}
 
 When you create your account you have the possibility to allow or reject the **collection of data for education purposes**.
 If you accept, we will collect data related to the way you interact and consume the learning materials on the platform.
