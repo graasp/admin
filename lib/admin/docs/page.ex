@@ -9,6 +9,12 @@ defmodule Admin.Docs.Page do
   def build(filename, attrs, body) do
     [locale, section, id] = filename |> Path.rootname() |> Path.split() |> Enum.take(-3)
 
+    [locale, section, id] =
+      case locale do
+        "docs" -> [section, "", id]
+        _ -> [locale, section, id]
+      end
+
     struct!(
       __MODULE__,
       id: id,

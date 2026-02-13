@@ -195,67 +195,62 @@ msgstr ""
 #: lib/admin_web/controllers/docs_html/show.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Documentation"
-msgstr ""
+msgstr "Documentation"
 
 #: lib/admin_web/controllers/docs_html/search.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Search documentation for %{tag}"
-msgstr ""
-
-#: lib/admin_web/controllers/docs_html/index.html.heex:28
-#, elixir-autogen, elixir-format
-msgid "Topics"
-msgstr ""
+msgstr "Rechercher dans la documentation pour '%{tag}'"
 
 #: lib/admin_web/controllers/docs_html/index.html.heex:5
 #: lib/admin_web/controllers/docs_html/search.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Welcome to the documentation page. Here you can find information about our products and services."
-msgstr ""
+msgstr "Bienvenue sur la page de documentation. Ici, vous pouvez trouver des informations sur nos produits et services."
 
 #: lib/admin_web/controllers/docs_controller.ex:10
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page_title"
 msgid "Search Documentation"
-msgstr ""
+msgstr "Chercher dans la documentation"
 
-#: lib/admin/docs.ex:15
+#: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "account"
-msgstr ""
+msgstr "Compte"
 
-#: lib/admin/docs.ex:15
+#: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "presenting"
-msgstr ""
+msgstr "Présenter du contenu"
 
-#: lib/admin/docs.ex:15
+#: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "publishing"
-msgstr ""
+msgstr "Publier du contenu"
 
-#: lib/admin/docs.ex:15
+#: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "research"
-msgstr ""
+msgstr "Recherche académique"
 
-#: lib/admin/docs.ex:15
+#: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "teaching"
-msgstr ""
+msgstr "Enseignement"
 
-#: lib/admin/docs.ex:15
+#: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "tips"
 msgstr ""
 
-#: lib/admin_web/controllers/docs_html/show.html.heex:22
+#: lib/admin_web/controllers/docs_html/show.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Back to documentation"
 msgstr ""
@@ -265,3 +260,21 @@ msgstr ""
 msgctxt "page title"
 msgid "Unsubscribed from Marketing Emails"
 msgstr ""
+
+#: lib/admin/docs.ex:13
+#, elixir-autogen, elixir-format
+msgctxt "documentation section"
+msgid "Introduction"
+msgstr ""
+
+#: lib/admin_web/controllers/docs_controller.ex:23
+#, elixir-autogen, elixir-format
+msgctxt "page_description"
+msgid "The documentation for the Graasp products and services."
+msgstr ""
+
+#: lib/admin_web/controllers/docs_controller.ex:21
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "page_title"
+msgid "Documentation"
+msgstr "Documentation"

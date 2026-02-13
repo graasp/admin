@@ -5,11 +5,9 @@ defmodule Admin.Docs do
 
   alias Admin.Docs.Page
 
-  @path "priv/docs"
-
   use NimblePublisher,
     build: Page,
-    from: Application.app_dir(:admin, "#{@path}/**/*.md"),
+    from: Application.app_dir(:admin, "priv/docs/**/*.md"),
     as: :pages
 
   use Admin.Docs.Sections, path: "priv/docs/en"

@@ -18,6 +18,6 @@ On the Graasp platform, you can set a password to sign in into Graasp. If you fo
 
 3. Follow the link sent to your email to reset your password. You should see the following screen:
 
-![reset password](/images/docs/reset-password.png)
+![reset password](/images/docs/account-reset-password.png)
 
 This feature is designed to simplify account recovery. For any issues, contact support.
