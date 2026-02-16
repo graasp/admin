@@ -1,0 +1,1 @@
+import{j as r,S as o,T as t}from"./index-Du6cLc2g.js";import{D as i}from"./Divider-CoTlx057.js";function c({id:s,title:a,children:n}){return r.jsxs(o,{spacing:2,id:s,children:[r.jsx(t,{variant:"h2",component:"h1",children:a}),r.jsx(i,{}),n]})}export{c as S};

@@ -1,0 +1,1 @@
+import{r as s,dt as c}from"./index-Du6cLc2g.js";function n(t,o){const[r,a]=s.useState();return s.useEffect(()=>{const e=c.getItem(t);a(e?JSON.parse(e):o)},[t]),{value:r,changeValue:e=>{localStorage.setItem(t,JSON.stringify(e)),a(e)}}}export{n as u};

@@ -1,0 +1,1 @@
+import{j as t,S as e}from"./index-B_BHgQQY.js";function p({children:r}){return t.jsx(e,{id:"bodyWrapper",direction:"column",width:"100%",alignItems:"center",p:4,gap:{xs:10,md:18,lg:23},children:r})}export{p as B};

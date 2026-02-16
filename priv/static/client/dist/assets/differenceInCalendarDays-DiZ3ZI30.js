@@ -1,0 +1,1 @@
+import{g as s}from"./getTimezoneOffsetInMilliseconds-CkMJBntH.js";import{n as c}from"./normalizeDates-Bl5IZJGD.js";import{t as D,f as d}from"./toDate-BXq0HhWu.js";function o(a,e){const t=D(a,e?.in);return t.setHours(0,0,0,0),t}function O(a,e,t){const[i,f]=c(t?.in,a,e),r=o(i),n=o(f),m=+r-s(r),l=+n-s(n);return Math.round((m-l)/d)}export{O as d,o as s};

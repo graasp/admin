@@ -1,0 +1,1 @@
+import{c3 as n,e2 as o,eO as i,eP as r,e4 as t,eQ as s,eR as u}from"./index-Du6cLc2g.js";const l=e=>n({queryKey:r(e),queryFn:()=>{if(!e)throw new t;return s(e)},meta:{routine:i},enabled:!!e}),v=(e,a={})=>n({queryKey:o.single(e).invitation,queryFn:()=>{if(!e)throw new t;return u(e)},enabled:!!e&&(a?.enabled??!0)});export{v as a,l as u};

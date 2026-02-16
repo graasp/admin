@@ -1,0 +1,1 @@
+import{j as e,aV as o,r}from"./index-B_BHgQQY.js";import{M as s}from"./MenuItem-i4R53H8t.js";const a=r.forwardRef((t,n)=>e.jsx(s,{component:"a",ref:n,...t})),m=o(a),c=t=>e.jsx(m,{preload:"intent",...t});export{c as M};
