@@ -21,14 +21,23 @@ defmodule AdminWeb.NotificationLive.Show do
 
       <.list>
         <:item title="Name">{@notification.name}</:item>
-        <:item title="Target Audience">{@notification.audience} {length(@recipients)}</:item>
+        <:item title="Target Audience">
+          <div class="flex flex-col gap-1">
+            <span>{@notification.audience} {@recipients.included}</span>
+            <span>
+              {gettext("Excluded: %{count} (incompatible language, or not subscribed)",
+                count: @recipients.excluded
+              )}
+            </span>
+          </div>
+        </:item>
         <:item title="Default language">
           <div class="flex flex-col gap-2">
             {@notification.default_language}
           </div>
         </:item>
         <:item title="Tracking Pixel">
-          <p class="text-sm text-secondary">
+          <p class="text-sm text-neutral">
             A tracking pixel is a small image that is embedded in an email to track user interactions.
             The interactions are recorded in the Umami analytics platform.
           </p>
@@ -136,7 +145,7 @@ defmodule AdminWeb.NotificationLive.Show do
         <.button navigate={~p"/admin/notifications/#{@notification}/messages/new"}>
           Add a localized message
         </.button>
-        <%= if length(@recipients) > 0 do %>
+        <%= if @recipients.included > 0 do %>
           <div class="flex justify-end">
             <.button variant="primary" phx-click="confirm_send_notification">
               Send Notification
@@ -158,7 +167,7 @@ defmodule AdminWeb.NotificationLive.Show do
           <h3 class="font-bold text-lg">Confirm Send Notification</h3>
           <p class="py-4">Are you sure you want to send this notification?</p>
           <p>
-            We will send an email to <strong>{length(@recipients)} users</strong>
+            We will send an email to <strong>{@recipients.included} users</strong>
             matching the audience criteria.
           </p>
           <div class="modal-action">
@@ -184,7 +193,7 @@ defmodule AdminWeb.NotificationLive.Show do
     notification = Notifications.get_notification!(socket.assigns.current_scope, id)
     included_langs = notification.localized_emails |> Enum.map(& &1.language)
 
-    {:ok, recipients} =
+    {:ok, _recipients, recipients_meta} =
       Notifications.get_target_audience(
         socket.assigns.current_scope,
         notification.audience,
@@ -198,7 +207,10 @@ defmodule AdminWeb.NotificationLive.Show do
        :notification,
        notification
      )
-     |> assign(:recipients, recipients)
+     |> assign(:recipients, %{
+       included: recipients_meta.total - recipients_meta.excluded,
+       excluded: recipients_meta.excluded
+     })
      |> assign(:show_modal, false)}
   end
 
@@ -212,14 +224,19 @@ defmodule AdminWeb.NotificationLive.Show do
 
     included_langs = notification.localized_emails |> Enum.map(& &1.language)
 
-    {:ok, recipients} =
+    {:ok, _recipients, recipients_meta} =
       Notifications.get_target_audience(
         socket.assigns.current_scope,
         notification.audience,
         if(notification.use_strict_languages, do: [only_langs: included_langs], else: [])
       )
 
-    {:noreply, socket |> assign(:recipients, recipients)}
+    {:noreply,
+     socket
+     |> assign(:recipients, %{
+       included: recipients_meta.total - recipients_meta.excluded,
+       excluded: recipients_meta.excluded
+     })}
   end
 
   def handle_event("delete", %{"id" => id} = _params, socket) do

@@ -24,7 +24,7 @@ defmodule Admin.MailingWorker do
 
     with {:ok, notification} <- Notifications.get_notification(scope, notification_id),
          included_langs = notification.localized_emails |> Enum.map(& &1.language),
-         {:ok, audience} <-
+         {:ok, audience, _meta} <-
            Notifications.get_target_audience(
              scope,
              notification.audience,

@@ -36,6 +36,7 @@ defmodule Admin.Repo.Migrations.CreateUsersAuthTables do
       add :type, :string
       add :extra, :map
       add :last_authenticated_at, :utc_datetime
+      add :marketing_emails_subscribed_at, :utc_datetime, default: fragment("NOW()")
 
       timestamps(type: :utc_datetime)
     end

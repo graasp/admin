@@ -386,13 +386,25 @@ defmodule Admin.Accounts do
     end
   end
 
-  @type audience :: %{name: String.t(), email: String.t(), lang: String.t()}
+  @type audience :: %{
+          id: Ecto.UUID.t(),
+          name: String.t(),
+          email: String.t(),
+          lang: String.t(),
+          marketing_emails_subscribed_at: DateTime.t()
+        }
 
   @spec get_active_members() :: [audience]
   def get_active_members do
     Repo.all(
       from(m in Account,
-        select: %{name: m.name, email: m.email, lang: fragment("?->>?", m.extra, "lang")},
+        select: %{
+          id: m.id,
+          name: m.name,
+          email: m.email,
+          lang: fragment("?->>?", m.extra, "lang"),
+          marketing_emails_subscribed_at: m.marketing_emails_subscribed_at
+        },
         where:
           not is_nil(m.last_authenticated_at) and m.last_authenticated_at > ago(90, "day") and
             m.type == "individual"
@@ -404,7 +416,13 @@ defmodule Admin.Accounts do
   def get_members_by_language(language) do
     Repo.all(
       from(m in Account,
-        select: %{name: m.name, email: m.email, lang: fragment("?->>?", m.extra, "lang")},
+        select: %{
+          id: m.id,
+          name: m.name,
+          email: m.email,
+          lang: fragment("?->>?", m.extra, "lang"),
+          marketing_emails_subscribed_at: m.marketing_emails_subscribed_at
+        },
         where: fragment("?->>? = ?", m.extra, "lang", ^language) and m.type == "individual"
       )
     )
@@ -412,7 +430,11 @@ defmodule Admin.Accounts do
 
   def create_member(attrs \\ %{}) do
     %Account{}
-    |> Account.changeset(attrs)
+    |> Account.create_changeset(attrs)
     |> Repo.insert()
+  end
+
+  def member_marketing_emails(%Account{} = account, enable_emails) do
+    account |> Account.marketing_emails_changeset(enable_emails) |> Repo.update()
   end
 end
