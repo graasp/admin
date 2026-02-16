@@ -1,0 +1,31 @@
+{
+  "TOOLBAR": {
+    "TEXT_FORMAT": {
+      "LEFT": "Gauche",
+      "RIGHT": "Droite",
+      "CENTER": "Centré",
+      "JUSTIFY": "Justifié"
+    },
+    "FONT_SIZE": {
+      "INCREASE": "Augmenter la taille du texte",
+      "DECREASE": "Diminuer la taille du texte"
+    }
+  },
+  "DISCONNECTED_TEXT": "Vous avez été déconnecté.",
+  "RELOAD_BUTTON": "Recharger",
+  "WARNINGS": {
+    "BETA": "La fonctionnalité des \"pages\" est en <bold>beta</bold>. Vous pouvez retrouver la documentation et l'état actuel de la fonctionnalité <1>sur le site de documentation</1>.",
+    "FEEDBACK": "Donnez-nous votre avis <1>via ce formulaire</1>."
+  },
+  "EDITOR": {
+    "PLACEHOLDER": "Entrer un texte..."
+  },
+  "LINK": {
+    "TYPE": {
+      "BUTTON": "Bouton",
+      "EMBED": "Intégration",
+      "TEXT": "Lien"
+    },
+    "URL": { "BUTTON": "Lien", "VISIT_LINK_BUTTON": "Visiter le lien externe" }
+  }
+}

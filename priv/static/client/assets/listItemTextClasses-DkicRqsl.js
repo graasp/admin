@@ -1,0 +1,1 @@
+import{r as e,x as s,w as i}from"./index-B_BHgQQY.js";const r=e.createContext({});function n(t){return i("MuiListItemText",t)}const o=s("MuiListItemText",["root","multiline","dense","inset","primary","secondary"]);export{r as L,n as g,o as l};

@@ -1,0 +1,76 @@
+{
+  "LOGOUT": {
+    "BUTTON_TEXT": "Aus Konto abmelden"
+  },
+  "LOG_IN": {
+    "BUTTON_TEXT": "Einloggen"
+  },
+  "REGISTER": {
+    "BUTTON_TEXT": "Registrieren"
+  },
+  "BACK": {
+    "BUTTON_TEXT": "Zurück"
+  },
+  "HOME": {
+    "BUTTON_TEXT": "Nach Hause gehen"
+  },
+  "SAVE": {
+    "BUTTON_TEXT": "Speichern"
+  },
+  "CANCEL": {
+    "BUTTON_TEXT": "Stornieren"
+  },
+  "EDIT": {
+    "BUTTON_TEXT": "Bearbeiten"
+  },
+  "CLOSE": {
+    "BUTTON_TEXT": "Schließen"
+  },
+  "CONFIRM": {
+    "BUTTON_TEXT": "Bestätigen"
+  },
+  "CONJONCTION": {
+    "OR": "oder"
+  },
+  "CONSTRUCTION": {
+    "TITLE": "Diese Seite befindet sich im Aufbau",
+    "DESCRIPTION": "Wir arbeiten daran, diesen Teil der App zu verbessern. Wir bitten um Ihr Verständnis, während wir die notwendigen Änderungen vornehmen."
+  },
+  "USER_MENU": {
+    "SETTINGS": "Einstellungen"
+  },
+  "ERRORS": {
+    "UNEXPECTED": "Ein unerwarteter Fehler ist aufgetreten",
+    "NETWORK": {
+      "TITLE": "Netzwerkfehler",
+      "TEXT": "Beim Beitritt zum Server scheint ein Problem aufgetreten zu sein. Bitte versuchen Sie es später noch einmal."
+    }
+  },
+  "FIELD_ERROR": {
+    "REQUIRED": "Dieses Feld ist erforderlich",
+    "USERNAME_MIN_LENGTH": "Der Benutzername muss länger als {{min}} Zeichen sein",
+    "USERNAME_MAX_LENGTH": "Der Benutzername muss weniger als {{max}} Zeichen lang sein",
+    "USERNAME_SPECIAL_CHARACTERS": "Der Benutzername darf keine Anführungszeichen, Anti-Slash, <, >, ^, % enthalten",
+    "INVALID_EMAIL": "Dies scheint keine gültige E-Mail-Adresse zu sein"
+  },
+  "UNKNOWN_DATE": "Unbekannt",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "Mein Graasp",
+    "BOOKMARKED_ITEMS": "Lieblingselemente",
+    "LIBRARY": "Bibliothek",
+    "TRASH": "Papierkorb"
+  },
+  "USER_SWITCH": {
+    "HOME": "Heim",
+    "SETTINGS": "Einstellungen",
+    "STORAGE": "Lagerung",
+    "LOG_IN": "Einloggen",
+    "LOG_OUT": "Ausloggen",
+    "NEED_HELP": "Brauchen Sie Hilfe?"
+  },
+  "ENROLL": {
+    "TITLE": "Für diesen Artikel anmelden",
+    "BUTTON": "Einschreiben",
+    "DESCRIPTION": "Klicken Sie auf die Schaltfläche unten, um sich anzumelden und auf diesen Artikel zuzugreifen."
+  }
+}

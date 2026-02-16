@@ -1,0 +1,1 @@
+import{f0 as a,r as t,f1 as u,j as n,f2 as m}from"./index-B_BHgQQY.js";const o=t.createContext({mode:m.List}),c=({children:s})=>{const{mode:e}=a({from:"/builder/items/$itemId"}),r=t.useMemo(()=>({mode:e??u}),[e]);return n.jsx(o.Provider,{value:r,children:s})},d=()=>t.useContext(o);export{c as L,d as u};

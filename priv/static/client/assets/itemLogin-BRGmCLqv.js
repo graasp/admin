@@ -1,0 +1,1 @@
+var n;(function(s){s.Username="username",s.UsernameAndPassword="username+password",s.Anonymous="anonymous",s.AnonymousAndPassword="anonymous+password"})(n||(n={}));var a;(function(s){s.Active="active",s.Disabled="disabled",s.Freeze="freeze"})(a||(a={}));export{n as I,a};

@@ -1,0 +1,28 @@
+{
+  "MENU": {
+    "HOME": "Home",
+    "MY_ITEMS": "My Graasp",
+    "BOOKMARKED_ITEMS": "Bookmarks",
+    "LIBRARY": "Library",
+    "RECYCLED_ITEMS": "Trash"
+  },
+  "BOOKMARKED_ITEMS": {
+    "SHOW_LESS": "Show less",
+    "SHOW_MORE": "Show more",
+    "MANAGE_BUTTON": "Manage",
+    "DONE_BUTTON": "Done",
+    "TITLE": "Bookmarks",
+    "ERROR_MESSAGE": "There was an issue retrieving your bookmarked items."
+  },
+  "LIBRARY": {
+    "CARD": {
+      "TITLE": "Graasp Library",
+      "SUBTITLE": "Share and Discover Open Educational Resources in the Library",
+      "BUTTON_TEXT": "Explore"
+    }
+  },
+  "SURVEY": {
+    "INFO": "We are conducting a user survey to better understand how you use Graasp. Your feedback is valuable!<br/>Please find the survey link <l1>here</l1>."
+  },
+  "OLD_DELETED_ITEMS_NOTICE": "Starting mid-January, items <b>deleted</b> more than 90 days ago will be permanently removed from your Trash. To prevent accidental loss of important items, please review your Trash."
+}
