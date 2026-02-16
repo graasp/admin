@@ -52,3 +52,6 @@ npm-debug.log
 # PLT caches
 /priv/plts/*.plt
 /priv/plts/*.plt.hash
+
+# client SPA artifacts
+/priv/static/client
