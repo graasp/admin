@@ -311,9 +311,7 @@ defmodule AdminWeb.Layouts do
                 <.link navigate={~p"/blog"}>{gettext("Blog")}</.link>
               </li>
               <li>
-                <.link navigate={~p"/docs#{Localization.locale_path_prefix(Gettext.get_locale())}"}>
-                  {gettext("Documentation")}
-                </.link>
+                <.link navigate={~p"/docs"}>{gettext("Documentation")}</.link>
               </li>
               <li>
                 <.link navigate={~p"/about-us"}>{gettext("About")}</.link>
