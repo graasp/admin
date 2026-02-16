@@ -57,6 +57,15 @@ defmodule AdminWeb.Router do
     delete "/locale", LandingController, :remove_locale
 
     generate_localized_routes()
+
+    get "/home", ClientController, :index
+    get "/published", ClientController, :index
+    get "/recycled", ClientController, :index
+    get "/account/*path", ClientController, :index
+    get "/auth/*path", ClientController, :index
+    get "/builder/*path", ClientController, :index
+    get "/player/*path", ClientController, :index
+
     # redirections for now
     get "/library", RedirectionController, :library
     get "/auth/login", RedirectionController, :login
