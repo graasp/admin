@@ -3,7 +3,6 @@ defmodule AdminWeb.Layouts do
   This module holds layouts and related functionality
   used by your application.
   """
-  alias AdminWeb.Localization
   use AdminWeb, :html
 
   alias AdminWeb.LandingHTML
