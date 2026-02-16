@@ -1,0 +1,76 @@
+{
+  "LOGOUT": {
+    "BUTTON_TEXT": "Finalizar la sesión"
+  },
+  "LOG_IN": {
+    "BUTTON_TEXT": "Acceso"
+  },
+  "REGISTER": {
+    "BUTTON_TEXT": "Registro"
+  },
+  "BACK": {
+    "BUTTON_TEXT": "Atrás"
+  },
+  "HOME": {
+    "BUTTON_TEXT": "Ir a casa"
+  },
+  "SAVE": {
+    "BUTTON_TEXT": "Ahorrar"
+  },
+  "CANCEL": {
+    "BUTTON_TEXT": "Cancelar"
+  },
+  "EDIT": {
+    "BUTTON_TEXT": "Editar"
+  },
+  "CLOSE": {
+    "BUTTON_TEXT": "Cerca"
+  },
+  "CONFIRM": {
+    "BUTTON_TEXT": "Confirmar"
+  },
+  "CONJONCTION": {
+    "OR": "o"
+  },
+  "CONSTRUCTION": {
+    "TITLE": "Esta página está en construcción",
+    "DESCRIPTION": "Estamos trabajando para mejorar esta parte de la aplicación. Le pedimos su comprensión mientras realizamos los cambios necesarios."
+  },
+  "USER_MENU": {
+    "SETTINGS": "Ajustes"
+  },
+  "ERRORS": {
+    "UNEXPECTED": "Se produjo un error inesperado",
+    "NETWORK": {
+      "TITLE": "Error de red",
+      "TEXT": "Parece que hay un problema al unirse al servidor. Inténtelo de nuevo más tarde."
+    }
+  },
+  "FIELD_ERROR": {
+    "REQUIRED": "Este campo es obligatorio",
+    "USERNAME_MIN_LENGTH": "El nombre de usuario debe tener más de {{min}} caracteres",
+    "USERNAME_MAX_LENGTH": "El nombre de usuario debe tener menos de {{max}} caracteres",
+    "USERNAME_SPECIAL_CHARACTERS": "El nombre de usuario no debe contener comillas, anti-barras, <, >, ^, %",
+    "INVALID_EMAIL": "Esta no parece una dirección de correo electrónico válida"
+  },
+  "UNKNOWN_DATE": "Desconocido",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "Mi Graasp",
+    "BOOKMARKED_ITEMS": "Artículos favoritos",
+    "LIBRARY": "Biblioteca",
+    "TRASH": "Basura"
+  },
+  "USER_SWITCH": {
+    "HOME": "Hogar",
+    "SETTINGS": "Ajustes",
+    "STORAGE": "Almacenamiento",
+    "LOG_IN": "Acceso",
+    "LOG_OUT": "Finalizar la sesión",
+    "NEED_HELP": "¿Necesitar ayuda?"
+  },
+  "ENROLL": {
+    "TITLE": "Inscríbete a este artículo",
+    "BUTTON": "Inscribirse",
+    "DESCRIPTION": "Haga clic en el botón a continuación para inscribirse y acceder a este artículo."
+  }
+}

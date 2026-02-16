@@ -1,4 +1,8 @@
 defmodule Admin.Docs.Sections do
+  @moduledoc """
+  Define translation strings from the name of the folders in the application folder
+  """
+
   defmacro __using__(opts) do
     path = Keyword.fetch!(opts, :path)
 

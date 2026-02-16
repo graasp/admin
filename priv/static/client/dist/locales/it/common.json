@@ -1,0 +1,66 @@
+{
+  "LOGOUT": {
+    "BUTTON_TEXT": "Esci"
+  },
+  "LOG_IN": {
+    "BUTTON_TEXT": "Login"
+  },
+  "REGISTER": {
+    "BUTTON_TEXT": "Registro"
+  },
+  "BACK": {
+    "BUTTON_TEXT": "Indietro"
+  },
+  "HOME": {
+    "BUTTON_TEXT": "Vai a casa"
+  },
+  "SAVE": {
+    "BUTTON_TEXT": "Salva"
+  },
+  "CANCEL": {
+    "BUTTON_TEXT": "Cancellare"
+  },
+  "EDIT": {
+    "BUTTON_TEXT": "Modificare"
+  },
+  "CLOSE": {
+    "BUTTON_TEXT": "Vicino"
+  },
+  "CONFIRM": {
+    "BUTTON_TEXT": "Confermare"
+  },
+  "CONJONCTION": {
+    "OR": "O"
+  },
+  "CONSTRUCTION": {
+    "TITLE": "Questa pagina è in costruzione",
+    "DESCRIPTION": "Stiamo lavorando per migliorare questa parte dell'app. Chiediamo la vostra comprensione mentre apportiamo le modifiche necessarie."
+  },
+  "USER_MENU": {
+    "SETTINGS": "Impostazioni"
+  },
+  "ERRORS": {
+    "UNEXPECTED": "Si è verificato un errore imprevisto",
+    "NETWORK": {
+      "TITLE": "Errore di rete",
+      "TEXT": "Sembra che ci sia un problema nell'accesso al server. Riprova più tardi"
+    }
+  },
+  "FIELD_ERROR": {
+    "REQUIRED": "Questo campo è obbligatorio",
+    "USERNAME_MIN_LENGTH": "Il nome utente deve essere più lungo di {{min}} caratteri",
+    "USERNAME_MAX_LENGTH": "Il nome utente deve essere inferiore a {{max}} caratteri",
+    "USERNAME_SPECIAL_CHARACTERS": "Il nome utente non deve contenere virgolette, anti-barra, <, >, ^, %",
+    "INVALID_EMAIL": "Questo non sembra un indirizzo email valido"
+  },
+  "UNKNOWN_DATE": "Sconosciuto",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "Il mio Graasp",
+    "TRASH": "Cestino"
+  },
+  "ENROLL": {
+    "TITLE": "Iscriviti a questo articolo",
+    "BUTTON": "Iscriversi",
+    "DESCRIPTION": "Clicca sul pulsante qui sotto per registrarti e accedere a questo articolo."
+  }
+}

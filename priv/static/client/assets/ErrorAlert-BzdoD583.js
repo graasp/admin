@@ -1,0 +1,1 @@
+import{b as s,N as e,j as o}from"./index-B_BHgQQY.js";import{B as a}from"./langs-BKRoRoQy.js";import{A as i}from"./Alert-af15MLjr.js";const E=({id:r})=>{const{t}=s(e.Builder);return o.jsx(i,{id:r,severity:"error",children:t(a.ERROR_MESSAGE)})};export{E};

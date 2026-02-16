@@ -1,0 +1,28 @@
+{
+  "MENU": {
+    "HOME": "Accueil",
+    "MY_ITEMS": "Mon Graasp",
+    "BOOKMARKED_ITEMS": "Signets",
+    "LIBRARY": "Bibliothèque",
+    "RECYCLED_ITEMS": "Corbeille"
+  },
+  "BOOKMARKED_ITEMS": {
+    "SHOW_LESS": "Montrer moins",
+    "SHOW_MORE": "Montrer plus",
+    "MANAGE_BUTTON": "Modifier",
+    "DONE_BUTTON": "Terminer",
+    "TITLE": "Signets",
+    "ERROR_MESSAGE": "Une erreur est survenue lors de l'affichage des signets."
+  },
+  "LIBRARY": {
+    "CARD": {
+      "TITLE": "Bibliothèque Graasp",
+      "SUBTITLE": "Partager et Découvrir des Ressources Éducatives Libres dans la Bibliothèque",
+      "BUTTON_TEXT": "Explorer"
+    }
+  },
+  "SURVEY": {
+    "INFO": "Nous lançons une enquête afin de mieux comprendre votre utilisation de la plateforme Graasp. Votre avis compte !<br/>Retrouvez le lien de l'enquête <l1>ici</l1>."
+  },
+  "OLD_DELETED_ITEMS_NOTICE": "A partir de mi-janvier, les éléments <b>supprimés</b> depuis plus de 90 jours seront définitivement retirés de votre Corbeille. Pour éviter la perte accidentelle d'éléments importants, veuillez vérifier le contenu de votre Corbeille."
+}

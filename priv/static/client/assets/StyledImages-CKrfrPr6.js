@@ -1,0 +1,1 @@
+import{s as t}from"./index-B_BHgQQY.js";const e={width:"100%",objectFit:"cover",minHeight:"0px",minWidth:"0px"};t("img")(()=>({...e,transition:"all cubic-bezier(.75,.1,.24,.94) 250ms",transform:"scale(1)","&:hover":{transform:"scale(1.05)"}}));const s=t("img")(()=>({...e}));export{s as I};

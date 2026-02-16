@@ -1,0 +1,82 @@
+{
+  "LOGOUT": {
+    "BUTTON_TEXT": "Log out"
+  },
+  "LOG_IN": {
+    "BUTTON_TEXT": "Log in"
+  },
+  "REGISTER": {
+    "BUTTON_TEXT": "Register"
+  },
+  "BACK": {
+    "BUTTON_TEXT": "Back"
+  },
+  "HOME": {
+    "BUTTON_TEXT": "Go Home"
+  },
+  "SAVE": {
+    "BUTTON_TEXT": "Save"
+  },
+  "CANCEL": {
+    "BUTTON_TEXT": "Cancel"
+  },
+  "EDIT": {
+    "BUTTON_TEXT": "Edit"
+  },
+  "CLOSE": {
+    "BUTTON_TEXT": "Close"
+  },
+  "CONFIRM": {
+    "BUTTON_TEXT": "Confirm"
+  },
+  "CONJONCTION": {
+    "OR": "or"
+  },
+  "CONSTRUCTION": {
+    "TITLE": "This page is under construction",
+    "DESCRIPTION": " We are working on improving this part of the app. We ask for your comprehension while we make the necessary changes."
+  },
+  "USER_MENU": {
+    "SETTINGS": "Settings"
+  },
+  "ERRORS": {
+    "UNEXPECTED": "An unexpected Error occurred",
+    "NETWORK": {
+      "TITLE": "Network Error",
+      "TEXT": "There seems to be a problem joining the server. Please try again later"
+    }
+  },
+  "FIELD_ERROR": {
+    "REQUIRED": "This field is required",
+    "USERNAME_MIN_LENGTH": "User name must be longer than {{min}} characters",
+    "USERNAME_MAX_LENGTH": "User name must be less than {{max}} characters",
+    "USERNAME_SPECIAL_CHARACTERS": "User name must not contain quotes, anti-slash, <, >, ^, %",
+    "INVALID_EMAIL": "This does not look like a valid email address"
+  },
+  "UNKNOWN_DATE": "Unknown",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "My Graasp",
+    "BOOKMARKED_ITEMS": "Bookmarks",
+    "LIBRARY": "Library",
+    "TRASH": "Trash"
+  },
+  "USER_SWITCH": {
+    "HOME": "Home",
+    "SETTINGS": "Settings",
+    "STORAGE": "Storage",
+    "LOG_IN": "Log in",
+    "LOG_OUT": "Log out",
+    "NEED_HELP": "Need help?"
+  },
+  "ARIA": {
+    "MORE": "More",
+    "REMOVE_BOOKMARK": "Remove bookmark",
+    "ADD_LOCATION": "Add at this location"
+  },
+  "FOLDER_HEADER_CREATED_BY": "Created by {{name}}",
+  "ENROLL": {
+    "TITLE": "Enroll to this item",
+    "BUTTON": "Enroll",
+    "DESCRIPTION": "Click on the button below to enroll and access this item."
+  }
+}

@@ -1,0 +1,1 @@
+import{b as s,N as m,j as e}from"./index-Du6cLc2g.js";import{G as i}from"./Button-D6pY2JNh.js";function p({id:t,onClick:n,color:o,disabled:a}){const{t:r}=s(m.Common);return e.jsx(i,{id:t,onClick:n,variant:"text",color:o,disabled:a,children:r("CANCEL.BUTTON_TEXT")})}export{p as C};

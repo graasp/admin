@@ -1,0 +1,1 @@
+import{t as o}from"./toDate-BXq0HhWu.js";function u(n){return t=>{const r=(n?Math[n]:Math.trunc)(t);return r===0?0:r}}function c(n,t){return+o(n)-+o(t)}function i(n,t,e){const r=c(n,t)/1e3;return u(e?.roundingMethod)(r)}export{c as a,i as d,u as g};
