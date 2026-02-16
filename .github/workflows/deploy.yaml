@@ -30,7 +30,30 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          repository: graasp/client
+          path: client
+
+      - name: build client
+        run: cd client && mise run build
+        env:
+          VITE_VERSION: ${{ inputs.version || github.sha }}
+          VITE_GRAASP_API_HOST: ${{ vars.VITE_GRAASP_API_HOST }}
+          VITE_GRAASP_WS_HOST: ${{ vars.VITE_GRAASP_WS_HOST }}
+          VITE_GRAASP_LIBRARY_HOST: ${{ vars.VITE_GRAASP_LIBRARY_HOST }}
+          VITE_SENTRY_ENV: ${{ inputs.environment || 'development' }}
+          VITE_SENTRY_DSN: ${{ secrets.VITE_SENTRY_DSN }}
+          VITE_SHOW_NOTIFICATIONS: true
+          VITE_UMAMI_WEBSITE_ID: ${{ secrets.VITE_UMAMI_WEBSITE_ID }}
+          VITE_UMAMI_HOST: ${{ vars.VITE_UMAMI_HOST }}
+          VITE_RECAPTCHA: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
+          VITE_GRAASP_H5P_INTEGRATION_URL: ${{ vars.VITE_GRAASP_H5P_INTEGRATION_URL }}
+          VITE_GRAASP_REDIRECTION_HOST: ${{ vars.VITE_GRAASP_REDIRECTION_HOST }}
+        shell: bash
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
