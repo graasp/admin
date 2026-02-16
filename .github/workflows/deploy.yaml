@@ -38,6 +38,9 @@ jobs:
           repository: graasp/client
           path: client
 
+      - name: Install Mise
+        uses: jdx/mise-action@v3
+
       - name: build client
         run: cd client && mise run build
         env:
