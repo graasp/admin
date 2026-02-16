@@ -68,7 +68,6 @@ defmodule AdminWeb.Router do
 
     # redirections for now
     get "/library", RedirectionController, :library
-    get "/auth/login", RedirectionController, :login
   end
 
   scope "/admin", AdminWeb do
