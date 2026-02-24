@@ -189,8 +189,6 @@ msgctxt "page title"
 msgid "Subscribed to Marketing Emails"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:341
-#: lib/admin_web/components/layouts.ex:374
 #: lib/admin_web/controllers/docs_html/index.html.heex:3
 #: lib/admin_web/controllers/docs_html/show.html.heex:4
 #, elixir-autogen, elixir-format
@@ -218,12 +216,6 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgctxt "documentation section"
 msgid "account"
-msgstr ""
-
-#: lib/admin/docs.ex:13
-#, elixir-autogen, elixir-format
-msgctxt "documentation section"
-msgid "presenting"
 msgstr ""
 
 #: lib/admin/docs.ex:13
@@ -277,4 +269,10 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgctxt "page_title"
 msgid "Documentation"
+msgstr ""
+
+#: lib/admin_web/components/layouts.ex:341
+#: lib/admin_web/components/layouts.ex:374
+#, elixir-autogen, elixir-format
+msgid "Support"
 msgstr ""

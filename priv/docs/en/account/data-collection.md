@@ -6,8 +6,6 @@ tags: ["account"]
 
 ---
 
-# Data Collection
-
 When you use the Graasp platform we collect usage data.
 This article describes what data we collect and who we share it with.
 

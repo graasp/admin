@@ -1,11 +1,9 @@
 %{
 title: "Publish to Graasp Library",
-topics: ["library"]
+tags: ["library"]
 }
 
 ---
-
-# Publish to Graasp Library
 
 Collaboration is the cornerstone of Graasp Library, where educators and professionals come together to share, co-create and learn. By fostering a vibrant community around a shared library of resources, Graasp enables educators to access, adapt and develop collective knowledge. This shared platform allows to focus on innovation rather than reinventing the wheel, ultimately improving students' learning experiences.
 
@@ -19,9 +17,11 @@ To publish a content in Graasp Library, open in the Graasp Builder the content f
 
 Now that the publication page is open, follow the rest of the documentation.
 
-:::warning
-Only folders can be published in Graasp Library. It's also important to note that all the content inside a folder will be published too.
-:::
+> #### Limitations {: .warning}
+>
+> Only folders can be published in the Graasp Library.
+>
+> It is also important to note that all the content inside a folder will be published too.
 
 ### Publication Page
 

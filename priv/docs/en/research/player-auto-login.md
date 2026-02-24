@@ -1,6 +1,6 @@
 %{
 title: "Auto Login",
-topics: ["player"]
+tags: ["player"]
 }
 
 ---

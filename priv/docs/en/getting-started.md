@@ -1,21 +1,19 @@
 %{
 title: "Getting Started",
 description: "Learn how to create your first resource",
-topics: ["builder"],
+tags: ["builder"],
 order: 10
 }
 
 ---
 
-# Getting Started
-
 This document we will guide you through your first steps with Graasp. It will show you how to:
 
-- [ ] create an account
-- [ ] create your first resource
-- [ ] view and interact with your resource
-- [ ] share your resource with others
-- [ ] find resources made by others
+- create an account
+- create your first resource
+- view and interact with your resource
+- share your resource with others
+- find resources made by others
 
 It should take no more than **45 minutes** to complete.
 

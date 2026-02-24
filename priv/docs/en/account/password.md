@@ -1,13 +1,11 @@
 %{
 title: "Forgot Password",
 description: "How to reset your password",
-topics: ["account"],
+tags: ["account"],
 order: 20
 }
 
 ---
-
-# Forgot Password
 
 On the Graasp platform, you can set a password to sign in into Graasp. If you forget this password, you can request to reset it by the following steps:
 

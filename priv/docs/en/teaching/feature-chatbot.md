@@ -1,15 +1,13 @@
 %{
 title: "Chatbot",
-topics: ["features"]
+tags: ["features"]
 }
 
 ---
 
-# Chatbot
-
 Graasp includes a configurable chatbot that adds interactivity to your learning activities. The chatbot can take on different roles—for example, a chemistry teacher, a physics tutor, a Socratic peer, or anything else you need.
 
-![chatbot conversation](./chatbot.png)
+![chatbot conversation](/images/docs/chatbot.png)
 
 ## Configure Your Chatbot
 
@@ -23,13 +21,11 @@ You can customize the chatbot using the following options:
 
 As an admin, you can also access all conversations users have had with the bot. This is especially helpful for identifying common misunderstandings, frequently asked questions, or topics that may require additional support.
 
-:::warning[Data & Privacy Notice]
-
-Graasp’s chatbot app uses OpenAI’s ChatGPT model to generate responses. User messages are sent to OpenAI via their API for processing. **No additional user data is transmitted.**
-
-However, if users choose to share personal information within their messages, that information will also be sent to OpenAI. Graasp cannot prevent or filter such disclosures, so please encourage users not to share sensitive data.
-
-:::
+> #### Data & Privacy Notice {: .warning}
+>
+> Graasp’s chatbot app uses OpenAI’s ChatGPT model to generate responses. User messages are sent to OpenAI via their API for processing. **No additional user data is transmitted.**
+>
+> However, if users choose to share personal information within their messages, that information will also be sent to OpenAI. Graasp cannot prevent or filter such disclosures, so please encourage users not to share sensitive data.
 
 ## Need More?
 

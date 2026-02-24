@@ -6,8 +6,6 @@ order: 30
 
 ---
 
-# Sharing
-
 Under the **Share** section, you can manage permission to your content.
 
 ## Access levels

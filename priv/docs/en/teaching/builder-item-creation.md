@@ -1,12 +1,10 @@
 %{
 title: "Items",
-topics: ["builder"],
+tags: ["builder"],
 order: 20
 }
 
 ---
-
-# Items
 
 ## What is an item?
 
