@@ -1,0 +1,1 @@
+import{I as t}from"./itemType-D9KQEJss.js";const a=e=>{var r;return((r=e.extra[t.FOLDER])===null||r===void 0?void 0:r.isCapsule)===!0};function s(e){return e.type===t.FOLDER&&a(e)?"capsule":e.type}export{s as g,a as i};

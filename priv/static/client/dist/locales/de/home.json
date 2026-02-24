@@ -1,0 +1,24 @@
+{
+  "MENU": {
+    "HOME": "Heim",
+    "MY_ITEMS": "Mein Graasp",
+    "BOOKMARKED_ITEMS": "Merkliste",
+    "LIBRARY": "Bibliothek",
+    "RECYCLED_ITEMS": "Recycelt"
+  },
+  "BOOKMARKED_ITEMS": {
+    "SHOW_LESS": "Weniger anzeigen",
+    "SHOW_MORE": "Mehr anzeigen",
+    "MANAGE_BUTTON": "Verwalten",
+    "DONE_BUTTON": "Erledigt",
+    "TITLE": "Lesezeichen",
+    "ERROR_MESSAGE": "Beim Abrufen Ihrer mit Lesezeichen versehenen Elemente ist ein Problem aufgetreten."
+  },
+  "LIBRARY": {
+    "CARD": {
+      "TITLE": "Graasp-Bibliothek",
+      "SUBTITLE": "Teilen und entdecken Sie offene Bildungsressourcen in der Bibliothek",
+      "BUTTON_TEXT": "Erkunden"
+    }
+  }
+}

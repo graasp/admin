@@ -1,0 +1,1 @@
+import{I as a}from"./itemType-D9KQEJss.js";const l=n=>n[a.LINK],r=n=>{var i;const{thumbnails:o,icons:t}=l(n);return(i=o?.[0])!==null&&i!==void 0?i:t?.[0]},u=n=>({[a.LINK]:n});export{l as a,u as b,r as g};

@@ -61,6 +61,7 @@ config :admin, AdminWeb.Endpoint,
       ~r"priv/gettext/.*(po)$",
       ~r"priv/blog/.*(md)$",
       ~r"priv/pages/.*(md)$",
+      ~r"priv/docs/.*(md)$",
       ~r"lib/admin_web/(?:controllers|live|components|router)/?.*\.(ex|heex)$"
     ]
   ]

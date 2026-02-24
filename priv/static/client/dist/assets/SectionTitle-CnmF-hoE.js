@@ -1,0 +1,1 @@
+import{j as t,S as i,T as r}from"./index-Du6cLc2g.js";const s=({title:e,icons:n})=>t.jsxs(i,{direction:"row",alignItems:"center",justifyContent:"center",spacing:2,children:[t.jsx(r,{variant:"h3",align:"center",fontWeight:900,color:"#8C8C8C",children:e}),n]});export{s as S};

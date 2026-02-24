@@ -1,0 +1,1 @@
+import{j as n,aV as r,r as e}from"./index-B_BHgQQY.js";import{L as s}from"./Link-DLKBSA2n.js";const a=e.forwardRef((t,o)=>n.jsx(s,{component:"a",ref:o,...t})),i=r(a),c=t=>n.jsx(i,{preload:"intent",...t});export{c as C};

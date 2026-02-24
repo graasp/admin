@@ -1,0 +1,1 @@
+function s({baseURL:a,pathname:n}){const t=new URL(a),{origin:e}=t;let r=t.pathname.replace(/\/?$/,"/");return n&&(r+=n.replace(/^\/+/,"")),new URL(r,e)}const p=(a,n,t=!1)=>{const e=new URL(a),r=new URLSearchParams(e.search);return Object.entries(n).forEach(([c,o])=>t?r.set(c,o):r.append(c,o)),e.search=r.toString(),e.toString()};export{p as a,s as b};

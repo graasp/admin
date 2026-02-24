@@ -1,0 +1,537 @@
+{
+  "NAVBAR": {
+    "GETTING_STARTED": "Commencer",
+    "FEATURES": "Fonctionalités",
+    "LIBRARY": "Bibliothèque",
+    "ABOUT_US": "À propos de nous"
+  },
+  "HOME": {
+    "TITLE": "Graasp",
+    "SUBTITLE": "La plateforme d'apprentissage interactive",
+    "DESCRIPTION": "Une plateforme <b>ouverte</b> et <b>gratuite</b> qui permet de <b>créer</b> et <b>partager</b> des <b>supports pédagogiques interactifs</b>, ainsi que des <b>Ressources Éducatives Libres</b>",
+    "CAPTION": "Par l'association Graasp, basée en Suisse",
+    "REGISTER_CALL_TO_ACTION": "Créer un compte",
+    "LIBRARY_CALL_TO_ACTION": "Visiter la bibliothèque",
+    "SUPPORTERS_LABEL": "Soutenue par",
+    "MISSION": {
+      "TITLE": "Notre vision",
+      "DESCRIPTION": "Notre objectif est de permettre aux enseignants d'adopter pleinement la technologie numérique à valeur ajoutée pour impliquer leurs élèves dans des scénarios d'apprentissage innovants et pour développer leurs compétences numériques.",
+      "CALL_TO_ACTION_LABEL": "Voulez-vous en savoir plus ?",
+      "CALL_TO_ACTION_BUTTON_TEXT": "Apprenez à nous connaître"
+    },
+    "MESSAGES": {
+      "CREATE": {
+        "TITLE": "Création de supports interactifs pédagogiques",
+        "DESCRIPTION_1": "Avec Graasp, il est facile de mettre des <b>supports pédagogiques en ligne</b>, en transformant <b>images</b>, <b>PDFs</b> et ressources traditionnelles en <b>leçons numériques interactives</b> en quelques minutes.",
+        "DESCRIPTION_2": "Ce qui rend Graasp réellement puissant, c'est sa capacité à aider à concevoir des <b>activités d'apprentissage engageantes</b> en intégrant des <b>vidéos</b> et des <b>applications interactives</b>. Il est possible de créer des leçons qui captivent les élèves, suscitent la curiosité et favorisent une participation active.",
+        "BUTTON_TEXT": "En savoir plus",
+        "CONTENT_TITLE": "Intégrer du contenu interactif dans des supports pédagogiques"
+      },
+      "SHARE": {
+        "TITLE": "Partager facilement avec les apprenants",
+        "DESCRIPTION_1": "Que ce soit pour collaborer avec une <b>classe entière</b>, un <b>groupe spécifique</b> ou un <b>collègue</b>, Graasp offre des <b>options de partage flexibles</b> et personnalisables à tout moment, ainsi qu'un <b>contrôle total</b> sur qui peut voir, modifier ou commenter vos ressources.",
+        "BUTTON_TEXT": "En savoir plus",
+        "MEMBERSHIPS": {
+          "TITLE": "Contrôle d'accès granulaire",
+          "DESCRIPTION": "Seules les personnes approuvées peuvent accéder au contenu, et les demandes d'accès peuvent être examinées avant d'être autorisées."
+        },
+        "ITEM_LOGIN": {
+          "TITLE": "Accès simplifié pour les participants",
+          "DESCRIPTION": "Partager du contenu via un lien privé, avec la possibilité d'ajouter un mot de passe. Idéal pour les participants qui n'ont pas d'adresse e-mail."
+        }
+      },
+      "LIBRARY": {
+        "TITLE": "Profiter et contribuer à une bibliothèque de Ressources Éducatives Libres (REL)",
+        "DESCRIPTION": "La <b>collaboration</b> est au cœur de la <b>Graasp Library</b>, où enseignants et professionnels se réunissent pour <b>partager, co-créer et apprendre</b>. En partageant des <b>ressources éducatives libres</b> (REL), les éducateurs ont accès à une bibliothèque en constante expansion et y contribuent, enrichissant ainsi le <b>savoir collectif</b>.",
+        "LIBRARY_BUTTON_TEXT": "Aller sur Graasp Library",
+        "OER_BUTTON_TEXT": "Qu'est-ce que les RELs ?",
+        "DISCOVER_TITLE": "Découvrez les activités créées par nos utilisateurs"
+      }
+    },
+    "CALL_TO_ACTION": {
+      "TEXT": "Révolutionner l'enseignement grâce à des outils d'apprentissage interactifs sur Graasp !",
+      "BUTTON_TEXT": "Créer un compte"
+    },
+    "MISSIONS": {
+      "TITLE": "Nos Missions",
+      "RESEARCH": {
+        "TITLE": "Nous faisons avancer la recherche dans l'éducation",
+        "DESCRIPTION_1": "De nombreux articles académiques et retours d'expériences pratiques se sont appuyés sur Graasp, mettant en évidence son efficacité à favoriser l'apprentissage collaboratif fondé sur l'investigation ainsi que son impact significatif au sein de la communauté des technologies éducatives. <a>Découvrir tous les articles</a>.",
+        "DESCRIPTION_2": "Besoin d'aide pour vos recherches ? Nous sommes à l'écoute pour vous aider.",
+        "BUTTON_TEXT": "Nous contacter"
+      },
+      "PRIVACY": {
+        "TITLE": "Nous protégeons la vie privée et la souveraineté des données",
+        "DESCRIPTION": "Développé avec une forte attention portée à la confidentialité et à la souveraineté des données, Graasp permet aux utilisateurs de conserver un contrôle total sur leurs informations, à l'abri de toute exploitation par des tiers. Hébergé en Suisse et géré par l'association à but non lucratif Graasp Association, il bénéficie des solides lois suisses sur la protection des données qui renforcent ces principes fondamentaux.",
+        "BUTTON_TEXT": "A propos de l'association"
+      },
+      "OPEN": {
+        "TITLE": "Nous défendons l'ouverture et la transparence",
+        "DESCRIPTION_1": "En tant que projet open source, Graasp promeut la transparence, la confiance et la collaboration.",
+        "DESCRIPTION_2": "Sa nature ouverte encourage les contributions de la communauté, l'amélioration continue et l'adaptabilité. Nous veillons à ce que la plateforme évolue en harmonie avec les besoins des enseignants et des apprenants.",
+        "BUTTON_TEXT": "Voir sur GitHub"
+      }
+    },
+    "NEED_SUPPORT": {
+      "TITLE": "Besoin d'aide ?",
+      "DESCRIPTION": "Nous sommes heureux d'aider en cas de questions, doutes ou besoin de conseils sur la manière dont Graasp peut répondre aux besoins. Notre boîte email <b>support@graasp.org</b> est ouverte et notre équipe répondra dans les plus brefs délais.",
+      "BUTTON_TEXT": "Nous contacter"
+    },
+    "USER_TESTIMONIES": {
+      "TITLE": "Ce que nos utilisateurs disent de nous",
+      "JOIN_US": "Rejoignez-nous et embarquez pour un brillant voyage dans l'éducation et la carrière professionnelle !"
+    }
+  },
+  "TERMS": {
+    "TITLE": "Conditions d'utilisation",
+    "INTRODUCTION": "En utilisant la plateforme Graasp et son logiciel, vous :",
+    "TERM_1": "Confirmez que vous n'utiliserez pas Graasp à mauvais escient et que vous n'aiderez personne d'autre à le faire.",
+    "TERM_2": "Confirmez que vous n'utiliserez pas Graasp à des fins illicites",
+    "TERM_3": "Confirmez que vous êtes seul responsable des ensembles de données et des résultats traités ou générés par Graasp",
+    "TERM_4": "Acceptez que l'Association Graasp et l'École Polytechnique Fédérale de Lausanne (EPFL) ne peuvent être tenues responsables de tout dommage résultant de votre utilisation de Graasp, y compris toute perte de contenu et de données",
+    "TERM_5": "Acceptez que l'accès à Graasp vous soit fourni « tel quel », sans aucune garantie, y compris quant à son bon fonctionnement et son adéquation à un usage particulier",
+    "FINAL_NOTE": "Les présentes conditions générales de service sont régies par les lois suisses. Le tribunal compétent pour tout litige sera celui du Valais (VS), Suisse.",
+    "REFERENCES": "Références",
+    "GRAASP_LEGAL_DISCLAIMER": {
+      "TEXT": "Mentions légales de Graasp"
+    },
+    "EPFL_LEGAL_DISCLAIMER": {
+      "TEXT": "Mentions légales des sites web de l'EPFL"
+    }
+  },
+  "DISCLAIMER": {
+    "TITLE": "Clause de non-responsabilité",
+    "TEXT": "Graasp (le « logiciel ») et son code source sont distribués gratuitement sous la licence publique générale GNU Affero (AGPLv3). Le logiciel et le code source vous sont fournis « tels quels », sans aucune garantie, expresse ou implicite. Sans limiter la généralité de ce qui précède, l'Association Graasp et l'École Polytechnique Fédérale de Lausanne (EPFL) ne font aucune déclaration ni ne donnent aucune garantie concernant la fonctionnalité, la fiabilité ou les performances du logiciel, ou les résultats à obtenir grâce à l'utilisation du logiciel, ou que le fonctionnement du logiciel sera exempt d'erreurs. En aucun cas, l'Association Graasp ou l'EPFL ne seront responsables des dommages résultant de l'utilisation de Graasp, y compris, mais sans s'y limiter, la distribution, l'utilisation abusive, la fuite ou le vol de fichiers ou d'ensembles de données originaux ou de copies de ceux-ci manipulés, traités ou générés par le logiciel."
+  },
+  "PRIVACY_POLICY": {
+    "TITLE": "Politique de confidentialité",
+    "SECTION_1": {
+      "TITLE": "Qui sommes-nous et comment nous contacter",
+      "DEFINITION": "Graasp est développé et maintenu par l'Association Graasp et soutenu par l'École Polytechnique Fédérale de Lausanne (EPFL), une université publique de science et de technologie en Suisse.",
+      "COMPLIANCE": "Graasp se conforme aux politiques de confidentialité de l'EPFL, à la loi fédérale suisse sur la protection des données (LPD) et au RGPD européen.",
+      "CONTACT": "Pour toute question relative à cette politique de confidentialité, vous pouvez contacter Graasp : <mail>{{email}}</mail>"
+    },
+    "RESPONSIBILITIES": {
+      "TITLE": "Responsabilités",
+      "USER_OBLIGATIONS": {
+        "TITLE": "Obligations de l'utilisateur",
+        "TEXT": "En tant qu'utilisateur, vous acceptez :",
+        "AGREEMENT_1": "que vous assumez l'entière responsabilité des Données téléchargées (voir Section 4.4) dans Graasp. Graasp ne vérifie pas le contenu téléchargé/créé par les utilisateurs pour s'assurer qu'il est approprié, qu'il ne viole pas les droits de confidentialité ou les droits de propriété intellectuelle. Vous êtes responsable du contenu que vous téléchargez, car vous êtes le gestionnaire des données sur vos Données téléchargées ;",
+        "AGREEMENT_2": "que vous vous conformerez à tout moment aux obligations pertinentes en matière de secret professionnel et de secret des affaires, le cas échéant ;",
+        "AGREEMENT_3": "que Graasp agit uniquement en tant que gestionnaire de données concernant le stockage et l'utilisation de vos Données téléchargées. Graasp fournit uniquement des espaces de stockage et des unités centrales de traitement ;",
+        "AGREEMENT_4": "que vous avez connaissance des mesures de sécurité techniques et organisationnelles mises en œuvre chez Graasp ;",
+        "AGREEMENT_5": "que vous informerez rapidement Graasp de :",
+        "NOTIFICATION": {
+          "CASE_1": "toute demande juridiquement contraignante de divulgation des Données personnelles par une autorité chargée de l'application de la loi, sauf interdiction contraire ;",
+          "CASE_2": "tout accès accidentel ou non autorisé à des données exclusives, personnelles ou téléchargées, si une assistance technique est requise.",
+          "CASE_3": "de traiter rapidement et correctement toutes les demandes relatives au traitement des données personnelles comme l'exigent les lois applicables."
+        }
+      },
+      "GRAASP_OBLIGATIONS": {
+        "TITLE": "Obligations de Graasp",
+        "TEXT": "Graasp s'engage à fournir les services conformément aux conditions d'utilisation. Graasp agit en tant que gestionnaire de données et garantit :",
+        "AGREEMENT_1": "que Graasp conserve des enregistrements détaillés et mis à jour de toutes les activités de gestion effectuées sur les données personnelles et téléchargées ;",
+        "AGREEMENT_2": "de garantir la confidentialité de vos Données Personnelles et Téléchargées si elles sont configurées comme privées ;",
+        "AGREEMENT_3": "se conformer rapidement à toute demande des utilisateurs exigeant que Graasp modifie, transfère, supprime ou élimine de toute autre manière les données personnelles et téléchargées, ou qu'il cesse, atténue ou remédie à tout traitement autorisé ;",
+        "AGREEMENT_4": "que Graasp ne traitera pas les données personnelles ou téléchargées pour son propre bénéfice commercial ou celui d'un tiers ;",
+        "AGREEMENT_5": "informer les utilisateurs sans délai de toute violation de données suspectée ou réelle impliquant leurs données personnelles ou téléchargées ;",
+        "AGREEMENT_6": "d'informer immédiatement l'utilisateur si Graasp reçoit une plainte, une demande ou toute autre communication concernant le traitement des données personnelles ou téléchargées.",
+        "AGREEMENT_7": "pour aider les utilisateurs à prendre les mesures appropriées et en leur fournissant des informations pour l'accomplissement de leurs obligations en vertu de la loi applicable."
+      }
+    },
+    "DATA_USAGE": {
+      "TITLE": "Comment Graasp utilise vos données personnelles et téléchargées",
+      "ACCOUNT": {
+        "TITLE": "Gestion du compte",
+        "TEXT": "Graasp traite vos données de compte (voir section 4.1) à des fins d'exploitation de la plateforme et du logiciel Graasp, de fourniture des services Graasp et de communication avec vous à propos de Graasp. La base juridique du traitement des données de compte est le contrat entre les utilisateurs et Graasp tel qu'indiqué dans les conditions d'utilisation."
+      },
+      "PROVIDE_SERVICES": {
+        "TITLE": "Fourniture des services",
+        "TEXT": "Graasp traite vos métadonnées (voir section 4.2) pour fournir les services Graasp. Par exemple, elles sont utilisées pour décrire la source des données personnelles et téléchargées, la lignée et pour afficher les activités effectuées sur les données personnelles et téléchargées. La base juridique de la gestion des métadonnées est le contrat entre les utilisateurs et Graasp comme indiqué dans les conditions d'utilisation."
+      },
+      "ANALYZE_USAGE": {
+        "TITLE": "Assurer les fonctionnalités et comprendre l'utilisation de Graasp",
+        "TEXT": "Graasp traite les Données Opérationnelles (voir Section 4.3) dans le but d'analyser l'utilisation de Graasp, mais aussi pour assurer les fonctionnalités de Graasp et le confort d'utilisation. La base juridique du traitement des Données Opérationnelles est le contrat entre les utilisateurs et Graasp tel qu'indiqué dans les Conditions d'Utilisation."
+      },
+      "COMPLIANCE": {
+        "TITLE": "Respect de la loi",
+        "TEXT": "Graasp peut être amené à traiter des données personnelles et des données téléchargées en cas de suspicion ou de poursuites pénales ou administratives menées par les autorités compétentes (voir section 4.4). La base juridique de ce traitement est nécessaire pour exécuter une obligation légale."
+      },
+      "RESEARCH": {
+        "TITLE": "Objectifs de recherche",
+        "TEXT": "Graasp peut collecter et utiliser vos données personnelles et vos données téléchargées à des fins de recherche. Les résultats scientifiques publiés ne contiennent que des données anonymisées."
+      }
+    },
+    "DATA_COLLECTION": {
+      "TITLE": "Données collectées",
+      "TEXT": "Graasp est susceptible de collecter toutes les Données personnelles suivantes (appelées les « Données personnelles »).",
+      "ACCOUNT": {
+        "TITLE": "Données du compte",
+        "TEXT": "Afin de gérer le compte d'un utilisateur, Graasp doit traiter les Données Personnelles suivantes (« Données du Compte ») :",
+        "DATA_1": "Adresse email",
+        "DATA_2": "Nom et prénom",
+        "DATA_3": "ID de l'utilisateur",
+        "DATA_4": "Mot de passe",
+        "DATA_5": "Autres informations du journal",
+        "DATA_6": "Adresse IP",
+        "DATA_7": "Horodatages d'accès à Graasp",
+        "DATA_8": "Journaux de consentement"
+      },
+      "METADATA": {
+        "TITLE": "Méta-données",
+        "TEXT": "Afin de fournir les services Graasp, les informations collectées à partir de vos activités dans Graasp sont nécessaires. Par exemple, la collecte de la provenance des données (d'où viennent ces données, comment elles ont été créées) et de leur lignée (qui utilise les données et comment). Les informations sur la provenance ne sont pas collectées automatiquement à l'insu de l'utilisateur, leur création et leur collecte ultérieure sont soumises à l'action délibérée d'un utilisateur utilisant Graasp."
+      },
+      "OPERATIONAL_DATA": {
+        "TITLE": "Données opérationnelles",
+        "TEXT": "Afin d'assurer le fonctionnement opérationnel de Graasp et de comprendre son utilisation, Graasp doit traiter les Données Personnelles suivantes (« Données Opérationnelles ») :",
+        "DATA_1": "Adresses IP des utilisateurs",
+        "DATA_2": "ID de l'utilisateur",
+        "DATA_3": "Données de télémétrie, c'est-à-dire données système, utilisées pour obtenir une impulsion du système, comment les ressources matérielles sont utilisées, par qui et comprendre pourquoi les choses échouent, afin que l'équipe Graasp puisse les résoudre ou fournir une assistance aux utilisateurs",
+        "DATA_4": "Journaux du service de pare-feu",
+        "DATA_5": "Autres journaux nécessaires pour assurer les fonctionnalités de Graasp",
+        "DATA_6": "Le nombre et la durée de vos visites",
+        "DATA_7": "Informations sur les parties de Graasp que vous avez visitées"
+      },
+      "UPLOADED_DATA": {
+        "TITLE": "Données téléchargées",
+        "TEXT": "Vous pouvez créer du contenu (« Données téléchargées ») qui peut inclure des Données personnelles (par exemple des données pédagogiques, des documents numériques, etc.). Vous avez le contrôle de ces données, comme expliqué dans les Conditions d'utilisation. Comme mentionné dans les Conditions d'utilisation, les utilisateurs peuvent décider de rendre publiques les Données téléchargées. Dans ce cas, d'autres utilisateurs peuvent utiliser vos Données téléchargées à leurs propres fins, et Graasp ne peut être tenu responsable de leur utilisation ultérieure. Graasp décline par la présente toute responsabilité quant à l'utilisation ultérieure de vos Données téléchargées par des tiers."
+      }
+    },
+    "COOKIES": {
+      "TITLE": "Cookies",
+      "DEFINITION": "Un cookie est un fichier contenant un identifiant (une chaîne de lettres et de chiffres) envoyé par un serveur web à un navigateur web et stocké par le navigateur. Lorsque vous accédez à la plateforme Graasp, l'installation de cookies sur vos terminaux est possible selon vos paramètres, ce qui permettra à Graasp de reconnaître votre navigateur, pendant la durée de validité des cookies.",
+      "PURPOSE": {
+        "TEXT": "Les cookies que Graasp génère permettent :",
+        "PURPOSE_1": "d'établir des statistiques incluant la fréquence d'accès, l'utilisation et les performances des sites Internet ;",
+        "PURPOSE_2": "pour stocker les préférences et les paramètres (authentification)",
+        "PURPOSE_3": "pour vous permettre d'accéder à du contenu réservé ou personnel sur la plateforme Graasp",
+        "PURPOSE_4": "pour améliorer notre communication et nos services."
+      },
+      "MANAGEMENT": {
+        "TEXT": "La plupart des navigateurs Web acceptent automatiquement les cookies, mais proposent des options de contrôle qui vous permettent de les bloquer ou de les supprimer. Veuillez consulter la documentation de confidentialité ou d'aide de votre navigateur pour obtenir des instructions sur le blocage ou la suppression des cookies. Par exemple :",
+        "EDGE": "Edge",
+        "SAFARI": "Safari",
+        "CHROME": "Chrome",
+        "FIREFOX": "Firefox"
+      },
+      "FINALITY": {
+        "TEXT": "Si vous choisissez de refuser les cookies, vous risquez de ne pas avoir accès à certaines fonctionnalités de Graasp, ce dont nous ne pouvons être tenus responsables. L'identifiant est alors renvoyé au serveur à chaque fois que le navigateur demande une page au serveur. Les cookies ou technologies similaires peuvent être utiles de nombreuses manières pour rendre votre visite sur Graasp plus simple, plus agréable et plus pertinente. Différents types de cookies sont présents sur Graasp :",
+        "NECESSARY": "Cookies strictement nécessaires, nécessaires à la navigation, ainsi qu'à votre jeton d'authentification après connexion, et pour sécuriser Graasp",
+        "FUNCTIONAL": "Cookies de fonctionnalité, qui collectent certaines de vos préférences de navigation telles que les préférences linguistiques",
+        "ADVERTISING": "Graasp n'utilise pas de cookies publicitaires"
+      }
+    },
+    "DATA_RETENTION": {
+      "TITLE": "Conservation des données",
+      "TEXT": "Graasp conserve vos données personnelles et téléchargées aussi longtemps que votre compte existe. Afin de remplir nos obligations légales ou de remplir notre objectif décrit dans la section 4.3, les données opérationnelles peuvent être anonymisées et/ou conservées pendant une période plus longue.",
+      "STORAGE_LOCATION": "Vos Données Personnelles sont stockées sur des serveurs sécurisés dans les locaux de notre Prestataire de Services en Europe continentale (Allemagne et Suisse)."
+    },
+    "DATA_SHARING": {
+      "TITLE": "Partage de données",
+      "TEXT": "Graasp partage vos données personnelles exclusivement avec les destinataires suivants :",
+      "SHARE_1": "Employés autorisés et responsables de Graasp",
+      "SHARE_2": "Nos prestataires de services"
+    },
+    "SERVICE_PROVIDERS": {
+      "TITLE": "Prestataires de services et transferts",
+      "AWS": {
+        "TITLE": "Amazon Web Services (Principal fournisseur de services)",
+        "TEXT": "Graasp utilise les services d'AWS (Amazon Web Services). Aucun transfert international n'est prévu, mais leur cadre de confidentialité peut être consulté sur le lien ci-dessous.",
+        "PRIVACY_POLICY_LINK": "Politique de confidentialité d'AWS"
+      },
+      "OTHER_PROVIDERS": {
+        "TITLE": "Autres prestataires de services",
+        "GOOGLE_ANALYTICS": "Graasp utilise les services Google Analytics anonymisés et les services Google ReCaptcha pour sécuriser et comprendre l'utilisation de la plateforme.",
+        "SENTRY": "Des données anonymisées sont également partagées avec Sentry.io à des fins de débogage et de dépannage afin de garantir une expérience fluide et stable à nos utilisateurs.",
+        "GOOGLE_FONTS": "Graasp peut utiliser les services de Google Fonts et d'autres bibliothèques JavaScript hébergées sur des serveurs tiers. Dans ces cas, seules les adresses IP seront communiquées à ces fournisseurs de services."
+      },
+      "TRANSFERS": {
+        "TITLE": "Transferts",
+        "TEXT": "Toutes vos données personnelles et téléchargées sont hébergées par AWS, en Europe continentale (Allemagne et Suisse). Une copie des données peut être temporairement stockée dans les locaux de Graasp à des fins d'assurance qualité."
+      }
+    },
+    "SECURITY": {
+      "TITLE": "Sécurité",
+      "TEXT": "Graasp a mis en place des mesures de sécurité appropriées conformément à l'état de la technique reconnu. Veuillez toutefois noter que Graasp ne peut garantir une sécurité absolue de vos données personnelles et téléchargées, dans la mesure où la conservation des données et la transmission électronique comportent certains risques."
+    },
+    "YOUR_RIGHTS": {
+      "TITLE": "Vos droits",
+      "TEXT": "L'utilisateur dispose d'un certain nombre de droits conformément à la législation sur la protection des données. Ces droits peuvent être limités notamment lorsqu'ils affectent les droits et libertés d'autrui. Graasp vous informera des exceptions applicables dans notre réponse à votre éventuelle demande.",
+      "RIGHTS": {
+        "TEXT": "Ces droits incluent :",
+        "RIGHT_1": "droit d'accès : Vous avez le droit de savoir quelles Données Personnelles Graasp détient à votre sujet et de demander, par écrit, à consulter vos Données Personnelles. Vous pouvez obtenir directement ces informations en contactant les responsables du traitement : contact@graasp.org",
+        "RIGHT_2": "Droit d'être informé : Vous avez le droit d'être informé de la manière dont vos données personnelles et vos données téléchargées seront utilisées. La présente politique de confidentialité ainsi que toute information ou notification supplémentaire qui vous est fournie au moment où vous avez fourni vos coordonnées ou autrement, sont destinées à vous fournir ces informations.",
+        "RIGHT_3": "droit de retirer votre consentement : Graasp traite vos données personnelles et vos données téléchargées sur la base de votre consentement ; vous pouvez retirer ce consentement à tout moment.",
+        "RIGHT_4": "droit à l'effacement : Dans certains cas, vous avez le droit de faire supprimer vos données personnelles et vos données téléchargées.",
+        "RIGHT_5": "droit de rectification : Si vous estimez que vos Données Personnelles sont inexactes, vous avez le droit de demander leur mise à jour.",
+        "RIGHT_6": "droit de déposer une plainte : Si vous n'êtes pas satisfait de la manière dont Graasp a traité vos données personnelles ou téléchargées, vous avez le droit de déposer une plainte auprès du Commissaire fédéral à la protection des données et à la transparence (PFPDT) ou auprès de l'autorité de contrôle de votre pays ou de votre résidence."
+      },
+      "RESERVATION": "Graasp se réserve le droit de refuser toute demande abusive ou contraire aux lois applicables."
+    },
+    "POLICY_CHANGES": {
+      "TITLE": "Modifications de la présente politique de confidentialité",
+      "TEXT": "Nous sommes susceptibles de réviser cette politique de confidentialité de temps à autre. La version la plus récente de la politique régira notre traitement de vos données personnelles et téléchargées et sera toujours disponible sur https://graasp.org/privacy. En cas de modifications, elles seront publiées sur https://graasp.org/. Si vous n'êtes pas d'accord avec l'une des modifications apportées à la politique de confidentialité, vous devez cesser d'utiliser Graasp et demander la suppression de votre compte."
+    },
+    "FINAL_PROVISIONS": {
+      "TITLE": "Dispositions finales",
+      "APPLICABLE_LAW": {
+        "TITLE": "Droit applicable et juridiction",
+        "TEXT": "Le droit matériel suisse est applicable. Le lieu d'exécution et le for juridique sont en Valais."
+      }
+    }
+  },
+  "FEATURES": {
+    "TITLE": "Transformez votre enseignement avec Graasp",
+    "DESCRIPTION": "Que vous créiez du contenu sur mesure, que vous engagiez les apprenants dans des présentations dynamiques ou que vous meniez des études pour améliorer le paysage de l'éducation numérique, notre plateforme offre un large éventail de fonctionnalités pour soutenir la création, la présentation, le partage et l'analyse de votre contenu éducatif. Inscrivez-vous gratuitement à Graasp dès aujourd'hui et commencez à créer et à partager vos connaissances dans un réseau mondial de personnes passionnées par l'éducation comme vous !",
+    "CALL_TO_ACTION_TEXT": "Soutenez votre parcours d'apprentissage numérique avec nos quatre services de base",
+    "CALL_TO_ACTION_BUTTON_TEXT": "Inscrivez-vous à Graasp",
+    "PLATFORM_OVERVIEW": {
+      "TITLE": "Graasp en un coup d'oeil",
+      "builder": {
+        "TITLE": "Builder",
+        "DESCRIPTION": "Conçu pour la création de contenu structuré",
+        "BUTTON_TEXT": "En savoir plus"
+      },
+      "player": {
+        "TITLE": "Player",
+        "DESCRIPTION": "L'engagement interactif simplifié",
+        "BUTTON_TEXT": "En savoir plus"
+      },
+      "analytics": {
+        "TITLE": "Analytics",
+        "DESCRIPTION": "Découvrir, mesurer, interpréter les données et les informations",
+        "BUTTON_TEXT": "En savoir plus"
+      },
+      "library": {
+        "TITLE": "Bibliothèque",
+        "DESCRIPTION": "Partage et découverte collaborative des connaissances",
+        "BUTTON_TEXT": "En savoir plus"
+      }
+    },
+    "BLENDED_LEARNING": {
+      "TITLE": "Qu'est-ce que l'apprentissage mixte ?",
+      "DESCRIPTION_1": "L'apprentissage mixte associe l'enseignement traditionnel en classe à des ressources en ligne, créant ainsi un environnement d'apprentissage flexible. Il combine l'enseignement en face à face avec des outils numériques, permettant aux étudiants d'apprendre à leur propre rythme et d'accéder aux ressources à tout moment et en tout lieu.",
+      "DESCRIPTION_2": "Cette approche favorise l'autonomie et l'autodiscipline des élèves en leur proposant des expériences d'apprentissage personnalisées. Les enseignants peuvent utiliser des informations basées sur des données pour adapter l'enseignement et répondre aux besoins individuels des élèves, ce qui conduit à de meilleurs résultats d'apprentissage.",
+      "DESCRIPTION_3": "L'apprentissage mixte combine les atouts de l'enseignement en classe avec la flexibilité des outils en ligne, créant une atmosphère d'apprentissage adaptable et enrichie pour les étudiants."
+    },
+    "GRAASP_FEATURES": {
+      "TITLE": "Caractéristiques de Graasp",
+      "builder": {
+        "LEAD_SENTENCE": "Commencez avec le Builder",
+        "TITLE": "Utilisez le <color>Builder</color> pour donner forme à vos idées et à vos cours",
+        "DESCRIPTION": "Créez du contenu librement ou en utilisant des modèles adaptés à votre style d'enseignement et à votre stratégie pédagogique.<br/>Même sans modèles, la conception intuitive de notre plateforme garantit une expérience de création de contenu guidée et structurée, rappelant les systèmes de fichiers familiers.<br/>La collaboration est encouragée, permettant à plusieurs contributeurs de créer du contenu cohérent et facilitant le processus pour les équipes travaillant en collaboration.",
+        "CTA_BUTTON_TEXT": "Commencer à créer",
+        "SECONDARY_ACTION_BUTTON_TEXT": "Comment configurer",
+        "TERTIARY_ACTION_BUTTON_TEXT": "Comment le gérer"
+      },
+      "player": {
+        "LEAD_SENTENCE": "Présentez à votre audience",
+        "TITLE": "Améliorez votre contenu avec le <color>Player</color>",
+        "DESCRIPTION": "Engagez les apprenants avec une gamme d'outils et de fonctionnalités interactifs.<br/>Des outils d'évaluation tels que des quiz, des tests et des questions ouvertes, à la simulation d'expériences du monde réel via des laboratoires de physique ou de chimie, des évaluations des compétences de codage avec la capsule de code et plus encore !<br/>Intégrez du contenu multimédia, créez des blocs-notes partagés et interagissez avec des chatbots.<br/>Notre plateforme permet aux enseignants d'impliquer les apprenants de manière efficace et variée, garantissant une expérience riche et éducative à la fois dans les salles de classe traditionnelles et dans les environnements d'apprentissage à distance.",
+        "CTA_BUTTON_TEXT": "Commencer à expérimenter",
+        "SECONDARY_ACTION_BUTTON_TEXT": "Comment ajouter des applications",
+        "TERTIARY_ACTION_BUTTON_TEXT": "Tutoriel du Player"
+      },
+      "analytics": {
+        "LEAD_SENTENCE": "Apprenez de vos succès et de vos erreurs",
+        "TITLE": "Améliorez votre contenu grâce à <color>Analytics</color>",
+        "DESCRIPTION": "Découvrez des informations précieuses sur l'engagement des apprenants et les performances du contenu grâce à notre tableau de bord d'analyse. <br/> Suivez l'accès, les interactions, les téléchargements et bien plus encore, en fournissant aux enseignants des informations basées sur les données pour améliorer l'engagement des étudiants et adapter la diffusion du contenu aux besoins individuels de la classe",
+        "CTA_BUTTON_TEXT": "Commencer à analyser",
+        "SECONDARY_ACTION_BUTTON_TEXT": "Tutoriel d'analyse",
+        "TERTIARY_ACTION_BUTTON_TEXT": "Analyse des filtres"
+      },
+      "library": {
+        "LEAD_SENTENCE": "Partagez vos connaissances !",
+        "TITLE": "Rejoignez une communauté d'éducateurs dans la <color>Bibliothèque</color>",
+        "DESCRIPTION": "La collaboration est au cœur de Graasp. Notre bibliothèque partagée favorise une communauté dynamique d'éducateurs et de professionnels. Partagez et accédez facilement au contenu, co-créez du matériel et connectez-vous avec d'autres éducateurs, amplifiant ainsi le partage des connaissances et les expériences d'apprentissage collectif.",
+        "CTA_BUTTON_TEXT": "Explorer le contenu",
+        "SECONDARY_ACTION_BUTTON_TEXT": "Comment naviguer",
+        "TERTIARY_ACTION_BUTTON_TEXT": "Comment publier"
+      }
+    },
+    "PRICING": {
+      "TITLE": "Débloquez encore plus avec Graasp Premium",
+      "CALL_TO_ACTION": "Passez à Premium dès aujourd'hui",
+      "FREE": {
+        "NAME": "Souscription de base",
+        "STORAGE": "5 Go de stockage pour vidéos, images, documents",
+        "SUPPORT": "Tutoriels gratuits",
+        "TEMPLATES": "Modèles standards",
+        "PRICE": "Gratuit"
+      },
+      "PREMIUM": {
+        "NAME": "Souscription Premium",
+        "STORAGE": "15 Go de stockage pour vidéos, images, documents",
+        "SUPPORT": "Ligne d'assistance directe",
+        "TEMPLATES": "Sélection étendue de modèles",
+        "PRICE": "XX CHF/mois"
+      },
+      "CUSTOM": {
+        "NAME": "Souscription personnalisé",
+        "CONTACT_US": "Contactez notre équipe pour discuter d'une solution adaptée à vos besoins.",
+        "GET_A_QUOTE": "Obtenez un devis pour les services souhaités"
+      }
+    },
+    "BLOG": {
+      "LEAD_SENTENCE": "Graasp est en constante croissance !",
+      "TITLE": "Visitez notre blog pour découvrir toutes les dernières mises à jour !",
+      "DESCRIPTION": "Découvrez les mises à jour, enrichissez votre expérience Graasp",
+      "BUTTON_TEXT": "Visitez notre blog"
+    }
+  },
+  "ABOUT_US": {
+    "TITLE": "Rencontre les personnes derrière Graasp",
+    "DESCRIPTION_1": "Fondée par une équipe dédiée de professionnels, notre mission est de combler l'écart entre la technologie de pointe et l'éducation, en autonomisant les éducateurs et les chercheurs à l'échelle mondiale.",
+    "DESCRIPTION_2": "Nous avons pour objectif de combler l'écart entre les environnements de recherche et les établissements éducatifs traditionnels tels que les écoles. Nous imaginons un avenir où Graasp permet aux éducateurs et aux étudiants des structures éducatives traditionnelles et au-delà, de révolutionner les méthodes d'enseignement et de favoriser des expériences d'apprentissage engageantes.",
+    "ASSOCIATION": {
+      "TITLE": "Association Graasp",
+      "DESCRIPTION": "Graasp est bien plus qu'une plateforme d'expérience d'apprentissage. C'est un produit porté par une organisation à but non lucratif suisse dédiée à l'avancement de l'éducation numérique. Notre objectif principal est de soutenir les éducateurs et les chercheurs à chaque étape de leur parcours, en leur offrant aide et formation pour atteindre leurs objectifs de manière efficace.",
+      "PROJECTS": {
+        "TITLE": "D'autres projets",
+        "HELVETAS": {
+          "TITLE": "Helvetas",
+          "DESCRIPTION": "Plateforme numérique collaborative pour former les jeunes sur les routes migratoires"
+        },
+        "CLIMATE": {
+          "TITLE": "Climate",
+          "DESCRIPTION": "Simulations d'apprentissage actif pour explorer la science du réchauffement climatique"
+        }
+      }
+    },
+    "TEAM": {
+      "TITLE": "Rencontre l'équipe !",
+      "STATUSES": {
+        "TITLE_PRESIDENT": "Président",
+        "TITLE_MANAGING_DIRECTOR": "Directrice Générale",
+        "TITLE_VP_RESEARCH": "VP Recherche",
+        "TITLE_VP_PRODUCT": "VP Produit",
+        "TITLE_VP_ENGINEERING": "VP Ingénieurie",
+        "TITLE_VP_OUTREACH": "VP Communication et Promotion",
+        "TITLE_VP_INNOVATION": "VP Innovation",
+        "TITLE_VP_TECHNOLOGY": "VP Technologie",
+        "TITLE_VP_EDUCATION_AND_CONTENT": "VP Formation et Contenu",
+        "TITLE_SOFTWARE_ENGINEER": "Ingénieur logiciel",
+        "TITLE_AMBASSADOR": "Ambassadeur",
+        "TITLE_PEDAGOGICAL_ENGINEER": "Ingénieur pédagogique"
+      }
+    },
+    "PRESENTATION_VIDEO": {
+      "TITLE": "Regardez notre vidéo de présentation",
+      "JOIN_BUTTON_TEXT": "Rejoins notre communauté",
+      "LIBRARY_BUTTON_TEXT": "Explore la Bibliothèque"
+    }
+  },
+  "CONTACT_US": {
+    "TITLE": "Nous Contacter",
+    "DESCRIPTION": "Nous apprécions les retours de nos utilisateurs. Que vous rencontriez un problème, souhaitiez nous parler d'une idée ou d'une fonctionnalité manquante, n'hésitez pas à nous en faire part !",
+    "SUPPORT": {
+      "TITLE": "Vous êtes confronté à un problème ?",
+      "DESCRIPTION": "Nous proposons une assistance pour les problèmes de connexion et de publication de contenu, ainsi que pour les questions générales liées au l'utilisation de Graasp. Envoyez-nous un e-mail et nous vous répondrons dans les plus brefs délais. Nous répondons sous 3 à 5 jours ouvrés.",
+      "EMAIL": "support@graasp.org"
+    },
+    "SOCIAL": {
+      "TITLE": "Partagez des trucs sympas avec nous sur les réseaux sociaux",
+      "DESCRIPTION": "Vous avez créé quelque chose de génial avec Graasp ? Envie de partager votre création ? Mentionnez-nous sur les réseaux sociaux ; nous serons ravis de repartager !"
+    },
+    "OTHER": {
+      "TITLE": "Autre chose ?",
+      "DESCRIPTION": "Avez-vous autre chose dont vous souhaitez discuter avec nous ?",
+      "EMAIL": "contact@graasp.org"
+    }
+  },
+  "SUPPORT": {
+    "TITLE": "Guides d'utilisation",
+    "DESCRIPTION": "Consultez notre banque de resources sur l'utilisation de la plateforme Graasp. Nous avons des tutoriels explorant les différentes possibilités de la plateforme, ainsi que des articles thématiques. N'hésitez pas à prendre contact avec nous pour toute question spécifique.",
+    "FAQ": {
+      "TITLE": "FAQ",
+      "DESCRIPTION_1": "Vous pouvez trouver ci-dessous les réponses aux questions les plus souvent posées pour trouver des solutions aux doutes et défis partagés par la communauté.",
+      "DESCRIPTION_2": "Pour toute question supplémentaire ou spécifique, remplissez le formulaire de contact et nous vous répondrons.",
+      "HOW_TO_GET_STARTED": {
+        "QUESTION": "Comment commencer à utiliser la plateforme ?",
+        "RESPONSE": "Vous pouvez créer un compte gratuitement."
+      },
+      "BUILDER_PLAYER_DIFFERENCE": {
+        "QUESTION": "Quelle est la différence entre Builder et Player ?",
+        "RESPONSE": "Builder et Player sont deux interfaces disponibles dans Graasp. Les utilisateurs choisissent l'interface qu'ils souhaitent utiliser en fonction de leur utilisation. Traditionnellement, Builder est le mieux adapté pour créer le contenu éducatif, construire les leçons, ajouter des éléments et mettre à jour leurs paramètres. Player est principalement utilisé lors de la consommation du contenu créé. Les étudiants et autres lecteurs sont l'audience principale ciblée par cette interface."
+      },
+      "IMPORT_FROM_OTHER_PLATFORM": {
+        "QUESTION": "Comment importer mon contenu existant depuis une autre plateforme dans Graasp ?",
+        "RESPONSE": "Vous pouvez glisser-déposer des documents, des images et d'autres médias riches. Nous prenons en charge le contenu H5P et une large gamme de contenus multimédias, audio, vidéo, images et liens Web. Nous n'avons actuellement pas de procédures spéciales pour importer à partir de plateformes spécifiques."
+      }
+    },
+    "TUTORIALS": {
+      "TITLE": "Tutorials",
+      "DESCRIPTION": "Maîtriser les fonctionnalités de la plateforme : voici une collection de nos tutoriels et guides détaillés, conçus pour vous aider à tirer le meilleur parti des fonctionnalités de Graasp.",
+      "GENERAL_TUTORIALS": {
+        "QUICK_GET_STARTED": {
+          "TITLE": "Prise en main rapide",
+          "DESCRIPTION": "Tutoriel de prise en main rapide de la plateforme",
+          "LINK": "https://player.graasp.org/9d80d81f-ec9d-4bfb-836a-1c6b125aef2f/84518f10-3174-4216-98e9-aede34ee108e"
+        }
+      },
+      "BUILDER": {
+        "TITLE": "Tutoriels pour le Builder"
+      },
+      "PLAYER": {
+        "TITLE": "Tutoriels pour le Player"
+      },
+      "LIBRARY": {
+        "TITLE": "Tutoriels sur la publication dans la Bibliothèque"
+      },
+      "ACCOUNT": {
+        "TITLE": "Tutoriels sur la gestion de compte"
+      },
+      "READ_BUTTON": "Lire"
+    },
+    "DEVELOPERS": {
+      "TITLE": "Développeurs",
+      "SUBTITLE": "Le développement vous intéresse ? Adoptez l'éducation ouverte avec Graasp !",
+      "DESCRIPTION": "Chez Graasp, nous croyons au pouvoir du logiciel libre autant qu'à l'éducation ouverte. C'est pourquoi nous partageons le code de nos services sur GitHub et invitons les développeurs à nous rejoindre dans notre mission de façonner le paysage de l'éducation numérique.",
+      "GITHUB": {
+        "TITLE": "Education ouverte",
+        "SUBTITLE": "Envie de collaborer ?",
+        "BUTTON_TEXT": "Visiter le Dépôt",
+        "DESCRIPTION": "Visitez notre dépôt sur GitHub où nous collaborons activement et partageons du code, favorisant une approche de l'éducation axée sur la communauté. Contactez l'équipe si vous souhaitez commencer à collaborer !"
+      }
+    },
+    "HELP": {
+      "TITLE": "Besoin d'aide ? Contactez-nous",
+      "DESCRIPTION": "N'hésitez pas à nous contacter pour tout besoin ou question que vous pourriez avoir ! Nous nous ferons un plaisir de répondre à vos doutes et à vos curiosités.",
+      "CONTACT_FORM_BUTTON": "Aller au formulaire de contact"
+    }
+  },
+  "NEWSLETTER": {
+    "TITLE": "Voulez-vous rester informé-e ?",
+    "DESCRIPTION": "Nous vous communiquerons les mises à jour importantes de la plateforme par email.",
+    "INPUT_LABEL": "Adresse email",
+    "INPUT_PLACEHOLDER": "Où pouvons-nous vous contacter ?",
+    "BUTTON_TEXT": "S'abonner"
+  },
+  "FOOTER": {
+    "TAG_LINE": "Développé en Suisse par l'association Graasp",
+    "CONTENT": {
+      "TITLE": "Contenu",
+      "HOME": "Accueil",
+      "FEATURES": "Fonctionnalités",
+      "ABOUT_US": "À propos de nous",
+      "SUPPORT": "Support utilisateur",
+      "CONTACT_US": "Contactez-nous",
+      "BLOG": "Blog"
+    },
+    "PARTNERS": {
+      "TITLE": "Partenaires"
+    },
+    "SOCIAL": {
+      "TITLE": "Réseaux sociaux"
+    },
+    "OTHER": {
+      "TITLE": "Autre",
+      "TERMS": "Conditions d'utilisation",
+      "POLICY": "Politique de confidentialité",
+      "DISCLAIMER": "Clause de non-responsabilité"
+    }
+  },
+  "NAV": {
+    "GO_TO_GRAASP": "Commencer"
+  }
+}
