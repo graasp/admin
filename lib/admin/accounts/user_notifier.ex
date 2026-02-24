@@ -78,7 +78,8 @@ defmodule Admin.Accounts.UserNotifier do
         message: message_text,
         button_text: button_text,
         button_url: button_url,
-        pixel: pixel
+        pixel: pixel,
+        account: user
       })
 
     deliver(
