@@ -8,7 +8,7 @@ defmodule AdminWeb.ClientController do
   end
 
   # Serve the index.html file as-is and let React
-  # take care of the rendering and client-side rounting.
+  # take care of the rendering and client-side routing.
   #
   # Potential improvement: Cache the file contents here
   # in an ETS table so we don't read from the disk for every request.
