@@ -391,8 +391,10 @@ defmodule Admin.Notifications do
         MapSet.member?(only_langs, user.lang) and user.marketing_emails_subscribed_at != nil
       end)
 
+    audience_size = length(audience)
+
     {filtered_audience,
-     %{total: length(audience), excluded: length(audience) - length(filtered_audience)}}
+     %{total: audience_size, excluded: audience_size - length(filtered_audience)}}
   end
 
   def create_pixel(%Scope{} = scope, %Admin.Notifications.Notification{} = notification) do

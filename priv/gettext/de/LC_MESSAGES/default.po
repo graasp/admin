@@ -12,7 +12,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/admin_web/components/core_components.ex:353
-#: lib/admin_web/live/notification_live/show.ex:70
+#: lib/admin_web/live/notification_live/show.ex:71
 #, elixir-autogen, elixir-format
 msgid "Actions"
 msgstr "Aktionen"
@@ -169,6 +169,28 @@ msgid "You are viewing this page in: %{locale}"
 msgstr ""
 
 #: lib/admin_web/live/notification_live/show.ex:28
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Excluded: %{count} (incompatible language, or unsubscribed from marketing emails)"
+msgstr ""
+
+#: lib/admin_web/controllers/account_controller.ex:23
 #, elixir-autogen, elixir-format
-msgid "Excluded: %{count} (incompatible language, or not subscribed)"
+msgid "Subscribed to marketing emails"
+msgstr ""
+
+#: lib/admin_web/controllers/account_controller.ex:11
+#, elixir-autogen, elixir-format
+msgid "Unsubscribed from marketing emails"
+msgstr ""
+
+#: lib/admin_web/controllers/account_controller.ex:25
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "page title"
+msgid "Subscribed to Marketing Emails"
+msgstr ""
+
+#: lib/admin_web/controllers/account_controller.ex:13
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "page title"
+msgid "Unsubscribed from Marketing Emails"
 msgstr ""

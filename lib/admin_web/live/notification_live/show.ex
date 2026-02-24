@@ -25,7 +25,8 @@ defmodule AdminWeb.NotificationLive.Show do
           <div class="flex flex-col gap-1">
             <span>{@notification.audience} {@recipients.included}</span>
             <span>
-              {gettext("Excluded: %{count} (incompatible language, or not subscribed)",
+              {gettext(
+                "Excluded: %{count} (incompatible language, or unsubscribed from marketing emails)",
                 count: @recipients.excluded
               )}
             </span>

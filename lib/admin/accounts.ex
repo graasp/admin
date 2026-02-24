@@ -434,7 +434,7 @@ defmodule Admin.Accounts do
     |> Repo.insert()
   end
 
-  def member_marketing_emails(%Account{} = account, enable_emails) do
+  def update_member_marketing_emails(%Account{} = account, enable_emails) do
     account |> Account.marketing_emails_changeset(enable_emails) |> Repo.update()
   end
 end
