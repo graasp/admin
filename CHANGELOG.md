@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.9.0](https://github.com/graasp/admin/compare/v0.8.1...v0.9.0) (2026-02-24)
+
+
+### Features
+
+* add docs pages ([#163](https://github.com/graasp/admin/issues/163)) ([e2ee15b](https://github.com/graasp/admin/commit/e2ee15b63b3ad88b889991efd627bcf41cd67893))
+* add unsubscribe ([#152](https://github.com/graasp/admin/issues/152)) ([714a975](https://github.com/graasp/admin/commit/714a975117c61e500dc46548de3a52510031d264))
+
+
+### Bug Fixes
+
+* update target id for js hiding of row in notification index ([#161](https://github.com/graasp/admin/issues/161)) ([e89eca0](https://github.com/graasp/admin/commit/e89eca0074244234c9ff4aef86fdd558b481ae3e))
+
 ## [0.8.1](https://github.com/graasp/admin/compare/v0.8.0...v0.8.1) (2026-02-06)
 
 
