@@ -179,3 +179,5 @@ if config_env() == :prod do
     username: System.get_env("UMAMI_USERNAME"),
     password: System.get_env("UMAMI_PASSWORD")
 end
+
+config :admin, :umami_website_id, System.get_env("UMAMI_WEBSITE_ID")

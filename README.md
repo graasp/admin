@@ -102,6 +102,7 @@ You can also use a graphical client like [Postgres.app](https://postgresapp.com/
    export AWS_DEFAULT_REGION=garage
    export UMAMI_USERNAME=some_username
    export UMAMI_PASSWORD=a_strong_password
+   export UMAMI_WEBSITE_ID=a_website_id_you_create_in_umami
    ```
    You will need to source this file in your shell before starting the server:
    ```sh

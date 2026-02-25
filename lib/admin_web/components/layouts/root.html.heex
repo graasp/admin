@@ -19,6 +19,12 @@
     <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico?v=3" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+    <script
+      defer
+      src={"#{Application.get_env(:admin, :umami_origin)}/script.js"}
+      data-website-id={Application.get_env(:admin, :umami_website_id)}
+    >
+    </script>
     <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
     </script>
     <script>
