@@ -48,7 +48,7 @@ jobs:
         uses: jdx/mise-action@v3
 
       - name: build client
-        run: cd client && mise run build && cp -r dist ../priv/static/client
+        run: cd client && mise run build && cp -r dist/* ../priv/static/client
         env:
           VITE_VERSION: ${{ inputs.version || github.sha }}
           VITE_GRAASP_API_HOST: ${{ vars.VITE_GRAASP_API_HOST }}
