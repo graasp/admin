@@ -54,4 +54,4 @@ npm-debug.log
 /priv/plts/*.plt.hash
 
 # client SPA artifacts
-/priv/static/client
+/priv/static/client/*

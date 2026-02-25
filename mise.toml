@@ -31,3 +31,7 @@ run = "mix phx.server"
 [tasks.dev]
 depends = ["backend-dev", "frontend-dev"]
 description = "start the backend and frontend servers in development mode"
+
+[tasks.frontend-build]
+run = "cd ../client && pnpm build && cp -r dist/* ../admin/priv/static/client"
+description = "Build the frontend from the sibling folder and copy it to the static assets"
