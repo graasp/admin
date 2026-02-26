@@ -121,6 +121,8 @@ defmodule Admin.MixProject do
       {:hackney, "~> 1.9"},
       # optional dependency to parse XML
       {:sweet_xml, "~> 0.7"},
+      # for parsing HTML in tests
+      {:floki, "~> 0.38", only: [:dev, :test]},
       # jobs with Oban
       {:oban, "~> 2.19"},
       {:oban_web, "~> 2.11"},

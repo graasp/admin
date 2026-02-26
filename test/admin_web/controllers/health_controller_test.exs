@@ -7,4 +7,11 @@ defmodule AdminWeb.HealthControllerTest do
       assert text_response(conn, 200) =~ "OK"
     end
   end
+
+  describe "GET /health" do
+    test "replies with OK", %{conn: conn} do
+      conn = get(conn, ~p"/health")
+      assert text_response(conn, 200) =~ "OK"
+    end
+  end
 end
