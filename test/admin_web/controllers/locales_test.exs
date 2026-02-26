@@ -27,4 +27,14 @@ defmodule AdminWeb.LocaleTest do
 
     assert redirected_to(conn) == "/other"
   end
+
+  test "get locale page", %{conn: conn} do
+    conn = get(conn, ~p"/locale")
+    assert html_response(conn, 200) =~ "lang=\"en\""
+  end
+
+  test "remove current locale", %{conn: conn} do
+    conn = delete(conn, ~p"/locale")
+    assert redirected_to(conn) == ~p"/locale"
+  end
 end
