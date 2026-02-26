@@ -131,4 +131,20 @@ defmodule Admin.S3Test do
       end)
     end
   end
+
+  describe "Delete Object" do
+    test "Valid object" do
+      expect(ExAwsMock, :request, fn operation ->
+        assert %ExAws.Operation.S3{} = operation
+        # expect to get no bucket name since we are listing all buckets
+        assert operation.bucket == "my-bucket"
+        assert operation.path == "object1"
+        assert operation.http_method == :delete
+        # return an empty list of buckets
+        {:ok, %{}}
+      end)
+
+      Admin.S3.delete_object("my-bucket", "object1")
+    end
+  end
 end
