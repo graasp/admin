@@ -23,14 +23,14 @@ An **item** represents a piece of content within Graasp. It can be one of the fo
 
 Shortcuts in Graasp are special items that allow users to create links to existing items. Instead of duplicating content, a shortcut references the original item from another location in the hierarchy.
 
-Shortcuts can link to any items, however access to a shortcut depends on permissions to the original item.
+Shortcuts can link to any items, however access to a shortcut depends on permissions for the original item.
 
 #### Shortcut vs Copy
 
 | Feature   | Shortcut                     | Copy                |
 | --------- | ---------------------------- | ------------------- |
 | Storage   | No duplication               | Creates a new item  |
-| Updates   | Reflects changes in original | Independent         |
+| Updates   | Mirrors changes in original | Independent         |
 | Ownership | Points to original owner     | New owner           |
 | Use case  | Cross-linking                | Content duplication |
 
@@ -45,4 +45,4 @@ Internal shortcuts are not displayed in the sidebar navigation, but external sho
 - Shortcuts depend on access to the original item. Moving the original item might affect the shortcut.
 - Deleting the original item breaks all related shortcuts.
 - Some actions (such as editing content) always apply to the original item, not the shortcut.
-- Copying the hierarchy containing a shortcut might break the reference. Let's say shortcut S1 targets an item I1 inside folder F. If the folder F is copied, it will create a new item I2, and a new shortcut S2 but this shortcut will still link to A1.
+- Copying the hierarchy containing a shortcut might break the reference. Let's say shortcut S1 targets an item I1 inside folder F. If the folder F is copied, it will create a new item I2, and a new shortcut S2 but this shortcut will still link to I1.
