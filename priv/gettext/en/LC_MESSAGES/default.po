@@ -42,7 +42,7 @@ msgstr "close"
 #: lib/admin_web/controllers/blog_html/show.html.heex:9
 #, elixir-autogen, elixir-format
 msgid " by %{authors}"
-msgstr "by %{authors}"
+msgstr " by %{authors}"
 
 #: lib/admin_web/controllers/blog_html/show.html.heex:4
 #, elixir-autogen, elixir-format

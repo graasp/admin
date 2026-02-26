@@ -19,7 +19,7 @@ An **item** represents a piece of content within Graasp. It can be one of the fo
 - **Files**: An uploaded file, for example an image or a pdf. You can upload maximum 1GB per file.
 - **H5P**: An interactive HTML application for education.
 
-### Shortcuts
+### Shortcuts {: #shortcuts}
 
 Shortcuts in Graasp are special items that allow users to create links to existing items. Instead of duplicating content, a shortcut references the original item from another location in the hierarchy.
 
