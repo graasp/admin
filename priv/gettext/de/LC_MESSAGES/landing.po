@@ -14,7 +14,7 @@ msgstr ""
 #: lib/admin_web/controllers/landing_html/index.html.heex:27
 #, elixir-autogen, elixir-format
 msgid "Brought to you by the Graasp Association based in Switzerland"
-msgstr ""
+msgstr "Präsentiert von der Graasp Verein aus der Schweiz"
 
 #: lib/admin_web/controllers/landing_html/index.html.heex:16
 #, elixir-autogen, elixir-format
@@ -39,7 +39,7 @@ msgstr "Inhalt"
 #: lib/admin_web/controllers/landing_html.ex:476
 #, elixir-autogen, elixir-format
 msgid "Developed in Switzerland by the Graasp association"
-msgstr ""
+msgstr "Entwickelt in der Schweiz von der Graasp Verein"
 
 #: lib/admin_web/controllers/landing_html.ex:564
 #, elixir-autogen, elixir-format
@@ -49,7 +49,7 @@ msgstr "Haftungsausschluss"
 #: lib/admin_web/controllers/landing_html.ex:482
 #, elixir-autogen, elixir-format
 msgid "Home"
-msgstr ""
+msgstr "Startseite"
 
 #: lib/admin_web/controllers/landing_html.ex:595
 #, elixir-autogen, elixir-format
@@ -59,7 +59,7 @@ msgstr "Ideenillustrationen von Storyset"
 #: lib/admin_web/controllers/landing_html.ex:556
 #, elixir-autogen, elixir-format
 msgid "Other"
-msgstr ""
+msgstr "Weiteres"
 
 #: lib/admin_web/controllers/landing_html.ex:498
 #, elixir-autogen, elixir-format
@@ -79,7 +79,7 @@ msgstr "Soziale Medien"
 #: lib/admin_web/controllers/landing_html.ex:489
 #, elixir-autogen, elixir-format
 msgid "Support"
-msgstr ""
+msgstr "Hilfe"
 
 #: lib/admin_web/controllers/landing_html.ex:558
 #, elixir-autogen, elixir-format
@@ -89,7 +89,7 @@ msgstr "Nutzungsbedingungen"
 #: lib/admin_web/controllers/landing_html/index.html.heex:325
 #, elixir-autogen, elixir-format
 msgid "About the association"
-msgstr ""
+msgstr "Über den Verein"
 
 #: lib/admin_web/controllers/landing_html/about.html.heex:67
 #, elixir-autogen, elixir-format
@@ -204,7 +204,7 @@ msgstr "Gehe zur Graasp-Bibliothek"
 #: lib/admin_web/controllers/landing_html/about.html.heex:41
 #, elixir-autogen, elixir-format
 msgid "Graasp Association"
-msgstr ""
+msgstr "Graasp Verein"
 
 #: lib/admin_web/controllers/landing_html/about.html.heex:44
 #, elixir-autogen, elixir-format
