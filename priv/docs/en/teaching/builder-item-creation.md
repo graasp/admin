@@ -27,18 +27,18 @@ Shortcuts can link to any items, however access to a shortcut depends on permiss
 
 #### Shortcut vs Copy
 
-| Feature   | Shortcut                     | Copy                |
-| --------- | ---------------------------- | ------------------- |
-| Storage   | No duplication               | Creates a new item  |
+| Feature   | Shortcut                    | Copy                |
+| --------- | --------------------------- | ------------------- |
+| Storage   | No duplication              | Creates a new item  |
 | Updates   | Mirrors changes in original | Independent         |
-| Ownership | Points to original owner     | New owner           |
-| Use case  | Cross-linking                | Content duplication |
+| Ownership | Points to original owner    | New owner           |
+| Use case  | Cross-linking               | Content duplication |
 
 #### Navigation
 
 In Builder and Player, navigating through a shortcut to an item within the same context (internal shortcuts) will stay in the same context. However navigating through a shortcut to an external item (external shortcut) will change the context.
 
-Internal shortcuts are not displayed in the sidebar navigation, but external shortcuts are.
+Internal shortcuts to folders are not displayed in the sidebar navigation, but external shortcuts are as well as shortcuts to non-folder items.
 
 #### Limitations
 
