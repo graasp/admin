@@ -482,10 +482,10 @@ defmodule AdminWeb.LandingHTML do
                 {dgettext("landing", "Home")}
               </.footer_link>
 
-              <.footer_link href="/about-us">
+              <.footer_link href={~p"/about-us"}>
                 {dgettext("landing", "About Us")}
               </.footer_link>
-              <.footer_link href="/support">
+              <.footer_link href={~p"/docs"}>
                 {dgettext("landing", "Support")}
               </.footer_link>
               <.footer_link href={~p"/contact"}>
