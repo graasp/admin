@@ -1,6 +1,10 @@
 [tools]
-elixir = "1.19.4-otp-28"
+elixir = "1.19.5"
 erlang = "28.1"
+
+[env]
+# Persist history of the IEx (Elixir) and erl (Erlang) shells
+ERL_AFLAGS = "-kernel shell_history enabled"
 
 [tasks.log]
 run = '''
