@@ -585,7 +585,7 @@ defmodule AdminWeb.LandingHTML do
           </div>
         </div>
         <div class="flex flex-col items-center gap-2">
-          <p class="text-sm">
+          <p class="text-sm" id="preview-button">
             © Graasp 2014 - 2026
           </p>
           <.link
@@ -595,6 +595,13 @@ defmodule AdminWeb.LandingHTML do
             {dgettext("landing", "Idea illustrations by Storyset")}
           </.link>
         </div>
+        <script>
+          // add a click listener on the DOM element with id "preview-button"
+          document.getElementById("preview-button").addEventListener("click", function() {
+            // save the preview state in the localStorage
+            localStorage.setItem("graasp-preview", "enabled");
+          });
+        </script>
       </div>
     </footer>
     """
