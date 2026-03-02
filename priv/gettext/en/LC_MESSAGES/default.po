@@ -276,3 +276,13 @@ msgstr "Documentation"
 #, elixir-autogen, elixir-format
 msgid "Support"
 msgstr ""
+
+#: lib/admin_web/controllers/docs_html/index.html.heex:55
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Contact us"
+msgstr "Contact us"
+
+#: lib/admin_web/controllers/docs_html/index.html.heex:54
+#, elixir-autogen, elixir-format
+msgid "Did not find what you were looking for?"
+msgstr ""
