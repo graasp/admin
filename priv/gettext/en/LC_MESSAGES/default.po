@@ -280,7 +280,7 @@ msgstr ""
 #: lib/admin_web/controllers/docs_html/index.html.heex:55
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Contact us"
-msgstr "Contact"
+msgstr "Contact us"
 
 #: lib/admin_web/controllers/docs_html/index.html.heex:54
 #, elixir-autogen, elixir-format
