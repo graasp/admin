@@ -590,7 +590,7 @@ defmodule AdminWeb.LandingHTML do
           </p>
           <.link
             href="https://storyset.com/idea"
-            class="text-[10px] text-secondary text-decoration-none"
+            class="text-[10px] text-neutral-content text-decoration-none"
           >
             {dgettext("landing", "Idea illustrations by Storyset")}
           </.link>

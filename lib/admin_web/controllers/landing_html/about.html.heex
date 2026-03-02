@@ -106,7 +106,7 @@
         <%= for paper <- papers() do %>
           <li class="flex flex-col gap-1 bg-base-100 rounded-lg p-4 max-w-md">
             <a target="_blank" class="link link-hover w-fit" href={paper.url}>{paper.title}</a>
-            <span class="text-secondary text-sm">{paper.year}</span>
+            <span class="text-accent text-sm">{paper.year}</span>
             <span class="text-neutral text-sm">{paper.authors}</span>
           </li>
         <% end %>
