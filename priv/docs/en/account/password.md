@@ -9,7 +9,7 @@ order: 20
 
 On the Graasp platform, you can set a password to sign in into Graasp. If you forget this password, you can request to reset it by the following steps:
 
-1. Click "Forgot Password?" on the login page or go to https://auth.graasp.org/forgot-password.
+1. Click "Forgot Password?" on the login page or go to [https://graasp.org/auth/forgot-password](https://graasp.org/auth/forgot-password).
 2. Enter your registered email.
 
 ![request reset password](/images/docs/request-reset-password.png)
