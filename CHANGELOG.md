@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.9.1](https://github.com/graasp/graasp-web/compare/v0.9.0...v0.9.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* add a task to build from sibling directory ([c02e1f3](https://github.com/graasp/graasp-web/commit/c02e1f3bbebdec34761a9fa6a1aea5a62d8845b6))
+* add client folder ([4f66a44](https://github.com/graasp/graasp-web/commit/4f66a44041ba833e6bf32a6acea6f6d21f2dd856))
+* add paths for client app ([#164](https://github.com/graasp/graasp-web/issues/164)) ([919907d](https://github.com/graasp/graasp-web/commit/919907dfa55f18c319fe66828b7a7003ac8040f0))
+* add the contact us message in the docs page ([#187](https://github.com/graasp/graasp-web/issues/187)) ([0697e97](https://github.com/graasp/graasp-web/commit/0697e97f4c179a0add168743072c746660aa303e))
+* add umami website tracking ([#171](https://github.com/graasp/graasp-web/issues/171)) ([633b676](https://github.com/graasp/graasp-web/commit/633b6760020f0afed8e4f4e222aa6fbdc691eda4))
+* adjust dark theme for better legibility ([#176](https://github.com/graasp/graasp-web/issues/176)) ([a7a6f09](https://github.com/graasp/graasp-web/commit/a7a6f0970242499daea491e59313bb9265bcb758))
+* allow to set `graasp-review: enable` in localStorage with js from page footer ([#175](https://github.com/graasp/graasp-web/issues/175)) ([bcca350](https://github.com/graasp/graasp-web/commit/bcca350ed2c6bee408cc3188224b794963909573))
+* **de:** update translations ([#179](https://github.com/graasp/graasp-web/issues/179)) ([999b0ed](https://github.com/graasp/graasp-web/commit/999b0ed4ef3f865dcc8136a6aa11da04d0fa4285))
+* support link to go to docs ([#173](https://github.com/graasp/graasp-web/issues/173)) ([a36aca0](https://github.com/graasp/graasp-web/commit/a36aca09ccab6328a810bc7c57bdb5c0008a4dbe))
+* typos in docs related to the account ([#186](https://github.com/graasp/graasp-web/issues/186)) ([37fc4ad](https://github.com/graasp/graasp-web/commit/37fc4ad40b05f3aad45c1c09693556cf800ef437))
+* update elixir version and add flags via mise ([#188](https://github.com/graasp/graasp-web/issues/188)) ([a1f7a1b](https://github.com/graasp/graasp-web/commit/a1f7a1b7dcc89946254b2b7db6eb479305f99e26))
+* update the copy command in the deploy workflow ([2608e69](https://github.com/graasp/graasp-web/commit/2608e69de82954cfd8992ed3c2290f8c31803390))
+
+
+### Documentation
+
+* add documentation about shortcuts ([#168](https://github.com/graasp/graasp-web/issues/168)) ([d041f35](https://github.com/graasp/graasp-web/commit/d041f35519bbcec009ac4f3c2b7f6e3125459e68))
+* add new blog post for new prod release ([#177](https://github.com/graasp/graasp-web/issues/177)) ([baee098](https://github.com/graasp/graasp-web/commit/baee0987166af0766218d9091f2c752154067f80))
+* fix shortcut behaviour description ([#178](https://github.com/graasp/graasp-web/issues/178)) ([5ab5336](https://github.com/graasp/graasp-web/commit/5ab5336c00cb5dfad9698d3dc55e34c53d25a164))
+
+
+### Chores
+
+* **deps:** update dependency bandit to v1.10.3 ([#184](https://github.com/graasp/graasp-web/issues/184)) ([d007783](https://github.com/graasp/graasp-web/commit/d007783044b490abd223e28d3c3d710b8ed37e20))
+* remove artefacts from client ([57cb88b](https://github.com/graasp/graasp-web/commit/57cb88b491226d5b97d456f085bde2af25038125))
+* update coverage ([#182](https://github.com/graasp/graasp-web/issues/182)) ([b9cf685](https://github.com/graasp/graasp-web/commit/b9cf685cd515bcd82e68121d85b13152f4bb2a7a))
+
 ## [0.9.0](https://github.com/graasp/admin/compare/v0.8.1...v0.9.0) (2026-02-24)
 
 
