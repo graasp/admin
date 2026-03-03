@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><%= gettext("Graasp blog") %></title>
+  <subtitle><%= gettext("Blog posts and update log by the Graasp team") %></subtitle>
+  <link rel="alternate" href="<%= Admin.Environment.app_url(path: ~p"/blog") %>" />
+  <link rel="self" href="<%= Admin.Environment.app_url(path: ~p"/blog/feed.atom") %>" />
+  <id><%= Admin.Environment.app_url(path: ~p"/blog") %></id>
+  <updated><%= @last_build_date |> Timex.format!("{RFC3339}") %></updated>
+  <author>
+    <name><%= pgettext("blog author", "Graasp") %></name>
+  </author>
+  <%= for entry <- @entries do %>
+    <entry>
+      <title><%= entry.title %></title>
+      <summary type="html"><![CDATA[ <%= entry.description %> ]]></summary>
+      <link href="<%= Admin.Environment.app_url(path: ~p"/blog/#{entry.id}") %>"/>
+      <id><%= Admin.Environment.app_url(path: ~p"/blog/#{entry.id}") %></id>
+      <updated><%= entry.date |> Timex.format!("{RFC3339}") %></updated>
+      <content type="html"><![CDATA[ <%= entry.body %> ]]></content>
+    </entry>
+  <% end %>
+</feed>

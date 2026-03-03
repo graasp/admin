@@ -39,7 +39,7 @@ defmodule AdminWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, formats: [:html, :json]
+      use Phoenix.Controller, formats: [:html, :json, :xml]
 
       use Gettext, backend: AdminWeb.Gettext
 
@@ -61,6 +61,17 @@ defmodule AdminWeb do
   def live_component do
     quote do
       use Phoenix.LiveComponent
+
+      unquote(html_helpers())
+    end
+  end
+
+  def xml do
+    quote do
+      use Phoenix.Component
+
+      import Phoenix.Controller,
+        only: [get_csrf_token: 0, view_module: 1, view_template: 1]
 
       unquote(html_helpers())
     end

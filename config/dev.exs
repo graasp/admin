@@ -106,7 +106,7 @@ config :ex_aws, :s3,
   path_style: true
 
 # Define the base host to use
-config :admin, :base_host, "localhost:3114"
+config :admin, :base_host, "localhost:4001"
 # define the backend host to use
 # NOTE: We currently define a host for both the client and the backend event though they are the same domain in production.
 #       This is because in development the "domain" is the vite dev server which can forward calls to the backend via the vite proxy.
