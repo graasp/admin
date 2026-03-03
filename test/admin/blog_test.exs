@@ -93,7 +93,7 @@ defmodule Admin.BlogTest do
       assert %Post{
                id: "2026-01-01-my-post-id",
                title: "hello",
-               date: ~D[2026-01-01],
+               date: ~U[2026-01-01 00:00:00Z],
                tags: [],
                authors: ["hey", "you"],
                body: "Content"
@@ -120,7 +120,7 @@ defmodule Admin.BlogTest do
       assert %Post{
                id: "2026-01-01-my-post-id",
                title: "hello",
-               date: ~D[2026-01-01],
+               date: ~U[2026-01-01 00:00:00Z],
                tags: [],
                description: "This is the description of the post.\n\n",
                authors: ["hey", "you"],
