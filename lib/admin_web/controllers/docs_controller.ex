@@ -15,7 +15,7 @@ defmodule AdminWeb.DocsController do
 
   def index(conn, _params) do
     sections = Docs.for_locale_by_sections(conn.assigns[:locale])
-    {%{"" => intro}, sections} = Map.split(sections, [""])
+    {%{"intro" => intro}, sections} = Map.split(sections, ["intro"])
 
     render(conn, :index,
       page_title: pgettext("page_title", "Documentation"),
