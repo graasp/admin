@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.2](https://github.com/graasp/graasp-web/compare/v0.9.1...v0.9.2) (2026-03-04)
+
+
+### Bug Fixes
+
+* add atom feed ([#189](https://github.com/graasp/graasp-web/issues/189)) ([6dc014d](https://github.com/graasp/graasp-web/commit/6dc014d3434ece074519e107b08e3e60fca182ce))
+* re-enable the register controller with the stub ([#191](https://github.com/graasp/graasp-web/issues/191)) ([4ac16c4](https://github.com/graasp/graasp-web/commit/4ac16c4e4d89b1fceb9e757049c79e38cfe917f7))
+
 ## [0.9.1](https://github.com/graasp/graasp-web/compare/v0.9.0...v0.9.1) (2026-03-03)
 
 
