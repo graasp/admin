@@ -28,6 +28,10 @@ defmodule AdminWeb.Router do
     plug AdminWeb.Plugs.Locale, "en"
   end
 
+  pipeline :browser_feed do
+    plug :accepts, ["xml"]
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -38,6 +42,11 @@ defmodule AdminWeb.Router do
     get "/up", HealthController, :up
     # alias route does the same as "/up"
     get "/health", HealthController, :up
+  end
+
+  scope "/", AdminWeb do
+    pipe_through :browser_feed
+    get "/blog/feed.atom", BlogController, :atom_feed
   end
 
   scope "/", AdminWeb do

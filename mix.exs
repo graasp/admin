@@ -135,7 +135,10 @@ defmodule Admin.MixProject do
 
       # publish documentation via markdown
       {:nimble_publisher, "~> 1.0"},
-      {:yaml_elixir, "~> 2.12"}
+      {:yaml_elixir, "~> 2.12"},
+
+      # time formatting library
+      {:timex, "~> 3.0"}
     ]
   end
 

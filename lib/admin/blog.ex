@@ -31,18 +31,20 @@ defmodule Admin.Blog do
   # And finally export them
   def all_posts, do: @posts
 
+  def recent_posts(limit \\ 20), do: all_posts() |> Enum.take(limit)
+
   def posts_by_year do
-    Enum.group_by(@posts, & &1.date.year) |> Enum.sort_by(&elem(&1, 0), :desc)
+    Enum.group_by(all_posts(), & &1.date.year) |> Enum.sort_by(&elem(&1, 0), :desc)
   end
 
   def get_post_by_id!(id) do
     {post, index} =
-      Enum.with_index(@posts)
+      Enum.with_index(all_posts())
       |> Enum.find(fn {post, _index} -> post.id == id end) ||
         raise AdminWeb.NotFoundError, "post with id=#{id} not found"
 
-    previous_post = if index > 0, do: Enum.at(@posts, index - 1), else: nil
-    next_post = if index < length(@posts) - 1, do: Enum.at(@posts, index + 1), else: nil
+    previous_post = if index > 0, do: Enum.at(all_posts(), index - 1), else: nil
+    next_post = if index < length(all_posts()) - 1, do: Enum.at(all_posts(), index + 1), else: nil
 
     post |> Map.put(:previous_post, previous_post) |> Map.put(:next_post, next_post)
   end
