@@ -286,3 +286,32 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "Did not find what you were looking for?"
 msgstr ""
+
+#: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:4
+#, elixir-autogen, elixir-format
+msgid "Blog posts and update log by the Graasp team"
+msgstr ""
+
+#: lib/admin_web/components/layouts/root.html.heex:24
+#: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:3
+#, elixir-autogen, elixir-format
+msgid "Graasp blog"
+msgstr ""
+
+#: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:10
+#, elixir-autogen, elixir-format
+msgctxt "blog author"
+msgid "Graasp"
+msgstr ""
+
+#: lib/admin_web/controllers/blog_controller.ex:7
+#, elixir-autogen, elixir-format, fuzzy
+msgctxt "page title"
+msgid "Blog"
+msgstr ""
+
+#: lib/admin_web/controllers/blog_controller.ex:28
+#, elixir-autogen, elixir-format
+msgctxt "page title"
+msgid "Graasp Blog Atom feed"
+msgstr ""
