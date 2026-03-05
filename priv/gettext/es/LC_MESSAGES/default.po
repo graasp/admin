@@ -42,276 +42,276 @@ msgstr "cerca"
 #: lib/admin_web/controllers/blog_html/show.html.heex:9
 #, elixir-autogen, elixir-format
 msgid " by %{authors}"
-msgstr ""
+msgstr "por %{authors}"
 
 #: lib/admin_web/controllers/blog_html/show.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Back to posts"
-msgstr ""
+msgstr "Volver a las publicaciones"
 
 #: lib/admin_web/controllers/blog_html/index.html.heex:39
 #, elixir-autogen, elixir-format
 msgid "Read more"
-msgstr ""
+msgstr "Leer más"
 
 #: lib/admin_web/controllers/blog_html/index.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Recent Posts"
-msgstr ""
+msgstr "Entradas recientes"
 
 #: lib/admin_web/components/layouts.ex:350
 #: lib/admin_web/components/layouts.ex:380
 #, elixir-autogen, elixir-format
 msgid "Admin"
-msgstr ""
+msgstr "Administración"
 
 #: lib/admin_web/components/layouts.ex:338
 #: lib/admin_web/components/layouts.ex:372
 #, elixir-autogen, elixir-format
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 #: lib/admin_web/components/layouts.ex:357
 #: lib/admin_web/components/layouts.ex:389
 #, elixir-autogen, elixir-format
 msgid "Get started"
-msgstr ""
+msgstr "Empezar"
 
 #: lib/admin_web/components/layouts.ex:335
 #: lib/admin_web/components/layouts.ex:371
 #, elixir-autogen, elixir-format
 msgid "Library"
-msgstr ""
+msgstr "Biblioteca"
 
 #: lib/admin_web/components/layouts.ex:361
 #: lib/admin_web/components/layouts.ex:393
 #, elixir-autogen, elixir-format
 msgid "Log in"
-msgstr ""
+msgstr "Acceso"
 
 #: lib/admin_web/components/layouts.ex:344
 #: lib/admin_web/components/layouts.ex:376
 #, elixir-autogen, elixir-format
 msgid "About"
-msgstr ""
+msgstr "Acerca de"
 
 #: lib/admin_web/components/layouts.ex:347
 #: lib/admin_web/components/layouts.ex:377
 #, elixir-autogen, elixir-format
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #: lib/admin_web/controllers/landing_controller.ex:11
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page title"
 msgid "About"
-msgstr ""
+msgstr "Acerca de"
 
 #: lib/admin_web/controllers/admin_controller.ex:5
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page title"
 msgid "Admin"
-msgstr ""
+msgstr "Administración"
 
 #: lib/admin_web/controllers/landing_controller.ex:15
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page title"
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #: lib/admin_web/controllers/admin_controller.ex:24
 #, elixir-autogen, elixir-format
 msgctxt "page title"
 msgid "Dashboard"
-msgstr ""
+msgstr "Panel"
 
 #: lib/admin_web/controllers/landing_controller.ex:7
 #, elixir-autogen, elixir-format
 msgctxt "page title"
 msgid "Home"
-msgstr ""
+msgstr "Hogar"
 
 #: lib/admin_web/components/layouts/admin_root.html.heex:11
 #: lib/admin_web/components/layouts/root.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Graasp is a platform for collaborative learning and teaching."
-msgstr ""
+msgstr "Graasp es una plataforma para el aprendizaje y la enseñanza colaborativos."
 
 #: lib/admin_web/components/layouts/admin_root.html.heex:14
 #: lib/admin_web/components/layouts/root.html.heex:14
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Home"
-msgstr ""
+msgstr "Hogar"
 
 #: lib/admin_web/components/layouts.ex:182
 #, elixir-autogen, elixir-format
 msgid "Use dark theme"
-msgstr ""
+msgstr "Utilice el tema oscuro"
 
 #: lib/admin_web/components/layouts.ex:173
 #, elixir-autogen, elixir-format
 msgid "Use light theme"
-msgstr ""
+msgstr "Utilice el tema claro"
 
 #: lib/admin_web/components/layouts.ex:164
 #, elixir-autogen, elixir-format
 msgid "Use system theme"
-msgstr ""
+msgstr "Usar el tema del sistema"
 
 #: lib/admin_web/controllers/landing_html/static_page.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "This page is available in your preferred language:"
-msgstr ""
+msgstr "Esta página está disponible en tu idioma preferido:"
 
 #: lib/admin_web/controllers/landing_html/static_page.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "You are viewing this page in: %{locale}"
-msgstr ""
+msgstr "Estás viendo esta página en: %{locale}"
 
 #: lib/admin_web/live/notification_live/show.ex:28
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Excluded: %{count} (incompatible language, or unsubscribed from marketing emails)"
-msgstr ""
+msgstr "Excluidos: %{count} (idioma incompatible o cancelación de suscripción a correos electrónicos de marketing)"
 
 #: lib/admin_web/controllers/account_controller.ex:23
 #, elixir-autogen, elixir-format
 msgid "Subscribed to marketing emails"
-msgstr ""
+msgstr "Suscrito a correos electrónicos de marketing"
 
 #: lib/admin_web/controllers/account_controller.ex:11
 #, elixir-autogen, elixir-format
 msgid "Unsubscribed from marketing emails"
-msgstr ""
+msgstr "Cancelar la suscripción a correos electrónicos de marketing"
 
 #: lib/admin_web/controllers/account_controller.ex:25
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page title"
 msgid "Subscribed to Marketing Emails"
-msgstr ""
+msgstr "Suscrito a correos electrónicos de marketing"
 
 #: lib/admin_web/controllers/docs_html/index.html.heex:3
 #: lib/admin_web/controllers/docs_html/show.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Documentation"
-msgstr ""
+msgstr "Documentación"
 
 #: lib/admin_web/controllers/docs_html/search.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Search documentation for %{tag}"
-msgstr ""
+msgstr "Buscar documentación para %{tag}"
 
 #: lib/admin_web/controllers/docs_html/index.html.heex:5
 #: lib/admin_web/controllers/docs_html/search.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "Welcome to the documentation page. Here you can find information about our products and services."
-msgstr ""
+msgstr "Bienvenido a la página de documentación. Aquí encontrará información sobre nuestros productos y servicios."
 
 #: lib/admin_web/controllers/docs_controller.ex:10
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page_title"
 msgid "Search Documentation"
-msgstr ""
+msgstr "Buscar documentación"
 
 #: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "account"
-msgstr ""
+msgstr "Cuenta"
 
 #: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "publishing"
-msgstr ""
+msgstr "Publicación"
 
 #: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "research"
-msgstr ""
+msgstr "Investigación"
 
 #: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "teaching"
-msgstr ""
+msgstr "Enseñanza"
 
 #: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "tips"
-msgstr ""
+msgstr "Consejos"
 
 #: lib/admin_web/controllers/docs_html/show.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Back to documentation"
-msgstr ""
+msgstr "Volver a la documentación"
 
 #: lib/admin_web/controllers/account_controller.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page title"
 msgid "Unsubscribed from Marketing Emails"
-msgstr ""
+msgstr "Cancelación de suscripción a correos electrónicos de marketing"
 
 #: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format
 msgctxt "documentation section"
 msgid "Introduction"
-msgstr ""
+msgstr "Introducción"
 
 #: lib/admin_web/controllers/docs_controller.ex:23
 #, elixir-autogen, elixir-format
 msgctxt "page_description"
 msgid "The documentation for the Graasp products and services."
-msgstr ""
+msgstr "La documentación de los productos y servicios de Graasp."
 
 #: lib/admin_web/controllers/docs_controller.ex:21
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page_title"
 msgid "Documentation"
-msgstr ""
+msgstr "Documentación"
 
 #: lib/admin_web/components/layouts.ex:341
 #: lib/admin_web/components/layouts.ex:374
 #, elixir-autogen, elixir-format
 msgid "Support"
-msgstr ""
+msgstr "Apoyo"
 
 #: lib/admin_web/controllers/docs_html/index.html.heex:55
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Contact us"
-msgstr ""
+msgstr "Contáctanos"
 
 #: lib/admin_web/controllers/docs_html/index.html.heex:54
 #, elixir-autogen, elixir-format
 msgid "Did not find what you were looking for?"
-msgstr ""
+msgstr "¿No encontraste lo que buscabas?"
 
 #: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:4
 #, elixir-autogen, elixir-format
 msgid "Blog posts and update log by the Graasp team"
-msgstr ""
+msgstr "Entradas de blog y registro de actualizaciones del equipo de Graasp"
 
 #: lib/admin_web/components/layouts/root.html.heex:24
 #: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:3
 #, elixir-autogen, elixir-format
 msgid "Graasp blog"
-msgstr ""
+msgstr "Blog de Graasp"
 
 #: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:10
 #, elixir-autogen, elixir-format
 msgctxt "blog author"
 msgid "Graasp"
-msgstr ""
+msgstr "Graasp"
 
 #: lib/admin_web/controllers/blog_controller.ex:7
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page title"
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 #: lib/admin_web/controllers/blog_controller.ex:28
 #, elixir-autogen, elixir-format
 msgctxt "page title"
 msgid "Graasp Blog Atom feed"
-msgstr ""
+msgstr "Fuente Atom del blog de Graasp"
