@@ -37,6 +37,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Test Elixir
     steps:
+      # Step: Check out the code.
+      - name: Checkout code
+        uses: actions/checkout@v6
+
       # Step: Setup Elixir + Erlang image as the base.
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
@@ -44,10 +48,6 @@ jobs:
         with:
           version-file: .tool-versions
           version-type: strict
-
-      # Step: Check out the code.
-      - name: Checkout code
-        uses: actions/checkout@v4
 
       # Step: Define how to cache deps. Restores existing cache if present.
       - name: Cache deps
