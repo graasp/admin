@@ -8,8 +8,8 @@
 ### to merge POT files into PO files.
 msgid ""
 msgstr ""
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n>1);\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/admin_web/components/core_components.ex:353
 #: lib/admin_web/live/notification_live/show.ex:71
@@ -139,7 +139,7 @@ msgstr "Graasp est une plateforme d'enseignement et d'apprentissages collaborati
 
 #: lib/admin_web/components/layouts/admin_root.html.heex:14
 #: lib/admin_web/components/layouts/root.html.heex:14
-#, elixir-autogen, elixir-format
+#, elixir-autogen, elixir-format, fuzzy
 msgid "Home"
 msgstr "Accueil"
 
@@ -171,23 +171,23 @@ msgstr "Vous regardez la version %{locale} de cette page"
 #: lib/admin_web/live/notification_live/show.ex:28
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Excluded: %{count} (incompatible language, or unsubscribed from marketing emails)"
-msgstr ""
+msgstr "Exclus : %{count} (langue incompatible ou désabonné des e-mails marketing)"
 
 #: lib/admin_web/controllers/account_controller.ex:23
 #, elixir-autogen, elixir-format
 msgid "Subscribed to marketing emails"
-msgstr ""
+msgstr "Abonné aux e-mails marketing"
 
 #: lib/admin_web/controllers/account_controller.ex:11
 #, elixir-autogen, elixir-format
 msgid "Unsubscribed from marketing emails"
-msgstr ""
+msgstr "Désabonnement aux e-mails marketing"
 
 #: lib/admin_web/controllers/account_controller.ex:25
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page title"
 msgid "Subscribed to Marketing Emails"
-msgstr ""
+msgstr "Abonné aux e-mails marketing"
 
 #: lib/admin_web/controllers/docs_html/index.html.heex:3
 #: lib/admin_web/controllers/docs_html/show.html.heex:4
@@ -240,30 +240,30 @@ msgstr "Enseignement"
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "documentation section"
 msgid "tips"
-msgstr ""
+msgstr "Conseils"
 
 #: lib/admin_web/controllers/docs_html/show.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Back to documentation"
-msgstr ""
+msgstr "Retour à la documentation"
 
 #: lib/admin_web/controllers/account_controller.ex:13
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page title"
 msgid "Unsubscribed from Marketing Emails"
-msgstr ""
+msgstr "Désabonnement aux e-mails marketing"
 
 #: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format
 msgctxt "documentation section"
 msgid "Introduction"
-msgstr ""
+msgstr "Introduction"
 
 #: lib/admin_web/controllers/docs_controller.ex:23
 #, elixir-autogen, elixir-format
 msgctxt "page_description"
 msgid "The documentation for the Graasp products and services."
-msgstr ""
+msgstr "La documentation relative aux produits et services Graasp."
 
 #: lib/admin_web/controllers/docs_controller.ex:21
 #, elixir-autogen, elixir-format, fuzzy
@@ -275,7 +275,7 @@ msgstr "Documentation"
 #: lib/admin_web/components/layouts.ex:374
 #, elixir-autogen, elixir-format
 msgid "Support"
-msgstr ""
+msgstr "Soutien"
 
 #: lib/admin_web/controllers/docs_html/index.html.heex:55
 #, elixir-autogen, elixir-format, fuzzy
@@ -285,24 +285,24 @@ msgstr "Contactez-nous"
 #: lib/admin_web/controllers/docs_html/index.html.heex:54
 #, elixir-autogen, elixir-format
 msgid "Did not find what you were looking for?"
-msgstr ""
+msgstr "Vous n'avez pas trouvé ce que vous cherchiez ?"
 
 #: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:4
 #, elixir-autogen, elixir-format
 msgid "Blog posts and update log by the Graasp team"
-msgstr ""
+msgstr "Articles de blog et journal des mises à jour de l'équipe Graasp"
 
 #: lib/admin_web/components/layouts/root.html.heex:24
 #: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:3
 #, elixir-autogen, elixir-format
 msgid "Graasp blog"
-msgstr ""
+msgstr "Blog Graasp"
 
 #: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:10
 #, elixir-autogen, elixir-format
 msgctxt "blog author"
 msgid "Graasp"
-msgstr ""
+msgstr "Graasp"
 
 #: lib/admin_web/controllers/blog_controller.ex:7
 #, elixir-autogen, elixir-format, fuzzy
@@ -314,4 +314,4 @@ msgstr "Blog"
 #, elixir-autogen, elixir-format
 msgctxt "page title"
 msgid "Graasp Blog Atom feed"
-msgstr ""
+msgstr "Flux Atom du blog Graasp"
