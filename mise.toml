@@ -1,6 +1,4 @@
-[tools]
-elixir = "1.19.5-otp-28"
-erlang = "28.1"
+
 
 [env]
 # Persist history of the IEx (Elixir) and erl (Erlang) shells
@@ -39,3 +37,5 @@ description = "start the backend and frontend servers in development mode"
 [tasks.frontend-build]
 run = "cd ../client && pnpm build && cp -r dist/* ../admin/priv/static/client"
 description = "Build the frontend from the sibling folder and copy it to the static assets"
+
+
