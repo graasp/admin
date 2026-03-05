@@ -450,7 +450,7 @@ defmodule AdminWeb.LandingHTML do
     <a
       href={@url}
       class="min-w-[90px] min-h-[3rem] flex items-center justify-center"
-      name={
+      aria-label={
         dgettext(
           "landing",
           "View the website of %{institution}, one of our supporting entities",
