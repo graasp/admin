@@ -8,7 +8,7 @@
 ### to merge POT files into PO files.
 msgid ""
 msgstr ""
-"Language: it\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/admin/accounts/user_notifier.ex:100
@@ -40,4 +40,4 @@ msgstr "Il tuo team Graasp"
 #: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:43
 #, elixir-autogen, elixir-format
 msgid "unsubscribe"
-msgstr ""
+msgstr "annullare l'iscrizione"
