@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n>1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/admin/accounts/user_notifier.ex:100
 #, elixir-autogen, elixir-format
@@ -40,4 +40,4 @@ msgstr "Votre équipe Graasp"
 #: lib/admin_web/email_templates/templates_html/call_to_action.html.heex:43
 #, elixir-autogen, elixir-format
 msgid "unsubscribe"
-msgstr ""
+msgstr "se désabonner"
