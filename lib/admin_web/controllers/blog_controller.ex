@@ -26,6 +26,10 @@ defmodule AdminWeb.BlogController do
     |> assign(:last_build_date, last_build_date)
     |> assign(:last_build_date, last_build_date)
     |> assign(:page_title, pgettext("page title", "Graasp Blog Atom feed"))
+    # set the cache control header to cache the feed for 1 hour
+    |> put_resp_header("cache-control", "max-age=3600")
+    # set the CORS header to allow public requests from any origin
+    |> put_resp_header("access-control-allow-origin", "*")
     |> render(:blog_atom, layout: false)
   end
 end

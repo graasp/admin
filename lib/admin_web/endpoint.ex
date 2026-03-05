@@ -25,7 +25,11 @@ defmodule AdminWeb.Endpoint do
     at: "/",
     from: :admin,
     gzip: not code_reloading?,
-    only: AdminWeb.static_paths()
+    only: AdminWeb.static_paths(),
+    # set the cache control headers for the static contents
+    # "public" is for the etag
+    # "max-age=86400" defines that it is valid for 1 day
+    cache_control_for_etags: "public, max-age=86400"
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
