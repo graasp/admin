@@ -285,24 +285,24 @@ msgstr "Uns kontaktieren"
 #: lib/admin_web/controllers/docs_html/index.html.heex:54
 #, elixir-autogen, elixir-format
 msgid "Did not find what you were looking for?"
-msgstr ""
+msgstr "Nicht gefunden, wonach Sie gesucht haben?"
 
 #: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:4
 #, elixir-autogen, elixir-format
 msgid "Blog posts and update log by the Graasp team"
-msgstr ""
+msgstr "Blogbeiträge und Update-Protokoll des Graasp-Teams"
 
 #: lib/admin_web/components/layouts/root.html.heex:24
 #: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:3
 #, elixir-autogen, elixir-format
 msgid "Graasp blog"
-msgstr ""
+msgstr "Graasp-Blog"
 
 #: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:10
 #, elixir-autogen, elixir-format
 msgctxt "blog author"
 msgid "Graasp"
-msgstr ""
+msgstr "Greifen"
 
 #: lib/admin_web/controllers/blog_controller.ex:7
 #, elixir-autogen, elixir-format, fuzzy
@@ -314,4 +314,4 @@ msgstr "Blog"
 #, elixir-autogen, elixir-format
 msgctxt "page title"
 msgid "Graasp Blog Atom feed"
-msgstr ""
+msgstr "Graasp Blog Atom feed"
