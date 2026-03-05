@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.9.3](https://github.com/graasp/graasp-web/compare/v0.9.2...v0.9.3) (2026-03-05)
+
+
+### Bug Fixes
+
+* **es:** update translations ([#194](https://github.com/graasp/graasp-web/issues/194)) ([736f416](https://github.com/graasp/graasp-web/commit/736f416517fde190007a03b60b5dc756b634822a))
+* **it:** update translations ([#195](https://github.com/graasp/graasp-web/issues/195)) ([f04e3a0](https://github.com/graasp/graasp-web/commit/f04e3a03c65b4c62a86c9b9d94daf3a0f14b8bc6))
+
+
+### Chores
+
+* update erlang version used in the ci ([#197](https://github.com/graasp/graasp-web/issues/197)) ([3cb20ec](https://github.com/graasp/graasp-web/commit/3cb20ec9015465345ad4518e0c1f9962f8584bef))
+
 ## [0.9.2](https://github.com/graasp/graasp-web/compare/v0.9.1...v0.9.2) (2026-03-04)
 
 
