@@ -236,12 +236,6 @@ msgstr "Die offene Struktur fördert die Beteiligung der Gemeinschaft, kontinuie
 msgid "Join Graasp and revolutionize your teaching with interactive learning tools!"
 msgstr "Werden Sie Teil von Graasp und revolutionieren Sie Ihren Unterricht mit interaktiven Lernwerkzeugen!"
 
-#: lib/admin_web/controllers/landing_html/index.html.heex:134
-#: lib/admin_web/controllers/landing_html/index.html.heex:174
-#, elixir-autogen, elixir-format
-msgid "Learn more"
-msgstr "Mehr erfahren"
-
 #: lib/admin_web/controllers/landing_html/index.html.heex:132
 #, elixir-autogen, elixir-format
 msgid "Learn more about interactive content"
@@ -476,3 +470,13 @@ msgstr "Pädagogische Vorlagen"
 #, elixir-autogen, elixir-format
 msgid "Published Capsules"
 msgstr "Veröffentlichte Kapseln"
+
+#: lib/admin_web/controllers/landing_html/index.html.heex:174
+#, elixir-autogen, elixir-format
+msgid "Find the best sharing option for your use case"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html/index.html.heex:134
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Learn how to use interactive content"
+msgstr "Erfahren Sie mehr über interaktive Inhalte"

@@ -8,6 +8,8 @@ defmodule Admin.Docs.Page do
 
   def build(filename, attrs, body) do
     [locale, section, id] = filename |> Path.rootname() |> Path.split() |> Enum.take(-3)
+    # id is always lowercase
+    id = String.downcase(id)
 
     [locale, section, id] =
       case locale do
