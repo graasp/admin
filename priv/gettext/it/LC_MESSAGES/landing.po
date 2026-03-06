@@ -236,12 +236,6 @@ msgstr "La sua natura aperta incoraggia il contributo della comunità, il miglio
 msgid "Join Graasp and revolutionize your teaching with interactive learning tools!"
 msgstr "Unisciti a Graasp e rivoluziona il tuo insegnamento con strumenti di apprendimento interattivi!"
 
-#: lib/admin_web/controllers/landing_html/index.html.heex:134
-#: lib/admin_web/controllers/landing_html/index.html.heex:174
-#, elixir-autogen, elixir-format
-msgid "Learn more"
-msgstr "Saperne di più"
-
 #: lib/admin_web/controllers/landing_html/index.html.heex:132
 #, elixir-autogen, elixir-format
 msgid "Learn more about interactive content"
@@ -476,3 +470,13 @@ msgstr "Modelli pedagogici"
 #, elixir-autogen, elixir-format
 msgid "Published Capsules"
 msgstr "Capsule pubblicate"
+
+#: lib/admin_web/controllers/landing_html/index.html.heex:174
+#, elixir-autogen, elixir-format
+msgid "Find the best sharing option for your use case"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html/index.html.heex:134
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Learn how to use interactive content"
+msgstr "Scopri di più sui contenuti interattivi"
