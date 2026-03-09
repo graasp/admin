@@ -89,7 +89,7 @@ defmodule Admin.MixProject do
       {:gettext, "~> 0.26"},
 
       # sentry ependencies
-      {:sentry, "~> 11.0.4"},
+      {:sentry, "~> 12.0"},
 
       # OpenTelemetry core packages
       {:opentelemetry, "~> 1.5"},
