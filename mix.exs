@@ -138,7 +138,10 @@ defmodule Admin.MixProject do
       {:yaml_elixir, "~> 2.12"},
 
       # time formatting library
-      {:timex, "~> 3.0"}
+      {:timex, "~> 3.0"},
+
+      # allow to use the ltree type with ecto
+      {:ecto_ltree, "~> 0.3.0"}
     ]
   end
 
