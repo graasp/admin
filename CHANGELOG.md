@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.9.4](https://github.com/graasp/graasp-web/compare/v0.9.3...v0.9.4) (2026-03-09)
+
+
+### Bug Fixes
+
+* add a pre-connect directive for loading the font file ([#204](https://github.com/graasp/graasp-web/issues/204)) ([fa7091c](https://github.com/graasp/graasp-web/commit/fa7091c684d1e4a1e046c9ac05ee5e0d6ac83a49))
+* add aria-label on link ([#202](https://github.com/graasp/graasp-web/issues/202)) ([65f4217](https://github.com/graasp/graasp-web/commit/65f42175b24acf94c87b0f57754a7f709288e5ee))
+* **deps:** upgrade sentry ([818751e](https://github.com/graasp/graasp-web/commit/818751ecd4ce0625e19c8a07a5eabb6e2aa19a46))
+* **de:** update translations ([#199](https://github.com/graasp/graasp-web/issues/199)) ([40756bb](https://github.com/graasp/graasp-web/commit/40756bb11d1f9b9af1342d2732d30efa2e9b2289))
+* **fr:** update translations ([#200](https://github.com/graasp/graasp-web/issues/200)) ([45fbcff](https://github.com/graasp/graasp-web/commit/45fbcff5c4624f71a1c8f7157720760a8fb67393))
+* lowercase docs ids ([#205](https://github.com/graasp/graasp-web/issues/205)) ([4e68e88](https://github.com/graasp/graasp-web/commit/4e68e881eec4df0429dbe79efabebf85cb3ea985))
+* make cache improvements and feed improvements ([#203](https://github.com/graasp/graasp-web/issues/203)) ([04fc94e](https://github.com/graasp/graasp-web/commit/04fc94e76f7ac03a04e8f6f60966fa1a5dbe9616))
+
 ## [0.9.3](https://github.com/graasp/graasp-web/compare/v0.9.2...v0.9.3) (2026-03-05)
 
 
