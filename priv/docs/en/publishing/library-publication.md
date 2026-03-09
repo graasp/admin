@@ -1,5 +1,7 @@
 %{
-title: "Publish to Graasp Library",
+title: "Publish to the Library",
+description: "How to make your content available to others in the Graasp Library",
+order: 1,
 tags: ["library"]
 }
 

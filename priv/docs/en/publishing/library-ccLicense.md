@@ -1,5 +1,7 @@
 %{
-title: "Creative Commons Licensing",
+title: "Licences",
+description: "How to handle and choose a Creative Commons licence for your content",
+order: 10,
 tags: ["library", "publication"]
 }
 

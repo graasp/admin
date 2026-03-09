@@ -1,5 +1,7 @@
 %{
-title: "Copy and Reuse",
+title: "Re-using published content",
+description: "How to re-use material published in the library",
+order: 15,
 tags: ["library"]
 }
 

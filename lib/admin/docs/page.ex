@@ -3,8 +3,8 @@ defmodule Admin.Docs.Page do
   A module that represents a documentation page.
   """
 
-  @enforce_keys [:id, :locale, :section, :title, :body, :description, :tags, :order]
-  defstruct [:id, :locale, :section, :title, :body, :description, :tags, :order]
+  @enforce_keys [:id, :locale, :section, :title, :body, :description, :tags, :order, :next]
+  defstruct [:id, :locale, :section, :title, :body, :description, :tags, :order, :next]
 
   def build(filename, attrs, body) do
     [locale, section, id] = filename |> Path.rootname() |> Path.split() |> Enum.take(-3)
@@ -27,7 +27,8 @@ defmodule Admin.Docs.Page do
       body: body,
       description: attrs[:description] || "",
       tags: attrs[:tags] || [],
-      order: attrs[:order] || 1000
+      order: attrs[:order] || 1000,
+      next: attrs[:next] || nil
     )
   end
 end

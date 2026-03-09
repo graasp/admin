@@ -28,8 +28,15 @@ defmodule Admin.Docs do
     end)
   end
 
-  def for_locale_by_sections(locale),
-    do: for_locale(locale) |> Enum.group_by(& &1.section)
+  def for_locale_by_sections(locale) do
+    all = for_locale(locale) |> Enum.group_by(& &1.section)
+    {intro, rest} = Enum.split_with(all, fn {section_name, _} -> section_name == "intro" end)
+
+    {developer, rest} =
+      Enum.split_with(rest, fn {section_name, _} -> section_name == "developer" end)
+
+    intro ++ rest ++ developer
+  end
 
   def with_tag(tag, locale),
     do: for_locale(locale) |> Enum.filter(&(tag in &1.tags))
