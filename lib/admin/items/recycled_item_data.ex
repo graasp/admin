@@ -4,9 +4,10 @@ defmodule Admin.Items.RecycledItemData do
   """
   use Admin.Schema
   import Ecto.Changeset
+  alias EctoLtree.LabelTree, as: Ltree
 
   schema "recycled_item_data" do
-    belongs_to :item, Admin.Items.Item, type: :string, foreign_key: :item_path, references: :path
+    belongs_to :item, Admin.Items.Item, type: Ltree, foreign_key: :item_path, references: :path
     belongs_to :creator, Admin.Accounts.Account, type: :binary_id
 
     timestamps(only: [:inserted_at], type: :utc_datetime)

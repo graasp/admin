@@ -48,7 +48,8 @@ config :admin, Admin.Repo,
   migration_timestamps: [
     type: :utc_datetime,
     inserted_at: :created_at
-  ]
+  ],
+  types: Admin.PostgresTypes
 
 # Configure Gettext
 config :gettext, default_locale: "en"

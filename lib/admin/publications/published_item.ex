@@ -4,9 +4,10 @@ defmodule Admin.Publications.PublishedItem do
   """
   use Admin.Schema
   import Ecto.Changeset
+  alias EctoLtree.LabelTree, as: Ltree
 
   schema "published_items" do
-    belongs_to :item, Admin.Items.Item, type: :string, foreign_key: :item_path, references: :path
+    belongs_to :item, Admin.Items.Item, type: Ltree, foreign_key: :item_path, references: :path
     belongs_to :creator, Admin.Accounts.Account, type: :binary_id
 
     # will contain small, medium, large keys

@@ -16,14 +16,18 @@ defmodule Admin.ItemsFixtures do
         type: "individual"
       })
 
+    item_id = Ecto.UUID.generate()
+
     attrs =
       Enum.into(attrs, %{
+        id: item_id,
         description: "some description",
         extra: %{},
         name: "some name",
-        path: "some path#{System.unique_integer([:positive])}",
+        path: "#{Admin.Items.PathUtils.fromUUIDs([item_id])}",
         settings: %{},
         type: "some type",
+        lang: "en",
         creator_id: creator.id
       })
 
