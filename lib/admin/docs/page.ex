@@ -7,13 +7,14 @@ defmodule Admin.Docs.Page do
   defstruct [:id, :locale, :section, :title, :body, :description, :tags, :order, :next]
 
   def build(filename, attrs, body) do
-    [locale, section, id] = filename |> Path.rootname() |> Path.split() |> Enum.take(-3)
+    [_, docs_path] = filename |> Path.rootname() |> String.split("/docs/")
+    [locale, section | rest] = docs_path |> Path.split()
     # id is always lowercase
-    id = String.downcase(id)
+    id = String.downcase(rest |> Path.join())
 
     [locale, section, id] =
       case locale do
-        "docs" -> [section, "", id]
+        "" -> [section, "", id]
         _ -> [locale, section, id]
       end
 
