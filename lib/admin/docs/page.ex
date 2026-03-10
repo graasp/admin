@@ -9,14 +9,15 @@ defmodule Admin.Docs.Page do
   def build(filename, attrs, body) do
     [_, docs_path] = filename |> Path.rootname() |> String.split("/docs/")
     [locale, section | rest] = docs_path |> Path.split()
-    # id is always lowercase
-    id = String.downcase(rest |> Path.join())
 
-    [locale, section, id] =
-      case locale do
-        "" -> [section, "", id]
-        _ -> [locale, section, id]
+    [section, id] =
+      case rest do
+        [] -> ["", section]
+        _ -> [section, rest |> Path.join()]
       end
+
+    # id is always lowercase
+    id = String.downcase(id)
 
     struct!(
       __MODULE__,

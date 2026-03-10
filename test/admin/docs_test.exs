@@ -27,9 +27,9 @@ defmodule Admin.DocsTest do
   end
 
   test "for_locale_by_sections/1" do
-    pages = Docs.for_locale_by_sections("en")
+    _pages = Docs.for_locale_by_sections("en")
 
-    fr_pages = Docs.for_locale_by_sections("fr")
+    _fr_pages = Docs.for_locale_by_sections("fr")
   end
 
   describe "docs page" do
@@ -44,7 +44,7 @@ defmodule Admin.DocsTest do
                body: "Content"
              } =
                Page.build(
-                 "docs/en/getting-started.md",
+                 "priv/docs/en/getting-started.md",
                  %{
                    title: "hello",
                    tags: ["intro", "guide"]
@@ -64,7 +64,7 @@ defmodule Admin.DocsTest do
                body: "Some content"
              } =
                Page.build(
-                 "docs/de/section_name/some-doc.md",
+                 "priv/docs/de/section_name/some-doc.md",
                  %{
                    title: "Some Doc",
                    description: "Some description of some doc",
