@@ -23,7 +23,8 @@
           </h2>
 
           <p class="text-gray-400 text-sm">
-            <time datetime={post.date}>{post.date}</time>{gettext(" by %{authors}",
+            <time datetime={post.date}>{post.date |> Calendar.strftime("%B %-d, %Y")}</time>{gettext(
+              " by %{authors}",
               authors: Enum.join(post.authors, ", ")
             )}
           </p>
