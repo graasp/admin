@@ -4,6 +4,7 @@ defmodule Admin.Items do
   """
 
   import Ecto.Query, warn: false
+  import EctoLtree.Functions, only: [nlevel: 1]
   alias Admin.Repo
 
   alias Admin.Accounts.Scope
@@ -133,5 +134,20 @@ defmodule Admin.Items do
   """
   def change_item(%Scope{} = _scope, %Item{} = item, attrs \\ %{}) do
     Item.changeset(item, attrs)
+  end
+
+  def get_descendants(%EctoLtree.LabelTree{} = item_path) do
+    from(item in Item,
+      order_by: [asc: nlevel(item.path), asc_nulls_first: item.order],
+      where: fragment("? @> ?", ^(item_path |> EctoLtree.LabelTree.decode()), item.path)
+    )
+    |> Repo.all()
+  end
+
+  def delete(%EctoLtree.LabelTree{} = item_path) do
+    from(item in Item,
+      where: fragment("? @> ?", ^(item_path |> EctoLtree.LabelTree.decode()), item.path)
+    )
+    |> Repo.delete_all()
   end
 end

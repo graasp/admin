@@ -14,6 +14,7 @@ defmodule Admin.Items.Item do
     field :type, :string
     field :settings, :map
     field :lang, :string, default: "en"
+    field :order, :decimal
     field :deleted_at, :utc_datetime
     belongs_to :creator, Admin.Accounts.Account, type: :binary_id
 
@@ -23,7 +24,17 @@ defmodule Admin.Items.Item do
   @doc false
   def changeset(item, attrs) do
     item
-    |> cast(attrs, [:name, :description, :path, :extra, :type, :settings, :creator_id, :lang])
+    |> cast(attrs, [
+      :name,
+      :description,
+      :path,
+      :extra,
+      :type,
+      :settings,
+      :creator_id,
+      :lang,
+      :order
+    ])
     |> validate_required([:name, :description, :path, :type, :creator_id, :lang])
   end
 end
