@@ -242,7 +242,7 @@ msgctxt "documentation section"
 msgid "tips"
 msgstr "Conseils"
 
-#: lib/admin_web/controllers/docs_html/show.html.heex:34
+#: lib/admin_web/controllers/docs_html/show.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Back to documentation"
 msgstr "Retour à la documentation"
@@ -259,13 +259,13 @@ msgctxt "documentation section"
 msgid "Introduction"
 msgstr "Introduction"
 
-#: lib/admin_web/controllers/docs_controller.ex:23
+#: lib/admin_web/controllers/docs_controller.ex:22
 #, elixir-autogen, elixir-format
 msgctxt "page_description"
 msgid "The documentation for the Graasp products and services."
 msgstr "La documentation relative aux produits et services Graasp."
 
-#: lib/admin_web/controllers/docs_controller.ex:21
+#: lib/admin_web/controllers/docs_controller.ex:20
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page_title"
 msgid "Documentation"
@@ -277,12 +277,12 @@ msgstr "Documentation"
 msgid "Support"
 msgstr "Soutien"
 
-#: lib/admin_web/controllers/docs_html/index.html.heex:55
+#: lib/admin_web/controllers/docs_html/index.html.heex:59
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Contact us"
 msgstr "Contactez-nous"
 
-#: lib/admin_web/controllers/docs_html/index.html.heex:54
+#: lib/admin_web/controllers/docs_html/index.html.heex:57
 #, elixir-autogen, elixir-format
 msgid "Did not find what you were looking for?"
 msgstr "Vous n'avez pas trouvé ce que vous cherchiez ?"
@@ -315,3 +315,20 @@ msgstr "Blog"
 msgctxt "page title"
 msgid "Graasp Blog Atom feed"
 msgstr "Flux Atom du blog Graasp"
+
+#: lib/admin_web/controllers/docs_html/show.html.heex:54
+#, elixir-autogen, elixir-format
+msgid "Next"
+msgstr ""
+
+#: lib/admin/docs.ex:13
+#, elixir-autogen, elixir-format
+msgctxt "documentation section"
+msgid "developer"
+msgstr ""
+
+#: lib/admin/docs.ex:13
+#, elixir-autogen, elixir-format
+msgctxt "documentation section"
+msgid "intro"
+msgstr ""
