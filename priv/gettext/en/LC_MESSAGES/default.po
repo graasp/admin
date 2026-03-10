@@ -49,7 +49,7 @@ msgstr " by %{authors}"
 msgid "Back to posts"
 msgstr "Back to posts"
 
-#: lib/admin_web/controllers/blog_html/index.html.heex:39
+#: lib/admin_web/controllers/blog_html/index.html.heex:40
 #, elixir-autogen, elixir-format
 msgid "Read more"
 msgstr "Read more"
