@@ -8,7 +8,7 @@ defmodule Admin.TrashCleanupWorker do
 
   def perform(_args) do
     # fetch the 20k oldest trash items
-    trash_item_paths = Admin.RecycledItems.get(limit: 20_000)
+    trash_item_paths = Admin.RecycledItems.get_expired(limit: 20_000)
 
     for trash_item_path <- trash_item_paths do
       # get the descendants of the trash item
