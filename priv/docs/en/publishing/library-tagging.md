@@ -1,5 +1,7 @@
 %{
-title: "Tagging",
+title: "Tags",
+description: "Using tags to categorize and find content on Graasp Library",
+order: 5,
 tags: ["library"]
 }
 

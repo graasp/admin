@@ -1,6 +1,8 @@
 %{
-title: "Chatbot",
-tags: ["features"]
+title: "AI Chatbot",
+description: "Add interactivity to your learning activities with an AI chatbot",
+tags: ["features"],
+order: 20
 }
 
 ---
