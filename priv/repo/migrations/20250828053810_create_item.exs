@@ -15,6 +15,7 @@ defmodule Admin.Repo.Migrations.CreateItem do
       add :extra, :jsonb, null: false
       add :settings, :jsonb
       add :deleted_at, :utc_datetime
+      add :order, :decimal, precision: 10, scale: 2
     end
 
     create index(:item, [:creator_id])

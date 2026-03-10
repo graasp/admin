@@ -1,4 +1,4 @@
-defmodule Admin.Items.RecycledItemData do
+defmodule Admin.RecycledItems.RecycledItemData do
   @moduledoc """
   This represents an item that was moved to the trash
   """
@@ -10,7 +10,7 @@ defmodule Admin.Items.RecycledItemData do
     belongs_to :item, Admin.Items.Item, type: Ltree, foreign_key: :item_path, references: :path
     belongs_to :creator, Admin.Accounts.Account, type: :binary_id
 
-    timestamps(only: [:inserted_at], type: :utc_datetime)
+    timestamps(updated_at: false, type: :utc_datetime)
   end
 
   @doc false

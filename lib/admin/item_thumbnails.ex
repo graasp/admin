@@ -19,4 +19,15 @@ defmodule Admin.ItemThumbnails do
     url = S3.get_object_url(file_bucket(), "thumbnails/#{item_id}/#{size}")
     url
   end
+
+  def delete_thumbnails(item_id) do
+    file_paths = [
+      "thumbnails/#{item_id}/small",
+      "thumbnails/#{item_id}/medium",
+      "thumbnails/#{item_id}/large",
+      "thumbnails/#{item_id}/original"
+    ]
+
+    S3.delete_objects(file_bucket(), file_paths)
+  end
 end
