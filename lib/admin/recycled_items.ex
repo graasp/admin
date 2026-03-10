@@ -1,4 +1,7 @@
 defmodule Admin.RecycledItems do
+  @moduledoc """
+  This module deals with recycled items.
+  """
   import Ecto.Query, warn: false
   alias Admin.RecycledItems.RecycledItemData
   alias Admin.Repo

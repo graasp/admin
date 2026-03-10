@@ -3,6 +3,7 @@ defmodule Admin.ItemsFixtures do
   This module defines test helpers for creating
   entities via the `Admin.Items` context.
   """
+  alias Admin.Items.PathUtils
 
   @doc """
   Generate a item.
@@ -24,7 +25,7 @@ defmodule Admin.ItemsFixtures do
         description: "some description",
         extra: %{},
         name: "some name",
-        path: "#{Admin.Items.PathUtils.fromUUIDs([item_id])}",
+        path: "#{PathUtils.from_uuids([item_id])}",
         settings: %{},
         type: "some type",
         lang: "en",
