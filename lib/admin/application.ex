@@ -15,14 +15,15 @@ defmodule Admin.Application do
     # Optional: Set up Oban instrumentation
     # OpentelemetryOban.setup()
 
+    # Attach a default logger to Oban to get log output
+    # :ok = Oban.Telemetry.attach_default_logger()
+
     children = [
       AdminWeb.Telemetry,
       Admin.Repo,
       {DNSCluster, query: Application.get_env(:admin, :dns_cluster_query) || :ignore},
       {Oban, Application.fetch_env!(:admin, Oban)},
       {Phoenix.PubSub, name: Admin.PubSub},
-      # Start a worker by calling: Admin.Worker.start_link(arg)
-      # {Admin.Worker, arg},
       # Start to serve requests, typically the last entry
       AdminWeb.Endpoint,
 
