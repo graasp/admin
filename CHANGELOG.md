@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.10.0](https://github.com/graasp/graasp-web/compare/v0.9.4...v0.10.0) (2026-03-11)
+
+
+### Features
+
+* add developer docs ([#207](https://github.com/graasp/graasp-web/issues/207)) ([de35a45](https://github.com/graasp/graasp-web/commit/de35a457d5958533d97e4f2c51f45f407a4848f5))
+
+
+### Bug Fixes
+
+* use mise to setup ci tool versions ([#210](https://github.com/graasp/graasp-web/issues/210)) ([0245d03](https://github.com/graasp/graasp-web/commit/0245d03877b57e5a4c8fc0d42ac56664481746dc))
+
+
+### Chores
+
+* add blog post for v0.9.4 ([#206](https://github.com/graasp/graasp-web/issues/206)) ([537197d](https://github.com/graasp/graasp-web/commit/537197db9e95ac23c111a54fc419efdeded3ae48))
+
 ## [0.9.4](https://github.com/graasp/graasp-web/compare/v0.9.3...v0.9.4) (2026-03-09)
 
 
