@@ -563,17 +563,19 @@ defmodule AdminWeb.LandingHTML do
               <.footer_link href={AdminWeb.Marketing.disclaimer_path()}>
                 {dgettext("landing", "Disclaimer")}
               </.footer_link>
-              <div class="text-primary">
+              <div class="text-white">
                 <.form
                   for={@locale_form}
                   action={~p"/locale"}
                   method="post"
                 >
                   <.input
+                    label={gettext("Language")}
                     onchange="this.form.submit()"
                     type="select"
                     field={@locale_form[:locale]}
                     options={Languages.all_options()}
+                    class="w-full select text-primary"
                   />
                 </.form>
               </div>
