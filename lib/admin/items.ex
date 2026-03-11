@@ -150,4 +150,14 @@ defmodule Admin.Items do
     )
     |> Repo.delete_all()
   end
+
+  def get_by_h5p_content_id(h5p_content_id) do
+    from(item in Item,
+      select: item.id,
+      where:
+        item.type == "h5p" and
+          fragment("?->'h5p'->'contentId' = ?", item.extra, ^h5p_content_id)
+    )
+    |> Repo.one()
+  end
 end
