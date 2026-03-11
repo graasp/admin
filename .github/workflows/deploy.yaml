@@ -81,7 +81,6 @@ jobs:
         shell: bash
 
       - name: Restart Service
-        if: ${{ inputs.environment != 'production' }}
         run: |
           aws ecs update-service --cluster graasp-dev --service admin --force-new-deployment
         shell: bash
