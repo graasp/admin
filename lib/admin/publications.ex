@@ -103,6 +103,18 @@ defmodule Admin.Publications do
     |> with_item()
   end
 
+  def get_stats do
+    %{
+      total: Repo.aggregate(PublishedItem, :count, :id),
+      day:
+        from(p in PublishedItem, where: p.created_at >= date_add(^Date.utc_today(), -1, "day"))
+        |> Repo.aggregate(:count, :id),
+      month:
+        from(p in PublishedItem, where: p.created_at >= date_add(^Date.utc_today(), -30, "day"))
+        |> Repo.aggregate(:count, :id)
+    }
+  end
+
   def get_published_item_id_for_item_id(item_id) do
     query =
       from pi in PublishedItem,

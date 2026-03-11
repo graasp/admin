@@ -138,6 +138,9 @@ defmodule AdminWeb.Router do
       live "/users/settings", UserLive.Settings, :edit
       live "/users/settings/confirm-email/:token", UserLive.Settings, :confirm_email
 
+      # dashboard
+      live "/dashboard", DashboardLive.Index, :index
+
       # users
       live "/users", UserLive.Listing, :list
       live "/users/new", UserLive.Form, :new
@@ -214,7 +217,6 @@ defmodule AdminWeb.Router do
   scope "/admin", AdminWeb do
     pipe_through [:browser_admin, :require_authenticated_user]
 
-    get "/dashboard", AdminController, :dashboard
     resources "/maintenance", PlannedMaintenanceController
     get "/users/:id", UserController, :show
 

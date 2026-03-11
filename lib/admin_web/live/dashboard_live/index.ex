@@ -1,0 +1,131 @@
+defmodule AdminWeb.DashboardLive.Index do
+  use AdminWeb, :live_view
+
+  def render(assigns) do
+    ~H"""
+    <Layouts.admin flash={@flash} current_scope={@current_scope}>
+      <.header>
+        Welcome, {@current_scope.user.name || @current_scope.user.email}
+      </.header>
+
+      <div class="stats shadow bg-base-100">
+        <div class="stat">
+          <div class="stat-title">Published Today</div>
+          <div class="stat-value">{@publication_stats.day}</div>
+          <div class="stat-desc">Collections published in the last 24 hours</div>
+        </div>
+      </div>
+
+      <div class="stats shadow bg-base-100">
+        <div class="stat">
+          <div class="stat-title">Published This Month</div>
+          <div class="stat-value">{@publication_stats.month}</div>
+          <div class="stat-desc">Collections published in the last month</div>
+        </div>
+      </div>
+
+      <div class="stats shadow bg-base-100">
+        <div class="stat">
+          <div class="stat-title">Published Forever</div>
+          <div class="stat-value">{@publication_stats.total |> Integer.to_string()}</div>
+          <div class="stat-desc">Total number of collections published</div>
+        </div>
+      </div>
+
+      <div class="stats shadow bg-base-100">
+        <div class="stat">
+          <div class="stat-title">Users</div>
+          <div class="stat-value">{@user_stats.total}</div>
+          <div class="stat-desc">Total number of users</div>
+        </div>
+      </div>
+
+      <div class="stats shadow bg-base-100">
+        <div class="stat">
+          <div class="stat-title">Confirmed Users</div>
+          <div class="stat-value">{@user_stats.confirmed}</div>
+          <div class="stat-desc">with a verified email</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div>
+          <div class="flex items-center justify-between">
+            <div class="flex flex-col align-start">
+              <h2><.link navigate={~p"/admin/maintenance"}>Planned Maintenance</.link></h2>
+              <span class="text-xs text-neutral">
+                Showing {length(@maintenances)} upcoming events.
+                <.link class="link" navigate={~p"/admin/maintenance"}>View all</.link>
+              </span>
+            </div>
+            <.button navigate={~p"/admin/maintenance/new"}>
+              <.icon name="hero-plus" /> New
+            </.button>
+          </div>
+          <div class="flex flex-col mt-2 divide-y divide-neutral last:border-b-0">
+            <%= for maintenance <- @maintenances do %>
+              <AdminWeb.PlannedMaintenanceHTML.planned_maintenance_row
+                maintenance={maintenance}
+                row_click={&JS.navigate(~p"/admin/maintenance/#{&1}")}
+              />
+            <% end %>
+            <%= if length(@maintenances) == 0 do %>
+              <div class="flex flex-row items-center justify-center gap-3 italic text-neutral p-4 border border-dashed rounded-xl border-base-300">
+                <.icon name="ghost" class="animate-wiggle" /> No upcoming maintenance events
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between">
+            <div class="flex flex-col align-start">
+              <h2>Recent Publications</h2>
+              <span class="text-xs text-neutral">
+                Showing {length(@publications)} most recent.
+                <.link class="link" navigate={~p"/admin/published_items"}>View all</.link>
+              </span>
+            </div>
+            <.button navigate={~p"/admin/published_items"}>View all</.button>
+          </div>
+          <div class="flex flex-col mt-2 gap-1">
+            <%= for publication <- @publications do %>
+              <AdminWeb.PublishedItemHTML.publication_row publication={publication}>
+                <:action>
+                  <.button navigate={~p"/admin/published_items/#{publication}"} class="btn btn-soft">
+                    Manage
+                  </.button>
+                </:action>
+              </AdminWeb.PublishedItemHTML.publication_row>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </Layouts.admin>
+    """
+  end
+
+  def mount(_params, _session, socket) do
+    socket =
+      socket
+      |> assign(:page_title, pgettext("page title", "Dashboard"))
+      |> assign(
+        :publications,
+        Admin.Publications.list_published_items(10)
+      )
+      |> assign(
+        :user_stats,
+        Admin.Accounts.user_stats()
+      )
+      |> assign(
+        :publication_stats,
+        Admin.Publications.get_stats()
+      )
+      |> assign(
+        :maintenances,
+        Admin.Maintenance.list_upcoming_maintenance()
+      )
+
+    {:ok, socket}
+  end
+end
