@@ -189,7 +189,12 @@ defmodule AdminWeb.Layouts do
 
   defp burger_menu(assigns) do
     ~H"""
-    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+    <div
+      tabindex="0"
+      role="button"
+      aria-label={gettext("Open navigation menu")}
+      class="btn btn-ghost lg:hidden"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-5 w-5"

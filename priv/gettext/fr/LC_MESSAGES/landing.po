@@ -51,7 +51,7 @@ msgstr "Clause de non-responsabilité"
 msgid "Home"
 msgstr "Accueil"
 
-#: lib/admin_web/controllers/landing_html.ex:595
+#: lib/admin_web/controllers/landing_html.ex:597
 #, elixir-autogen, elixir-format
 msgid "Idea illustrations by Storyset"
 msgstr "Illustrations par Storyset"

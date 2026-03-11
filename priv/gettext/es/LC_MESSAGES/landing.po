@@ -51,7 +51,7 @@ msgstr "Descargo de responsabilidad"
 msgid "Home"
 msgstr "Hogar"
 
-#: lib/admin_web/controllers/landing_html.ex:595
+#: lib/admin_web/controllers/landing_html.ex:597
 #, elixir-autogen, elixir-format
 msgid "Idea illustrations by Storyset"
 msgstr "Ilustraciones de ideas de Storyset"

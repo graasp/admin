@@ -59,44 +59,44 @@ msgstr "Per saperne di più"
 msgid "Recent Posts"
 msgstr "Articoli recenti"
 
-#: lib/admin_web/components/layouts.ex:350
-#: lib/admin_web/components/layouts.ex:380
+#: lib/admin_web/components/layouts.ex:355
+#: lib/admin_web/components/layouts.ex:385
 #, elixir-autogen, elixir-format
 msgid "Admin"
 msgstr "Amministratore"
 
-#: lib/admin_web/components/layouts.ex:338
-#: lib/admin_web/components/layouts.ex:372
+#: lib/admin_web/components/layouts.ex:343
+#: lib/admin_web/components/layouts.ex:377
 #, elixir-autogen, elixir-format
 msgid "Blog"
 msgstr "Blog"
 
-#: lib/admin_web/components/layouts.ex:357
-#: lib/admin_web/components/layouts.ex:389
+#: lib/admin_web/components/layouts.ex:362
+#: lib/admin_web/components/layouts.ex:394
 #, elixir-autogen, elixir-format
 msgid "Get started"
 msgstr "Iniziare"
 
-#: lib/admin_web/components/layouts.ex:335
-#: lib/admin_web/components/layouts.ex:371
+#: lib/admin_web/components/layouts.ex:340
+#: lib/admin_web/components/layouts.ex:376
 #, elixir-autogen, elixir-format
 msgid "Library"
 msgstr "Biblioteca"
 
-#: lib/admin_web/components/layouts.ex:361
-#: lib/admin_web/components/layouts.ex:393
+#: lib/admin_web/components/layouts.ex:366
+#: lib/admin_web/components/layouts.ex:398
 #, elixir-autogen, elixir-format
 msgid "Log in"
 msgstr "Login"
 
-#: lib/admin_web/components/layouts.ex:344
-#: lib/admin_web/components/layouts.ex:376
+#: lib/admin_web/components/layouts.ex:349
+#: lib/admin_web/components/layouts.ex:381
 #, elixir-autogen, elixir-format
 msgid "About"
 msgstr "Di"
 
-#: lib/admin_web/components/layouts.ex:347
-#: lib/admin_web/components/layouts.ex:377
+#: lib/admin_web/components/layouts.ex:352
+#: lib/admin_web/components/layouts.ex:382
 #, elixir-autogen, elixir-format
 msgid "Contact"
 msgstr "Contatto"
@@ -271,8 +271,8 @@ msgctxt "page_title"
 msgid "Documentation"
 msgstr "Documentazione"
 
-#: lib/admin_web/components/layouts.ex:341
-#: lib/admin_web/components/layouts.ex:374
+#: lib/admin_web/components/layouts.ex:346
+#: lib/admin_web/components/layouts.ex:379
 #, elixir-autogen, elixir-format
 msgid "Support"
 msgstr "Supporto"
@@ -331,4 +331,14 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgctxt "documentation section"
 msgid "intro"
+msgstr ""
+
+#: lib/admin_web/controllers/landing_html.ex:573
+#, elixir-autogen, elixir-format
+msgid "Language"
+msgstr ""
+
+#: lib/admin_web/components/layouts.ex:195
+#, elixir-autogen, elixir-format
+msgid "Open navigation menu"
 msgstr ""
