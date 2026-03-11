@@ -46,7 +46,7 @@ jobs:
         uses: erlef/setup-beam@v1
         id: beam
         with:
-          version-file: .tool-versions
+          version-file: mise.toml
           version-type: strict
 
       # Step: Define how to cache deps. Restores existing cache if present.
