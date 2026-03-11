@@ -38,4 +38,8 @@ description = "start the backend and frontend servers in development mode"
 run = "cd ../client && pnpm build && cp -r dist/* ../admin/priv/static/client"
 description = "Build the frontend from the sibling folder and copy it to the static assets"
 
+[tools]
+elixir = "1.19.5-otp-28"
+erlang = "28.3"
+
 
