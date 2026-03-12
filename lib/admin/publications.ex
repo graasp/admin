@@ -104,14 +104,36 @@ defmodule Admin.Publications do
   end
 
   def get_stats do
+    last_30_days =
+      from(p in PublishedItem, where: p.created_at >= date_add(^Date.utc_today(), -30, "day"))
+      |> Repo.aggregate(:count, :id)
+
+    previous_30_days =
+      from(p in PublishedItem,
+        where:
+          p.created_at >= date_add(^Date.utc_today(), -60, "day") and
+            p.created_at < date_add(^Date.utc_today(), -30, "day")
+      )
+      |> Repo.aggregate(:count, :id)
+
     %{
       total: Repo.aggregate(PublishedItem, :count, :id),
-      day:
-        from(p in PublishedItem, where: p.created_at >= date_add(^Date.utc_today(), -1, "day"))
-        |> Repo.aggregate(:count, :id),
-      month:
-        from(p in PublishedItem, where: p.created_at >= date_add(^Date.utc_today(), -30, "day"))
-        |> Repo.aggregate(:count, :id)
+      day: %{
+        current:
+          from(p in PublishedItem, where: p.created_at >= date_add(^Date.utc_today(), -1, "day"))
+          |> Repo.aggregate(:count, :id),
+        prev:
+          from(p in PublishedItem,
+            where:
+              p.created_at >= date_add(^Date.utc_today(), -2, "day") and
+                p.created_at < date_add(^Date.utc_today(), -1, "day")
+          )
+          |> Repo.aggregate(:count, :id)
+      },
+      month: %{
+        current: last_30_days,
+        prev: previous_30_days
+      }
     }
   end
 

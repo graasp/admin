@@ -8,44 +8,13 @@ defmodule AdminWeb.DashboardLive.Index do
         Welcome, {@current_scope.user.name || @current_scope.user.email}
       </.header>
 
-      <div class="stats shadow bg-base-100">
-        <div class="stat">
-          <div class="stat-title">Published Today</div>
-          <div class="stat-value">{@publication_stats.day}</div>
-          <div class="stat-desc">Collections published in the last 24 hours</div>
-        </div>
-      </div>
-
-      <div class="stats shadow bg-base-100">
-        <div class="stat">
-          <div class="stat-title">Published This Month</div>
-          <div class="stat-value">{@publication_stats.month}</div>
-          <div class="stat-desc">Collections published in the last month</div>
-        </div>
-      </div>
-
-      <div class="stats shadow bg-base-100">
-        <div class="stat">
-          <div class="stat-title">Published Forever</div>
-          <div class="stat-value">{@publication_stats.total |> Integer.to_string()}</div>
-          <div class="stat-desc">Total number of collections published</div>
-        </div>
-      </div>
-
-      <div class="stats shadow bg-base-100">
-        <div class="stat">
-          <div class="stat-title">Users</div>
-          <div class="stat-value">{@user_stats.total}</div>
-          <div class="stat-desc">Total number of users</div>
-        </div>
-      </div>
-
-      <div class="stats shadow bg-base-100">
-        <div class="stat">
-          <div class="stat-title">Confirmed Users</div>
-          <div class="stat-value">{@user_stats.confirmed}</div>
-          <div class="stat-desc">with a verified email</div>
-        </div>
+      <h2 class="text-lg text-bold">Publication Statistics</h2>
+      <div class="stats stats-vertical sm:stats-horizontal shadow bg-base-100">
+        <StatisticsComponents.stat value={@publication_stats.total} title="Overall">
+          Published collections
+        </StatisticsComponents.stat>
+        <StatisticsComponents.stat_comparison stat={@publication_stats.month} title="Last 30 days" />
+        <StatisticsComponents.stat_comparison stat={@publication_stats.day} title="Last 24h" />
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
