@@ -70,7 +70,7 @@ defmodule Admin.Repo.Migrations.CreateItem do
       add :creator_id,
           references(:account, column: :id, type: :binary_id, on_delete: :nilify_all)
 
-      timestamps(only: [:inserted_at], type: :utc_datetime)
+      timestamps(updated_at: false, type: :utc_datetime)
     end
 
     create index(:recycled_item_data, [:item_path],

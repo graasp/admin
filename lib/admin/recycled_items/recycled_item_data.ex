@@ -16,7 +16,7 @@ defmodule Admin.RecycledItems.RecycledItemData do
   @doc false
   def changeset(data, attrs) do
     data
-    |> cast(attrs, [:item_path, :creator_id])
+    |> cast(attrs, [:item_path, :creator_id, :created_at])
     |> validate_required([:item_path, :creator_id])
   end
 end

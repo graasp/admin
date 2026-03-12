@@ -8,7 +8,7 @@ defmodule Admin.H5PItems do
 
   defp h5p_bucket, do: Application.get_env(:admin, :h5p_bucket, "h5p-items")
 
-  def integrity_check() do
+  def integrity_check do
     S3.list_folders(h5p_bucket(), "h5p-content/")
     |> Enum.reduce(%{valid: [], invalid: []}, fn key, acc ->
       Logger.debug("Checking #{key}")
@@ -26,7 +26,7 @@ defmodule Admin.H5PItems do
     end)
   end
 
-  def remove_inconsistent() do
+  def remove_inconsistent do
     integrity_check()
     |> Map.get(:invalid)
     |> Enum.each(&delete_with_content_id/1)

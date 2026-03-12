@@ -3,6 +3,7 @@ defmodule Admin.RecycledItems do
   This module deals with recycled items.
   """
   import Ecto.Query, warn: false
+
   alias Admin.RecycledItems.RecycledItemData
   alias Admin.Repo
 
@@ -22,5 +23,10 @@ defmodule Admin.RecycledItems do
       limit: ^limit
     )
     |> Repo.all()
+  end
+
+  def trash(%{item_path: _item_path, creator_id: _creator_id} = attrs) do
+    RecycledItemData.changeset(%RecycledItemData{}, attrs)
+    |> Repo.insert!()
   end
 end
