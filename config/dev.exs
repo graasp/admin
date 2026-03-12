@@ -75,6 +75,7 @@ config :admin, dev_routes: true
 
 # Set the File Items bucket name
 config :admin, :file_items_bucket, "file-items"
+config :admin, :h5p_bucket, "h5p-items"
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :default_formatter, format: "[$level] $message\n"

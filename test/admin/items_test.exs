@@ -30,7 +30,7 @@ defmodule Admin.ItemsTest do
         extra: %{},
         name: "some name",
         type: "some type",
-        path: "some path",
+        path: "1234.5678",
         description: "some description",
         settings: %{},
         creator_id: Ecto.UUID.generate()
@@ -42,7 +42,7 @@ defmodule Admin.ItemsTest do
       assert item.extra == %{}
       assert item.name == "some name"
       assert item.type == "some type"
-      assert item.path == "some path"
+      assert item.path == %EctoLtree.LabelTree{labels: ["1234", "5678"]}
       assert item.description == "some description"
       assert item.settings == %{}
     end
@@ -60,7 +60,7 @@ defmodule Admin.ItemsTest do
         extra: %{},
         name: "some updated name",
         type: "some updated type",
-        path: "some updated path",
+        path: "1234.5678.9012",
         description: "some updated description",
         settings: %{}
       }
@@ -69,7 +69,7 @@ defmodule Admin.ItemsTest do
       assert item.extra == %{}
       assert item.name == "some updated name"
       assert item.type == "some updated type"
-      assert item.path == "some updated path"
+      assert item.path == %EctoLtree.LabelTree{labels: ["1234", "5678", "9012"]}
       assert item.description == "some updated description"
       assert item.settings == %{}
     end

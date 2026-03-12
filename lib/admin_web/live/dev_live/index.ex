@@ -14,6 +14,8 @@ defmodule AdminWeb.DevLive.Index do
       <p>Email values are hard coded</p>
       <.button phx-click="send_unpublication_email">Send unpublication email</.button>
       <.button phx-click="send_notification_email">Send a simple email</.button>
+
+      <.button phx-click="cleanup_trash_job">Trash Job</.button>
     </Layouts.admin>
     """
   end
@@ -48,5 +50,13 @@ defmodule AdminWeb.DevLive.Index do
     )
 
     {:noreply, socket |> put_flash(:info, "Notification Email sent")}
+  end
+
+  def handle_event("cleanup_trash_job", _, socket) do
+    %{}
+    |> Admin.TrashCleanupWorker.new()
+    |> Oban.insert()
+
+    {:noreply, socket |> put_flash(:info, "Trash Cleanup Job enqued")}
   end
 end

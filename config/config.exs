@@ -12,11 +12,16 @@ config :admin, Oban,
     # retain jobs for 7 days
     {Oban.Plugins.Pruner, max_age: 60 * 60 * 24 * 7},
     # rescue orphan jobs after 2h
-    {Oban.Plugins.Lifeline, rescue_after: :timer.hours(2)}
+    {Oban.Plugins.Lifeline, rescue_after: :timer.hours(2)},
+    # periodic jobs
+    {Oban.Plugins.Cron,
+     crontab: [
+       {"0 3 * * *", Admin.TrashCleanupWorker, max_attempts: 1}
+     ]}
   ],
   engine: Oban.Engines.Basic,
   notifier: Oban.Notifiers.Postgres,
-  queues: [default: 10, mailing: 2],
+  queues: [default: 10, mailing: 2, trash_schedule: 1],
   repo: Admin.Repo
 
 config :admin, :scopes,
@@ -43,7 +48,8 @@ config :admin, Admin.Repo,
   migration_timestamps: [
     type: :utc_datetime,
     inserted_at: :created_at
-  ]
+  ],
+  types: Admin.PostgresTypes
 
 # Configure Gettext
 config :gettext, default_locale: "en"
