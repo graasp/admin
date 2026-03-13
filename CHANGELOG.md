@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.10.1](https://github.com/graasp/graasp-web/compare/v0.10.0...v0.10.1) (2026-03-13)
+
+
+### Bug Fixes
+
+* accessibility issues detected on the landing page ([#214](https://github.com/graasp/graasp-web/issues/214)) ([d26a140](https://github.com/graasp/graasp-web/commit/d26a140e2882af7f3370d4b79ef398dfb8403b47))
+* overhaul the dashboard with live and new stats ([#215](https://github.com/graasp/graasp-web/issues/215)) ([8383db4](https://github.com/graasp/graasp-web/commit/8383db4e1dba56964c740cc1542ad8c4517ed090))
+
+
+### Chores
+
+* **ci:** always restart service after deploy ([#212](https://github.com/graasp/graasp-web/issues/212)) ([d0834fc](https://github.com/graasp/graasp-web/commit/d0834fcf4e7836c0860783f0c20f7e3c84f23cf2))
+* **deps:** update aws-actions/configure-aws-credentials action to v6 ([#211](https://github.com/graasp/graasp-web/issues/211)) ([4af0aa6](https://github.com/graasp/graasp-web/commit/4af0aa653d1853536bdd4fb2918cd57fcf8221ed))
+
 ## [0.10.0](https://github.com/graasp/graasp-web/compare/v0.9.4...v0.10.0) (2026-03-11)
 
 
