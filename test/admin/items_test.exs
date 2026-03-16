@@ -1,14 +1,14 @@
 defmodule Admin.ItemsTest do
-  use Admin.DataCase
+  use Admin.DataCase, async: true
 
   alias Admin.Items
 
+  alias Admin.Items.Item
+
+  import Admin.AccountsFixtures, only: [user_scope_fixture: 0]
+  import Admin.ItemsFixtures
+
   describe "item" do
-    alias Admin.Items.Item
-
-    import Admin.AccountsFixtures, only: [user_scope_fixture: 0]
-    import Admin.ItemsFixtures
-
     @invalid_attrs %{extra: nil, name: nil, type: nil, path: nil, description: nil, settings: nil}
 
     test "list_item/1 returns all item" do
@@ -92,6 +92,105 @@ defmodule Admin.ItemsTest do
       scope = user_scope_fixture()
       item = item_fixture(scope)
       assert %Ecto.Changeset{} = Items.change_item(scope, item)
+    end
+  end
+
+  test "get_descendants/1 for lone item returns itself" do
+    scope = user_scope_fixture()
+    item = item_fixture(scope)
+    descendants = Items.get_descendants(item.path)
+    assert descendants == [item]
+  end
+
+  describe "descendants" do
+    test "get_descendants/1 for item with children returns all descendants" do
+      scope = user_scope_fixture()
+
+      tree_structure = [
+        {%{name: "parent"},
+         [
+           {%{name: "child"},
+            [
+              {%{name: "grandchild"}, []}
+            ]},
+           {%{name: "child_2"}, []}
+         ]},
+        {%{name: "parent_2"}, []}
+      ]
+
+      [{parent, [{child, [{grandchild, []}]}, {child_2, []}]}, {_parent_2, []}] =
+        build_tree(scope, tree_structure)
+
+      descendants = Items.get_descendants(parent.path)
+      assert descendants == [parent, child, child_2, grandchild]
+
+      descendants_of_child = Items.get_descendants(child.path)
+      assert descendants_of_child == [child, grandchild]
+    end
+  end
+
+  describe "delete tree" do
+    test "deletes a tree and all descendants" do
+      scope = user_scope_fixture()
+
+      tree_structure = [
+        {%{name: "parent_1"},
+         [
+           {%{name: "child_1"}, []},
+           {%{name: "child_2"}, []}
+         ]},
+        {%{name: "parent_2"}, []}
+      ]
+
+      [{parent_1, _}, {parent_2, []}] =
+        build_tree(scope, tree_structure)
+
+      assert {3, _} = Items.delete(parent_1.path)
+      descendants = Items.get_descendants(parent_1.path)
+      assert descendants == []
+      assert [parent_2] == Items.get_descendants(parent_2.path)
+    end
+  end
+
+  describe "get_by_h5p_content_id/1" do
+    test "returns the item with the given h5p content id" do
+      scope = user_scope_fixture()
+      content_id = Ecto.UUID.generate()
+      item = item_fixture(scope, %{type: "h5p", extra: %{"h5p" => %{"contentId" => content_id}}})
+
+      assert item.id == Items.get_by_h5p_content_id(content_id)
+    end
+
+    test "returns nil when no item has the given h5p content id" do
+      content_id = Ecto.UUID.generate()
+      assert nil == Items.get_by_h5p_content_id(content_id)
+    end
+  end
+
+  describe "build_tree/1" do
+    test "builds a tree from a list of tree structures" do
+      scope = user_scope_fixture()
+
+      tree_structure = [
+        {%{name: "parent_1"},
+         [
+           {%{name: "child_1"}, []},
+           {%{name: "child_2"}, []}
+         ]},
+        {%{name: "parent_2"}, []}
+      ]
+
+      [{parent_1, [{child_1, []}, {child_2, []}]}, {parent_2, []}] =
+        build_tree(scope, tree_structure)
+
+      assert "parent_1" == parent_1.name
+      assert "child_1" == child_1.name
+      assert "child_2" == child_2.name
+      assert "parent_2" == parent_2.name
+
+      # assert child contains path of parent
+      assert Items.PathUtils.to_string(child_1.path) =~
+               Items.PathUtils.to_string(parent_1.path)
     end
   end
 end

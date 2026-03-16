@@ -25,6 +25,7 @@ defmodule Admin.Items.Item do
   def changeset(item, attrs) do
     item
     |> cast(attrs, [
+      :id,
       :name,
       :description,
       :path,

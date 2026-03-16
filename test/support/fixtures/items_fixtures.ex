@@ -35,4 +35,26 @@ defmodule Admin.ItemsFixtures do
     {:ok, item} = Admin.Items.create_item(scope, attrs)
     item
   end
+
+  def build_tree(scope, tree_structure) when is_list(tree_structure) do
+    build_tree_recursive(scope, [], tree_structure)
+  end
+
+  defp build_tree_recursive(scope, prefix, children) do
+    Enum.reduce(children, [], fn {parent, children}, acc ->
+      item_id = Ecto.UUID.generate()
+      item_path = prefix ++ [item_id]
+
+      attrs =
+        Enum.into(parent, %{
+          id: item_id,
+          path: "#{PathUtils.from_uuids(item_path)}"
+        })
+
+      item = item_fixture(scope, attrs)
+
+      res = build_tree_recursive(scope, item_path, children)
+      acc ++ [{item, res}]
+    end)
+  end
 end
