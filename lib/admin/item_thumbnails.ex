@@ -5,7 +5,7 @@ defmodule Admin.ItemThumbnails do
 
   alias Admin.S3
 
-  defp file_bucket, do: Application.get_env(:admin, :file_items_bucket, "file_items")
+  defp file_bucket, do: Application.get_env(:admin, :file_items_bucket, "file-items")
 
   def get_item_thumbnails(item_id) do
     %{

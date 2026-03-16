@@ -7,7 +7,7 @@ defmodule Admin.Items.PathUtils do
     uuids |> Enum.map_join(".", &String.replace(&1, "-", "_"))
   end
 
-  def ids_from_path(path) when is_binary(path) do
+  def to_uuids(path) when is_binary(path) do
     path |> String.split(".") |> Enum.map(&String.replace(&1, "_", "-"))
   end
 

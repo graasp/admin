@@ -4,7 +4,7 @@ defmodule Admin.ItemFiles do
   """
   alias Admin.S3
 
-  defp file_bucket, do: Application.get_env(:admin, :file_items_bucket, "file_items")
+  defp file_bucket, do: Application.get_env(:admin, :file_items_bucket, "file-items")
 
   def delete(files_data) do
     file_paths = files_data |> Enum.map(& &1.path)
