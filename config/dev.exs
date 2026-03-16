@@ -26,7 +26,16 @@ config :admin, AdminWeb.Endpoint,
   secret_key_base: "WUz/cy0PS0UQvcwpItcpTMMKiZRrirYhEQttRxpaRuyZm1PkK87Yz6vcCgr9MKbP",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:admin, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:admin, ~w(--watch)]}
+    tailwind: {Tailwind, :install_and_run, [:admin, ~w(--watch)]},
+    pnpm: [
+      "vite",
+      "build",
+      "--emptyOutDir",
+      "--out-dir",
+      "../admin/priv/static/client",
+      "--watch",
+      cd: Path.expand("../../client", __DIR__)
+    ]
   ]
 
 # ## SSL Support
