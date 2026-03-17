@@ -34,7 +34,7 @@ defmodule Admin.MixProject do
   def application do
     [
       mod: {Admin.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :wx, :observer, :os_mon]
     ]
   end
 
@@ -138,7 +138,13 @@ defmodule Admin.MixProject do
       {:yaml_elixir, "~> 2.12"},
 
       # time formatting library
-      {:timex, "~> 3.0"}
+      {:timex, "~> 3.0"},
+
+      # allow to use the ltree type with ecto
+      {:ecto_ltree, "~> 0.3.0"},
+
+      # allow to see ecto metrics in live dashboard
+      {:ecto_psql_extras, "~> 0.6"}
     ]
   end
 

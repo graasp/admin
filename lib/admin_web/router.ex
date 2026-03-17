@@ -105,17 +105,9 @@ defmodule AdminWeb.Router do
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:admin, :dev_routes) do
-    # If you want to use the LiveDashboard in production, you should put
-    # it behind authentication and allow only admins to access it.
-    # If your application does not have an admins-only section yet,
-    # you can use Plug.BasicAuth to set up some basic authentication
-    # as long as you are also using SSL (which you should anyway).
-    import Phoenix.LiveDashboard.Router
-
     scope "/dev" do
       pipe_through :browser_admin
 
-      live_dashboard "/dashboard", metrics: AdminWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
 
       # S3 debug interface
@@ -131,7 +123,16 @@ defmodule AdminWeb.Router do
 
   ## Authentication LV routes
   scope "/admin", AdminWeb do
+    # If you want to use the LiveDashboard in production, you should put
+    # it behind authentication and allow only admins to access it.
+    # If your application does not have an admins-only section yet,
+    # you can use Plug.BasicAuth to set up some basic authentication
+    # as long as you are also using SSL (which you should anyway).
+    import Phoenix.LiveDashboard.Router
+
     pipe_through [:browser_admin, :require_authenticated_user]
+
+    live_dashboard "/dev/dashboard", metrics: AdminWeb.Telemetry, ecto_repos: [Admin.Repo]
 
     live_session :require_authenticated_user,
       on_mount: [{AdminWeb.UserAuth, :require_authenticated}] do
