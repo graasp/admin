@@ -8,6 +8,7 @@ defmodule Admin.H5PItems do
 
   defp h5p_bucket, do: Application.get_env(:admin, :h5p_bucket, "h5p-items")
 
+  @spec integrity_check() :: %{valid: [String.t()], invalid: [String.t()]}
   def integrity_check do
     S3.list_folders(h5p_bucket(), "h5p-content/")
     |> Enum.reduce(%{valid: [], invalid: []}, fn key, acc ->

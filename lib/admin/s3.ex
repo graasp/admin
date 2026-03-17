@@ -82,7 +82,6 @@ defmodule Admin.S3 do
     stream =
       S3.list_objects(bucket, prefix: prefix)
       |> @ex_aws_mod.stream!()
-      |> IO.inspect(label: "stream")
       |> Stream.map(& &1.key)
 
     {:ok, _} =

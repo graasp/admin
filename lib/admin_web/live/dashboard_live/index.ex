@@ -30,8 +30,8 @@ defmodule AdminWeb.DashboardLive.Index do
         </StatisticsComponents.stat>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div>
+      <div class="flex flex-row flex-wrap gap-10">
+        <div class="flex-1">
           <div class="flex items-center justify-between">
             <div class="flex flex-col align-start">
               <h2><.link navigate={~p"/admin/maintenance"}>Planned Maintenance</.link></h2>
@@ -58,8 +58,36 @@ defmodule AdminWeb.DashboardLive.Index do
             <% end %>
           </div>
         </div>
+        <div class="flex-1">
+          <div class="flex items-center justify-between">
+            <div class="flex flex-col align-start">
+              <h2>H5P integrity check</h2>
+              <span class="text-xs text-neutral">
+                Check if there are any broken H5P content items.
+              </span>
+            </div>
+            <.button phx-click="h5p-integrity-check">
+              Check Integrity
+            </.button>
+          </div>
+          <div class="flex flex-col mt-2 gap-1">
+            <%= if @h5p_integrity_result do %>
+              <% invalid_count = @h5p_integrity_result.invalid |> length() %> Found {invalid_count} invalid H5P content items.
+              <%= if invalid_count > 0 do %>
+                They can be removed from the storage layer to free up space.
+                <.button phx-click="h5p-integrity-fix" class="">
+                  Remove in-used H5P uploads
+                </.button>
+              <% end %>
+            <% else %>
+              <div class="flex flex-row italic text-neutral text-sm">
+                Run the integrity check to find broken H5P content items.
+              </div>
+            <% end %>
+          </div>
+        </div>
 
-        <div>
+        <div class="w-full">
           <div class="flex items-center justify-between">
             <div class="flex flex-col align-start">
               <h2>Recent Publications</h2>
@@ -70,7 +98,7 @@ defmodule AdminWeb.DashboardLive.Index do
             </div>
             <.button navigate={~p"/admin/published_items"}>View all</.button>
           </div>
-          <div class="flex flex-col mt-2 gap-1">
+          <div class="flex flex-col md:flex-row md: flex-wrap mt-2 gap-1">
             <%= for publication <- @publications do %>
               <AdminWeb.PublishedItemHTML.publication_row publication={publication}>
                 <:action>
@@ -107,7 +135,19 @@ defmodule AdminWeb.DashboardLive.Index do
         :maintenances,
         Admin.Maintenance.list_upcoming_maintenance()
       )
+      |> assign(:h5p_integrity_result, nil)
 
     {:ok, socket}
+  end
+
+  def handle_event("h5p-integrity-check", _params, socket) do
+    result = Admin.H5PItems.integrity_check()
+    {:noreply, assign(socket, :h5p_integrity_result, result)}
+  end
+
+  def handle_event("h5p-integrity-fix", _params, socket) do
+    Admin.H5PItems.remove_inconsistent()
+    result = Admin.H5PItems.integrity_check()
+    {:noreply, assign(socket, :h5p_integrity_result, result)}
   end
 end
