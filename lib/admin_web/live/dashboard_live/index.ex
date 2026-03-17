@@ -17,6 +17,19 @@ defmodule AdminWeb.DashboardLive.Index do
         <StatisticsComponents.stat_comparison stat={@publication_stats.day} title="Last 24h" />
       </div>
 
+      <h2 class="text-lg text-bold">Recycled items Statistics</h2>
+      <div class="stats stats-vertical sm:stats-horizontal shadow bg-base-100">
+        <StatisticsComponents.stat value={@recycled_stats.total} title="Overall">
+          Recycled items
+        </StatisticsComponents.stat>
+        <StatisticsComponents.stat value={@recycled_stats.scheduled} title="Scheduled for deletion">
+          Items trashed more than 3 months ago
+        </StatisticsComponents.stat>
+        <StatisticsComponents.stat value={@recycled_stats.pending} title="Pending">
+          Items in user trash for less than 3 months
+        </StatisticsComponents.stat>
+      </div>
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div>
           <div class="flex items-center justify-between">
@@ -83,12 +96,12 @@ defmodule AdminWeb.DashboardLive.Index do
         Admin.Publications.list_published_items(10)
       )
       |> assign(
-        :user_stats,
-        Admin.Accounts.user_stats()
-      )
-      |> assign(
         :publication_stats,
         Admin.Publications.get_stats()
+      )
+      |> assign(
+        :recycled_stats,
+        Admin.RecycledItems.get_stats()
       )
       |> assign(
         :maintenances,

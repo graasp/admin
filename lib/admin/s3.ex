@@ -80,7 +80,10 @@ defmodule Admin.S3 do
 
   def delete_with_prefix(bucket, prefix) when is_binary(prefix) do
     stream =
-      S3.list_objects(bucket, prefix: prefix) |> @ex_aws_mod.stream!() |> Stream.map(& &1.key)
+      S3.list_objects(bucket, prefix: prefix)
+      |> @ex_aws_mod.stream!()
+      |> IO.inspect(label: "stream")
+      |> Stream.map(& &1.key)
 
     {:ok, _} =
       S3.delete_all_objects(bucket, stream)

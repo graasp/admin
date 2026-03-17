@@ -18,11 +18,38 @@ defmodule Admin.RecycledItems do
 
     from(rid in RecycledItemData,
       select: rid.item_path,
-      where: fragment("? < NOW() - INTERVAL '3 months'", rid.created_at),
+      where: rid.created_at <= date_add(^Date.utc_today(), -90, "day"),
       order_by: [asc: rid.created_at],
       limit: ^limit
     )
     |> Repo.all()
+  end
+
+  @doc """
+  Returns statistics about recycled items.
+  """
+  def get_stats do
+    total = Repo.aggregate(RecycledItemData, :count, :id)
+
+    scheduled =
+      Repo.aggregate(
+        from(rid in RecycledItemData,
+          where: rid.created_at <= date_add(^Date.utc_today(), -90, "day")
+        ),
+        :count,
+        :id
+      )
+
+    pending =
+      Repo.aggregate(
+        from(rid in RecycledItemData,
+          where: rid.created_at > date_add(^Date.utc_today(), -90, "day")
+        ),
+        :count,
+        :id
+      )
+
+    %{total: total, scheduled: scheduled, pending: pending}
   end
 
   def trash(%{item_path: _item_path, creator_id: _creator_id} = attrs) do
