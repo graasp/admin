@@ -106,17 +106,61 @@ Repeat the process until you have generated all necessary keys. You can search f
 >
 > This requires an OpenAI account and a payment method. See [OpenAI documentation](https://openai.com/pricing).
 
-### Bootstrap the Database
+### Setting up the Database
 
-You have to run a few lines of SQL before you can use the database.
+#### Ensuring the DB is boostrapped
 
-Run this line in the terminal of the DevContainer. It will connect to the Postgres Engine running in the db container with the `docker` user and run the `bootstrapDB.sql` file. You will be asked for a password. Enter `docker`.
+The database should have been automatically boostrapped by the init.sql script mounted in the db container.
+You can verify it is the case by connecting to the database and checking the `graasp` dtatabase is available:
+In a terminal in the connected vscode devcontainer run:
 
 ```sh
-psql -h db -U docker -f bootstrapDB.sql
+psql -h db -U docker -d docker
 ```
 
-This will create the needed databases and their users for the Umami and Etherpad services and the test database.
+Enter the password for the docker user: `docker`
+You should now be at the psql prompt and see: `docker=> `
+You can list the databases available with `\l` (backslash l)
+You should see at least the 4 required databases for graasp:
+
+- graasp
+- etherpad
+- test
+- umami
+
+You can connect to the graasp databse with `\c graasp`
+The should change to: `graasp=> `
+You can list the tables in the database with: `\d`
+Currently there should be no tables (this is normal we will create them in the next step).
+
+#### Creating the tables with the migration script
+
+To create the tables and have our database up-to-date with the current state of the application we will need to run the migrations for the application.
+
+In the terminal of the devcontainer in vscode:
+
+```sh
+yarn migration:run
+```
+
+This should run for some time and then finish with:
+
+```txt
+[✓] migrations applied successfully!
+```
+
+You can verify that the tables are now available.
+
+Open a psql prompt with:
+
+```sh
+psql -h db -U graasper -d graasp
+```
+
+Enter the graasper password: `graasper`
+
+List the tables of the graasp database: `\d`.
+You should see around 50 tables.
 
 ### Launching the backend server {: #running-backend}
 

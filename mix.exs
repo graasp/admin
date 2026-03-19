@@ -34,7 +34,7 @@ defmodule Admin.MixProject do
   def application do
     [
       mod: {Admin.Application, []},
-      extra_applications: [:logger, :runtime_tools, :wx, :observer, :os_mon]
+      extra_applications: [:logger, :runtime_tools, :wx, :observer]
     ]
   end
 
