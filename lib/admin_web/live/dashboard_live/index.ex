@@ -66,7 +66,7 @@ defmodule AdminWeb.DashboardLive.Index do
                 Check if there are any broken H5P content items.
               </span>
             </div>
-            <.button phx-click="h5p-integrity-check">
+            <.button phx-click="h5p-integrity-check" phx-disable-with>
               Check Integrity
             </.button>
           </div>
@@ -75,8 +75,8 @@ defmodule AdminWeb.DashboardLive.Index do
               <% invalid_count = @h5p_integrity_result.invalid |> length() %> Found {invalid_count} invalid H5P content items.
               <%= if invalid_count > 0 do %>
                 They can be removed from the storage layer to free up space.
-                <.button phx-click="h5p-integrity-fix" class="">
-                  Remove in-used H5P uploads
+                <.button phx-click="h5p-integrity-fix" phx-disable-with class="">
+                  Remove unused H5P uploads
                 </.button>
               <% end %>
             <% else %>
