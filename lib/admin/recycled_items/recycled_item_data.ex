@@ -1,25 +1,22 @@
-defmodule Admin.Publications.PublishedItem do
+defmodule Admin.RecycledItems.RecycledItemData do
   @moduledoc """
-  This represents a published resource
+  This represents an item that was moved to the trash
   """
   use Admin.Schema
   import Ecto.Changeset
   alias EctoLtree.LabelTree, as: Ltree
 
-  schema "published_items" do
+  schema "recycled_item_data" do
     belongs_to :item, Admin.Items.Item, type: Ltree, foreign_key: :item_path, references: :path
     belongs_to :creator, Admin.Accounts.Account, type: :binary_id
 
-    # will contain small, medium, large keys
-    field :thumbnails, :map, virtual: true
-
-    timestamps(type: :utc_datetime)
+    timestamps(updated_at: false, type: :utc_datetime)
   end
 
   @doc false
-  def changeset(published_item, attrs) do
-    published_item
-    |> cast(attrs, [:item_path, :creator_id])
+  def changeset(data, attrs) do
+    data
+    |> cast(attrs, [:item_path, :creator_id, :created_at])
     |> validate_required([:item_path, :creator_id])
   end
 end

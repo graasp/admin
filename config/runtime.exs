@@ -159,6 +159,7 @@ if config_env() == :prod do
 
   # Config the File Items bucket name
   config :admin, :file_items_bucket, System.get_env("FILE_ITEMS_BUCKET_NAME", "file-items")
+  config :admin, :h5p_bucket, System.get_env("H5P_CONTENT_BUCKET_NAME", "h5p-items")
 
   config :ex_aws, :s3,
     region: System.get_env("AWS_REGION", "eu-central-1"),

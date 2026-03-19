@@ -5,7 +5,7 @@ defmodule Admin.ItemThumbnails do
 
   alias Admin.S3
 
-  defp file_bucket, do: Application.get_env(:admin, :file_items_bucket, "file_items")
+  defp file_bucket, do: Application.get_env(:admin, :file_items_bucket, "file-items")
 
   def get_item_thumbnails(item_id) do
     %{
@@ -18,5 +18,16 @@ defmodule Admin.ItemThumbnails do
   defp get_item_thumbnail(item_id, size) when size in ["small", "medium", "large", "original"] do
     url = S3.get_object_url(file_bucket(), "thumbnails/#{item_id}/#{size}")
     url
+  end
+
+  def delete_thumbnails(item_id) do
+    file_paths = [
+      "thumbnails/#{item_id}/small",
+      "thumbnails/#{item_id}/medium",
+      "thumbnails/#{item_id}/large",
+      "thumbnails/#{item_id}/original"
+    ]
+
+    S3.delete_objects(file_bucket(), file_paths)
   end
 end

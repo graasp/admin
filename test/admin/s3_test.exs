@@ -147,4 +147,19 @@ defmodule Admin.S3Test do
       Admin.S3.delete_object("my-bucket", "object1")
     end
   end
+
+  describe "Delete multiple objects" do
+    test "Valid objects" do
+      expect(ExAwsMock, :request, fn operation ->
+        assert %ExAws.Operation.S3DeleteAllObjects{} = operation
+        # expect to get no bucket name since we are listing all buckets
+        assert operation.bucket == "my-bucket"
+        assert operation.objects == ["object1", "object2"]
+        # return an empty list of buckets
+        {:ok, [%{body: "", status_code: 200}, %{body: "", status_code: 200}]}
+      end)
+
+      {:ok, _} = Admin.S3.delete_objects("my-bucket", ["object1", "object2"])
+    end
+  end
 end

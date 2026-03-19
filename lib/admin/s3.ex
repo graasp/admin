@@ -71,4 +71,34 @@ defmodule Admin.S3 do
   def delete_object(bucket, key) do
     {:ok, _} = S3.delete_object(bucket, key) |> @ex_aws_mod.request()
   end
+
+  def delete_objects(bucket, file_paths) do
+    {:ok, _} =
+      S3.delete_all_objects(bucket, file_paths)
+      |> @ex_aws_mod.request()
+  end
+
+  def delete_with_prefix(bucket, prefix) when is_binary(prefix) do
+    stream =
+      S3.list_objects(bucket, prefix: prefix)
+      |> @ex_aws_mod.stream!()
+      |> Stream.map(& &1.key)
+
+    {:ok, _} =
+      S3.delete_all_objects(bucket, stream)
+      |> @ex_aws_mod.request()
+
+    :ok
+  end
+
+  def list_folders(bucket, prefix) do
+    objects =
+      S3.list_objects(bucket, prefix: prefix, delimiter: "/", stream_prefixes: true)
+      |> @ex_aws_mod.stream!()
+
+    objects
+    |> Stream.map(fn %{prefix: key} ->
+      key |> String.trim_leading(prefix) |> String.trim_trailing("/")
+    end)
+  end
 end
