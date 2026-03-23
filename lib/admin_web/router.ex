@@ -193,6 +193,15 @@ defmodule AdminWeb.Router do
           live "/messages/:lang/edit", NotificationMessageLive.Form, :edit
         end
       end
+
+      scope "/validation" do
+        live "/", ValidationLive.Poc, :index
+        live "/:item_id/validate", ValidationLive.Form, :validate
+      end
+
+      scope "/orphans" do
+        live "/", OrphansLive.Index, :index
+      end
     end
 
     post "/users/update-password", UserSessionController, :update_password
