@@ -24,8 +24,15 @@ FROM ${ELIXIR_BUILDER_IMAGE} AS builder
 
 # install build dependencies
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends build-essential git \
+    && apt-get install -y --no-install-recommends build-essential git curl libssl-dev \
     && rm -rf /var/lib/apt/lists/*
+
+# install Rust toolchain via rustup
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+    | sh -s -- -y
+ENV RUSTUP_HOME=/root/.rustup \
+    CARGO_HOME=/root/.cargo \
+    PATH=/root/.cargo/bin:$PATH
 
 # prepare build dir
 WORKDIR /app
@@ -77,7 +84,14 @@ RUN mix release
 FROM ${RUNNER_IMAGE} AS final
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends libstdc++6 openssl libncurses5 locales ca-certificates \
+    && apt-get install -y --no-install-recommends \
+      libstdc++6 \
+      openssl \
+      libncurses5 \
+      locales \
+      ca-certificates \
+      # for Image library we need to provide fontconfig and a font
+      fontconfig fonts-dejavu-core \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the locale

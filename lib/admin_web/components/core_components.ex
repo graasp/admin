@@ -94,17 +94,36 @@ defmodule AdminWeb.CoreComponents do
   """
   attr :rest, :global, include: ~w(href navigate patch method download name value disabled)
   attr :class, :string
-  attr :variant, :string, values: ~w(primary)
+  attr :variant, :string, values: ~w(primary error)
+
+  attr :color, :string,
+    values: ~w(primary accent neutral error info success warning),
+    default: "primary"
+
   slot :inner_block, required: true
 
   def button(%{rest: rest} = assigns) do
-    variants = %{"primary" => "btn-primary", nil => "btn-primary btn-soft"}
+    variants = %{
+      "primary" => "",
+      nil => "btn-soft"
+    }
+
+    colors = %{
+      "primary" => "btn-primary",
+      "accent" => "btn-accent",
+      "neutral" => "btn-neutral",
+      "error" => "btn-error",
+      "info" => "btn-info",
+      "success" => "btn-success",
+      "warning" => "btn-warning"
+    }
 
     assigns =
       assign(
         assigns,
         :class,
-        ["btn", Map.fetch!(variants, assigns[:variant])] ++ [assigns[:class]]
+        ["btn", Map.fetch!(colors, assigns[:color]), Map.fetch!(variants, assigns[:variant])] ++
+          [assigns[:class]]
       )
 
     if rest[:href] || rest[:navigate] || rest[:patch] do
