@@ -2,8 +2,8 @@ defmodule Admin.Validation.NudenetValidation do
   alias Admin.Validation.PredictionDraw
   alias Admin.S3
 
-  @model_name Application.app_dir(:admin, "priv/models/320n.onnx")
-  @classes_path Application.app_dir(:admin, "priv/models/labels.json")
+  defp model_name, do: Application.app_dir(:admin, "priv/models/320n.onnx")
+  defp classes_path, do: Application.app_dir(:admin, "priv/models/labels.json")
 
   def from_file(s3_path) do
     image = get_image(s3_path)
@@ -22,7 +22,7 @@ defmodule Admin.Validation.NudenetValidation do
   end
 
   def perform(image) do
-    model = YOLO.load(model_path: @model_name, classes_path: @classes_path, eps: [:cpu])
+    model = YOLO.load(model_path: model_name(), classes_path: classes_path(), eps: [:cpu])
 
     model
     |> YOLO.detect(image,
