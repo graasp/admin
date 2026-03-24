@@ -478,7 +478,7 @@ defmodule AdminWeb.CoreComponents do
 
   def raw_html(assigns) do
     ~H"""
-    <div class={[@class, "prose prose-sm"]}>
+    <div class={["prose prose-sm", @class]}>
       {HtmlSanitizeEx.basic_html(@html) |> Phoenix.HTML.raw()}
     </div>
     """
