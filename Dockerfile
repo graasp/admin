@@ -84,7 +84,14 @@ RUN mix release
 FROM ${RUNNER_IMAGE} AS final
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends libstdc++6 openssl libncurses5 locales ca-certificates \
+    && apt-get install -y --no-install-recommends \
+      libstdc++6 \
+      openssl \
+      libncurses5 \
+      locales \
+      ca-certificates \
+      # for Image library we need to provide fontconfig and a font
+      fontconfig fonts-dejavu-core \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the locale
