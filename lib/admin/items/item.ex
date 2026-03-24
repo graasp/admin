@@ -3,9 +3,11 @@ defmodule Admin.Items.Item do
   This represents an item in Graasp
   """
   use Admin.Schema
+
   import Ecto.Changeset
-  alias EctoLtree.LabelTree, as: Ltree
+
   alias Admin.Items.PathUtils
+  alias EctoLtree.LabelTree, as: Ltree
 
   schema "item" do
     field :name, :string

@@ -11,6 +11,7 @@ defmodule Admin.Items do
   alias Admin.ItemFiles
   alias Admin.Items.Item
   alias Admin.Items.ItemMembership
+  alias Admin.Validation.NudenetValidation
 
   @doc """
   Subscribes to scoped notifications about any item changes.
@@ -189,7 +190,7 @@ defmodule Admin.Items do
     |> Repo.one()
   end
 
-  def get_recent_files() do
+  def get_recent_files do
     from(item in Item,
       order_by: [desc: item.created_at],
       where: item.type == "file",
@@ -207,7 +208,7 @@ defmodule Admin.Items do
   These elements usually have a creator who has deleted their account.
   But sometimes also the creator has left the item and the last admin has deleted their account.
   """
-  def get_orphans_last_year() do
+  def get_orphans_last_year do
     from(item in Item,
       select: item,
       left_join: membership in ItemMembership,
@@ -230,7 +231,7 @@ defmodule Admin.Items do
 
   def validate_item(%Scope{} = _scope, item) do
     path = get_file_path(item)
-    {image, result} = Admin.Validation.NudenetValidation.from_file(path)
+    {image, result} = NudenetValidation.from_file(path)
     {:ok, png_bin} = Image.write(image, :memory, suffix: ".png")
     base64 = Base.encode64(png_bin)
     data_url = "data:image/png;base64," <> base64

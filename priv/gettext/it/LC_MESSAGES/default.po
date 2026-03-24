@@ -11,7 +11,7 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/admin_web/components/core_components.ex:353
+#: lib/admin_web/components/core_components.ex:372
 #: lib/admin_web/live/notification_live/show.ex:71
 #, elixir-autogen, elixir-format
 msgid "Actions"
@@ -119,7 +119,7 @@ msgctxt "page title"
 msgid "Contact"
 msgstr "Contatto"
 
-#: lib/admin_web/live/dashboard_live/index.ex:121
+#: lib/admin_web/live/dashboard_live/index.ex:155
 #, elixir-autogen, elixir-format
 msgctxt "page title"
 msgid "Dashboard"

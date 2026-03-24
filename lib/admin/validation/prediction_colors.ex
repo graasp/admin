@@ -1,4 +1,8 @@
 defmodule Admin.Validation.PredictionColors do
+  @moduledoc """
+  Helper module for associating colors to predicted classes.
+  """
+
   @class_colors [
                   "#FF0000",
                   "#00FF00",

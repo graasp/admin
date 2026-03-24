@@ -1,6 +1,10 @@
 defmodule Admin.Validation.NudenetValidation do
-  alias Admin.Validation.PredictionDraw
+  @moduledoc """
+  Module for performing validation using the nudenet model on images.
+  """
+
   alias Admin.S3
+  alias Admin.Validation.PredictionDraw
 
   defp model_name, do: Application.app_dir(:admin, "priv/models/320n.onnx")
   defp classes_path, do: Application.app_dir(:admin, "priv/models/labels.json")

@@ -125,8 +125,7 @@ defmodule AdminWeb.ValidationLive.Poc do
   end
 
   def handle_event("delete-item", %{"id" => id}, socket) do
-    id |> IO.inspect()
-    item = socket.assigns.recent_files |> Enum.find(&(&1.id == id)) |> IO.inspect()
+    item = socket.assigns.recent_files |> Enum.find(&(&1.id == id))
     {:ok, _} = Items.delete_item(socket.assigns.current_scope, item)
 
     {:noreply, update(socket, :recent_files, fn files -> Enum.reject(files, &(&1.id == id)) end)}
