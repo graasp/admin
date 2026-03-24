@@ -18,7 +18,6 @@ defmodule Admin.ItemFiles do
     file_paths =
       files_data
       |> Enum.map(& &1.path)
-      |> IO.inspect(label: "file paths")
 
     {:ok, _} = S3.delete_objects(bucket(), file_paths)
     file_ids = files_data |> Enum.map(& &1.id)
@@ -30,7 +29,6 @@ defmodule Admin.ItemFiles do
     path =
       get_in(item.extra, ["file", "path"]) ||
         get_in(item.extra, ["file", "key"])
-        |> IO.inspect(label: "file path")
 
     case path do
       nil ->
