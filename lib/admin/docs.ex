@@ -41,17 +41,8 @@ defmodule Admin.Docs do
   def with_tag(tag, locale),
     do: for_locale(locale) |> Enum.filter(&(tag in &1.tags))
 
-  def all_topics do
-    all_pages() |> Enum.map(& &1.section) |> Enum.uniq()
-  end
-
-  def all_sections do
-    @pages
-    |> Enum.group_by(fn page -> page.section end)
-  end
-
   def get_page_by_id!(id) do
-    Enum.find(@pages, fn post -> post.id == id end) ||
+    Enum.find(all_pages(), fn post -> post.id == id end) ||
       raise AdminWeb.NotFoundError, "page with id=#{id} not found"
   end
 end

@@ -144,7 +144,17 @@ defmodule Admin.MixProject do
       {:ecto_ltree, "~> 0.3.0"},
 
       # allow to see ecto metrics in live dashboard
-      {:ecto_psql_extras, "~> 0.6"}
+      {:ecto_psql_extras, "~> 0.6"},
+
+      # dependencies for the yolo model (nudenet)
+      {:yolo, github: "spaenleh/yolo_elixir", branch: "main"},
+      {:ortex, "~> 0.1.10"},
+      {:nx, "~> 0.9"},
+      {:exla, "~> 0.10"},
+      {:image, "~> 0.54"},
+      {:evision, "~> 0.2"},
+      {:kino, "~> 0.16"},
+      {:kino_yolo, github: "poeticoding/kino_yolo", branch: "main"}
     ]
   end
 
