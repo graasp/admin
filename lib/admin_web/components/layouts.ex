@@ -243,6 +243,7 @@ defmodule AdminWeb.Layouts do
                 <ul class="p-2">
                   <li><.link navigate={~p"/admin/about"}>About</.link></li>
                   <li><.link navigate={~p"/admin/oban"}>Job Queues</.link></li>
+                  <li><.link navigate={~p"/admin/dev/dashboard"}>Live Dashboard</.link></li>
                 </ul>
               </li>
 
@@ -296,6 +297,7 @@ defmodule AdminWeb.Layouts do
                 <ul class="p-2">
                   <li><.link navigate={~p"/admin/about"}>About</.link></li>
                   <li><.link navigate={~p"/admin/oban"}>Job Queues</.link></li>
+                  <li><.link navigate={~p"/admin/dev/dashboard"}>Live Dashboard</.link></li>
                 </ul>
               </details>
             </li>
