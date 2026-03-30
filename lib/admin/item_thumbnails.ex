@@ -30,7 +30,7 @@ defmodule Admin.ItemThumbnails do
     ttl = 3600
 
     {:ok, url} =
-      Admin.FileCache.get_or_put(key, ttl, fn ->
+      Admin.SignedUrlCache.get_or_put(key, ttl, fn ->
         S3.get_object_url(bucket(), key, expires_in: ttl)
       end)
 
