@@ -8,17 +8,19 @@ defmodule AdminWeb.DashboardLive.Index do
         Welcome, {@current_scope.user.name || @current_scope.user.email}
       </.header>
 
-      <h2 class="text-lg text-bold">Publication Statistics</h2>
-      <div class="stats stats-vertical sm:stats-horizontal shadow bg-base-100">
-        <StatisticsComponents.stat value={@publication_stats.total} title="Overall">
-          Published collections
-        </StatisticsComponents.stat>
-        <StatisticsComponents.stat_comparison stat={@publication_stats.month} title="Last 30 days" />
-        <StatisticsComponents.stat_comparison stat={@publication_stats.day} title="Last 24h" />
+      <div class="px-6 py-4 rounded-lg bg-base-200">
+        <h2 class="text-lg text-bold">Publication Statistics</h2>
+        <div class="stats stats-vertical sm:stats-horizontal shadow bg-base-100">
+          <StatisticsComponents.stat value={@publication_stats.total} title="Overall">
+            Published collections
+          </StatisticsComponents.stat>
+          <StatisticsComponents.stat_comparison stat={@publication_stats.month} title="Last 30 days" />
+          <StatisticsComponents.stat_comparison stat={@publication_stats.day} title="Last 24h" />
+        </div>
       </div>
 
       <h2 class="text-lg text-bold">Recycled items Statistics</h2>
-      <div class="stats stats-vertical sm:stats-horizontal shadow bg-base-100">
+      <div class="stats stats-vertical sm:stats-horizontal bg-base-200">
         <StatisticsComponents.stat value={@recycled_stats.total} title="Overall">
           Recycled items
         </StatisticsComponents.stat>
@@ -31,7 +33,7 @@ defmodule AdminWeb.DashboardLive.Index do
       </div>
 
       <div class="flex flex-row flex-wrap gap-4">
-        <div class="flex-1 min-w-2/5">
+        <div class="flex-1 min-w-2/5 bg-base-200 p-3 rounded-lg">
           <div class="flex items-center justify-between">
             <div class="flex flex-col align-start">
               <h2><.link navigate={~p"/admin/maintenance"}>Planned Maintenance</.link></h2>

@@ -60,11 +60,12 @@ defmodule AdminWeb.Layouts do
     doc: "the form for locale selection"
 
   slot :inner_block, required: true
+  attr :class, :string, default: nil, doc: "the class attribute for the main div"
 
   def landing(assigns) do
     ~H"""
     <.landing_menu {assigns} />
-    <main class="grow flex flex-col">
+    <main class={["grow flex flex-col", @class]}>
       <div class="grow">
         {render_slot(@inner_block)}
       </div>
@@ -85,7 +86,7 @@ defmodule AdminWeb.Layouts do
 
   def simple(assigns) do
     ~H"""
-    <div class="navbar bg-base-100 shadow-sm ">
+    <div class="navbar bg-base-50 shadow-sm ">
       <div class="flex flex-row max-w-screen-xl mx-auto w-full">
         <div class="navbar-start">
           <.graasp_logo_link />
@@ -215,14 +216,14 @@ defmodule AdminWeb.Layouts do
 
   def menu_bar(assigns) do
     ~H"""
-    <div class="navbar bg-base-100 shadow-sm">
+    <div class="navbar shadow-sm">
       <div class="navbar-start">
         <%= if @current_scope do %>
           <div class="dropdown">
             <.burger_menu />
             <ul
               tabindex="0"
-              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              class="menu menu-sm dropdown-content bg-base-50 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
                 <.link navigate={~p"/admin/published_items"}>Publications</.link>

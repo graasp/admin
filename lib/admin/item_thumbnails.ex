@@ -52,4 +52,19 @@ defmodule Admin.ItemThumbnails do
       |> S3.upload_stream(bucket(), "thumbnails/#{item_id}/#{size}")
     end)
   end
+
+  def avatar_thumbnails(user_id)
+      when is_binary(user_id) do
+    %{
+      small: get_avatar_thumbnail(user_id, "small"),
+      medium: get_avatar_thumbnail(user_id, "medium"),
+      large: get_avatar_thumbnail(user_id, "large")
+    }
+  end
+
+  defp get_avatar_thumbnail(user_id, size)
+       when is_binary(user_id)
+       when size in ["small", "medium", "large"] do
+    S3.get_object_url(bucket(), "avatars/#{user_id}/#{size}")
+  end
 end
