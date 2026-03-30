@@ -1,4 +1,4 @@
-defmodule Admin.FileCache do
+defmodule Admin.SignedUrlCache do
   @moduledoc """
   A module that provides a simple key-value cache with TTL (time-to-live) support to store signed urls to s3 files.
 
@@ -8,7 +8,7 @@ defmodule Admin.FileCache do
   """
   use GenServer
 
-  @table_name :file_cache
+  @table_name :signed_url_cache
 
   @typedoc "Opaque cache key type"
   @type key :: term()
@@ -22,11 +22,11 @@ defmodule Admin.FileCache do
   ## Public API
 
   @doc """
-  Starts the FileCache GenServer and creates the ETS table.
+  Starts the SignedUrlCache GenServer and creates the ETS table.
 
   Typically added to your supervision tree:
 
-      {FileCache, []}
+      {Admin.SignedUrlCache, []}
   """
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, opts, name: __MODULE__)
