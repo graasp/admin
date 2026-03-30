@@ -61,9 +61,11 @@ defmodule Admin.S3 do
     }
   end
 
-  def get_object_url(bucket, key) do
+  def get_object_url(bucket, key, opts \\ []) do
+    expires_in = Keyword.get(opts, :expires_in, 3600)
+
     {:ok, url} =
-      :s3 |> ExAws.Config.new([]) |> S3.presigned_url(:get, bucket, key)
+      :s3 |> ExAws.Config.new([]) |> S3.presigned_url(:get, bucket, key, expires_in: expires_in)
 
     url
   end

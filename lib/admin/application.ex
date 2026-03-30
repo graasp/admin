@@ -28,6 +28,7 @@ defmodule Admin.Application do
       {DNSCluster, query: Application.get_env(:admin, :dns_cluster_query) || :ignore},
       {Oban, Application.fetch_env!(:admin, Oban)},
       {Phoenix.PubSub, name: Admin.PubSub},
+      {Admin.SignedUrlCache, []},
       # Start to serve requests, typically the last entry
       AdminWeb.Endpoint,
 
