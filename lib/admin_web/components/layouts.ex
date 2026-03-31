@@ -86,7 +86,7 @@ defmodule AdminWeb.Layouts do
 
   def simple(assigns) do
     ~H"""
-    <div class="navbar bg-base-50 shadow-sm ">
+    <div class="navbar bg-base-100 shadow-sm ">
       <div class="flex flex-row max-w-screen-xl mx-auto w-full">
         <div class="navbar-start">
           <.graasp_logo_link />
@@ -223,13 +223,14 @@ defmodule AdminWeb.Layouts do
             <.burger_menu />
             <ul
               tabindex="0"
-              class="menu menu-sm dropdown-content bg-base-50 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
                 <.link navigate={~p"/admin/published_items"}>Publications</.link>
                 <ul class="p-2">
                   <li><.link navigate={~p"/admin/published_items"}>Recent</.link></li>
                   <li><.link navigate={~p"/admin/published_items/featured"}>Featured</.link></li>
+                  <li><.link navigate={~p"/admin/validation"}>Validation Review</.link></li>
                   <li>
                     <.link navigate={~p"/admin/published_items/search_index"}>Search Index</.link>
                   </li>
@@ -281,6 +282,7 @@ defmodule AdminWeb.Layouts do
                   <li>
                     <.link navigate={~p"/admin/published_items/featured"}>Featured</.link>
                   </li>
+                  <li><.link navigate={~p"/admin/validation"}>Validation Review</.link></li>
                   <li>
                     <.link navigate={~p"/admin/published_items/search_index"}>Search Index</.link>
                   </li>

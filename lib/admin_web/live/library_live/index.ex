@@ -32,7 +32,7 @@ defmodule AdminWeb.LibraryLive.Index do
               <div class="p-2">
                 <h3 class="font-bold">{publication.item.name}</h3>
                 <span class="line-clamp-3">
-                  <.raw_html class="prose-xs" html={publication.item.description} />
+                  <.raw_html class="line-clamp-3" html={publication.item.description} />
                 </span>
               </div>
             </div>

@@ -39,7 +39,6 @@
     default: false;
     prefersdark: true;
     color-scheme: "dark";
-    --page-scroll-bg: oklch(25.26% 0.014 253.1);
     --color-base-100: oklch(30.33% 0.016 252.42);
     --color-base-200: oklch(25.26% 0.014 253.1);
     --color-base-300: oklch(20.15% 0.012 254.09);
@@ -78,7 +77,6 @@
     --color-base-100: #f9f7fd;
     --color-base-200: #f2eff6;
     --color-base-300: #c0c6ed;
-    --color-base-50: #fdfdfd;
     --color-base-content: oklch(21% 0.006 285.885);
     --color-primary: #485cc7;
     --color-primary-content: oklch(97% 0.014 343.198);
@@ -132,7 +130,6 @@
             transform: rotate(-3deg);
         }
     }
-    /*--color-base-50: green;*/
 }
 
 @layer base {

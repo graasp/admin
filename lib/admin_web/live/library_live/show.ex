@@ -54,7 +54,7 @@ defmodule AdminWeb.LibraryLive.Show do
                   {gettext("Show more")}
                 </.button>
               </div>
-              <div class="avatar-group -space-x-6">
+              <div class="avatar-group -space-x-4">
                 <div :for={user <- @authors}>
                   <object
                     data={user.thumbnails.small}
@@ -62,7 +62,7 @@ defmodule AdminWeb.LibraryLive.Show do
                   >
                     <div class="avatar avatar-placeholder">
                       <div class="bg-neutral text-neutral-content w-8 rounded-full">
-                        <span class="text-xs">UI</span>
+                        <span class="text-xs"><.icon name="hero-user" class="size-4" /></span>
                       </div>
                     </div>
                   </object>
