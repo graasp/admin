@@ -168,8 +168,8 @@ if config_env() == :prod do
 
   # Configure Ex_AWS using first env vars, then instance role (automatic credentials in ECS tasks)
   config :ex_aws,
-    access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :pod_identity, :instance_role],
-    secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, :pod_identity, :instance_role],
+    access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :instance_role, :pod_identity],
+    secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, :instance_role, :pod_identity],
     region: {:system, "AWS_REGION"}
 
   # override the ses region to use Frankfurt since SES does not exist in eu-central-2
