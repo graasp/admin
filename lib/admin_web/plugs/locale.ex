@@ -15,7 +15,10 @@ defmodule AdminWeb.Plugs.Locale do
 
     Gettext.put_locale(locale)
 
+    locale |> IO.inspect(label: "plug locale")
+
     conn
+    # |> put_session(:locale, locale)
     |> assign(:locale, locale)
     |> assign(:locale_form, Phoenix.Component.to_form(%{"locale" => locale}))
   end

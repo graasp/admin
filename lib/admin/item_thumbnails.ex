@@ -28,13 +28,7 @@ defmodule Admin.ItemThumbnails do
   defp get_item_thumbnail(item_id, size) when size in ["small", "medium", "large", "original"] do
     key = "thumbnails/#{item_id}/#{size}"
     ttl = 3600
-
-    {:ok, url} =
-      Admin.SignedUrlCache.get_or_put(key, ttl, fn ->
-        S3.get_object_url(bucket(), key, expires_in: ttl)
-      end)
-
-    url
+    get_url_for(key, ttl)
   end
 
   def delete_thumbnails(item_id) do
@@ -51,5 +45,31 @@ defmodule Admin.ItemThumbnails do
       |> Image.stream!(suffix: ".webp", buffer_size: 5 * 1024 * 1024)
       |> S3.upload_stream(bucket(), "thumbnails/#{item_id}/#{size}")
     end)
+  end
+
+  def avatar_thumbnails(user_id)
+      when is_binary(user_id) do
+    %{
+      small: get_avatar_thumbnail(user_id, "small"),
+      medium: get_avatar_thumbnail(user_id, "medium"),
+      large: get_avatar_thumbnail(user_id, "large")
+    }
+  end
+
+  defp get_avatar_thumbnail(user_id, size)
+       when is_binary(user_id)
+       when size in ["small", "medium", "large"] do
+    key = "avatars/#{user_id}/#{size}"
+    ttl = 3600
+    get_url_for(key, ttl)
+  end
+
+  defp get_url_for(key, ttl) do
+    {:ok, url} =
+      Admin.SignedUrlCache.get_or_put(key, ttl, fn ->
+        S3.get_object_url(bucket(), key, expires_in: ttl)
+      end)
+
+    url
   end
 end
