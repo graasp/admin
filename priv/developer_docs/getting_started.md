@@ -1,5 +1,5 @@
 %{
-title: "Contributors: Getting Started",
+title: "Getting Started",
 description: "A guide to get you set-up contributing code to the Graasp platform",
 order: 1,
 tags: ["coding", "developer"]

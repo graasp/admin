@@ -1,5 +1,8 @@
 %{
-title: "🕹️ Graasp Apps"
+title: "Introduction to Graasp Apps",
+description: "",
+order: 1,
+tags: ["apps"]
 }
 
 ---
