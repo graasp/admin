@@ -1,7 +1,9 @@
----
-title: General concepts
----
+%{
+title: "General concepts",
+order: 2
+}
 
+---
 
 Graasp can embed web applications as a resource. They should be added as an item of type `app` to access the Graasp API and get authenticated with a token.
 
@@ -9,7 +11,7 @@ When an app is added as a resource, it is linked to an item. Therefore, two adde
 
 ## Features
 
-### App Context {#app-context}
+### App Context {: #app-context}
 
 The app context contains additional information which might be interesting for your app such as `members` or `item`.
 
@@ -17,13 +19,13 @@ The `members` key contains the list of users that have a permission on the item,
 
 The `item` key contains the properties of the item (the app instance) such as `name`, `description`, `path` etc.
 
-### App Actions {#app-actions}
+### App Actions {: #app-actions}
 
 App actions are analytic traces the app might save.
 
 You can only GET and POST app actions, it is not possible to delete app actions after their creation.
 
-### App Data {#app-data}
+### App Data {: #app-data}
 
 App data are all data the app might save. App Data are created by a member and are available to in a given scope.
 
@@ -31,11 +33,9 @@ App data are all data the app might save. App Data are created by a member and a
   - `member`: the app data can be managed by the creator and members with admin permission. Members with write permission can view them but cannot modify them.
   - `item`: the app data can be managed by the creator and members with admin permission. All other members can view them but cannot modify them.
 
-:::info
-
-Have look at the [permissions section](./apps-permissions) for more details on the visibility of app data and the associated permissions.
-
-:::
+> #### More on permissions {: .info}
+>
+> Have look at the [permissions section](./apps-permissions) for more details on the visibility of app data and the associated permissions.
 
 ### App Settings
 

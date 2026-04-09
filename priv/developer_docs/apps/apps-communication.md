@@ -1,8 +1,16 @@
-# Authentication Process
+%{
+title: "Communication with other components",
+description: "",
+order: 20
+}
 
-:::info[React Framework]
-We provide a library for React based apps, to easily connect to the API. Go to the [query client](./7-apps-query-client.md) or take a look at this [repository](https://github.com/graasp/graasp-apps-query-client).
-:::
+---
+
+## Authentication Process
+
+> #### React Framework {: .info}
+>
+> We provide a library for React based apps, to easily connect to the API. Go to the [query client](./apps-query-client) or take a look at this [repository](https://github.com/graasp/graasp-apps-query-client).
 
 In order to access the API and get the app token, the apps should fullfil the following requirements:
 
@@ -43,6 +51,6 @@ port.postMessage(
 
 The response will contain `token` you will be using to request your app's data.
 
-3. **Use the API**: From now on you can freely use your token to access the API and fetch various data. See the [API Documentation](./api-reference).
+3. **Use the API**: From now on you can freely use your token to access the API and fetch various data. See the [API Documentation](./apps-api-reference).
 
 4. **Refetch the token**: The token might expire. In this case, redo step 2.

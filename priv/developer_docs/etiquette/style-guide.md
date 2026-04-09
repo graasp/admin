@@ -1,18 +1,20 @@
----
-sidebar_position: 3
-sidebar_label: 💄 Style Guide
+%{
+title: "Style Guide",
+description: "Our rules for a uniform style accross repositories"
+}
+
 ---
 
-# Style Guide {#style-guide}
+# Style Guide {: #style-guide}
 
 In this document we expose and explain the guidelines and rules that we follow when we write, submit, share and publish code.
 
 The guidelines are opinionated, as you should expect.
 The goal of these guidelines is to set a base for smooth communication and reduced friction when interacting with other developers. Guidelines for code style ensure a uniform style over the code base, so it is easier to switch between projects without the overhead of having to learn and understand a new style.
 
-## Code guidelines {#code-guidelines}
+## Code guidelines {: #code-guidelines}
 
-### Formatting {#formatting}
+### Formatting {: #formatting}
 
 We use prettier to format code. Each project has a prettier configuration file. Code should be formatted before pushing and submitting a PR. CI checks verify that the code is formatted according to the code style. If code is not formatted accordingly, checks will fail and we will not review you PR.
 
@@ -20,11 +22,11 @@ We use prettier to format code. Each project has a prettier configuration file. 
 
 If you do not want to run the formatter on save you should run it before you commit your code by using the command that is present in the package.json of the project: `yarn prettier:write`. this will format the code according to the code style for you. You can also check that the code is formatted by running `yarn prettier:check`.
 
-### Blank line at the end of file {#blank-line-at-EOF}
+### Blank line at the end of file {: #blank-line-at-EOF}
 
 You should configure your IDE or code editor to add a blank line at the end of your files. If you do not, the GitHub editor will mark the end of the file with a red circle. See [this gist and the linked SO post](https://gist.github.com/camh-/1bebfcff1b0f814e9b191edc60d5206b) for a justification of why you should end your files with a blank line.
 
-### Javascript and Typescript guidelines {#js-and-ts-guidelines}
+### Javascript and Typescript guidelines {: #js-and-ts-guidelines}
 
 In Javascript and Typescript files, indentation is one tab equals **2 spaces**. We use spaces in our files. You should not input the spaces yourself. Configure your IDE or code editor to enter 2 spaces when you press tab. If you follow the formatting recommendations you should not even have to enter tabs yourself, the IDE or code editor should indent the code for you on save.
 
@@ -32,7 +34,7 @@ In Javascript and Typescript files, indentation is one tab equals **2 spaces**. 
 
 In this section we describe the steps you should take before submitting code in a PR (pull request) on GitHub.
 
-### Use conventional commits for your commits {#conventional-commits}
+### Use conventional commits for your commits {: #conventional-commits}
 
 Your commit messages should follow the [conventional commits guidelines](https://www.conventionalcommits.org/en/v1.0.0/)
 
@@ -67,10 +69,10 @@ The terms you should use are:
 - `feat`: for new features and bigger changes
 - `docs`: for changes that improve documentation
 
-### Use conventional commits for your PR titles {#conventional-pr-title}
+### Use conventional commits for your PR titles {: #conventional-pr-title}
 
 Your PR titles should also follow the conventional commits (see [the commit message section above](#conventional-commits)) guidelines.
-We use automated tools to release software versions. If you do not format your PR titles with conventional commits your changes will not be picked up by the tool, so your work will effectively be *invisible*.
+We use automated tools to release software versions. If you do not format your PR titles with conventional commits your changes will not be picked up by the tool, so your work will effectively be _invisible_.
 
 ### Review your changes before asking for reviews
 
@@ -80,7 +82,7 @@ When you ask for reviews you should make sure that you are aware of what code ch
 
 You can do this proof-reading when creating the PR in GitHub, as there is a nice summary of the changes presented at this time. You can also do it by opening the `Files Changed` tab after the PR has been created.
 
-### Submit a draft if you are unsure {#submit-a-draft}
+### Submit a draft if you are unsure {: #submit-a-draft}
 
 If you are unsure about you changes, want to get feedback on your code from a co-worker, or simply think your work is not ready yet you should **submit your PR as Draft**. This will signal to the other developers that you are not done.
 
@@ -92,27 +94,25 @@ You should link relevant issues inside your PR body. Use closing keywords to aut
 
 When sharing code with co-workers and developers alike please take the time to format it properly. Code that is not formatted is not easy to read and your co-worker will have a hard time de-cyphering what you intended to write.
 
-### For documents and comments where you can specify the language used {#markdown-code-blocks}
+### For documents and comments where you can specify the language used {: #markdown-code-blocks}
 
 GitHub supports markdown nearly everywhere from issue and Pull Request body to review comments. You should always define the language of your code snippets. Define a code block with 3 backticks and add the language after the backticks on the first line, like so:
 
-~~~md
+````md
 ```ts
 const hello = "world";
 ```
-~~~
+````
 
 This will provide syntax highlighting and make the experience of reading code a lot more enjoyable for other people.
 
-:::tip
-
-Read [the Basics of Markdown formatting](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) in the GitHub docs if you need a refresher of how to format certain things.
-
-:::
+> #### More on Markdown formatting {: .info}
+>
+> Read [the Basics of Markdown formatting](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) in the GitHub docs if you need a refresher of how to format certain things.
 
 ### For messages (Slack etc)
 
-Most instant messaging platforms allow you to use code blocks for sending multiline code in messages. In Slack it uses the same 3 backticks syntax as described in [the markdown section](#markdown-code-blocks), but does not support language highlighting. 
+Most instant messaging platforms allow you to use code blocks for sending multiline code in messages. In Slack it uses the same 3 backticks syntax as described in [the markdown section](#markdown-code-blocks), but does not support language highlighting.
 
 ### Code present in GitHub
 

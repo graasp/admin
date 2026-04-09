@@ -1,6 +1,7 @@
 %{
 title: "Node Package Managers",
 description: "Installing node package managers",
+order: 10
 }
 
 ---
