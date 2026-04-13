@@ -3,7 +3,7 @@ defmodule Admin.Tools.Uptime do
   Used for executing uptime related tasks
   """
 
-  def print do
+  def get do
     # get the total time from the Erlang VM
     {total_milisecond, _} = :erlang.statistics(:wall_clock)
     hh_mm_ss(div(total_milisecond, 1_000))

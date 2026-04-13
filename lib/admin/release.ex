@@ -34,7 +34,7 @@ defmodule Admin.Release do
   end
 
   def uptime do
-    IO.puts(Uptime.print())
+    IO.puts(Uptime.get())
   end
 
   defp print_migrations_for(repo) do

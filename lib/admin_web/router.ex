@@ -96,6 +96,7 @@ defmodule AdminWeb.Router do
     pipe_through :browser_admin
 
     get "/", AdminController, :home
+    get "/about", AdminController, :about
   end
 
   # Other scopes may use custom stacks.
