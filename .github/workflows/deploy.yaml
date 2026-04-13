@@ -82,5 +82,5 @@ jobs:
 
       - name: Restart Service
         run: |
-          aws ecs update-service --cluster graasp-dev --service admin --force-new-deployment
+          aws ecs update-service --cluster graasp-${{ inputs.environment == 'production' && 'prod' || 'dev' }} --service admin --force-new-deployment
         shell: bash
