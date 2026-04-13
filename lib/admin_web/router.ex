@@ -96,7 +96,6 @@ defmodule AdminWeb.Router do
     pipe_through :browser_admin
 
     get "/", AdminController, :home
-    get "/about", AdminController, :about
   end
 
   # Other scopes may use custom stacks.
@@ -197,6 +196,7 @@ defmodule AdminWeb.Router do
     end
 
     post "/users/update-password", UserSessionController, :update_password
+    get "/about", AdminController, :about
   end
 
   ## Authentication related routes
