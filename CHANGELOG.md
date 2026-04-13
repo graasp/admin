@@ -1,5 +1,32 @@
 # Changelog
 
+## [0.11.0](https://github.com/graasp/graasp-web/compare/v0.10.0...v0.11.0) (2026-04-09)
+
+
+### Features
+
+* add recycled item background job ([#208](https://github.com/graasp/graasp-web/issues/208)) ([9f69a0d](https://github.com/graasp/graasp-web/commit/9f69a0d505020229c38bf3ff956bd6313fbb37cd))
+
+
+### Bug Fixes
+
+* accessibility issues detected on the landing page ([#214](https://github.com/graasp/graasp-web/issues/214)) ([d26a140](https://github.com/graasp/graasp-web/commit/d26a140e2882af7f3370d4b79ef398dfb8403b47))
+* add file cache for s3 urls ([#221](https://github.com/graasp/graasp-web/issues/221)) ([4f264a4](https://github.com/graasp/graasp-web/commit/4f264a420b59a9bc5014af3d0ed2dce924fad2b6))
+* add index for h5p contentId query ([#217](https://github.com/graasp/graasp-web/issues/217)) ([c27967f](https://github.com/graasp/graasp-web/commit/c27967ff7cfefe7c06b0c2d2620e416d01f14249))
+* add monitoring to menu ([#219](https://github.com/graasp/graasp-web/issues/219)) ([bce8a21](https://github.com/graasp/graasp-web/commit/bce8a21db75740ef62c408f143d7d4353c67754f))
+* add nudenet inference and orphan items ([#220](https://github.com/graasp/graasp-web/issues/220)) ([66772f4](https://github.com/graasp/graasp-web/commit/66772f4d1b8e9e4c886f8bfdebd3226244e85adc))
+* add observability and metrics ([#216](https://github.com/graasp/graasp-web/issues/216)) ([b5645d2](https://github.com/graasp/graasp-web/commit/b5645d2f298229ca8a3b56a2ca1ae80cb9528cae))
+* change order of preference for ExAws credentials ([37394df](https://github.com/graasp/graasp-web/commit/37394df7ce7355efe47298b50b8118110919f588))
+* overhaul the dashboard with live and new stats ([#215](https://github.com/graasp/graasp-web/issues/215)) ([8383db4](https://github.com/graasp/graasp-web/commit/8383db4e1dba56964c740cc1542ad8c4517ed090))
+* update docs on backend setup ([#218](https://github.com/graasp/graasp-web/issues/218)) ([e0cc898](https://github.com/graasp/graasp-web/commit/e0cc8988b50ea0d5b294ea080bea3e332204cfdd))
+
+
+### Chores
+
+* **ci:** always restart service after deploy ([#212](https://github.com/graasp/graasp-web/issues/212)) ([d0834fc](https://github.com/graasp/graasp-web/commit/d0834fcf4e7836c0860783f0c20f7e3c84f23cf2))
+* **deps:** update aws-actions/configure-aws-credentials action to v6 ([#211](https://github.com/graasp/graasp-web/issues/211)) ([4af0aa6](https://github.com/graasp/graasp-web/commit/4af0aa653d1853536bdd4fb2918cd57fcf8221ed))
+* **deps:** update dependency bandit to v1.10.4 ([#223](https://github.com/graasp/graasp-web/issues/223)) ([acdc504](https://github.com/graasp/graasp-web/commit/acdc5047d499aa8ce2ee97884de0a5cb8b2fc649))
+
 ## [0.10.0](https://github.com/graasp/graasp-web/compare/v0.9.4...v0.10.0) (2026-03-11)
 
 
