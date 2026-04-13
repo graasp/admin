@@ -1,6 +1,8 @@
 defmodule AdminWeb.AdminController do
   use AdminWeb, :controller
 
+  alias Admin.Tools.Uptime
+
   def home(conn, _params) do
     render(conn, :home, page_title: pgettext("page title", "Admin"))
   end
@@ -9,7 +11,7 @@ defmodule AdminWeb.AdminController do
     specs = %{
       name: Application.spec(:admin, :description),
       version: Application.spec(:admin, :vsn),
-      uptime: Admin.Tools.Uptime.get()
+      uptime: Uptime.get()
     }
 
     render(conn, :about,
