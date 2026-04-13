@@ -26,7 +26,6 @@ defmodule Admin.Docs.Page do
       section: section,
       body: body,
       title: attrs[:title] || "",
-      body: body,
       description: attrs[:description] || "",
       tags: attrs[:tags] || [],
       order: attrs[:order] || 1000,

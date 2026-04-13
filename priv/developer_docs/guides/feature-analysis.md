@@ -1,18 +1,24 @@
-# ⚙️ Feature Analysis
+%{
+
+title: "Feature Analysis",
+description: "Helps refine the feature before implementation"
+}
+
+---
 
 This document will guide you through the important questions you need to ask yourself when you start the analysis phase for the creation of a new feature.
 
-:::info
-Before going further in this document it is important that you ensure the feature should be implemented.
+> #### Before you proceed {: .info}
+>
+> Before going further in this document it is important that you ensure the feature should be implemented.
+>
+> Please check the feature relevance with [Should we implement this ?](./should-we-implement-this).
+>
+> Refer to that document in case you end up with a "Reconsider" or "Maybe not". This is also a good time to involve other team members and to have a discussion about what you expect from this feature, and what value it will provide to the users.
 
-Please check the feature relevance with [Should we implement this ?](./should-we-implement-this).
-
-Refer to that document in case you end up with a "Reconsider" or "Maybe not". This is also a good time to involve other team members and to have a discussion about what you expect from this feature, and what value it will provide to the users.
-:::
-
-:::danger
-You should **not start implementing/coding** before you have validated this document with your peers.
-:::
+> #### Required step {: .error}
+>
+> You should **not start implementing/coding** before you have validated this document with your peers.
 
 ## Goals
 
@@ -28,7 +34,7 @@ If you complete this guide, it should reduce the possibility of surprises, redes
 
 - Describe in a single sentence the feature and its value for the end-user. Don't use technical language, your grandma should be able to understand it.
 - Write a [user story](https://www.atlassian.com/agile/project-management/user-stories) that justifies the need for this feature. Example: If the feature is to add a logout button, the user story could be:
-  
+
   ```txt
   As a logged in user,
   I want to disconnect from my account,
@@ -51,7 +57,7 @@ The following questions focus on a single endpoint. For your feature you might r
   - Define any specific constraint (type, format, ...) on that data.
 - What happens on failure?
   - What can cause a failure?
-  - What error code and error data is used? You should define specific  error codes and error messages for each failure type.
+  - What error code and error data is used? You should define specific error codes and error messages for each failure type.
 
 ### Ensure integrity and conformance with other routes
 

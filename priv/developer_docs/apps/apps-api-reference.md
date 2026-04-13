@@ -1,14 +1,16 @@
----
-title: API Reference
-slug: api-reference
+%{
+title: "API Reference",
+description: "",
+order: 20
+}
+
 ---
 
-
-All following requests need an authentication token received as described in the [guide](./communication).
+All following requests need an authentication token received as described in the [guide](./apps-communication).
 
 Therefore, don't forget to use `Authorization: Bearer <token>` in your request's headers.
 
-Please refer to [the General Concepts](./general-concepts)'s vocabulary to understand the concepts.
+Please refer to [the General Concepts](./apps-general-concepts)'s vocabulary to understand the concepts.
 
 ### Query strings
 
@@ -18,9 +20,7 @@ Within Graasp, the apps are given some information by query string:
 
 ---
 
-<a name="app-actions"></a>
-
-## App Actions
+## App Actions {: #app-actions}
 
 - `id`: the app action id
 - `memberId`: the member id related to the app action (default: current authenticated member id)
@@ -48,9 +48,7 @@ Within Graasp, the apps are given some information by query string:
 
 ---
 
-<a name="app-data"></a>
-
-## App Data
+## App Data {: #app-data}
 
 - `id`: the app data id
 - `memberId`: the member id related to the data (default: current authenticated member id)
@@ -108,9 +106,7 @@ Within Graasp, the apps are given some information by query string:
 
 ---
 
-<a name="app-context"></a>
-
-## App Context
+## App Context {: #app-context}
 
 - `members`: a list of all the members having access to the app's parent and the app itself
 - `item`: all corresponding item properties
@@ -123,9 +119,7 @@ Within Graasp, the apps are given some information by query string:
 
 ---
 
-<a name="app-settings"></a>
-
-## App Settings
+## App Settings {: #app-settings}
 
 - `id`: the app setting id
 - `name`: the app setting name
@@ -180,19 +174,17 @@ Within Graasp, the apps are given some information by query string:
 
 ---
 
-<a name="parent-window"></a>
+## Parent Window {: #parent-window}
 
-## Parent Window
-
-Since apps are embedded in Graasp with an iframe, it is possible to communicate with the parent window using both regular `window.postMessage` and `MessageChannel`. One should first use `window.postMessage` to get the context, as well as the `MessageChannel`'s port to continue the process (see [guide](./communication)).
+Since apps are embedded in Graasp with an iframe, it is possible to communicate with the parent window using both regular `window.postMessage` and `MessageChannel`. One should first use `window.postMessage` to get the context, as well as the `MessageChannel`'s port to continue the process (see [guide](./apps-communication)).
 
 ### `window.postMessage`
 
 ### GET Context
 
-:::warning
-Context is different from App Context! Context (sometimes called Local Context) is always available to the app, even without using Graasp API, while App Context can only be fetched with a token.
-:::
+> #### Different usage of `Context` {: .warning}
+>
+> Context is different from App Context! Context (sometimes called Local Context) is always available to the app, even without using Graasp API, while App Context can only be fetched with a token.
 
 ```js
 postMessage(

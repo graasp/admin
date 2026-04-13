@@ -65,6 +65,11 @@ defmodule AdminWeb.Router do
       get "/:id", DocsController, :show
     end
 
+    scope "/technical/docs" do
+      get "/", DocsController, :index_dev
+      get "/:id", DocsController, :show_dev
+    end
+
     # routes to test locale
     get "/locale", LandingController, :locale
     post "/locale", LandingController, :change_locale

@@ -1,26 +1,27 @@
----
-title: Query client
-slug: apps-query-client
+%{
+title: "Query client",
+description: "",
+order: 7
+}
+
 ---
 
-# Query client for apps
-
-As you start to build your app from [the template](./app-template), you will see that it comes with a pre-configured query client. This configuration is located in `src/config/queryClient.ts` and contains everything you need to configure the apps query client.
+As you start to build your app from [the template](./apps-template), you will see that it comes with a pre-configured query client. This configuration is located in `src/config/queryClient.ts` and contains everything you need to configure the apps query client.
 
 More informations on how to use the query client can be found in [its repo](https://github.com/graasp/graasp-apps-query-client).
 
-:::warning
-This documentation is still under construction.
-:::
+> #### Still under construction {: .warning}
+>
+> This documentation is still under construction.
 
 ### queryClient.ts
 
 ```ts
-import { configureQueryClient } from '@graasp/apps-query-client';
+import { configureQueryClient } from "@graasp/apps-query-client";
 
-import notifier from '@/utils/notifier';
+import notifier from "@/utils/notifier";
 
-import { API_HOST, GRAASP_APP_KEY, MOCK_API, WS_HOST } from './env';
+import { API_HOST, GRAASP_APP_KEY, MOCK_API, WS_HOST } from "./env";
 
 const {
   queryClient,
@@ -79,7 +80,7 @@ configureQueryClient({
 - `keepPreviousData`: Keep current data when refetching new data.
 - `staleTime`: Time during which the data cannot be refetched after a fetch.
 - `GRAASP_APP_KEY`: The key of your application. This key must match the one in the database. Think about requesting one when you will deploy your app in production and use it on [graasp.org](https://graasp.org).
-- `isStandalone`: If true, the query client will consider that the app **is not** embedded in another frontend such as the *Graasp Player* or *Graasp Builder*.
+- `isStandalone`: If true, the query client will consider that the app **is not** embedded in another frontend such as the _Graasp Player_ or _Graasp Builder_.
 - `WS_HOST`: Provide the host for the websocket API.
 - `enableWebsocket`: Enable the protocol for realtime notifications by the server through websockets.
 
@@ -103,7 +104,7 @@ import {
   WithLocalContext,
   WithTokenContext,
   useObjectState,
-} from '@graasp/apps-query-client';
+} from "@graasp/apps-query-client";
 
 // Logic, theme and other stuff...
 
@@ -118,9 +119,7 @@ const Root: FC = () => {
         useAutoResize={hooks.useAutoResize}
         onError={() => {
           // eslint-disable-next-line no-console
-          console.error(
-            'An error occurred while fetching the context.',
-          );
+          console.error("An error occurred while fetching the context.");
         }}
       >
         <WithTokenContext
@@ -128,9 +127,7 @@ const Root: FC = () => {
           useAuthToken={hooks.useAuthToken}
           onError={() => {
             // eslint-disable-next-line no-console
-            console.error(
-              'An error occurred while requesting the token.',
-            );
+            console.error("An error occurred while requesting the token.");
           }}
         >
           {/* This is where your app can use the query client. */}
@@ -144,9 +141,7 @@ const Root: FC = () => {
           )}
         </WithTokenContext>
       </WithLocalContext>
-      {import.meta.env.DEV && (
-        <ReactQueryDevtools position="bottom-left" />
-      )}
+      {import.meta.env.DEV && <ReactQueryDevtools position="bottom-left" />}
     </QueryClientProvider>
   );
 };
@@ -159,6 +154,7 @@ The hooks are special functions that you can use to fetch data. To understand th
 Hooks are available for the three data domains, [app data](./1-general-concepts.md#app-data), [app settings](./1-general-concepts.md#app-settings), and [app actions](./1-general-concepts.md#app-actions). The `hooks` object contains all the hooks.
 
 <!-- TODO: complete links -->
+
 All the hooks described below are using the [`useQuery`](https://tanstack.com/query/v4/docs/framework/react/reference/useQuery) hook provided by the [TanStack Query package v4](https://tanstack.com/query/v4/docs/framework/react/overview).
 
 ##### `useAppData`
@@ -186,6 +182,7 @@ The `data` property is an array of [`AppAction`](https://github.com/graasp/graas
 _To be completed. See [mutations](https://github.com/graasp/graasp-apps-query-client/tree/main/src/mutations)._
 
 <!-- #### `API_ROUTES` -->
+
 #### `ReactQueryDevtools`
 
 This component can be used to display panel in your app to help you debug the query client.
