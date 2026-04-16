@@ -90,6 +90,8 @@ RUN apt-get update \
       libncurses5 \
       locales \
       ca-certificates \
+      # for healthcheck
+      curl \
       # for Image library we need to provide fontconfig and a font
       fontconfig fonts-dejavu-core \
     && rm -rf /var/lib/apt/lists/*
