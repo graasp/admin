@@ -123,4 +123,4 @@ USER nobody
 CMD ["/app/bin/server"]
 
 HEALTHCHECK --interval=1m --timeout=3s \
-  CMD curl -f http://localhost:4000/health || exit 1
+  CMD curl -f http://localhost:4000/up?docker=true || exit 1
