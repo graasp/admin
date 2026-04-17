@@ -121,3 +121,6 @@ USER nobody
 # ENTRYPOINT ["/tini", "--"]
 
 CMD ["/app/bin/server"]
+
+HEALTHCHECK --interval=1m --timeout=3s \
+  CMD curl -f http://localhost:4000/health || exit 1
