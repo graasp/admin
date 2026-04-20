@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.10.5](https://github.com/graasp/graasp-web/compare/v0.10.4...v0.10.5) (2026-04-20)
+
+
+### Bug Fixes
+
+* add about page for devs ([#226](https://github.com/graasp/graasp-web/issues/226)) ([6f1d8b9](https://github.com/graasp/graasp-web/commit/6f1d8b9753a7947b50a0ec1ebcec50af0478982e))
+* add monitoring to menu ([#219](https://github.com/graasp/graasp-web/issues/219)) ([db5880e](https://github.com/graasp/graasp-web/commit/db5880e542e7cff69d76063d00436c99919e5b0f))
+
+
+### Chores
+
+* add logging of currenlty running version ([33022fc](https://github.com/graasp/graasp-web/commit/33022fc05478ed6247342620c3c69c1783c012ad))
+
 ## [0.10.4](https://github.com/graasp/graasp-web/compare/v0.10.0...v0.10.4) (2026-04-20)
 
 
