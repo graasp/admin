@@ -77,7 +77,7 @@ RUN mix release
 FROM ${RUNNER_IMAGE} AS final
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends libstdc++6 openssl libncurses5 locales ca-certificates \
+    && apt-get install -y --no-install-recommends libstdc++6 openssl libncurses5 locales ca-certificates curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the locale
@@ -105,3 +105,6 @@ USER nobody
 # ENTRYPOINT ["/tini", "--"]
 
 CMD ["/app/bin/server"]
+
+HEALTHCHECK --interval=1m --timeout=3s \
+  CMD curl -f http://localhost:4000/up?docker=true || exit 1
