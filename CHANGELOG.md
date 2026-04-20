@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.11.0](https://github.com/graasp/graasp-web/compare/v0.10.0...v0.11.0) (2026-04-20)
+
+
+### Features
+
+* add recycled item background job ([#208](https://github.com/graasp/graasp-web/issues/208)) ([9f69a0d](https://github.com/graasp/graasp-web/commit/9f69a0d505020229c38bf3ff956bd6313fbb37cd))
+
+
+### Bug Fixes
+
+* accessibility issues detected on the landing page ([#214](https://github.com/graasp/graasp-web/issues/214)) ([d26a140](https://github.com/graasp/graasp-web/commit/d26a140e2882af7f3370d4b79ef398dfb8403b47))
+* add health check with curl command in container ([91d572a](https://github.com/graasp/graasp-web/commit/91d572a1510828609e19f3236b4e6f8b88a37871))
+* add index for h5p contentId query ([#217](https://github.com/graasp/graasp-web/issues/217)) ([c27967f](https://github.com/graasp/graasp-web/commit/c27967ff7cfefe7c06b0c2d2620e416d01f14249))
+* add observability and metrics ([#216](https://github.com/graasp/graasp-web/issues/216)) ([b5645d2](https://github.com/graasp/graasp-web/commit/b5645d2f298229ca8a3b56a2ca1ae80cb9528cae))
+* **ci:** update cluster name to restart the correct one depending on the environment ([#227](https://github.com/graasp/graasp-web/issues/227)) ([b60a044](https://github.com/graasp/graasp-web/commit/b60a0449971a007a3fcaf556e66b4468564fc1e2))
+* overhaul the dashboard with live and new stats ([#215](https://github.com/graasp/graasp-web/issues/215)) ([8383db4](https://github.com/graasp/graasp-web/commit/8383db4e1dba56964c740cc1542ad8c4517ed090))
+* update dependency bandit to 1.10.4 ([a84dd84](https://github.com/graasp/graasp-web/commit/a84dd8421969740bffafa0758806953904fb775c))
+* update docs on backend setup ([#218](https://github.com/graasp/graasp-web/issues/218)) ([e0cc898](https://github.com/graasp/graasp-web/commit/e0cc8988b50ea0d5b294ea080bea3e332204cfdd))
+
+
+### Chores
+
+* **ci:** always restart service after deploy ([#212](https://github.com/graasp/graasp-web/issues/212)) ([d0834fc](https://github.com/graasp/graasp-web/commit/d0834fcf4e7836c0860783f0c20f7e3c84f23cf2))
+* **deps:** update aws-actions/configure-aws-credentials action to v6 ([#211](https://github.com/graasp/graasp-web/issues/211)) ([4af0aa6](https://github.com/graasp/graasp-web/commit/4af0aa653d1853536bdd4fb2918cd57fcf8221ed))
+
 ## [0.10.0](https://github.com/graasp/graasp-web/compare/v0.9.4...v0.10.0) (2026-03-11)
 
 
