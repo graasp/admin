@@ -196,6 +196,7 @@ defmodule AdminWeb.Router do
     end
 
     post "/users/update-password", UserSessionController, :update_password
+    get "/about", AdminController, :about
   end
 
   ## Authentication related routes
