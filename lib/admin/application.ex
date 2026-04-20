@@ -4,6 +4,7 @@ defmodule Admin.Application do
   @moduledoc false
 
   use Application
+  require Logger
 
   @impl true
   def start(_type, _args) do
@@ -17,6 +18,9 @@ defmodule Admin.Application do
 
     # Attach a default logger to Oban to get log output
     # :ok = Oban.Telemetry.attach_default_logger()
+
+    # emmit a log event to see which version is running
+    Logger.info("Running Graasp version: #{Application.spec(:admin, :vsn)}")
 
     children = [
       AdminWeb.Telemetry,
