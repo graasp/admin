@@ -1,5 +1,22 @@
 import Config
 
+defmodule Env do
+  def fetch!(name) do
+    case System.get_env(name) do
+      nil ->
+        IO.puts(:stderr, """
+        ERROR: required environment variable #{name} is missing.
+        """)
+
+        # force an immediate, obvious non‑cryptic exit
+        System.halt(1)
+
+      value ->
+        value
+    end
+  end
+end
+
 # config/runtime.exs is executed for all environments, including
 # during releases. It is executed after compilation and before the
 # system starts, so it is typically used to load production configuration
@@ -21,12 +38,7 @@ if System.get_env("PHX_SERVER") do
 end
 
 if config_env() == :prod do
-  database_url =
-    System.get_env("DATABASE_URL") ||
-      raise """
-      environment variable DATABASE_URL is missing.
-      For example: ecto://USER:PASS@HOST/DATABASE
-      """
+  database_url = Env.fetch!("DATABASE_URL")
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
 
