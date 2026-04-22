@@ -10,7 +10,7 @@ defmodule Admin.ItemFiles do
 
   def delete([]), do: :ok
 
-  def delete(files_data) when is_list(files_data) and length(files_data) > 0 do
+  def delete(files_data) when is_list(files_data) and files_data != [] do
     file_paths = files_data |> Enum.map(& &1.path)
     # key length can not exceed 1024 bytes
     {valid_keys, _invalid_keys} = file_paths |> Enum.split_with(&(String.length(&1) <= 1023))

@@ -72,7 +72,7 @@ defmodule Admin.S3 do
     {:ok, _} = S3.delete_object(bucket, key) |> @ex_aws_mod.request()
   end
 
-  def delete_objects(bucket, file_paths) when is_list(file_paths) and length(file_paths) > 0 do
+  def delete_objects(bucket, file_paths) when is_list(file_paths) and file_paths != [] do
     # keys can not be longer than 1024 bytes
     key_lengths = file_paths |> Enum.map(&String.length/1) |> Enum.max()
 
