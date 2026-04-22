@@ -4,6 +4,7 @@ defmodule Admin.RecycledItems do
   """
   import Ecto.Query, warn: false
 
+  alias Admin.Accounts.Scope
   alias Admin.RecycledItems.RecycledItemData
   alias Admin.Repo
 
@@ -55,5 +56,13 @@ defmodule Admin.RecycledItems do
   def trash(%{item_path: _item_path, creator_id: _creator_id} = attrs) do
     RecycledItemData.changeset(%RecycledItemData{}, attrs)
     |> Repo.insert!()
+  end
+
+  def subscribe_recycled_items(%Scope{} = _scope) do
+    Phoenix.PubSub.subscribe(Admin.PubSub, "recycled_items")
+  end
+
+  def report_cleanup_completion(message) do
+    Phoenix.PubSub.broadcast(Admin.PubSub, "recycled_items", message)
   end
 end

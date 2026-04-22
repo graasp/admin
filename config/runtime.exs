@@ -52,11 +52,13 @@ if config_env() == :prod do
 
   host = System.get_env("PHX_HOST") || "graasp.org"
   port = String.to_integer(System.get_env("PORT") || "4000")
+  protocol = System.get_env("PROTOCOL") || "https"
+  public_port = String.to_integer(System.get_env("PUBLIC_PORT") || "443")
 
   config :admin, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
   config :admin, AdminWeb.Endpoint,
-    url: [scheme: "https", host: host, port: 443],
+    url: [scheme: protocol, host: host, port: public_port],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
@@ -105,7 +107,21 @@ if config_env() == :prod do
   # In production you need to configure the mailer to use a different adapter.
   # Here is an example configuration for Mailgun:
   #
-  config :admin, Admin.Mailer, adapter: Swoosh.Adapters.ExAwsAmazonSES
+  if System.get_env("MAILER_CONNECTION") != nil do
+    # get credentials from the connection string
+    conn = System.get_env("MAILER_CONNECTION") |> URI.parse()
+    [username, password] = conn.userinfo |> String.split(":", parts: 2)
+
+    config :admin, Admin.Mailer,
+      adapter: Swoosh.Adapters.SMTP,
+      relay: conn.host,
+      port: conn.port,
+      username: username,
+      password: password,
+      ssl: System.get_env("MAILER_SSL") == "true"
+  else
+    config :admin, Admin.Mailer, adapter: Swoosh.Adapters.ExAwsAmazonSES
+  end
 
   #
   # Most non-SMTP adapters require an API client. Swoosh supports Req, Hackney,
@@ -133,7 +149,8 @@ if config_env() == :prod do
     end
 
   config :sentry,
-    environment_name: environment_name
+    environment_name: environment_name,
+    dsn: System.get_env("SENTRY_DSN")
 
   base_host =
     cond do
@@ -163,6 +180,9 @@ if config_env() == :prod do
 
   config :ex_aws, :s3,
     region: System.get_env("AWS_REGION", "eu-central-1"),
+    scheme: System.get_env("AWS_S3_SCHEME", "https"),
+    host: System.get_env("AWS_S3_HOST"),
+    port: System.get_env("AWS_S3_PORT", nil),
     # If using custom endpoints like LocalStack or MinIO, path_style: true is often necessary.
     path_style: true
 

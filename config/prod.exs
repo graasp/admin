@@ -18,7 +18,7 @@ config :logger, level: :info
 
 # Sentry configuration
 config :sentry,
-  dsn: "https://b4c2635dfa3bb58ad2cded33d1201e57@o244065.ingest.us.sentry.io/4509863475740672",
+  # dsn: "https://b4c2635dfa3bb58ad2cded33d1201e57@o244065.ingest.us.sentry.io/4509863475740672",
   release: Mix.Project.config()[:version],
   enable_source_code_context: true,
   root_source_code_paths: [File.cwd!()],

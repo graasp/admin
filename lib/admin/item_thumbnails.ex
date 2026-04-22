@@ -20,7 +20,7 @@ defmodule Admin.ItemThumbnails do
     url
   end
 
-  def delete_thumbnails(item_id) do
+  def delete_thumbnails(item_id) when is_binary(item_id) do
     file_paths = [
       "thumbnails/#{item_id}/small",
       "thumbnails/#{item_id}/medium",

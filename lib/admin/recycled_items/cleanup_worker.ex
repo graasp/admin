@@ -44,6 +44,7 @@ defmodule Admin.TrashCleanupWorker do
     }
 
     Logger.info("Cleanup report: #{inspect(report)}")
+    Admin.RecycledItems.report_cleanup_completion({:completed, report})
 
     {:ok, report}
   end
@@ -62,6 +63,8 @@ defmodule Admin.TrashCleanupWorker do
         %{id: id, path: path || key}
       end)
       |> Enum.reject(fn %{path: path} -> path == nil end)
+
+    Admin.ItemFiles.delete(files_data)
 
     # delete file and thumbnails
     Admin.ItemFiles.delete(files_data)
