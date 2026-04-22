@@ -193,6 +193,10 @@ defmodule AdminWeb.Router do
           live "/messages/:lang/edit", NotificationMessageLive.Form, :edit
         end
       end
+
+      scope "/test" do
+        live "/sentry", TestLive.Sentry, :sentry
+      end
     end
 
     post "/users/update-password", UserSessionController, :update_password
