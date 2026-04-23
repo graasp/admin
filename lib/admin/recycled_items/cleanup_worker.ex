@@ -64,8 +64,6 @@ defmodule Admin.TrashCleanupWorker do
       end)
       |> Enum.reject(fn %{path: path} -> path == nil end)
 
-    Admin.ItemFiles.delete(files_data)
-
     # delete file and thumbnails
     Admin.ItemFiles.delete(files_data)
 
