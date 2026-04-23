@@ -1,11 +1,12 @@
-# Graasp Admin
+# Graasp web
 
 [![gitlocalized german](https://gitlocalize.com/repo/10639/de/badge.svg)](https://gitlocalize.com/repo/10639/de?utm_source=badge)
 [![gitlocalized french](https://gitlocalize.com/repo/10639/fr/badge.svg)](https://gitlocalize.com/repo/10639/fr?utm_source=badge)
 [![gitlocalized italian](https://gitlocalize.com/repo/10639/it/badge.svg)](https://gitlocalize.com/repo/10639/it?utm_source=badge)
 [![gitlocalized spanish](https://gitlocalize.com/repo/10639/es/badge.svg)](https://gitlocalize.com/repo/10639/es?utm_source=badge)
 
-This is the codebase for the Graasp admin platform written in [Elixir](https://elixir-lang.org/) using [the Phoenix web framework](https://phoenixframework.org).
+This is the codebase for the Graasp frontend and administration interface.
+It is written in [Elixir](https://elixir-lang.org/) using [the Phoenix web framework](https://phoenixframework.org).
 
 The admin platform enables administrators to:
 
@@ -28,7 +29,7 @@ mise i
 
 As of writing this, the following versions are used:
 
-- elixir: 1.19.4
+- elixir: 1.19.5
 - erlang: 28 (OTP 28)
 
 <details>
@@ -120,11 +121,62 @@ To debug failed tests: `iex -S mix test --failed --breakpoints --trace`
 
 ## Deployment
 
-The application is deployed using ECS. The deployment process is handled by the graasp/infrastrucutre repository.
+The application is deployed on AWS using ECS. The deployment process is handled by the graasp/infrastructure repository.
 It is in charge of registering the service and starting the tasks with the proper environment variables.
-This repo simply builds the docker images and pushes them to the private ECR registry.
+This repo simply builds the docker images and pushes them to the private ECR registry and requests a service update so that the new image is used by the service.
 
 Please checkout [the setup docs](./docs/setup.md) for more information on how to bootstrap a server to deploy your app in production.
+
+### Deploying with docker locally
+
+It is possible to run this application with docker compose in a "local" environment (i.e. not a cloud-provider like AWS).
+Below you will find all options that you can use to customize the application so that it runs without issues in docker compose:
+
+```yaml
+admin:
+  image: <image-name> # or public.ecr.aws/graasp/admin:v0.10.5
+  hostname: admin
+  environment:
+    # This depends on where your database is, this example uses a database in the same docker compose exposed as `db` host with graasper credentials
+    DATABASE_URL: postgres://graasper:graasper@db:5432/graasp
+    # The host that the application is running on, this is normally `graasp.org` but in local we use `localhost`
+    PHX_HOST: localhost
+    # The port that the application is running on (for the container network)
+    PORT: 4000
+    # The public port that the application is running on, can be different from the PORT if behind a reverse proxy
+    PUBLIC_PORT: 4000
+    # The protocol to use, default to `https`, in this case we want to force it to HTTP because we do not have a certificate
+    PROTOCOL: http
+    # The secret key base, generate one with: `mix phx.gen.secret`
+    SECRET_KEY_BASE: <secet value>
+    # The release cookie allows multiple instances of the app to communicate, genreate it via: `mix phx.gen.secret`
+    RELEASE_COOKIE: <secret value>
+    # The name of the files item bucket, refer to the core documentation on how to create the buckets in garage (s3-compatible storage)
+    FILE_ITEMS_BUCKET_NAME: file-items
+    # The name of the H5P bucket, same as for the file bucket, refer to the docs on how to create the bucket in garage
+    H5P_CONTENT_BUCKET_NAME: h5p-items
+    # AWS access key and secret, when using garage
+    AWS_ACCESS_KEY_ID: <secert value>
+    AWS_SECRET_ACCESS_KEY: <secret value>
+    # When using garage, set the region to `garage`
+    AWS_REGION: garage
+    # Override the protocol to use HTTP (in local we do not have HTTPS)
+    AWS_S3_SCHEME: http://
+    # The S3 host set for garage, override the aws default
+    AWS_S3_HOST: s3.garage.localhost
+    # The port that the s3 api responds to for garage
+    AWS_S3_PORT: 3900
+    # Override the Mailer adapter from AWS SES to use a simple SMTP server (either a local mailcatcher or external SMTP server)
+    MAILER_CONNECTION: smtp://docker:docker@mailer:1025
+  ports:
+    - "4000:4000"
+  links:
+    # This is necessary so that the s3 garage domain resolves to the container in the docker network
+    - garage:s3.garage.localhost
+  depends_on:
+    - core
+  restart: unless-stopped
+```
 
 ## Translations
 
@@ -174,6 +226,6 @@ Checkout [the memento](./docs/memento.md) for an overview of helpful commands fo
 
 ### Cleaning artifacts after making a release
 
-If you made a release localy it is possible that you end-up with a lot of files in the `priv/static/` folder.
+If you made a release locally it is possible that you end-up with a lot of files in the `priv/static/` folder.
 
 Before committing, run: `mix phx.digest.clean --all` to clean them.

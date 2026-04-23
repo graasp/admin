@@ -44,6 +44,7 @@ defmodule Admin.TrashCleanupWorker do
     }
 
     Logger.info("Cleanup report: #{inspect(report)}")
+    Admin.RecycledItems.report_cleanup_completion({:completed, report})
 
     {:ok, report}
   end

@@ -39,6 +39,12 @@ defmodule Admin.H5PItems do
   end
 
   defp delete_with_content_id(content_id) do
-    S3.delete_with_prefix(h5p_bucket(), "h5p-content/#{content_id}")
+    key = "h5p-content/#{content_id}"
+
+    if String.length(key) >= 1024 do
+      Logger.warning("ContentId '#{key}' is too long, skipping deletion")
+    else
+      S3.delete_with_prefix(h5p_bucket(), key)
+    end
   end
 end

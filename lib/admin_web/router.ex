@@ -197,6 +197,10 @@ defmodule AdminWeb.Router do
       scope "/test" do
         live "/sentry", TestLive.Sentry, :sentry
       end
+
+      scope "/trash" do
+        live "/", TrashLive.Index, :index
+      end
     end
 
     post "/users/update-password", UserSessionController, :update_password
