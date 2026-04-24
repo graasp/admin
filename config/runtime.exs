@@ -187,7 +187,7 @@ if config_env() == :prod do
   s3_config =
     [
       # If using custom endpoints like LocalStack or MinIO, path_style: true is often necessary.
-      path_style: true,
+      path_style: System.get_env("AWS_S3_USE_PATH_STYLE") == "true",
       region: System.get_env("AWS_REGION", "eu-central-1"),
       scheme: System.get_env("AWS_S3_SCHEME"),
       host: System.get_env("AWS_S3_HOST"),

@@ -166,6 +166,8 @@ admin:
     AWS_S3_HOST: s3.garage.localhost
     # The port that the s3 api responds to for garage
     AWS_S3_PORT: 3900
+    # Use path style (default for aws s3 is to put bucket_name as sub-domain)
+    AWS_S3_USE_PATH_STYLE: true
     # Override the Mailer adapter from AWS SES to use a simple SMTP server (either a local mailcatcher or external SMTP server)
     MAILER_CONNECTION: smtp://docker:docker@mailer:1025
   ports:
