@@ -103,10 +103,10 @@ defmodule AdminWeb.TrashLive.Index do
   end
 
   defp get_processing_state do
-    %{running: running} = Oban.check_queue(queue: Admin.TrashCleanupWorker.queue_name())
-
-    case running do
-      [job_id | _] -> job_id
+    with %{running: running} <- Oban.check_queue(queue: Admin.TrashCleanupWorker.queue_name()),
+         [job_id | _] <- running do
+      job_id
+    else
       _ -> nil
     end
   end
