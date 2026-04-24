@@ -49,7 +49,8 @@ config :admin, Admin.Repo,
     type: :utc_datetime,
     inserted_at: :created_at
   ],
-  types: Admin.PostgresTypes
+  types: Admin.PostgresTypes,
+  parameters: [application_name: "admin_phoenix"]
 
 # Configure Gettext
 config :gettext, default_locale: "en"
