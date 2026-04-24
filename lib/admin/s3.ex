@@ -88,16 +88,16 @@ defmodule Admin.S3 do
   end
 
   def delete_with_prefix(bucket, prefix) when is_binary(prefix) do
-    stream =
+    :ok =
       S3.list_objects(bucket, prefix: prefix)
       |> @ex_aws_mod.stream!()
       |> Stream.map(& &1.key)
-
-    {:ok, _} =
-      S3.delete_all_objects(bucket, stream)
-      |> @ex_aws_mod.request()
-
-    :ok
+      # chunk stream so we never get empty batches
+      |> Stream.chunk_every(1000)
+      |> Stream.each(fn batch ->
+        {:ok, _} = S3.delete_all_objects(bucket, batch) |> @ex_aws_mod.request()
+      end)
+      |> Stream.run()
   end
 
   def list_folders(bucket, prefix) do
