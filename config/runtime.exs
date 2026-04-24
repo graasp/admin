@@ -189,9 +189,9 @@ if config_env() == :prod do
       # If using custom endpoints like LocalStack or MinIO, path_style: true is often necessary.
       path_style: true,
       region: System.get_env("AWS_REGION", "eu-central-1"),
-      scheme: System.get_env("AWS_S3_SCHEME", "https"),
+      scheme: System.get_env("AWS_S3_SCHEME"),
       host: System.get_env("AWS_S3_HOST"),
-      port: System.get_env("AWS_S3_PORT", nil)
+      port: System.get_env("AWS_S3_PORT")
     ]
     # remove nil values
     |> Enum.reject(fn {_k, v} -> is_nil(v) end)
