@@ -2,9 +2,14 @@ defmodule Admin.TrashCleanupWorker do
   @moduledoc """
   This worker cleans up the trash by deleting items that have not been restored 3 months.
   """
-  use Oban.Worker, queue: :trash_schedule
+
+  @queue_name :trash_schedule
+
+  use Oban.Worker, queue: @queue_name
 
   require Logger
+
+  def queue_name, do: @queue_name
 
   def perform(_args) do
     # fetch the 20k oldest trash items

@@ -344,7 +344,7 @@ msgstr ""
 msgid "Open navigation menu"
 msgstr ""
 
-#: lib/admin_web/live/trash_live/index.ex:42
+#: lib/admin_web/live/trash_live/index.ex:52
 #, elixir-autogen, elixir-format
 msgctxt "page title"
 msgid "Trash Management"
