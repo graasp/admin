@@ -178,19 +178,25 @@ if config_env() == :prod do
   config :admin, :file_items_bucket, System.get_env("FILE_ITEMS_BUCKET_NAME", "file-items")
   config :admin, :h5p_bucket, System.get_env("H5P_CONTENT_BUCKET_NAME", "h5p-items")
 
-  config :ex_aws, :s3,
-    region: System.get_env("AWS_REGION", "eu-central-1"),
-    scheme: System.get_env("AWS_S3_SCHEME", "https"),
-    host: System.get_env("AWS_S3_HOST"),
-    port: System.get_env("AWS_S3_PORT", nil),
-    # If using custom endpoints like LocalStack or MinIO, path_style: true is often necessary.
-    path_style: true
-
   # Configure Ex_AWS using first env vars, then instance role (automatic credentials in ECS tasks)
   config :ex_aws,
     access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :instance_role, :pod_identity],
     secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, :instance_role, :pod_identity],
     region: {:system, "AWS_REGION"}
+
+  s3_config =
+    [
+      # If using custom endpoints like LocalStack or MinIO, path_style: true is often necessary.
+      path_style: System.get_env("AWS_S3_USE_PATH_STYLE") == "true",
+      region: System.get_env("AWS_REGION", "eu-central-1"),
+      scheme: System.get_env("AWS_S3_SCHEME"),
+      host: System.get_env("AWS_S3_HOST"),
+      port: System.get_env("AWS_S3_PORT")
+    ]
+    # remove nil values
+    |> Enum.reject(fn {_k, v} -> is_nil(v) end)
+
+  config :ex_aws, :s3, s3_config
 
   # override the ses region to use Frankfurt since SES does not exist in eu-central-2
   config :ex_aws, :ses, region: "eu-central-1"

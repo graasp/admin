@@ -20,7 +20,18 @@ defmodule Admin.H5PItemsTest do
         assert operation.params == %{"prefix" => "h5p-content/#{content_id}"}
 
         # return an empty list of buckets
-        Stream.resource(fn -> :ok end, fn _ -> {:halt, :ok} end, fn _ -> [] end)
+        Stream.resource(
+          fn -> 0 end,
+          fn acc ->
+            case acc do
+              3 -> {:halt, acc}
+              _ -> {[%{key: "some_key_#{acc}"}], acc + 1}
+            end
+          end,
+          fn _ ->
+            :ok
+          end
+        )
       end)
 
       expect(ExAwsMock, :request, fn operation ->
