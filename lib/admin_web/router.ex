@@ -79,6 +79,7 @@ defmodule AdminWeb.Router do
     get "/auth/*path", ClientController, :index
     get "/builder/*path", ClientController, :index
     get "/player/*path", ClientController, :index
+    get "/analytics/*path", ClientController, :index
 
     # redirections for now
     get "/library", RedirectionController, :library
