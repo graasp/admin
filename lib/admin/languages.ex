@@ -9,7 +9,8 @@ defmodule Admin.Languages do
     %{value: "en", label: "English"},
     %{value: "es", label: "Español"},
     %{value: "fr", label: "Français"},
-    %{value: "it", label: "Italiano"}
+    %{value: "it", label: "Italiano"},
+    %{value: "ja", label: "日本語"}
   ]
 
   def all do
@@ -32,7 +33,8 @@ defmodule Admin.Languages do
     [
       %{value: "de", key: "Deutsch"},
       %{value: "es", key: "Español"},
-      %{value: "it", key: "Italiano"}
+      %{value: "it", key: "Italiano"},
+      %{value: "ja", key: "日本語"}
     ]
   """
   def excluding(language_codes) when is_list(language_codes) do
@@ -50,7 +52,8 @@ defmodule Admin.Languages do
       [value: "en", key: "English", disabled: true],
       [value: "es", key: "Español", disabled: false],
       [value: "fr", key: "Français", disabled: true],
-      [value: "it", key: "Italiano", disabled: false]
+      [value: "it", key: "Italiano", disabled: false],
+      [value: "ja", key: "日本語", disabled: false]
     ]
   """
   def disabling(language_codes) when is_list(language_codes) do

@@ -10,7 +10,8 @@ defmodule Admin.LanguagesTest do
                %{value: "en", key: "English"},
                %{value: "es", key: "Español"},
                %{value: "fr", key: "Français"},
-               %{value: "it", key: "Italiano"}
+               %{value: "it", key: "Italiano"},
+               %{value: "ja", key: "日本語"}
              ] = Languages.all()
     end
   end
@@ -24,7 +25,7 @@ defmodule Admin.LanguagesTest do
 
   describe "all_values/0" do
     test "cotnains all languages" do
-      assert ["de", "en", "es", "fr", "it"] == Languages.all_values()
+      assert ["de", "en", "es", "fr", "it", "ja"] == Languages.all_values()
     end
   end
 
@@ -33,7 +34,8 @@ defmodule Admin.LanguagesTest do
       assert [
                %{value: "de", key: "Deutsch"},
                %{value: "es", key: "Español"},
-               %{value: "it", key: "Italiano"}
+               %{value: "it", key: "Italiano"},
+               %{value: "ja", key: "日本語"}
              ] = Languages.excluding(["en", "fr"])
     end
 
@@ -48,6 +50,16 @@ defmodule Admin.LanguagesTest do
 
       assert true =
                Enum.find(languages, &(Keyword.get(&1, :value) == "en")) |> Keyword.get(:disabled)
+    end
+
+    test "disabling multiple languages" do
+      languages = Languages.disabling(["en", "fr"])
+
+      assert true =
+               Enum.find(languages, &(Keyword.get(&1, :value) == "en")) |> Keyword.get(:disabled)
+
+      assert true =
+               Enum.find(languages, &(Keyword.get(&1, :value) == "fr")) |> Keyword.get(:disabled)
     end
   end
 end

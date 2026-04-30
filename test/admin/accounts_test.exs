@@ -331,7 +331,7 @@ defmodule Admin.AccountsTest do
       assert changeset.errors == [
                language:
                  {"is invalid",
-                  [{:validation, :inclusion}, {:enum, ["de", "en", "es", "fr", "it"]}]}
+                  [{:validation, :inclusion}, {:enum, ["de", "en", "es", "fr", "it", "ja"]}]}
              ]
     end
   end

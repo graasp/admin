@@ -29,7 +29,7 @@ defmodule Admin.Notifications.Notification do
     notification
     |> cast(attrs, [:name, :audience, :default_language, :use_strict_languages, :total_recipients])
     |> validate_required([:name, :audience, :default_language])
-    |> validate_inclusion(:default_language, ["en", "fr", "es", "it", "de"])
+    |> validate_inclusion(:default_language, ["en", "fr", "es", "it", "de", "ja"])
     |> validate_inclusion(:use_strict_languages, [true, false])
   end
 
