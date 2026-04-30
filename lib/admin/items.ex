@@ -147,7 +147,7 @@ defmodule Admin.Items do
     |> Repo.all()
   end
 
-  @delete_batch_size 500
+  @delete_batch_size 100
   def delete_tree(%EctoLtree.LabelTree{} = item_path) do
     delete_in_batches(delete_tree_query(item_path), @delete_batch_size)
     delete_item(item_path)
