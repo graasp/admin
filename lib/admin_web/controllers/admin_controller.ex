@@ -11,8 +11,7 @@ defmodule AdminWeb.AdminController do
     specs = %{
       name: Application.spec(:admin, :description),
       version: Application.spec(:admin, :vsn),
-      uptime: Uptime.get(),
-      build_hash: Application.get_env(:admin, :build_hash)
+      uptime: Uptime.get()
     }
 
     render(conn, :about,

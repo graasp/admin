@@ -145,7 +145,8 @@ defmodule Admin.ItemsTest do
       [{parent_1, _}, {parent_2, []}] =
         build_tree(scope, tree_structure)
 
-      assert {3, _} = Items.delete(parent_1.path)
+      # returns :ok meaning the parent and the tree were deleted
+      assert :ok = Items.delete_tree(parent_1.path)
       descendants = Items.get_descendants(parent_1.path)
       assert descendants == []
       assert [parent_2] == Items.get_descendants(parent_2.path)

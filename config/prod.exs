@@ -47,12 +47,5 @@ config :admin, :logger, [
 
 config :admin, Admin.SentryFilter, keep_db_spans: true
 
-config :admin,
-  build_hash:
-    (case System.cmd("git", ["rev-parse", "--short", "HEAD"]) do
-       {hash, 0} -> String.trim(hash)
-       _ -> "unknown"
-     end)
-
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
