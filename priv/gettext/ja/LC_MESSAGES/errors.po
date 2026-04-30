@@ -8,86 +8,95 @@
 ### to merge POT files into PO files.
 msgid ""
 msgstr ""
-"Language: ja\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "can't be blank"
-msgstr ""
+msgstr "空白にすることはできません"
 
 msgid "has already been taken"
-msgstr ""
+msgstr "すでに使用されている"
 
 msgid "is invalid"
-msgstr ""
+msgstr "無効です"
 
 msgid "must be accepted"
-msgstr ""
+msgstr "受け入れなければならない"
 
 msgid "has invalid format"
-msgstr ""
+msgstr "無効な形式です"
 
 msgid "has an invalid entry"
-msgstr ""
+msgstr "無効なエントリがあります"
 
 msgid "is reserved"
-msgstr ""
+msgstr "予約済み"
 
 msgid "does not match confirmation"
-msgstr ""
+msgstr "確認情報と一致しません"
 
 msgid "is still associated with this entry"
-msgstr ""
+msgstr "このエントリにまだ関連付けられています"
 
 msgid "are still associated with this entry"
-msgstr ""
+msgstr "このエントリにはまだ関連付けられています"
 
 msgid "should have %{count} item(s)"
 msgid_plural "should have %{count} item(s)"
-msgstr[0] ""
+msgstr[0] "%{count}個のアイテムが必要です"
+msgstr[1] "%{count}個のアイテムが必要です"
 
 msgid "should be %{count} character(s)"
 msgid_plural "should be %{count} character(s)"
-msgstr[0] ""
+msgstr[0] "%{count}文字であるべきです"
+msgstr[1] "%{count}文字である必要があります"
 
 msgid "should be %{count} byte(s)"
 msgid_plural "should be %{count} byte(s)"
-msgstr[0] ""
+msgstr[0] "%{count}バイトであるべきです"
+msgstr[1] "%{count}バイトであるべきです"
 
 msgid "should have at least %{count} item(s)"
 msgid_plural "should have at least %{count} item(s)"
-msgstr[0] ""
+msgstr[0] "少なくとも%{count}個のアイテムが必要です"
+msgstr[1] "少なくとも%{count}個のアイテムが必要です"
 
 msgid "should be at least %{count} character(s)"
 msgid_plural "should be at least %{count} character(s)"
-msgstr[0] ""
+msgstr[0] "少なくとも %{count} 文字である必要があります"
+msgstr[1] "少なくとも%{count}文字である必要があります"
 
 msgid "should be at least %{count} byte(s)"
 msgid_plural "should be at least %{count} byte(s)"
-msgstr[0] ""
+msgstr[0] "少なくとも%{count}バイトである必要があります"
+msgstr[1] "少なくとも%{count}バイト必要です"
 
 msgid "should have at most %{count} item(s)"
 msgid_plural "should have at most %{count} item(s)"
-msgstr[0] ""
+msgstr[0] "最大で%{count}個のアイテムを持つべきである"
+msgstr[1] "最大で%{count}個のアイテムを持つべきである"
 
 msgid "should be at most %{count} character(s)"
 msgid_plural "should be at most %{count} character(s)"
-msgstr[0] ""
+msgstr[0] "最大で %{count} 文字である必要があります"
+msgstr[1] "最大で%{count}文字である必要があります"
 
 msgid "should be at most %{count} byte(s)"
 msgid_plural "should be at most %{count} byte(s)"
-msgstr[0] ""
+msgstr[0] "最大で%{count}バイトであるべきです"
+msgstr[1] "最大で%{count}バイトであるべきです"
 
 msgid "must be less than %{number}"
-msgstr ""
+msgstr "%{number}より小さくなければなりません"
 
 msgid "must be greater than %{number}"
-msgstr ""
+msgstr "%{number}より大きい必要があります"
 
 msgid "must be less than or equal to %{number}"
-msgstr ""
+msgstr "%{number}以下でなければなりません"
 
 msgid "must be greater than or equal to %{number}"
-msgstr ""
+msgstr "%{number}以上でなければなりません"
 
 msgid "must be equal to %{number}"
-msgstr ""
+msgstr "%{number}と等しくなければなりません"
