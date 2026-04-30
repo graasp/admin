@@ -368,7 +368,7 @@ defmodule AdminWeb.Layouts do
                     {gettext("Get started")}
                   </.link>
                 <% else %>
-                  <.link class="btn btn-soft" navigate={~p"/auth/login"}>
+                  <.link class="btn btn-soft" navigate={~p"/auth/login?lang=#{Gettext.get_locale()}"}>
                     {gettext("Log in")}
                   </.link>
                 <% end %>
@@ -400,7 +400,7 @@ defmodule AdminWeb.Layouts do
                 {gettext("Get started")}
               </.link>
             <% else %>
-              <.link class="btn btn-accent" navigate={~p"/auth/login"}>
+              <.link class="btn btn-accent" navigate={~p"/auth/login?lang=#{Gettext.get_locale()}"}>
                 {gettext("Log in")}
               </.link>
             <% end %>

@@ -7,7 +7,7 @@ defmodule AdminWeb.Localization do
   # They are not sorted alphabeticaly, english is
   # expected to be the first one so that the routes for english are the first to be generated.
   def supported_locales,
-    do: ["en", "fr", "es", "de", "it"]
+    do: ["en", "fr", "es", "de", "it", "ja"]
 
   def locale_path_prefix("en"), do: "/"
   def locale_path_prefix(locale), do: "/#{locale}"

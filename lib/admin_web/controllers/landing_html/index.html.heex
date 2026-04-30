@@ -35,7 +35,7 @@
                 <.link
                   class="btn btn-accent btn-lg"
                   data-umami-event="header-register-button"
-                  href="/auth/register"
+                  href={"/auth/register?lang=#{Gettext.get_locale()}"}
                 >
                   {dgettext("landing", "Get started")}
                 </.link>
@@ -391,7 +391,7 @@
       <.link
         class="btn btn-lg btn-accent"
         data-umami-event="call-to-action-register-button"
-        href="/auth/register"
+        href={"/auth/register?lang=#{Gettext.get_locale()}"}
       >
         {dgettext("landing", "Start now")}
       </.link>
