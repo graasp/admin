@@ -10,6 +10,8 @@ defmodule Admin.Items do
   alias Admin.Accounts.Scope
   alias Admin.Items.Item
 
+  require Logger
+
   @doc """
   Subscribes to scoped notifications about any item changes.
 
@@ -144,11 +146,48 @@ defmodule Admin.Items do
     |> Repo.all()
   end
 
-  def delete(%EctoLtree.LabelTree{} = item_path) do
+  @delete_batch_size 500
+  def delete_tree(%EctoLtree.LabelTree{} = item_path) do
+    delete_in_batches(delete_tree_query(item_path), @delete_batch_size)
+    delete_item(item_path)
+  end
+
+  defp delete_in_batches(query, batch_size) do
+    query
+    |> select([item], item.id)
+    |> order_by([item], asc: item.id)
+    |> limit(^batch_size)
+    |> Repo.all()
+    |> case do
+      [] ->
+        :ok
+
+      ids ->
+        {count, _} =
+          from(item in Item, where: item.id in ^ids)
+          |> Repo.delete_all()
+
+        Logger.debug("Deleted #{count} rows for item tree")
+        # small sleep to lower DB pressure
+        Process.sleep(50)
+
+        delete_in_batches(query, batch_size)
+    end
+  end
+
+  defp delete_tree_query(%EctoLtree.LabelTree{} = item_path) do
     from(item in Item,
-      where: fragment("? @> ?", ^(item_path |> EctoLtree.LabelTree.decode()), item.path)
+      where:
+        fragment("? @> ?", ^(item_path |> EctoLtree.LabelTree.decode()), item.path) and
+          item.path != ^(item_path |> EctoLtree.LabelTree.decode())
     )
-    |> Repo.delete_all()
+  end
+
+  def delete_item(%EctoLtree.LabelTree{} = item_path) do
+    from(item in Item,
+      where: item.path == ^(item_path |> EctoLtree.LabelTree.decode())
+    )
+    |> Repo.delete()
   end
 
   def get_by_h5p_content_id(h5p_content_id) do

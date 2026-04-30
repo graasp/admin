@@ -31,8 +31,10 @@ defmodule Admin.TrashCleanupWorker do
         else
           process_entry(descendants)
 
-          # delete items themselves
-          Admin.Items.delete(trash_item_path)
+          # delete items in the tree
+          Admin.Items.delete_tree(trash_item_path)
+          # delete the parent itself
+          Admin.Items.delete_item(trash_item_path)
           acc |> Map.update!(:success, &(&1 + 1))
         end
       end)
