@@ -9,6 +9,7 @@ defmodule Admin.Items do
 
   alias Admin.Accounts.Scope
   alias Admin.Items.Item
+  alias Admin.Items.PathUtils
 
   require Logger
 
@@ -184,11 +185,13 @@ defmodule Admin.Items do
   end
 
   def delete_item(%EctoLtree.LabelTree{} = item_path) do
-    {1, _} =
-      from(item in Item,
-        where: item.path == ^(item_path |> EctoLtree.LabelTree.decode())
-      )
-      |> Repo.delete_all()
+    id = PathUtils.to_uuids(item_path) |> List.last()
+
+    case from(item in Item, where: item.id == ^id)
+         |> Repo.delete_all() do
+      {1, _} -> :ok
+      {0, _} -> {:error, :not_found}
+    end
   end
 
   def get_by_h5p_content_id(h5p_content_id) do
