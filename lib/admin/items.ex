@@ -147,41 +147,11 @@ defmodule Admin.Items do
     |> Repo.all()
   end
 
-  @delete_batch_size 100
   def delete_tree(%EctoLtree.LabelTree{} = item_path) do
-    delete_in_batches(delete_tree_query(item_path), @delete_batch_size)
-    delete_item(item_path)
-  end
-
-  defp delete_in_batches(query, batch_size) do
-    query
-    |> select([item], item.id)
-    |> order_by([item], asc: item.id)
-    |> limit(^batch_size)
-    |> Repo.all()
-    |> case do
-      [] ->
-        :ok
-
-      ids ->
-        {count, _} =
-          from(item in Item, where: item.id in ^ids)
-          |> Repo.delete_all()
-
-        Logger.debug("Deleted #{count} rows for item tree")
-        # small sleep to lower DB pressure
-        Process.sleep(50)
-
-        delete_in_batches(query, batch_size)
-    end
-  end
-
-  defp delete_tree_query(%EctoLtree.LabelTree{} = item_path) do
     from(item in Item,
-      where:
-        fragment("? @> ?", ^(item_path |> EctoLtree.LabelTree.decode()), item.path) and
-          item.path != ^(item_path |> EctoLtree.LabelTree.decode())
+      where: fragment("? @> ?", ^(item_path |> EctoLtree.LabelTree.decode()), item.path)
     )
+    |> Repo.delete_all(timeout: :infinity)
   end
 
   def delete_item(%EctoLtree.LabelTree{} = item_path) do
