@@ -101,7 +101,7 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: lib/admin_web/controllers/admin_controller.ex:18
+#: lib/admin_web/controllers/admin_controller.ex:19
 #: lib/admin_web/controllers/landing_controller.ex:11
 #, elixir-autogen, elixir-format
 msgctxt "page title"
