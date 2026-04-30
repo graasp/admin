@@ -184,10 +184,11 @@ defmodule Admin.Items do
   end
 
   def delete_item(%EctoLtree.LabelTree{} = item_path) do
-    from(item in Item,
-      where: item.path == ^(item_path |> EctoLtree.LabelTree.decode())
-    )
-    |> Repo.delete()
+    {1, _} =
+      from(item in Item,
+        where: item.path == ^(item_path |> EctoLtree.LabelTree.decode())
+      )
+      |> Repo.delete_all()
   end
 
   def get_by_h5p_content_id(h5p_content_id) do
