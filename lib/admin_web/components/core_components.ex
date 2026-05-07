@@ -491,11 +491,25 @@ defmodule AdminWeb.CoreComponents do
   attr :html, :string, required: true
   attr :class, :string, default: ""
   attr :id, :string, default: nil
+  attr :text_only, :boolean, default: false
 
   def raw_html(assigns) do
+    assigns =
+      assign(
+        assigns,
+        :class_overrides,
+        case assigns.text_only do
+          true ->
+            "[&_h1]:text-sm [&_h2]:text-sm [&_h3]:text-sm [&_h4]:text-sm [&_h1]:font-normal [&_h2]:font-normal [&_h3]:font-normal [&_h4]:font-normal"
+
+          false ->
+            ""
+        end
+      )
+
     ~H"""
-    <div class={["prose prose-sm", @class]} id={@id}>
-      {HtmlSanitizeEx.basic_html(@html) |> Phoenix.HTML.raw()}
+    <div class={["prose prose-sm", @class, @class_overrides]} id={@id}>
+      {HtmlSanitizeEx.basic_html(assigns.html) |> Phoenix.HTML.raw()}
     </div>
     """
   end
@@ -544,6 +558,7 @@ defmodule AdminWeb.CoreComponents do
   attr :src, :string, required: true
   attr :size, :string, default: "small"
   attr :alt, :string, required: true
+  attr :item_id, :string, required: false
 
   def thumbnail(assigns) do
     assigns =
@@ -556,6 +571,13 @@ defmodule AdminWeb.CoreComponents do
           end
       )
 
+    assigns =
+      assign(
+        assigns,
+        :placeholder_color,
+        "background-color: #{AdminWeb.Components.Colors.from_uuid(assigns.item_id)}"
+      )
+
     ~H"""
     <object
       data={@src}
@@ -563,7 +585,13 @@ defmodule AdminWeb.CoreComponents do
       class={[@size_class, "rounded"]}
       alt={@alt}
     >
-      <div class={[@size_class, "shrink-0 bg-base-300 rounded flex items-center justify-center"]}>
+      <div
+        style={@placeholder_color}
+        class={[
+          @size_class,
+          "shrink-0 rounded flex items-center justify-center"
+        ]}
+      >
         <.icon name="hero-photo" class="size-5 text-base-content" />
       </div>
     </object>

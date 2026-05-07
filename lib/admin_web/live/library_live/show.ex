@@ -37,19 +37,20 @@ defmodule AdminWeb.LibraryLive.Show do
               src={@publication.thumbnails.large}
               size="large"
               alt={@publication.item.name}
+              item_id={@publication.item.id}
             />
             <div class="flex flex-col gap-4">
               <h1 class="text-2xl font-bold mb-4">{@publication.item.name}</h1>
               <div class="flex flex-col gap-1">
                 <.raw_html
                   id="description"
-                  class="line-clamp-3"
+                  class="line-clamp-5"
                   html={@publication.item.description}
                 />
                 <.button
                   size="sm"
                   class="w-fit"
-                  phx-click={JS.toggle_class("line-clamp-3", to: "#description")}
+                  phx-click={JS.toggle_class("line-clamp-5", to: "#description")}
                 >
                   {gettext("Show more")}
                 </.button>
@@ -59,16 +60,22 @@ defmodule AdminWeb.LibraryLive.Show do
                   <object
                     data={user.thumbnails.small}
                     type="image/webp"
+                    class="avatar avatar-placeholder"
                   >
-                    <div class="avatar avatar-placeholder">
-                      <div class="bg-neutral text-neutral-content w-8 rounded-full">
-                        <span class="text-xs"><.icon name="hero-user" class="size-4" /></span>
-                      </div>
+                    <div class="bg-neutral text-neutral-content size-[40px] rounded-full">
+                      <span class="text-xs"><.icon name="hero-user" class="size-5" /></span>
                     </div>
                   </object>
                 </div>
               </div>
             </div>
+          </div>
+          Details
+          <div class="border border-slate-200 rounded-lg p-2">
+            Created: {@publication.item.created_at}
+          </div>
+          <div class="border border-slate-200 rounded-lg p-2">
+            License: {@publication.item.settings.cc_license}
           </div>
         </div>
       </div>
