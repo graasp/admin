@@ -205,19 +205,6 @@ if config_env() == :prod do
   config :admin, :umami,
     username: System.get_env("UMAMI_USERNAME"),
     password: System.get_env("UMAMI_PASSWORD")
-
-  # Clustering on ECS
-  config :libcluster,
-    topologies: [
-      ecs: [
-        strategy: Cluster.Strategy.ECS,
-        config: [
-          service: "admin",
-          # use task metadata endpoint
-          dpa: true
-        ]
-      ]
-    ]
 end
 
 config :admin, :umami_website_id, System.get_env("UMAMI_WEBSITE_ID")
