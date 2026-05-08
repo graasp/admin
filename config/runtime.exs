@@ -208,3 +208,4 @@ if config_env() == :prod do
 end
 
 config :admin, :umami_website_id, System.get_env("UMAMI_WEBSITE_ID")
+config :admin, :recaptcha_site_key, System.get_env("RECAPTCHA_SITE_KEY")
