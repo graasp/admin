@@ -125,3 +125,10 @@ config :admin, :publication_reindex_headers, [{"meilisearch-rebuild", "secret"}]
 config :admin, :umami,
   username: System.get_env("UMAMI_USERNAME"),
   password: System.get_env("UMAMI_PASSWORD")
+
+config :libcluster,
+  topologies: [
+    admin: [
+      strategy: Elixir.Cluster.Strategy.LocalEpmd
+    ]
+  ]
