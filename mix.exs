@@ -156,7 +156,10 @@ defmodule Admin.MixProject do
       {:exla, "~> 0.10"},
       {:evision, "~> 0.2"},
       {:kino, "~> 0.16"},
-      {:kino_yolo, github: "poeticoding/kino_yolo", branch: "main"}
+      {:kino_yolo, github: "poeticoding/kino_yolo", branch: "main"},
+
+      # clustering on ECS
+      {:libcluster, "~> 3.5", only: [:dev, :prod]}
     ]
   end
 

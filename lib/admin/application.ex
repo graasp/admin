@@ -6,6 +6,8 @@ defmodule Admin.Application do
   use Application
   require Logger
 
+  @env Mix.env()
+
   @impl true
   def start(_type, _args) do
     # Set up OpenTelemetry instrumentation
@@ -35,6 +37,18 @@ defmodule Admin.Application do
       # Start the ETS-backed event counter
       Admin.Analytics.EventStore
     ]
+
+    children =
+      if @env != :test do
+        [
+          # Start libcluster
+          {Cluster.Supervisor,
+           [Application.get_env(:libcluster, :topologies), [name: Admin.ClusterSupervisor]]}
+          | children
+        ]
+      else
+        children
+      end
 
     Logger.add_handlers(:admin)
 

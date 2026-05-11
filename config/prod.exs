@@ -47,5 +47,17 @@ config :admin, :logger, [
 
 config :admin, Admin.SentryFilter, keep_db_spans: true
 
+config :libcluster,
+  topologies: [
+    ecs: [
+      strategy: Cluster.Strategy.DNSPoll,
+      config: [
+        polling_interval: 1000,
+        query: "admin",
+        node_basename: "admin"
+      ]
+    ]
+  ]
+
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
