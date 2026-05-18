@@ -36,6 +36,7 @@
       defer
       src={"#{Application.get_env(:admin, :umami_origin)}/script.js"}
       data-website-id={Application.get_env(:admin, :umami_website_id)}
+      data-performance="true"
     >
     </script>
     <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
