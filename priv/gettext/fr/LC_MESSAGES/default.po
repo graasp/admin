@@ -11,7 +11,7 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/admin_web/components/core_components.ex:387
+#: lib/admin_web/components/core_components.ex:388
 #: lib/admin_web/live/notification_live/show.ex:71
 #, elixir-autogen, elixir-format
 msgid "Actions"
@@ -33,7 +33,7 @@ msgstr "Quelque chose a mal fonctionné !"
 msgid "We can't find the internet"
 msgstr "Nous ne trouvons pas l'internet"
 
-#: lib/admin_web/components/core_components.ex:78
+#: lib/admin_web/components/core_components.ex:79
 #, elixir-autogen, elixir-format
 msgid "close"
 msgstr "fermer"
@@ -134,6 +134,7 @@ msgstr "Accueil"
 
 #: lib/admin_web/components/layouts/admin_root.html.heex:11
 #: lib/admin_web/components/layouts/root.html.heex:11
+#: lib/admin_web/components/layouts/root.html.heex:30
 #, elixir-autogen, elixir-format
 msgid "Graasp is a platform for collaborative learning and teaching."
 msgstr "Graasp est une plateforme d'enseignement et d'apprentissages collaboratifs."
@@ -293,7 +294,7 @@ msgstr "Vous n'avez pas trouvé ce que vous cherchiez ?"
 msgid "Blog posts and update log by the Graasp team"
 msgstr "Articles de blog et journal des mises à jour de l'équipe Graasp"
 
-#: lib/admin_web/components/layouts/root.html.heex:31
+#: lib/admin_web/components/layouts/root.html.heex:54
 #: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:3
 #, elixir-autogen, elixir-format
 msgid "Graasp blog"
@@ -335,7 +336,7 @@ msgid "intro"
 msgstr ""
 
 #: lib/admin_web/controllers/landing_html.ex:573
-#: lib/admin_web/live/library_live/show.ex:99
+#: lib/admin_web/live/library_live/show.ex:118
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr "Langue"
@@ -351,7 +352,7 @@ msgctxt "page title"
 msgid "Trash Management"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:34
+#: lib/admin_web/live/library_live/show.ex:36
 #, elixir-autogen, elixir-format
 msgid "Back"
 msgstr "Retour"
@@ -362,27 +363,37 @@ msgstr "Retour"
 msgid "Published Items"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:64
+#: lib/admin_web/live/library_live/show.ex:83
 #, elixir-autogen, elixir-format
 msgid "Show more"
 msgstr "Montrer plus"
 
-#: lib/admin_web/live/library_live/show.ex:85
+#: lib/admin_web/live/library_live/show.ex:104
 #, elixir-autogen, elixir-format
 msgid "Created"
 msgstr "Créé"
 
-#: lib/admin_web/live/library_live/show.ex:83
+#: lib/admin_web/live/library_live/show.ex:102
 #, elixir-autogen, elixir-format
 msgid "Details"
 msgstr "Détails"
 
-#: lib/admin_web/live/library_live/show.ex:104
+#: lib/admin_web/live/library_live/show.ex:123
 #, elixir-autogen, elixir-format
 msgid "License"
 msgstr "Licence"
 
-#: lib/admin_web/live/library_live/show.ex:92
+#: lib/admin_web/live/library_live/show.ex:111
 #, elixir-autogen, elixir-format
 msgid "Updated"
 msgstr "Mis à jour"
+
+#: lib/admin_web/components/layouts/root.html.heex:23
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Graasp"
+msgstr "Graasp"
+
+#: lib/admin_web/live/library_live/show.ex:54
+#, elixir-autogen, elixir-format
+msgid "Preview"
+msgstr ""

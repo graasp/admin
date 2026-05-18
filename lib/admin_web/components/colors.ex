@@ -1,4 +1,8 @@
 defmodule AdminWeb.Components.Colors do
+  @moduledoc """
+  A module that defines the color generation functions for the Admin application.
+  """
+
   @doc """
   Generates a pastel background color from a UUID string.
   Returns a CSS-ready HSL color string.

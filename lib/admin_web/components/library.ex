@@ -1,4 +1,8 @@
 defmodule AdminWeb.Components.Library do
+  @moduledoc """
+  A module that defines the library component for the Admin application.
+  """
+
   use AdminWeb, :html
 
   attr :label, :string

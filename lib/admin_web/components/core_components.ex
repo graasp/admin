@@ -29,6 +29,7 @@ defmodule AdminWeb.CoreComponents do
   use Phoenix.Component
   use Gettext, backend: AdminWeb.Gettext
 
+  alias AdminWeb.Components.Colors
   alias Phoenix.HTML.Form
   alias Phoenix.LiveView.JS
   import AdminWeb.IconComponents
@@ -575,7 +576,7 @@ defmodule AdminWeb.CoreComponents do
       assign(
         assigns,
         :placeholder_color,
-        "background-color: #{AdminWeb.Components.Colors.from_uuid(Map.get(assigns, :item_id, "000000"))}"
+        "background-color: #{Colors.from_uuid(Map.get(assigns, :item_id, "000000"))}"
       )
 
     ~H"""
