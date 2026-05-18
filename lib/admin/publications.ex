@@ -153,7 +153,7 @@ defmodule Admin.Publications do
 
   def with_item(%PublishedItem{} = published_item) do
     published_item
-    |> Repo.preload([:item])
+    |> Repo.preload(item: :tags)
     |> populate_thumbnails()
   end
 

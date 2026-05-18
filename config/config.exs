@@ -55,6 +55,11 @@ config :admin, Admin.Repo,
 # Configure Gettext
 config :gettext, default_locale: "en"
 
+# Configure CLDR
+config :ex_cldr,
+  default_locale: "en",
+  default_backend: Admin.Cldr
+
 # Configures the endpoint
 config :admin, AdminWeb.Endpoint,
   url: [host: "localhost"],

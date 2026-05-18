@@ -23,6 +23,8 @@ defmodule Admin.Items.Item do
 
     belongs_to :creator, Admin.Accounts.Account, type: :binary_id
 
+    many_to_many :tags, Admin.Tags.Tag, join_through: Admin.Tags.ItemTag, on_replace: :delete
+
     timestamps(type: :utc_datetime)
   end
 

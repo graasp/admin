@@ -83,6 +83,14 @@ defmodule Admin.SignedUrlCache do
   end
 
   @doc """
+  Delete all entries from the cache.
+  """
+  @spec flush() :: :ok
+  def flush do
+    GenServer.cast(__MODULE__, :flush)
+  end
+
+  @doc """
   Convenience: fetch-or-store.
 
   If the value is present and valid, returns it.
@@ -142,6 +150,12 @@ defmodule Admin.SignedUrlCache do
   @impl true
   def handle_cast({:delete, key}, state) do
     :ets.delete(@table_name, key)
+    {:noreply, state}
+  end
+
+  @impl true
+  def handle_cast(:flush, state) do
+    :ets.delete_all_objects(@table_name)
     {:noreply, state}
   end
 

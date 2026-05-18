@@ -2,6 +2,7 @@ defmodule AdminWeb.LibraryLive.Show do
   use AdminWeb, :live_view
 
   alias Admin.Publications
+  alias AdminWeb.Components.Library
 
   @impl Phoenix.LiveView
   def mount(%{"item_id" => item_id}, _session, socket) do
@@ -40,7 +41,12 @@ defmodule AdminWeb.LibraryLive.Show do
               item_id={@publication.item.id}
             />
             <div class="flex flex-col gap-4">
-              <h1 class="text-2xl font-bold mb-4">{@publication.item.name}</h1>
+              <h1 class="text-3xl font-bold mb-4">{@publication.item.name}</h1>
+              <div class="flex flex-wrap gap-2">
+                <span :for={tag <- @publication.item.tags} class="bg-gray-200 rounded-full px-2 py-1 text-sm">
+                  {tag.name}
+                </span>
+              </div>
               <div class="flex flex-col gap-1">
                 <.raw_html
                   id="description"
@@ -70,12 +76,32 @@ defmodule AdminWeb.LibraryLive.Show do
               </div>
             </div>
           </div>
-          Details
-          <div class="border border-slate-200 rounded-lg p-2">
-            Created: {@publication.item.created_at}
-          </div>
-          <div class="border border-slate-200 rounded-lg p-2">
-            License: {@publication.item.settings.cc_license}
+          <div class="flex flex-col gap-2 ">
+            {gettext("Details")}
+            <div class="flex flex-col gap-2 border border-slate-200 rounded-lg p-2">
+              <Library.detail_bullet label={gettext("Created")}>
+                {@publication.item.created_at
+                |> Admin.Cldr.Date.to_string!(
+                  format: :medium,
+                  locale: Gettext.get_locale(AdminWeb.Gettext)
+                )}
+              </Library.detail_bullet>
+              <Library.detail_bullet label={gettext("Updated")}>
+                {@publication.item.updated_at
+                |> Admin.Cldr.Date.to_string!(
+                  format: :medium,
+                  locale: Gettext.get_locale(AdminWeb.Gettext)
+                )}
+              </Library.detail_bullet>
+              <Library.detail_bullet label={gettext("Language")}>
+                <div class="badge badge-primary">
+                  {Admin.Languages.get_label(@publication.item.lang)}
+                </div>
+              </Library.detail_bullet>
+              <Library.detail_bullet label={gettext("License")}>
+                {@publication.item.settings |> Map.get("ccLicenseAdaption")}
+              </Library.detail_bullet>
+            </div>
           </div>
         </div>
       </div>

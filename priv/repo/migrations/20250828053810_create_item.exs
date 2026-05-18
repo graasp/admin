@@ -97,5 +97,35 @@ defmodule Admin.Repo.Migrations.CreateItem do
              using: :gist,
              unique: false
            )
+
+    execute(
+      """
+      CREATE TYPE tag_category_enum AS ENUM (
+        'discipline',
+        'level',
+        'resource-type'
+      );
+      """,
+      "DROP TYPE tag_category_enum;"
+    )
+
+    create table(:tag) do
+      add :name, :string, size: 255, null: false
+      add :category, :tag_category_enum, null: false
+    end
+
+    create unique_index(:tag, [:name, :category], name: "UQ_tag_name_category")
+
+    create table(:item_tag, primary_key: false) do
+      add :tag_id, references(:tag, type: :uuid, on_delete: :delete_all), null: false
+      add :item_id, references(:item, type: :uuid, on_delete: :delete_all), null: false
+    end
+
+    create index(:item_tag, [:item_id], name: "IDX_item_tag_item")
+
+    execute(
+      "ALTER TABLE item_tag ADD CONSTRAINT \"PK_a04bb2298e37d95233a0c92347e\" PRIMARY KEY (tag_id, item_id);",
+      "ALTER TABLE item_tag DROP CONSTRAINT \"PK_a04bb2298e37d95233a0c92347e\";"
+    )
   end
 end

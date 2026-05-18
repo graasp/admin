@@ -125,7 +125,7 @@ defmodule AdminWeb.Router do
 
     live_session :public,
       session: {AdminWeb.Public, :session, [[locale: "fr"]]},
-      on_mount: [AdminWeb.RestoreLocale, {AdminWeb.UserAuth, :mount_current_scope}] do
+      on_mount: [{AdminWeb.UserAuth, :mount_current_scope}, AdminWeb.RestoreLocale] do
       scope "/library" do
         live "/", LibraryLive.Index, :index
         live "/collections/:item_id", LibraryLive.Show, :show
