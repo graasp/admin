@@ -335,6 +335,7 @@ msgid "intro"
 msgstr "イントロ"
 
 #: lib/admin_web/controllers/landing_html.ex:573
+#: lib/admin_web/live/library_live/show.ex:99
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr "言語"
@@ -350,7 +351,7 @@ msgctxt "page title"
 msgid "Trash Management"
 msgstr "ゴミ管理"
 
-#: lib/admin_web/live/library_live/show.ex:33
+#: lib/admin_web/live/library_live/show.ex:34
 #, elixir-autogen, elixir-format
 msgid "Back"
 msgstr ""
@@ -361,7 +362,27 @@ msgstr ""
 msgid "Published Items"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:55
+#: lib/admin_web/live/library_live/show.ex:64
 #, elixir-autogen, elixir-format
 msgid "Show more"
+msgstr ""
+
+#: lib/admin_web/live/library_live/show.ex:85
+#, elixir-autogen, elixir-format
+msgid "Created"
+msgstr ""
+
+#: lib/admin_web/live/library_live/show.ex:83
+#, elixir-autogen, elixir-format
+msgid "Details"
+msgstr ""
+
+#: lib/admin_web/live/library_live/show.ex:104
+#, elixir-autogen, elixir-format
+msgid "License"
+msgstr ""
+
+#: lib/admin_web/live/library_live/show.ex:92
+#, elixir-autogen, elixir-format
+msgid "Updated"
 msgstr ""

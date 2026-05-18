@@ -10,8 +10,7 @@ defmodule AdminWeb.RestoreLocale do
         Phoenix.Component.to_form(%{"locale" => locale})
       end)
 
-    IO.inspect(locale, label: "hook locale")
-    Gettext.put_locale(locale)
+    Gettext.put_locale(AdminWeb.Gettext, locale)
     {:cont, socket}
   end
 

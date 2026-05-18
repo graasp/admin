@@ -39,7 +39,7 @@ msgstr "Contenuto"
 #: lib/admin_web/controllers/landing_html.ex:476
 #, elixir-autogen, elixir-format
 msgid "Developed in Switzerland by the Graasp association"
-msgstr "Sviluppato in Svizzera dall'associazione Graasp"
+msgstr "Sviluppato in Svizzera dall'Associazione Graasp"
 
 #: lib/admin_web/controllers/landing_html.ex:564
 #, elixir-autogen, elixir-format

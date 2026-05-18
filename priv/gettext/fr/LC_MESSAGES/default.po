@@ -335,9 +335,10 @@ msgid "intro"
 msgstr ""
 
 #: lib/admin_web/controllers/landing_html.ex:573
+#: lib/admin_web/live/library_live/show.ex:99
 #, elixir-autogen, elixir-format
 msgid "Language"
-msgstr ""
+msgstr "Langue"
 
 #: lib/admin_web/components/layouts.ex:197
 #, elixir-autogen, elixir-format
@@ -350,10 +351,10 @@ msgctxt "page title"
 msgid "Trash Management"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:33
+#: lib/admin_web/live/library_live/show.ex:34
 #, elixir-autogen, elixir-format
 msgid "Back"
-msgstr ""
+msgstr "Retour"
 
 #: lib/admin_web/live/library_live/index.ex:11
 #: lib/admin_web/live/library_live/index.ex:21
@@ -361,7 +362,27 @@ msgstr ""
 msgid "Published Items"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:55
+#: lib/admin_web/live/library_live/show.ex:64
 #, elixir-autogen, elixir-format
 msgid "Show more"
-msgstr ""
+msgstr "Montrer plus"
+
+#: lib/admin_web/live/library_live/show.ex:85
+#, elixir-autogen, elixir-format
+msgid "Created"
+msgstr "Créé"
+
+#: lib/admin_web/live/library_live/show.ex:83
+#, elixir-autogen, elixir-format
+msgid "Details"
+msgstr "Détails"
+
+#: lib/admin_web/live/library_live/show.ex:104
+#, elixir-autogen, elixir-format
+msgid "License"
+msgstr "Licence"
+
+#: lib/admin_web/live/library_live/show.ex:92
+#, elixir-autogen, elixir-format
+msgid "Updated"
+msgstr "Mis à jour"

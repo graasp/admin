@@ -1,5 +1,6 @@
 defmodule AdminWeb.LibraryLive.Show do
   use AdminWeb, :live_view
+  use Gettext, backend: AdminWeb.Gettext
 
   alias Admin.Publications
   alias AdminWeb.Components.Library
@@ -29,7 +30,7 @@ defmodule AdminWeb.LibraryLive.Show do
     ~H"""
     <Layouts.landing {assigns}>
       <div class="max-w-screen-lg m-auto p-4 mt-10">
-        <div class="flex flex-col gap-4 ">
+        <div class="flex flex-col gap-10">
           <.button variant="ghost" class="w-fit" navigate={~p"/library"}>
             <.icon name="hero-arrow-left" class="size-5" />{gettext("Back")}
           </.button>
@@ -43,7 +44,10 @@ defmodule AdminWeb.LibraryLive.Show do
             <div class="flex flex-col gap-4">
               <h1 class="text-3xl font-bold mb-4">{@publication.item.name}</h1>
               <div class="flex flex-wrap gap-2">
-                <span :for={tag <- @publication.item.tags} class="bg-gray-200 rounded-full px-2 py-1 text-sm">
+                <span
+                  :for={tag <- @publication.item.tags}
+                  class="badge badge-neutral rounded-full"
+                >
                   {tag.name}
                 </span>
               </div>
@@ -76,8 +80,8 @@ defmodule AdminWeb.LibraryLive.Show do
               </div>
             </div>
           </div>
-          <div class="flex flex-col gap-2 ">
-            {gettext("Details")}
+          <div class="flex flex-col gap-4">
+            <span class="text-xl font-bold">{gettext("Details")}</span>
             <div class="flex flex-col gap-2 border border-slate-200 rounded-lg p-2">
               <Library.detail_bullet label={gettext("Created")}>
                 {@publication.item.created_at
