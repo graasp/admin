@@ -44,7 +44,9 @@ defmodule Admin.Publications do
 
   """
   def list_published_items do
-    Repo.all(from p in PublishedItem, order_by: [desc: :created_at], preload: [:item, :creator])
+    Repo.all(
+      from p in PublishedItem, order_by: [desc: :created_at], preload: [:creator, item: :tags]
+    )
     |> Enum.map(&populate_thumbnails(&1))
   end
 

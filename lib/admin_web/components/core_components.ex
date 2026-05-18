@@ -575,7 +575,7 @@ defmodule AdminWeb.CoreComponents do
       assign(
         assigns,
         :placeholder_color,
-        "background-color: #{AdminWeb.Components.Colors.from_uuid(assigns.item_id)}"
+        "background-color: #{AdminWeb.Components.Colors.from_uuid(Map.get(assigns, :item_id, "000000"))}"
       )
 
     ~H"""
