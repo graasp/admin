@@ -21,7 +21,7 @@ defmodule AdminWeb.LibraryLive.Show do
       |> assign(:authors, Publications.get_authors(publication.item))
       |> assign(:page_title, publication.item.name)
       |> assign(:page_description, publication.item.description)
-      |> assign(:page_image, url(~p"/library/collections/#{publication.item.id}/thumbnail"))
+      |> assign(:page_image, url(~p"/library/collections/#{publication.item}/thumbnail"))
 
     {:ok, socket}
   end
@@ -42,8 +42,25 @@ defmodule AdminWeb.LibraryLive.Show do
               alt={@publication.item.name}
               item_id={@publication.item.id}
             />
-            <div class="flex flex-col gap-4">
-              <h1 class="text-3xl font-bold mb-4">{@publication.item.name}</h1>
+            <div class="flex flex-col gap-4 w-full">
+              <div class="flex flex-row gap-2 w-full justify-between">
+                <h1 class="text-3xl font-bold mb-4">{@publication.item.name}</h1>
+                <div class="flex flex-row gap-2">
+                  <.link
+                    class="btn btn-primary btn-lg"
+                    href={"/player/#{@publication.item.id}/#{@publication.item.id}"}
+                  >
+                    <.icon name="hero-eye" class="size-5" />
+                    {gettext("Preview")}
+                  </.link>
+                  <.link
+                    class="btn btn-lg"
+                    href={"/builder/items/#{@publication.item.id}?copyOpen=true"}
+                  >
+                    <.icon name="hero-clipboard" class="size-5" />
+                  </.link>
+                </div>
+              </div>
               <div class="flex flex-wrap gap-2">
                 <span
                   :for={tag <- @publication.item.tags}
