@@ -336,7 +336,7 @@ msgid "intro"
 msgstr "イントロ"
 
 #: lib/admin_web/controllers/landing_html.ex:573
-#: lib/admin_web/live/library_live/show.ex:118
+#: lib/admin_web/live/library_live/show.ex:121
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr "言語"
@@ -357,8 +357,8 @@ msgstr "ゴミ管理"
 msgid "Back"
 msgstr ""
 
-#: lib/admin_web/live/library_live/index.ex:11
-#: lib/admin_web/live/library_live/index.ex:21
+#: lib/admin_web/live/library_live/index.ex:12
+#: lib/admin_web/live/library_live/index.ex:22
 #, elixir-autogen, elixir-format
 msgid "Published Items"
 msgstr ""
@@ -368,22 +368,22 @@ msgstr ""
 msgid "Show more"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:104
+#: lib/admin_web/live/library_live/show.ex:107
 #, elixir-autogen, elixir-format
 msgid "Created"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:102
+#: lib/admin_web/live/library_live/show.ex:105
 #, elixir-autogen, elixir-format
 msgid "Details"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:123
+#: lib/admin_web/live/library_live/show.ex:126
 #, elixir-autogen, elixir-format
 msgid "License"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:111
+#: lib/admin_web/live/library_live/show.ex:114
 #, elixir-autogen, elixir-format
 msgid "Updated"
 msgstr ""
@@ -396,4 +396,14 @@ msgstr "掴む"
 #: lib/admin_web/live/library_live/show.ex:54
 #, elixir-autogen, elixir-format
 msgid "Preview"
+msgstr ""
+
+#: lib/admin_web/live/library_live/member.ex:19
+#, elixir-autogen, elixir-format
+msgid "Joined on"
+msgstr ""
+
+#: lib/admin_web/live/library_live/member.ex:25
+#, elixir-autogen, elixir-format
+msgid "Most recent publications"
 msgstr ""

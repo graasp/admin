@@ -85,15 +85,18 @@ defmodule AdminWeb.LibraryLive.Show do
               </div>
               <div class="avatar-group -space-x-4">
                 <div :for={user <- @authors}>
-                  <object
-                    data={user.thumbnails.small}
-                    type="image/webp"
-                    class="avatar avatar-placeholder"
-                  >
-                    <div class="bg-neutral text-neutral-content size-[40px] rounded-full">
-                      <span class="text-xs"><.icon name="hero-user" class="size-5" /></span>
-                    </div>
-                  </object>
+                  <.link navigate={~p"/library/members/#{user.id}"}>
+                    <object
+                      data={user.thumbnails.small}
+                      type="image/webp"
+                      class="avatar avatar-placeholder"
+                      title={user.name}
+                    >
+                      <div class="bg-neutral text-neutral-content size-[40px] rounded-full">
+                        <span class="text-xs"><.icon name="hero-user" class="size-5" /></span>
+                      </div>
+                    </object>
+                  </.link>
                 </div>
               </div>
             </div>

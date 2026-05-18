@@ -380,6 +380,13 @@ defmodule Admin.Accounts do
     Repo.get!(Account, id)
   end
 
+  def get_member_by_id(id) do
+    with user <- Repo.get(Account, id) do
+      user = user |> populate_avatar_url()
+      {:ok, user}
+    end
+  end
+
   def get_member_by_email(email) do
     case Repo.get_by(Account, email: email) do
       %Account{} = user -> {:ok, user}

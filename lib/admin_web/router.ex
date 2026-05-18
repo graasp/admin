@@ -131,6 +131,7 @@ defmodule AdminWeb.Router do
       scope "/library" do
         live "/", LibraryLive.Index, :index
         live "/collections/:item_id", LibraryLive.Show, :show
+        live "/members/:member_id", LibraryLive.Member, :show
       end
     end
   end

@@ -63,6 +63,20 @@ defmodule Admin.Publications do
     |> Enum.map(&populate_thumbnails(&1))
   end
 
+  @doc """
+  Returns the list of published items for all users
+  """
+  def list_published_items_for_member(member_id, limit \\ 10) do
+    Repo.all(
+      from p in PublishedItem,
+        where: p.creator_id == ^member_id,
+        order_by: [desc: :created_at],
+        limit: ^limit,
+        preload: [:item, :creator]
+    )
+    |> Enum.map(&populate_thumbnails(&1))
+  end
+
   def list_featured_published_items do
     # Repo.all(from p in PublishedItem, where: p.featured == true, order_by: [desc: :created_at])
     []

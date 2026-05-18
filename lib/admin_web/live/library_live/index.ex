@@ -2,6 +2,7 @@ defmodule AdminWeb.LibraryLive.Index do
   use AdminWeb, :live_view
 
   alias Admin.Publications
+  alias AdminWeb.Components.Library
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
@@ -20,30 +21,7 @@ defmodule AdminWeb.LibraryLive.Index do
       <div class="max-w-screen-lg m-auto p-4 mt-10">
         <h1 class="text-2xl font-bold mb-4">{gettext("Published Items")}</h1>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <%= for publication <- @publications do %>
-            <div class="bg-base-100 rounded-lg shadow-sm flex flex-row">
-              <.link href={~p"/library/collections/#{publication.item.id}"} class="p-2">
-                <.thumbnail
-                  src={publication.thumbnails.medium}
-                  size="medium"
-                  alt={publication.item.name}
-                  item_id={publication.item.id}
-                />
-              </.link>
-              <div class="p-2">
-                <h3 class="font-bold line-clamp-2">{publication.item.name}</h3>
-                <span class="">
-                  <.raw_html
-                    class="line-clamp-2"
-                    html={publication.item.description}
-                    text_only={true}
-                  />
-                </span>
-              </div>
-            </div>
-          <% end %>
-        </div>
+        <Library.publication_grid publications={@publications} />
       </div>
     </Layouts.landing>
     """
