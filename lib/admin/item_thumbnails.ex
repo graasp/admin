@@ -25,7 +25,7 @@ defmodule Admin.ItemThumbnails do
     }
   end
 
-  defp get_item_thumbnail(item_id, size) when size in ["small", "medium", "large", "original"] do
+  def get_item_thumbnail(item_id, size) when size in ["small", "medium", "large", "original"] do
     key = "thumbnails/#{item_id}/#{size}"
     ttl = 3600
     get_url_for(key, ttl)

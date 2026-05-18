@@ -21,6 +21,7 @@ defmodule AdminWeb.LibraryLive.Show do
       |> assign(:authors, Publications.get_authors(publication.item))
       |> assign(:page_title, publication.item.name)
       |> assign(:page_description, publication.item.description)
+      |> assign(:page_image, url(~p"/library/collections/#{publication.item.id}/thumbnail"))
 
     {:ok, socket}
   end

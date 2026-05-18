@@ -123,6 +123,8 @@ defmodule AdminWeb.Router do
   scope "/", AdminWeb do
     pipe_through [:browser]
 
+    get "/library/collections/:item_id/thumbnail", ThumbnailController, :show
+
     live_session :public,
       session: {AdminWeb.Public, :session, [[locale: "fr"]]},
       on_mount: [{AdminWeb.UserAuth, :mount_current_scope}, AdminWeb.RestoreLocale] do
