@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin
+  namespace: graasp
+  labels:
+    app: admin
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: admin
+  # Wait for new pods to be ready before terminating old ones
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: admin
+    spec:
+      imagePullSecrets:
+        - name: infomaniak-registry
+
+      # Run DB migrations before any app container starts.
+      # Phoenix uses pg_advisory_lock so concurrent runs across pods are safe.
+      initContainers:
+        - name: migrate
+          image: registry.infomaniak.com/<ORG>/admin:<TAG>
+          command: ["/app/bin/admin", "eval", "Admin.Release.migrate()"]
+          envFrom:
+            - configMapRef:
+                name: admin-config
+            - secretRef:
+                name: admin-secret
+
+      containers:
+        - name: admin
+          image: registry.infomaniak.com/<ORG>/admin:<TAG>
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4000
+          envFrom:
+            - configMapRef:
+                name: admin-config
+            - secretRef:
+                name: admin-secret
+          # PHX_SERVER tells the release entrypoint to start the HTTP server
+          env:
+            - name: PHX_SERVER
+              value: "true"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              path: /up
+              port: 4000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /up
+              port: 4000
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            failureThreshold: 3
+          # Give in-flight requests time to finish before the pod shuts down
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "sleep 5"]
+      terminationGracePeriodSeconds: 30

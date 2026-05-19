@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin
+  namespace: graasp
+spec:
+  selector:
+    app: admin
+  ports:
+    - port: 4000
+      targetPort: 4000
+---
+# Headless service — returns one A record per pod.
+# Used by DNS_CLUSTER_QUERY so Erlang nodes can discover each other.
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-headless
+  namespace: graasp
+spec:
+  clusterIP: None
+  selector:
+    app: admin
+  ports:
+    - port: 4000
+      targetPort: 4000

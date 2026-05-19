@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: admin-config
+  namespace: graasp
+data:
+  PHX_HOST: "admin.graasp.org"        # update to your actual hostname
+  PORT: "4000"
+  POOL_SIZE: "10"
+
+  # Infomaniak Swiss Object Storage — S3-compatible
+  # Buckets must be created in advance in the Infomaniak manager.
+  AWS_S3_HOST: "s3.pub1.infomaniak.cloud"
+  AWS_S3_SCHEME: "https://"
+  AWS_S3_USE_PATH_STYLE: "true"
+  AWS_REGION: "us-east-1"             # Infomaniak uses us-east-1 as the region token
+  FILE_ITEMS_BUCKET_NAME: "file-items"
+  H5P_CONTENT_BUCKET_NAME: "h5p-items"
+
+  # Headless service DNS for Erlang distribution across pods
+  DNS_CLUSTER_QUERY: "admin-headless.graasp.svc.cluster.local"
