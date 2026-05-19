@@ -334,6 +334,40 @@ defmodule Admin.Publications do
     Map.put(pub, :thumbnails, %{small: nil, medium: nil, large: nil})
   end
 
+  def get_collection_folders(%Item{} = item) do
+    root_depth = length(item.path.labels)
+    root_path_str = Enum.join(item.path.labels, ".")
+
+    folders =
+      from(i in Item,
+        where: fragment("? @> ?", ^EctoLtree.LabelTree.decode(item.path), i.path),
+        where: i.type == "folder",
+        where: i.id != ^item.id,
+        select: %{id: i.id, name: i.name, path: i.path, order: i.order}
+      )
+      |> Repo.all()
+
+    by_parent =
+      Enum.group_by(folders, fn f ->
+        f.path.labels |> Enum.drop(-1) |> Enum.join(".")
+      end)
+
+    folders_depth_first(root_path_str, by_parent, root_depth)
+  end
+
+  defp folders_depth_first(parent_path_str, by_parent, root_depth) do
+    children =
+      Map.get(by_parent, parent_path_str, [])
+      |> Enum.sort_by(& &1.order)
+
+    Enum.flat_map(children, fn child ->
+      child_path_str = Enum.join(child.path.labels, ".")
+      depth = length(child.path.labels) - root_depth
+      entry = %{id: child.id, name: child.name, depth: depth}
+      [entry | folders_depth_first(child_path_str, by_parent, root_depth)]
+    end)
+  end
+
   def get_authors(%Item{} = item) do
     from(m in ItemMembership,
       join: a in Account,

@@ -17,6 +17,23 @@ defmodule AdminWeb.Components.Library do
     """
   end
 
+  attr :folders, :list, required: true
+
+  def table_of_contents(assigns) do
+    ~H"""
+    <ol class="flex flex-col gap-1">
+      <li
+        :for={folder <- @folders}
+        class="flex items-center gap-2 overflow-hidden"
+        style={"padding-left: #{(folder.depth - 1) * 1.25}rem"}
+      >
+        <.icon name="hero-folder" class="size-5 shrink-0" />
+        <span class="overflow-hidden ellipsis w-full text-ellipsis text-nowrap">{folder.name}</span>
+      </li>
+    </ol>
+    """
+  end
+
   attr :publications, :list
 
   def publication_grid(assigns) do

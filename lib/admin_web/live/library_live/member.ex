@@ -38,7 +38,13 @@ defmodule AdminWeb.LibraryLive.Member do
   def mount(%{"member_id" => member_id}, _session, socket) do
     {:ok, user} = Accounts.get_member_by_id(member_id)
     publications = Publications.list_published_items_for_member(member_id)
-    socket = socket |> assign(:user, user) |> assign(:publications, publications)
+
+    socket =
+      socket
+      |> assign(:user, user)
+      |> assign(:publications, publications)
+      |> assign(:page_title, user.name)
+
     {:ok, socket}
   end
 end

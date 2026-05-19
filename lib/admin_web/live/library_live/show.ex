@@ -19,6 +19,7 @@ defmodule AdminWeb.LibraryLive.Show do
         publication
       )
       |> assign(:authors, Publications.get_authors(publication.item))
+      |> assign(:collection_folders, Publications.get_collection_folders(publication.item))
       |> assign(:page_title, publication.item.name)
       |> assign(:page_description, publication.item.description)
       |> assign(:page_image, url(~p"/library/collections/#{publication.item}/thumbnail"))
@@ -43,21 +44,21 @@ defmodule AdminWeb.LibraryLive.Show do
               item_id={@publication.item.id}
             />
             <div class="flex flex-col gap-4 w-full">
-              <div class="flex flex-row gap-2 w-full justify-between">
+              <div class="flex flex-col md:flex-row gap-2 w-full justify-between">
                 <h1 class="text-3xl font-bold mb-4">{@publication.item.name}</h1>
                 <div class="flex flex-row gap-2">
                   <.link
                     class="btn btn-primary btn-lg"
                     href={"/player/#{@publication.item.id}/#{@publication.item.id}"}
                   >
-                    <.icon name="hero-eye" class="size-5" />
+                    <.icon name="hero-play" class="size-5" />
                     {gettext("Preview")}
                   </.link>
                   <.link
                     class="btn btn-lg"
                     href={"/builder/items/#{@publication.item.id}?copyOpen=true"}
                   >
-                    <.icon name="hero-clipboard" class="size-5" />
+                    <.icon name="hero-document-duplicate" class="size-5" />
                   </.link>
                 </div>
               </div>
@@ -101,9 +102,15 @@ defmodule AdminWeb.LibraryLive.Show do
               </div>
             </div>
           </div>
+          <div :if={@collection_folders != []} class="flex flex-col gap-4">
+            <span class="text-xl font-bold">{gettext("Table of contents")}</span>
+            <div class="border border-slate-200 rounded-lg p-2 md:p-4">
+              <Library.table_of_contents folders={@collection_folders} />
+            </div>
+          </div>
           <div class="flex flex-col gap-4">
             <span class="text-xl font-bold">{gettext("Details")}</span>
-            <div class="flex flex-col gap-2 border border-slate-200 rounded-lg p-2">
+            <div class="flex flex-col gap-2 border border-slate-200 rounded-lg p-2 md:p-4">
               <Library.detail_bullet label={gettext("Created")}>
                 {@publication.item.created_at
                 |> Admin.Cldr.Date.to_string!(
