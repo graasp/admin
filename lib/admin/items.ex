@@ -9,7 +9,7 @@ defmodule Admin.Items do
 
   alias Admin.Accounts.Scope
   alias Admin.ItemFiles
-  alias Admin.Items.{Item, ItemMembership, PathUtils}
+  alias Admin.Items.{Item, ItemLike, ItemMembership, PathUtils}
   alias Admin.Repo
   alias Admin.Validation.NudenetValidation
 
@@ -236,6 +236,22 @@ defmodule Admin.Items do
       order_by: [desc: item.created_at],
       limit: 100
     )
+    |> Repo.all()
+  end
+
+  @doc """
+  Returns the number of likes for a given item.
+  """
+  def count_likes(item_id) do
+    from(like in ItemLike, where: like.item_id == ^item_id, select: count())
+    |> Repo.one()
+  end
+
+  @doc """
+  Returns the list of likes for a given item, preloading the creator account.
+  """
+  def list_likes(item_id) do
+    from(like in ItemLike, where: like.item_id == ^item_id, preload: [:creator])
     |> Repo.all()
   end
 

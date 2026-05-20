@@ -127,5 +127,21 @@ defmodule Admin.Repo.Migrations.CreateItem do
       "ALTER TABLE item_tag ADD CONSTRAINT \"PK_a04bb2298e37d95233a0c92347e\" PRIMARY KEY (tag_id, item_id);",
       "ALTER TABLE item_tag DROP CONSTRAINT \"PK_a04bb2298e37d95233a0c92347e\";"
     )
+
+    create table(:item_like) do
+      add :creator_id,
+          references(:account, column: :id, type: :binary_id, on_delete: :delete_all),
+          null: false
+
+      add :item_id,
+          references(:item, column: :id, type: :binary_id, on_delete: :delete_all),
+          null: false
+
+      timestamps(updated_at: false, type: :utc_datetime)
+    end
+
+    # TODO: change this name in a later migration
+    create unique_index(:item_like, [:creator_id, :item_id], name: "id")
+    create index(:item_like, [:item_id], name: "IDX_item_like_item")
   end
 end
