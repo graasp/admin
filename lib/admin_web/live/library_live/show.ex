@@ -20,7 +20,7 @@ defmodule AdminWeb.LibraryLive.Show do
         publication
       )
       |> assign(:authors, Publications.get_authors(publication.item))
-      |> assign(:collection_folders, Publications.get_collection_folders(publication.item))
+      |> assign(:collection_toc, Publications.get_collection_folders(publication.item))
       |> assign(:page_title, publication.item.name)
       |> assign(:page_description, publication.item.description)
       |> assign(:page_image, url(~p"/library/collections/#{publication.item}/thumbnail"))
@@ -122,10 +122,10 @@ defmodule AdminWeb.LibraryLive.Show do
               </div>
             </div>
           </div>
-          <div :if={@collection_folders != []} class="flex flex-col gap-4">
+          <div :if={@collection_toc != []} class="flex flex-col gap-4">
             <span class="text-xl font-bold">{gettext("Table of contents")}</span>
             <div class="border border-slate-200 rounded-lg p-2 md:p-4">
-              <Library.table_of_contents folders={@collection_folders} />
+              <Library.table_of_contents folders={@collection_toc} />
             </div>
           </div>
           <div class="flex flex-col gap-4">
