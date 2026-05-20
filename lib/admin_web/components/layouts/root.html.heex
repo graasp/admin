@@ -14,6 +14,29 @@
     <.live_title default={gettext("Home")} suffix=" · Graasp">
       {assigns[:page_title]}
     </.live_title>
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content={
+        if assigns[:page_title],
+          do: "#{assigns[:page_title]} · Graasp",
+          else: gettext("Graasp")
+      }
+    />
+    <meta
+      property="og:description"
+      content={
+        assigns[:page_description] ||
+          gettext("Graasp is a platform for collaborative learning and teaching.")
+      }
+    />
+    <%= if assigns[:page_image] do %>
+      <meta property="og:image" content={assigns[:page_image]} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content={assigns[:page_image]} />
+    <% else %>
+      <meta name="twitter:card" content="summary" />
+    <% end %>
     <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
     <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />

@@ -81,7 +81,7 @@ defmodule AdminWeb.Router do
     get "/player/*path", ClientController, :index
     get "/analytics/*path", ClientController, :index
 
-    # redirections for now
+    # TASK: remove once we migrate the library fully here
     get "/library", RedirectionController, :library
 
     get "/accounts/:account_id/marketing/unsubscribe",
@@ -118,6 +118,23 @@ defmodule AdminWeb.Router do
       live_session :dev_authenticated_user,
         on_mount: [{AdminWeb.UserAuth, :require_authenticated}] do
         live "/tools", AdminWeb.DevLive.Index, :index
+      end
+    end
+  end
+
+  # Public LiveView pages
+  scope "/", AdminWeb do
+    pipe_through [:browser]
+
+    get "/library/collections/:item_id/thumbnail", ThumbnailController, :show
+
+    live_session :public,
+      session: {AdminWeb.Public, :session, [[locale: "fr"]]},
+      on_mount: [{AdminWeb.UserAuth, :mount_current_scope}, AdminWeb.RestoreLocale] do
+      scope "/library-beta" do
+        live "/", LibraryLive.Index, :index
+        live "/collections/:item_id", LibraryLive.Show, :show
+        live "/members/:member_id", LibraryLive.Member, :show
       end
     end
   end

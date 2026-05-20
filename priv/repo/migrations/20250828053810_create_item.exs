@@ -97,5 +97,78 @@ defmodule Admin.Repo.Migrations.CreateItem do
              using: :gist,
              unique: false
            )
+
+    execute(
+      """
+      CREATE TYPE tag_category_enum AS ENUM (
+        'discipline',
+        'level',
+        'resource-type'
+      );
+      """,
+      "DROP TYPE tag_category_enum;"
+    )
+
+    create table(:tag) do
+      add :name, :string, size: 255, null: false
+      add :category, :tag_category_enum, null: false
+    end
+
+    create unique_index(:tag, [:name, :category], name: "UQ_tag_name_category")
+
+    create table(:item_tag, primary_key: false) do
+      add :tag_id, references(:tag, type: :uuid, on_delete: :delete_all), null: false
+      add :item_id, references(:item, type: :uuid, on_delete: :delete_all), null: false
+    end
+
+    create index(:item_tag, [:item_id], name: "IDX_item_tag_item")
+
+    execute(
+      "ALTER TABLE item_tag ADD CONSTRAINT \"PK_a04bb2298e37d95233a0c92347e\" PRIMARY KEY (tag_id, item_id);",
+      "ALTER TABLE item_tag DROP CONSTRAINT \"PK_a04bb2298e37d95233a0c92347e\";"
+    )
+
+    create table(:item_like) do
+      add :creator_id,
+          references(:account, column: :id, type: :binary_id, on_delete: :delete_all),
+          null: false
+
+      add :item_id,
+          references(:item, column: :id, type: :binary_id, on_delete: :delete_all),
+          null: false
+
+      timestamps(updated_at: false, type: :utc_datetime)
+    end
+
+    # TODO: change this name in a later migration
+    create unique_index(:item_like, [:creator_id, :item_id], name: "id")
+    create index(:item_like, [:item_id], name: "IDX_item_like_item")
+
+    execute(
+      """
+      CREATE TYPE action_view_enum AS ENUM (
+        'unknown',
+        'builder',
+        'player',
+        'library',
+        'analytics'
+      );
+      """,
+      "DROP TYPE action_view_enum;"
+    )
+
+    create table(:action) do
+      add :type, :string, null: false
+      add :account_id, references(:account, type: :binary_id, on_delete: :nilify_all)
+      add :item_id, references(:item, type: :binary_id, on_delete: :nilify_all)
+      add :extra, :jsonb, null: false, default: "{}"
+      add :geolocation, :jsonb
+      add :view, :action_view_enum, null: false, default: "unknown"
+
+      timestamps(updated_at: false, type: :utc_datetime)
+    end
+
+    create index(:action, [:item_id], name: "IDX_1214f6f4d832c402751617361c")
+    create index(:action, [:account_id], name: "IDX_action_account_id")
   end
 end

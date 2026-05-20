@@ -11,7 +11,7 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/admin_web/components/core_components.ex:387
+#: lib/admin_web/components/core_components.ex:388
 #: lib/admin_web/live/notification_live/show.ex:71
 #, elixir-autogen, elixir-format
 msgid "Actions"
@@ -33,7 +33,7 @@ msgstr "Qualcosa è andato storto!"
 msgid "We can't find the internet"
 msgstr "Non riusciamo a trovare Internet"
 
-#: lib/admin_web/components/core_components.ex:78
+#: lib/admin_web/components/core_components.ex:79
 #, elixir-autogen, elixir-format
 msgid "close"
 msgstr "vicino"
@@ -120,7 +120,7 @@ msgctxt "page title"
 msgid "Contact"
 msgstr "Contatto"
 
-#: lib/admin_web/live/dashboard_live/index.ex:160
+#: lib/admin_web/live/dashboard_live/index.ex:175
 #, elixir-autogen, elixir-format
 msgctxt "page title"
 msgid "Dashboard"
@@ -134,6 +134,7 @@ msgstr "Casa"
 
 #: lib/admin_web/components/layouts/admin_root.html.heex:11
 #: lib/admin_web/components/layouts/root.html.heex:11
+#: lib/admin_web/components/layouts/root.html.heex:30
 #, elixir-autogen, elixir-format
 msgid "Graasp is a platform for collaborative learning and teaching."
 msgstr "Graasp è una piattaforma per l'apprendimento e l'insegnamento collaborativi."
@@ -293,7 +294,7 @@ msgstr "Non hai trovato quello che cercavi?"
 msgid "Blog posts and update log by the Graasp team"
 msgstr "Post del blog e registro degli aggiornamenti del team Graasp"
 
-#: lib/admin_web/components/layouts/root.html.heex:31
+#: lib/admin_web/components/layouts/root.html.heex:54
 #: lib/admin_web/controllers/blog_xml/blog_atom.xml.eex:3
 #, elixir-autogen, elixir-format
 msgid "Graasp blog"
@@ -335,6 +336,7 @@ msgid "intro"
 msgstr ""
 
 #: lib/admin_web/controllers/landing_html.ex:573
+#: lib/admin_web/live/library_live/show.ex:160
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr ""
@@ -348,4 +350,65 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgctxt "page title"
 msgid "Trash Management"
+msgstr ""
+
+#: lib/admin_web/live/library_live/show.ex:51
+#, elixir-autogen, elixir-format
+msgid "Back"
+msgstr ""
+
+#: lib/admin_web/live/library_live/index.ex:12
+#: lib/admin_web/live/library_live/index.ex:22
+#, elixir-autogen, elixir-format
+msgid "Published Items"
+msgstr ""
+
+#: lib/admin_web/live/library_live/show.ex:103
+#, elixir-autogen, elixir-format
+msgid "Show more"
+msgstr ""
+
+#: lib/admin_web/live/library_live/show.ex:146
+#, elixir-autogen, elixir-format
+msgid "Created"
+msgstr ""
+
+#: lib/admin_web/live/library_live/show.ex:144
+#, elixir-autogen, elixir-format
+msgid "Details"
+msgstr ""
+
+#: lib/admin_web/live/library_live/show.ex:165
+#, elixir-autogen, elixir-format
+msgid "License"
+msgstr ""
+
+#: lib/admin_web/live/library_live/show.ex:153
+#, elixir-autogen, elixir-format
+msgid "Updated"
+msgstr ""
+
+#: lib/admin_web/components/layouts/root.html.heex:23
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Graasp"
+msgstr "Graasp"
+
+#: lib/admin_web/live/library_live/show.ex:69
+#, elixir-autogen, elixir-format
+msgid "Preview"
+msgstr ""
+
+#: lib/admin_web/live/library_live/member.ex:28
+#, elixir-autogen, elixir-format
+msgid "Most recent publications"
+msgstr ""
+
+#: lib/admin_web/live/library_live/member.ex:19
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Joined on %{date}"
+msgstr ""
+
+#: lib/admin_web/live/library_live/show.ex:138
+#, elixir-autogen, elixir-format
+msgid "Table of contents"
 msgstr ""

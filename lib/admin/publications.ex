@@ -6,6 +6,7 @@ defmodule Admin.Publications do
   import Ecto.Query, warn: false
 
   alias Admin.Accounts
+  alias Admin.Accounts.Account
   alias Admin.Accounts.Scope
   alias Admin.Accounts.UserNotifier
   alias Admin.Items.Item
@@ -43,7 +44,9 @@ defmodule Admin.Publications do
 
   """
   def list_published_items do
-    Repo.all(from p in PublishedItem, order_by: [desc: :created_at], preload: [:item, :creator])
+    Repo.all(
+      from p in PublishedItem, order_by: [desc: :created_at], preload: [:creator, item: :tags]
+    )
     |> Enum.map(&populate_thumbnails(&1))
   end
 
@@ -53,6 +56,20 @@ defmodule Admin.Publications do
   def list_published_items(limit) do
     Repo.all(
       from p in PublishedItem,
+        order_by: [desc: :created_at],
+        limit: ^limit,
+        preload: [:item, :creator]
+    )
+    |> Enum.map(&populate_thumbnails(&1))
+  end
+
+  @doc """
+  Returns the list of published items for all users
+  """
+  def list_published_items_for_member(member_id, limit \\ 10) do
+    Repo.all(
+      from p in PublishedItem,
+        where: p.creator_id == ^member_id,
         order_by: [desc: :created_at],
         limit: ^limit,
         preload: [:item, :creator]
@@ -152,7 +169,7 @@ defmodule Admin.Publications do
 
   def with_item(%PublishedItem{} = published_item) do
     published_item
-    |> Repo.preload([:item])
+    |> Repo.preload(item: :tags)
     |> populate_thumbnails()
   end
 
@@ -315,6 +332,40 @@ defmodule Admin.Publications do
   # item association is not loaded
   defp populate_thumbnails(%PublishedItem{} = pub) do
     Map.put(pub, :thumbnails, %{small: nil, medium: nil, large: nil})
+  end
+
+  def get_collection_folders(%Item{} = item) do
+    root_depth = length(item.path.labels)
+    root_path_str = Enum.join(item.path.labels, ".")
+
+    folders =
+      from(i in Item,
+        where: fragment("? @> ?", ^EctoLtree.LabelTree.decode(item.path), i.path),
+        where: i.type == "folder",
+        where: i.id != ^item.id,
+        select: %{id: i.id, name: i.name, path: i.path, order: i.order}
+      )
+      |> Repo.all()
+
+    by_parent =
+      Enum.group_by(folders, fn f ->
+        f.path.labels |> Enum.drop(-1) |> Enum.join(".")
+      end)
+
+    folders_depth_first(root_path_str, by_parent, root_depth)
+  end
+
+  defp folders_depth_first(parent_path_str, by_parent, root_depth) do
+    children =
+      Map.get(by_parent, parent_path_str, [])
+      |> Enum.sort_by(& &1.order)
+
+    Enum.flat_map(children, fn child ->
+      child_path_str = Enum.join(child.path.labels, ".")
+      depth = length(child.path.labels) - root_depth
+      entry = %{id: child.id, name: child.name, depth: depth}
+      [entry | folders_depth_first(child_path_str, by_parent, root_depth)]
+    end)
   end
 
   def get_authors(%Item{} = item) do
