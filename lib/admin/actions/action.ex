@@ -1,4 +1,7 @@
 defmodule Admin.Actions.Action do
+  @moduledoc """
+  This module holds the action table definition which tracks user action in the platform
+  """
   use Admin.Schema
   import Ecto.Changeset
 

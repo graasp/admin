@@ -1,4 +1,7 @@
 defmodule Admin.Items.ItemLike do
+  @moduledoc """
+  This holds the likes that users set on collections they find interesting.
+  """
   use Admin.Schema
 
   schema "item_like" do

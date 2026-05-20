@@ -120,7 +120,7 @@ msgctxt "page title"
 msgid "Contact"
 msgstr "Contact"
 
-#: lib/admin_web/live/dashboard_live/index.ex:188
+#: lib/admin_web/live/dashboard_live/index.ex:175
 #, elixir-autogen, elixir-format
 msgctxt "page title"
 msgid "Dashboard"
@@ -336,7 +336,7 @@ msgid "intro"
 msgstr ""
 
 #: lib/admin_web/controllers/landing_html.ex:573
-#: lib/admin_web/live/library_live/show.ex:128
+#: lib/admin_web/live/library_live/show.ex:160
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr ""
@@ -352,7 +352,7 @@ msgctxt "page title"
 msgid "Trash Management"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:37
+#: lib/admin_web/live/library_live/show.ex:51
 #, elixir-autogen, elixir-format
 msgid "Back"
 msgstr ""
@@ -363,27 +363,27 @@ msgstr ""
 msgid "Published Items"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:84
+#: lib/admin_web/live/library_live/show.ex:103
 #, elixir-autogen, elixir-format
 msgid "Show more"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:114
+#: lib/admin_web/live/library_live/show.ex:146
 #, elixir-autogen, elixir-format
 msgid "Created"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:112
+#: lib/admin_web/live/library_live/show.ex:144
 #, elixir-autogen, elixir-format
 msgid "Details"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:133
+#: lib/admin_web/live/library_live/show.ex:165
 #, elixir-autogen, elixir-format
 msgid "License"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:121
+#: lib/admin_web/live/library_live/show.ex:153
 #, elixir-autogen, elixir-format
 msgid "Updated"
 msgstr ""
@@ -393,7 +393,7 @@ msgstr ""
 msgid "Graasp"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:55
+#: lib/admin_web/live/library_live/show.ex:69
 #, elixir-autogen, elixir-format
 msgid "Preview"
 msgstr ""
@@ -408,7 +408,7 @@ msgstr ""
 msgid "Joined on %{date}"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:106
+#: lib/admin_web/live/library_live/show.ex:138
 #, elixir-autogen, elixir-format
 msgid "Table of contents"
 msgstr ""
