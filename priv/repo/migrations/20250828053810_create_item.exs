@@ -143,5 +143,32 @@ defmodule Admin.Repo.Migrations.CreateItem do
     # TODO: change this name in a later migration
     create unique_index(:item_like, [:creator_id, :item_id], name: "id")
     create index(:item_like, [:item_id], name: "IDX_item_like_item")
+
+    execute(
+      """
+      CREATE TYPE action_view_enum AS ENUM (
+        'unknown',
+        'builder',
+        'player',
+        'library',
+        'analytics'
+      );
+      """,
+      "DROP TYPE action_view_enum;"
+    )
+
+    create table(:action) do
+      add :type, :string, null: false
+      add :account_id, references(:account, type: :binary_id, on_delete: :nilify_all)
+      add :item_id, references(:item, type: :binary_id, on_delete: :nilify_all)
+      add :extra, :jsonb, null: false, default: "{}"
+      add :geolocation, :jsonb
+      add :view, :action_view_enum, null: false, default: "unknown"
+
+      timestamps(updated_at: false, type: :utc_datetime)
+    end
+
+    create index(:action, [:item_id], name: "IDX_1214f6f4d832c402751617361c")
+    create index(:action, [:account_id], name: "IDX_action_account_id")
   end
 end

@@ -2,12 +2,23 @@ defmodule AdminWeb.LibraryLive.Show do
   use AdminWeb, :live_view
   use Gettext, backend: AdminWeb.Gettext
 
+  alias Admin.Actions
   alias Admin.Items
   alias Admin.Publications
   alias AdminWeb.Components.Library
 
   @impl Phoenix.LiveView
   def mount(%{"item_id" => item_id}, _session, socket) do
+    if connected?(socket) do
+      # save an action view when users are connected to the socket
+      Admin.Actions.create_action(%{
+        type: "collection-view",
+        view: "library",
+        item_id: item_id,
+        account_id: nil
+      })
+    end
+
     publication =
       Publications.get_publication_id_for_item_id(item_id)
       |> Publications.get_published_item!()
@@ -25,6 +36,7 @@ defmodule AdminWeb.LibraryLive.Show do
       |> assign(:page_description, publication.item.description)
       |> assign(:page_image, url(~p"/library/collections/#{publication.item}/thumbnail"))
       |> assign(:like_count, Items.count_likes(publication.item.id))
+      |> assign(:view_count, Actions.get_count_by_type(item_id, "collection-view"))
 
     {:ok, socket}
   end
@@ -111,12 +123,12 @@ defmodule AdminWeb.LibraryLive.Show do
                 <div class="divider divider-horizontal"></div>
                 <div class="flex flex-row items-center gap-4">
                   <div class="flex flex-row items-center gap-1 text-primary">
-                    <span>{@like_count}</span>
                     <.icon name="hero-heart" class="size-5" />
+                    <span>{@like_count}</span>
                   </div>
                   <div class="flex flex-row items-center gap-1 text-primary">
-                    <span>{0}</span>
                     <.icon name="hero-eye" class="size-5" />
+                    <span>{@view_count}</span>
                   </div>
                 </div>
               </div>
