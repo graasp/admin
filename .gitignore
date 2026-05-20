@@ -39,6 +39,12 @@ npm-debug.log
 .env.prod
 .env.sh
 
+# Kubernetes secret files with real credentials.
+# Templates (**/secret.yaml, **/registry-secret.yaml) are committed and contain
+# only <CHANGE_ME> placeholders.  When you fill in real values, save the file as
+# *.local.yaml — that pattern is ignored by git and will never be committed.
+infra/**/*.local.yaml
+
 # lsp dirs
 .elixir_ls
 .next-ls
