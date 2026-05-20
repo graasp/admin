@@ -2,6 +2,7 @@ defmodule AdminWeb.LibraryLive.Show do
   use AdminWeb, :live_view
   use Gettext, backend: AdminWeb.Gettext
 
+  alias Admin.Items
   alias Admin.Publications
   alias AdminWeb.Components.Library
 
@@ -23,6 +24,7 @@ defmodule AdminWeb.LibraryLive.Show do
       |> assign(:page_title, publication.item.name)
       |> assign(:page_description, publication.item.description)
       |> assign(:page_image, url(~p"/library/collections/#{publication.item}/thumbnail"))
+      |> assign(:like_count, Items.count_likes(publication.item.id))
 
     {:ok, socket}
   end
@@ -70,7 +72,12 @@ defmodule AdminWeb.LibraryLive.Show do
                   {tag.name}
                 </span>
               </div>
-              <div class="flex flex-col gap-1">
+              <div
+                :if={
+                  @publication.item.description != nil and @publication.item.description != "<br/>"
+                }
+                class="flex flex-col gap-1"
+              >
                 <.raw_html
                   id="description"
                   class="line-clamp-5"
@@ -84,20 +91,33 @@ defmodule AdminWeb.LibraryLive.Show do
                   {gettext("Show more")}
                 </.button>
               </div>
-              <div class="avatar-group -space-x-4">
-                <div :for={user <- @authors}>
-                  <.link navigate={~p"/library/members/#{user.id}"}>
-                    <object
-                      data={user.thumbnails.small}
-                      type="image/webp"
-                      class="avatar avatar-placeholder"
-                      title={user.name}
-                    >
-                      <div class="bg-neutral text-neutral-content size-[40px] rounded-full">
-                        <span class="text-xs"><.icon name="hero-user" class="size-5" /></span>
-                      </div>
-                    </object>
-                  </.link>
+              <div class="flex flex-row items-center">
+                <div class="avatar-group -space-x-4">
+                  <div :for={user <- @authors}>
+                    <.link navigate={~p"/library/members/#{user.id}"}>
+                      <object
+                        data={user.thumbnails.small}
+                        type="image/webp"
+                        class="avatar avatar-placeholder"
+                        title={user.name}
+                      >
+                        <div class="bg-neutral text-neutral-content size-[40px] rounded-full">
+                          <span class="text-xs"><.icon name="hero-user" class="size-5" /></span>
+                        </div>
+                      </object>
+                    </.link>
+                  </div>
+                </div>
+                <div class="divider divider-horizontal"></div>
+                <div class="flex flex-row items-center gap-4">
+                  <div class="flex flex-row items-center gap-1 text-primary">
+                    <span>{@like_count}</span>
+                    <.icon name="hero-heart" class="size-5" />
+                  </div>
+                  <div class="flex flex-row items-center gap-1 text-primary">
+                    <span>{0}</span>
+                    <.icon name="hero-eye" class="size-5" />
+                  </div>
                 </div>
               </div>
             </div>

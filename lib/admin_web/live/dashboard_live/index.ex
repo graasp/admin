@@ -10,8 +10,8 @@ defmodule AdminWeb.DashboardLive.Index do
 
       <div class="flex flex-col md:flex-row gap-4">
         <div>
-          <h2 class="text-lg text-bold">Publication Statistics</h2>
-          <div class="stats stats-vertical sm:stats-horizontal bg-base-200">
+          <h2 class="text-lg text-bold">Publications</h2>
+          <div class="stats stats-vertical sm:stats-horizontal shadow bg-base-100">
             <StatisticsComponents.stat value={@publication_stats.total} title="Overall">
               Published collections
             </StatisticsComponents.stat>
@@ -24,8 +24,8 @@ defmodule AdminWeb.DashboardLive.Index do
         </div>
 
         <div>
-          <h2 class="text-lg text-bold">Recycled items Statistics</h2>
-          <div class="stats stats-vertical sm:stats-horizontal bg-base-200">
+          <h2 class="text-lg text-bold">Trash items</h2>
+          <div class="stats stats-vertical sm:stats-horizontal shadow bg-base-100">
             <StatisticsComponents.stat
               value={@recycled_stats.scheduled}
               title="Scheduled for deletion"
@@ -34,19 +34,6 @@ defmodule AdminWeb.DashboardLive.Index do
             </StatisticsComponents.stat>
           </div>
         </div>
-      </div>
-
-      <h2 class="text-lg text-bold">Recycled items Statistics</h2>
-      <div class="stats stats-vertical sm:stats-horizontal shadow bg-base-100">
-        <StatisticsComponents.stat value={@recycled_stats.total} title="Overall">
-          Recycled items
-        </StatisticsComponents.stat>
-        <StatisticsComponents.stat value={@recycled_stats.scheduled} title="Scheduled for deletion">
-          Items trashed more than 3 months ago
-        </StatisticsComponents.stat>
-        <StatisticsComponents.stat value={@recycled_stats.pending} title="Pending">
-          Items in user trash for less than 3 months
-        </StatisticsComponents.stat>
       </div>
 
       <div class="flex flex-row flex-wrap gap-4">
