@@ -47,7 +47,7 @@ defmodule AdminWeb.LibraryLive.Show do
     <Layouts.landing {assigns}>
       <div class="max-w-screen-lg m-auto p-4 mt-10">
         <div class="flex flex-col gap-10">
-          <.button variant="ghost" class="w-fit" navigate={~p"/library"}>
+          <.button variant="ghost" class="w-fit" navigate={~p"/library-beta"}>
             <.icon name="hero-arrow-left" class="size-5" />{gettext("Back")}
           </.button>
           <div class="flex flex-col gap-12 sm:flex-row">
@@ -106,7 +106,7 @@ defmodule AdminWeb.LibraryLive.Show do
               <div class="flex flex-row items-center">
                 <div class="avatar-group -space-x-4">
                   <div :for={user <- @authors}>
-                    <.link navigate={~p"/library/members/#{user.id}"}>
+                    <.link navigate={~p"/library-beta/members/#{user.id}"}>
                       <object
                         data={user.thumbnails.small}
                         type="image/webp"

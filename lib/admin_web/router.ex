@@ -81,6 +81,9 @@ defmodule AdminWeb.Router do
     get "/player/*path", ClientController, :index
     get "/analytics/*path", ClientController, :index
 
+    # TASK: remove once we migrate the library fully here
+    get "/library", RedirectionController, :library
+
     get "/accounts/:account_id/marketing/unsubscribe",
         AccountController,
         :marketing_emails_unsubscribe
@@ -128,7 +131,7 @@ defmodule AdminWeb.Router do
     live_session :public,
       session: {AdminWeb.Public, :session, [[locale: "fr"]]},
       on_mount: [{AdminWeb.UserAuth, :mount_current_scope}, AdminWeb.RestoreLocale] do
-      scope "/library" do
+      scope "/library-beta" do
         live "/", LibraryLive.Index, :index
         live "/collections/:item_id", LibraryLive.Show, :show
         live "/members/:member_id", LibraryLive.Member, :show

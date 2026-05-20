@@ -40,7 +40,6 @@ defmodule AdminWeb.Components.Library do
     ~H"""
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <%= for publication <- @publications do %>
-        <%!-- <.link navigate={~p"/library/collections/#{publication.item.id}"}> --%>
         <div class="bg-base-100 rounded-lg shadow-sm flex flex-row relative">
           <div class="p-2">
             <.thumbnail
@@ -53,7 +52,7 @@ defmodule AdminWeb.Components.Library do
           <div class="p-2">
             <.link
               class="font-bold line-clamp-2 before:absolute before:inset-0"
-              navigate={~p"/library/collections/#{publication.item.id}"}
+              navigate={~p"/library-beta/collections/#{publication.item.id}"}
             >
               {publication.item.name}
             </.link>
@@ -66,7 +65,6 @@ defmodule AdminWeb.Components.Library do
             </span>
           </div>
         </div>
-        <%!-- </.link> --%>
       <% end %>
     </div>
     """
