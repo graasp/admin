@@ -67,6 +67,8 @@ config :admin, :umami,
   username: "test",
   password: "testest"
 
+config :admin, :admin_shared_secret, "test-shared-secret"
+
 config :admin, :base_host, "graasp.org"
 config :admin, :library_origin, "https://library.graasp.org"
 config :admin, :umami_origin, "http://localhost:8000"
