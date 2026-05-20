@@ -336,7 +336,7 @@ msgid "intro"
 msgstr ""
 
 #: lib/admin_web/controllers/landing_html.ex:573
-#: lib/admin_web/live/library_live/show.ex:121
+#: lib/admin_web/live/library_live/show.ex:128
 #, elixir-autogen, elixir-format
 msgid "Language"
 msgstr ""
@@ -352,7 +352,7 @@ msgctxt "page title"
 msgid "Trash Management"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:36
+#: lib/admin_web/live/library_live/show.ex:37
 #, elixir-autogen, elixir-format
 msgid "Back"
 msgstr ""
@@ -363,27 +363,27 @@ msgstr ""
 msgid "Published Items"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:83
+#: lib/admin_web/live/library_live/show.ex:84
 #, elixir-autogen, elixir-format
 msgid "Show more"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:107
+#: lib/admin_web/live/library_live/show.ex:114
 #, elixir-autogen, elixir-format
 msgid "Created"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:105
+#: lib/admin_web/live/library_live/show.ex:112
 #, elixir-autogen, elixir-format
 msgid "Details"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:126
+#: lib/admin_web/live/library_live/show.ex:133
 #, elixir-autogen, elixir-format
 msgid "License"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:114
+#: lib/admin_web/live/library_live/show.ex:121
 #, elixir-autogen, elixir-format
 msgid "Updated"
 msgstr ""
@@ -393,17 +393,22 @@ msgstr ""
 msgid "Graasp"
 msgstr ""
 
-#: lib/admin_web/live/library_live/show.ex:54
+#: lib/admin_web/live/library_live/show.ex:55
 #, elixir-autogen, elixir-format
 msgid "Preview"
 msgstr ""
 
-#: lib/admin_web/live/library_live/member.ex:19
-#, elixir-autogen, elixir-format
-msgid "Joined on"
-msgstr ""
-
-#: lib/admin_web/live/library_live/member.ex:25
+#: lib/admin_web/live/library_live/member.ex:28
 #, elixir-autogen, elixir-format
 msgid "Most recent publications"
+msgstr ""
+
+#: lib/admin_web/live/library_live/member.ex:19
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Joined on %{date}"
+msgstr ""
+
+#: lib/admin_web/live/library_live/show.ex:106
+#, elixir-autogen, elixir-format
+msgid "Table of contents"
 msgstr ""
