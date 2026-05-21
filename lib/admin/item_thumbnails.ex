@@ -31,6 +31,11 @@ defmodule Admin.ItemThumbnails do
     get_url_for(key, ttl)
   end
 
+  def download_item_thumbnail(item_id) do
+    key = "thumbnails/#{item_id}/medium"
+    S3.download(bucket(), key)
+  end
+
   def delete_thumbnails(item_id) when is_binary(item_id) do
     S3.delete_objects(bucket(), thumbnail_paths(item_id))
   end
