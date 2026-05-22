@@ -47,8 +47,6 @@ defmodule AdminWeb.Router do
     get "/up", HealthController, :up
     # alias route does the same as "/up"
     get "/health", HealthController, :up
-
-    get "/api/version", HealthController, :version
   end
 
   scope "/internal", AdminWeb do

@@ -15,12 +15,12 @@ defmodule AdminWeb.HealthControllerTest do
     end
   end
 
-  describe "GET /api/version" do
+  describe "GET /internal/version" do
     test "returns version with valid bearer token", %{conn: conn} do
       conn =
         conn
         |> put_req_header("authorization", "Bearer test-shared-secret")
-        |> get(~p"/api/version")
+        |> get(~p"/internal/version")
 
       assert %{"version" => version} = json_response(conn, 200)
       assert is_binary(version)
@@ -30,13 +30,13 @@ defmodule AdminWeb.HealthControllerTest do
       conn =
         conn
         |> put_req_header("authorization", "Bearer wrong-secret")
-        |> get(~p"/api/version")
+        |> get(~p"/internal/version")
 
       assert response(conn, 401)
     end
 
     test "returns 401 with no authorization header", %{conn: conn} do
-      conn = get(conn, ~p"/api/version")
+      conn = get(conn, ~p"/internal/version")
       assert response(conn, 401)
     end
   end
