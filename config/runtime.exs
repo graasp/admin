@@ -205,8 +205,9 @@ if config_env() == :prod do
   config :admin, :umami,
     username: System.get_env("UMAMI_USERNAME"),
     password: System.get_env("UMAMI_PASSWORD")
+
+  config :admin, :admin_shared_secret, System.get_env("ADMIN_SHARED_SECRET")
 end
 
 config :admin, :umami_website_id, System.get_env("UMAMI_WEBSITE_ID")
 config :admin, :recaptcha_site_key, System.get_env("RECAPTCHA_SITE_KEY")
-config :admin, :admin_shared_secret, System.get_env("ADMIN_SHARED_SECRET")
