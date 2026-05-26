@@ -202,13 +202,12 @@ msgstr "文書"
 msgid "Search documentation for %{tag}"
 msgstr "%{tag} のドキュメントを検索"
 
-#: lib/admin_web/controllers/docs_html/index.html.heex:10
 #: lib/admin_web/controllers/docs_html/search.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Welcome to the documentation page. Here you can find information about our products and services."
 msgstr "ドキュメントページへようこそ。こちらでは、弊社の製品とサービスに関する情報をご覧いただけます。"
 
-#: lib/admin_web/controllers/docs_controller.ex:10
+#: lib/admin_web/controllers/docs_controller.ex:11
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page_title"
 msgid "Search Documentation"
@@ -245,6 +244,7 @@ msgid "tips"
 msgstr "ヒント"
 
 #: lib/admin_web/controllers/docs_html/show.html.heex:42
+#: lib/admin_web/controllers/docs_html/show_dev.html.heex:5
 #, elixir-autogen, elixir-format
 msgid "Back to documentation"
 msgstr "ドキュメントに戻る"
@@ -255,19 +255,20 @@ msgctxt "page title"
 msgid "Unsubscribed from Marketing Emails"
 msgstr "マーケティングメールの配信停止"
 
+#: lib/admin/developer_docs.ex:13
 #: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format
 msgctxt "documentation section"
 msgid "Introduction"
 msgstr "導入"
 
-#: lib/admin_web/controllers/docs_controller.ex:22
+#: lib/admin_web/controllers/docs_controller.ex:23
 #, elixir-autogen, elixir-format
 msgctxt "page_description"
 msgid "The documentation for the Graasp products and services."
 msgstr "Graasp製品およびサービスに関するドキュメント。"
 
-#: lib/admin_web/controllers/docs_controller.ex:20
+#: lib/admin_web/controllers/docs_controller.ex:21
 #, elixir-autogen, elixir-format, fuzzy
 msgctxt "page_title"
 msgid "Documentation"
@@ -279,12 +280,14 @@ msgstr "文書"
 msgid "Support"
 msgstr "サポート"
 
-#: lib/admin_web/controllers/docs_html/index.html.heex:64
+#: lib/admin_web/controllers/docs_html/index.html.heex:57
+#: lib/admin_web/controllers/docs_html/index_dev.html.heex:43
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Contact us"
 msgstr "お問い合わせ"
 
-#: lib/admin_web/controllers/docs_html/index.html.heex:62
+#: lib/admin_web/controllers/docs_html/index.html.heex:55
+#: lib/admin_web/controllers/docs_html/index_dev.html.heex:41
 #, elixir-autogen, elixir-format
 msgid "Did not find what you were looking for?"
 msgstr "お探しのものが見つかりませんでしたか？"
@@ -322,12 +325,6 @@ msgstr "GraaspブログAtomフィード"
 #, elixir-autogen, elixir-format
 msgid "Next"
 msgstr "次"
-
-#: lib/admin/docs.ex:13
-#, elixir-autogen, elixir-format
-msgctxt "documentation section"
-msgid "developer"
-msgstr "開発者"
 
 #: lib/admin/docs.ex:13
 #, elixir-autogen, elixir-format
@@ -411,4 +408,77 @@ msgstr ""
 #: lib/admin_web/live/library_live/show.ex:138
 #, elixir-autogen, elixir-format
 msgid "Table of contents"
+msgstr ""
+
+#: lib/admin_web/controllers/docs_html/index_dev.html.heex:8
+#, elixir-autogen, elixir-format
+msgid "Developer Documentation"
+msgstr ""
+
+#: lib/admin_web/controllers/docs_html/index.html.heex:51
+#, elixir-autogen, elixir-format
+msgid "Developer documentation"
+msgstr ""
+
+#: lib/admin_web/controllers/docs_html/index.html.heex:48
+#, elixir-autogen, elixir-format
+msgid "Looking for developer documentation?"
+msgstr ""
+
+#: lib/admin_web/controllers/docs_html/index.html.heex:10
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Welcome to the Graasp documentation. Here you can find information about our products and services."
+msgstr "ドキュメントページへようこそ。こちらでは、弊社の製品とサービスに関する情報をご覧いただけます。"
+
+#: lib/admin_web/controllers/docs_html/index_dev.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Welcome to the developer documentation page. Here you can find technical information about developing our products and services."
+msgstr ""
+
+#: lib/admin/developer_docs.ex:13
+#, elixir-autogen, elixir-format
+msgctxt "documentation section"
+msgid "apps"
+msgstr ""
+
+#: lib/admin/developer_docs.ex:13
+#, elixir-autogen, elixir-format
+msgctxt "documentation section"
+msgid "architecture"
+msgstr ""
+
+#: lib/admin/developer_docs.ex:13
+#, elixir-autogen, elixir-format
+msgctxt "documentation section"
+msgid "etiquette"
+msgstr ""
+
+#: lib/admin/developer_docs.ex:13
+#, elixir-autogen, elixir-format
+msgctxt "documentation section"
+msgid "guides"
+msgstr ""
+
+#: lib/admin/developer_docs.ex:13
+#, elixir-autogen, elixir-format
+msgctxt "documentation section"
+msgid "how-to"
+msgstr ""
+
+#: lib/admin/developer_docs.ex:13
+#, elixir-autogen, elixir-format
+msgctxt "documentation section"
+msgid "references"
+msgstr ""
+
+#: lib/admin_web/controllers/docs_controller.ex:37
+#, elixir-autogen, elixir-format
+msgctxt "page_description"
+msgid "The documentation for the developer to work on and improve the Graasp platformand services."
+msgstr ""
+
+#: lib/admin_web/controllers/docs_controller.ex:35
+#, elixir-autogen, elixir-format
+msgctxt "page_title"
+msgid "Developer Documentation"
 msgstr ""

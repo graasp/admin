@@ -1,4 +1,8 @@
 defmodule Admin.DeveloperDocs do
+  @moduledoc """
+  This module defines developer documentation functions
+  """
+
   alias Admin.Docs.DevPage
 
   use NimblePublisher,
@@ -14,7 +18,7 @@ defmodule Admin.DeveloperDocs do
     @pages
   end
 
-  def by_section() do
+  def by_section do
     all_pages() |> Enum.group_by(& &1.section)
   end
 
