@@ -36,12 +36,23 @@ defmodule AdminWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :api_bearer_auth do
+    plug :accepts, ["json"]
+    plug AdminWeb.Plugs.BearerAuth
+  end
+
   scope "/", AdminWeb do
     pipe_through :api
 
     get "/up", HealthController, :up
     # alias route does the same as "/up"
     get "/health", HealthController, :up
+  end
+
+  scope "/internal", AdminWeb do
+    pipe_through :api_bearer_auth
+
+    get "/version", HealthController, :version
   end
 
   scope "/", AdminWeb do
