@@ -1,0 +1,26 @@
+<Layouts.landing
+  flash={@flash}
+  current_scope={@current_scope}
+  locale_form={@locale_form}
+  class="bg-base-200"
+>
+  <div class="flex flex-col gap-4 p-10 max-w-screen-lg mx-auto">
+    <h1 class="text-3xl font-semibold text-primary">{gettext("Developer Documentation")}</h1>
+    <p class="text-base">
+      {gettext(
+        "Welcome to the developer documentation page. Here you can find technical information about developing our products and services."
+      )}
+    </p>
+    <div class="flex flex-row p-4 gap-8">
+      <div class="flex flex-col gap-4 grow">
+        <.doc_sections_grid
+          sections={@sections}
+          default_section=""
+          translate_section={&Admin.DeveloperDocs.translate_section/1}
+          page_href={fn page -> ~p"/technical/docs/#{page.id}" end}
+        />
+        <.doc_contact_cta />
+      </div>
+    </div>
+  </div>
+</Layouts.landing>

@@ -1,0 +1,8 @@
+<Layouts.landing flash={@flash} current_scope={@current_scope} locale_form={@locale_form}>
+  <div class="flex flex-row gap-4 p-10 max-w-screen-xl mx-auto">
+    <div class="flex flex-col gap-2 align-start flex-5 max-w-screen-md mx-auto">
+      <.doc_back_link href={~p"/technical/docs"} />
+      <.doc_article page={@page} />
+    </div>
+  </div>
+</Layouts.landing>

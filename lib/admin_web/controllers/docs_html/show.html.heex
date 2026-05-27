@@ -37,20 +37,9 @@
         <% end %>
       </div>
     </nav>
-    <div class="flex flex-col gap-2 align-start flex-5 max-w-screen-md mx-auto ">
-      <.link class="btn btn-ghost w-fit" href={~p"/docs"}>
-        <.icon name="hero-arrow-left" /> {gettext("Back to documentation")}
-      </.link>
-      <article class="flex flex-col bg-base-100 py-8 px-12 rounded-lg w-full h-full">
-        <h1 class="text-4xl font-bold text-primary mb-4">{@page.title}</h1>
-        <div class="flex flex-row gap-1">
-          <.link :for={tag <- @page.tags} class="badge badge-primary" href={~p"/docs/?tag=#{tag}"}>
-            {tag}
-          </.link>
-        </div>
-        <p class="text-gray-400 text-sm mb-4"></p>
-        <div class="prose">{raw(@page.body)}</div>
-      </article>
+    <div class="flex flex-col gap-2 align-start flex-5 max-w-screen-md mx-auto">
+      <.doc_back_link href={~p"/docs"} />
+      <.doc_article page={@page} tags={@page.tags} />
       <.link
         :if={@page.next != nil}
         class="btn btn-primary self-end w-fit"
