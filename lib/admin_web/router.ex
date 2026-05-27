@@ -49,6 +49,7 @@ defmodule AdminWeb.Router do
     get "/health", HealthController, :up
   end
 
+  # routes that are protected by the shared secret (for use by the nodejs backend)
   scope "/internal", AdminWeb do
     pipe_through :api_bearer_auth
 
@@ -235,6 +236,8 @@ defmodule AdminWeb.Router do
       scope "/trash" do
         live "/", TrashLive.Index, :index
       end
+
+      live "/housekeeping", HousekeepingLive.Index, :index
 
       scope "/validation" do
         live "/", ValidationLive.Poc, :index
