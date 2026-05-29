@@ -15,8 +15,8 @@ For the first update of 2025, new features include a "new folder" button, tag-ba
 
 We improved our categories system by using personalized categories, that we call tags. Those are split into 3 categories: discipline, level and resource type. You can find the tags in Builder (library page) and Library.
 
-![library search](../docs/user/library/tags/library-search.png)
-![builder tags](../docs/user/library/tags/builder-tags.png)
+![library search](/images/docs/library-search.png)
+![builder tags](/images/docs/builder-tags.png)
 
 If your items already had tags, most of them have been migrated to this new system safely in the discipline category. Don't hesitate to tweak your tags to better fit the available categories!
 
