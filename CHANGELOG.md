@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.11.0](https://github.com/graasp/graasp-web/compare/v0.10.8...v0.11.0) (2026-05-29)
+
+
+### Features
+
+* add collection pages ([#222](https://github.com/graasp/graasp-web/issues/222)) ([2e0d0b7](https://github.com/graasp/graasp-web/commit/2e0d0b7cd2ecd2d6974d1e77e8318309d55e15ff))
+* add communication between admin and core ([#263](https://github.com/graasp/graasp-web/issues/263)) ([1797897](https://github.com/graasp/graasp-web/commit/1797897bab8d4ba08be5299fb84b54526382bf4d))
+
+
+### Bug Fixes
+
+* add dev docs ([#264](https://github.com/graasp/graasp-web/issues/264)) ([4fcb247](https://github.com/graasp/graasp-web/commit/4fcb2479a4048e78fae912d2d4ce21937f67f065))
+* add housekeeping page with cache bust button ([#265](https://github.com/graasp/graasp-web/issues/265)) ([f612fd8](https://github.com/graasp/graasp-web/commit/f612fd885c5efeaabc0b4f3cd14cb3367bfa5359))
+* add index on item_type for file query ([#256](https://github.com/graasp/graasp-web/issues/256)) ([e855df1](https://github.com/graasp/graasp-web/commit/e855df1d28274a00a4f91b3f0537eeeea6e86883))
+* add umami performance measuring ([#260](https://github.com/graasp/graasp-web/issues/260)) ([ed21195](https://github.com/graasp/graasp-web/commit/ed211955615ea8008b85777e48fecec8ed6f547d))
+* allow to set env vars at runtime ([#259](https://github.com/graasp/graasp-web/issues/259)) ([7878b4b](https://github.com/graasp/graasp-web/commit/7878b4b4d9a734ac17d1d9a9174336d4cf2215a7))
+* blog images links ([#266](https://github.com/graasp/graasp-web/issues/266)) ([ca6e0de](https://github.com/graasp/graasp-web/commit/ca6e0dec54b3d388b54247675df19735ff6794ba))
+* download and send blog for og-thumbnail ([#262](https://github.com/graasp/graasp-web/issues/262)) ([4443d98](https://github.com/graasp/graasp-web/commit/4443d9838ce9f54677a660da8f0421f3b78ff9a9))
+* update runner image versions to match dev versions ([#257](https://github.com/graasp/graasp-web/issues/257)) ([a5e21ff](https://github.com/graasp/graasp-web/commit/a5e21ffd72d6c23cb9ab254347315db935670131))
+
 ## [0.10.8](https://github.com/graasp/graasp-web/compare/v0.10.7...v0.10.8) (2026-05-07)
 
 
