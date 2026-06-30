@@ -152,8 +152,8 @@ defmodule Admin.MixProject do
       # dependencies for the yolo model (nudenet)
       {:yolo, github: "spaenleh/yolo_elixir", branch: "main"},
       {:ortex, "~> 0.1.10"},
-      {:nx, "~> 0.9"},
-      {:exla, "~> 0.10"},
+      {:nx, "~> 0.12.1"},
+      {:exla, "~> 0.12"},
       {:evision, "~> 0.2"},
       {:kino, "~> 0.16"},
       {:kino_yolo, github: "poeticoding/kino_yolo", branch: "main"},
