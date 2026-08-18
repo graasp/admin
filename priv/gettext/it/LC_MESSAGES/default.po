@@ -17,18 +17,18 @@ msgstr ""
 msgid "Actions"
 msgstr "Azioni"
 
-#: lib/admin_web/components/layouts.ex:133
-#: lib/admin_web/components/layouts.ex:145
+#: lib/admin_web/components/layouts.ex:150
+#: lib/admin_web/components/layouts.ex:162
 #, elixir-autogen, elixir-format
 msgid "Attempting to reconnect"
 msgstr "Tentativo di riconnessione"
 
-#: lib/admin_web/components/layouts.ex:140
+#: lib/admin_web/components/layouts.ex:157
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr "Qualcosa è andato storto!"
 
-#: lib/admin_web/components/layouts.ex:128
+#: lib/admin_web/components/layouts.ex:145
 #, elixir-autogen, elixir-format
 msgid "We can't find the internet"
 msgstr "Non riusciamo a trovare Internet"
@@ -59,44 +59,44 @@ msgstr "Per saperne di più"
 msgid "Recent Posts"
 msgstr "Articoli recenti"
 
-#: lib/admin_web/components/layouts.ex:367
-#: lib/admin_web/components/layouts.ex:397
+#: lib/admin_web/components/layouts.ex:384
+#: lib/admin_web/components/layouts.ex:414
 #, elixir-autogen, elixir-format
 msgid "Admin"
 msgstr "Amministratore"
 
-#: lib/admin_web/components/layouts.ex:355
-#: lib/admin_web/components/layouts.ex:389
+#: lib/admin_web/components/layouts.ex:372
+#: lib/admin_web/components/layouts.ex:406
 #, elixir-autogen, elixir-format
 msgid "Blog"
 msgstr "Blog"
 
-#: lib/admin_web/components/layouts.ex:374
-#: lib/admin_web/components/layouts.ex:406
+#: lib/admin_web/components/layouts.ex:391
+#: lib/admin_web/components/layouts.ex:423
 #, elixir-autogen, elixir-format
 msgid "Get started"
 msgstr "Iniziare"
 
-#: lib/admin_web/components/layouts.ex:352
-#: lib/admin_web/components/layouts.ex:388
+#: lib/admin_web/components/layouts.ex:369
+#: lib/admin_web/components/layouts.ex:405
 #, elixir-autogen, elixir-format
 msgid "Library"
 msgstr "Biblioteca"
 
-#: lib/admin_web/components/layouts.ex:378
-#: lib/admin_web/components/layouts.ex:410
+#: lib/admin_web/components/layouts.ex:395
+#: lib/admin_web/components/layouts.ex:427
 #, elixir-autogen, elixir-format
 msgid "Log in"
 msgstr "Login"
 
-#: lib/admin_web/components/layouts.ex:361
-#: lib/admin_web/components/layouts.ex:393
+#: lib/admin_web/components/layouts.ex:378
+#: lib/admin_web/components/layouts.ex:410
 #, elixir-autogen, elixir-format
 msgid "About"
 msgstr "Di"
 
-#: lib/admin_web/components/layouts.ex:364
-#: lib/admin_web/components/layouts.ex:394
+#: lib/admin_web/components/layouts.ex:381
+#: lib/admin_web/components/layouts.ex:411
 #, elixir-autogen, elixir-format
 msgid "Contact"
 msgstr "Contatto"
@@ -145,17 +145,17 @@ msgstr "Graasp è una piattaforma per l'apprendimento e l'insegnamento collabora
 msgid "Home"
 msgstr "Casa"
 
-#: lib/admin_web/components/layouts.ex:184
+#: lib/admin_web/components/layouts.ex:201
 #, elixir-autogen, elixir-format
 msgid "Use dark theme"
 msgstr "Usa il tema scuro"
 
-#: lib/admin_web/components/layouts.ex:175
+#: lib/admin_web/components/layouts.ex:192
 #, elixir-autogen, elixir-format
 msgid "Use light theme"
 msgstr "Usa il tema chiaro"
 
-#: lib/admin_web/components/layouts.ex:166
+#: lib/admin_web/components/layouts.ex:183
 #, elixir-autogen, elixir-format
 msgid "Use system theme"
 msgstr "Usa il tema del sistema"
@@ -273,8 +273,8 @@ msgctxt "page_title"
 msgid "Documentation"
 msgstr "Documentazione"
 
-#: lib/admin_web/components/layouts.ex:358
-#: lib/admin_web/components/layouts.ex:391
+#: lib/admin_web/components/layouts.ex:375
+#: lib/admin_web/components/layouts.ex:408
 #, elixir-autogen, elixir-format
 msgid "Support"
 msgstr "Supporto"
@@ -335,7 +335,7 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: lib/admin_web/components/layouts.ex:197
+#: lib/admin_web/components/layouts.ex:214
 #, elixir-autogen, elixir-format
 msgid "Open navigation menu"
 msgstr ""

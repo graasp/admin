@@ -41,6 +41,33 @@ defmodule AdminWeb.Router do
     plug AdminWeb.Plugs.BearerAuth
   end
 
+  # Pipeline for the chatbot app, embedded in an iframe by the Graasp
+  # platform. Deliberately skips `put_secure_browser_headers` (which sends
+  # `X-Frame-Options: SAMEORIGIN`, blocking cross-origin framing) in favor of
+  # an explicit `frame-ancestors` CSP allow-list. Auth is per-item, via the
+  # Graasp app JWT verified in the LiveView itself (Admin.Chatbot.Token), not
+  # via admin's own user login, so this does not use `:fetch_current_scope_for_user`.
+  pipeline :chatbot_frame do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    # required for LiveView's websocket connect to validate against the
+    # session (LiveView ties its CSRF token to the session protect_from_forgery
+    # sets up) — without it every mount fails its session check and the
+    # client keeps reconnecting in a loop.
+    # NOTE: this relies on the session cookie (SameSite=Lax) reaching the
+    # server. In production the player and /apps/chatbot are both served
+    # under graasp.org (admin serves the player as static assets too), so the
+    # iframe embed is same-site and the cookie flows normally; same goes for
+    # local dev since every port here is still "localhost". This would need
+    # revisiting only if the chatbot app ever moved to a different
+    # registrable domain than the player.
+    plug :protect_from_forgery
+    plug :fetch_live_flash
+    plug :put_root_layout, html: {AdminWeb.Layouts, :chatbot_root}
+    plug AdminWeb.Plugs.Locale, "en"
+    plug :allow_chatbot_framing
+  end
+
   scope "/", AdminWeb do
     pipe_through :api
 
@@ -132,10 +159,22 @@ defmodule AdminWeb.Router do
       delete "/s3/:id/:key", AdminWeb.Dev.S3Controller, :delete
       resources "/s3", AdminWeb.Dev.S3Controller, only: [:index, :show]
 
+      # plays the Graasp parent frame role for the chatbot app, so /apps/chatbot
+      # can be exercised without a running core instance
+      get "/chatbot-mock", AdminWeb.Dev.ChatbotMockController, :index
+
       live_session :dev_authenticated_user,
         on_mount: [{AdminWeb.UserAuth, :require_authenticated}] do
         live "/tools", AdminWeb.DevLive.Index, :index
       end
+    end
+  end
+
+  scope "/apps/chatbot", AdminWeb.Chatbot do
+    pipe_through :chatbot_frame
+
+    live_session :chatbot do
+      live "/", PlayerLive, :index
     end
   end
 
@@ -282,5 +321,14 @@ defmodule AdminWeb.Router do
 
     # oban dashboard for jobs
     oban_dashboard("/oban")
+  end
+
+  defp allow_chatbot_framing(conn, _opts) do
+    ancestors =
+      :admin
+      |> Application.get_env(:chatbot_frame_ancestors, [])
+      |> Enum.join(" ")
+
+    Plug.Conn.put_resp_header(conn, "content-security-policy", "frame-ancestors #{ancestors}")
   end
 end

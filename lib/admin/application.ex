@@ -29,6 +29,17 @@ defmodule Admin.Application do
       {Oban, Application.fetch_env!(:admin, Oban)},
       {Phoenix.PubSub, name: Admin.PubSub},
       {Admin.SignedUrlCache, []},
+      # runs chatbot OpenAI streaming requests outside the LiveView process
+      # (see Admin.Chatbot.OpenAI), so a crash there doesn't take the LiveView down
+      {Task.Supervisor, name: Admin.TaskSupervisor},
+      # own Finch pool for OpenAI requests (see Admin.Chatbot.OpenAI), instead
+      # of relying on openai_ex's default `OpenaiEx.Finch` pool, which has no
+      # idle-connection tuning: a pooled connection that OpenAI's edge closed
+      # after a period of inactivity would otherwise sit in the pool looking
+      # healthy until the next request tried to reuse it and got a
+      # "Connection closed." error. `pool_max_idle_time` proactively recycles
+      # idle connections well before that can happen.
+      {Finch, name: Admin.Chatbot.Finch, pools: %{default: [pool_max_idle_time: 30_000]}},
       # Start to serve requests, typically the last entry
       AdminWeb.Endpoint,
 

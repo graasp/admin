@@ -84,6 +84,14 @@ defmodule Admin.MixProject do
       {:swoosh, "~> 1.16"},
       {:gen_smtp, "~> 1.0"},
       {:req, "~> 0.5"},
+      # verifies the JWTs that Graasp core issues to iframed apps (chatbot app auth)
+      {:joken, "~> 2.6"},
+      # OpenAI client for the chatbot app's streaming chat completions
+      # (https://openai-ex.hexdocs.pm/userguide.html)
+      {:openai_ex, "~> 0.9"},
+      # renders chat message markdown (already a transitive dep via
+      # nimble_publisher, listed directly since the chatbot app calls it too)
+      {:earmark, "~> 1.4"},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.26"},

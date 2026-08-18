@@ -207,6 +207,28 @@ if config_env() == :prod do
     password: System.get_env("UMAMI_PASSWORD")
 
   config :admin, :admin_shared_secret, System.get_env("ADMIN_SHARED_SECRET")
+
+  config :admin,
+         :graasp_apps_jwt_secret,
+         System.get_env("GRAASP_APPS_JWT_SECRET") ||
+           raise("environment variable GRAASP_APPS_JWT_SECRET is missing")
+
+  config :admin,
+         :graasp_app_key,
+         System.get_env("GRAASP_APP_KEY") ||
+           raise("environment variable GRAASP_APP_KEY is missing")
+
+  config :admin,
+         :chatbot_frame_ancestors,
+         System.get_env("CHATBOT_FRAME_ANCESTORS", "https://#{base_host}")
+         |> String.split(",")
+
+  config :admin,
+         :openai_api_key,
+         System.get_env("OPENAI_API_KEY") ||
+           raise("environment variable OPENAI_API_KEY is missing")
+
+  config :admin, :openai_model, System.get_env("OPENAI_MODEL", "gpt-4o-mini")
 end
 
 config :admin, :umami_website_id, System.get_env("UMAMI_WEBSITE_ID")
