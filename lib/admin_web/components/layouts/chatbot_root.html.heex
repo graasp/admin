@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang={assigns[:locale] || "en"}>
+<html lang={assigns[:locale] || "en"} data-theme="light" style="background-color: transparent">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,7 +9,10 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
     </script>
   </head>
-  <body class="flex flex-col h-fit">
+  <body
+    class="flex flex-col items-center h-fit !bg-transparent"
+    data-theme="light"
+  >
     {@inner_content}
   </body>
 </html>
