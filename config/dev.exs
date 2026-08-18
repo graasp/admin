@@ -16,10 +16,12 @@ config :admin, Admin.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
+port = String.to_integer(System.get_env("PORT") || "4000")
+
 config :admin, AdminWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: String.to_integer(System.get_env("PORT") || "4000")],
+  http: [ip: {127, 0, 0, 1}, port: port],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
@@ -128,3 +130,32 @@ config :admin, :umami,
   password: System.get_env("UMAMI_PASSWORD")
 
 config :admin, :admin_shared_secret, System.get_env("ADMIN_SHARED_SECRET", "dev-shared-secret")
+
+# Secret used by Graasp core to sign the short-lived JWT it hands to iframed
+# apps (see core's `APPS_JWT_SECRET`). This is the shared dev value already
+# committed in core's own `.env.development`/`.env.local`, so the chatbot app
+# can verify tokens issued by a locally running core.
+config :admin,
+       :graasp_apps_jwt_secret,
+       System.get_env(
+         "GRAASP_APPS_JWT_SECRET",
+         "4becfff4d9f34621e6cab88b34bf7f5f73f656499d06494726817fa9a8d8e734"
+       )
+
+# App key identifying this app in the `apps` table (Admin.Apps.AppInstance).
+# TODO: replace with the key of a real `apps` row once the chatbot app is
+# registered, so core's origin/key validation on `POST /:itemId/api-access-token`
+# accepts it.
+config :admin, :graasp_app_key, System.get_env("GRAASP_APP_KEY", "dev-chatbot-app-key")
+
+# chatbot app's own OpenAI key (independent from core/graasp-openai)
+config :admin, :openai_api_key, System.get_env("OPENAI_API_KEY", "")
+config :admin, :openai_model, System.get_env("OPENAI_MODEL", "gpt-4o-mini")
+
+# origins allowed to embed the chatbot app in an iframe (frame-ancestors CSP)
+config :admin, :chatbot_frame_ancestors, [
+  "http://localhost:#{port}",
+  "http://localhost:4001",
+  "http://localhost:3114",
+  "http://localhost:3005"
+]

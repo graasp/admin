@@ -106,6 +106,23 @@ defmodule AdminWeb.Layouts do
   end
 
   @doc """
+  Bare layout used by apps embedded in an iframe (e.g. the chatbot app).
+  Deliberately has no navbar/menu chrome since it's rendered inside another
+  platform's page.
+  """
+  attr :flash, :map, required: true, doc: "the map of flash messages"
+  slot :inner_block, required: true
+
+  def chatbot(assigns) do
+    ~H"""
+    <main class="flex flex-col">
+      {render_slot(@inner_block)}
+    </main>
+    <.flash_group flash={@flash} />
+    """
+  end
+
+  @doc """
   Shows the flash group with standard titles and content.
 
   ## Examples

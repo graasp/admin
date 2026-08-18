@@ -69,6 +69,12 @@ config :admin, :umami,
 
 config :admin, :admin_shared_secret, "test-shared-secret"
 
+config :admin, :graasp_apps_jwt_secret, "test-graasp-apps-jwt-secret"
+config :admin, :graasp_app_key, "test-chatbot-app-key"
+config :admin, :chatbot_frame_ancestors, ["http://localhost:3114"]
+config :admin, :openai_api_key, "test-openai-key"
+config :admin, :openai_model, "gpt-4o-mini"
+
 config :admin, :base_host, "graasp.org"
 config :admin, :library_origin, "https://library.graasp.org"
 config :admin, :umami_origin, "http://localhost:8000"
