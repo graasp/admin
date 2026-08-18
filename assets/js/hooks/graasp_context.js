@@ -102,20 +102,11 @@ const GraaspAppContext = {
   // content deliberately has no fixed/viewport height — this message is
   // what lets the parent do the sizing instead of us clipping/scrolling
   // internally.
-  //
-  // Driven two ways:
-  //   1. `updated()` (a Phoenix hook lifecycle callback) — fires on every
-  //      LiveView-initiated DOM patch on this element (new messages,
-  //      streaming deltas, the settings panel opening/closing...), which
-  //      covers virtually all real content changes here directly, without
-  //      depending on ResizeObserver actually firing for them.
-  //   2. `ResizeObserver` on `document.body` — a secondary catch-all for
-  //      layout changes LiveView didn't directly cause (web font loading,
-  //      image loads, window resizes).
   startAutoResize(port, keys) {
     const sendHeight = debounce((height) => {
-      console.log("[GraaspAppContext] sending POST_AUTO_RESIZE height:", height);
-      port.postMessage(JSON.stringify({ type: keys.POST_AUTO_RESIZE, payload: height }));
+      port.postMessage(
+        JSON.stringify({ type: keys.POST_AUTO_RESIZE, payload: height }),
+      );
     }, AUTORESIZE_DEBOUNCE_MS);
 
     // useEffect runs after the first render in the React app too — send the
@@ -130,10 +121,6 @@ const GraaspAppContext = {
 
     this._resizeObserver = resizeObserver;
     this._sendHeight = sendHeight;
-  },
-
-  updated() {
-    this._sendHeight?.(document.body.scrollHeight);
   },
 
   destroyed() {

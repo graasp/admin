@@ -71,6 +71,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
         :settings_form,
         to_form(PromptSettings.changeset(%PromptSettings{}, %{}), as: :prompt_settings)
       )
+      |> assign(:starter_suggestions, [])
       |> assign(:view, :conversations)
       |> assign(:conversations, [])
       |> assign(:active_conversation_id, nil)
@@ -197,13 +198,14 @@ defmodule AdminWeb.Chatbot.PlayerLive do
 
     case Ecto.Changeset.apply_action(changeset, :update) do
       {:ok, _prompt_settings} ->
-        %{item_id: item_id, account_id: account_id} = socket.assigns
+        %{item_id: item_id, account_id: account_id, starter_suggestions: starter_suggestions} =
+          socket.assigns
 
         {:ok, _app_setting} =
           Chatbot.upsert_setting(
             item_id,
             "chatbot-prompt",
-            PromptSettings.to_data(changeset),
+            PromptSettings.to_data(changeset, Enum.map(starter_suggestions, & &1.value)),
             account_id
           )
 
@@ -217,6 +219,48 @@ defmodule AdminWeb.Chatbot.PlayerLive do
       {:error, changeset} ->
         {:noreply, assign(socket, :settings_form, to_form(changeset, as: :prompt_settings))}
     end
+  end
+
+  # Structure-only edits to the starter-suggestion rows (add/remove/edit) —
+  # mirrors the React app's local `starterSuggestions` state
+  # (ChatbotEditingView.tsx), kept outside the `:settings_form` changeset
+  # since it isn't a plain field. Ids are assigned once per row (max existing
+  # id + 1, like the React app) so removing/reordering rows doesn't reuse an
+  # id another row still owns.
+  def handle_event("add_starter_suggestion", _params, socket) do
+    next_id =
+      case socket.assigns.starter_suggestions do
+        [] -> 0
+        list -> 1 + Enum.max_by(list, & &1.id).id
+      end
+
+    {:noreply, update(socket, :starter_suggestions, &(&1 ++ [%{id: next_id, value: ""}]))}
+  end
+
+  def handle_event("remove_starter_suggestion", %{"id" => id}, socket) do
+    id = String.to_integer(id)
+    {:noreply, update(socket, :starter_suggestions, &Enum.reject(&1, fn s -> s.id == id end))}
+  end
+
+  # Each row's input has its own unique `name` ("starter_suggestion_<id>")
+  # rather than a shared name + `phx-value-id`, because nesting phx-change
+  # inside the settings `<.form>` makes LiveView serialize it as a form
+  # field change — `_target`/the field's own name are what's reliably sent,
+  # not sibling phx-value-* attributes.
+  def handle_event("edit_starter_suggestion", %{"_target" => [target_name]} = params, socket) do
+    "starter_suggestion_" <> id_str = target_name
+    id = String.to_integer(id_str)
+    value = Map.get(params, target_name, "")
+
+    socket =
+      update(socket, :starter_suggestions, fn list ->
+        Enum.map(list, fn
+          %{id: ^id} = s -> %{s | value: value}
+          s -> s
+        end)
+      end)
+
+    {:noreply, socket}
   end
 
   # required by LiveView uploads even though we only care about the final
@@ -236,7 +280,8 @@ defmodule AdminWeb.Chatbot.PlayerLive do
         {:ok, _app_setting} =
           Chatbot.upsert_setting(item_id, "chatbot-avatar", %{"avatarPath" => key}, account_id)
 
-        {:noreply, socket |> refresh_avatar() |> put_flash(:info, dgettext("chatbot", "Avatar updated."))}
+        {:noreply,
+         socket |> refresh_avatar() |> put_flash(:info, dgettext("chatbot", "Avatar updated."))}
 
       [] ->
         {:noreply, put_flash(socket, :error, dgettext("chatbot", "Choose an image first."))}
@@ -297,7 +342,11 @@ defmodule AdminWeb.Chatbot.PlayerLive do
         |> assign(:chat_form, to_form(%{"content" => ""}, as: :message))
 
       {:error, _changeset} ->
-        put_flash(socket, :error, dgettext("chatbot", "Could not send your message, please try again."))
+        put_flash(
+          socket,
+          :error,
+          dgettext("chatbot", "Could not send your message, please try again.")
+        )
     end
   end
 
@@ -382,7 +431,10 @@ defmodule AdminWeb.Chatbot.PlayerLive do
 
       {:error, _changeset} ->
         socket
-        |> put_flash(:error, dgettext("chatbot", "The chatbot replied, but saving the reply failed."))
+        |> put_flash(
+          :error,
+          dgettext("chatbot", "The chatbot replied, but saving the reply failed.")
+        )
         |> assign(:pending, nil)
         |> assign(:sending?, false)
     end
@@ -409,17 +461,24 @@ defmodule AdminWeb.Chatbot.PlayerLive do
       end
 
     prompt_settings = PromptSettings.from_data(data)
+    starter_suggestions = Map.get(data, "starterSuggestions", [])
 
     settings = %{
       initial_prompt: prompt_settings.initialPrompt,
       cue: prompt_settings.chatbotCue || default_cue(),
       name: prompt_settings.chatbotName || default_chatbot_name(),
-      starter_suggestions: Map.get(data, "starterSuggestions", []),
+      starter_suggestions: starter_suggestions,
       avatar_data_url: fetch_avatar_data_url(item_id)
     }
 
     socket
     |> assign(:settings, settings)
+    |> assign(
+      :starter_suggestions,
+      starter_suggestions
+      |> Enum.with_index()
+      |> Enum.map(fn {value, id} -> %{id: id, value: value} end)
+    )
     |> assign(
       :settings_form,
       to_form(PromptSettings.changeset(prompt_settings, %{}), as: :prompt_settings)
@@ -462,7 +521,9 @@ defmodule AdminWeb.Chatbot.PlayerLive do
     }
   end
 
-  defp error_to_string(:too_large), do: dgettext("chatbot", "That image is too large (max 500KB).")
+  defp error_to_string(:too_large),
+    do: dgettext("chatbot", "That image is too large (max 500KB).")
+
   defp error_to_string(:too_many_files), do: dgettext("chatbot", "Choose only one image.")
 
   defp error_to_string(:not_accepted),
@@ -491,7 +552,8 @@ defmodule AdminWeb.Chatbot.PlayerLive do
         phx-hook="GraaspAppContext"
         data-item-id={@item_id}
         data-app-key={@app_key}
-        class="flex flex-col items-center "
+        class="flex flex-col items-center max-w-[100ch] w-full"
+        data-theme="light"
       >
         <div :if={@status == :missing_item_id} class="p-4 text-error">
           {dgettext("chatbot", "Missing itemId query parameter.")}
@@ -500,24 +562,73 @@ defmodule AdminWeb.Chatbot.PlayerLive do
           {dgettext("chatbot", "Connecting to Graasp…")}
         </div>
         <div :if={@status == :error} class="p-4 text-error">
-          {dgettext("chatbot", "Could not authenticate this app instance (%{reason}).", reason: inspect(@error))}
+          {dgettext("chatbot", "Could not authenticate this app instance (%{reason}).",
+            reason: inspect(@error)
+          )}
         </div>
 
         <div :if={@status == :ready} class="flex flex-col w-full">
-          <div :if={@is_teacher?} class="border-b border-base-300 p-3 space-y-3">
-            <div :if={@settings.initial_prompt in [nil, ""]} role="alert" class="alert alert-warning">
-              {dgettext("chatbot", "Configure a system prompt below before students start chatting.")}
+          <div :if={@is_teacher?} class="border-b border-base-300 p-3">
+            <div
+              :if={@settings.initial_prompt in [nil, ""]}
+              role="alert"
+              class="alert alert-warning"
+            >
+              {dgettext(
+                "chatbot",
+                "Configure a system prompt below before students start chatting."
+              )}
             </div>
 
             <h3 class="font-semibold">{dgettext("chatbot", "Chatbot settings")}</h3>
             <div class="">
+              <div class="flex flex-row gap-2 items-center">
+                <img
+                  :if={@settings.avatar_data_url}
+                  src={@settings.avatar_data_url}
+                  class="size-12 rounded-lg shadow object-cover"
+                />
+                <p :if={!@settings.avatar_data_url} class="text-sm opacity-70">
+                  {dgettext("chatbot", "No avatar set — the chatbot will show without one.")}
+                </p>
+
+                <.form
+                  for={@avatar_form}
+                  id="avatar-form"
+                  phx-change="validate_avatar"
+                  phx-submit="save_avatar"
+                  multipart
+                  class="flex items-center gap-2"
+                >
+                  <.live_file_input
+                    upload={@uploads.avatar}
+                    class="file-input file-input-bordered file-input-sm"
+                  />
+                  <button :if={@uploads.avatar.entries != []} type="submit" class="btn btn-sm">
+                    {dgettext("chatbot", "Upload")}
+                  </button>
+                  <button
+                    :if={@settings.avatar_data_url}
+                    type="button"
+                    phx-click="remove_avatar"
+                    class="btn btn-sm btn-ghost text-error"
+                  >
+                    {dgettext("chatbot", "Remove")}
+                  </button>
+                </.form>
+              </div>
+
               <.form
                 for={@settings_form}
                 id="settings-form"
                 phx-change="validate_settings"
                 phx-submit="save_settings"
               >
-                <.input field={@settings_form[:chatbotName]} type="text" label={dgettext("chatbot", "Name")} />
+                <.input
+                  field={@settings_form[:chatbotName]}
+                  type="text"
+                  label={dgettext("chatbot", "Name")}
+                />
                 <.input
                   field={@settings_form[:initialPrompt]}
                   type="textarea"
@@ -528,15 +639,48 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                   type="textarea"
                   label={dgettext("chatbot", "Greeting / cue message")}
                 />
-                <.input
-                  field={@settings_form[:starterSuggestionsText]}
-                  type="textarea"
-                  label={
-                    dgettext("chatbot", "Starter suggestions (one per line, shown to students on a new conversation)")
-                  }
-                />
+
+                <div class="space-y-2">
+                  <p class="font-medium text-sm">
+                    {dgettext("chatbot", "Starter suggestions")}
+                  </p>
+                  <p class="text-sm opacity-70">
+                    {dgettext("chatbot", "Shown to students on a new conversation.")}
+                  </p>
+                  <div
+                    :for={suggestion <- @starter_suggestions}
+                    class="flex flex-row gap-2 items-center"
+                  >
+                    <input
+                      type="text"
+                      name={"starter_suggestion_#{suggestion.id}"}
+                      value={suggestion.value}
+                      phx-change="edit_starter_suggestion"
+                      placeholder={dgettext("chatbot", "Starter suggestion")}
+                      class="input input-bordered input-sm w-full"
+                    />
+                    <button
+                      type="button"
+                      phx-click="remove_starter_suggestion"
+                      phx-value-id={suggestion.id}
+                      aria-label={dgettext("chatbot", "Remove starter suggestion")}
+                      class="btn btn-sm btn-ghost text-error"
+                    >
+                      <.icon name="hero-trash" class="size-4" />
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    phx-click="add_starter_suggestion"
+                    class="btn btn-sm btn-outline"
+                  >
+                    <.icon name="hero-plus" class="size-4" />
+                    {dgettext("chatbot", "Add starter suggestion")}
+                  </button>
+                </div>
+
                 <div class="flex justify-end">
-                  <button type="submit" class="btn btn-primary btn-sm">
+                  <button type="submit" class="btn btn-primary ">
                     {dgettext("chatbot", "Save settings")}
                   </button>
                 </div>
@@ -544,41 +688,6 @@ defmodule AdminWeb.Chatbot.PlayerLive do
             </div>
 
             <div class="space-y-2">
-              <h3 class="font-semibold">{dgettext("chatbot", "Chatbot avatar")}</h3>
-              <div class="flex items-center gap-3">
-                <img
-                  :if={@settings.avatar_data_url}
-                  src={@settings.avatar_data_url}
-                  class="size-12 rounded-lg shadow object-cover"
-                />
-                <p :if={!@settings.avatar_data_url} class="text-sm opacity-70">
-                  {dgettext("chatbot", "No avatar set — the chatbot will show without one.")}
-                </p>
-              </div>
-              <.form
-                for={@avatar_form}
-                id="avatar-form"
-                phx-change="validate_avatar"
-                phx-submit="save_avatar"
-                multipart
-                class="flex items-center gap-2"
-              >
-                <.live_file_input
-                  upload={@uploads.avatar}
-                  class="file-input file-input-bordered file-input-sm"
-                />
-                <button :if={@uploads.avatar.entries != []} type="submit" class="btn btn-sm">
-                  {dgettext("chatbot", "Upload")}
-                </button>
-                <button
-                  :if={@settings.avatar_data_url}
-                  type="button"
-                  phx-click="remove_avatar"
-                  class="btn btn-sm btn-ghost text-error"
-                >
-                  {dgettext("chatbot", "Remove")}
-                </button>
-              </.form>
               <p :for={err <- upload_errors(@uploads.avatar)} class="text-sm text-error">
                 {error_to_string(err)}
               </p>
@@ -586,126 +695,143 @@ defmodule AdminWeb.Chatbot.PlayerLive do
           </div>
 
           <div
-            :if={!@is_teacher? and @view == :conversations}
-            class="flex flex-col gap-2 p-3 "
+            :if={!@is_teacher?}
+            class="flex flex-col items-center gap-2 py-4 border border-neutral rounded-lg w-full bg-white"
           >
-            <div class="flex flex-col gap-2 items-center">
+            <div class="flex flex-col gap-2 items-center w-full">
               <img
                 :if={@settings.avatar_data_url}
                 src={@settings.avatar_data_url}
-                class="size-12 rounded-lg shadow object-cover"
+                class="size-14 rounded-full object-cover"
               />
 
-              <span class="text-lg">
+              <span class="text-2xl">
                 {@settings.name}
               </span>
             </div>
 
-            <p :if={@conversations == []} class="text-sm opacity-70">
-              {dgettext("chatbot", "No conversations yet — start one below.")}
-            </p>
+            <div :if={@view == :conversations} class="flex flex-col gap-4 items-center w-full">
+              <p :if={@conversations == []} class="text-sm opacity-70">
+                {dgettext("chatbot", "No conversations yet — start one below.")}
+              </p>
 
-            <ul :if={@conversations != []} class="flex flex-col gap-1 space-y-1">
-              <li
-                :for={conversation <- @conversations}
-                class="flex flex-row items-center gap-2 border border-base-300 rounded-lg p-2 hover:base-300"
-              >
-                <button
-                  phx-click="select_conversation"
-                  phx-value-id={conversation.id || ""}
-                  class="flex-1 min-w-0 text-left cursor-pointer"
+              <ul :if={@conversations != []} class="flex flex-col w-full">
+                <li
+                  :for={conversation <- @conversations}
+                  class="flex flex-row items-center gap-2 border-b border-neutral px-4 py-2 hover:bg-base-200"
                 >
-                  <span class="font-medium block truncate">{conversation.preview}</span>
-                  <span class="text-xs opacity-60">
-                    {Calendar.strftime(conversation.last_message_at, "%b %d, %Y %H:%M")}
-                  </span>
-                </button>
-                <.button
-                  color="error"
-                  phx-click="delete_conversation"
-                  phx-value-id={conversation.id || ""}
-                  data-confirm={dgettext("chatbot", "Delete this conversation? This cannot be undone.")}
-                >
-                  <.icon name="hero-trash" class="size-5" />
-                </.button>
-              </li>
-            </ul>
+                  <button
+                    phx-click="select_conversation"
+                    phx-value-id={conversation.id || ""}
+                    class="flex-1 min-w-0 text-left cursor-pointer"
+                  >
+                    <span class="font-medium block truncate">{conversation.preview}</span>
+                    <span class="text-xs opacity-60">
+                      {Calendar.strftime(conversation.last_message_at, "%b %d, %Y %H:%M")}
+                    </span>
+                  </button>
+                  <.button
+                    color="error"
+                    phx-click="delete_conversation"
+                    phx-value-id={conversation.id || ""}
+                    data-confirm={
+                      dgettext("chatbot", "Delete this conversation? This cannot be undone.")
+                    }
+                  >
+                    <.icon name="hero-trash" class="size-5" />
+                  </.button>
+                </li>
+              </ul>
 
-            <.button variant="primary" phx-click="new_conversation">
-              {dgettext("chatbot", "New conversation")}
-            </.button>
-          </div>
-
-          <div :if={!@is_teacher? and @view == :thread}>
-            <.button phx-click="back_to_conversations" variant="ghost" color="neutral">
-              <.icon name="hero-arrow-left" class="size-4" />{dgettext("chatbot", "Back to conversations")}
-            </.button>
-
-            <div id="chat-thread" class="p-3 space-y-1">
-              <div :if={@thread == [] and is_nil(@pending)} class="chat chat-start">
-                <.bot_avatar src={@settings.avatar_data_url} />
-                <div class="chat-bubble">
-                  <.raw_html html={Markdown.to_html(@settings.cue)} class="max-w-none" />
-                </div>
-              </div>
-
-              <div
-                :if={@thread == [] and is_nil(@pending) and @settings.starter_suggestions != []}
-                class="flex flex-wrap gap-2 justify-end px-2"
-              >
-                <button
-                  :for={suggestion <- @settings.starter_suggestions}
-                  phx-click="send_suggestion"
-                  phx-value-content={suggestion}
-                  disabled={@sending?}
-                  class="btn btn-outline btn-sm rounded-full"
-                >
-                  {suggestion}
-                </button>
-              </div>
-
-              <div
-                :for={message <- @thread}
-                class={["chat", if(message.role == :user, do: "chat-end", else: "chat-start")]}
-              >
-                <.bot_avatar :if={message.role != :user} src={@settings.avatar_data_url} />
-                <div class="chat-bubble">
-                  <.raw_html html={message.html} class="max-w-none" />
-                </div>
-              </div>
-
-              <div :if={@pending} class="chat chat-start">
-                <.bot_avatar src={@settings.avatar_data_url} />
-                <div class="chat-bubble">
-                  <span :if={@pending.content == ""} class="loading loading-dots loading-sm"></span>
-                  <.raw_html
-                    :if={@pending.content != ""}
-                    html={Markdown.to_html(@pending.content)}
-                    class="max-w-none"
-                  />
-                </div>
-              </div>
+              <.button variant="primary" class="w-fit" phx-click="new_conversation">
+                {dgettext("chatbot", "New conversation")}
+              </.button>
             </div>
-
-            <.form
-              for={@chat_form}
-              id="chat-form"
-              phx-submit="send_message"
-              class="flex flex-row p-2 border-t border-primary gap-2 items-start"
-            >
-              <.input
-                field={@chat_form[:content]}
-                type="text"
-                placeholder={dgettext("chatbot", "Ask the chatbot…")}
-                autocomplete="off"
+            <div :if={@view == :thread} class="flex flex-col gap-2 px-4 items-center w-full">
+              <.button
+                phx-click="back_to_conversations"
+                variant="ghost"
+                color="neutral"
+                class="w-fit"
                 disabled={@sending?}
-                class="w-full input"
               >
-                <.button type="submit" variant="primary" disabled={@sending?}>
-                  {dgettext("chatbot", "Send")}
-                </.button>
-              </.input>
-            </.form>
+                <.icon name="hero-arrow-left" class="size-4" />{dgettext(
+                  "chatbot",
+                  "Back to conversations"
+                )}
+              </.button>
+
+              <div id="chat-thread" class="space-y-1 w-full">
+                <div :if={@thread == [] and is_nil(@pending)} class="chat chat-start">
+                  <.bot_avatar src={@settings.avatar_data_url} />
+                  <div class="chat-bubble">
+                    <.raw_html html={Markdown.to_html(@settings.cue)} class="max-w-none" />
+                  </div>
+                </div>
+
+                <div
+                  :if={@thread == [] and is_nil(@pending) and @settings.starter_suggestions != []}
+                  class="flex flex-wrap gap-2 justify-end px-2"
+                >
+                  <button
+                    :for={suggestion <- @settings.starter_suggestions}
+                    phx-click="send_suggestion"
+                    phx-value-content={suggestion}
+                    disabled={@sending?}
+                    class="btn btn-outline btn-sm rounded-full"
+                  >
+                    {suggestion}
+                  </button>
+                </div>
+
+                <div
+                  :for={message <- @thread}
+                  class={["chat", if(message.role == :user, do: "chat-end", else: "chat-start")]}
+                >
+                  <.bot_avatar :if={message.role != :user} src={@settings.avatar_data_url} />
+                  <div class="chat-bubble">
+                    <.raw_html html={message.html} class="max-w-none" />
+                  </div>
+                </div>
+
+                <div :if={@pending} class="chat chat-start">
+                  <.bot_avatar src={@settings.avatar_data_url} />
+                  <div class="chat-bubble">
+                    <span :if={@pending.content == ""} class="loading loading-dots loading-sm"></span>
+                    <.raw_html
+                      :if={@pending.content != ""}
+                      html={Markdown.to_html(@pending.content)}
+                      class="max-w-none"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <.form
+                for={@chat_form}
+                id="chat-form"
+                phx-submit="send_message"
+                class="flex flex-row gap-2 items-start w-full"
+              >
+                <.input
+                  field={@chat_form[:content]}
+                  type="text"
+                  placeholder={dgettext("chatbot", "Ask the chatbot…")}
+                  autocomplete="off"
+                  disabled={@sending?}
+                  class="w-full input"
+                >
+                  <.button
+                    type="submit"
+                    variant="primary"
+                    disabled={@sending?}
+                    alt={dgettext("chatbot", "Send")}
+                  >
+                    <.icon name="hero-paper-airplane" class="size-6" />
+                  </.button>
+                </.input>
+              </.form>
+            </div>
           </div>
         </div>
       </div>

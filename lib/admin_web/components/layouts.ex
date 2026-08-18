@@ -115,7 +115,7 @@ defmodule AdminWeb.Layouts do
 
   def chatbot(assigns) do
     ~H"""
-    <main class="flex flex-col">
+    <main class="flex flex-col items-center w-full">
       {render_slot(@inner_block)}
     </main>
     <.flash_group flash={@flash} />
