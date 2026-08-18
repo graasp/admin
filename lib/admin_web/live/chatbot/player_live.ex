@@ -40,15 +40,18 @@ defmodule AdminWeb.Chatbot.PlayerLive do
   alias Admin.Chatbot.PromptSettings
   alias Admin.Chatbot.Token
 
-  @default_cue "Hi! Ask me anything about this activity."
-  @default_chatbot_name "Chatbot"
-  @default_settings %{
-    initial_prompt: nil,
-    cue: @default_cue,
-    name: @default_chatbot_name,
-    starter_suggestions: [],
-    avatar_data_url: nil
-  }
+  defp default_cue, do: dgettext("chatbot", "Hi! Ask me anything about this activity.")
+  defp default_chatbot_name, do: dgettext("chatbot", "Chatbot")
+
+  defp default_settings do
+    %{
+      initial_prompt: nil,
+      cue: default_cue(),
+      name: default_chatbot_name(),
+      starter_suggestions: [],
+      avatar_data_url: nil
+    }
+  end
 
   @impl true
   def mount(params, _session, socket) do
@@ -63,7 +66,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
       |> assign(:permission, nil)
       |> assign(:is_teacher?, false)
       |> assign(:error, nil)
-      |> assign(:settings, @default_settings)
+      |> assign(:settings, default_settings())
       |> assign(
         :settings_form,
         to_form(PromptSettings.changeset(%PromptSettings{}, %{}), as: :prompt_settings)
@@ -92,6 +95,22 @@ defmodule AdminWeb.Chatbot.PlayerLive do
         item_id = socket.assigns.item_id
         permission = Map.get(context, "permission")
         app_context = Map.get(context, "context")
+
+        # sets the Gettext locale for this LiveView process (it's process-scoped
+        # in Gettext, so this persists for every subsequent render/flash here)
+        # from the language the Graasp platform passed in, falling back to the
+        # default if it's missing or not one we have translations for. Note the
+        # very first static render (before the websocket connects and this
+        # event fires) always happens in the default locale — there's no way
+        # to know the language before this handshake completes.
+        locale =
+          if Map.get(context, "lang") in AdminWeb.Localization.supported_locales() do
+            context["lang"]
+          else
+            AdminWeb.Gettext.default_locale()
+          end
+
+        Gettext.put_locale(locale)
 
         socket =
           socket
@@ -191,7 +210,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
         socket =
           socket
           |> refresh_settings()
-          |> put_flash(:info, "Chatbot settings saved.")
+          |> put_flash(:info, dgettext("chatbot", "Chatbot settings saved."))
 
         {:noreply, socket}
 
@@ -217,10 +236,10 @@ defmodule AdminWeb.Chatbot.PlayerLive do
         {:ok, _app_setting} =
           Chatbot.upsert_setting(item_id, "chatbot-avatar", %{"avatarPath" => key}, account_id)
 
-        {:noreply, socket |> refresh_avatar() |> put_flash(:info, "Avatar updated.")}
+        {:noreply, socket |> refresh_avatar() |> put_flash(:info, dgettext("chatbot", "Avatar updated."))}
 
       [] ->
-        {:noreply, put_flash(socket, :error, "Choose an image first.")}
+        {:noreply, put_flash(socket, :error, dgettext("chatbot", "Choose an image first."))}
     end
   end
 
@@ -278,7 +297,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
         |> assign(:chat_form, to_form(%{"content" => ""}, as: :message))
 
       {:error, _changeset} ->
-        put_flash(socket, :error, "Could not send your message, please try again.")
+        put_flash(socket, :error, dgettext("chatbot", "Could not send your message, please try again."))
     end
   end
 
@@ -363,7 +382,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
 
       {:error, _changeset} ->
         socket
-        |> put_flash(:error, "The chatbot replied, but saving the reply failed.")
+        |> put_flash(:error, dgettext("chatbot", "The chatbot replied, but saving the reply failed."))
         |> assign(:pending, nil)
         |> assign(:sending?, false)
     end
@@ -371,7 +390,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
 
   defp finish_pending(socket, _pending, {:error, _reason}) do
     socket
-    |> put_flash(:error, "The chatbot could not respond, please try again.")
+    |> put_flash(:error, dgettext("chatbot", "The chatbot could not respond, please try again."))
     |> assign(:pending, nil)
     |> assign(:sending?, false)
   end
@@ -393,8 +412,8 @@ defmodule AdminWeb.Chatbot.PlayerLive do
 
     settings = %{
       initial_prompt: prompt_settings.initialPrompt,
-      cue: prompt_settings.chatbotCue || @default_cue,
-      name: prompt_settings.chatbotName || @default_chatbot_name,
+      cue: prompt_settings.chatbotCue || default_cue(),
+      name: prompt_settings.chatbotName || default_chatbot_name(),
       starter_suggestions: Map.get(data, "starterSuggestions", []),
       avatar_data_url: fetch_avatar_data_url(item_id)
     }
@@ -443,10 +462,13 @@ defmodule AdminWeb.Chatbot.PlayerLive do
     }
   end
 
-  defp error_to_string(:too_large), do: "That image is too large (max 500KB)."
-  defp error_to_string(:too_many_files), do: "Choose only one image."
-  defp error_to_string(:not_accepted), do: "That file type isn't supported (use PNG/JPG/WEBP)."
-  defp error_to_string(_other), do: "Could not upload that image."
+  defp error_to_string(:too_large), do: dgettext("chatbot", "That image is too large (max 500KB).")
+  defp error_to_string(:too_many_files), do: dgettext("chatbot", "Choose only one image.")
+
+  defp error_to_string(:not_accepted),
+    do: dgettext("chatbot", "That file type isn't supported (use PNG/JPG/WEBP).")
+
+  defp error_to_string(_other), do: dgettext("chatbot", "Could not upload that image.")
 
   attr :src, :string, default: nil
 
@@ -472,22 +494,22 @@ defmodule AdminWeb.Chatbot.PlayerLive do
         class="flex flex-col items-center "
       >
         <div :if={@status == :missing_item_id} class="p-4 text-error">
-          Missing <code>itemId</code> query parameter.
+          {dgettext("chatbot", "Missing itemId query parameter.")}
         </div>
         <div :if={@status == :awaiting_context} class="p-4">
-          Connecting to Graasp…
+          {dgettext("chatbot", "Connecting to Graasp…")}
         </div>
         <div :if={@status == :error} class="p-4 text-error">
-          Could not authenticate this app instance ({inspect(@error)}).
+          {dgettext("chatbot", "Could not authenticate this app instance (%{reason}).", reason: inspect(@error))}
         </div>
 
         <div :if={@status == :ready} class="flex flex-col w-full">
           <div :if={@is_teacher?} class="border-b border-base-300 p-3 space-y-3">
             <div :if={@settings.initial_prompt in [nil, ""]} role="alert" class="alert alert-warning">
-              Configure a system prompt below before students start chatting.
+              {dgettext("chatbot", "Configure a system prompt below before students start chatting.")}
             </div>
 
-            <h3 class="font-semibold">Chatbot settings</h3>
+            <h3 class="font-semibold">{dgettext("chatbot", "Chatbot settings")}</h3>
             <div class="">
               <.form
                 for={@settings_form}
@@ -495,30 +517,34 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                 phx-change="validate_settings"
                 phx-submit="save_settings"
               >
-                <.input field={@settings_form[:chatbotName]} type="text" label="Name" />
+                <.input field={@settings_form[:chatbotName]} type="text" label={dgettext("chatbot", "Name")} />
                 <.input
                   field={@settings_form[:initialPrompt]}
                   type="textarea"
-                  label="System prompt"
+                  label={dgettext("chatbot", "System prompt")}
                 />
                 <.input
                   field={@settings_form[:chatbotCue]}
                   type="textarea"
-                  label="Greeting / cue message"
+                  label={dgettext("chatbot", "Greeting / cue message")}
                 />
                 <.input
                   field={@settings_form[:starterSuggestionsText]}
                   type="textarea"
-                  label="Starter suggestions (one per line, shown to students on a new conversation)"
+                  label={
+                    dgettext("chatbot", "Starter suggestions (one per line, shown to students on a new conversation)")
+                  }
                 />
                 <div class="flex justify-end">
-                  <button type="submit" class="btn btn-primary btn-sm">Save settings</button>
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    {dgettext("chatbot", "Save settings")}
+                  </button>
                 </div>
               </.form>
             </div>
 
             <div class="space-y-2">
-              <h3 class="font-semibold">Chatbot avatar</h3>
+              <h3 class="font-semibold">{dgettext("chatbot", "Chatbot avatar")}</h3>
               <div class="flex items-center gap-3">
                 <img
                   :if={@settings.avatar_data_url}
@@ -526,7 +552,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                   class="size-12 rounded-lg shadow object-cover"
                 />
                 <p :if={!@settings.avatar_data_url} class="text-sm opacity-70">
-                  No avatar set — the chatbot will show without one.
+                  {dgettext("chatbot", "No avatar set — the chatbot will show without one.")}
                 </p>
               </div>
               <.form
@@ -542,7 +568,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                   class="file-input file-input-bordered file-input-sm"
                 />
                 <button :if={@uploads.avatar.entries != []} type="submit" class="btn btn-sm">
-                  Upload
+                  {dgettext("chatbot", "Upload")}
                 </button>
                 <button
                   :if={@settings.avatar_data_url}
@@ -550,7 +576,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                   phx-click="remove_avatar"
                   class="btn btn-sm btn-ghost text-error"
                 >
-                  Remove
+                  {dgettext("chatbot", "Remove")}
                 </button>
               </.form>
               <p :for={err <- upload_errors(@uploads.avatar)} class="text-sm text-error">
@@ -576,7 +602,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
             </div>
 
             <p :if={@conversations == []} class="text-sm opacity-70">
-              No conversations yet — start one below.
+              {dgettext("chatbot", "No conversations yet — start one below.")}
             </p>
 
             <ul :if={@conversations != []} class="flex flex-col gap-1 space-y-1">
@@ -598,7 +624,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                   color="error"
                   phx-click="delete_conversation"
                   phx-value-id={conversation.id || ""}
-                  data-confirm="Delete this conversation? This cannot be undone."
+                  data-confirm={dgettext("chatbot", "Delete this conversation? This cannot be undone.")}
                 >
                   <.icon name="hero-trash" class="size-5" />
                 </.button>
@@ -606,13 +632,13 @@ defmodule AdminWeb.Chatbot.PlayerLive do
             </ul>
 
             <.button variant="primary" phx-click="new_conversation">
-              New conversation
+              {dgettext("chatbot", "New conversation")}
             </.button>
           </div>
 
           <div :if={!@is_teacher? and @view == :thread}>
             <.button phx-click="back_to_conversations" variant="ghost" color="neutral">
-              <.icon name="hero-arrow-left" class="size-4" />Back to conversations
+              <.icon name="hero-arrow-left" class="size-4" />{dgettext("chatbot", "Back to conversations")}
             </.button>
 
             <div id="chat-thread" class="p-3 space-y-1">
@@ -670,13 +696,13 @@ defmodule AdminWeb.Chatbot.PlayerLive do
               <.input
                 field={@chat_form[:content]}
                 type="text"
-                placeholder="Ask the chatbot…"
+                placeholder={dgettext("chatbot", "Ask the chatbot…")}
                 autocomplete="off"
                 disabled={@sending?}
                 class="w-full input"
               >
                 <.button type="submit" variant="primary" disabled={@sending?}>
-                  Send
+                  {dgettext("chatbot", "Send")}
                 </.button>
               </.input>
             </.form>
