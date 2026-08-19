@@ -1,4 +1,4 @@
-defmodule Admin.Chatbot.AppData do
+defmodule Admin.Apps.AppData do
   @moduledoc """
   Mirrors core's `app_data` table (`appDataTable` in
   `core/src/drizzle/schema.ts`). Stores the chatbot's conversation messages

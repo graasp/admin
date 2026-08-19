@@ -1,4 +1,4 @@
-defmodule Admin.Chatbot.AppAction do
+defmodule Admin.Apps.AppAction do
   @moduledoc """
   Mirrors core's `app_action` table (`appActionsTable` in
   `core/src/drizzle/schema.ts`). Logs chatbot usage events (e.g.

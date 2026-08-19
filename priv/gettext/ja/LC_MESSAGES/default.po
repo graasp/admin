@@ -11,7 +11,7 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/admin_web/components/core_components.ex:388
+#: lib/admin_web/components/core_components.ex:389
 #: lib/admin_web/live/notification_live/show.ex:71
 #, elixir-autogen, elixir-format
 msgid "Actions"

@@ -1,4 +1,4 @@
-defmodule Admin.Chatbot.Token do
+defmodule Admin.Apps.Token do
   @moduledoc """
   Verifies the short-lived app JWT that Graasp core issues via
   `POST /:itemId/api-access-token` (see core's `AppService.getApiAccessToken`).
