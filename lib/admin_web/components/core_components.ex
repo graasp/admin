@@ -95,7 +95,7 @@ defmodule AdminWeb.CoreComponents do
   """
   attr :rest, :global, include: ~w(href navigate patch method download name value disabled)
   attr :class, :string
-  attr :variant, :string, values: ~w(primary ghost)
+  attr :variant, :string, values: ~w(primary ghost outline)
 
   attr :color, :string,
     values: ~w(primary accent neutral error info success warning),
@@ -109,6 +109,7 @@ defmodule AdminWeb.CoreComponents do
     variants = %{
       "primary" => "",
       "ghost" => "btn-ghost",
+      "outline" => "btn-outline",
       nil => "btn-soft"
     }
 
@@ -493,6 +494,7 @@ defmodule AdminWeb.CoreComponents do
   attr :class, :string, default: ""
   attr :id, :string, default: nil
   attr :text_only, :boolean, default: false
+  attr :size, :string, default: "sm", values: ~w(sm base)
 
   def raw_html(assigns) do
     assigns =
@@ -509,7 +511,7 @@ defmodule AdminWeb.CoreComponents do
       )
 
     ~H"""
-    <div class={["prose prose-sm", @class, @class_overrides]} id={@id}>
+    <div class={["prose", "prose-#{@size}", @class, @class_overrides]} id={@id}>
       {HtmlSanitizeEx.basic_html(assigns.html) |> Phoenix.HTML.raw()}
     </div>
     """

@@ -21,7 +21,7 @@ defmodule Admin.Chatbot.AppSetting do
   @doc false
   def changeset(app_setting, attrs) do
     app_setting
-    |> cast(attrs, [:name, :data, :item_id, :creator_id])
+    |> cast(attrs, [:id, :name, :data, :item_id, :creator_id])
     |> validate_required([:name, :data, :item_id])
     # constraint names come from core's migration (core/src/drizzle/schema.ts,
     # `appSettingsTable`)

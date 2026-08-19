@@ -127,12 +127,18 @@ defmodule Admin.Chatbot do
   Creates or updates the named setting for an item (there is at most one row
   per `{item_id, name}` pair in practice, mirroring how the React app treats
   app settings as a keyed map).
+
+  When creating the row, `id` (if given) is used as its primary key instead
+  of letting Ecto autogenerate one — useful when the id must be known before
+  the row exists, e.g. to derive an S3 key for a file the setting will
+  reference.
   """
-  def upsert_setting(item_id, name, data, creator_id) do
+  def upsert_setting(item_id, name, data, creator_id, id \\ nil) do
     case get_setting(item_id, name) do
       nil ->
         %AppSetting{}
         |> AppSetting.changeset(%{
+          id: id,
           item_id: item_id,
           name: name,
           data: data,

@@ -83,7 +83,9 @@ defmodule AdminWeb.Chatbot.PlayerLive do
       |> allow_upload(:avatar,
         accept: ~w(.png .jpg .jpeg .webp),
         max_entries: 1,
-        max_file_size: 500_000
+        max_file_size: 500_000,
+        auto_upload: true,
+        progress: &handle_avatar_progress/3
       )
 
     {:ok, socket}
@@ -267,30 +269,14 @@ defmodule AdminWeb.Chatbot.PlayerLive do
   # submit — this is what drives upload progress/entry tracking
   def handle_event("validate_avatar", _params, socket), do: {:noreply, socket}
 
-  def handle_event("save_avatar", _params, socket) do
-    %{item_id: item_id, account_id: account_id} = socket.assigns
-
-    keys =
-      consume_uploaded_entries(socket, :avatar, fn %{path: path}, _entry ->
-        {:ok, Avatar.upload(item_id, path)}
-      end)
-
-    case keys do
-      [key] ->
-        {:ok, _app_setting} =
-          Chatbot.upsert_setting(item_id, "chatbot-avatar", %{"avatarPath" => key}, account_id)
-
-        {:noreply,
-         socket |> refresh_avatar() |> put_flash(:info, dgettext("chatbot", "Avatar updated."))}
-
-      [] ->
-        {:noreply, put_flash(socket, :error, dgettext("chatbot", "Choose an image first."))}
-    end
-  end
-
   def handle_event("remove_avatar", _params, socket) do
     %{item_id: item_id, account_id: account_id} = socket.assigns
-    :ok = Avatar.delete(item_id)
+
+    case Chatbot.get_setting(item_id, "chatbot-avatar") do
+      %{id: setting_id} -> :ok = Avatar.delete(item_id, setting_id)
+      nil -> :ok
+    end
+
     {:ok, _app_setting} = Chatbot.upsert_setting(item_id, "chatbot-avatar", %{}, account_id)
     {:noreply, refresh_avatar(socket)}
   end
@@ -465,7 +451,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
 
     settings = %{
       initial_prompt: prompt_settings.initialPrompt,
-      cue: prompt_settings.chatbotCue || default_cue(),
+      cue: prompt_settings.chatbotCue,
       name: prompt_settings.chatbotName || default_chatbot_name(),
       starter_suggestions: starter_suggestions,
       avatar_data_url: fetch_avatar_data_url(item_id)
@@ -486,10 +472,10 @@ defmodule AdminWeb.Chatbot.PlayerLive do
   end
 
   # Narrower than refresh_settings/1: only updates the avatar's display URL.
-  # save_avatar/remove_avatar must not touch :settings_form — rebuilding it
-  # from the DB would wipe out any unsaved edits sitting in the Name/System
-  # prompt/Cue/Starter suggestions fields, which from the teacher's
-  # perspective looks exactly like the avatar upload button reset (or
+  # handle_avatar_progress/3 and remove_avatar must not touch :settings_form —
+  # rebuilding it from the DB would wipe out any unsaved edits sitting in the
+  # Name/System prompt/Cue/Starter suggestions fields, which from the
+  # teacher's perspective looks exactly like the avatar upload reset (or
   # "submitted") the settings form even though it never did.
   defp refresh_avatar(socket) do
     item_id = socket.assigns.item_id
@@ -501,6 +487,40 @@ defmodule AdminWeb.Chatbot.PlayerLive do
       nil -> nil
       %{data: %{"avatarPath" => path}} -> Avatar.url(path)
       _no_avatar_set -> nil
+    end
+  end
+
+  # Called by LiveView as chunks of the selected file stream in (auto_upload:
+  # true starts this as soon as a file is chosen, no submit needed). Persists
+  # the avatar to S3 and the app_setting once the entry finishes uploading.
+  defp handle_avatar_progress(:avatar, entry, socket) do
+    if entry.done? do
+      %{item_id: item_id, account_id: account_id} = socket.assigns
+
+      setting_id =
+        case Chatbot.get_setting(item_id, "chatbot-avatar") do
+          %{id: id} -> id
+          nil -> Ecto.UUID.generate()
+        end
+
+      key =
+        consume_uploaded_entry(socket, entry, fn %{path: path} ->
+          {:ok, Avatar.upload(item_id, setting_id, path)}
+        end)
+
+      {:ok, _app_setting} =
+        Chatbot.upsert_setting(
+          item_id,
+          "chatbot-avatar",
+          %{"avatarPath" => key},
+          account_id,
+          setting_id
+        )
+
+      {:noreply,
+       socket |> refresh_avatar() |> put_flash(:info, dgettext("chatbot", "Avatar updated."))}
+    else
+      {:noreply, socket}
     end
   end
 
@@ -549,7 +569,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
   defp bot_avatar(assigns) do
     ~H"""
     <div :if={@src} class="chat-image avatar">
-      <div class="w-8 rounded-full">
+      <div class="size-10 rounded-full">
         <img src={@src} />
       </div>
     </div>
@@ -565,7 +585,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
         phx-hook="GraaspAppContext"
         data-item-id={@item_id}
         data-app-key={@app_key}
-        class="flex flex-col items-center max-w-[100ch] w-full"
+        class="flex flex-col items-center w-full pb-8"
         data-theme="light"
       >
         <div :if={@status == :missing_item_id} class="p-4 text-error">
@@ -585,8 +605,8 @@ defmodule AdminWeb.Chatbot.PlayerLive do
           </button>
         </div>
 
-        <div :if={@status == :ready} class="flex flex-col w-full">
-          <div :if={@is_teacher?} class="border-b border-base-300 p-3">
+        <div :if={@status == :ready} class="flex flex-col gap-2 items-center max-w-5xl w-full">
+          <div :if={@is_teacher?} class="p-3 w-full">
             <div
               :if={@settings.initial_prompt in [nil, ""]}
               role="alert"
@@ -600,41 +620,49 @@ defmodule AdminWeb.Chatbot.PlayerLive do
 
             <h3 class="font-semibold">{dgettext("chatbot", "Chatbot settings")}</h3>
             <div class="">
-              <div class="flex flex-row gap-2 items-center">
-                <img
-                  :if={@settings.avatar_data_url}
-                  src={@settings.avatar_data_url}
-                  class="size-12 rounded-lg shadow object-cover"
-                />
+              <.form
+                for={@avatar_form}
+                id="avatar-form"
+                phx-change="validate_avatar"
+                multipart
+                class="flex flex-row gap-2 items-center"
+              >
+                <label
+                  for={@uploads.avatar.ref}
+                  title={dgettext("chatbot", "Click to upload a chatbot avatar")}
+                  class="group relative size-12 shrink-0 cursor-pointer "
+                >
+                  <img
+                    :if={@settings.avatar_data_url}
+                    src={@settings.avatar_data_url}
+                    class="size-12 rounded-lg shadow object-cover"
+                  />
+                  <div
+                    :if={!@settings.avatar_data_url}
+                    class="flex size-12 items-center justify-center bg-base-200 text-base-content/50 group-hover:text-base-content/80 rounded-lg"
+                  >
+                    <.icon name="hero-photo" class="size-6" />
+                  </div>
+                  <div class="absolute -bottom-2 -right-2 flex size-5 items-center justify-center rounded-full bg-primary text-neutral-content">
+                    <.icon name="hero-pencil" class="size-3" />
+                  </div>
+                </label>
+
                 <p :if={!@settings.avatar_data_url} class="text-sm opacity-70">
-                  {dgettext("chatbot", "No avatar set — the chatbot will show without one.")}
+                  {dgettext("chatbot", "Click the picture to upload a chatbot avatar.")}
                 </p>
 
-                <.form
-                  for={@avatar_form}
-                  id="avatar-form"
-                  phx-change="validate_avatar"
-                  phx-submit="save_avatar"
-                  multipart
-                  class="flex items-center gap-2"
+                <.live_file_input upload={@uploads.avatar} class="hidden" />
+
+                <button
+                  :if={@settings.avatar_data_url}
+                  type="button"
+                  phx-click="remove_avatar"
+                  class="btn btn-sm btn-ghost text-error"
                 >
-                  <.live_file_input
-                    upload={@uploads.avatar}
-                    class="file-input file-input-bordered file-input-sm"
-                  />
-                  <button :if={@uploads.avatar.entries != []} type="submit" class="btn btn-sm">
-                    {dgettext("chatbot", "Upload")}
-                  </button>
-                  <button
-                    :if={@settings.avatar_data_url}
-                    type="button"
-                    phx-click="remove_avatar"
-                    class="btn btn-sm btn-ghost text-error"
-                  >
-                    {dgettext("chatbot", "Remove")}
-                  </button>
-                </.form>
-              </div>
+                  {dgettext("chatbot", "Remove")}
+                </button>
+              </.form>
 
               <.form
                 for={@settings_form}
@@ -650,12 +678,12 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                 <.input
                   field={@settings_form[:initialPrompt]}
                   type="textarea"
-                  label={dgettext("chatbot", "System prompt")}
+                  label={dgettext("chatbot", "Prompt")}
                 />
                 <.input
                   field={@settings_form[:chatbotCue]}
                   type="textarea"
-                  label={dgettext("chatbot", "Greeting / cue message")}
+                  label={dgettext("chatbot", "Conversation starter")}
                 />
 
                 <div class="space-y-2">
@@ -710,11 +738,22 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                 {error_to_string(err)}
               </p>
             </div>
+
+            <div class="prose prose-sm">
+              <h3>{dgettext("chatbot", "About the Chatbot App")}</h3>
+              <p>
+                {dgettext(
+                  "chatbot",
+                  "The chatbot app uses OpenAI's ChatGPT model as a base to provide the chatbot integration. Users responses are transmitted to OpenAI trough their API to be processed and for responses to be generated. No other user data is transmitted. If users provide personal data in their messages there is nothing we can do to protect that data."
+                )}
+                {dgettext("chatbot", "See the")} <a url="https://openai.com/policies/eu-privacy-policy">{dgettext("chatbot", "Privacy policy for EU users")}</a>.
+              </p>
+            </div>
           </div>
 
           <div
             :if={!@is_teacher?}
-            class="flex flex-col items-center gap-2 py-4 border border-neutral rounded-lg w-full bg-white"
+            class="flex flex-col items-center gap-2 py-4 max-w-[100ch] border border-neutral/40 rounded-lg w-full bg-white"
           >
             <div class="flex flex-col gap-2 items-center w-full">
               <img
@@ -729,14 +768,10 @@ defmodule AdminWeb.Chatbot.PlayerLive do
             </div>
 
             <div :if={@view == :conversations} class="flex flex-col gap-4 items-center w-full">
-              <p :if={@conversations == []} class="text-sm opacity-70">
-                {dgettext("chatbot", "No conversations yet — start one below.")}
-              </p>
-
               <ul :if={@conversations != []} class="flex flex-col w-full">
                 <li
                   :for={conversation <- @conversations}
-                  class="flex flex-row items-center gap-2 border-b border-neutral px-4 py-2 hover:bg-base-200"
+                  class="flex flex-row items-center gap-2 border-b border-neutral/40 px-4 py-2 hover:bg-base-200"
                 >
                   <button
                     phx-click="select_conversation"
@@ -762,28 +797,25 @@ defmodule AdminWeb.Chatbot.PlayerLive do
               </ul>
 
               <.button variant="primary" class="w-fit" phx-click="new_conversation">
-                {dgettext("chatbot", "New conversation")}
+                <.icon name="hero-plus" class="size-5" /> {dgettext("chatbot", "New conversation")}
               </.button>
             </div>
-            <div :if={@view == :thread} class="flex flex-col gap-2 px-4 items-center w-full">
-              <.button
-                phx-click="back_to_conversations"
-                variant="ghost"
-                color="neutral"
-                class="w-fit"
-                disabled={@sending?}
-              >
-                <.icon name="hero-arrow-left" class="size-4" />{dgettext(
-                  "chatbot",
-                  "Back to conversations"
-                )}
-              </.button>
-
+            <div
+              :if={@view == :thread}
+              class="flex flex-col gap-2 px-4 pt-4 items-center w-full border-neutral/40 border-t"
+            >
               <div id="chat-thread" class="space-y-1 w-full">
-                <div :if={@thread == [] and is_nil(@pending)} class="chat chat-start">
+                <div
+                  :if={@thread == [] and is_nil(@pending) and @settings.cue not in [nil, ""]}
+                  class="chat chat-start"
+                >
                   <.bot_avatar src={@settings.avatar_data_url} />
                   <div class="chat-bubble">
-                    <.raw_html html={Markdown.to_html(@settings.cue)} class="max-w-none" />
+                    <.raw_html
+                      html={Markdown.to_html(@settings.cue)}
+                      class="max-w-none"
+                      size="base"
+                    />
                   </div>
                 </div>
 
@@ -796,7 +828,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                     phx-click="send_suggestion"
                     phx-value-content={suggestion}
                     disabled={@sending?}
-                    class="btn btn-outline btn-sm rounded-full"
+                    class="btn btn-primary rounded-full"
                   >
                     {suggestion}
                   </button>
@@ -808,7 +840,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                 >
                   <.bot_avatar :if={message.role != :user} src={@settings.avatar_data_url} />
                   <div class="chat-bubble">
-                    <.raw_html html={message.html} class="max-w-none" />
+                    <.raw_html html={message.html} class="max-w-none" size="base" />
                   </div>
                 </div>
 
@@ -820,6 +852,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                       :if={@pending.content != ""}
                       html={Markdown.to_html(@pending.content)}
                       class="max-w-none"
+                      size="base"
                     />
                   </div>
                 </div>
@@ -834,23 +867,38 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                 <.input
                   field={@chat_form[:content]}
                   type="text"
-                  placeholder={dgettext("chatbot", "Ask the chatbot…")}
+                  placeholder={dgettext("chatbot", "Type here…")}
                   autocomplete="off"
                   disabled={@sending?}
-                  class="w-full input"
+                  class="w-full input input-lg input-primary"
                 >
                   <.button
                     type="submit"
                     variant="primary"
+                    size="lg"
+                    class="btn-circle"
                     disabled={@sending?}
                     alt={dgettext("chatbot", "Send")}
                   >
-                    <.icon name="hero-paper-airplane" class="size-6" />
+                    <.icon name="hero-paper-airplane" class="size-6 ms-[3px]" />
                   </.button>
                 </.input>
               </.form>
             </div>
           </div>
+          <.button
+            :if={@view == :thread}
+            phx-click="back_to_conversations"
+            variant="outline"
+            color="primary"
+            class="w-fit"
+            disabled={@sending?}
+          >
+            <.icon name="hero-arrow-left" class="size-4" />{dgettext(
+              "chatbot",
+              "Back to conversations"
+            )}
+          </.button>
         </div>
       </div>
     </Layouts.chatbot>
