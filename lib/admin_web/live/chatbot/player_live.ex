@@ -531,6 +531,19 @@ defmodule AdminWeb.Chatbot.PlayerLive do
 
   defp error_to_string(_other), do: dgettext("chatbot", "Could not upload that image.")
 
+  defp connection_error_to_string(reason) when reason in ["context_timeout", "token_timeout"] do
+    dgettext(
+      "chatbot",
+      "Could not reach Graasp. Check your connection and try again."
+    )
+  end
+
+  defp connection_error_to_string(reason) do
+    dgettext("chatbot", "Could not authenticate this app instance (%{reason}).",
+      reason: inspect(reason)
+    )
+  end
+
   attr :src, :string, default: nil
 
   defp bot_avatar(assigns) do
@@ -561,10 +574,15 @@ defmodule AdminWeb.Chatbot.PlayerLive do
         <div :if={@status == :awaiting_context} class="p-4">
           {dgettext("chatbot", "Connecting to Graasp…")}
         </div>
-        <div :if={@status == :error} class="p-4 text-error">
-          {dgettext("chatbot", "Could not authenticate this app instance (%{reason}).",
-            reason: inspect(@error)
-          )}
+        <div :if={@status == :error} class="p-4 text-error flex flex-col items-start gap-2">
+          <span>{connection_error_to_string(@error)}</span>
+          <button
+            type="button"
+            onclick="window.location.reload()"
+            class="btn btn-sm btn-outline"
+          >
+            {dgettext("chatbot", "Retry")}
+          </button>
         </div>
 
         <div :if={@status == :ready} class="flex flex-col w-full">
