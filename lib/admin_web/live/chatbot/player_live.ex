@@ -32,13 +32,13 @@ defmodule AdminWeb.Chatbot.PlayerLive do
   """
   use AdminWeb, :live_view
 
+  alias Admin.Apps.AppData
+  alias Admin.Apps.Token
   alias Admin.Chatbot
-  alias Admin.Chatbot.AppData
   alias Admin.Chatbot.Avatar
   alias Admin.Chatbot.Markdown
   alias Admin.Chatbot.OpenAI
   alias Admin.Chatbot.PromptSettings
-  alias Admin.Chatbot.Token
 
   defp default_cue, do: dgettext("chatbot", "Hi! Ask me anything about this activity.")
   defp default_chatbot_name, do: dgettext("chatbot", "Chatbot")
@@ -485,7 +485,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
   defp fetch_avatar_data_url(item_id) do
     case Chatbot.get_setting(item_id, "chatbot-avatar") do
       nil -> nil
-      %{data: %{"avatarPath" => path}} -> Avatar.url(path)
+      %{data: %{"file" => %{"path" => path}}} -> Avatar.url(path)
       _no_avatar_set -> nil
     end
   end
@@ -512,7 +512,13 @@ defmodule AdminWeb.Chatbot.PlayerLive do
         Chatbot.upsert_setting(
           item_id,
           "chatbot-avatar",
-          %{"avatarPath" => key},
+          %{
+            "file" => %{
+              "name" => entry.client_name,
+              "path" => key,
+              "mimetype" => entry.client_type
+            }
+          },
           account_id,
           setting_id
         )

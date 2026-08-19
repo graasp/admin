@@ -14,7 +14,7 @@ defmodule AdminWeb.Dev.ChatbotMockController do
   """
   use AdminWeb, :controller
 
-  alias Admin.Chatbot.Token
+  alias Admin.Apps.Token
 
   def index(conn, params) do
     item_id = Map.get(params, "itemId", Ecto.UUID.generate())

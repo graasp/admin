@@ -9,9 +9,9 @@ defmodule Admin.Chatbot do
 
   import Ecto.Query, warn: false
 
-  alias Admin.Chatbot.AppAction
-  alias Admin.Chatbot.AppData
-  alias Admin.Chatbot.AppSetting
+  alias Admin.Apps.AppAction
+  alias Admin.Apps.AppData
+  alias Admin.Apps.AppSetting
   alias Admin.Repo
 
   @message_types ~w(comment bot-comment)

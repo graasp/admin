@@ -21,167 +21,187 @@ msgstr "Hallo! Frag mich alles zu dieser Aktivität."
 msgid "Chatbot"
 msgstr "Chatbot"
 
-#: lib/admin_web/live/chatbot/player_live.ex:215
+#: lib/admin_web/live/chatbot/player_live.ex:217
 #, elixir-autogen, elixir-format
 msgid "Chatbot settings saved."
 msgstr "Chatbot-Einstellungen gespeichert."
 
-#: lib/admin_web/live/chatbot/player_live.ex:284
+#: lib/admin_web/live/chatbot/player_live.ex:527
 #, elixir-autogen, elixir-format
 msgid "Avatar updated."
 msgstr "Avatar aktualisiert."
 
-#: lib/admin_web/live/chatbot/player_live.ex:287
-#, elixir-autogen, elixir-format
-msgid "Choose an image first."
-msgstr "Wähle zuerst ein Bild aus."
-
-#: lib/admin_web/live/chatbot/player_live.ex:348
+#: lib/admin_web/live/chatbot/player_live.ex:334
 #, elixir-autogen, elixir-format
 msgid "Could not send your message, please try again."
 msgstr "Deine Nachricht konnte nicht gesendet werden, bitte versuche es erneut."
 
-#: lib/admin_web/live/chatbot/player_live.ex:436
+#: lib/admin_web/live/chatbot/player_live.ex:422
 #, elixir-autogen, elixir-format
 msgid "The chatbot replied, but saving the reply failed."
 msgstr "Der Chatbot hat geantwortet, aber das Speichern der Antwort ist fehlgeschlagen."
 
-#: lib/admin_web/live/chatbot/player_live.ex:445
+#: lib/admin_web/live/chatbot/player_live.ex:431
 #, elixir-autogen, elixir-format
 msgid "The chatbot could not respond, please try again."
 msgstr "Der Chatbot konnte nicht antworten, bitte versuche es erneut."
 
-#: lib/admin_web/live/chatbot/player_live.ex:525
+#: lib/admin_web/live/chatbot/player_live.ex:551
 #, elixir-autogen, elixir-format
 msgid "That image is too large (max 500KB)."
 msgstr "Dieses Bild ist zu groß (maximal 500 KB)."
 
-#: lib/admin_web/live/chatbot/player_live.ex:527
+#: lib/admin_web/live/chatbot/player_live.ex:553
 #, elixir-autogen, elixir-format
 msgid "Choose only one image."
 msgstr "Wähle nur ein Bild aus."
 
-#: lib/admin_web/live/chatbot/player_live.ex:530
+#: lib/admin_web/live/chatbot/player_live.ex:556
 #, elixir-autogen, elixir-format
 msgid "That file type isn't supported (use PNG/JPG/WEBP)."
 msgstr "Dieser Dateityp wird nicht unterstützt (verwende PNG/JPG/WEBP)."
 
-#: lib/admin_web/live/chatbot/player_live.ex:532
+#: lib/admin_web/live/chatbot/player_live.ex:558
 #, elixir-autogen, elixir-format
 msgid "Could not upload that image."
 msgstr "Dieses Bild konnte nicht hochgeladen werden."
 
-#: lib/admin_web/live/chatbot/player_live.ex:559
+#: lib/admin_web/live/chatbot/player_live.ex:598
 #, elixir-autogen, elixir-format
 msgid "Missing itemId query parameter."
 msgstr "Fehlender Abfrageparameter itemId."
 
-#: lib/admin_web/live/chatbot/player_live.ex:562
+#: lib/admin_web/live/chatbot/player_live.ex:601
 #, elixir-autogen, elixir-format
 msgid "Connecting to Graasp…"
 msgstr "Verbindung zu Graasp wird hergestellt…"
 
-#: lib/admin_web/live/chatbot/player_live.ex:565
+#: lib/admin_web/live/chatbot/player_live.ex:568
 #, elixir-autogen, elixir-format
 msgid "Could not authenticate this app instance (%{reason})."
 msgstr "Diese App-Instanz konnte nicht authentifiziert werden (%{reason})."
 
-#: lib/admin_web/live/chatbot/player_live.ex:577
+#: lib/admin_web/live/chatbot/player_live.ex:621
 #, elixir-autogen, elixir-format
 msgid "Configure a system prompt below before students start chatting."
 msgstr "Konfiguriere unten einen System-Prompt, bevor Schüler:innen mit dem Chatten beginnen."
 
-#: lib/admin_web/live/chatbot/player_live.ex:583
+#: lib/admin_web/live/chatbot/player_live.ex:627
 #, elixir-autogen, elixir-format
 msgid "Chatbot settings"
 msgstr "Chatbot-Einstellungen"
 
-#: lib/admin_web/live/chatbot/player_live.ex:630
+#: lib/admin_web/live/chatbot/player_live.ex:682
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "Name"
 
-#: lib/admin_web/live/chatbot/player_live.ex:635
-#, elixir-autogen, elixir-format
-msgid "System prompt"
-msgstr "System-Prompt"
-
-#: lib/admin_web/live/chatbot/player_live.ex:640
-#, elixir-autogen, elixir-format
-msgid "Greeting / cue message"
-msgstr "Begrüßungsnachricht"
-
-#: lib/admin_web/live/chatbot/player_live.ex:684
+#: lib/admin_web/live/chatbot/player_live.ex:736
 #, elixir-autogen, elixir-format
 msgid "Save settings"
 msgstr "Einstellungen speichern"
 
-#: lib/admin_web/live/chatbot/player_live.ex:592
-#, elixir-autogen, elixir-format
-msgid "No avatar set — the chatbot will show without one."
-msgstr "Kein Avatar festgelegt — der Chatbot wird ohne Avatar angezeigt."
-
-#: lib/admin_web/live/chatbot/player_live.ex:608
-#, elixir-autogen, elixir-format
-msgid "Upload"
-msgstr "Hochladen"
-
-#: lib/admin_web/live/chatbot/player_live.ex:616
+#: lib/admin_web/live/chatbot/player_live.ex:669
 #, elixir-autogen, elixir-format
 msgid "Remove"
 msgstr "Entfernen"
 
-#: lib/admin_web/live/chatbot/player_live.ex:715
-#, elixir-autogen, elixir-format
-msgid "No conversations yet — start one below."
-msgstr "Noch keine Unterhaltungen — starte unten eine."
-
-#: lib/admin_web/live/chatbot/player_live.ex:738
+#: lib/admin_web/live/chatbot/player_live.ex:797
 #, elixir-autogen, elixir-format
 msgid "Delete this conversation? This cannot be undone."
 msgstr "Diese Unterhaltung löschen? Dies kann nicht rückgängig gemacht werden."
 
-#: lib/admin_web/live/chatbot/player_live.ex:747
+#: lib/admin_web/live/chatbot/player_live.ex:806
 #, elixir-autogen, elixir-format
 msgid "New conversation"
 msgstr "Neue Unterhaltung"
 
-#: lib/admin_web/live/chatbot/player_live.ex:758
+#: lib/admin_web/live/chatbot/player_live.ex:903
 #, elixir-autogen, elixir-format
 msgid "Back to conversations"
 msgstr "Zurück zu den Unterhaltungen"
 
-#: lib/admin_web/live/chatbot/player_live.ex:819
-#, elixir-autogen, elixir-format
-msgid "Ask the chatbot…"
-msgstr "Frage den Chatbot…"
-
-#: lib/admin_web/live/chatbot/player_live.ex:828
+#: lib/admin_web/live/chatbot/player_live.ex:887
 #, elixir-autogen, elixir-format
 msgid "Send"
 msgstr "Senden"
 
-#: lib/admin_web/live/chatbot/player_live.ex:678
+#: lib/admin_web/live/chatbot/player_live.ex:730
 #, elixir-autogen, elixir-format
 msgid "Add starter suggestion"
-msgstr ""
+msgstr "Einstiegsvorschlag hinzufügen"
 
-#: lib/admin_web/live/chatbot/player_live.ex:666
+#: lib/admin_web/live/chatbot/player_live.ex:718
 #, elixir-autogen, elixir-format
 msgid "Remove starter suggestion"
-msgstr ""
+msgstr "Einstiegsvorschlag entfernen"
 
-#: lib/admin_web/live/chatbot/player_live.ex:648
+#: lib/admin_web/live/chatbot/player_live.ex:700
 #, elixir-autogen, elixir-format
 msgid "Shown to students on a new conversation."
-msgstr ""
+msgstr "Wird Schüler:innen bei einer neuen Unterhaltung angezeigt."
 
-#: lib/admin_web/live/chatbot/player_live.ex:659
+#: lib/admin_web/live/chatbot/player_live.ex:711
 #, elixir-autogen, elixir-format
 msgid "Starter suggestion"
-msgstr ""
+msgstr "Einstiegsvorschlag"
 
-#: lib/admin_web/live/chatbot/player_live.ex:645
+#: lib/admin_web/live/chatbot/player_live.ex:697
 #, elixir-autogen, elixir-format
 msgid "Starter suggestions"
-msgstr ""
+msgstr "Einstiegsvorschläge"
+
+#: lib/admin_web/live/chatbot/player_live.ex:749
+#, elixir-autogen, elixir-format
+msgid "About the Chatbot App"
+msgstr "Über die Chatbot-App"
+
+#: lib/admin_web/live/chatbot/player_live.ex:658
+#, elixir-autogen, elixir-format
+msgid "Click the picture to upload a chatbot avatar."
+msgstr "Klicke auf das Bild, um einen Chatbot-Avatar hochzuladen."
+
+#: lib/admin_web/live/chatbot/player_live.ex:638
+#, elixir-autogen, elixir-format
+msgid "Click to upload a chatbot avatar"
+msgstr "Klicken, um einen Chatbot-Avatar hochzuladen"
+
+#: lib/admin_web/live/chatbot/player_live.ex:692
+#, elixir-autogen, elixir-format
+msgid "Conversation starter"
+msgstr "Gesprächseinstieg"
+
+#: lib/admin_web/live/chatbot/player_live.ex:561
+#, elixir-autogen, elixir-format
+msgid "Could not reach Graasp. Check your connection and try again."
+msgstr "Graasp konnte nicht erreicht werden. Überprüfe deine Verbindung und versuche es erneut."
+
+#: lib/admin_web/live/chatbot/player_live.ex:755
+#, elixir-autogen, elixir-format
+msgid "Privacy policy for EU users"
+msgstr "Datenschutzrichtlinie für EU-Nutzer:innen"
+
+#: lib/admin_web/live/chatbot/player_live.ex:687
+#, elixir-autogen, elixir-format
+msgid "Prompt"
+msgstr "Prompt"
+
+#: lib/admin_web/live/chatbot/player_live.ex:610
+#, elixir-autogen, elixir-format
+msgid "Retry"
+msgstr "Erneut versuchen"
+
+#: lib/admin_web/live/chatbot/player_live.ex:755
+#, elixir-autogen, elixir-format
+msgid "See the"
+msgstr "Siehe die"
+
+#: lib/admin_web/live/chatbot/player_live.ex:751
+#, elixir-autogen, elixir-format
+msgid "The chatbot app uses OpenAI's ChatGPT model as a base to provide the chatbot integration. Users responses are transmitted to OpenAI trough their API to be processed and for responses to be generated. No other user data is transmitted. If users provide personal data in their messages there is nothing we can do to protect that data."
+msgstr "Die Chatbot-App verwendet das ChatGPT-Modell von OpenAI als Basis für die Chatbot-Integration. Die Antworten der Nutzer:innen werden über die API von OpenAI übertragen, um verarbeitet zu werden und um Antworten zu generieren. Es werden keine weiteren Nutzerdaten übertragen. Wenn Nutzer:innen personenbezogene Daten in ihren Nachrichten angeben, können wir diese Daten nicht schützen."
+
+#: lib/admin_web/live/chatbot/player_live.ex:876
+#, elixir-autogen, elixir-format
+msgid "Type here…"
+msgstr "Hier eingeben…"

@@ -4,8 +4,10 @@ defmodule Admin.Chatbot.Avatar do
   file, via `Admin.Apps.AppSettingFile`.
 
   The S3 key is persisted in the `"chatbot-avatar"` app_setting
-  (`data["avatarPath"]`, see `AdminWeb.Chatbot.PlayerLive`) — that setting is
-  the source of truth for "is an avatar configured", not S3 itself.
+  (`data["file"]["path"]`, see `AdminWeb.Chatbot.PlayerLive`) — that setting is
+  the source of truth for "is an avatar configured", not S3 itself. The
+  `data["file"]` shape (`name`/`path`/`mimetype`) matches the old
+  application's app_setting file format.
   """
 
   alias Admin.Apps.AppSettingFile

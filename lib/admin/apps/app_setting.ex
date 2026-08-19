@@ -1,4 +1,4 @@
-defmodule Admin.Chatbot.AppSetting do
+defmodule Admin.Apps.AppSetting do
   @moduledoc """
   Mirrors core's `app_setting` table (`appSettingsTable` in
   `core/src/drizzle/schema.ts`). Stores the teacher-configured chatbot
