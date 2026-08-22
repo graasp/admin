@@ -76,6 +76,9 @@ defmodule AdminWeb.Chatbot.PlayerLive do
       |> assign(:conversations, [])
       |> assign(:active_conversation_id, nil)
       |> assign(:thread, [])
+      |> assign(:teacher_conversations, [])
+      |> assign(:teacher_selected, nil)
+      |> assign(:teacher_thread, [])
       |> assign(:pending, nil)
       |> assign(:sending?, false)
       |> assign(:chat_form, to_form(%{"content" => ""}, as: :message))
@@ -128,6 +131,13 @@ defmodule AdminWeb.Chatbot.PlayerLive do
           |> refresh_settings()
           |> assign(:conversations, Chatbot.list_conversations(item_id, account_id))
 
+        socket =
+          if socket.assigns.is_teacher? do
+            assign(socket, :teacher_conversations, Chatbot.list_conversations_by_account(item_id))
+          else
+            socket
+          end
+
         {:noreply, socket}
 
       {:error, reason} ->
@@ -174,6 +184,36 @@ defmodule AdminWeb.Chatbot.PlayerLive do
       |> assign(:conversations, Chatbot.list_conversations(item_id, account_id))
 
     {:noreply, socket}
+  end
+
+  def handle_event(
+        "teacher_select_conversation",
+        %{"account-id" => account_id, "id" => id},
+        socket
+      ) do
+    conversation_id = normalize_conversation_id(id)
+    %{item_id: item_id, teacher_conversations: teacher_conversations} = socket.assigns
+
+    account_name =
+      case Enum.find(teacher_conversations, &(&1.account_id == account_id)) do
+        nil -> nil
+        student -> student.account_name
+      end
+
+    socket =
+      socket
+      |> assign(:teacher_selected, %{
+        account_id: account_id,
+        account_name: account_name,
+        conversation_id: conversation_id
+      })
+      |> assign(:teacher_thread, load_thread(item_id, account_id, conversation_id))
+
+    {:noreply, socket}
+  end
+
+  def handle_event("teacher_back_to_list", _params, socket) do
+    {:noreply, assign(socket, :teacher_selected, nil)}
   end
 
   def handle_event("validate_settings", %{"prompt_settings" => params}, socket) do
@@ -582,6 +622,23 @@ defmodule AdminWeb.Chatbot.PlayerLive do
     """
   end
 
+  attr :thread, :list, required: true
+  attr :avatar_src, :string, default: nil
+
+  defp thread_messages(assigns) do
+    ~H"""
+    <div
+      :for={message <- @thread}
+      class={["chat", if(message.role == :user, do: "chat-end", else: "chat-start")]}
+    >
+      <.bot_avatar :if={message.role != :user} src={@avatar_src} />
+      <div class="chat-bubble">
+        <.raw_html html={message.html} class="max-w-none" size="base" />
+      </div>
+    </div>
+    """
+  end
+
   @impl true
   def render(assigns) do
     ~H"""
@@ -757,6 +814,55 @@ defmodule AdminWeb.Chatbot.PlayerLive do
             </div>
           </div>
 
+          <div :if={@is_teacher?} class="p-3 w-full">
+            <h3 class="font-semibold mb-2">{dgettext("chatbot", "Student conversations")}</h3>
+
+            <div :if={is_nil(@teacher_selected)}>
+              <p :if={@teacher_conversations == []} class="text-sm opacity-70">
+                {dgettext("chatbot", "No conversations yet.")}
+              </p>
+              <div :for={student <- @teacher_conversations} class="mb-4">
+                <p class="font-medium">{student.account_name}</p>
+                <ul class="flex flex-col w-full">
+                  <li
+                    :for={conversation <- student.conversations}
+                    class="flex flex-row items-center gap-2 border-b border-neutral/40 px-4 py-2 hover:bg-base-200"
+                  >
+                    <button
+                      phx-click="teacher_select_conversation"
+                      phx-value-account-id={student.account_id}
+                      phx-value-id={conversation.id || ""}
+                      class="flex-1 min-w-0 text-left cursor-pointer"
+                    >
+                      <span class="font-medium block truncate">{conversation.preview}</span>
+                      <span class="text-xs opacity-60">
+                        {Calendar.strftime(conversation.last_message_at, "%b %d, %Y %H:%M")}
+                      </span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div :if={@teacher_selected}>
+              <.button
+                phx-click="teacher_back_to_list"
+                variant="outline"
+                color="primary"
+                class="w-fit mb-2"
+              >
+                <.icon name="hero-arrow-left" class="size-4" />{dgettext(
+                  "chatbot",
+                  "Back to conversations"
+                )}
+              </.button>
+              <p class="font-medium mb-2">{@teacher_selected.account_name}</p>
+              <div id="teacher-chat-thread" class="space-y-1 w-full">
+                <.thread_messages thread={@teacher_thread} avatar_src={@settings.avatar_data_url} />
+              </div>
+            </div>
+          </div>
+
           <div
             :if={!@is_teacher?}
             class="flex flex-col items-center gap-2 py-4 max-w-[100ch] border border-neutral/40 rounded-lg w-full bg-white"
@@ -840,15 +946,7 @@ defmodule AdminWeb.Chatbot.PlayerLive do
                   </button>
                 </div>
 
-                <div
-                  :for={message <- @thread}
-                  class={["chat", if(message.role == :user, do: "chat-end", else: "chat-start")]}
-                >
-                  <.bot_avatar :if={message.role != :user} src={@settings.avatar_data_url} />
-                  <div class="chat-bubble">
-                    <.raw_html html={message.html} class="max-w-none" size="base" />
-                  </div>
-                </div>
+                <.thread_messages thread={@thread} avatar_src={@settings.avatar_data_url} />
 
                 <div :if={@pending} class="chat chat-start">
                   <.bot_avatar src={@settings.avatar_data_url} />

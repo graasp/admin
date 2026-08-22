@@ -51,6 +51,36 @@ defmodule Admin.Chatbot do
     )
     |> order_by([d], asc: d.created_at)
     |> Repo.all()
+    |> group_into_conversations()
+  end
+
+  @doc """
+  Lists conversations for every account that has messaged on this item,
+  grouped by account then by conversation — the teacher's "all conversations"
+  view (mirrors the React app's `ConversationsView.tsx`, which groups
+  `app_data` by `account.id`/`account.name`). Each entry is
+  `%{account_id:, account_name:, conversations: [...]}`, sorted by account
+  name; `conversations` has the same shape as `list_conversations/2`.
+  """
+  def list_conversations_by_account(item_id) do
+    AppData
+    |> where([d], d.item_id == ^item_id and d.type in @message_types)
+    |> order_by([d], asc: d.created_at)
+    |> preload(:account)
+    |> Repo.all()
+    |> Enum.group_by(& &1.account_id)
+    |> Enum.map(fn {account_id, messages} ->
+      %{
+        account_id: account_id,
+        account_name: messages |> List.first() |> Map.get(:account) |> Map.get(:name),
+        conversations: group_into_conversations(messages)
+      }
+    end)
+    |> Enum.sort_by(& &1.account_name)
+  end
+
+  defp group_into_conversations(messages) do
+    messages
     |> Enum.group_by(&conversation_id_of/1)
     |> Enum.map(fn {id, messages} ->
       %{
