@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.1](https://github.com/graasp/graasp-web/compare/v0.11.0...v0.11.1) (2026-06-30)
+
+
+### Bug Fixes
+
+* update evision ([5953691](https://github.com/graasp/graasp-web/commit/5953691410d146e3f8d78cbd73dc10a5c2ae12ea))
+
 ## [0.11.0](https://github.com/graasp/graasp-web/compare/v0.10.8...v0.11.0) (2026-05-29)
 
 
